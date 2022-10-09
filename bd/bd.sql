@@ -6,7 +6,7 @@ USE caticao ;
 -- -----------------------------------------------------
 CREATE TABLE almacen (
   idAlmacen INT  AUTO_INCREMENT  primary key,
-  descripcionA VARCHAR(45)
+  descripcion VARCHAR(45)
 );
 -- -----------------------------------------------------
 -- Table maquina
