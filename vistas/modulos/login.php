@@ -4,7 +4,7 @@
   <div class="card card-outline card-primary">
     <div class="card-header text-center">
       <h2>CATICAO</h2>
-      <img src="vistas/img/plantilla/logo.jpg" class="img-responsive" style="padding:30px 100px 0px 100px">
+      <img src="vistas/img/plantilla/logo.jpg" class="img-responsive" >
     </div>
     <div class="card-body">
       <p class="login-box-msg">Inicie Sesión</p>
