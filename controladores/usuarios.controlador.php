@@ -2,21 +2,51 @@
 
 class ControladorUsuarios{
 
-    public function ctrIngresoUsuario(){
+	/*=============================================
+	INGRESO DE USUARIO
+	=============================================*/
 
-        if(preg_match('/^[a-zA-Z0-9]+$/', $_POST["ingUsuario"]) && 
-           preg_match('/^[a-zA-Z0-9]+$/', $_POST["ingPassword"]) ){
+	public function ctrIngresoUsuario(){
 
-            $tabla = "usuarios";
+		if(isset($_POST["ingUsuario"])){
 
-            $item = "usuario";
+			if(preg_match('/^[a-zA-Z0-9]+$/', $_POST["ingUsuario"]) &&
+			   preg_match('/^[a-zA-Z0-9]+$/', $_POST["ingPassword"])){
 
-            $valor = $_POST["ingUsuario"];
+				$tabla = "usuarios";
 
-            $respuesta = ModeloUsuarios::MdlMostrarUsuarios($tabla,$item,$valor);
+				$item = "usuario";
+				$valor = $_POST["ingUsuario"];
 
-            var_dump($respuesta);
+				$respuesta = ModeloUsuarios::MdlMostrarUsuarios($tabla, $item, $valor);
 
-        }
-    }
+				if(is_array($respuesta)){
+					if($respuesta["usuario"] == $_POST["ingUsuario"] && 
+					$respuesta["password"] == $_POST["ingPassword"]){
+ 
+					 $_SESSION["iniciarSesion"] = "ok";
+ 
+					 echo '<script>
+ 
+						 window.location = "inicio";
+ 
+					 </script>';
+ 
+				 }else{
+ 
+					 echo '<br><div class="alert alert-danger">Error al ingresar, vuelve a intentarlo</div>';
+ 
+				 }
+				}else{
+					 echo '<br><div class="alert alert-danger">Error al ingresar, vuelve a intentarlo</div>';
+				}
+				
+
+			}	
+
+		}
+
+	}
+
 }
+	

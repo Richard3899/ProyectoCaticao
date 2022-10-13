@@ -23,7 +23,7 @@
                 </h3>
                 <p>
                     Ingresa al menú lateral y allí podrás encontrar las páginas
-                    disponibles. También puedes regresar haciendo <a href="contenido"> click aquí.</a>
+                    disponibles. También puedes regresar haciendo <a href="inicio"> click aquí.</a>
                 </p>
             </div>
         </div>

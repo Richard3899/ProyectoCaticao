@@ -1,4 +1,5 @@
 <div id="back"></div>
+<div class="login-page">
 <div class="login-box">
   <!-- /.login-logo -->
   <div class="card card-outline card-primary">
@@ -59,3 +60,4 @@
   <!-- /.card -->
 </div>
 <!-- /.login-box -->
+</div>
