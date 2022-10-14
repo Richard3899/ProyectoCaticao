@@ -14,3 +14,11 @@ COLLATE='utf8_spanish_ci'
 ENGINE=InnoDB
 AUTO_INCREMENT=3
 ;
+
+
+-- Volcando datos para la tabla caticao.usuarios: ~1 rows (aproximadamente)
+/*!40000 ALTER TABLE `usuarios` DISABLE KEYS */;
+INSERT INTO `usuarios` (`id`, `nombre`, `usuario`, `password`, `perfil`, `foto`, `estado`, `ultimo_login`, `fecha`) VALUES
+	(00000000001, 'Usuario Administrador', 'admin', 'admin123', 'Administrador', NULL, 1, '2022-10-12 22:24:23', '2022-10-12 22:24:20'),
+	(00000000002, 'Richard Arias', 'richard', '123456', 'Administrador', NULL, 1, NULL, '2022-10-12 23:08:21');
+/*!40000 ALTER TABLE `usuarios` ENABLE KEYS */;
