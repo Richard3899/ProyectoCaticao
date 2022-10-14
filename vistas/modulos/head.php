@@ -1,7 +1,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>AdminLTE 3 | Blank Page</title>
+  <title>CATICAO</title>
   <link rel="icon" href="vistas/img/plantilla/icono-chocolate.png">
 
   <!-- Google Font: Source Sans Pro -->
