@@ -1,5 +1,6 @@
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
+  <div class="container">
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <div class="container-fluid">
@@ -9,7 +10,8 @@
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="#">Home</a></li>
+              <li class="breadcrumb-item"><a href="inicio">Inicio</a></li>
+              <li class="breadcrumb-item active">Tablero</li>
             </ol>
           </div>
         </div>
@@ -46,5 +48,6 @@
 
     </section>
     <!-- /.content -->
+    </div>
   </div>
   <!-- /.content-wrapper -->
