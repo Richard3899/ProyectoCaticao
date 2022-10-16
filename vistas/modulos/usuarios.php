@@ -34,7 +34,7 @@
       </div>
       <div class="card-body">
 
-      <table class="table table-bordered table-striped dt-responsive tablas" width="100%">
+      <table id="datatable1" class="table table-bordered table-striped dt-responsive tablas" width="100%">
        
       <thead>
        
