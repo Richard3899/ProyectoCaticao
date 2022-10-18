@@ -34,7 +34,7 @@
       </div>
       <div class="card-body">
 
-      <table id="datatable1" class="table table-bordered table-striped dt-responsive tablas" width="100%">
+      <table class="table table-bordered table-striped dt-responsive tablas" width="100%">
        
       <thead>
        
@@ -226,7 +226,7 @@ MODAL AGREGAR USUARIO
                 <span class="input-group-text"><i class="fas fa-users"></i></span>
                 </div>
 
-              <select class="form-control input-lg" name="nuevoPerfil">
+                <select class="form-control input-lg" name="nuevoPerfil" required>
                 
                 <option value="">Selecionar perfil</option>
 
@@ -272,6 +272,13 @@ MODAL AGREGAR USUARIO
         <button type="submit" class="btn btn-primary">Guardar usuario</button>
 
       </div>
+
+      <?php
+
+          $crearUsuario = new ControladorUsuarios();
+          $crearUsuario -> ctrCrearUsuario();
+
+      ?>
 
 
     </form>
