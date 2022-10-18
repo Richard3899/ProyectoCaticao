@@ -25,17 +25,16 @@ CREATE TABLE IF NOT EXISTS `usuarios` (
   `password` text COLLATE utf8_spanish_ci NOT NULL,
   `perfil` text COLLATE utf8_spanish_ci NOT NULL,
   `foto` text COLLATE utf8_spanish_ci,
-  `estado` int(11) NOT NULL,
+  `estado` int(11) DEFAULT NULL,
   `ultimo_login` datetime DEFAULT NULL,
   `fecha` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
--- Volcando datos para la tabla caticao.usuarios: ~2 rows (aproximadamente)
+-- Volcando datos para la tabla caticao.usuarios: ~1 rows (aproximadamente)
 /*!40000 ALTER TABLE `usuarios` DISABLE KEYS */;
 INSERT INTO `usuarios` (`id`, `nombre`, `usuario`, `password`, `perfil`, `foto`, `estado`, `ultimo_login`, `fecha`) VALUES
-	(00000000001, 'Usuario Administrador', 'admin', 'admin123', 'Administrador', NULL, 1, '2022-10-12 22:24:23', '2022-10-12 22:24:20'),
-	(00000000002, 'Richard Arias', 'richard', '123456', 'Administrador', NULL, 1, NULL, '2022-10-12 23:08:21');
+	(00000000012, 'Administrador', 'admin', '$2a$07$asxx54ahjppf45sd87a5aunxs9bkpyGmGE/.vekdjFg83yRec789S', 'Administrador', NULL, NULL, NULL, '2022-10-18 16:42:18');
 /*!40000 ALTER TABLE `usuarios` ENABLE KEYS */;
 
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
