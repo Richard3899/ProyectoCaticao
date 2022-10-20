@@ -170,7 +170,7 @@ MODAL AGREGAR USUARIO
                 <span class="input-group-text"><i class="fas fa-user"></i></span>
                 </div>
                 <input type="text" class="form-control input-lg" name="nuevoNombre" placeholder="Ingresar nombre" required>
-              </div>
+            </div>
 
           </div>
 
@@ -183,7 +183,7 @@ MODAL AGREGAR USUARIO
                 <span class="input-group-text"><i class="fas fa-key"></i></span>
                 </div>
                 <input type="text" class="form-control input-lg" name="nuevoUsuario" placeholder="Ingresar usuario" id="nuevoUsuario" required>
-              </div>
+            </div>
 
           </div>
 
@@ -275,3 +275,162 @@ MODAL AGREGAR USUARIO
 </div>
 
 </div>
+
+
+<!--=====================================
+MODAL EDITAR USUARIO
+======================================-->
+
+<div id="modalEditarUsuario" class="modal fade" role="dialog">
+  
+  <div class="modal-dialog">
+
+    <div class="modal-content">
+
+      <form role="form" method="post" enctype="multipart/form-data">
+
+        <!--=====================================
+        CABEZA DEL MODAL
+        ======================================-->
+
+        <div class="modal-header" style="background:gray; color:white">
+
+        <h4 class="modal-title">Editar usuario</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+
+        </div>
+
+        <!--=====================================
+        CUERPO DEL MODAL
+        ======================================-->
+
+        <div class="modal-body">
+
+          <div class="box-body">
+
+
+            <!-- ENTRADA PARA EL NOMBRE -->
+                      
+
+            <div class="form-group">
+            
+            <div class="input-group">
+                <div class="input-group-prepend">
+                <span class="input-group-text"><i class="fas fa-user"></i></span>
+                </div>
+                <input type="text" class="form-control input-lg" id="editarNombre" name="editarNombre" value="" required>
+            </div>
+
+          </div>
+
+          <!-- ENTRADA PARA EL USUARIO -->
+
+           <div class="form-group">
+            
+            <div class="input-group">
+                <div class="input-group-prepend">
+                <span class="input-group-text"><i class="fas fa-key"></i></span>
+                </div>
+                <input type="text" class="form-control input-lg" id="editarUsuario" name="editarUsuario" value="" readonly>
+            </div>
+
+          </div>
+
+
+          <!-- ENTRADA PARA LA CONTRASEÑA -->
+
+            <div class="form-group">
+            
+            <div class="input-group">
+            
+                <div class="input-group-prepend">
+                <span class="input-group-text"><i class="fas fa-lock"></i></span>
+                </div>
+
+                <input type="password" class="form-control input-lg" name="editarPassword" placeholder="Escriba la nueva contraseña">
+
+                <input type="hidden" id="passwordActual" name="passwordActual">
+
+            </div>
+
+            </div>
+
+          <!-- ENTRADA PARA SELECCIONAR SU PERFIL -->
+
+          <div class="form-group">
+            
+            <div class="input-group">
+            
+                <div class="input-group-prepend">
+                <span class="input-group-text"><i class="fas fa-users"></i></span>
+                </div>
+
+                <select class="form-control input-lg" name="editarPerfil">
+                  
+                <option value="" id="editarPerfil"></option>
+
+                <option value="Administrador">Administrador</option>
+
+                <option value="Especial">Especial</option>
+
+                <option value="Vendedor">Vendedor</option>
+
+              </select>
+
+            </div>
+
+          </div>
+
+          <!-- ENTRADA PARA SUBIR FOTO -->
+
+           <div class="form-group">
+            <div class="card">
+              <ul class="list-group list-group-flush">
+                <li class="list-group-item">Subir Foto</li>
+                <li class="list-group-item"><input type="file" class="nuevaFoto" name="editarFoto"></li>
+                <li class="list-group-item"> Peso máximo de la foto 2MB</li>
+              </ul>
+            </div>
+            
+            <img src="vistas/img/usuarios/default/usuario.png" class="img-thumbnail previsualizar" width="100px">
+            <input type="hidden" name="fotoActual" id="fotoActual">
+          </div>
+
+        </div>
+
+      </div>
+
+
+        <!--=====================================
+        PIE DEL MODAL
+        ======================================-->
+
+        <div class="modal-footer">
+
+          <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Salir</button>
+
+          <button type="submit" class="btn btn-primary">Modificar usuario</button>
+
+        </div>
+
+     <?php
+
+          $editarUsuario = new ControladorUsuarios();
+          $editarUsuario -> ctrEditarUsuario();
+
+        ?> 
+
+      </form>
+
+    </div>
+
+  </div>
+
+</div>
+
+<?php
+
+  $borrarUsuario = new ControladorUsuarios();
+  $borrarUsuario -> ctrBorrarUsuario();
+
+?> 
