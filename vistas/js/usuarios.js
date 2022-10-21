@@ -2,7 +2,7 @@
 SUBIENDO LA FOTO DEL USUARIO
 =============================================*/
 $(".nuevaFoto").change(function(){
-
+	
 	var imagen = this.files[0];
 	
 	/*=============================================
@@ -31,7 +31,9 @@ $(".nuevaFoto").change(function(){
 		      confirmButtonText: "¡Cerrar!"
 		    });
 
-  	}else{
+  	}
+	
+	else{
 
   		var datosImagen = new FileReader;
   		datosImagen.readAsDataURL(imagen);
@@ -112,20 +114,26 @@ $(document).on("click", ".btnActivar", function(){
 
       	if(window.matchMedia("(max-width:767px)").matches){
 		
-      		 swal({
+      		 Swal.fire({
 		      	title: "El usuario ha sido actualizado",
-		      	type: "success",
-		      	confirmButtonText: "¡Cerrar!"
+		      	icon: "success",
+				showConfirmButton: false,
+				timer: 1000
 		    	}).then(function(result) {
 		        
-		        	if (result.value) {
-
 		        	window.location = "usuarios";
-
-		        }
 
 		      });
 
+
+		}else{
+
+			Swal.fire({
+				title: "El usuario ha sido actualizado",
+				icon: "success",
+			    showConfirmButton: false,
+			    timer: 1000
+			  })
 
 		}
       }
@@ -195,10 +203,10 @@ $(document).on("click", ".btnEliminarUsuario", function(){
   var fotoUsuario = $(this).attr("fotoUsuario");
   var usuario = $(this).attr("usuario");
 
-  swal({
+  Swal.fire({
     title: '¿Está seguro de borrar el usuario?',
     text: "¡Si no lo está puede cancelar la accíón!",
-    type: 'warning',
+    icon: 'warning',
     showCancelButton: true,
     confirmButtonColor: '#3085d6',
       cancelButtonColor: '#d33',

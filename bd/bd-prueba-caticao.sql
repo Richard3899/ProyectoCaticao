@@ -34,8 +34,7 @@ CREATE TABLE IF NOT EXISTS `usuarios` (
 -- Volcando datos para la tabla caticao.usuarios: ~1 rows (aproximadamente)
 /*!40000 ALTER TABLE `usuarios` DISABLE KEYS */;
 INSERT INTO `usuarios` (`id`, `nombre`, `usuario`, `password`, `perfil`, `foto`, `estado`, `ultimo_login`, `fecha`) VALUES
-	(1, 'Administrador', 'admin', '$2a$07$asxx54ahjppf45sd87a5aunxs9bkpyGmGE/.vekdjFg83yRec789S', 'Administrador', NULL, NULL, NULL, '2022-10-18 16:42:18'),
-	(2, 'Julio', 'Julio123', '$2a$07$asxx54ahjppf45sd87a5auFL5K1.Cmt9ZheoVVuudOi5BCi10qWly', 'Especial', 'vistas/img/usuarios/Julio123/934.png', NULL, NULL, '2022-10-18 21:46:22');
+	(1, 'Administrador', 'admin', '$2a$07$asxx54ahjppf45sd87a5aunxs9bkpyGmGE/.vekdjFg83yRec789S', 'Administrador', NULL, NULL, NULL, '2022-10-18 16:42:18');
 /*!40000 ALTER TABLE `usuarios` ENABLE KEYS */;
 
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;

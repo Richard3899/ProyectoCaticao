@@ -99,6 +99,7 @@ class ControladorUsuarios{
 
 	}
 
+
 	/*=============================================
 	REGISTRO DE USUARIO
 	=============================================*/
@@ -111,13 +112,13 @@ class ControladorUsuarios{
 			   preg_match('/^[a-zA-Z0-9]+$/', $_POST["nuevoUsuario"]) &&
 			   preg_match('/^[a-zA-Z0-9]+$/', $_POST["nuevoPassword"])){
 
-				/*=============================================
+			   	/*=============================================
 				VALIDAR IMAGEN
 				=============================================*/
 
 				$ruta = "";
 
-				if(isset($_FILES["nuevaFoto"]["tmp_name"])){
+				if(is_uploaded_file($_FILES["nuevaFoto"]["tmp_name"])){
 
 					list($ancho, $alto) = getimagesize($_FILES["nuevaFoto"]["tmp_name"]);
 
@@ -177,8 +178,8 @@ class ControladorUsuarios{
 					}
 
 				}
-				
-	
+
+
 				$tabla = "usuarios";
 
 				$encriptar = crypt($_POST["nuevoPassword"], '$2a$07$asxx54ahjppf45sd87a5a4dDDGsystemdev$');
@@ -196,27 +197,27 @@ class ControladorUsuarios{
 					echo '<script>
 
 					Swal.fire({
-
+					
 						icon: "success",
 						title: "¡El usuario ha sido guardado correctamente!",
 						showConfirmButton: false,
 						timer: 1500
-
+					
 					}).then(function(result){
-
+					
 							window.location = "usuarios";
-
+					
 					});
-				
-
+					
+					
 					</script>';
 
 
-				}
+				}	
 
 
+			}else{
 
- 			}else{
 				echo '<script>
 
 					Swal.fire({
@@ -238,9 +239,17 @@ class ControladorUsuarios{
 				
 
 				</script>';
+
 			}
-        } 
-    }
+
+
+		}
+
+
+	}
+
+
+
 
 
 	/*=============================================
