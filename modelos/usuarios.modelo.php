@@ -22,7 +22,7 @@ class ModeloUsuarios{
 
 		}else{
 
-			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla");
+			$stmt = Conexion::conectar()->prepare("call mostrar_usuarios");
 
 			$stmt -> execute();
 
@@ -43,14 +43,15 @@ class ModeloUsuarios{
 
 	static public function mdlIngresarUsuario($tabla, $datos){
 
-		$stmt = Conexion::conectar()->prepare("INSERT INTO $tabla(nombre, usuario, password, perfil, foto, estado) 
-		                                                  VALUES (:nombre, :usuario, :password, :perfil, :foto , 1)");
+		$stmt = Conexion::conectar()->prepare("call insertar_usuario(?,?,?,?,?)");
 
-		$stmt->bindParam(":nombre", $datos["nombre"], PDO::PARAM_STR);
-		$stmt->bindParam(":usuario", $datos["usuario"], PDO::PARAM_STR);
-		$stmt->bindParam(":password", $datos["password"], PDO::PARAM_STR);
-		$stmt->bindParam(":perfil", $datos["perfil"], PDO::PARAM_STR);
-		$stmt->bindParam(":foto", $datos["foto"], PDO::PARAM_STR);
+		var_dump($stmt);
+
+		$stmt->bindParam(1, $datos["nombre"], PDO::PARAM_STR);
+		$stmt->bindParam(2, $datos["usuario"], PDO::PARAM_STR);
+		$stmt->bindParam(3, $datos["password"], PDO::PARAM_STR);
+		$stmt->bindParam(4, $datos["perfil"], PDO::PARAM_STR);
+		$stmt->bindParam(5, $datos["foto"], PDO::PARAM_STR);
 
 		if($stmt->execute()){
 

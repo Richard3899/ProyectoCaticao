@@ -89,10 +89,17 @@
 
                   echo '<td><button class="btn btn-danger btn-xs btnActivar" idUsuario="'.$value["id"].'" estadoUsuario="1">Desactivado</button></td>';
 
-                }             
+                }
+                if($value["ultimo_login"] != ""){   
+                  echo '<td>'.$value["ultimo_login"].'</td>';
+                }else{
 
-                echo '<td>'.$value["ultimo_login"].'</td>
-                <td>
+                  echo '<td>Aun no inicia sesión</td>';
+
+                }
+
+                
+                echo '<td>
 
                   <div class="btn-group">
                       

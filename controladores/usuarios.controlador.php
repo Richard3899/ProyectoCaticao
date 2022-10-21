@@ -223,7 +223,7 @@ class ControladorUsuarios{
 					Swal.fire({
 
 						icon: "error",
-						title: "¡El usuario no puede ir vacío o llevar caracteres especiales!",
+						title: "¡El usuario no puede llevar caracteres especiales!",
 						showConfirmButton: true,
 						confirmButtonText: "Cerrar"
 
