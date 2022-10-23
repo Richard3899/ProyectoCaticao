@@ -41,7 +41,7 @@ class ModeloUsuarios{
 	REGISTRO DE USUARIO
 	=============================================*/
 
-	static public function mdlIngresarUsuario($tabla, $datos){
+	static public function mdlIngresarUsuario($datos){
 
 		$stmt = Conexion::conectar()->prepare("call insertar_usuario(?,?,?,?,?)");
 
@@ -73,15 +73,18 @@ class ModeloUsuarios{
 	EDITAR USUARIO
 	=============================================*/
 
-	static public function mdlEditarUsuario($tabla, $datos){
+	static public function mdlEditarUsuario($datos){
 	
-		$stmt = Conexion::conectar()->prepare("UPDATE $tabla SET nombre = :nombre, password = :password, perfil = :perfil, foto = :foto WHERE usuario = :usuario");
+		$stmt = Conexion::conectar()->prepare("call editar_usuario(?,?,?,?,?)");
+		
+		$stmt -> bindParam(1, $datos["nombre"], PDO::PARAM_STR);
+		$stmt -> bindParam(2, $datos["usuario"], PDO::PARAM_STR);
+		$stmt -> bindParam(3, $datos["password"], PDO::PARAM_STR);
+		$stmt -> bindParam(4, $datos["perfil"], PDO::PARAM_STR);
+		$stmt -> bindParam(5, $datos["foto"], PDO::PARAM_STR);
+		
 
-		$stmt -> bindParam(":nombre", $datos["nombre"], PDO::PARAM_STR);
-		$stmt -> bindParam(":password", $datos["password"], PDO::PARAM_STR);
-		$stmt -> bindParam(":perfil", $datos["perfil"], PDO::PARAM_STR);
-		$stmt -> bindParam(":foto", $datos["foto"], PDO::PARAM_STR);
-		$stmt -> bindParam(":usuario", $datos["usuario"], PDO::PARAM_STR);
+		var_dump($stmt);
 
 		if($stmt -> execute()){
 
@@ -92,6 +95,7 @@ class ModeloUsuarios{
 			return "error";	
 
 		}
+		var_dump($stmt);
 
 		#$stmt -> close();
 
@@ -130,11 +134,11 @@ class ModeloUsuarios{
 	BORRAR USUARIO
 	=============================================*/
 
-	static public function mdlBorrarUsuario($tabla, $datos){
+	static public function mdlBorrarUsuario($datos){
 
-		$stmt = Conexion::conectar()->prepare("DELETE FROM $tabla WHERE id = :id");
+		$stmt = Conexion::conectar()->prepare("call eliminar_usuario(?)");
 
-		$stmt -> bindParam(":id", $datos, PDO::PARAM_INT);
+		$stmt -> bindParam(1, $datos, PDO::PARAM_INT);
 
 		if($stmt -> execute()){
 

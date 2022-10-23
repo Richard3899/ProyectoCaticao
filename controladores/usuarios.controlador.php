@@ -15,7 +15,7 @@ class ControladorUsuarios{
 
 				$encriptar = crypt($_POST["ingPassword"], '$2a$07$asxx54ahjppf45sd87a5a4dDDGsystemdev$');
 
-				$tabla = "usuarios";
+				$tabla = "usuario";
 
 				$item = "usuario";
 				$valor = $_POST["ingUsuario"];
@@ -29,7 +29,7 @@ class ControladorUsuarios{
 						if($respuesta["estado"] == 1){
 
 						$_SESSION["iniciarSesion"] = "ok";
-						$_SESSION["id"] = $respuesta["id"];
+						$_SESSION["idUsuario"] = $respuesta["idUsuario"];
 						$_SESSION["nombre"] = $respuesta["nombre"];
 						$_SESSION["usuario"] = $respuesta["usuario"];
 						$_SESSION["foto"] = $respuesta["foto"];
@@ -49,8 +49,8 @@ class ControladorUsuarios{
 						$item1 = "ultimo_login";
 						$valor1 = $fechaActual;
 
-						$item2 = "id";
-						$valor2 = $respuesta["id"];
+						$item2 = "idUsuario";
+						$valor2 = $respuesta["idUsuario"];
 
 						$ultimoLogin = ModeloUsuarios::mdlActualizarUsuario($tabla, $item1, $valor1, $item2, $valor2);
 
@@ -180,8 +180,6 @@ class ControladorUsuarios{
 				}
 
 
-				$tabla = "usuarios";
-
 				$encriptar = crypt($_POST["nuevoPassword"], '$2a$07$asxx54ahjppf45sd87a5a4dDDGsystemdev$');
 
 				$datos = array("nombre" => $_POST["nuevoNombre"],
@@ -190,7 +188,7 @@ class ControladorUsuarios{
 					           "perfil" => $_POST["nuevoPerfil"],
 					           "foto"=>$ruta);
 
-				$respuesta = ModeloUsuarios::mdlIngresarUsuario($tabla, $datos);
+				$respuesta = ModeloUsuarios::mdlIngresarUsuario($datos);
 			
 				if($respuesta == "ok"){
 
@@ -258,7 +256,7 @@ class ControladorUsuarios{
 
 	static public function ctrMostrarUsuarios($item, $valor){
 
-		$tabla = "usuarios";
+		$tabla = "usuario";
 
 		$respuesta = ModeloUsuarios::MdlMostrarUsuarios($tabla, $item, $valor);
 
@@ -355,7 +353,6 @@ class ControladorUsuarios{
 
 				}
 
-				$tabla = "usuarios";
 
 				if($_POST["editarPassword"] != ""){
 
@@ -396,7 +393,7 @@ class ControladorUsuarios{
 							   "perfil" => $_POST["editarPerfil"],
 							   "foto" => $ruta);
 
-				$respuesta = ModeloUsuarios::mdlEditarUsuario($tabla, $datos);
+				$respuesta = ModeloUsuarios::mdlEditarUsuario($datos);
 
 				if($respuesta == "ok"){
 
@@ -453,7 +450,6 @@ class ControladorUsuarios{
 
 		if(isset($_GET["idUsuario"])){
 
-			$tabla ="usuarios";
 			$datos = $_GET["idUsuario"];
 
 			if($_GET["fotoUsuario"] != ""){
@@ -463,7 +459,7 @@ class ControladorUsuarios{
 
 			}
 
-			$respuesta = ModeloUsuarios::mdlBorrarUsuario($tabla, $datos);
+			$respuesta = ModeloUsuarios::mdlBorrarUsuario($datos);
 
 			if($respuesta == "ok"){
 
