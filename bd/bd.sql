@@ -828,13 +828,15 @@ CREATE TABLE Costos_receta_por_Mes (
 
 CREATE TABLE usuario (
   idUsuario INT  AUTO_INCREMENT primary key,
-  nombre VARCHAR(45) ,
-  correo VARCHAR(45) ,
-  perfil VARCHAR(45) ,
-  contraseña VARCHAR(45) 
+  nombre VARCHAR(45) NOT NULL COLLATE 'utf8_spanish_ci',
+  usuario VARCHAR(45) NOT NULL COLLATE 'utf8_spanish_ci',
+	password VARCHAR(100) NOT NULL COLLATE 'utf8_spanish_ci',
+	perfil VARCHAR(45) NOT NULL COLLATE 'utf8_spanish_ci',
+	foto VARCHAR(100) NULL DEFAULT NULL COLLATE 'utf8_spanish_ci',
+	estado INT(11) NULL DEFAULT NULL,
+	ultimo_login DATETIME NULL DEFAULT NULL,
+	fecha TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP
 );
-
-
 
 
 -- -----------------------------------------------------

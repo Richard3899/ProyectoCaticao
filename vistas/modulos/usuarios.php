@@ -34,7 +34,7 @@
       </div>
       <div class="card-body">
 
-      <table id="datatable1" class="table table-bordered table-striped dt-responsive tablas" width="100%">
+      <table class="table table-bordered table-striped dt-responsive tablas" width="100%">
        
       <thead>
        
@@ -55,75 +55,69 @@
 
       <tbody>
         
-        <tr>
-          <td>1</td>
-          <td>Usuario Administrador</td>
-          <td>admin</td>
-          <td><img src="vistas/img/usuarios/default/usuario.png" class="img-thumbnail" width="40px"></td>
-          <td>Administrador</td>
-          <td><button class="btn btn-success btn-xs">Activado</button></td>
-          <td>2017-12-11 12:05:32</td>
-          <td>
+      <?php
 
-            <div class="btn-group">
+      $item = null;
+      $valor = null;
+
+      $usuarios = ControladorUsuarios::ctrMostrarUsuarios($item, $valor);
+
+      foreach ($usuarios as $key => $value){
+      
+        echo ' <tr>
+                <td>'.$value["idUsuario"].'</td>
+                <td>'.$value["nombre"].'</td>
+                <td>'.$value["usuario"].'</td>';
+
+                if($value["foto"] != ""){
+
+                  echo '<td><img src="'.$value["foto"].'" class="img-thumbnail" width="40px"></td>';
+
+                }else{
+
+                  echo '<td><img src="vistas/img/usuarios/default/usuario.png" class="img-thumbnail" width="40px"></td>';
+
+                }
+
+                echo '<td>'.$value["perfil"].'</td>';
+
+                if($value["estado"] != 0){
+
+                  echo '<td><button class="btn btn-success btn-xs btnActivar" idUsuario="'.$value["idUsuario"].'" estadoUsuario="0">Activado</button></td>';
+
+                }else{
+
+                  echo '<td><button class="btn btn-danger btn-xs btnActivar" idUsuario="'.$value["idUsuario"].'" estadoUsuario="1">Desactivado</button></td>';
+
+                }
+                if($value["ultimo_login"] != ""){   
+                  echo '<td>'.$value["ultimo_login"].'</td>';
+                }else{
+
+                  echo '<td>Aun no inicia sesión</td>';
+
+                }
+
                 
-              <button class="btn btn-warning"><i class="fa fa-pen"></i></button>
+                echo '<td>
 
-              <button class="btn btn-danger"><i class="fa fa-times"></i></button>
+                  <div class="btn-group">
+                      
+                    <button class="btn btn-warning btnEditarUsuario" idUsuario="'.$value["idUsuario"].'" data-toggle="modal" data-target="#modalEditarUsuario"><i class="fa fa-pen"></i></button>
 
-            </div>  
+                    <button class="btn btn-danger btnEliminarUsuario" idUsuario="'.$value["idUsuario"].'" fotoUsuario="'.$value["foto"].'" usuario="'.$value["usuario"].'"><i class="fa fa-times"></i></button>
 
-          </td>
+                  </div>  
 
-        </tr>
+                </td>
 
-         <tr>
-          <td>1</td>
-          <td>Usuario Administrador</td>
-          <td>admin</td>
-          <td><img src="vistas/img/usuarios/default/usuario.png" class="img-thumbnail" width="40px"></td>
-          <td>Administrador</td>
-          <td><button class="btn btn-success btn-xs">Activado</button></td>
-          <td>2017-12-11 12:05:32</td>
-          <td>
+              </tr>';
+      }
 
-            <div class="btn-group">
-                
-              <button class="btn btn-warning"><i class="fa fa-pen"></i></button>
 
-              <button class="btn btn-danger"><i class="fa fa-times"></i></button>
-
-            </div>  
-
-          </td>
-
-        </tr>
-
-         <tr>
-          <td>1</td>
-          <td>Usuario Administrador</td>
-          <td>admin</td>
-          <td><img src="vistas/img/usuarios/default/usuario.png" class="img-thumbnail" width="40px"></td>
-          <td>Administrador</td>
-          <td><button class="btn btn-danger btn-xs">Desactivado</button></td>
-          <td>2017-12-11 12:05:32</td>
-          <td>
-
-            <div class="btn-group">
-                
-              <button class="btn btn-warning"><i class="fa fa-pen"></i></button>
-
-              <button class="btn btn-danger"><i class="fa fa-times"></i></button>
-
-            </div>  
-
-          </td>
-
-        </tr>
+      ?>
 
       </tbody>
-
-
 
      </table>
         
@@ -183,7 +177,7 @@ MODAL AGREGAR USUARIO
                 <span class="input-group-text"><i class="fas fa-user"></i></span>
                 </div>
                 <input type="text" class="form-control input-lg" name="nuevoNombre" placeholder="Ingresar nombre" required>
-              </div>
+            </div>
 
           </div>
 
@@ -196,7 +190,7 @@ MODAL AGREGAR USUARIO
                 <span class="input-group-text"><i class="fas fa-key"></i></span>
                 </div>
                 <input type="text" class="form-control input-lg" name="nuevoUsuario" placeholder="Ingresar usuario" id="nuevoUsuario" required>
-              </div>
+            </div>
 
           </div>
 
@@ -226,7 +220,7 @@ MODAL AGREGAR USUARIO
                 <span class="input-group-text"><i class="fas fa-users"></i></span>
                 </div>
 
-              <select class="form-control input-lg" name="nuevoPerfil">
+                <select class="form-control input-lg" name="nuevoPerfil" required>
                 
                 <option value="">Selecionar perfil</option>
 
@@ -273,6 +267,13 @@ MODAL AGREGAR USUARIO
 
       </div>
 
+      <?php
+
+          $crearUsuario = new ControladorUsuarios();
+          $crearUsuario -> ctrCrearUsuario();
+
+      ?>
+
 
     </form>
 
@@ -281,3 +282,162 @@ MODAL AGREGAR USUARIO
 </div>
 
 </div>
+
+
+<!--=====================================
+MODAL EDITAR USUARIO
+======================================-->
+
+<div id="modalEditarUsuario" class="modal fade" role="dialog">
+  
+  <div class="modal-dialog">
+
+    <div class="modal-content">
+
+      <form role="form" method="post" enctype="multipart/form-data">
+
+        <!--=====================================
+        CABEZA DEL MODAL
+        ======================================-->
+
+        <div class="modal-header" style="background:gray; color:white">
+
+        <h4 class="modal-title">Editar usuario</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+
+        </div>
+
+        <!--=====================================
+        CUERPO DEL MODAL
+        ======================================-->
+
+        <div class="modal-body">
+
+          <div class="box-body">
+
+
+            <!-- ENTRADA PARA EL NOMBRE -->
+                      
+
+            <div class="form-group">
+            
+            <div class="input-group">
+                <div class="input-group-prepend">
+                <span class="input-group-text"><i class="fas fa-user"></i></span>
+                </div>
+                <input type="text" class="form-control input-lg" id="editarNombre" name="editarNombre" value="" required>
+            </div>
+
+          </div>
+
+          <!-- ENTRADA PARA EL USUARIO -->
+
+           <div class="form-group">
+            
+            <div class="input-group">
+                <div class="input-group-prepend">
+                <span class="input-group-text"><i class="fas fa-key"></i></span>
+                </div>
+                <input type="text" class="form-control input-lg" id="editarUsuario" name="editarUsuario" value="" readonly>
+            </div>
+
+          </div>
+
+
+          <!-- ENTRADA PARA LA CONTRASEÑA -->
+
+            <div class="form-group">
+            
+            <div class="input-group">
+            
+                <div class="input-group-prepend">
+                <span class="input-group-text"><i class="fas fa-lock"></i></span>
+                </div>
+
+                <input type="password" class="form-control input-lg" name="editarPassword" placeholder="Escriba la nueva contraseña">
+
+                <input type="hidden" id="passwordActual" name="passwordActual">
+
+            </div>
+
+            </div>
+
+          <!-- ENTRADA PARA SELECCIONAR SU PERFIL -->
+
+          <div class="form-group">
+            
+            <div class="input-group">
+            
+                <div class="input-group-prepend">
+                <span class="input-group-text"><i class="fas fa-users"></i></span>
+                </div>
+
+                <select class="form-control input-lg" name="editarPerfil">
+                  
+                <option value="" id="editarPerfil"></option>
+
+                <option value="Administrador">Administrador</option>
+
+                <option value="Especial">Especial</option>
+
+                <option value="Vendedor">Vendedor</option>
+
+              </select>
+
+            </div>
+
+          </div>
+
+          <!-- ENTRADA PARA SUBIR FOTO -->
+
+           <div class="form-group">
+            <div class="card">
+              <ul class="list-group list-group-flush">
+                <li class="list-group-item">Subir Foto</li>
+                <li class="list-group-item"><input type="file" class="nuevaFoto" name="editarFoto"></li>
+                <li class="list-group-item"> Peso máximo de la foto 2MB</li>
+              </ul>
+            </div>
+            
+            <img src="vistas/img/usuarios/default/usuario.png" class="img-thumbnail previsualizar" width="100px">
+            <input type="hidden" name="fotoActual" id="fotoActual">
+          </div>
+
+        </div>
+
+      </div>
+
+
+        <!--=====================================
+        PIE DEL MODAL
+        ======================================-->
+
+        <div class="modal-footer">
+
+          <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Salir</button>
+
+          <button type="submit" class="btn btn-primary">Modificar usuario</button>
+
+        </div>
+
+     <?php
+
+          $editarUsuario = new ControladorUsuarios();
+          $editarUsuario -> ctrEditarUsuario();
+
+        ?> 
+
+      </form>
+
+    </div>
+
+  </div>
+
+</div>
+
+<?php
+
+  $borrarUsuario = new ControladorUsuarios();
+  $borrarUsuario -> ctrBorrarUsuario();
+
+?> 
