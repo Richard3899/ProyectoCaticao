@@ -6,12 +6,12 @@
     <div class="container-fluid">
       <div class="row mb-2">
         <div class="col-sm-6">
-          <h1>Administrador de Usuarios</h1>
+          <h1>Administrador de Productos</h1>
         </div>
         <div class="col-sm-6">
           <ol class="breadcrumb float-sm-right">
             <li class="breadcrumb-item"><a href="inicio">Inicio</a></li>
-            <li class="breadcrumb-item active">Administrador de Usuarios</li>
+            <li class="breadcrumb-item active">Administrador de Productos</li>
           </ol>
         </div>
       </div>
@@ -24,9 +24,9 @@
     <div class="card">
       <div class="card-header">
       
-      <button class="btn btn-primary" data-toggle="modal" data-target="#modalAgregarUsuario">
+      <button class="btn btn-primary" data-toggle="modal" data-target="#modalAgregarProducto">
         
-        Agregar Usuario
+        Agregar Producto
 
       </button>
         
@@ -34,90 +34,26 @@
       </div>
       <div class="card-body">
 
-      <table class="table table-bordered table-striped dt-responsive tablas" width="100%">
+      <table class="table table-bordered table-striped dt-responsive tablaProductos" width="100%">
        
       <thead>
        
        <tr>
          
          <th style="width:10px">#</th>
+         <th>Imagen</th>
+         <th>Código</th>
          <th>Nombre</th>
-         <th>Usuario</th>
-         <th>Foto</th>
-         <th>Perfil</th>
-         <th>Estado</th>
-         <th>Último login</th>
+         <th>Descripción</th>
+         <th>Tipo de Unidad</th>
+         <th>Cantidad</th>
+         <th>Tipo de Producto</th>
          <th>Acciones</th>
 
        </tr> 
 
       </thead>
 
-      <tbody>
-        
-      <?php
-
-      $item = null;
-      $valor = null;
-
-      $usuarios = ControladorUsuarios::ctrMostrarUsuarios($item, $valor);
-
-      foreach ($usuarios as $key => $value){
-      
-        echo ' <tr>
-                <td>'.$value["idUsuario"].'</td>
-                <td>'.$value["nombre"].'</td>
-                <td>'.$value["usuario"].'</td>';
-
-                if($value["foto"] != ""){
-
-                  echo '<td><img src="'.$value["foto"].'" class="img-thumbnail" width="40px"></td>';
-
-                }else{
-
-                  echo '<td><img src="vistas/img/usuarios/default/usuario.png" class="img-thumbnail" width="40px"></td>';
-
-                }
-
-                echo '<td>'.$value["perfil"].'</td>';
-
-                if($value["estado"] != 0){
-
-                  echo '<td><button class="btn btn-success btn-xs btnActivar" idUsuario="'.$value["idUsuario"].'" estadoUsuario="0">Activado</button></td>';
-
-                }else{
-
-                  echo '<td><button class="btn btn-danger btn-xs btnActivar" idUsuario="'.$value["idUsuario"].'" estadoUsuario="1">Desactivado</button></td>';
-
-                }
-                if($value["ultimo_login"] != ""){   
-                  echo '<td>'.$value["ultimo_login"].'</td>';
-                }else{
-
-                  echo '<td>Aun no inicia sesión</td>';
-
-                }
-
-                
-                echo '<td>
-
-                  <div class="btn-group">
-                      
-                    <button class="btn btn-warning btnEditarUsuario" idUsuario="'.$value["idUsuario"].'" data-toggle="modal" data-target="#modalEditarUsuario"><i class="fa fa-pen"></i></button>
-
-                    <button class="btn btn-danger btnEliminarUsuario" idUsuario="'.$value["idUsuario"].'" fotoUsuario="'.$value["foto"].'" usuario="'.$value["usuario"].'"><i class="fa fa-times"></i></button>
-
-                  </div>  
-
-                </td>
-
-              </tr>';
-      }
-
-
-      ?>
-
-      </tbody>
 
      </table>
         
@@ -140,9 +76,9 @@
 MODAL AGREGAR USUARIO
 ======================================-->
 
-<div id="modalAgregarUsuario" class="modal fade" role="dialog">
+<div id="modalAgregarProducto" class="modal fade" role="dialog">
 
-<div class="modal-dialog">
+<div class="modal-dialog modal-lg">
 
   <div class="modal-content">
 
@@ -154,7 +90,7 @@ MODAL AGREGAR USUARIO
 
       <div class="modal-header" style="background:gray; color:white">
 
-      <h4 class="modal-title">Agregar usuario</h4>
+      <h4 class="modal-title">Agregar producto</h4>
       <button type="button" class="close" data-dismiss="modal">&times;</button>
 
       </div>
@@ -167,77 +103,111 @@ MODAL AGREGAR USUARIO
 
         <div class="box-body">
 
-          <!-- ENTRADA PARA EL NOMBRE -->
-          
+          <div class="row">
 
-          <div class="form-group">
-            
+            <!-- ENTRADA PARA EL CÓDIGO -->
+            <div class="form-group col-sm">
+            <div class="input-group ">
+                <div class="input-group-prepend">
+                <span class="input-group-text"><i class="fas fa-hashtag"></i></span>
+                </div>
+                <input type="text" class="form-control input-lg" name="nuevoCodigo" placeholder="Ingresar código" maxlength="20" required>
+            </div>
+            </div>
+
+            <!-- ENTRADA PARA EL NOMBRE -->
+            <div class="form-group col-sm">
             <div class="input-group">
                 <div class="input-group-prepend">
-                <span class="input-group-text"><i class="fas fa-user"></i></span>
+                <span class="input-group-text"><i class="fas fa-file-signature"></i></span>
                 </div>
-                <input type="text" class="form-control input-lg" name="nuevoNombre" placeholder="Ingresar nombre"
-                 maxlength="50"  pattern="[a-zA-Z ]{2,254}" title="Solo se aceptan letras" required>
+                <input type="text" class="form-control input-lg" name="nuevoNombre" placeholder="Ingresar nombre" maxlength="45" required>
+            </div>
             </div>
 
           </div>
 
-          <!-- ENTRADA PARA EL USUARIO -->
+
+          <!-- ENTRADA PARA EL DESCRIPCIÓN -->
 
            <div class="form-group">
-            
             <div class="input-group">
                 <div class="input-group-prepend">
-                <span class="input-group-text"><i class="fas fa-key"></i></span>
+                <span class="input-group-text"><i class="fas fa-bars"></i></span>
                 </div>
-                <input type="text" class="form-control input-lg" name="nuevoUsuario" placeholder="Ingresar usuario" 
-                 maxlength="50" pattern="[a-z0-9]+" title="Solo letras minúsculas y números sin espacios" id="nuevoUsuario" required>
+                <input type="text" class="form-control input-lg" name="nuevaDescripcion" placeholder="Ingresar descripción" maxlength="100" required>
             </div>
+           </div>
 
-          </div>
 
-          <!-- ENTRADA PARA LA CONTRASEÑA -->
+          <div class="row">
+ 
+          <!-- ENTRADA PARA SELECCIONAR SU TIPO DE UNIDAD -->
 
-           <div class="form-group">
+          <div class="form-group col-sm">
             
             <div class="input-group">
             
                 <div class="input-group-prepend">
-                <span class="input-group-text"><i class="fas fa-lock"></i></span>
+                <span class="input-group-text"><i class="fas fa-ruler"></i></span>
                 </div>
 
-              <input type="password" class="form-control input-lg" name="nuevoPassword" placeholder="Ingresar contraseña" 
-               maxlength="50" required>
-
-            </div>
-
-          </div>
-
-          <!-- ENTRADA PARA SELECCIONAR SU PERFIL -->
-
-          <div class="form-group">
-            
-            <div class="input-group">
-            
-                <div class="input-group-prepend">
-                <span class="input-group-text"><i class="fas fa-users"></i></span>
-                </div>
-
-                <select class="form-control input-lg" name="nuevoPerfil" required>
+                <select class="form-control input-lg" name="nuevoTipodeunidad" required>
                 
-                <option value="">Selecionar perfil</option>
+                <option value="">Tipo de unidad</option>
 
-                <option value="Administrador">Administrador</option>
+                <option value="KG">KG</option>
 
-                <option value="Especial">Especial</option>
+                <option value="LT">LT</option>
 
-                <option value="Vendedor">Vendedor</option>
 
               </select>
 
             </div>
 
           </div>
+
+
+          <!-- ENTRADA PARA EL CANTIDAD -->
+
+          <div class="form-group col-sm">
+            
+            <div class="input-group">
+                <div class="input-group-prepend">
+                <span class="input-group-text"><i class="fas fa-layer-group"></i></span>
+                <font-awesome-icon icon="fa-solid fa-layer-group" />
+                </div>
+                <input type="number" class="form-control input-lg" name="nuevaCantidad" placeholder="Ingresar cantidad" min="0" required>
+            </div>
+
+          </div>
+
+          </div>
+          <!-- ENTRADA PARA SELECCIONAR SU TIPO DE PRODUCTO -->
+
+          <div class="form-group">
+            
+            <div class="input-group">
+            
+                <div class="input-group-prepend">
+                <span class="input-group-text"><i class="fas fa-cookie"></i></span>
+                </div>
+
+                <select class="form-control input-lg" name="nuevoTipodeproducto" required>
+                
+                <option value="">Tipo de producto</option>
+
+                <option value="Intermdio">Intermedio</option>
+
+                <option value="Terminado">Terminado</option>
+
+                <font-awesome-icon icon="fa-solid fa-boxes-stacked" />
+              </select>
+
+            </div>
+
+          </div>
+
 
           <!-- ENTRADA PARA SUBIR FOTO -->
 
@@ -272,8 +242,8 @@ MODAL AGREGAR USUARIO
 
       <?php
 
-          $crearUsuario = new ControladorUsuarios();
-          $crearUsuario -> ctrCrearUsuario();
+          #$crearUsuario = new ControladorUsuarios();
+          #$crearUsuario -> ctrCrearUsuario();
 
       ?>
 
@@ -328,8 +298,7 @@ MODAL EDITAR USUARIO
                 <div class="input-group-prepend">
                 <span class="input-group-text"><i class="fas fa-user"></i></span>
                 </div>
-                <input type="text" class="form-control input-lg" id="editarNombre" name="editarNombre" value=""
-                 maxlength="50"  pattern="[a-zA-Z ]{2,254}" title="Solo se aceptan letras" required>
+                <input type="text" class="form-control input-lg" id="editarNombre" name="editarNombre" value="" required>
             </div>
 
           </div>
@@ -342,8 +311,7 @@ MODAL EDITAR USUARIO
                 <div class="input-group-prepend">
                 <span class="input-group-text"><i class="fas fa-key"></i></span>
                 </div>
-                <input type="text" class="form-control input-lg" id="editarUsuario" name="editarUsuario" value="" 
-                maxlength="50" pattern="[a-z0-9]+" title="Solo letras minúsculas y números sin espacios" readonly>
+                <input type="text" class="form-control input-lg" id="editarUsuario" name="editarUsuario" value="" readonly>
             </div>
 
           </div>
@@ -427,8 +395,8 @@ MODAL EDITAR USUARIO
 
      <?php
 
-          $editarUsuario = new ControladorUsuarios();
-          $editarUsuario -> ctrEditarUsuario();
+          #$editarUsuario = new ControladorUsuarios();
+          #$editarUsuario -> ctrEditarUsuario();
 
         ?> 
 
@@ -442,7 +410,7 @@ MODAL EDITAR USUARIO
 
 <?php
 
-  $borrarUsuario = new ControladorUsuarios();
-  $borrarUsuario -> ctrBorrarUsuario();
+  #$borrarUsuario = new ControladorUsuarios();
+  #$borrarUsuario -> ctrBorrarUsuario();
 
 ?> 

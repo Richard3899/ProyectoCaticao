@@ -40,7 +40,7 @@
             <ul class="nav nav-treeview">
               <li class="nav-item">
                 <a href="#" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
+                  <i class="nav-icon fas fa-angle-double-right"></i>
                   <p>Insumos
                   <i class="right fas fa-angle-left"></i>
                   </p>
@@ -48,39 +48,43 @@
 
                 <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="#" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Dashboard v1</p>
+                <a href="insumos" class="nav-link">
+                  <i class="nav-icon fas fa-angle-right"></i>
+                  <p>Insumos</p>
                 </a>
               </li>
               <li class="nav-item">
                 <a href="#" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Dashboard v2</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="#" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Dashboard v3</p>
+                <i class="nav-icon fas fa-angle-right"></i>
+                  <p>Marcas</p>
                 </a>
               </li>
             </ul>
-
-
               </li>
+
               <li class="nav-item">
                 <a href="#" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
+                <i class="nav-icon fas fa-angle-double-right"></i>
                   <p>Materiales</p>
                 </a>
               </li>
+
+              <li class="nav-item">
+                <a href="productos" class="nav-link">
+                <i class="nav-icon fas fa-angle-double-right"></i>
+                  <p>Productos</p>
+                </a>
+              </li>
+
+
               <li class="nav-item">
                 <a href="#" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
+                <i class="nav-icon fas fa-angle-double-right"></i>
                   <p>Equipos</p>
                 </a>
               </li>
+
+
             </ul>
             
           </li>
