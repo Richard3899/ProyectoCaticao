@@ -1,17 +1,3 @@
-/*=============================================
-CARGAR LA TABLA DINÁMICA DE PRODUCTOS
-=============================================*/
-
-// $.ajax({
-
-// 	url: "ajax/datatable-productos.ajax.php",
-// 	success:function(respuesta){
-		
-// 		console.log("respuesta", respuesta);
-
-// 	}
-
-// })
 
 $('.tablaProductos').DataTable( {
     "ajax": "ajax/datatable-productos.ajax.php",
@@ -48,12 +34,11 @@ $('.tablaProductos').DataTable( {
 } );
 
 
-
 /*=============================================
 SUBIENDO LA FOTO DEL PRODUCTO
 =============================================*/
 
-$(".nuevaImagen").change(function(){
+$(".nuevaImagenProducto").change(function(){
 
 	var imagen = this.files[0];
 	
@@ -63,27 +48,28 @@ $(".nuevaImagen").change(function(){
 
   	if(imagen["type"] != "image/jpeg" && imagen["type"] != "image/png"){
 
-  		$(".nuevaImagen").val("");
+		$(".nuevaImagenProducto").val("");
 
-  		 Swal.fire({
-		      title: "Error al subir la imagen",
-		      text: "¡La imagen debe estar en formato JPG o PNG!",
-		      type: "error",
-		      confirmButtonText: "¡Cerrar!"
-		    });
+		 Swal.fire({
+			title: "Error al subir la imagen",
+			text: "¡La imagen debe estar en formato JPG o PNG!",
+			icon: "error",
+			confirmButtonText: "¡Cerrar!"
+		  });
 
-  	}else if(imagen["size"] > 2000000){
+	}else if(imagen["size"] > 2000000){
 
-  		$(".nuevaImagen").val("");
+		$(".nuevaImagenProducto").val("");
 
-  		 Swal.fire({
-		      title: "Error al subir la imagen",
-		      text: "¡La imagen no debe pesar más de 2MB!",
-		      type: "error",
-		      confirmButtonText: "¡Cerrar!"
-		    });
+		 Swal.fire({
+			title: "Error al subir la imagen",
+			text: "¡La imagen no debe pesar más de 2MB!",
+			icon: "error",
+			confirmButtonText: "¡Cerrar!"
+		  });
 
-  	}else{
+	}
+	else{
 
   		var datosImagen = new FileReader;
   		datosImagen.readAsDataURL(imagen);
@@ -120,43 +106,26 @@ $(".tablaProductos tbody").on("click", "button.btnEditarProducto", function(){
       processData: false,
       dataType:"json",
       success:function(respuesta){
-          
-          var datosCategoria = new FormData();
-          datosCategoria.append("idCategoria",respuesta["id_categoria"]);
 
-           $.ajax({
-
-              url:"ajax/categorias.ajax.php",
-              method: "POST",
-              data: datosCategoria,
-              cache: false,
-              contentType: false,
-              processData: false,
-              dataType:"json",
-              success:function(respuesta){
-                  
-                  $("#editarCategoria").val(respuesta["id"]);
-                  $("#editarCategoria").html(respuesta["categoria"]);
-
-              }
-
-          })
+		   $("#idProducto").val(respuesta["idProducto"]);
 
            $("#editarCodigo").val(respuesta["codigo"]);
 
+		   $("#editarNombre").val(respuesta["nombre"]);
+
            $("#editarDescripcion").val(respuesta["descripcion"]);
 
-           $("#editarStock").val(respuesta["stock"]);
+		   $("#editarUnidadMedida").val(respuesta["idUnidadMedida"]);
 
-           $("#editarPrecioCompra").val(respuesta["precio_compra"]);
+           $("#editarCantidad").val(respuesta["cantidad"]);
 
-           $("#editarPrecioVenta").val(respuesta["precio_venta"]);
+           $("#editarTipoProducto").val(respuesta["idTipoProducto"]);
 
            if(respuesta["imagen"] != ""){
 
-           	$("#imagenActual").val(respuesta["imagen"]);
+           	$("#ImagenProductoActual").val(respuesta["imagen"]);
 
-           	$(".previsualizar").attr("src",  respuesta["imagen"]);
+           	$(".previsualizar").attr("src",respuesta["imagen"]);
 
            }
 
@@ -176,11 +145,11 @@ $(".tablaProductos tbody").on("click", "button.btnEliminarProducto", function(){
 	var codigo = $(this).attr("codigo");
 	var imagen = $(this).attr("imagen");
 	
-	swal({
+	Swal.fire({
 
 		title: '¿Está seguro de borrar el producto?',
 		text: "¡Si no lo está puede cancelar la accíón!",
-		type: 'warning',
+		icon: 'warning',
         showCancelButton: true,
         confirmButtonColor: '#3085d6',
         cancelButtonColor: '#d33',
@@ -198,3 +167,38 @@ $(".tablaProductos tbody").on("click", "button.btnEliminarProducto", function(){
 
 })
 	
+/*=============================================
+REVISAR SI EL PRODUCTO YA ESTÁ REGISTRADO
+=============================================*/
+
+$("#nuevoCodigo").change(function(){
+
+	$(".alert").remove();
+
+	var producto = $(this).val();
+
+	var datos = new FormData();
+	datos.append("validarCodigo", producto);
+
+	 $.ajax({
+	    url:"ajax/productos.ajax.php",
+	    method:"POST",
+	    data: datos,
+	    cache: false,
+	    contentType: false,
+	    processData: false,
+	    dataType: "json",
+	    success:function(respuesta){
+	    	
+	    	if(respuesta){
+
+	    		$("#nuevoCodigo").parent().after('<div class="alert alert-warning">Este código ya existe en la base de datos</div>');
+
+	    		$("#nuevoCodigo").val("");
+
+	    	}
+
+	    }
+
+	})
+})

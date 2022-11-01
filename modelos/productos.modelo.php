@@ -5,7 +5,7 @@ require_once "conexion.php";
 class ModeloProductos{
 
 	/*=============================================
-	MOSTRAR PRODUCTOS
+	MOSTRAR PRODUCTO
 	=============================================*/
 
 	static public function mdlMostrarProductos($tabla, $item, $valor){
@@ -38,20 +38,20 @@ class ModeloProductos{
 	}
 
 	/*=============================================
-	REGISTRO DE PRODUCTOS
+	REGISTRO DE PRODUCTO
 	=============================================*/
 
-	static public function mdlIngresarProductos($datos){
+	static public function mdlIngresarProducto($datos){
 
-		$stmt = Conexion::conectar()->prepare("call insertar_productos(?,?,?,?,?)");
+		$stmt = Conexion::conectar()->prepare("call insertar_producto(?,?,?,?,?,?,?)");
 
-		var_dump($stmt);
-
-		$stmt->bindParam(1, $datos["nombre"], PDO::PARAM_STR);
-		$stmt->bindParam(2, $datos["productos"], PDO::PARAM_STR);
-		$stmt->bindParam(3, $datos["password"], PDO::PARAM_STR);
-		$stmt->bindParam(4, $datos["perfil"], PDO::PARAM_STR);
-		$stmt->bindParam(5, $datos["foto"], PDO::PARAM_STR);
+		$stmt->bindParam(1, $datos["codigo"], PDO::PARAM_STR);
+		$stmt->bindParam(2, $datos["nombre"], PDO::PARAM_STR);
+		$stmt->bindParam(3, $datos["descripcion"], PDO::PARAM_STR);
+		$stmt->bindParam(4, $datos["idUnidadMedida"], PDO::PARAM_INT);
+		$stmt->bindParam(5, $datos["cantidad"], PDO::PARAM_STR);
+		$stmt->bindParam(6, $datos["idTipoProducto"], PDO::PARAM_INT);
+		$stmt->bindParam(7, $datos["imagen"], PDO::PARAM_STR);
 
 		if($stmt->execute()){
 
@@ -70,49 +70,21 @@ class ModeloProductos{
 	}
 
 	/*=============================================
-	EDITAR PRODUCTOS
+	EDITAR PRODUCTO
 	=============================================*/
 
-	static public function mdlEditarProductos($datos){
+	static public function mdlEditarProducto($datos){
 	
-		$stmt = Conexion::conectar()->prepare("call editar_productos(?,?,?,?,?)");
+		$stmt = Conexion::conectar()->prepare("call editar_producto(?,?,?,?,?,?,?)");
 		
-		$stmt -> bindParam(1, $datos["nombre"], PDO::PARAM_STR);
-		$stmt -> bindParam(2, $datos["productos"], PDO::PARAM_STR);
-		$stmt -> bindParam(3, $datos["password"], PDO::PARAM_STR);
-		$stmt -> bindParam(4, $datos["perfil"], PDO::PARAM_STR);
-		$stmt -> bindParam(5, $datos["foto"], PDO::PARAM_STR);
+		$stmt->bindParam(1, $datos["idProducto"], PDO::PARAM_INT);
+		$stmt->bindParam(2, $datos["nombre"], PDO::PARAM_STR);
+		$stmt->bindParam(3, $datos["descripcion"], PDO::PARAM_STR);
+		$stmt->bindParam(4, $datos["idUnidadMedida"], PDO::PARAM_INT);
+		$stmt->bindParam(5, $datos["cantidad"], PDO::PARAM_STR);
+		$stmt->bindParam(6, $datos["idTipoProducto"], PDO::PARAM_INT);
+		$stmt->bindParam(7, $datos["imagen"], PDO::PARAM_STR);
 		
-
-		var_dump($stmt);
-
-		if($stmt -> execute()){
-
-			return "ok";
-		
-		}else{
-
-			return "error";	
-
-		}
-		var_dump($stmt);
-
-		#$stmt -> close();
-
-		$stmt = null;
-
-	}
-
-	/*=============================================
-	ACTUALIZAR PRODUCTOS
-	=============================================*/
-
-	static public function mdlActualizarProductos($tabla, $item1, $valor1, $item2, $valor2){
-
-		$stmt = Conexion::conectar()->prepare("UPDATE $tabla SET $item1 = :$item1 WHERE $item2 = :$item2");
-
-		$stmt -> bindParam(":".$item1, $valor1, PDO::PARAM_STR);
-		$stmt -> bindParam(":".$item2, $valor2, PDO::PARAM_STR);
 
 		if($stmt -> execute()){
 
@@ -130,13 +102,14 @@ class ModeloProductos{
 
 	}
 
+
 	/*=============================================
-	BORRAR PRODUCTOS
+	BORRAR PRODUCTO
 	=============================================*/
 
-	static public function mdlBorrarProductos($datos){
+	static public function mdlEliminarProducto($datos){
 
-		$stmt = Conexion::conectar()->prepare("call eliminar_productos(?)");
+		$stmt = Conexion::conectar()->prepare("call eliminar_producto(?)");
 
 		$stmt -> bindParam(1, $datos, PDO::PARAM_INT);
 

@@ -89,8 +89,6 @@ class ModeloInsumos{
 		$stmt->bindParam(8, $datos["imagen"], PDO::PARAM_STR);
 		
 
-		var_dump($stmt);
-
 		if($stmt -> execute()){
 
 			return "ok";
@@ -100,7 +98,7 @@ class ModeloInsumos{
 			return "error";	
 
 		}
-		var_dump($stmt);
+		
 
 		#$stmt -> close();
 

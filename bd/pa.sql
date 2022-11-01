@@ -58,6 +58,18 @@ BEGIN
 END$$
 DELIMITER ;
 
+-- Procedimientos almacenados de Tipo Producto --
+
+DROP procedure IF EXISTS `mostrar_tipoproducto`;
+DELIMITER $$
+USE `caticao`$$
+CREATE PROCEDURE `mostrar_tipoproducto` ()
+BEGIN
+	select * from tipoproducto;
+END$$
+DELIMITER ;
+
+
 
 -- Procedimientos almacenados de Productos --
 
@@ -69,6 +81,58 @@ BEGIN
 	select * from producto;
 END$$
 DELIMITER ;
+
+
+DROP procedure IF EXISTS `insertar_producto`;
+DELIMITER $$
+USE `caticao`$$
+CREATE PROCEDURE `insertar_producto` (  in codigoI VARCHAR(20),
+                                        in nombreI VARCHAR(50),
+                                        in descripcionI VARCHAR(100),
+                                        in idUnidadMedidaI INT,
+                                        in cantidadI DECIMAL(10,3),
+                                        in idTipoProductoI INT,
+                                        in imagenI VARCHAR(50))
+BEGIN
+	insert into producto (codigo,nombre,descripcion,idUnidadMedida,cantidad,idTipoProducto,imagen)
+				  values (codigoI,nombreI,descripcionI,idUnidadMedidaI,cantidadI,idTipoProductoI,imagenI);
+END$$
+DELIMITER ;
+
+
+DROP procedure IF EXISTS `editar_producto`;
+DELIMITER $$
+USE `caticao`$$
+CREATE PROCEDURE `editar_producto` (     in idProductoE VARCHAR(20),
+                                        in nombreE VARCHAR(50),
+                                        in descripcionE VARCHAR(100),
+                                        in idUnidadMedidaE INT,
+                                        in cantidadE DECIMAL(10,3),
+                                        in idTipoProductoE INT,
+                                        in imagenE VARCHAR(50))
+BEGIN
+	update producto set  idProducto=idProductoE,
+                        nombre=nombreE,
+                        descripcion=descripcionE,
+                        idUnidadMedida=idUnidadMedidaE,
+                        cantidad=cantidadE,
+                        idTipoProducto=idTipoProductoE,
+                        imagen=imagenE
+				where idProducto=idProductoE;
+END$$
+DELIMITER ;
+
+DROP procedure IF EXISTS `eliminar_producto`;
+DELIMITER $$
+USE `caticao`$$
+CREATE PROCEDURE `eliminar_producto` (in idProductoE int)
+BEGIN
+	delete from producto
+    where idProducto=idProductoE;
+END$$
+DELIMITER ;
+
+
 
 -- Procedimientos almacenados de Marcas --
 
@@ -172,5 +236,6 @@ BEGIN
 				  values (codigoI,nombreI,descripcionI,idUnidadMedidaI,idMarcaI,cantidadI,precioI,imagenI,2);
 END$$
 DELIMITER ;
+
 
 

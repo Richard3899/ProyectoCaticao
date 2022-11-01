@@ -170,7 +170,7 @@ $(".tablaInsumos tbody").on("click", "button.btnEliminarInsumo", function(){
 })
 	
 /*=============================================
-REVISAR SI EL USUARIO YA ESTÁ REGISTRADO
+REVISAR SI EL INSUMO YA ESTÁ REGISTRADO
 =============================================*/
 
 $("#nuevoCodigo").change(function(){

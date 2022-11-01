@@ -1,7 +1,11 @@
 <?php
 
 require_once "../controladores/productos.controlador.php";
+require_once "../controladores/unidadmedida.controlador.php";
+require_once "../controladores/tipoproducto.controlador.php";
 require_once "../modelos/productos.modelo.php";
+require_once "../modelos/unidadmedida.modelo.php";
+require_once "../modelos/tipoproducto.modelo.php";
 
 class TablaProductos{
 
@@ -45,6 +49,24 @@ class TablaProductos{
 
 			}
 
+			/*=============================================
+ 	 		TRAEMOS LA UNIDAD DE MEDIDA
+  			=============================================*/ 
+
+		  	$items = "idUnidadMedida";
+		  	$valors = $productos[$i]["idUnidadMedida"];
+
+		  	$unidadmedida = ControladorUnidadMedida::ctrMostrarUnidadMedida($items, $valors);
+
+			/*=============================================
+ 	 		TRAEMOS LA MARCA
+  			=============================================*/ 
+
+		  	$item = "idTipoProducto";
+		  	$valor = $productos[$i]["idTipoProducto"];
+
+		  	$tipoproducto = ControladorTipoProducto::ctrMostrarTipoProducto($item, $valor);
+
 		  	/*=============================================
  	 		TRAEMOS LAS ACCIONES
   			=============================================*/ 
@@ -57,9 +79,9 @@ class TablaProductos{
 			      "'.$productos[$i]["codigo"].'",
 			      "'.$productos[$i]["nombre"].'",
 			      "'.$productos[$i]["descripcion"].'",
-				  "'.$productos[$i]["idUnidadMedida"].'",
+				  "'.$unidadmedida["descripcion"].'",
 			      "'.$cantidad.'",
-			      "'.$productos[$i]["idTipoProducto"].'",
+			      "'.$tipoproducto["descripcion"].'",
 			      "'.$botones.'"
 			    ],';
 

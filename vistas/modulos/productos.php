@@ -54,7 +54,6 @@
 
       </thead>
 
-
      </table>
         
 
@@ -70,10 +69,8 @@
 
 
 
-
-
 <!--=====================================
-MODAL AGREGAR USUARIO
+MODAL AGREGAR PRODUCTO
 ======================================-->
 
 <div id="modalAgregarProducto" class="modal fade" role="dialog">
@@ -90,7 +87,7 @@ MODAL AGREGAR USUARIO
 
       <div class="modal-header" style="background:gray; color:white">
 
-      <h4 class="modal-title">Agregar producto</h4>
+      <h4 class="modal-title">Agregar Producto</h4>
       <button type="button" class="close" data-dismiss="modal">&times;</button>
 
       </div>
@@ -111,7 +108,8 @@ MODAL AGREGAR USUARIO
                 <div class="input-group-prepend">
                 <span class="input-group-text"><i class="fas fa-hashtag"></i></span>
                 </div>
-                <input type="text" class="form-control input-lg" name="nuevoCodigo" placeholder="Ingresar código" maxlength="20" required>
+                <input type="text" class="form-control input-lg" name="nuevoCodigo" id="nuevoCodigo" placeholder="Ingresar código" 
+                 maxlength="20" pattern="[A-Za-z0-9-]+" title="Solo se aceptan letras,números y guiones sin espacios" required>
             </div>
             </div>
 
@@ -121,7 +119,8 @@ MODAL AGREGAR USUARIO
                 <div class="input-group-prepend">
                 <span class="input-group-text"><i class="fas fa-file-signature"></i></span>
                 </div>
-                <input type="text" class="form-control input-lg" name="nuevoNombre" placeholder="Ingresar nombre" maxlength="45" required>
+                <input type="text" class="form-control input-lg" id="idNombre" name="nuevoNombre" placeholder="Ingresar nombre" 
+                 maxlength="50"  pattern="[A-Za-z0-9\u00f1\u00d1 ]+" title="Solo se acepta letras y números" required>
             </div>
             </div>
 
@@ -135,14 +134,15 @@ MODAL AGREGAR USUARIO
                 <div class="input-group-prepend">
                 <span class="input-group-text"><i class="fas fa-bars"></i></span>
                 </div>
-                <input type="text" class="form-control input-lg" name="nuevaDescripcion" placeholder="Ingresar descripción" maxlength="100" required>
+                <input type="text" class="form-control input-lg" name="nuevaDescripcion" placeholder="Ingresar descripción" 
+                maxlength="100" pattern="[A-Za-z0-9\u00f1\u00d1 ]+" title="Solo se acepta letras y números" required>
             </div>
            </div>
 
 
           <div class="row">
  
-          <!-- ENTRADA PARA SELECCIONAR SU TIPO DE UNIDAD -->
+          <!-- ENTRADA PARA SELECCIONAR SU UNIDAD DE MEDIDA -->
 
           <div class="form-group col-sm">
             
@@ -152,14 +152,21 @@ MODAL AGREGAR USUARIO
                 <span class="input-group-text"><i class="fas fa-ruler"></i></span>
                 </div>
 
-                <select class="form-control input-lg" name="nuevoTipodeunidad" required>
+                <select class="form-control input-lg" id="nuevaUnidadMedida" name="nuevaUnidadMedida" required>
                 
-                <option value="">Tipo de unidad</option>
+                <option value="">Unidad de Medida</option>
 
-                <option value="KG">KG</option>
+                <?php 
+                $item = null;
+                $valor = null;
 
-                <option value="LT">LT</option>
+                $unidadmedida = ControladorUnidadMedida::ctrMostrarUnidadMedida($item,$valor);
 
+                foreach($unidadmedida as $key=> $value){ 
+                  echo '<option value="'.$value["idUnidadMedida"].'">'.$value["descripcion"].'</option>';
+                }
+
+                ?>
 
               </select>
 
@@ -177,15 +184,16 @@ MODAL AGREGAR USUARIO
                 <span class="input-group-text"><i class="fas fa-layer-group"></i></span>
                 <font-awesome-icon icon="fa-solid fa-layer-group" />
                 </div>
-                <input type="number" class="form-control input-lg" name="nuevaCantidad" placeholder="Ingresar cantidad" min="0" required>
+                <input type="number" class="form-control input-lg" name="nuevaCantidad" placeholder="Ingresar cantidad" min="0" step="0.001" required>
             </div>
 
           </div>
 
           </div>
-          <!-- ENTRADA PARA SELECCIONAR SU TIPO DE PRODUCTO -->
 
-          <div class="form-group">
+            <!-- ENTRADA PARA SELECCIONAR SU TIPO DE PRODUCTO -->
+
+            <div class="form-group">
             
             <div class="input-group">
             
@@ -193,15 +201,22 @@ MODAL AGREGAR USUARIO
                 <span class="input-group-text"><i class="fas fa-cookie"></i></span>
                 </div>
 
-                <select class="form-control input-lg" name="nuevoTipodeproducto" required>
+                <select class="form-control input-lg" id="nuevoTipoProducto" name="nuevoTipoProducto" required>
                 
                 <option value="">Tipo de producto</option>
 
-                <option value="Intermdio">Intermedio</option>
+                <?php 
+                $item = null;
+                $valor = null;
 
-                <option value="Terminado">Terminado</option>
+                $tipoproducto = ControladorTipoProducto::ctrMostrarTipoProducto($item,$valor);
 
-                <font-awesome-icon icon="fa-solid fa-boxes-stacked" />
+                foreach($tipoproducto as $key=> $value){ 
+                  echo '<option value="'.$value["idTipoProducto"].'">'.$value["descripcion"].'</option>';
+                }
+
+                ?>
+
               </select>
 
             </div>
@@ -215,12 +230,12 @@ MODAL AGREGAR USUARIO
             <div class="card">
               <ul class="list-group list-group-flush">
                 <li class="list-group-item">Subir Foto</li>
-                <li class="list-group-item"><input type="file" class="nuevaFoto" name="nuevaFoto"></li>
+                <li class="list-group-item"><input type="file" class="nuevaImagenProducto" name="nuevaImagenProducto"></li>
                 <li class="list-group-item"> Peso máximo de la foto 2MB</li>
               </ul>
             </div>
             
-            <img src="vistas/img/usuarios/default/usuario.png" class="img-thumbnail previsualizar" width="100px">
+            <img src="vistas/img/productos/default/producto.png" class="img-thumbnail previsualizar" width="100px">
 
           </div>
 
@@ -236,14 +251,14 @@ MODAL AGREGAR USUARIO
 
         <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Salir</button>
 
-        <button type="submit" class="btn btn-primary">Guardar usuario</button>
+        <button type="submit" class="btn btn-primary">Guardar producto</button>
 
       </div>
 
       <?php
 
-          #$crearUsuario = new ControladorUsuarios();
-          #$crearUsuario -> ctrCrearUsuario();
+          $crearProducto = new ControladorProductos();
+          $crearProducto -> ctrCrearProducto();
 
       ?>
 
@@ -258,10 +273,10 @@ MODAL AGREGAR USUARIO
 
 
 <!--=====================================
-MODAL EDITAR USUARIO
+MODAL EDITAR PRODUCTO
 ======================================-->
 
-<div id="modalEditarUsuario" class="modal fade" role="dialog">
+<div id="modalEditarProducto" class="modal fade" role="dialog">
   
   <div class="modal-dialog">
 
@@ -275,7 +290,7 @@ MODAL EDITAR USUARIO
 
         <div class="modal-header" style="background:gray; color:white">
 
-        <h4 class="modal-title">Editar usuario</h4>
+        <h4 class="modal-title">Editar Producto</h4>
         <button type="button" class="close" data-dismiss="modal">&times;</button>
 
         </div>
@@ -288,72 +303,124 @@ MODAL EDITAR USUARIO
 
           <div class="box-body">
 
+          <div class="row">
+
+            <!-- ENTRADA PARA EL CÓDIGO -->
+            <div class="form-group col-sm">
+            <div class="input-group ">
+                <div class="input-group-prepend">
+                <span class="input-group-text"><i class="fas fa-hashtag"></i></span>
+                </div>
+                <input type="text" class="form-control input-lg" name="editarCodigo" id="editarCodigo" 
+                 maxlength="20" pattern="[A-Za-z0-9-]+" title="Solo se aceptan letras,números y guiones sin espacios" readonly required>
+                <input type="hidden" id="idProducto" name="idProducto">
+            </div>
+            </div>
 
             <!-- ENTRADA PARA EL NOMBRE -->
-                      
-
-            <div class="form-group">
-            
+            <div class="form-group col-sm">
             <div class="input-group">
                 <div class="input-group-prepend">
-                <span class="input-group-text"><i class="fas fa-user"></i></span>
+                <span class="input-group-text"><i class="fas fa-file-signature"></i></span>
                 </div>
-                <input type="text" class="form-control input-lg" id="editarNombre" name="editarNombre" value="" required>
+                <input type="text" class="form-control input-lg" name="editarNombre" id="editarNombre"
+                 maxlength="50"  pattern="[A-Za-z0-9\u00f1\u00d1 ]+" title="Solo se acepta letras y números" required>
             </div>
-
-          </div>
-
-          <!-- ENTRADA PARA EL USUARIO -->
-
-           <div class="form-group">
-            
-            <div class="input-group">
-                <div class="input-group-prepend">
-                <span class="input-group-text"><i class="fas fa-key"></i></span>
-                </div>
-                <input type="text" class="form-control input-lg" id="editarUsuario" name="editarUsuario" value="" readonly>
             </div>
 
           </div>
 
 
-          <!-- ENTRADA PARA LA CONTRASEÑA -->
+            <!-- ENTRADA PARA EL DESCRIPCIÓN -->
+
+            <div class="form-group">
+            <div class="input-group">
+                <div class="input-group-prepend">
+                <span class="input-group-text"><i class="fas fa-bars"></i></span>
+                </div>
+                <input type="text" class="form-control input-lg" name="editarDescripcion" id="editarDescripcion"
+                maxlength="100" pattern="[A-Za-z0-9\u00f1\u00d1 ]+" title="Solo se acepta letras y números" required>
+            </div>
+           </div>
+
+
+          <div class="row">
+ 
+          <!-- ENTRADA PARA SELECCIONAR SU UNIDAD DE MEDIDA -->
+
+          <div class="form-group col-sm">
+            
+            <div class="input-group">
+            
+                <div class="input-group-prepend">
+                <span class="input-group-text"><i class="fas fa-ruler"></i></span>
+                </div>
+
+                <select class="form-control input-lg" id="editarUnidadMedida" name="editarUnidadMedida" required>
+                
+                <option value="">Unidad de Medida</option>
+
+                <?php 
+                $item = null;
+                $valor = null;
+
+                $unidadmedida = ControladorUnidadMedida::ctrMostrarUnidadMedida($item,$valor);
+
+                foreach($unidadmedida as $key=> $value){ 
+                  echo '<option value="'.$value["idUnidadMedida"].'">'.$value["descripcion"].'</option>';
+                }
+
+                ?>
+
+              </select>
+
+            </div>
+
+           </div>
+
+            <!-- ENTRADA PARA EL CANTIDAD -->
+
+            <div class="form-group col-sm">
+            
+            <div class="input-group">
+                <div class="input-group-prepend">
+                <span class="input-group-text"><i class="fas fa-layer-group"></i></span>
+                </div>
+                <input type="number" class="form-control input-lg" name="editarCantidad"  id="editarCantidad" 
+                min="0" step="0.001" required>
+            </div>
+
+            </div>
+
+
+          </div>
+
+
+            <!-- ENTRADA PARA SELECCIONAR SU TIPO DE PRODUCTO -->
 
             <div class="form-group">
             
             <div class="input-group">
             
                 <div class="input-group-prepend">
-                <span class="input-group-text"><i class="fas fa-lock"></i></span>
+                <span class="input-group-text"><i class="fas fa-cookie"></i></span>
                 </div>
 
-                <input type="password" class="form-control input-lg" name="editarPassword" placeholder="Escriba la nueva contraseña">
+                <select class="form-control input-lg" id="editarTipoProducto" name="editarTipoProducto" required>
+                
+                <option value="">Tipo de producto</option>
 
-                <input type="hidden" id="passwordActual" name="passwordActual">
+                <?php 
+                $item = null;
+                $valor = null;
 
-            </div>
+                $tipoproducto = ControladorTipoProducto::ctrMostrarTipoProducto($item,$valor);
 
-            </div>
+                foreach($tipoproducto as $key=> $value){ 
+                  echo '<option value="'.$value["idTipoProducto"].'">'.$value["descripcion"].'</option>';
+                }
 
-          <!-- ENTRADA PARA SELECCIONAR SU PERFIL -->
-
-          <div class="form-group">
-            
-            <div class="input-group">
-            
-                <div class="input-group-prepend">
-                <span class="input-group-text"><i class="fas fa-users"></i></span>
-                </div>
-
-                <select class="form-control input-lg" name="editarPerfil">
-                  
-                <option value="" id="editarPerfil"></option>
-
-                <option value="Administrador">Administrador</option>
-
-                <option value="Especial">Especial</option>
-
-                <option value="Vendedor">Vendedor</option>
+                ?>
 
               </select>
 
@@ -361,22 +428,23 @@ MODAL EDITAR USUARIO
 
           </div>
 
+
           <!-- ENTRADA PARA SUBIR FOTO -->
 
            <div class="form-group">
             <div class="card">
               <ul class="list-group list-group-flush">
                 <li class="list-group-item">Subir Foto</li>
-                <li class="list-group-item"><input type="file" class="nuevaFoto" name="editarFoto"></li>
+                <li class="list-group-item"><input type="file" class="nuevaImagenProducto" name="editarImagenProducto"></li>
                 <li class="list-group-item"> Peso máximo de la foto 2MB</li>
               </ul>
             </div>
             
-            <img src="vistas/img/usuarios/default/usuario.png" class="img-thumbnail previsualizar" width="100px">
-            <input type="hidden" name="fotoActual" id="fotoActual">
+            <img src="vistas\img\productos\default\producto.png" class="img-thumbnail previsualizar" width="100px">
+            <input type="hidden" name="ImagenProductoActual" id="ImagenProductoActual">
           </div>
 
-        </div>
+      </div>
 
       </div>
 
@@ -389,14 +457,14 @@ MODAL EDITAR USUARIO
 
           <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Salir</button>
 
-          <button type="submit" class="btn btn-primary">Modificar usuario</button>
+          <button type="submit" class="btn btn-primary">Modificar Producto</button>
 
         </div>
 
-     <?php
+        <?php
 
-          #$editarUsuario = new ControladorUsuarios();
-          #$editarUsuario -> ctrEditarUsuario();
+          $editarProducto = new ControladorProductos();
+          $editarProducto -> ctrEditarProducto();
 
         ?> 
 
@@ -410,7 +478,7 @@ MODAL EDITAR USUARIO
 
 <?php
 
-  #$borrarUsuario = new ControladorUsuarios();
-  #$borrarUsuario -> ctrBorrarUsuario();
+  $borrarProducto = new ControladorProductos();
+  $borrarProducto -> ctrEliminarProducto();
 
 ?> 

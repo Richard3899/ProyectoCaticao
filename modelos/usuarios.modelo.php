@@ -45,8 +45,6 @@ class ModeloUsuarios{
 
 		$stmt = Conexion::conectar()->prepare("call insertar_usuario(?,?,?,?,?)");
 
-		var_dump($stmt);
-
 		$stmt->bindParam(1, $datos["nombre"], PDO::PARAM_STR);
 		$stmt->bindParam(2, $datos["usuario"], PDO::PARAM_STR);
 		$stmt->bindParam(3, $datos["password"], PDO::PARAM_STR);
@@ -83,9 +81,6 @@ class ModeloUsuarios{
 		$stmt -> bindParam(4, $datos["perfil"], PDO::PARAM_STR);
 		$stmt -> bindParam(5, $datos["foto"], PDO::PARAM_STR);
 		
-
-		var_dump($stmt);
-
 		if($stmt -> execute()){
 
 			return "ok";
@@ -95,7 +90,6 @@ class ModeloUsuarios{
 			return "error";	
 
 		}
-		var_dump($stmt);
 
 		#$stmt -> close();
 

@@ -132,7 +132,6 @@ MODAL AGREGAR INSUMO
 
           </div>
 
-
           <!-- ENTRADA PARA EL DESCRIPCIÓN -->
 
            <div class="form-group">
@@ -355,7 +354,6 @@ MODAL EDITAR INSUMO
             </div>
 
           </div>
-
 
           <!-- ENTRADA PARA EL DESCRIPCIÓN -->
 
