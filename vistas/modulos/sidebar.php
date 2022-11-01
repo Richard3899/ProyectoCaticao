@@ -9,8 +9,7 @@
       </span>
     </a>
 <!-- Sidebar -->
-<div class="sidebar">
-      
+<div class="sidebar">  
       <!-- Sidebar Menu -->
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
@@ -34,23 +33,28 @@
                 Registros
                 <i class="right fas fa-angle-left"></i>
               </p>
-              
             </a>
 
             <ul class="nav nav-treeview">
               <li class="nav-item">
                 <a href="#" class="nav-link">
                   <i class="nav-icon fas fa-angle-double-right"></i>
-                  <p>Insumos
+                  <p>Insumos y Materiales
                   <i class="right fas fa-angle-left"></i>
                   </p>
                 </a>
-
+                
                 <ul class="nav nav-treeview">
               <li class="nav-item">
                 <a href="insumos" class="nav-link">
                   <i class="nav-icon fas fa-angle-right"></i>
                   <p>Insumos</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="materiales" class="nav-link">
+                <i class="nav-icon fas fa-angle-right"></i>
+                  <p>Materiales</p>
                 </a>
               </li>
               <li class="nav-item">
@@ -60,13 +64,6 @@
                 </a>
               </li>
             </ul>
-              </li>
-
-              <li class="nav-item">
-                <a href="#" class="nav-link">
-                <i class="nav-icon fas fa-angle-double-right"></i>
-                  <p>Materiales</p>
-                </a>
               </li>
 
               <li class="nav-item">

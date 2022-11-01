@@ -70,7 +70,16 @@ BEGIN
 END$$
 DELIMITER ;
 
+-- Procedimientos almacenados de Marcas --
 
+DROP procedure IF EXISTS `mostrar_marcas`;
+DELIMITER $$
+USE `caticao`$$
+CREATE PROCEDURE `mostrar_marcas` ()
+BEGIN
+	select * from marca;
+END$$
+DELIMITER ;
 
 -- Procedimientos almacenados de Insumos --
 
@@ -79,7 +88,7 @@ DELIMITER $$
 USE `caticao`$$
 CREATE PROCEDURE `mostrar_insumos` ()
 BEGIN
-	select * from materia;
+	select * from materia where idTipoMateria=1;
 END$$
 DELIMITER ;
 
@@ -134,16 +143,34 @@ BEGIN
 	delete from materia
     where idMateria=idMateriaE;
 END$$
-DELIMITER ;
+DELIMITER;
 
+-- Procedimientos almacenados de Insumos --
 
--- Procedimientos almacenados de Marcas --
-
-DROP procedure IF EXISTS `mostrar_marcas`;
+DROP procedure IF EXISTS `mostrar_materiales`;
 DELIMITER $$
 USE `caticao`$$
-CREATE PROCEDURE `mostrar_marcas` ()
+CREATE PROCEDURE `mostrar_materiales` ()
 BEGIN
-	select * from marca;
+	select * from materia where idTipoMateria=2;
 END$$
 DELIMITER ;
+
+DROP procedure IF EXISTS `insertar_material`;
+DELIMITER $$
+USE `caticao`$$
+CREATE PROCEDURE `insertar_material` (    in codigoI VARCHAR(20),
+                                        in nombreI VARCHAR(50),
+                                        in descripcionI VARCHAR(100),
+                                        in idUnidadMedidaI INT,
+                                        in idMarcaI INT,
+                                        in cantidadI DECIMAL(10,3),
+                                        in precioI DECIMAL(10,2),
+                                        in imagenI VARCHAR(50))
+BEGIN
+	insert into materia (codigo,nombre,descripcion,idUnidadMedida,idMarca,cantidad,precio,imagen,idTipoMateria)
+				  values (codigoI,nombreI,descripcionI,idUnidadMedidaI,idMarcaI,cantidadI,precioI,imagenI,2);
+END$$
+DELIMITER ;
+
+

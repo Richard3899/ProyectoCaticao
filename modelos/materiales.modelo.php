@@ -2,17 +2,17 @@
 
 require_once "conexion.php";
 
-class ModeloInsumos{
+class ModeloMateriales{
 
 	/*=============================================
-	MOSTRAR INSUMOS
+	MOSTRAR MATERIALES
 	=============================================*/
 
-	static public function mdlMostrarInsumos($tabla, $item, $valor){
+	static public function mdlMostrarMateriales($tabla, $item, $valor){
 
 		if($item != null){
 
-			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item && idTipoMateria=1");
+			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item && idTipoMateria=2");
 
 			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
 
@@ -22,7 +22,7 @@ class ModeloInsumos{
 
 		}else{
 
-			$stmt = Conexion::conectar()->prepare("call mostrar_insumos");
+			$stmt = Conexion::conectar()->prepare("call mostrar_materiales");
 
 			$stmt -> execute();
 
@@ -37,14 +37,13 @@ class ModeloInsumos{
 
 	}
 
-
 	/*=============================================
-	REGISTRO DE INSUMOS
+	REGISTRO DE MATERIALES
 	=============================================*/
 
-	static public function mdlIngresarInsumo($datos){
+	static public function mdlIngresarMaterial($datos){
 
-		$stmt = Conexion::conectar()->prepare("call insertar_insumo(?,?,?,?,?,?,?,?)");
+		$stmt = Conexion::conectar()->prepare("call insertar_material(?,?,?,?,?,?,?,?)");
 
 		$stmt->bindParam(1, $datos["codigo"], PDO::PARAM_STR);
 		$stmt->bindParam(2, $datos["nombre"], PDO::PARAM_STR);
@@ -72,10 +71,10 @@ class ModeloInsumos{
 	}
 
 	/*=============================================
-	EDITAR INSUMOS
+	EDITAR MATERIALES
 	=============================================*/
 
-	static public function mdlEditarInsumo($datos){
+	static public function mdlEditarMaterial($datos){
 	
 		$stmt = Conexion::conectar()->prepare("call editar_insumo(?,?,?,?,?,?,?,?)");
 
@@ -110,10 +109,10 @@ class ModeloInsumos{
 
 
 	/*=============================================
-	BORRAR INSUMOS
+	BORRAR MATERIALES
 	=============================================*/
 
-	static public function mdlEliminarInsumo($datos){
+	static public function mdlEliminarMaterial($datos){
 
 		$stmt = Conexion::conectar()->prepare("call eliminar_insumo(?)");
 

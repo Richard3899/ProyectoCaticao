@@ -5,8 +5,6 @@ require_once "conexion.php";
 class ModeloMarcas{
 
 	/*=============================================
-<<<<<<< HEAD
-=======
 	CREAR Marcas
 	=============================================*/
 
@@ -26,13 +24,12 @@ class ModeloMarcas{
 		
 		}
 
-		$stmt->close();
+		#$stmt->close();
 		$stmt = null;
 
 	}
 
 	/*=============================================
->>>>>>> 18b23c17cd0c887f55db151efbfc4a769dd66667
 	MOSTRAR MARCAS
 	=============================================*/
 
@@ -58,22 +55,14 @@ class ModeloMarcas{
 
 		}
 
-<<<<<<< HEAD
 		#$stmt -> close();
-=======
-		$stmt -> close();
->>>>>>> 18b23c17cd0c887f55db151efbfc4a769dd66667
+
 
 		$stmt = null;
 
 	}
 
-<<<<<<< HEAD
-}
 
-
-
-=======
 	/*=============================================
 	EDITAR MARCAS
 	=============================================*/
@@ -95,7 +84,7 @@ class ModeloMarcas{
 		
 		}
 
-		$stmt->close();
+		#$stmt->close();
 		$stmt = null;
 
 	}
@@ -120,12 +109,11 @@ class ModeloMarcas{
 
 		}
 
-		$stmt -> close();
+		#$stmt -> close();
 
 		$stmt = null;
 
 	}
 
 }
->>>>>>> 18b23c17cd0c887f55db151efbfc4a769dd66667
 

@@ -1,7 +1,7 @@
 <?php
 
-require_once "../controladores/insumos.controlador.php";
-require_once "../modelos/insumos.modelo.php";
+require_once "../controladores/materiales.controlador.php";
+require_once "../modelos/materiales.modelo.php";
 
 class AjaxInsumos{
 
@@ -16,7 +16,7 @@ class AjaxInsumos{
 		$item = "idMateria";
 		$valor = $this->idInsumo;
 
-		$respuesta = ControladorInsumos::ctrMostrarInsumos($item, $valor);
+		$respuesta = ControladorMateriales::ctrMostrarMateriales($item, $valor);
 
 		echo json_encode($respuesta);
 
@@ -34,7 +34,7 @@ class AjaxInsumos{
 		$item = "codigo";
 		$valor = $this->validarCodigo;
 
-		$respuesta = ControladorInsumos::ctrMostrarInsumos($item, $valor);
+		$respuesta = ControladorMateriales::ctrMostrarMateriales($item, $valor);
 
 		echo json_encode($respuesta);
 

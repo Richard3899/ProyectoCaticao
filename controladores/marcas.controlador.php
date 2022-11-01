@@ -2,8 +2,6 @@
 
 class ControladorMarcas{
 
-<<<<<<< HEAD
-=======
 	/*=============================================
 	CREAR MARCAS
 	=============================================*/
@@ -66,7 +64,6 @@ class ControladorMarcas{
 		}
 
 	}
->>>>>>> 18b23c17cd0c887f55db151efbfc4a769dd66667
 
 	/*=============================================
 	MOSTRAR MARCAS
@@ -74,7 +71,6 @@ class ControladorMarcas{
 
 	static public function ctrMostrarMarcas($item, $valor){
 
-<<<<<<< HEAD
 		$tabla = "marca";
 
 		$respuesta = ModeloMarcas::MdlMostrarMarcas($tabla, $item, $valor);
@@ -83,23 +79,9 @@ class ControladorMarcas{
 	} 
 
 
-}
 
 
 
-
-
-
-
-	
-=======
-		$tabla = "marcas";
-
-		$respuesta = ModeloMarcas::mdlMostrarMarcas($tabla, $item, $valor);
-
-		return $respuesta;
-	
-	}
 
 	/*=============================================
 	EDITAR MARCA
@@ -176,7 +158,7 @@ class ControladorMarcas{
 			$tabla ="Marcas";
 			$datos = $_GET["idMarca"];
 
-			$respuesta = ModeloMarca::mdlBorrarMarca($tabla, $datos);
+			$respuesta = ModeloMarcas::mdlBorrarMarca($tabla, $datos);
 
 			if($respuesta == "ok"){
 
@@ -201,4 +183,3 @@ class ControladorMarcas{
 		
 	}
 }
->>>>>>> 18b23c17cd0c887f55db151efbfc4a769dd66667

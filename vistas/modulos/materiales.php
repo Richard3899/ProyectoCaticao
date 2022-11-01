@@ -6,14 +6,14 @@
     <div class="container-fluid">
       <div class="row mb-2">
         <div class="col-sm-6">
-          <h1>Administrador de Insumos</h1>
+          <h1>Administrador de Materiales</h1>
         </div>
         <div class="col-sm-6">
           <ol class="breadcrumb float-sm-right">
             <li class="breadcrumb-item"><a href="inicio">Inicio</a></li>
             <li class="breadcrumb-item active">Registros</li>
-            <li class="breadcrumb-item active">Insumos</li>
-            <li class="breadcrumb-item active">Administrador de Insumos</li>
+            <li class="breadcrumb-item active">Materiales</li>
+            <li class="breadcrumb-item active">Administrador de Materiales</li>
           </ol>
         </div>
       </div>
@@ -28,7 +28,7 @@
       
       <button class="btn btn-primary" data-toggle="modal" data-target="#modalAgregarInsumo">
         
-        Agregar Insumo
+        Agregar Materiales
 
       </button>
         
@@ -36,7 +36,7 @@
       </div>
       <div class="card-body">
 
-      <table class="table table-bordered table-striped dt-responsive tablaInsumos" width="100%">
+      <table class="table table-bordered table-striped dt-responsive tablaMateriales" width="100%">
        
       <thead>
        
@@ -76,7 +76,7 @@
 
 
 <!--=====================================
-MODAL AGREGAR INSUMO
+MODAL AGREGAR MATERIAL
 ======================================-->
 
 <div id="modalAgregarInsumo" class="modal fade" role="dialog">
@@ -93,7 +93,7 @@ MODAL AGREGAR INSUMO
 
       <div class="modal-header" style="background:gray; color:white">
 
-      <h4 class="modal-title">Agregar Insumo</h4>
+      <h4 class="modal-title">Agregar Material</h4>
       <button type="button" class="close" data-dismiss="modal">&times;</button>
 
       </div>
@@ -259,7 +259,7 @@ MODAL AGREGAR INSUMO
               </ul>
             </div>
             
-            <img src="vistas/img/insumos/default/insumo.png" class="img-thumbnail previsualizar" width="100px">
+            <img src="vistas/img/materiales/default/material.png" class="img-thumbnail previsualizar" width="100px">
 
           </div>
 
@@ -275,14 +275,14 @@ MODAL AGREGAR INSUMO
 
         <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Salir</button>
 
-        <button type="submit" class="btn btn-primary">Guardar Insumo</button>
+        <button type="submit" class="btn btn-primary">Guardar Material</button>
 
       </div>
 
       <?php
 
-          $crearInsumo= new ControladorInsumos();
-          $crearInsumo -> ctrCrearInsumo();
+          $crearMaterial= new ControladorMateriales();
+          $crearMaterial -> ctrCrearMaterial();
 
       ?>
 
@@ -299,7 +299,7 @@ MODAL AGREGAR INSUMO
 
 
 <!--=====================================
-MODAL EDITAR INSUMO
+MODAL EDITAR MATERIAL
 ======================================-->
 
 <div id="modalEditarInsumo" class="modal fade" role="dialog">
@@ -316,7 +316,7 @@ MODAL EDITAR INSUMO
 
       <div class="modal-header" style="background:gray; color:white">
 
-      <h4 id="idMateria" class="modal-title">Agregar Insumo</h4>
+      <h4 id="idMateria" class="modal-title">Agregar Material</h4>
       <button type="button" class="close" data-dismiss="modal">&times;</button>
 
       </div>
@@ -485,7 +485,7 @@ MODAL EDITAR INSUMO
               </ul>
             </div>
             
-            <img src="vistas/img/insumos/default/insumo.png" class="img-thumbnail previsualizar" width="100px">
+            <img src="vistas/img/materiales/default/material.png" class="img-thumbnail previsualizar" width="100px">
             <input type="hidden" name="ImagenInsumoActual" id="ImagenInsumoActual">
           </div>
 
@@ -501,14 +501,14 @@ MODAL EDITAR INSUMO
 
         <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Salir</button>
 
-        <button type="submit" class="btn btn-primary">Guardar Insumo</button>
+        <button type="submit" class="btn btn-primary">Guardar Material</button>
 
       </div>
 
       <?php
 
-          $editarInsumo = new ControladorInsumos();
-          $editarInsumo -> ctrEditarInsumo();
+          $editarMaterial = new ControladorMateriales();
+          $editarMaterial -> ctrEditarMaterial();
 
       ?>
 
@@ -524,7 +524,7 @@ MODAL EDITAR INSUMO
 
 <?php
 
-  $borrarInsumo = new ControladorInsumos();
-  $borrarInsumo -> ctrEliminarInsumo();
+  $borrarMaterial = new ControladorMateriales();
+  $borrarMaterial -> ctrEliminarMaterial();
 
 ?> 

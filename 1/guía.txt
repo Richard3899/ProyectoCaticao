@@ -1,0 +1,23 @@
+Crear Módulo
+
+1-Agregar en carpeta /vistas - plantilla.php la ruta y el script.
+
+2-Agregar en index.php los controladores y modelos.
+
+3-Agregar en en carpeta vistas/modulos el archivo .php para la interfaz.
+
+4-Crear la carpeta si es que se subirá imagenes en la carpeta
+
+vistas/img/*nombre de la carpeta* y una subcarpeta con una imagen por default.
+
+5-Creas el modelo en la carpeta /modelos y ademas creas los
+
+procedimiento almacenado en la carpeta /bd archivo pa.sql.
+
+6-Creas el controlador en la carpeta /controladores.
+
+7-Creas el archivo Java script en la carpeta /vistas/js .
+
+8-Creas las consultas ajax en la carpeta /ajax y el datable en caso
+
+sean una tabla que va contener tener muchos datos.
