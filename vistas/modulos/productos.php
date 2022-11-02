@@ -108,7 +108,7 @@ MODAL AGREGAR PRODUCTO
                 <div class="input-group-prepend">
                 <span class="input-group-text"><i class="fas fa-hashtag"></i></span>
                 </div>
-                <input type="text" class="form-control input-lg" name="nuevoCodigo" id="nuevoCodigo" placeholder="Ingresar código" 
+                <input type="text" class="form-control input-lg" name="nuevoCodigoProducto" id="nuevoCodigoProducto" placeholder="Ingresar código" 
                  maxlength="20" pattern="[A-Za-z0-9-]+" title="Solo se aceptan letras,números y guiones sin espacios" required>
             </div>
             </div>

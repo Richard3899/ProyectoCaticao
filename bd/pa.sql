@@ -223,7 +223,7 @@ DELIMITER ;
 DROP procedure IF EXISTS `insertar_material`;
 DELIMITER $$
 USE `caticao`$$
-CREATE PROCEDURE `insertar_material` (    in codigoI VARCHAR(20),
+CREATE PROCEDURE `insertar_material` (  in codigoI VARCHAR(20),
                                         in nombreI VARCHAR(50),
                                         in descripcionI VARCHAR(100),
                                         in idUnidadMedidaI INT,

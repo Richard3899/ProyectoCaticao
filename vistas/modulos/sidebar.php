@@ -73,11 +73,10 @@
                 </a>
               </li>
 
-
               <li class="nav-item">
-                <a href="#" class="nav-link">
+                <a href="maquinas" class="nav-link">
                 <i class="nav-icon fas fa-angle-double-right"></i>
-                  <p>Equipos</p>
+                  <p>Maquinas</p>
                 </a>
               </li>
 

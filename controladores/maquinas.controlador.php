@@ -1,26 +1,26 @@
 <?php
 
-class ControladorMateriales{
+class ControladorMaquinas{
 
 	/*=============================================
-	MOSTRAR MATERIAL
+	MOSTRAR MAQUINAS
 	=============================================*/
 
-	static public function ctrMostrarMateriales($item, $valor){
+	static public function ctrMostrarMaquinas($item, $valor){
 
-		$tabla = "materia";
+		$tabla = "maquina";
 
-		$respuesta = ModeloMateriales::MdlMostrarMateriales($tabla, $item, $valor);
+		$respuesta = ModeloMaquinas::MdlMostrarMaquinas($tabla, $item, $valor);
 
 		return $respuesta;
 	}
 
 
 	/*=============================================
-	CREAR MATERIAL
+	CREAR MAQUINA
 	=============================================*/
 
-	static public function ctrCrearMaterial(){
+	static public function ctrCrearMaquina(){
 
 		if(isset($_POST["nuevaDescripcion"])){
 
@@ -30,9 +30,9 @@ class ControladorMateriales{
 
 			   	$ruta = "";
 
-			   	if(is_uploaded_file($_FILES["nuevaImagenInsumo"]["tmp_name"])){
+			   	if(is_uploaded_file($_FILES["nuevaImagenMaquina"]["tmp_name"])){
 
-					list($ancho, $alto) = getimagesize($_FILES["nuevaImagenInsumo"]["tmp_name"]);
+					list($ancho, $alto) = getimagesize($_FILES["nuevaImagenMaquina"]["tmp_name"]);
 
 					$nuevoAncho = 500;
 					$nuevoAlto = 500;
@@ -41,7 +41,7 @@ class ControladorMateriales{
 					CREAMOS EL DIRECTORIO DONDE VAMOS A GUARDAR LA FOTO DEL USUARIO
 					=============================================*/
 
-					$directorio = "vistas/img/materiales/".$_POST["nuevoCodigoMaterial"];
+					$directorio = "vistas/img/maquinas/".$_POST["nuevoCodigo"];
 
 					mkdir($directorio, 0755);
 
@@ -49,7 +49,7 @@ class ControladorMateriales{
 					DE ACUERDO AL TIPO DE IMAGEN APLICAMOS LAS FUNCIONES POR DEFECTO DE PHP
 					=============================================*/
 
-					if($_FILES["nuevaImagenInsumo"]["type"] == "image/jpeg"){
+					if($_FILES["nuevaImagenMaquina"]["type"] == "image/jpeg"){
 
 						/*=============================================
 						GUARDAMOS LA IMAGEN EN EL DIRECTORIO
@@ -57,9 +57,9 @@ class ControladorMateriales{
 
 						$aleatorio = mt_rand(100,999);
 
-						$ruta = "vistas/img/materiales/".$_POST["nuevoCodigoMaterial"]."/".$aleatorio.".jpg";
+						$ruta = "vistas/img/maquinas/".$_POST["nuevoCodigo"]."/".$aleatorio.".jpg";
 
-						$origen = imagecreatefromjpeg($_FILES["nuevaImagenInsumo"]["tmp_name"]);						
+						$origen = imagecreatefromjpeg($_FILES["nuevaImagenMaquina"]["tmp_name"]);						
 
 						$destino = imagecreatetruecolor($nuevoAncho, $nuevoAlto);
 
@@ -69,7 +69,7 @@ class ControladorMateriales{
 
 					}
 
-					if($_FILES["nuevaImagenInsumo"]["type"] == "image/png"){
+					if($_FILES["nuevaImagenMaquina"]["type"] == "image/png"){
 
 						/*=============================================
 						GUARDAMOS LA IMAGEN EN EL DIRECTORIO
@@ -77,9 +77,9 @@ class ControladorMateriales{
 
 						$aleatorio = mt_rand(100,999);
 
-						$ruta = "vistas/img/materiales/".$_POST["nuevoCodigoMaterial"]."/".$aleatorio.".png";
+						$ruta = "vistas/img/maquinas/".$_POST["nuevoCodigo"]."/".$aleatorio.".png";
 
-						$origen = imagecreatefrompng($_FILES["nuevaImagenInsumo"]["tmp_name"]);						
+						$origen = imagecreatefrompng($_FILES["nuevaImagenMaquina"]["tmp_name"]);						
 
 						$destino = imagecreatetruecolor($nuevoAncho, $nuevoAlto);
 
@@ -91,17 +91,16 @@ class ControladorMateriales{
 
 				}
 
-				$datos = array("codigo" => $_POST["nuevoCodigoMaterial"],
+				$datos = array("codigo" => $_POST["nuevoCodigo"],
 							   "nombre" => $_POST["nuevoNombre"],
 							   "descripcion" => $_POST["nuevaDescripcion"],
 							   "idUnidadMedida" => $_POST["nuevaUnidadMedida"],
-							   "idMarca" => $_POST["nuevaMarca"],
 							   "cantidad" => $_POST["nuevaCantidad"],
-							   "precio" => $_POST["nuevoPrecio"],
+							   "idTipoMaquina" => $_POST["nuevoTipoMaquina"],
 							   "imagen" => $ruta);
 							 
 
-				$respuesta = ModeloMateriales::mdlIngresarMaterial($datos);
+				$respuesta = ModeloMaquinas::mdlIngresarMaquina($datos);
 
 				if($respuesta == "ok"){
 
@@ -110,13 +109,13 @@ class ControladorMateriales{
 					Swal.fire({
 					
 						icon: "success",
-						title: "¡El material ha sido guardado correctamente!",
+						title: "¡El maquina ha sido guardado correctamente!",
 						showConfirmButton: false,
 						timer: 1500
 					
 					}).then(function(result){
 					
-							window.location = "materiales";
+							window.location = "maquinas";
 					
 					});
 					
@@ -131,10 +130,10 @@ class ControladorMateriales{
 	}
 
 	/*=============================================
-	EDITAR MATERIAL
+	EDITAR MAQUINA
 	=============================================*/
 
-	static public function ctrEditarMaterial(){
+	static public function ctrEditarMaquina(){
 
 		if(isset($_POST["editarDescripcion"])){
 
@@ -142,11 +141,11 @@ class ControladorMateriales{
 				VALIDAR IMAGEN
 				=============================================*/
 
-			   	$ruta = $_POST["ImagenInsumoActual"];
+			   	$ruta = $_POST["ImagenMaquinaActual"];
 
-			   	if(isset($_FILES["editarImagenInsumo"]["tmp_name"]) && !empty($_FILES["editarImagenInsumo"]["tmp_name"])){
+			   	if(isset($_FILES["editarImagenMaquina"]["tmp_name"]) && !empty($_FILES["editarImagenMaquina"]["tmp_name"])){
 
-					list($ancho, $alto) = getimagesize($_FILES["editarImagenInsumo"]["tmp_name"]);
+					list($ancho, $alto) = getimagesize($_FILES["editarImagenMaquina"]["tmp_name"]);
 
 					$nuevoAncho = 500;
 					$nuevoAlto = 500;
@@ -155,15 +154,15 @@ class ControladorMateriales{
 					CREAMOS EL DIRECTORIO DONDE VAMOS A GUARDAR LA FOTO DEL USUARIO
 					=============================================*/
 
-					$directorio = "vistas/img/materiales/".$_POST["editarCodigo"];
+					$directorio = "vistas/img/maquinas/".$_POST["editarCodigo"];
 
 					/*=============================================
 					PRIMERO PREGUNTAMOS SI EXISTE OTRA IMAGEN EN LA BD
 					=============================================*/
 
-					if(!empty($_POST["ImagenInsumoActual"]) && $_POST["ImagenInsumoActual"] != "vistas/img/materiales/default/material.png"){
+					if(!empty($_POST["ImagenMaquinaActual"]) && $_POST["ImagenMaquinaActual"] != "vistas/img/maquinas/default/maquina.png"){
 
-						unlink($_POST["ImagenInsumoActual"]);
+						unlink($_POST["ImagenMaquinaActual"]);
 
 					}else{
 
@@ -175,7 +174,7 @@ class ControladorMateriales{
 					DE ACUERDO AL TIPO DE IMAGEN APLICAMOS LAS FUNCIONES POR DEFECTO DE PHP
 					=============================================*/
 
-					if($_FILES["editarImagenInsumo"]["type"] == "image/jpeg"){
+					if($_FILES["editarImagenMaquina"]["type"] == "image/jpeg"){
 
 						/*=============================================
 						GUARDAMOS LA IMAGEN EN EL DIRECTORIO
@@ -183,9 +182,9 @@ class ControladorMateriales{
 
 						$aleatorio = mt_rand(100,999);
 
-						$ruta = "vistas/img/materiales/".$_POST["editarCodigo"]."/".$aleatorio.".jpg";
+						$ruta = "vistas/img/maquinas/".$_POST["editarCodigo"]."/".$aleatorio.".jpg";
 
-						$origen = imagecreatefromjpeg($_FILES["editarImagenInsumo"]["tmp_name"]);						
+						$origen = imagecreatefromjpeg($_FILES["editarImagenMaquina"]["tmp_name"]);						
 
 						$destino = imagecreatetruecolor($nuevoAncho, $nuevoAlto);
 
@@ -195,7 +194,7 @@ class ControladorMateriales{
 
 					}
 
-					if($_FILES["editarImagenInsumo"]["type"] == "image/png"){
+					if($_FILES["editarImagenMaquina"]["type"] == "image/png"){
 
 						/*=============================================
 						GUARDAMOS LA IMAGEN EN EL DIRECTORIO
@@ -203,9 +202,9 @@ class ControladorMateriales{
 
 						$aleatorio = mt_rand(100,999);
 
-						$ruta = "vistas/img/materiales/".$_POST["editarCodigo"]."/".$aleatorio.".png";
+						$ruta = "vistas/img/maquinas/".$_POST["editarCodigo"]."/".$aleatorio.".png";
 
-						$origen = imagecreatefrompng($_FILES["editarImagenInsumo"]["tmp_name"]);						
+						$origen = imagecreatefrompng($_FILES["editarImagenMaquina"]["tmp_name"]);						
 
 						$destino = imagecreatetruecolor($nuevoAncho, $nuevoAlto);
 
@@ -218,18 +217,17 @@ class ControladorMateriales{
 				}
 
 
-				$datos = array("idMateria" =>$_POST["idInsumo"],
+				$datos = array("idMaquina" =>$_POST["idMaquina"],
 							   "nombre" => $_POST["editarNombre"],
 							   "descripcion" => $_POST["editarDescripcion"],
-							   "idMarca" => $_POST["editarMarca"],
 							   "idUnidadMedida" => $_POST["editarUnidadMedida"],
 							   "cantidad" => $_POST["editarCantidad"],
-							   "precio" => $_POST["editarPrecio"],
+							   "idTipoMaquina" => $_POST["editarTipoMaquina"],
 							   "imagen" => $ruta);
 							   
 				
 
-				$respuesta = ModeloMateriales::mdlEditarMaterial($datos);
+				$respuesta = ModeloMaquinas::mdlEditarMaquina($datos);
 
 				if($respuesta == "ok"){
 
@@ -238,13 +236,13 @@ class ControladorMateriales{
 					Swal.fire({
 					
 						icon: "success",
-						title: "¡El material ha sido editado correctamente!",
+						title: "¡El maquina ha sido editado correctamente!",
 						showConfirmButton: false,
 						timer: 1500
 					
 					}).then(function(result){
 					
-							window.location = "materiales";
+							window.location = "maquinas";
 					
 					});
 					
@@ -261,22 +259,22 @@ class ControladorMateriales{
 	}
 
 	/*=============================================
-	BORRAR MATERIAL
+	ELIMINAR MAQUINA
 	=============================================*/
-	static public function ctrEliminarMaterial(){
+	static public function ctrEliminarMaquina(){
 
-		if(isset($_GET["idInsumo"])){
+		if(isset($_GET["idMaquina"])){
 
-			$datos = $_GET["idInsumo"];
+			$datos = $_GET["idMaquina"];
 
-			if($_GET["imagen"] != "" && $_GET["imagen"] != "vistas/img/materiales/default/material.png"){
+			if($_GET["imagen"] != "" && $_GET["imagen"] != "vistas/img/maquinas/default/maquina.png"){
 
 				unlink($_GET["imagen"]);
-				rmdir('vistas/img/materiales/'.$_GET["codigo"]);
+				rmdir('vistas/img/maquinas/'.$_GET["codigo"]);
 
 			}
 
-			$respuesta = ModeloMateriales::mdlEliminarMaterial($datos);
+			$respuesta = ModeloMaquinas::mdlEliminarMaquina($datos);
 
 			if($respuesta == "ok"){
 
@@ -285,13 +283,13 @@ class ControladorMateriales{
 				Swal.fire({
 				
 					icon: "success",
-					title: "¡El material ha sido eliminado correctamente!",
+					title: "¡El maquina ha sido eliminado correctamente!",
 					showConfirmButton: false,
 					timer: 1500
 				
 				}).then(function(result){
 				
-						window.location = "materiales";
+						window.location = "maquinas";
 				
 				});
 				

@@ -41,7 +41,7 @@ class ControladorProductos{
 					CREAMOS EL DIRECTORIO DONDE VAMOS A GUARDAR LA FOTO DEL USUARIO
 					=============================================*/
 
-					$directorio = "vistas/img/productos/".$_POST["nuevoCodigo"];
+					$directorio = "vistas/img/productos/".$_POST["nuevoCodigoProducto"];
 
 					mkdir($directorio, 0755);
 
@@ -57,7 +57,7 @@ class ControladorProductos{
 
 						$aleatorio = mt_rand(100,999);
 
-						$ruta = "vistas/img/productos/".$_POST["nuevoCodigo"]."/".$aleatorio.".jpg";
+						$ruta = "vistas/img/productos/".$_POST["nuevoCodigoProducto"]."/".$aleatorio.".jpg";
 
 						$origen = imagecreatefromjpeg($_FILES["nuevaImagenProducto"]["tmp_name"]);						
 
@@ -77,7 +77,7 @@ class ControladorProductos{
 
 						$aleatorio = mt_rand(100,999);
 
-						$ruta = "vistas/img/productos/".$_POST["nuevoCodigo"]."/".$aleatorio.".png";
+						$ruta = "vistas/img/productos/".$_POST["nuevoCodigoProducto"]."/".$aleatorio.".png";
 
 						$origen = imagecreatefrompng($_FILES["nuevaImagenProducto"]["tmp_name"]);						
 
@@ -91,7 +91,7 @@ class ControladorProductos{
 
 				}
 
-				$datos = array("codigo" => $_POST["nuevoCodigo"],
+				$datos = array("codigo" => $_POST["nuevoCodigoProducto"],
 							   "nombre" => $_POST["nuevoNombre"],
 							   "descripcion" => $_POST["nuevaDescripcion"],
 							   "idUnidadMedida" => $_POST["nuevaUnidadMedida"],

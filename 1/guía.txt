@@ -22,6 +22,6 @@ procedimiento almacenado en la carpeta /bd archivo pa.sql.
 
 8-Creas el archivo Java script en la carpeta /vistas/js .
 
-9-Creas las consultas ajax en la carpeta /ajax y el datable en caso
+9-Creas las consultas ajax en la carpeta /ajax y el data table en caso
 
-sean una tabla que va contener tener muchos datos.
+sean una tabla que va contener tener muchos datos. Y agregar los modelos y controladores.

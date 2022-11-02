@@ -171,7 +171,7 @@ $(".tablaProductos tbody").on("click", "button.btnEliminarProducto", function(){
 REVISAR SI EL PRODUCTO YA ESTÁ REGISTRADO
 =============================================*/
 
-$("#nuevoCodigo").change(function(){
+$("#nuevoCodigoProducto").change(function(){
 
 	$(".alert").remove();
 
@@ -192,9 +192,9 @@ $("#nuevoCodigo").change(function(){
 	    	
 	    	if(respuesta){
 
-	    		$("#nuevoCodigo").parent().after('<div class="alert alert-warning">Este código ya existe en la base de datos</div>');
+	    		$("#nuevoCodigoProducto").parent().after('<div class="alert alert-warning">Este código ya existe en la base de datos</div>');
 
-	    		$("#nuevoCodigo").val("");
+	    		$("#nuevoCodigoProducto").val("");
 
 	    	}
 

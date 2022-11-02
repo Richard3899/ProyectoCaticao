@@ -15,7 +15,17 @@ CREATE TABLE almacen (
 
 CREATE TABLE maquina (
   idMaquina INT  AUTO_INCREMENT  primary key,
-  descripcion VARCHAR(80)
+  codigo VARCHAR(20) ,
+  nombre VARCHAR(50) ,
+  serie VARCHAR(20) ,
+  modelo VARCHAR(100) ,
+  descripcion VARCHAR(100) ,
+  marca VARCHAR(50) ,
+  precio DECIMAL(10,2) ,
+  añoCompra INT ,
+  capacidad DECIMAL(10,2) ,
+  potencia DECIMAL(10,2) ,
+  vidaUtil INT 
 );
 -- -----------------------------------------------------
 -- Table tipocosto
@@ -448,10 +458,10 @@ CREATE TABLE equipo (
   descripcion VARCHAR(100) ,
   marca VARCHAR(45) ,
   precio DECIMAL(10,2) ,
-  año_compra INT ,
+  añoCompra INT ,
   capacidad DECIMAL(10,2) ,
   potencia DECIMAL(10,2) ,
-  vida_util INT 
+  vidaUtil INT 
 );
 
 

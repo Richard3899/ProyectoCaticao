@@ -25,11 +25,18 @@ class TablaProductos{
 
 		  for($i = 0; $i < count($productos); $i++){
 
-		  	/*=============================================
+			/*=============================================
  	 		TRAEMOS LA IMAGEN
   			=============================================*/ 
+			  if($productos[$i]["imagen"] != ""){
 
-		  	$imagen = "<img src='".$productos[$i]["imagen"]."' width='40px'>";
+				$imagen = "<img src='".$productos[$i]["imagen"]."' width='40px'>";
+
+			  }else{
+
+				$imagen = "<img src='vistas/img/productos/default/producto.png' class='img-thumbnail' width='40px'>";
+
+			  };
 
 			/*=============================================
  	 		CANTIDAD

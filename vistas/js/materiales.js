@@ -36,7 +36,7 @@ $('.tablaMateriales').DataTable( {
 
 
 /*=============================================
-EDITAR INSUMO
+EDITAR MATERIAL
 =============================================*/
 
 $(".tablaMateriales tbody").on("click", "button.btnEditarInsumo", function(){
@@ -89,7 +89,7 @@ $(".tablaMateriales tbody").on("click", "button.btnEditarInsumo", function(){
 
 
 /*=============================================
-ELIMINAR INSUMO
+ELIMINAR MATERIAL
 =============================================*/
 
 $(".tablaMateriales tbody").on("click", "button.btnEliminarMaterial", function(){
@@ -118,4 +118,40 @@ $(".tablaMateriales tbody").on("click", "button.btnEliminarMaterial", function()
 
 	})
 
+})
+
+/*=============================================
+REVISAR SI EL MATERIAL YA ESTÁ REGISTRADO
+=============================================*/
+
+$("#nuevoCodigoMaterial").change(function(){
+
+	$(".alert").remove();
+
+	var insumo = $(this).val();
+
+	var datos = new FormData();
+	datos.append("validarCodigo", insumo);
+
+	 $.ajax({
+	    url:"ajax/materiales.ajax.php",
+	    method:"POST",
+	    data: datos,
+	    cache: false,
+	    contentType: false,
+	    processData: false,
+	    dataType: "json",
+	    success:function(respuesta){
+	    	
+	    	if(respuesta){
+
+	    		$("#nuevoCodigoMaterial").parent().after('<div class="alert alert-warning">Este código ya existe en la base de datos</div>');
+
+	    		$("#nuevoCodigoMaterial").val("");
+
+	    	}
+
+	    }
+
+	})
 })
