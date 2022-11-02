@@ -120,7 +120,7 @@ MODAL AGREGAR PRODUCTO
                 <span class="input-group-text"><i class="fas fa-file-signature"></i></span>
                 </div>
                 <input type="text" class="form-control input-lg" id="idNombre" name="nuevoNombre" placeholder="Ingresar nombre" 
-                 maxlength="50"  pattern="[A-Za-z0-9\u00f1\u00d1 ]+" title="Solo se acepta letras y números" required>
+                 maxlength="50"  pattern="[A-Za-z0-9\u00f1\u00d1% ]+" title="Solo se acepta letras y números" required>
             </div>
             </div>
 
@@ -135,7 +135,7 @@ MODAL AGREGAR PRODUCTO
                 <span class="input-group-text"><i class="fas fa-bars"></i></span>
                 </div>
                 <input type="text" class="form-control input-lg" name="nuevaDescripcion" placeholder="Ingresar descripción" 
-                maxlength="100" pattern="[A-Za-z0-9\u00f1\u00d1 ]+" title="Solo se acepta letras y números" required>
+                maxlength="100" pattern="[A-Za-z0-9\u00f1\u00d1% ]+" title="Solo se acepta letras y números" required>
             </div>
            </div>
 
@@ -184,7 +184,8 @@ MODAL AGREGAR PRODUCTO
                 <span class="input-group-text"><i class="fas fa-layer-group"></i></span>
                 <font-awesome-icon icon="fa-solid fa-layer-group" />
                 </div>
-                <input type="number" class="form-control input-lg" name="nuevaCantidad" placeholder="Ingresar cantidad" min="0" step="0.001" required>
+                <input type="number" class="form-control input-lg" name="nuevaCantidad" 
+                 placeholder="Ingresar cantidad" min="0" max="9999999" step="0.001" required>
             </div>
 
           </div>
@@ -278,7 +279,7 @@ MODAL EDITAR PRODUCTO
 
 <div id="modalEditarProducto" class="modal fade" role="dialog">
   
-  <div class="modal-dialog">
+  <div class="modal-dialog modal-lg">
 
     <div class="modal-content">
 
@@ -323,8 +324,8 @@ MODAL EDITAR PRODUCTO
                 <div class="input-group-prepend">
                 <span class="input-group-text"><i class="fas fa-file-signature"></i></span>
                 </div>
-                <input type="text" class="form-control input-lg" name="editarNombre" id="editarNombre"
-                 maxlength="50"  pattern="[A-Za-z0-9\u00f1\u00d1 ]+" title="Solo se acepta letras y números" required>
+                <input type="text" class="form-control input-lg" name="editarNombre" id="editarNombre" placeholder="Ingresar nombre"
+                 maxlength="50"  pattern="[A-Za-z0-9\u00f1\u00d1% ]+" title="Solo se acepta letras y números" required>
             </div>
             </div>
 
@@ -338,8 +339,8 @@ MODAL EDITAR PRODUCTO
                 <div class="input-group-prepend">
                 <span class="input-group-text"><i class="fas fa-bars"></i></span>
                 </div>
-                <input type="text" class="form-control input-lg" name="editarDescripcion" id="editarDescripcion"
-                maxlength="100" pattern="[A-Za-z0-9\u00f1\u00d1 ]+" title="Solo se acepta letras y números" required>
+                <input type="text" class="form-control input-lg" name="editarDescripcion" id="editarDescripcion" placeholder="Ingresar descripción"
+                maxlength="100" pattern="[A-Za-z0-9\u00f1\u00d1% ]+" title="Solo se acepta letras y números" required>
             </div>
            </div>
 
@@ -387,7 +388,7 @@ MODAL EDITAR PRODUCTO
                 <span class="input-group-text"><i class="fas fa-layer-group"></i></span>
                 </div>
                 <input type="number" class="form-control input-lg" name="editarCantidad"  id="editarCantidad" 
-                min="0" step="0.001" required>
+                placeholder="Ingresar cantidad" min="0" max="9999999" step="0.001" required>
             </div>
 
             </div>

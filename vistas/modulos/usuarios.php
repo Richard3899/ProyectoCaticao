@@ -184,7 +184,7 @@ MODAL AGREGAR USUARIO
 
           <!-- ENTRADA PARA EL USUARIO -->
 
-           <div class="form-group">
+          <div class="form-group">
             
             <div class="input-group">
                 <div class="input-group-prepend">

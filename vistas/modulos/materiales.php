@@ -226,7 +226,8 @@ MODAL AGREGAR MATERIAL
                 <div class="input-group-prepend">
                 <span class="input-group-text"><i class="fas fa-layer-group"></i></span>
                 </div>
-                <input type="number" class="form-control input-lg" name="nuevaCantidad" placeholder="Ingresar cantidad" min="0" step="0.001" required>
+                <input type="number" class="form-control input-lg" name="nuevaCantidad" 
+                 placeholder="Ingresar cantidad" min="0" max="9999999" step="0.001"  required>
             </div>
 
             </div>
@@ -239,7 +240,8 @@ MODAL AGREGAR MATERIAL
                 <div class="input-group-prepend">
                 <span class="input-group-text"><i class="fas fa-dollar-sign"></i></span>
                 </div>
-                <input type="number" class="form-control input-lg" name="nuevoPrecio" placeholder="Ingresar precio" min="0" step="0.01" required>
+                <input type="number" class="form-control input-lg" name="nuevoPrecio" id="nuevoPrecio"
+                 placeholder="Ingresar precio" min="0" max="9999999" step="0.01" required>
             </div>
 
             </div>
@@ -349,7 +351,7 @@ MODAL EDITAR MATERIAL
                 <div class="input-group-prepend">
                 <span class="input-group-text"><i class="fas fa-file-signature"></i></span>
                 </div>
-                <input type="text" class="form-control input-lg" name="editarNombre" id="editarNombre"
+                <input type="text" class="form-control input-lg" name="editarNombre" id="editarNombre" placeholder="Ingresar nombre"
                  maxlength="50"  pattern="[A-Za-z0-9\u00f1\u00d1 ]+" title="Solo se acepta letras y números" required>
             </div>
             </div>
@@ -364,7 +366,7 @@ MODAL EDITAR MATERIAL
                 <div class="input-group-prepend">
                 <span class="input-group-text"><i class="fas fa-bars"></i></span>
                 </div>
-                <input type="text" class="form-control input-lg" name="editarDescripcion" id="editarDescripcion"
+                <input type="text" class="form-control input-lg" name="editarDescripcion" id="editarDescripcion" placeholder="Ingresar descripción"
                 maxlength="100" pattern="[A-Za-z0-9\u00f1\u00d1 ]+" title="Solo se acepta letras y números" required>
             </div>
            </div>
@@ -451,7 +453,7 @@ MODAL EDITAR MATERIAL
                 <span class="input-group-text"><i class="fas fa-layer-group"></i></span>
                 </div>
                 <input type="number" class="form-control input-lg" name="editarCantidad"  id="editarCantidad" 
-                min="0" step="0.001" required>
+                 placeholder="Ingresar cantidad" min="0" max="9999999" step="0.001" required>
             </div>
 
             </div>
@@ -465,7 +467,7 @@ MODAL EDITAR MATERIAL
                 <span class="input-group-text"><i class="fas fa-dollar-sign"></i></span>
                 </div>
                 <input type="number" class="form-control input-lg" name="editarPrecio"  id="editarPrecio" 
-                 min="0" step="0.01" required>
+                 placeholder="Ingresar precio" min="0" max="9999999" step="0.01" required>
             </div>
 
             </div>

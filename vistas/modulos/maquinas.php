@@ -1,4 +1,5 @@
 <!-- Content Wrapper. Contains page content -->
+
 <div class="content-wrapper">
   <!-- Content Header (Page header) -->
   <div class="container">
@@ -34,7 +35,7 @@
       </div>
       <div class="card-body">
 
-      <table class="table table-bordered table-striped dt-responsive tablas" width="100%">
+      <table class="table table-bordered table-striped dt-responsive tablaMaquinas" width="100%">
        
       <thead>
        
@@ -114,6 +115,7 @@ MODAL AGREGAR MAQUINA
                 </div>
                 <input type="text" class="form-control input-lg" name="nuevoCodigoMaquina" id="nuevoCodigoMaquina" placeholder="Ingresar código" 
                  maxlength="20" pattern="[A-Za-z0-9-]+" title="Solo se aceptan letras,números y guiones sin espacios" required>
+                
             </div>
             </div>
 
@@ -189,7 +191,8 @@ MODAL AGREGAR MAQUINA
                 <div class="input-group-prepend">
                 <span class="input-group-text"><i class="fas fa-dollar-sign"></i></span>
                 </div>
-                <input type="number" class="form-control input-lg" name="nuevoPrecio" placeholder="Ingresar precio" min="0" step="0.01" required>
+                <input type="number" class="form-control input-lg" name="nuevoPrecio" id="nuevoPrecio"
+                 placeholder="Ingresar precio" min="0" step="0.01" max="9999999" required>
             </div>
 
             </div>
@@ -206,7 +209,7 @@ MODAL AGREGAR MAQUINA
                 <span class="input-group-text"><i class="fas fa-calendar-alt"></i></span>
                 </div>
                 <input type="number" class="form-control input-lg" name="nuevoAñoCompra"  id="nuevoAñoCompra" 
-                 placeholder="Ingresar año de compra" min="0" required>
+                 placeholder="Ingresar año de compra" min="0" max="9999"required>
             </div>
             </div>
 
@@ -219,7 +222,7 @@ MODAL AGREGAR MAQUINA
                 <span class="input-group-text"><i class="fas fa-battery-three-quarters"></i></span>
                 </div>
                 <input type="number" class="form-control input-lg" name="nuevaCapacidad"  id="nuevaCapacidad" 
-                 placeholder="Ingresar capacidad" min="0" step="0.01" required>
+                 placeholder="Ingresar capacidad" min="0" step="0.01" max="9999999" required>
             </div>
 
             </div>
@@ -237,7 +240,7 @@ MODAL AGREGAR MAQUINA
                 <span class="input-group-text"><i class="fas fa-bolt"></i></span>
                 </div>
                 <input type="number" class="form-control input-lg" name="nuevaPotencia"  id="nuevaPotencia" 
-                 placeholder="Ingresar potencia" min="0" step="0.01" required>
+                 placeholder="Ingresar potencia" min="0" step="0.01" max="9999999" required>
             </div>
 
             </div>
@@ -248,8 +251,8 @@ MODAL AGREGAR MAQUINA
                 <div class="input-group-prepend">
                 <span class="input-group-text"><i class="fas fa-hourglass-half"></i></span>
                 </div>
-                <input type="number" class="form-control input-lg" name="nuevaVidaUtil"  id="nuevaVidaUtil" 
-                 placeholder="Ingresar vida util" min="0" required>
+                <input type="number" class="form-control input-lg" name="nuevaVidaUtil" max="99"  id="nuevaVidaUtil" 
+                 placeholder="Ingresar vida util (Años)" min="0" required>
             </div>
             </div>
 
@@ -274,8 +277,8 @@ MODAL AGREGAR MAQUINA
 
       <?php
 
-          #$crearMaquina = new ControladorMaquinas();
-          #$crearMaquina -> ctrCrearMaquina();
+          $crearMaquina = new ControladorMaquinas();
+          $crearMaquina -> ctrCrearMaquina();
 
       ?>
 
@@ -295,7 +298,7 @@ MODAL EDITAR MAQUINA
 
 <div id="modalEditarMaquina" class="modal fade" role="dialog">
   
-  <div class="modal-dialog">
+  <div class="modal-dialog modal-lg">
 
     <div class="modal-content">
 
@@ -330,7 +333,8 @@ MODAL EDITAR MAQUINA
                 </div>
                 <input type="text" class="form-control input-lg" name="editarCodigo" id="editarCodigo" 
                  maxlength="20" pattern="[A-Za-z0-9-]+" title="Solo se aceptan letras,números y guiones sin espacios" readonly required>
-                <input type="hidden" id="idMaquina" name="idMaquina">
+                 <input type="hidden" id="idMaquina" name="idMaquina">
+
             </div>
             </div>
 
@@ -340,7 +344,7 @@ MODAL EDITAR MAQUINA
                 <div class="input-group-prepend">
                 <span class="input-group-text"><i class="fas fa-file-signature"></i></span>
                 </div>
-                <input type="text" class="form-control input-lg" name="editarNombre" id="editarNombre"
+                <input type="text" class="form-control input-lg" name="editarNombre" id="editarNombre" placeholder="Ingresar nombre"
                  maxlength="50"  pattern="[A-Za-z0-9\u00f1\u00d1 ]+" title="Solo se acepta letras y números" required>
             </div>
             </div>
@@ -355,63 +359,127 @@ MODAL EDITAR MAQUINA
                 <div class="input-group-prepend">
                 <span class="input-group-text"><i class="fas fa-bars"></i></span>
                 </div>
-                <input type="text" class="form-control input-lg" name="editarDescripcion" id="editarDescripcion"
-                maxlength="100" pattern="[A-Za-z0-9\u00f1\u00d1 ]+" title="Solo se acepta letras y números" required>
+                <input type="text" class="form-control input-lg" name="editarDescripcion" id="editarDescripcion" placeholder="Ingresar descripcion"
+                 maxlength="100" pattern="[A-Za-z0-9\u00f1\u00d1 ]+" title="Solo se acepta letras y números" required>
             </div>
             </div>
 
 
-          <div class="row">
- 
-          <!-- ENTRADA PARA SELECCIONAR SU UNIDAD DE MEDIDA -->
 
-          <div class="form-group col-sm">
-            
-            <div class="input-group">
-            
+            <div class="row">
+
+            <!-- ENTRADA PARA LA SERIE -->
+            <div class="form-group col-sm">
+            <div class="input-group ">
                 <div class="input-group-prepend">
-                <span class="input-group-text"><i class="fas fa-ruler"></i></span>
+                <span class="input-group-text"><i class="fas fa-hashtag"></i></span>
                 </div>
+                <input type="text" class="form-control input-lg" name="editarSerie" id="editarSerie" placeholder="Ingresar serie"
+                 maxlength="20" pattern="[A-Za-z0-9-]+" title="Solo se aceptan letras,números y guiones sin espacios" required>
+            </div>
+            </div>
 
-                <select class="form-control input-lg" id="editarUnidadMedida" name="editarUnidadMedida" required>
-                
-                <option value="">Unidad de Medida</option>
-
-                <?php 
-                $item = null;
-                $valor = null;
-
-                $unidadmedida = ControladorUnidadMedida::ctrMostrarUnidadMedida($item,$valor);
-
-                foreach($unidadmedida as $key=> $value){ 
-                  echo '<option value="'.$value["idUnidadMedida"].'">'.$value["descripcion"].'</option>';
-                }
-
-                ?>
-
-              </select>
+            <!-- ENTRADA PARA EL MODELO -->
+            <div class="form-group col-sm">
+            <div class="input-group ">
+                <div class="input-group-prepend">
+                <span class="input-group-text"><i class="fas fa-cube"></i></span>
+                </div>
+                <input type="text" class="form-control input-lg" name="editarModelo" id="editarModelo" placeholder="Ingresar modelo"
+                 maxlength="20" pattern="[A-Za-z0-9-]+" title="Solo se aceptan letras,números y guiones sin espacios" required>
+            </div>
+            </div>
 
             </div>
 
-           </div>
+            <div class="row">
 
-            <!-- ENTRADA PARA EL CANTIDAD -->
+            <!-- ENTRADA PARA LA MARCA -->
+            <div class="form-group col-sm">
+            <div class="input-group">
+                <div class="input-group-prepend">
+                <span class="input-group-text"><i class="fas fa-file-signature"></i>  </span>
+                </div>
+                <input type="text" class="form-control input-lg" id="editarMarca" name="editarMarca" placeholder="Ingresar marca"
+                maxlength="50"  pattern="[A-Za-z0-9\u00f1\u00d1 ]+" title="Solo se acepta letras y números" required>
+            </div>
+            </div>
+
+            <!-- ENTRADA PARA EL PRECIO -->
 
             <div class="form-group col-sm">
-            
+
             <div class="input-group">
                 <div class="input-group-prepend">
-                <span class="input-group-text"><i class="fas fa-layer-group"></i></span>
+                <span class="input-group-text"><i class="fas fa-dollar-sign"></i></span>
                 </div>
-                <input type="number" class="form-control input-lg" name="editarCantidad"  id="editarCantidad" 
-                min="0" step="0.001" required>
+                <input type="number" class="form-control input-lg" id="editarPrecio" name="editarPrecio" 
+                 placeholder="Ingresar precio" min="0" max="9999999" step="0.01" required>
             </div>
 
             </div>
 
+            </div>
 
-          </div>
 
+            <div class="row">
+
+            <!-- ENTRADA PARA EL AÑO DE COMPRA -->
+            <div class="form-group col-sm">
+            <div class="input-group">
+                <div class="input-group-prepend">
+                <span class="input-group-text"><i class="fas fa-calendar-alt"></i></span>
+                </div>
+                <input type="number" class="form-control input-lg" name="editarAñoCompra"  id="editarAñoCompra" 
+                placeholder="Ingresar año de compra" min="0" max="9999" required>
+            </div>
+            </div>
+
+            <!-- ENTRADA PARA LA CAPACIDAD -->
+
+            <div class="form-group col-sm">
+
+            <div class="input-group">
+                <div class="input-group-prepend">
+                <span class="input-group-text"><i class="fas fa-battery-three-quarters"></i></span>
+                </div>
+                <input type="number" class="form-control input-lg" name="editarCapacidad"  id="editarCapacidad" 
+                placeholder="Ingresar capacidad" min="0" step="0.01" max="9999999" required>
+            </div>
+
+            </div>
+
+            </div>
+
+            <div class="row">
+
+            <!-- ENTRADA PARA LA POTENCIA -->
+
+            <div class="form-group col-sm">
+
+            <div class="input-group">
+                <div class="input-group-prepend">
+                <span class="input-group-text"><i class="fas fa-bolt"></i></span>
+                </div>
+                <input type="number" class="form-control input-lg" name="editarPotencia"  id="editarPotencia" 
+                placeholder="Ingresar potencia" min="0" step="0.01" max="9999999" required>
+            </div>
+
+            </div>
+
+            <!-- ENTRADA PARA VIDA UTIL -->
+            <div class="form-group col-sm">
+            <div class="input-group">
+                <div class="input-group-prepend">
+                <span class="input-group-text"><i class="fas fa-hourglass-half"></i></span>
+                </div>
+                <input type="number" class="form-control input-lg" name="editarVidaUtil"  id="editarVidaUtil" 
+                 placeholder="Ingresar vida util (Años)" min="0" max="99" required>
+            </div>
+            </div>
+
+
+            </div>
 
        </div>
 
@@ -432,8 +500,8 @@ MODAL EDITAR MAQUINA
 
         <?php
 
-          #$editarMaquina = new ControladorMaquinas();
-          #$editarMaquina -> ctrEditarMaquina();
+          $editarMaquina = new ControladorMaquinas();
+          $editarMaquina -> ctrEditarMaquina();
 
         ?> 
 
@@ -447,7 +515,7 @@ MODAL EDITAR MAQUINA
 
 <?php
 
-  #$borrarMaquina = new ControladorMaquinas();
-  #$borrarMaquina -> ctrEliminarMaquina();
+  $borrarMaquina = new ControladorMaquinas();
+  $borrarMaquina -> ctrEliminarMaquina();
 
 ?> 

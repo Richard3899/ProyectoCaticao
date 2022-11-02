@@ -43,15 +43,19 @@ class ModeloMaquinas{
 
 	static public function mdlIngresarMaquina($datos){
 
-		$stmt = Conexion::conectar()->prepare("call insertar_maquina(?,?,?,?,?,?,?)");
+		$stmt = Conexion::conectar()->prepare("call insertar_maquina(?,?,?,?,?,?,?,?,?,?,?)");
 
 		$stmt->bindParam(1, $datos["codigo"], PDO::PARAM_STR);
 		$stmt->bindParam(2, $datos["nombre"], PDO::PARAM_STR);
 		$stmt->bindParam(3, $datos["descripcion"], PDO::PARAM_STR);
-		$stmt->bindParam(4, $datos["idUnidadMedida"], PDO::PARAM_INT);
-		$stmt->bindParam(5, $datos["cantidad"], PDO::PARAM_STR);
-		$stmt->bindParam(6, $datos["idTipoMaquina"], PDO::PARAM_INT);
-		$stmt->bindParam(7, $datos["imagen"], PDO::PARAM_STR);
+		$stmt->bindParam(4, $datos["serie"], PDO::PARAM_STR);
+		$stmt->bindParam(5, $datos["modelo"], PDO::PARAM_STR);
+		$stmt->bindParam(6, $datos["marca"], PDO::PARAM_STR);
+		$stmt->bindParam(7, $datos["precio"], PDO::PARAM_STR);
+		$stmt->bindParam(8, $datos["añoCompra"], PDO::PARAM_STR);
+		$stmt->bindParam(9, $datos["capacidad"], PDO::PARAM_STR);
+		$stmt->bindParam(10, $datos["potencia"], PDO::PARAM_STR);
+		$stmt->bindParam(11, $datos["vidaUtil"], PDO::PARAM_STR);
 
 		if($stmt->execute()){
 
@@ -75,15 +79,19 @@ class ModeloMaquinas{
 
 	static public function mdlEditarMaquina($datos){
 	
-		$stmt = Conexion::conectar()->prepare("call editar_maquina(?,?,?,?,?,?,?)");
+		$stmt = Conexion::conectar()->prepare("call editar_maquina(?,?,?,?,?,?,?,?,?,?,?)");
 		
 		$stmt->bindParam(1, $datos["idMaquina"], PDO::PARAM_INT);
 		$stmt->bindParam(2, $datos["nombre"], PDO::PARAM_STR);
 		$stmt->bindParam(3, $datos["descripcion"], PDO::PARAM_STR);
-		$stmt->bindParam(4, $datos["idUnidadMedida"], PDO::PARAM_INT);
-		$stmt->bindParam(5, $datos["cantidad"], PDO::PARAM_STR);
-		$stmt->bindParam(6, $datos["idTipoMaquina"], PDO::PARAM_INT);
-		$stmt->bindParam(7, $datos["imagen"], PDO::PARAM_STR);
+		$stmt->bindParam(4, $datos["serie"], PDO::PARAM_STR);
+		$stmt->bindParam(5, $datos["modelo"], PDO::PARAM_STR);
+		$stmt->bindParam(6, $datos["marca"], PDO::PARAM_STR);
+		$stmt->bindParam(7, $datos["precio"], PDO::PARAM_STR);
+		$stmt->bindParam(8, $datos["añoCompra"], PDO::PARAM_INT);
+		$stmt->bindParam(9, $datos["capacidad"], PDO::PARAM_STR);
+		$stmt->bindParam(10, $datos["potencia"], PDO::PARAM_STR);
+		$stmt->bindParam(11, $datos["vidaUtil"], PDO::PARAM_INT);
 		
 
 		if($stmt -> execute()){

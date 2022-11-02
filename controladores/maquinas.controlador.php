@@ -24,80 +24,17 @@ class ControladorMaquinas{
 
 		if(isset($_POST["nuevaDescripcion"])){
 
-		   		/*=============================================
-				VALIDAR IMAGEN
-				=============================================*/
-
-			   	$ruta = "";
-
-			   	if(is_uploaded_file($_FILES["nuevaImagenMaquina"]["tmp_name"])){
-
-					list($ancho, $alto) = getimagesize($_FILES["nuevaImagenMaquina"]["tmp_name"]);
-
-					$nuevoAncho = 500;
-					$nuevoAlto = 500;
-
-					/*=============================================
-					CREAMOS EL DIRECTORIO DONDE VAMOS A GUARDAR LA FOTO DEL USUARIO
-					=============================================*/
-
-					$directorio = "vistas/img/maquinas/".$_POST["nuevoCodigo"];
-
-					mkdir($directorio, 0755);
-
-					/*=============================================
-					DE ACUERDO AL TIPO DE IMAGEN APLICAMOS LAS FUNCIONES POR DEFECTO DE PHP
-					=============================================*/
-
-					if($_FILES["nuevaImagenMaquina"]["type"] == "image/jpeg"){
-
-						/*=============================================
-						GUARDAMOS LA IMAGEN EN EL DIRECTORIO
-						=============================================*/
-
-						$aleatorio = mt_rand(100,999);
-
-						$ruta = "vistas/img/maquinas/".$_POST["nuevoCodigo"]."/".$aleatorio.".jpg";
-
-						$origen = imagecreatefromjpeg($_FILES["nuevaImagenMaquina"]["tmp_name"]);						
-
-						$destino = imagecreatetruecolor($nuevoAncho, $nuevoAlto);
-
-						imagecopyresized($destino, $origen, 0, 0, 0, 0, $nuevoAncho, $nuevoAlto, $ancho, $alto);
-
-						imagejpeg($destino, $ruta);
-
-					}
-
-					if($_FILES["nuevaImagenMaquina"]["type"] == "image/png"){
-
-						/*=============================================
-						GUARDAMOS LA IMAGEN EN EL DIRECTORIO
-						=============================================*/
-
-						$aleatorio = mt_rand(100,999);
-
-						$ruta = "vistas/img/maquinas/".$_POST["nuevoCodigo"]."/".$aleatorio.".png";
-
-						$origen = imagecreatefrompng($_FILES["nuevaImagenMaquina"]["tmp_name"]);						
-
-						$destino = imagecreatetruecolor($nuevoAncho, $nuevoAlto);
-
-						imagecopyresized($destino, $origen, 0, 0, 0, 0, $nuevoAncho, $nuevoAlto, $ancho, $alto);
-
-						imagepng($destino, $ruta);
-
-					}
-
-				}
-
-				$datos = array("codigo" => $_POST["nuevoCodigo"],
+				$datos = array("codigo" => $_POST["nuevoCodigoMaquina"],
 							   "nombre" => $_POST["nuevoNombre"],
 							   "descripcion" => $_POST["nuevaDescripcion"],
-							   "idUnidadMedida" => $_POST["nuevaUnidadMedida"],
-							   "cantidad" => $_POST["nuevaCantidad"],
-							   "idTipoMaquina" => $_POST["nuevoTipoMaquina"],
-							   "imagen" => $ruta);
+							   "serie" => $_POST["nuevaSerie"],
+							   "modelo" => $_POST["nuevoModelo"],
+							   "marca" => $_POST["nuevaMarca"],
+							   "precio" => $_POST["nuevoPrecio"],
+							   "añoCompra" => $_POST["nuevoAñoCompra"],
+							   "capacidad" => $_POST["nuevaCapacidad"],
+							   "potencia" => $_POST["nuevaPotencia"],
+							   "vidaUtil" => $_POST["nuevaVidaUtil"]);
 							 
 
 				$respuesta = ModeloMaquinas::mdlIngresarMaquina($datos);
@@ -137,96 +74,18 @@ class ControladorMaquinas{
 
 		if(isset($_POST["editarDescripcion"])){
 
-		   		/*=============================================
-				VALIDAR IMAGEN
-				=============================================*/
-
-			   	$ruta = $_POST["ImagenMaquinaActual"];
-
-			   	if(isset($_FILES["editarImagenMaquina"]["tmp_name"]) && !empty($_FILES["editarImagenMaquina"]["tmp_name"])){
-
-					list($ancho, $alto) = getimagesize($_FILES["editarImagenMaquina"]["tmp_name"]);
-
-					$nuevoAncho = 500;
-					$nuevoAlto = 500;
-
-					/*=============================================
-					CREAMOS EL DIRECTORIO DONDE VAMOS A GUARDAR LA FOTO DEL USUARIO
-					=============================================*/
-
-					$directorio = "vistas/img/maquinas/".$_POST["editarCodigo"];
-
-					/*=============================================
-					PRIMERO PREGUNTAMOS SI EXISTE OTRA IMAGEN EN LA BD
-					=============================================*/
-
-					if(!empty($_POST["ImagenMaquinaActual"]) && $_POST["ImagenMaquinaActual"] != "vistas/img/maquinas/default/maquina.png"){
-
-						unlink($_POST["ImagenMaquinaActual"]);
-
-					}else{
-
-						mkdir($directorio, 0755);	
-					
-					}
-					
-					/*=============================================
-					DE ACUERDO AL TIPO DE IMAGEN APLICAMOS LAS FUNCIONES POR DEFECTO DE PHP
-					=============================================*/
-
-					if($_FILES["editarImagenMaquina"]["type"] == "image/jpeg"){
-
-						/*=============================================
-						GUARDAMOS LA IMAGEN EN EL DIRECTORIO
-						=============================================*/
-
-						$aleatorio = mt_rand(100,999);
-
-						$ruta = "vistas/img/maquinas/".$_POST["editarCodigo"]."/".$aleatorio.".jpg";
-
-						$origen = imagecreatefromjpeg($_FILES["editarImagenMaquina"]["tmp_name"]);						
-
-						$destino = imagecreatetruecolor($nuevoAncho, $nuevoAlto);
-
-						imagecopyresized($destino, $origen, 0, 0, 0, 0, $nuevoAncho, $nuevoAlto, $ancho, $alto);
-
-						imagejpeg($destino, $ruta);
-
-					}
-
-					if($_FILES["editarImagenMaquina"]["type"] == "image/png"){
-
-						/*=============================================
-						GUARDAMOS LA IMAGEN EN EL DIRECTORIO
-						=============================================*/
-
-						$aleatorio = mt_rand(100,999);
-
-						$ruta = "vistas/img/maquinas/".$_POST["editarCodigo"]."/".$aleatorio.".png";
-
-						$origen = imagecreatefrompng($_FILES["editarImagenMaquina"]["tmp_name"]);						
-
-						$destino = imagecreatetruecolor($nuevoAncho, $nuevoAlto);
-
-						imagecopyresized($destino, $origen, 0, 0, 0, 0, $nuevoAncho, $nuevoAlto, $ancho, $alto);
-
-						imagepng($destino, $ruta);
-
-					}
-
-				}
-
-
-				$datos = array("idMaquina" =>$_POST["idMaquina"],
+				$datos = array("idMaquina" => $_POST["idMaquina"],
 							   "nombre" => $_POST["editarNombre"],
 							   "descripcion" => $_POST["editarDescripcion"],
-							   "idUnidadMedida" => $_POST["editarUnidadMedida"],
-							   "cantidad" => $_POST["editarCantidad"],
-							   "idTipoMaquina" => $_POST["editarTipoMaquina"],
-							   "imagen" => $ruta);
+							   "serie" => $_POST["editarSerie"],
+							   "modelo" => $_POST["editarModelo"],
+							   "marca" => $_POST["editarMarca"],
+							   "precio" => $_POST["editarPrecio"],
+							   "añoCompra" => $_POST["editarAñoCompra"],
+							   "capacidad" => $_POST["editarCapacidad"],
+							   "potencia" => $_POST["editarPotencia"],
+							   "vidaUtil" => $_POST["editarVidaUtil"]);			   
 							   
-				
-
 				$respuesta = ModeloMaquinas::mdlEditarMaquina($datos);
 
 				if($respuesta == "ok"){
@@ -266,13 +125,6 @@ class ControladorMaquinas{
 		if(isset($_GET["idMaquina"])){
 
 			$datos = $_GET["idMaquina"];
-
-			if($_GET["imagen"] != "" && $_GET["imagen"] != "vistas/img/maquinas/default/maquina.png"){
-
-				unlink($_GET["imagen"]);
-				rmdir('vistas/img/maquinas/'.$_GET["codigo"]);
-
-			}
 
 			$respuesta = ModeloMaquinas::mdlEliminarMaquina($datos);
 

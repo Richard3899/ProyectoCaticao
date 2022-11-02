@@ -6,7 +6,7 @@ $('.tablaInsumos').DataTable( {
 	"processing": true,
 	 "language": {
 
-			"sProcessing":     "No se encontraron resultados",
+			"sProcessing":     "",
 			"sLengthMenu":     "Mostrar _MENU_ registros",
 			"sZeroRecords":    "No se encontraron resultados",
 			"sEmptyTable":     "Ningún dato disponible en esta tabla",
