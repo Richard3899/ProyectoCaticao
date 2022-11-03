@@ -5,14 +5,14 @@ require_once "conexion.php";
 class ModeloMarcas{
 
 	/*=============================================
-	CREAR Marcas
+	CREAR MARCA
 	=============================================*/
 
 	static public function mdlIngresarMarca($tabla, $datos){
 
-		$stmt = Conexion::conectar()->prepare("INSERT INTO $tabla(marca) VALUES (:marca)");
+		$stmt = Conexion::conectar()->prepare("INSERT INTO $tabla(descripcion) VALUES (:descripcion)");
 
-		$stmt->bindParam(":marca", $datos, PDO::PARAM_STR);
+		$stmt->bindParam(":descripcion", $datos, PDO::PARAM_STR);
 
 		if($stmt->execute()){
 
@@ -69,10 +69,10 @@ class ModeloMarcas{
 
 	static public function mdlEditarMarca($tabla, $datos){
 
-		$stmt = Conexion::conectar()->prepare("UPDATE $tabla SET marca = :marca WHERE idmarca = :idmarca");
+		$stmt = Conexion::conectar()->prepare("UPDATE $tabla SET descripcion = :descripcion WHERE idmarca = :idmarca");
 
-		$stmt -> bindParam(":marca", $datos["marca"], PDO::PARAM_STR);
-		$stmt -> bindParam(":idmarca", $datos["idmarca"], PDO::PARAM_INT);
+		$stmt -> bindParam(":descripcion", $datos["descripcion"], PDO::PARAM_STR);
+		$stmt -> bindParam(":idMarca", $datos["idMarca"], PDO::PARAM_INT);
 
 		if($stmt->execute()){
 

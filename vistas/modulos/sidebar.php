@@ -58,7 +58,7 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="#" class="nav-link">
+                <a href="marcas" class="nav-link">
                 <i class="nav-icon fas fa-angle-right"></i>
                   <p>Marcas</p>
                 </a>

@@ -3,7 +3,7 @@
 require_once "../controladores/marcas.controlador.php";
 require_once "../modelos/marcas.modelo.php";
 
-class AjaxMarca{
+class AjaxMarcas{
 
 	/*=============================================
 	EDITAR MARCA
@@ -13,7 +13,7 @@ class AjaxMarca{
 
 	public function ajaxEditarMarca(){
 
-		$item = "id";
+		$item = "idMarca";
 		$valor = $this->idMarca;
 
 		$respuesta = ControladorMarcas::ctrMostrarMarcas($item, $valor);

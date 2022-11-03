@@ -24,7 +24,7 @@
 
       <div class="box-header with-border">
   
-        <button class="btn btn-primary" data-toggle="modal" data-target="#modalAgregarCategoria">
+        <button class="btn btn-primary" data-toggle="modal" data-target="#modalAgregarMarca">
           
           Agregar Marca
 
@@ -95,7 +95,7 @@
 </div>
 
 <!--=====================================
-MODAL AGREGAR Marca
+MODAL AGREGAR MARCA
 ======================================-->
 
 <div id="modalAgregarMarca" class="modal fade" role="dialog">
@@ -114,7 +114,7 @@ MODAL AGREGAR Marca
 
           <button type="button" class="close" data-dismiss="modal">&times;</button>
 
-          <h4 class="modal-title">Agregar categoría</h4>
+          <h4 class="modal-title">Agregar Marca</h4>
 
         </div>
 
@@ -172,7 +172,7 @@ MODAL AGREGAR Marca
 </div>
 
 <!--=====================================
-MODAL EDITAR CATEGORÍA
+MODAL EDITAR MARCA
 ======================================-->
 
 <div id="modalEditarMarca" class="modal fade" role="dialog">
@@ -224,8 +224,7 @@ MODAL EDITAR CATEGORÍA
         </div>
 
         <!--=====================================
-        PIE DEL MODAL
-        ======================================-->
+         ======================================-->
 
         <div class="modal-footer">
 
@@ -244,7 +243,8 @@ MODAL EDITAR CATEGORÍA
 
       </form>
 
-    </div>
+    </div    PIE DEL MODAL
+   >
 
   </div>
 

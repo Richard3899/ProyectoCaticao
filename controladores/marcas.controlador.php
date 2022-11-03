@@ -71,16 +71,12 @@ class ControladorMarcas{
 
 	static public function ctrMostrarMarcas($item, $valor){
 
-		$tabla = "marca";
+		$tabla = "marcas";
 
 		$respuesta = ModeloMarcas::MdlMostrarMarcas($tabla, $item, $valor);
 
 		return $respuesta;
 	} 
-
-
-
-
 
 
 	/*=============================================
@@ -93,9 +89,9 @@ class ControladorMarcas{
 
 			if(preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/', $_POST["editarMarca"])){
 
-				$tabla = "marcas";
+				$tabla = "marca";
 
-				$datos = array("marca"=>$_POST["editarMarca"],
+				$datos = array("descripcion"=>$_POST["editarMarca"],
 							   "idMarca"=>$_POST["idMarca"]);
 
 				$respuesta = ModeloMarcas::mdlEditarMarca($tabla, $datos);
@@ -155,7 +151,7 @@ class ControladorMarcas{
 
 		if(isset($_GET["idMarca"])){
 
-			$tabla ="Marcas";
+			$tabla ="marca";
 			$datos = $_GET["idMarca"];
 
 			$respuesta = ModeloMarcas::mdlBorrarMarca($tabla, $datos);
