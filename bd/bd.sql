@@ -305,7 +305,6 @@ CREATE TABLE ordenproduccion (
 -- Table ordenproduccionproceso
 -- -----------------------------------------------------
 
-
 CREATE TABLE ordenproduccionproceso (
   idOrdenProducionProceso INT  AUTO_INCREMENT primary key,
   descripcion VARCHAR(80) ,
@@ -313,14 +312,6 @@ CREATE TABLE ordenproduccionproceso (
   idProceso INT REFERENCES proceso (idProceso)
 );
 
--- -----------------------------------------------------
--- Table Tipo Sueldo
--- -----------------------------------------------------
-
-CREATE TABLE TipoSueldo (
-  idTipoSueldo INT AUTO_INCREMENT  primary key,
-  descripcion VARCHAR(45) 
-);
 
 -- -----------------------------------------------------
 -- Table Empleado
@@ -331,15 +322,17 @@ CREATE TABLE Empleado (
   apellido VARCHAR(45) ,
   direccion VARCHAR(45) ,
   telefono INT ,
-  correo_electronico VARCHAR(45) ,
+  correoElectronico VARCHAR(45) ,
   tipoDocumento INT ,
-  fecha_nacimiento DATE ,
-  cargo_empresa VARCHAR(45) ,
-  horario_trabajo VARCHAR(45) ,
-  hora_dias INT ,
-  sueldo_dia DECIMAL(10,2) ,
-  sueldo_mes DECIMAL(10,2) ,
-  idTipoSueldo INT REFERENCES TipoSueldo (idTipoSueldo)
+  numeroDocumento INT ,
+  fechaNacimiento DATE ,
+  cargoEmpresa VARCHAR(45) ,
+  horarioTrabajo VARCHAR(45) ,
+  horasPorDia INT ,
+  sueldoPorDia DECIMAL(10,2) ,
+  sueldoPorMes DECIMAL(10,2) ,
+  idUsuario INT REFERENCES Usuario (idUsuario),
+  idTipoCosto INT REFERENCES TipoCosto (idTipoCosto)
 );
  
 -- -----------------------------------------------------
@@ -879,7 +872,7 @@ alter Table ordenproduccion add foreign key (idReceta) REFERENCES receta (idRece
 alter Table ordenproduccionproceso add foreign key (idOrdenProduccion) REFERENCES ordenproduccion (idOrdenProduccion);
 alter Table ordenproduccionproceso add foreign key (idProceso) REFERENCES proceso (idProceso);
 
-alter Table Empleado add foreign key (idTipoSueldo) REFERENCES TipoSueldo (idTipoSueldo);
+alter Table Empleado add foreign key (idTipoCosto) REFERENCES TipoCosto (idTipoCosto);
 
 alter Table proveedor add foreign key (idTipoProveedor) REFERENCES tipoproveedor (idTipoProveedor);
 

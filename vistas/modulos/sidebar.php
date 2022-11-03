@@ -80,6 +80,13 @@
                 </a>
               </li>
 
+              <li class="nav-item">
+                <a href="empleados" class="nav-link">
+                <i class="nav-icon fas fa-angle-double-right"></i>
+                  <p>Empleados</p>
+                </a>
+              </li>
+
 
             </ul>
             
