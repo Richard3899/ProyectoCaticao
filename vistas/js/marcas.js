@@ -18,7 +18,7 @@ $(".tablas").on("click", ".btnEditarMarca", function(){
      	dataType:"json",
      	success: function(respuesta){
 
-     		$("#editarMarca").val(respuesta["marca"]);
+     		$("#editarMarca").val(respuesta["descripcion"]);
      		$("#idMarca").val(respuesta["idMarca"]);
 
      	}
