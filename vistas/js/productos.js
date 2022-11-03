@@ -6,7 +6,7 @@ $('.tablaProductos').DataTable( {
 	"processing": true,
 	 "language": {
 
-			"sProcessing":     "Procesando...",
+			"sProcessing":     "",
 			"sLengthMenu":     "Mostrar _MENU_ registros",
 			"sZeroRecords":    "No se encontraron resultados",
 			"sEmptyTable":     "Ningún dato disponible en esta tabla",
@@ -17,7 +17,7 @@ $('.tablaProductos').DataTable( {
 			"sSearch":         "Buscar:",
 			"sUrl":            "",
 			"sInfoThousands":  ",",
-			"sLoadingRecords": "Cargando...",
+			"sLoadingRecords": "Ningún dato disponible en esta tabla",
 			"oPaginate": {
 			"sFirst":    "Primero",
 			"sLast":     "Último",
@@ -148,7 +148,7 @@ $(".tablaProductos tbody").on("click", "button.btnEliminarProducto", function(){
 	Swal.fire({
 
 		title: '¿Está seguro de borrar el producto?',
-		text: "¡Si no lo está puede cancelar la accíón!",
+		text: "¡Si no lo está puede cancelar la acción!",
 		icon: 'warning',
         showCancelButton: true,
         confirmButtonColor: '#3085d6',

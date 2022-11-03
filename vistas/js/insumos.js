@@ -150,7 +150,7 @@ $(".tablaInsumos tbody").on("click", "button.btnEliminarInsumo", function(){
 	Swal.fire({
 
 		title: '¿Está seguro de borrar el insumo?',
-		text: "¡Si no lo está puede cancelar la accíón!",
+		text: "¡Si no lo está puede cancelar la acción!",
 		icon: 'warning',
         showCancelButton: true,
         confirmButtonColor: '#3085d6',

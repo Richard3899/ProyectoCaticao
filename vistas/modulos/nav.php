@@ -9,37 +9,29 @@
 
     <div class="navbar-custom-menu ml-auto">
         <ul class="nav navbar-nav">
-          <li class="dropdown user user-menu">
+          <div class="dropdown">
+          <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <?php
 
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+              if($_SESSION["foto"] != ""){
 
-            <?php
+                echo '<img src="'.$_SESSION["foto"].'" width="30px" class="user-image">';
 
-            if($_SESSION["foto"] != ""){
-
-              echo '<img src="'.$_SESSION["foto"].'" class="user-image">';
-
-            }else{
+              }else{
 
 
-              echo '<img src="vistas/img/usuarios/default/usuario.png" class="user-image">';
+                echo '<img src="vistas/img/usuarios/default/usuario.png" width="30px" class="user-image">';
 
-            }
+              }
 
-            ?>
+              ?>
 
-              <span class="hidden-xs"><?php echo $_SESSION["nombre"]; ?></span>
-            </a>
-
-            <ul class="dropdown-menu">
-              <li class="user-body">
-                <div class="pull-right">
-                  <a href="salir" class="btn btn-default btn-flat">Salir</a>
-                </div>
-              </li>
-
-            </ul>
-          </li>
+                <span class="hidden-xs"><?php echo $_SESSION["nombre"]; ?></span>
+          </button>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <button class="dropdown-item btnCerrarSesion" type="button">Salir</button>
+          </div>
+        </div>
         </ul>
     </div>
 
