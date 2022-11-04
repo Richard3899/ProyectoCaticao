@@ -21,14 +21,46 @@ class AjaxMarcas{
 		echo json_encode($respuesta);
 
 	}
+
+
+	/*=============================================
+	VALIDAR NO REPETIR MARCAS
+	=============================================*/	
+
+	public $validarDescripcion;
+
+	public function ajaxValidarDescripcion(){
+
+		$item = "descripcion";
+		$valor = $this->validarDescripcion;
+
+		$respuesta = ControladorMarcas::ctrMostrarMarcas($item, $valor);
+
+		echo json_encode($respuesta);
+
+	}
 }
 
 /*=============================================
-EDITAR MARCA
-=============================================*/	
-if(isset($_POST["idMarca"])){
+EDITAR MARCAS
+=============================================*/
+if(isset($_POST["idMarcas"])){
 
-	$marca = new AjaxMarcas();
-	$marca -> idMarca = $_POST["idMarca"];
-	$marca -> ajaxEditarMarca();
+	$editar = new AjaxMarcas();
+	$editar -> idMarca = $_POST["idMarca"];
+	$editar -> ajaxEditarMarca();
+
 }
+
+/*=============================================
+VALIDAR NO REPETIR MARCA
+=============================================*/
+
+if(isset( $_POST["validarDescripcion"])){
+
+	$valDescripcion = new AjaxMarcas();
+	$valDescripcion -> validarDescripcion = $_POST["validarDescripcion"];
+	$valDescripcion -> ajaxValidarDescripcion();
+
+}
+

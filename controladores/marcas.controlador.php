@@ -3,69 +3,6 @@
 class ControladorMarcas{
 
 	/*=============================================
-	CREAR MARCAS
-	=============================================*/
-
-	static public function ctrCrearMarca(){
-
-		if(isset($_POST["nuevaMarca"])){
-
-			if(preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/', $_POST["nuevaMarca"])){
-
-				$tabla = "marca";
-
-				$datos = $_POST["nuevaMarca"];
-
-				$respuesta = ModeloMarcas::mdlIngresarMarca($tabla, $datos);
-
-				if($respuesta == "ok"){
-
-					echo'<script>
-
-					swal({
-						  type: "success",
-						  title: "La marca ha sido guardada correctamente",
-						  showConfirmButton: true,
-						  confirmButtonText: "Cerrar"
-						  }).then(function(result){
-									if (result.value) {
-
-									window.location = "marcas";
-
-									}
-								})
-
-					</script>';
-
-				}
-
-
-			}else{
-
-				echo'<script>
-
-					swal({
-						  type: "error",
-						  title: "¡La marca no puede ir vacía o llevar caracteres especiales!",
-						  showConfirmButton: true,
-						  confirmButtonText: "Cerrar"
-						  }).then(function(result){
-							if (result.value) {
-
-							window.location = "marcas";
-
-							}
-						})
-
-			  	</script>';
-
-			}
-
-		}
-
-	}
-
-	/*=============================================
 	MOSTRAR MARCAS
 	=============================================*/
 
@@ -76,106 +13,138 @@ class ControladorMarcas{
 		$respuesta = ModeloMarcas::MdlMostrarMarcas($tabla, $item, $valor);
 
 		return $respuesta;
-	} 
+	}
 
 
 	/*=============================================
-	EDITAR MARCA
+	CREAR MARCAS
 	=============================================*/
 
-	static public function ctrEditarMarca(){
+	static public function ctrCrearMarca(){
 
-		if(isset($_POST["editarMarca"])){
+		if(isset($_POST["nuevaDescripcionMarca"])){
 
-			if(preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/', $_POST["editarMarca"])){
-
-				$tabla = "marca";
-
-				$datos = array("descripcion"=>$_POST["editarMarca"],
-							   "idMarca"=>$_POST["idMarca"]);
-
-				$respuesta = ModeloMarcas::mdlEditarMarca($tabla, $datos);
+		   		
+				$datos = array("descripcion" => $_POST["nuevoDescripcionMarca"]
+			     );
+							   
+				$respuesta = ModeloMarcas::mdlIngresarMarca($datos);
 
 				if($respuesta == "ok"){
 
-					echo'<script>
+					echo '<script>
 
-					swal({
-						  type: "success",
-						  title: "La marca ha sido cambiada correctamente",
-						  showConfirmButton: true,
-						  confirmButtonText: "Cerrar"
-						  }).then(function(result){
-									if (result.value) {
-
-									window.location = "marcas";
-
-									}
-								})
-
+					Swal.fire({
+					
+						icon: "success",
+						title: "¡La Marca ha sido guardado correctamente!",
+						showConfirmButton: false,
+						timer: 1500
+					
+					}).then(function(result){
+					
+							window.location = "marcas";
+					
+					});
+					
+					
 					</script>';
 
 				}
 
 
-			}else{
+		}
 
-				echo'<script>
+	}
 
-					swal({
-						  type: "error",
-						  title: "¡La marca no puede ir vacía o llevar caracteres especiales!",
-						  showConfirmButton: true,
-						  confirmButtonText: "Cerrar"
-						  }).then(function(result){
-							if (result.value) {
+	/*=============================================
+	EDITAR MARCAS
+	=============================================*/
 
+	static public function ctrEditarMarca(){
+
+		if(isset($_POST["editarDescripcion"])){
+
+
+				$datos = array("idMarca" =>$_POST["idMarca"],
+							   "descripcion" => $_POST["editarDescripcion"]
+							);
+							   
+				
+
+				$respuesta = ModeloMarcas::mdlEditarMarca($datos);
+
+				if($respuesta == "ok"){
+
+					echo '<script>
+
+					Swal.fire({
+					
+						icon: "success",
+						title: "¡La Marca ha sido editado correctamente!",
+						showConfirmButton: false,
+						timer: 1500
+					
+					}).then(function(result){
+					
 							window.location = "marcas";
+					
+					});
+					
+					
+					</script>';
 
-							}
-						})
+					
 
-			  	</script>';
+				}
 
-			}
 
 		}
 
 	}
 
 	/*=============================================
-	BORRAR MARCA
+	ELIMINAR MARCAS
 	=============================================*/
-
-	static public function ctrBorrarMarca(){
+	static public function ctrEliminarMarca(){
 
 		if(isset($_GET["idMarca"])){
 
-			$tabla ="marca";
 			$datos = $_GET["idMarca"];
 
-			$respuesta = ModeloMarcas::mdlBorrarMarca($tabla, $datos);
+
+			$respuesta = ModeloMarcas::mdlEliminarMarca($datos);
 
 			if($respuesta == "ok"){
 
-				echo'<script>
+				echo '<script>
 
-					swal({
-						  type: "success",
-						  title: "La marca ha sido borrada correctamente",
-						  showConfirmButton: true,
-						  confirmButtonText: "Cerrar"
-						  }).then(function(result){
-									if (result.value) {
+				Swal.fire({
+				
+					icon: "success",
+					title: "¡La Marca ha sido eliminado correctamente!",
+					showConfirmButton: false,
+					timer: 1500
+				
+				}).then(function(result){
+				
+						window.location = "marcas";
+				
+				});
+				
+				
+				</script>';
 
-									window.location = "marca";
-
-									}
-								})
-
-					</script>';
-			}
+			}		
 		}
-		
+
+
 	}
+
 }
+
+
+
+
+
+	

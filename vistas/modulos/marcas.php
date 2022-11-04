@@ -1,120 +1,166 @@
+<!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
-
+  <!-- Content Header (Page header) -->
+  <div class="container">
   <section class="content-header">
-    
-    <h1>
-      
-      Administrar marcas
-    
-    </h1>
-
-    <ol class="breadcrumb">
-      
-      <li><a href="inicio"><i class="fa fa-dashboard"></i> Inicio</a></li>
-      
-      <li class="active">Administrar Marcas</li>
-    
-    </ol>
-
+    <div class="container-fluid">
+      <div class="row mb-2">
+        <div class="col-sm-6">
+          <h1>Administrador de Marcas</h1>
+        </div>
+        <div class="col-sm-6">
+          <ol class="breadcrumb float-sm-right">
+            <li class="breadcrumb-item"><a href="inicio">Inicio</a></li>
+            <li class="breadcrumb-item active">Administrador de Marcas</li>
+          </ol>
+        </div>
+      </div>
+    </div><!-- /.container-fluid -->
   </section>
 
+  <!-- Main content -->
   <section class="content">
-
-    <div class="box">
-
-      <div class="box-header with-border">
-  
-        <button class="btn btn-primary" data-toggle="modal" data-target="#modalAgregarMarca">
-          
-          Agregar Marca
-
-        </button>
-
-      </div>
-
-      <div class="box-body">
+    <!-- Default box -->
+    <div class="card">
+      <div class="card-header">
+      
+      <button class="btn btn-primary" data-toggle="modal" data-target="#modalAgregarMarca">
         
-       <table class="table table-bordered table-striped dt-responsive tablas" width="100%">
+        Agregar Marca
+
+      </button>
+        
+        
+      </div>
+      <div class="card-body">
+
+      <table class="table table-bordered table-striped dt-responsive tablaMarcas" width="100%">
+       
+      <thead>
+       
+       <tr>
          
-        <thead>
-         
-         <tr>
-           
-           <th style="width:10px">#</th>
-           <th>Marca</th>
-           <th>Acciones</th>
+         <th style="width:10px">#</th>
+         <th>Marca</th>
+         <th>Acciones</th>
 
-         </tr> 
+       </tr> 
 
-        </thead>
+      </thead>
 
-        <tbody>
-
-        <?php
-
-          $item = null;
-          $valor = null;
-
-          $marcas = ControladorMarcas::ctrMostrarMarcas($item, $valor);
-
-          foreach ($marcas as $key => $value) {
-           
-            echo ' <tr>
-
-                    <td>'.($key+1).'</td>
-
-                    <td class="text-uppercase">'.$value["marca"].'</td>
-
-                    <td>
-
-                      <div class="btn-group">
-                          
-                        <button class="btn btn-warning btnEditarMarca" idMarca="'.$value["idMarca"].'" data-toggle="modal" data-target="#modalEditarMarca"><i class="fa fa-pencil"></i></button>
-
-                        <button class="btn btn-danger btnEliminarMarca" idMarca="'.$value["idMarca"].'"><i class="fa fa-times"></i></button>
-
-                      </div>  
-
-                    </td>
-
-                  </tr>';
-          }
-
-        ?>
-
-        </tbody>
-
-       </table>
+     </table>
+        
 
       </div>
-
+      <!-- /.card-body -->
     </div>
-
+    <!-- /.card -->
   </section>
-
+  <!-- /.content -->
+  </div>
 </div>
+<!-- /.content-wrapper -->
 
 <!--=====================================
 MODAL AGREGAR MARCA
 ======================================-->
 
 <div id="modalAgregarMarca" class="modal fade" role="dialog">
+
+<div class="modal-dialog modal-lg">
+
+  <div class="modal-content">
+
+    <form role="form" method="post" enctype="multipart/form-data">
+
+      <!--=====================================
+      CABEZA DEL MODAL
+      ======================================-->
+
+      <div class="modal-header" style="background:gray; color:white">
+
+      <h4 class="modal-title">Agregar Marca</h4>
+      <button type="button" class="close" data-dismiss="modal">&times;</button>
+
+      </div>
+
+      <!--=====================================
+      CUERPO DEL MODAL
+      ======================================-->
+
+      <div class="modal-body">
+
+        <div class="box-body">
+
+          <div class="row">
+
+            <!-- ENTRADA PARA EL CÓDIGO -->
+            <div class="form-group col-sm">
+            <div class="input-group ">
+                <div class="input-group-prepend">
+                <span class="input-group-text"><i class="fas fa-hashtag"></i></span>
+                </div>
+                <input type="text" class="form-control input-lg" name="nuevoDescripcionMarca" id="nuevoDescripcionMarca" placeholder="Ingresar Marca" 
+                 maxlength="45" pattern="[A-Za-z0-9\u00f1\u00d1% ]+" title="Solo se acepta letras y números" required>
+            </div>
+            </div>
+
+           
+          </div>
+
+        </div>
+
+      </div>
+
+      <!--=====================================
+      PIE DEL MODAL
+      ======================================-->
+
+      <div class="modal-footer">
+
+        <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Salir</button>
+
+        <button type="submit" class="btn btn-primary">Guardar Marca</button>
+
+      </div>
+
+      <?php
+
+          $crearMarca= new ControladorMarcas();
+          $crearMarca -> ctrCrearMarca();
+
+      ?>
+
+
+    </form>
+
+  </div>
+
+</div>
+
+</div>
+
+
+<!--=====================================
+MODAL EDITAR MARCA
+======================================-->
+
+<div id="modalEditarMarca" class="modal fade" role="dialog">
   
-  <div class="modal-dialog">
+  <div class="modal-dialog modal-lg">
 
     <div class="modal-content">
 
-      <form role="form" method="post">
+      <form role="form" method="post" enctype="multipart/form-data">
 
         <!--=====================================
         CABEZA DEL MODAL
         ======================================-->
 
-        <div class="modal-header" style="background:#3c8dbc; color:white">
+        <div class="modal-header" style="background:gray; color:white">
 
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-
-          <h4 class="modal-title">Agregar Marca</h4>
+        <h4 class="modal-title">Editar Marca</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
 
         </div>
 
@@ -126,23 +172,27 @@ MODAL AGREGAR MARCA
 
           <div class="box-body">
 
-            <!-- ENTRADA PARA EL NOMBRE -->
-            
-            <div class="form-group">
-              
-              <div class="input-group">
-              
-                <span class="input-group-addon"><i class="fa fa-th"></i></span> 
+          <div class="row">
 
-                <input type="text" class="form-control input-lg" name="nuevaMarca" placeholder="Ingresar Marca" required>
-
-              </div>
-
+            <!-- ENTRADA PARA LA DESCRIPCION -->
+            <div class="form-group col-sm">
+            <div class="input-group ">
+                <div class="input-group-prepend">
+                <span class="input-group-text"><i class="fas fa-hashtag"></i></span>
+                </div>
+                <input type="text" class="form-control input-lg" name="editarDescripcion" id="editarDescripcion" 
+                 maxlength="45" pattern="[A-Za-z0-9\u00f1\u00d1% ]+" title="Solo se acepta letras y números" readonly required>
+                <input type="hidden" id="idMarca" name="idMarca">
             </div>
-  
+            </div>
           </div>
 
-        </div>
+
+          
+          </div>
+
+      </div>
+
 
         <!--=====================================
         PIE DEL MODAL
@@ -152,16 +202,16 @@ MODAL AGREGAR MARCA
 
           <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Salir</button>
 
-          <button type="submit" class="btn btn-primary">Guardar Marca</button>
+          <button type="submit" class="btn btn-primary">Modificar Marca</button>
 
         </div>
 
         <?php
 
-          $crearMarca = new ControladorMarcas();
-          $crearMarca -> ctrCrearMarca();
+          $editarMarca = new ControladorMarcas();
+          $editarMarca-> ctrEditarMarca();
 
-        ?>
+        ?> 
 
       </form>
 
@@ -171,90 +221,9 @@ MODAL AGREGAR MARCA
 
 </div>
 
-<!--=====================================
-MODAL EDITAR MARCA
-======================================-->
-
-<div id="modalEditarMarca" class="modal fade" role="dialog">
-  
-  <div class="modal-dialog">
-
-    <div class="modal-content">
-
-      <form role="form" method="post">
-
-        <!--=====================================
-        CABEZA DEL MODAL
-        ======================================-->
-
-        <div class="modal-header" style="background:#3c8dbc; color:white">
-
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-
-          <h4 class="modal-title">Editar Marca</h4>
-
-        </div>
-
-        <!--=====================================
-        CUERPO DEL MODAL
-        ======================================-->
-
-        <div class="modal-body">
-
-          <div class="box-body">
-
-            <!-- ENTRADA PARA EL NOMBRE -->
-            
-            <div class="form-group">
-              
-              <div class="input-group">
-              
-                <span class="input-group-addon"><i class="fa fa-th"></i></span> 
-
-                <input type="text" class="form-control input-lg" name="editarMarca" id="editarMarca" required>
-
-                 <input type="hidden"  name="idMarca" id="idMarca" required>
-
-              </div>
-
-            </div>
-  
-          </div>
-
-        </div>
-
-        <!--=====================================
-         ======================================-->
-
-        <div class="modal-footer">
-
-          <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Salir</button>
-
-          <button type="submit" class="btn btn-primary">Guardar cambios</button>
-
-        </div>
-
-      <?php
-
-          $editarMarca = new ControladorMarcas();
-          $editarMarca -> ctrEditarMarca();
-
-        ?> 
-
-      </form>
-
-    </div    PIE DEL MODAL
-   >
-
-  </div>
-
-</div>
-
 <?php
 
   $borrarMarca = new ControladorMarcas();
-  $borrarMarca -> ctrBorrarMarca();
+  $borrarMarca -> ctrEliminarMarca();
 
-?>
-
-
+?> 

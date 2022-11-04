@@ -1,9 +1,6 @@
 <?php
-
 require_once "../controladores/marcas.controlador.php";
-
 require_once "../modelos/marcas.modelo.php";
-
 
 class TablaMarcas{
 
@@ -23,15 +20,16 @@ class TablaMarcas{
 
 		  for($i = 0; $i < count($marcas); $i++){
 
+			
+
 		  	/*=============================================
  	 		TRAEMOS LAS ACCIONES
   			=============================================*/ 
 
-		  	$botones =  "<div class='btn-group'><button class='btn btn-warning btnEditarMarca' idMarca='".$marcas[$i]["idMarca"]."' data-toggle='modal' data-target='#modalEditarMarca'><i class='fa fa-pen'></i></button><button class='btn btn-danger btnEliminarMarca' idMarca='".$marcas[$i]["idMarca"]."'><i class='fa fa-times'></i></button></div>"; 
+		  	$botones =  "<div class='btn-group'><button class='btn btn-warning btnEditarMarca' idMarca='".$marcas[$i]["idMarca"]."' data-toggle='modal' data-target='#modalEditarMarca'><i class='fa fa-pen'></i></button><button class='btn btn-danger btnEliminarMarca' idMarca='".$marcas[$i]["idMarca"]."' descripcion='".$marcas[$i]["descripcion"]."'><i class='fa fa-times'></i></button></div>"; 
 
 		  	$datosJson .='[
 			      "'.($i+1).'",
-			      "'.$marcas[$i]["idMarca"].'",
 			      "'.$marcas[$i]["descripcion"].'",
 			      "'.$botones.'"
 			    ],';
