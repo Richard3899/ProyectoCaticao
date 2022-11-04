@@ -311,5 +311,50 @@ BEGIN
 END$$
 DELIMITER ;
 
+-- Procedimientos almacenados de marca --
+
+DROP procedure IF EXISTS `mostrar_marcas`;
+DELIMITER $$
+USE `caticao`$$
+CREATE PROCEDURE `mostrar_marcas` ()
+BEGIN
+	select * from marca;
+END$$
+DELIMITER ;
+
+DROP procedure IF EXISTS `insertar_marca`;
+DELIMITER $$
+USE `caticao`$$
+CREATE PROCEDURE `insertar_marca` (   in descripcionI VARCHAR(45)
+                                        )
+BEGIN
+	insert into marca (descripcion)
+				 values (descripcionI);
+END$$
+DELIMITER ;
+
+DROP procedure IF EXISTS `editar_marca`;
+DELIMITER $$
+USE `caticao`$$
+CREATE PROCEDURE `editar_marca` (     in idMarcaE INT, 
+                                        in descripcionE VARCHAR(45)
+                                        )
+BEGIN
+	update marca set  idMarca=idMarcaE,
+                      descripcion=descripcionE
+				where idMarca=idMarcaE;
+END$$
+DELIMITER ;
+
+
+DROP procedure IF EXISTS `eliminar_marca`;
+DELIMITER $$
+USE `caticao`$$
+CREATE PROCEDURE `eliminar_marca` (in idMarcaE int)
+BEGIN
+	delete from marca
+    where idMarca=idMarcaE;
+END$$
+DELIMITER ;
 
 

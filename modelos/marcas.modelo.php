@@ -5,31 +5,6 @@ require_once "conexion.php";
 class ModeloMarcas{
 
 	/*=============================================
-	CREAR MARCA
-	=============================================*/
-
-	static public function mdlIngresarMarca($tabla, $datos){
-
-		$stmt = Conexion::conectar()->prepare("INSERT INTO $tabla(descripcion) VALUES (:descripcion)");
-
-		$stmt->bindParam(":descripcion", $datos, PDO::PARAM_STR);
-
-		if($stmt->execute()){
-
-			return "ok";
-
-		}else{
-
-			return "error";
-		
-		}
-
-		#$stmt->close();
-		$stmt = null;
-
-	}
-
-	/*=============================================
 	MOSTRAR MARCAS
 	=============================================*/
 
@@ -47,36 +22,35 @@ class ModeloMarcas{
 
 		}else{
 
-			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla");
+			$stmt = Conexion::conectar()->prepare("call mostrar_marcas");
 
 			$stmt -> execute();
 
 			return $stmt -> fetchAll();
 
 		}
+		
 
 		#$stmt -> close();
-
 
 		$stmt = null;
 
 	}
 
-
 	/*=============================================
-	EDITAR MARCAS
+	REGISTRO DE MARCA
+	
 	=============================================*/
 
-	static public function mdlEditarMarca($tabla, $datos){
+	static public function mdlIngresarMarca($datos){
 
-		$stmt = Conexion::conectar()->prepare("UPDATE $tabla SET descripcion = :descripcion WHERE idmarca = :idmarca");
+		$stmt = Conexion::conectar()->prepare("call insertar_marca(?)");
 
-		$stmt -> bindParam(":descripcion", $datos["descripcion"], PDO::PARAM_STR);
-		$stmt -> bindParam(":idMarca", $datos["idMarca"], PDO::PARAM_INT);
+		$stmt->bindParam(1, $datos["descripcion"], PDO::PARAM_STR);
 
 		if($stmt->execute()){
 
-			return "ok";
+			return "ok";	
 
 		}else{
 
@@ -85,19 +59,22 @@ class ModeloMarcas{
 		}
 
 		#$stmt->close();
+		
 		$stmt = null;
 
 	}
 
 	/*=============================================
-	BORRAR MARCA
+	EDITAR MARCA
 	=============================================*/
 
-	static public function mdlBorrarMarca($tabla, $datos){
-
-		$stmt = Conexion::conectar()->prepare("DELETE FROM $tabla WHERE idmarca = :idmarca");
-
-		$stmt -> bindParam(":idmarca", $datos, PDO::PARAM_INT);
+	static public function mdlEditarMarca($datos){
+	
+		$stmt = Conexion::conectar()->prepare("call editar_producto(?,?)");
+		
+		$stmt->bindParam(1, $datos["idMarca"], PDO::PARAM_INT);
+		$stmt->bindParam(2, $datos["descripcion"], PDO::PARAM_STR);
+	
 
 		if($stmt -> execute()){
 
@@ -115,5 +92,32 @@ class ModeloMarcas{
 
 	}
 
-}
 
+	/*=============================================
+	BORRAR MARCA
+	=============================================*/
+
+	static public function mdlEliminarMarca($datos){
+
+		$stmt = Conexion::conectar()->prepare("call eliminar_marca(?)");
+
+		$stmt -> bindParam(1, $datos, PDO::PARAM_INT);
+
+		if($stmt -> execute()){
+
+			return "ok";
+		
+		}else{
+
+			return "error";	
+
+		}
+
+		#$stmt -> close();
+
+		$stmt = null;
+
+
+	}
+
+}
