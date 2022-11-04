@@ -38,7 +38,7 @@ session_start();
          $_GET["ruta"] == "insumos" ||
          $_GET["ruta"] == "marcas" ||
          $_GET["ruta"] == "materiales" ||
-         $_GET["ruta"] == "maquinarias" ||
+         $_GET["ruta"] == "maquinas" ||
          $_GET["ruta"] == "empleados" ||
          $_GET["ruta"] == "salir"){
 
@@ -76,7 +76,7 @@ session_start();
 <script src="vistas/js/materiales.js"></script>
 <script src="vistas/js/marcas.js"></script>
 <script src="vistas/js/empleados.js"></script>
-<script src="vistas/js/maquinarias.js"></script>
+<script src="vistas/js/maquinas.js"></script>
 </body>
 
 </html>
