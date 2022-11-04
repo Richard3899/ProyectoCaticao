@@ -12,7 +12,7 @@ class ControladorMarcas{
 
 			if(preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/', $_POST["nuevaMarca"])){
 
-				$tabla = "marcas";
+				$tabla = "marca";
 
 				$datos = $_POST["nuevaMarca"];
 
@@ -71,7 +71,7 @@ class ControladorMarcas{
 
 	static public function ctrMostrarMarcas($item, $valor){
 
-		$tabla = "marcas";
+		$tabla = "marca";
 
 		$respuesta = ModeloMarcas::MdlMostrarMarcas($tabla, $item, $valor);
 
