@@ -12,7 +12,7 @@ session_start();
 ?> 
 
 
-<body class="hold-transition skin-blue sidebar-collapse sidebar-mini">
+<body class="hold-transition skin-blue sidebar-mini">
  
   <?php
 
@@ -36,9 +36,8 @@ session_start();
          $_GET["ruta"] == "usuarios" ||
          $_GET["ruta"] == "productos" ||
          $_GET["ruta"] == "insumos" ||
+         $_GET["ruta"] == "marcas" ||
          $_GET["ruta"] == "materiales" ||
-         $_GET["ruta"] == "maquinas" ||
-         $_GET["ruta"] == "empleados" ||
          $_GET["ruta"] == "salir"){
 
         include "modulos/".$_GET["ruta"].".php";
@@ -67,16 +66,14 @@ session_start();
   }
 
   ?>
-Hola
-
+--nuevo
+comentario
 <script src="vistas/js/plantilla.js"></script>
 <script src="vistas/js/usuarios.js"></script>
 <script src="vistas/js/productos.js"></script>
 <script src="vistas/js/insumos.js"></script>
 <script src="vistas/js/materiales.js"></script>
-<script src="vistas/js/maquinas.js"></script>
-<script src="vistas/js/empleados.js"></script>
-
+<script src="vistas/js/marcas.js"></script>
 </body>
 
 </html>
