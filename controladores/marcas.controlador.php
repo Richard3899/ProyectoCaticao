@@ -22,7 +22,7 @@ class ControladorMarcas{
 
 	static public function ctrCrearMarca(){
 
-		if(isset($_POST["nuevaDescripcionMarca"])){
+		if(isset($_POST["nuevoDescripcionMarca"])){
 
 		   		
 				$datos = array("descripcion" => $_POST["nuevoDescripcionMarca"]

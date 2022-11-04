@@ -70,7 +70,7 @@ class ModeloMarcas{
 
 	static public function mdlEditarMarca($datos){
 	
-		$stmt = Conexion::conectar()->prepare("call editar_producto(?,?)");
+		$stmt = Conexion::conectar()->prepare("call editar_marca(?,?)");
 		
 		$stmt->bindParam(1, $datos["idMarca"], PDO::PARAM_INT);
 		$stmt->bindParam(2, $datos["descripcion"], PDO::PARAM_STR);
