@@ -41,7 +41,7 @@ $('.tablaMarcas').DataTable( {
 EDITAR MARCAS
 =============================================*/
 
-$(".tablamarcas tbody").on("click", "button.btnEditarMarcas", function(){
+$(".tablaMarcas tbody").on("click", "button.btnEditarMarcas", function(){
 
 	var idMarca = $(this).attr("idMarca");
 	
@@ -61,7 +61,7 @@ $(".tablamarcas tbody").on("click", "button.btnEditarMarcas", function(){
 
 		   $("#idMarca").val(respuesta["idMarca"]);
 
-           $("#editardescripcion").val(respuesta["descripcion"]);
+           $("#editarDescripcion").val(respuesta["descripcion"]);
 
 		
         }
@@ -92,7 +92,7 @@ $(".tablaMarcas tbody").on("click", "button.btnEliminarMarca", function(){
         }).then(function(result){
         if (result.value) {
 
-        	window.location = "index.php?ruta=marcas&idMarca="+idProducto+"&descripcion="+descripcion;
+        	window.location = "index.php?ruta=marcas&idMarca="+idMarca+"&descripcion="+descripcion;
 
         }
 
@@ -101,38 +101,3 @@ $(".tablaMarcas tbody").on("click", "button.btnEliminarMarca", function(){
 
 })
 	
-/*=============================================
-REVISAR SI LA MARCA YA ESTÁ REGISTRADO
-=============================================*/
-
-$("#nuevoDescripcionMarca").change(function(){
-
-	$(".alert").remove();
-
-	var marca = $(this).val();
-
-	var datos = new FormData();
-	datos.append("validarDescripcion", marca);
-
-	 $.ajax({
-	    url:"ajax/marcas.ajax.php",
-	    method:"POST",
-	    data: datos,
-	    cache: false,
-	    contentType: false,
-	    processData: false,
-	    dataType: "json",
-	    success:function(respuesta){
-	    	
-	    	if(respuesta){
-
-	    		$("#nuevoDescripcionMarca").parent().after('<div class="alert alert-warning">Este código ya existe en la base de datos</div>');
-
-	    		$("#nuevoDescripcionMarca").val("");
-
-	    	}
-
-	    }
-
-	})
-})
