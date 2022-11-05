@@ -76,6 +76,8 @@ session_start();
 <script src="vistas/js/materiales.js"></script>
 <script src="vistas/js/marcas.js"></script>
 <script src="vistas/js/maquinas.js"></script>
+<script src="vistas/js/empleados.js"></script>
+
 </body>
 
 </html>

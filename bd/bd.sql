@@ -1,4 +1,3 @@
-
 DROP DATABASE IF EXISTS caticao;
 CREATE DATABASE IF NOT EXISTS caticao;
 USE caticao;
@@ -36,7 +35,7 @@ CREATE TABLE maquina (
 -- -----------------------------------------------------
 CREATE TABLE tipocosto (
   idTipoCosto INT  AUTO_INCREMENT  primary key,
-  descripcion VARCHAR(45)
+  descripcion VARCHAR(50)
 );
 
 -- -----------------------------------------------------
@@ -44,7 +43,7 @@ CREATE TABLE tipocosto (
 -- -----------------------------------------------------
 CREATE TABLE unidadmedida (
   idUnidadMedida INT  AUTO_INCREMENT  primary key,
-  descripcion VARCHAR(45),
+  descripcion VARCHAR(50),
   idTipoUnidad int REFERENCES tipounidad (idTipoUnidad)
 );
 -- -----------------------------------------------------
@@ -70,7 +69,7 @@ CREATE TABLE consumoenergia (
 
 CREATE TABLE tipoproducto (
   idTipoProducto INT  AUTO_INCREMENT  primary key,
-  descripcion VARCHAR(45)
+  descripcion VARCHAR(50)
 );
 
 
@@ -121,7 +120,7 @@ CREATE TABLE depreciacionreceta (
 
 CREATE TABLE gastoadmin (
   idGastoAdmin INT  AUTO_INCREMENT  primary key,
-  descripcion VARCHAR(45) ,
+  descripcion VARCHAR(50) ,
   precioUnitario DECIMAL(10,2) ,
   idUnidadMedida INT REFERENCES unidadmedida (idUnidadMedida),
   idTipoCosto INT REFERENCES tipocosto (idTipoCosto),
@@ -168,7 +167,7 @@ CREATE TABLE ManoObrareceta (
 
 CREATE TABLE marca (
   idMarca INT  AUTO_INCREMENT primary key,
-  descripcion VARCHAR(45) 
+  descripcion VARCHAR(50) 
 );
 
 
@@ -177,7 +176,7 @@ CREATE TABLE marca (
 -- -----------------------------------------------------
 CREATE TABLE tipomateria (
   idTipoMateria INT  AUTO_INCREMENT primary key,
-  descripcion VARCHAR(45) 
+  descripcion VARCHAR(50) 
 );
 
 -- -----------------------------------------------------
@@ -207,7 +206,7 @@ CREATE TABLE materia (
 
 CREATE TABLE tipomovimiento (
   idTipoMovimiento INT  AUTO_INCREMENT primary key,
-  descripcion VARCHAR(45) 
+  descripcion VARCHAR(50) 
 );
 
 -- -----------------------------------------------------
@@ -229,7 +228,7 @@ CREATE TABLE movimiento (
 
 CREATE TABLE tipodocumento (
   idTipoDocumento INT  AUTO_INCREMENT primary key,
-  descripcion VARCHAR(45) 
+  descripcion VARCHAR(50) 
 );
 
 
@@ -238,19 +237,19 @@ CREATE TABLE tipodocumento (
 -- -----------------------------------------------------
 CREATE TABLE Empleado (
   idEmpleado INT  AUTO_INCREMENT primary key,
-  nombre VARCHAR(45) ,
-  apellido VARCHAR(45) ,
-  direccion VARCHAR(45) ,
+  nombre VARCHAR(50) ,
+  apellido VARCHAR(50) ,
+  direccion VARCHAR(50) ,
   telefono INT ,
-  correoElectronico VARCHAR(45) ,
+  correo VARCHAR(50) ,
   numeroDocumento INT ,
   fechaNacimiento DATE ,
-  cargoEmpresa VARCHAR(45) ,
-  horarioTrabajo VARCHAR(45) ,
+  cargo VARCHAR(50) ,
+  horarioTrabajo VARCHAR(50) ,
   horasPorDia INT ,
   sueldoPorDia DECIMAL(10,2) ,
   sueldoPorMes DECIMAL(10,2) ,
-  idtipoDocumento INT REFERENCES tipodocumento(idTipoDocumento),
+  idTipoDocumento INT REFERENCES tipodocumento(idTipoDocumento),
   idUsuario INT REFERENCES Usuario (idUsuario),
   idTipoCosto INT REFERENCES TipoCosto (idTipoCosto)
 );
@@ -265,7 +264,7 @@ CREATE TABLE Empleado (
 
 CREATE TABLE tipounidad (
   idTipoUnidad INT  AUTO_INCREMENT primary key,
-  descripcion VARCHAR(45) 
+  descripcion VARCHAR(50) 
 );
 
 
@@ -278,8 +277,8 @@ CREATE TABLE tipounidad (
 
 CREATE TABLE producto (
   idProducto INT  AUTO_INCREMENT primary key,
-  codigo VARCHAR(45) ,
-  nombre VARCHAR(45) ,
+  codigo VARCHAR(50) ,
+  nombre VARCHAR(50) ,
   descripcion VARCHAR(100) ,
   cantidad DECIMAL(10,2) ,
   imagen VARCHAR(50) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
@@ -313,10 +312,10 @@ CREATE TABLE gastoadminpormes (
 CREATE TABLE MovimientoMateria (
   idMovimientoMateria INT  AUTO_INCREMENT primary key,
   cantidad DECIMAL(10,2) ,
-  observacion VARCHAR(45) ,
+  observacion VARCHAR(50) ,
   fecha DATE ,
   hora TIME ,
-  estado VARCHAR(45) ,
+  estado VARCHAR(50) ,
   idMateria INT REFERENCES Materia (idMateria),
   idMovimiento int REFERENCES Movimiento (idMovimiento)
 );
@@ -351,11 +350,11 @@ CREATE TABLE InventarioProducto (
 CREATE TABLE MovimientoProducto (
   idMovimientoProducto INT  AUTO_INCREMENT primary key,
   cantidad DECIMAL(10,2) ,
-  observacion VARCHAR(45) ,
+  observacion VARCHAR(50) ,
   fecha DATE ,
   hora TIME ,
-  estado VARCHAR(45) ,
-  lote VARCHAR(45) ,
+  estado VARCHAR(50) ,
+  lote VARCHAR(50) ,
   idProducto INT REFERENCES Producto (idProducto),
   idMovimiento INT REFERENCES Movimiento (idMovimiento)
 );
@@ -386,12 +385,12 @@ CREATE TABLE InventarioMaquina (
 CREATE TABLE MovimientoMaquina (
   idMovimientoMaquina INT  AUTO_INCREMENT primary key,
   cantidad DECIMAL(10,2) ,
-  observacion VARCHAR(45) ,
+  observacion VARCHAR(50) ,
   fecha DATE ,
   hora TIME ,
-  estado VARCHAR(45) ,
-  lote VARCHAR(45) ,
-  condicion VARCHAR(45) ,
+  estado VARCHAR(50) ,
+  lote VARCHAR(50) ,
+  condicion VARCHAR(50) ,
   idMaquina INT REFERENCES Maquina (idMaquina),
   idMovimiento INT REFERENCES Movimiento (idMovimiento)
 );
@@ -403,12 +402,12 @@ CREATE TABLE MovimientoMaquina (
 
 CREATE TABLE Receta (
   idReceta INT  AUTO_INCREMENT primary key,
-  descripcion VARCHAR(45) ,
+  descripcion VARCHAR(50) ,
   batch DECIMAL(10,2) ,
   estado INT ,
   fechaincio DATE ,
   fechafin DATE ,
-  lote VARCHAR(45) ,
+  lote VARCHAR(50) ,
   pesoportableta DECIMAL(10,2) ,
   pesoentableta DECIMAL(10,2) ,
   merma DECIMAL(10,2) ,
@@ -476,8 +475,8 @@ CREATE TABLE ConsumoGas (
 
 CREATE TABLE CostorecetaporMes (
   idCostorecetaporMes INT  AUTO_INCREMENT primary key,
-  descripcion VARCHAR(45) ,
-  mes VARCHAR(45) ,
+  descripcion VARCHAR(50) ,
+  mes VARCHAR(50) ,
   costototalrecetapormes DECIMAL(10,2) ,
   idgastoadminpormes INT REFERENCES gastoadminpormes (idgastoadminpormes)
 );
@@ -488,10 +487,10 @@ CREATE TABLE CostorecetaporMes (
 
 CREATE TABLE usuario (
   idUsuario INT  AUTO_INCREMENT primary key,
-  nombre VARCHAR(45) NOT NULL COLLATE 'utf8_spanish_ci',
-  usuario VARCHAR(45) NOT NULL COLLATE 'utf8_spanish_ci',
+  nombre VARCHAR(50) NOT NULL COLLATE 'utf8_spanish_ci',
+  usuario VARCHAR(50) NOT NULL COLLATE 'utf8_spanish_ci',
 	password VARCHAR(100) NOT NULL COLLATE 'utf8_spanish_ci',
-	perfil VARCHAR(45) NOT NULL COLLATE 'utf8_spanish_ci',
+	perfil VARCHAR(50) NOT NULL COLLATE 'utf8_spanish_ci',
 	foto VARCHAR(100) NULL DEFAULT NULL COLLATE 'utf8_spanish_ci',
 	estado INT(11) NULL DEFAULT NULL,
 	ultimo_login DATETIME NULL DEFAULT NULL,
@@ -505,7 +504,7 @@ CREATE TABLE usuario (
 
 CREATE TABLE Modulo (
   idModulo INT AUTO_INCREMENT primary key,
-  descripcion VARCHAR(45) 
+  descripcion VARCHAR(50) 
 );
 
 
@@ -565,6 +564,7 @@ alter Table MovimientoProducto add foreign key (idMovimiento) REFERENCES Movimie
 
 alter Table Empleado add foreign key (idTipoCosto) REFERENCES TipoCosto (idTipoCosto);
 alter Table Empleado add foreign key (idTipoDocumento) REFERENCES tipodocumento (idTipoDocumento);
+alter Table Empleado add foreign key (idUsuario) REFERENCES usuario (idUsuario);
 
 alter Table recetamateria add foreign key (idMateria) REFERENCES materia (idMateria);
 alter Table recetamateria add foreign key (idReceta) REFERENCES receta (idReceta);

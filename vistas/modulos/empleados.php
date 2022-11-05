@@ -34,20 +34,28 @@
       </div>
       <div class="card-body">
 
-      <table class="table table-bordered table-striped dt-responsive tablas" width="100%">
+      <table class="table table-bordered table-striped dt-responsive tablaEmpleados" width="100%">
        
       <thead>
        
        <tr>
          
          <th style="width:10px">#</th>
-         <th>Imagen</th>
-         <th>Código</th>
          <th>Nombre</th>
-         <th>Descripción</th>
-         <th>Tipo de Unidad</th>
-         <th>Cantidad</th>
-         <th>Tipo de Empleado</th>
+         <th>Apellido</th>
+         <th>Usuario</th>
+         <th>Correo</th>
+         <th>Tipo de Documento</th>
+         <th>Número de Documento</th>
+         <th>Dirección</th>
+         <th>Teléfono</th>
+         <th>Fecha de Nacimiento</th>
+         <th>Cargo</th>
+         <th>Horario de Trabajo</th>
+         <th>Horas trabajo por día</th>
+         <th>Sueldo por día</th>
+         <th>Sueldo por mes</th>
+         <th>Tipo de sueldo</th>
          <th>Acciones</th>
 
        </tr> 
@@ -109,7 +117,7 @@ MODAL AGREGAR EMPLEADO
                 <span class="input-group-text"><i class="fas fa-file-signature"></i></span>
                 </div>
                 <input type="text" class="form-control input-lg" id="nuevoNombre" name="nuevoNombre" placeholder="Ingresar nombre" 
-                 maxlength="50"  pattern="[A-Za-z0-9\u00f1\u00d1 ]+" title="Solo se acepta letras y números" required>
+                 maxlength="50"  pattern="[A-Za-z\u00f1\u00d1 ]+" title="Solo se acepta letras" required>
             </div>
             </div>
 
@@ -120,50 +128,37 @@ MODAL AGREGAR EMPLEADO
                 <span class="input-group-text"><i class="fas fa-file-signature"></i></span>
                 </div>
                 <input type="text" class="form-control input-lg" id="nuevoApellido" name="nuevoApellido" placeholder="Ingresar apellido" 
-                 maxlength="50"  pattern="[A-Za-z0-9\u00f1\u00d1 ]+" title="Solo se acepta letras y números" required>
+                 maxlength="50"  pattern="[A-Za-z\u00f1\u00d1 ]+" title="Solo se acepta letras" required>
             </div>
             </div>
 
           </div>
-
-
-          <!-- ENTRADA PARA EL DESCRIPCIÓN -->
-
-           <div class="form-group">
-            <div class="input-group">
-                <div class="input-group-prepend">
-                <span class="input-group-text"><i class="fas fa-bars"></i></span>
-                </div>
-                <input type="text" class="form-control input-lg" name="nuevaDescripcion" placeholder="Ingresar descripción" 
-                maxlength="100" pattern="[A-Za-z0-9\u00f1\u00d1% ]+" title="Solo se acepta letras y números" required>
-            </div>
-           </div>
 
 
           <div class="row">
- 
-          <!-- ENTRADA PARA SELECCIONAR SU UNIDAD DE MEDIDA -->
+
+          <!-- ENTRADA PARA SELECCIONAR SU USUARIO -->
 
           <div class="form-group col-sm">
             
             <div class="input-group">
             
                 <div class="input-group-prepend">
-                <span class="input-group-text"><i class="fas fa-ruler"></i></span>
+                <span class="input-group-text"><i class="fas fa-user"></i></span>
                 </div>
 
-                <select class="form-control input-lg" id="nuevaUnidadMedida" name="nuevaUnidadMedida" required>
+                <select class="form-control input-lg" id="nuevoUsuarioEmpleado" name="nuevoUsuarioEmpleado">
                 
-                <option value="">Unidad de Medida</option>
+                <option value="">Usuario</option>
 
                 <?php 
                 $item = null;
                 $valor = null;
 
-                $unidadmedida = ControladorUnidadMedida::ctrMostrarUnidadMedida($item,$valor);
+                $usuario = ControladorUsuarios::ctrMostrarUsuarios($item,$valor);
 
-                foreach($unidadmedida as $key=> $value){ 
-                  echo '<option value="'.$value["idUnidadMedida"].'">'.$value["descripcion"].'</option>';
+                foreach($usuario as $key=> $value){ 
+                  echo '<option value="'.$value["idUsuario"].'">'.$value["usuario"].'</option>';
                 }
 
                 ?>
@@ -174,46 +169,44 @@ MODAL AGREGAR EMPLEADO
 
           </div>
 
+          <!-- ENTRADA PARA EL CORREO -->
+          <div class="form-group col-sm">
+          <div class="input-group">
+              <div class="input-group-prepend">
+              <span class="input-group-text"><i class="fas fa-envelope"></i></span>
+              </div>
+              <input type="email" class="form-control input-lg" id="nuevoCorreo" name="nuevoCorreo" placeholder="Ingresar correo" 
+                maxlength="50"  title="Máximo 50 caracteres" required>
+          </div>
+          </div>
 
-          <!-- ENTRADA PARA EL CANTIDAD -->
+          </div>
+
+
+          <div class="row">
+
+          <!-- ENTRADA PARA SELECCIONAR SU TIPO DOCUMENTO -->
 
           <div class="form-group col-sm">
             
             <div class="input-group">
-                <div class="input-group-prepend">
-                <span class="input-group-text"><i class="fas fa-layer-group"></i></span>
-                <font-awesome-icon icon="fa-solid fa-layer-group" />
-                </div>
-                <input type="number" class="form-control input-lg" name="nuevaCantidad" 
-                 placeholder="Ingresar cantidad" min="0" max="9999999" step="0.001" required>
-            </div>
-
-          </div>
-
-          </div>
-
-            <!-- ENTRADA PARA SELECCIONAR SU TIPO DE EMPLEADO -->
-
-            <div class="form-group">
-            
-            <div class="input-group">
             
                 <div class="input-group-prepend">
-                <span class="input-group-text"><i class="fas fa-cookie"></i></span>
+                <span class="input-group-text"><i class="fas fa-id-card"></i></span>
                 </div>
 
-                <select class="form-control input-lg" id="nuevoTipoEmpleado" name="nuevoTipoEmpleado" required>
+                <select class="form-control input-lg" id="nuevoTipoDocumento" name="nuevoTipoDocumento" >
                 
-                <option value="">Tipo de empleado</option>
+                <option value="">Tipo de Documento</option>
 
                 <?php 
                 $item = null;
                 $valor = null;
 
-                #$tipoempleado = ControladorTipoEmpleado::ctrMostrarTipoEmpleado($item,$valor);
+                $tipodocumento = ControladorTipoDocumento::ctrMostrarTipoDocumento($item,$valor);
 
-                foreach($tipoempleado as $key=> $value){ 
-                  echo '<option value="'.$value["idTipoEmpleado"].'">'.$value["descripcion"].'</option>';
+                foreach($tipodocumento as $key=> $value){ 
+                  echo '<option value="'.$value["idTipoDocumento"].'">'.$value["descripcion"].'</option>';
                 }
 
                 ?>
@@ -224,19 +217,156 @@ MODAL AGREGAR EMPLEADO
 
           </div>
 
+          <!-- ENTRADA PARA EL NÚMERO DE DOCUMENTO -->
+          <div class="form-group col-sm">
+          <div class="input-group">
+              <div class="input-group-prepend">
+              <span class="input-group-text"><i class="fas fa-hashtag"></i></span>
+              </div>
+              <input type="text" class="form-control input-lg" id="nuevoNumeroDocumento" name="nuevoNumeroDocumento" placeholder="Ingresar número de documento" 
+               pattern="[0-9]{8,12}" title="Solo se acepta números entre 8-12" required>
+          </div>
+          </div>
 
-          <!-- ENTRADA PARA SUBIR FOTO -->
+          </div>
 
-           <div class="form-group">
-            <div class="card">
-              <ul class="list-group list-group-flush">
-                <li class="list-group-item">Subir Foto</li>
-                <li class="list-group-item"><input type="file" class="nuevaImagenEmpleado" name="nuevaImagenEmpleado"></li>
-                <li class="list-group-item"> Peso máximo de la foto 2MB</li>
-              </ul>
+          <!-- ENTRADA PARA EL DIRECCIÓN -->
+          <div class="form-group">
+          <div class="input-group">
+              <div class="input-group-prepend">
+              <span class="input-group-text"><i class="fas fa-map"></i></span>
+              </div>
+              <input type="text" class="form-control input-lg" id="nuevaDireccion" name="nuevaDireccion" placeholder="Ingresar dirección" 
+               maxlength="50"  pattern="[A-Za-z0-9\u00f1\u00d1\-. ]+" title="Solo se acepta letras,numeros,guiones y puntos " required>
+          </div>
+          </div>
+
+
+          <div class="row">
+
+          <!-- ENTRADA PARA EL TELÉFONO -->
+          <div class="form-group col-sm">
+          <div class="input-group">
+              <div class="input-group-prepend">
+              <span class="input-group-text"><i class="fas fa-phone"></i></span>
+              </div>
+              <input type="text" class="form-control input-lg" name="nuevoTelefono" id="nuevoTelefono"
+               placeholder="Ingresar teléfono" pattern="[0-9]{9}" title="Solo se acepta 9 números" required>
+          </div>
+          </div>
+
+          <!-- ENTRADA PARA EL FECHA NACIMIENTO -->
+          <div class="form-group col-sm">
+          <div class="input-group">
+              <div class="input-group-prepend">
+              <span class="input-group-text"><i class="fas fa-calendar-alt"></i></span>
+              </div>
+              <input type="date" class="form-control input-lg" name="nuevaFechaNacimiento" id="nuevaFechaNacimiento"
+               placeholder="Ingresar fecha de nacimiento" required>
+          </div>
+          </div>
+
+          </div>
+
+
+          <div class="row">
+
+            <!-- ENTRADA PARA EL CARGO -->
+            <div class="form-group col-sm">
+            <div class="input-group">
+                <div class="input-group-prepend">
+                <span class="input-group-text"><i class="fas fa-users"></i></span>
+                </div>
+                <input type="text" class="form-control input-lg" id="nuevoCargo" name="nuevoCargo" placeholder="Ingresar cargo" 
+                 maxlength="50"  pattern="[A-Za-z\u00f1\u00d1 ]+" title="Solo se acepta letras" required>
             </div>
+            </div>
+
+             <!-- ENTRADA PARA EL HORARIO TRABAJO -->
+             <div class="form-group col-sm">
+            <div class="input-group">
+                <div class="input-group-prepend">
+                <span class="input-group-text"><i class="fas fa-stopwatch"></i></span>
+                </div>
+                <input type="text" class="form-control input-lg" id="nuevoHorarioTrabajo" name="nuevoHorarioTrabajo" placeholder="Ingresar horario de trabajo" 
+                 maxlength="50" pattern="[A-Za-z0-9-:. ]+" title="Solo se aceptan letras, números, guiones y puntos" required>
+            </div>
+            </div>
+
+          </div>
+
+
+          <div class="row">
+
+          <!-- ENTRADA PARA HORAS POR DÍA -->
+          <div class="form-group col-sm">
+          <div class="input-group">
+              <div class="input-group-prepend">
+              <span class="input-group-text"><i class="fas fa-clock"></i></span>
+              </div>
+              <input type="number" class="form-control input-lg" id="nuevoHorasPorDia" name="nuevoHorasPorDia" placeholder="Ingresar horas de trabajo por día" 
+               min="0" max="24" required>
+          </div>
+          </div>
+
+          <!-- ENTRADA PARA EL SUELO POR DÍA -->
+          <div class="form-group col-sm">
+          <div class="input-group">
+              <div class="input-group-prepend">
+              <span class="input-group-text"><i class="fas fa-dollar-sign"></i></span>
+              </div>
+              <input type="number" class="form-control input-lg" name="nuevoSueldoPorDia" id="nuevoSueldoPorDia"
+               placeholder="Ingresar sueldo por día" min="0" max="9999999" step="0.01" required>
+          </div>
+          </div>
+
+          </div>
+
+          
+          <div class="row">
+
+            <!-- ENTRADA PARA EL SUELO POR MES -->
+            <div class="form-group col-sm">
+            <div class="input-group">
+                <div class="input-group-prepend">
+                <span class="input-group-text"><i class="fas fa-money-bill"></i></span>
+                </div>
+                <input type="number" class="form-control input-lg" name="nuevoSueldoPorMes" id="nuevoSueldoPorMes"
+                 placeholder="Ingresar sueldo por mes" min="0" max="9999999" step="0.01" required>
+            </div>
+            </div>
+
+          <!-- ENTRADA PARA SELECCIONAR SU TIPO DE SUELDO -->
+
+          <div class="form-group col-sm">
             
-            <img src="vistas/img/empleados/default/empleado.png" class="img-thumbnail previsualizar" width="100px">
+            <div class="input-group">
+            
+                <div class="input-group-prepend">
+                <span class="input-group-text"><i class="fas fa-tag"></i></span>
+                </div>
+
+                <select class="form-control input-lg" id="nuevoTipoCosto" name="nuevoTipoCosto">
+                
+                <option value="">Tipo de Sueldo</option>
+
+                <?php 
+                $item = null;
+                $valor = null;
+
+                $tipocosto = ControladorTipoCosto::ctrMostrarTipoCosto($item,$valor);
+
+                foreach($tipocosto as $key=> $value){ 
+                  echo '<option value="'.$value["idTipoCosto"].'">'.$value["descripcion"].'</option>';
+                }
+
+                ?>
+
+              </select>
+
+             </div>
+
+            </div>
 
           </div>
 
@@ -258,8 +388,8 @@ MODAL AGREGAR EMPLEADO
 
       <?php
 
-          #$crearEmpleado = new ControladorEmpleados();
-          #$crearEmpleado -> ctrCrearEmpleado();
+          $crearEmpleado = new ControladorEmpleados();
+          $crearEmpleado -> ctrCrearEmpleado();
 
       ?>
 
@@ -306,69 +436,56 @@ MODAL EDITAR EMPLEADO
 
           <div class="row">
 
-            <!-- ENTRADA PARA EL CÓDIGO -->
-            <div class="form-group col-sm">
-            <div class="input-group ">
-                <div class="input-group-prepend">
-                <span class="input-group-text"><i class="fas fa-hashtag"></i></span>
-                </div>
-                <input type="text" class="form-control input-lg" name="editarCodigo" id="editarCodigo" 
-                 maxlength="20" pattern="[A-Za-z0-9-]+" title="Solo se aceptan letras,números y guiones sin espacios" readonly required>
-                <input type="hidden" id="idEmpleado" name="idEmpleado">
-            </div>
-            </div>
-
             <!-- ENTRADA PARA EL NOMBRE -->
             <div class="form-group col-sm">
             <div class="input-group">
                 <div class="input-group-prepend">
                 <span class="input-group-text"><i class="fas fa-file-signature"></i></span>
                 </div>
-                <input type="text" class="form-control input-lg" name="editarNombre" id="editarNombre" placeholder="Ingresar nombre"
-                 maxlength="50"  pattern="[A-Za-z0-9\u00f1\u00d1% ]+" title="Solo se acepta letras y números" required>
+                <input type="text" class="form-control input-lg" id="editarNombre" name="editarNombre" placeholder="Ingresar nombre" 
+                 maxlength="50"  pattern="[A-Za-z\u00f1\u00d1 ]+" title="Solo se acepta letras" required>
+                 <input type="hidden" id="idEmpleado" name="idEmpleado">
+            </div>
+            </div>
+
+            <!-- ENTRADA PARA EL APELLIDO -->
+            <div class="form-group col-sm">
+            <div class="input-group">
+                <div class="input-group-prepend">
+                <span class="input-group-text"><i class="fas fa-file-signature"></i></span>
+                </div>
+                <input type="text" class="form-control input-lg" id="editarApellido" name="editarApellido" placeholder="Ingresar apellido" 
+                 maxlength="50"  pattern="[A-Za-z\u00f1\u00d1 ]+" title="Solo se acepta letras" required>
             </div>
             </div>
 
           </div>
 
 
-            <!-- ENTRADA PARA EL DESCRIPCIÓN -->
-
-            <div class="form-group">
-            <div class="input-group">
-                <div class="input-group-prepend">
-                <span class="input-group-text"><i class="fas fa-bars"></i></span>
-                </div>
-                <input type="text" class="form-control input-lg" name="editarDescripcion" id="editarDescripcion" placeholder="Ingresar descripción"
-                maxlength="100" pattern="[A-Za-z0-9\u00f1\u00d1% ]+" title="Solo se acepta letras y números" required>
-            </div>
-           </div>
-
-
           <div class="row">
- 
-          <!-- ENTRADA PARA SELECCIONAR SU UNIDAD DE MEDIDA -->
+
+          <!-- ENTRADA PARA SELECCIONAR SU USUARIO -->
 
           <div class="form-group col-sm">
             
             <div class="input-group">
             
                 <div class="input-group-prepend">
-                <span class="input-group-text"><i class="fas fa-ruler"></i></span>
+                <span class="input-group-text"><i class="fas fa-user"></i></span>
                 </div>
 
-                <select class="form-control input-lg" id="editarUnidadMedida" name="editarUnidadMedida" required>
+                <select class="form-control input-lg" id="editarUsuarioEmpleado" name="editarUsuarioEmpleado">
                 
-                <option value="">Unidad de Medida</option>
+                <option value="">Usuario</option>
 
                 <?php 
                 $item = null;
                 $valor = null;
 
-                $unidadmedida = ControladorUnidadMedida::ctrMostrarUnidadMedida($item,$valor);
+                $usuario = ControladorUsuarios::ctrMostrarUsuarios($item,$valor);
 
-                foreach($unidadmedida as $key=> $value){ 
-                  echo '<option value="'.$value["idUnidadMedida"].'">'.$value["descripcion"].'</option>';
+                foreach($usuario as $key=> $value){ 
+                  echo '<option value="'.$value["idUsuario"].'">'.$value["usuario"].'</option>';
                 }
 
                 ?>
@@ -377,75 +494,211 @@ MODAL EDITAR EMPLEADO
 
             </div>
 
-           </div>
+          </div>
 
-            <!-- ENTRADA PARA EL CANTIDAD -->
+          <!-- ENTRADA PARA EL CORREO -->
+          <div class="form-group col-sm">
+          <div class="input-group">
+              <div class="input-group-prepend">
+              <span class="input-group-text"><i class="fas fa-envelope"></i></span>
+              </div>
+              <input type="email" class="form-control input-lg" id="editarCorreo" name="editarCorreo" placeholder="Ingresar correo" 
+                maxlength="50"  title="Máximo 50 caracteres" required>
+          </div>
+          </div>
 
+          </div>
+
+
+          <div class="row">
+
+          <!-- ENTRADA PARA SELECCIONAR SU TIPO DOCUMENTO -->
+
+          <div class="form-group col-sm">
+            
+            <div class="input-group">
+            
+                <div class="input-group-prepend">
+                <span class="input-group-text"><i class="fas fa-id-card"></i></span>
+                </div>
+
+                <select class="form-control input-lg" id="editarTipoDocumento" name="editarTipoDocumento" >
+                
+                <option value="">Tipo de Documento</option>
+
+                <?php 
+                $item = null;
+                $valor = null;
+
+                $tipodocumento = ControladorTipoDocumento::ctrMostrarTipoDocumento($item,$valor);
+
+                foreach($tipodocumento as $key=> $value){ 
+                  echo '<option value="'.$value["idTipoDocumento"].'">'.$value["descripcion"].'</option>';
+                }
+
+                ?>
+
+              </select>
+
+            </div>
+
+          </div>
+
+          <!-- ENTRADA PARA EL NÚMERO DE DOCUMENTO -->
+          <div class="form-group col-sm">
+          <div class="input-group">
+              <div class="input-group-prepend">
+              <span class="input-group-text"><i class="fas fa-hashtag"></i></span>
+              </div>
+              <input type="text" class="form-control input-lg" id="editarNumeroDocumento" name="editarNumeroDocumento" placeholder="Ingresar número de documento" 
+               pattern="[0-9]{8,12}" title="Solo se acepta números entre 8-12" required>
+          </div>
+          </div>
+
+          </div>
+
+          <!-- ENTRADA PARA EL DIRECCIÓN -->
+          <div class="form-group">
+          <div class="input-group">
+              <div class="input-group-prepend">
+              <span class="input-group-text"><i class="fas fa-map"></i></span>
+              </div>
+              <input type="text" class="form-control input-lg" id="nuevaDireccion" name="nuevaDireccion" placeholder="Ingresar dirección" 
+               maxlength="50"  pattern="[A-Za-z0-9\u00f1\u00d1\-. ]+" title="Solo se acepta letras,numeros,guiones y puntos " required>
+          </div>
+          </div>
+
+
+          <div class="row">
+
+          <!-- ENTRADA PARA EL TELÉFONO -->
+          <div class="form-group col-sm">
+          <div class="input-group">
+              <div class="input-group-prepend">
+              <span class="input-group-text"><i class="fas fa-phone"></i></span>
+              </div>
+              <input type="text" class="form-control input-lg" name="editarTelefono" id="editarTelefono"
+               placeholder="Ingresar teléfono" pattern="[0-9]{9}" title="Solo se acepta 9 números" required>
+          </div>
+          </div>
+
+          <!-- ENTRADA PARA EL FECHA NACIMIENTO -->
+          <div class="form-group col-sm">
+          <div class="input-group">
+              <div class="input-group-prepend">
+              <span class="input-group-text"><i class="fas fa-calendar-alt"></i></span>
+              </div>
+              <input type="date" class="form-control input-lg" name="nuevaFechaNacimiento" id="nuevaFechaNacimiento"
+               placeholder="Ingresar fecha de nacimiento" required>
+          </div>
+          </div>
+
+          </div>
+
+
+          <div class="row">
+
+            <!-- ENTRADA PARA EL CARGO -->
             <div class="form-group col-sm">
-            
             <div class="input-group">
                 <div class="input-group-prepend">
-                <span class="input-group-text"><i class="fas fa-layer-group"></i></span>
+                <span class="input-group-text"><i class="fas fa-users"></i></span>
                 </div>
-                <input type="number" class="form-control input-lg" name="editarCantidad"  id="editarCantidad" 
-                placeholder="Ingresar cantidad" min="0" max="9999999" step="0.001" required>
+                <input type="text" class="form-control input-lg" id="editarCargo" name="editarCargo" placeholder="Ingresar cargo" 
+                 maxlength="50"  pattern="[A-Za-z\u00f1\u00d1 ]+" title="Solo se acepta letras" required>
+            </div>
             </div>
 
+             <!-- ENTRADA PARA EL HORARIO TRABAJO -->
+             <div class="form-group col-sm">
+            <div class="input-group">
+                <div class="input-group-prepend">
+                <span class="input-group-text"><i class="fas fa-stopwatch"></i></span>
+                </div>
+                <input type="text" class="form-control input-lg" id="editarHorarioTrabajo" name="editarHorarioTrabajo" placeholder="Ingresar horario de trabajo" 
+                 maxlength="50" pattern="[A-Za-z0-9-:. ]+" title="Solo se aceptan letras, números, guiones y puntos" required>
             </div>
-
+            </div>
 
           </div>
 
 
-            <!-- ENTRADA PARA SELECCIONAR SU TIPO DE EMPLEADO -->
+          <div class="row">
 
-            <div class="form-group">
+          <!-- ENTRADA PARA HORAS POR DÍA -->
+          <div class="form-group col-sm">
+          <div class="input-group">
+              <div class="input-group-prepend">
+              <span class="input-group-text"><i class="fas fa-clock"></i></span>
+              </div>
+              <input type="number" class="form-control input-lg" id="editarHorasPorDia" name="editarHorasPorDia" placeholder="Ingresar horas de trabajo por día" 
+               min="0" max="24" required>
+          </div>
+          </div>
+
+          <!-- ENTRADA PARA EL SUELO POR DÍA -->
+          <div class="form-group col-sm">
+          <div class="input-group">
+              <div class="input-group-prepend">
+              <span class="input-group-text"><i class="fas fa-dollar-sign"></i></span>
+              </div>
+              <input type="number" class="form-control input-lg" name="editarSueldoPorDia" id="editarSueldoPorDia"
+               placeholder="Ingresar sueldo por día" min="0" max="9999999" step="0.01" required>
+          </div>
+          </div>
+
+          </div>
+
+          
+          <div class="row">
+
+            <!-- ENTRADA PARA EL SUELO POR MES -->
+            <div class="form-group col-sm">
+            <div class="input-group">
+                <div class="input-group-prepend">
+                <span class="input-group-text"><i class="fas fa-money-bill"></i></span>
+                </div>
+                <input type="number" class="form-control input-lg" name="editarSueldoPorMes" id="editarSueldoPorMes"
+                 placeholder="Ingresar sueldo por mes" min="0" max="9999999" step="0.01" required>
+            </div>
+            </div>
+
+          <!-- ENTRADA PARA SELECCIONAR SU TIPO DE SUELDO -->
+
+          <div class="form-group col-sm">
             
             <div class="input-group">
             
                 <div class="input-group-prepend">
-                <span class="input-group-text"><i class="fas fa-cookie"></i></span>
+                <span class="input-group-text"><i class="fas fa-tag"></i></span>
                 </div>
 
-                <select class="form-control input-lg" id="editarTipoEmpleado" name="editarTipoEmpleado" required>
+                <select class="form-control input-lg" id="editarTipoCosto" name="editarTipoCosto">
                 
-                <option value="">Tipo de empleado</option>
+                <option value="">Tipo de Sueldo</option>
 
                 <?php 
                 $item = null;
                 $valor = null;
 
-                #$tipoempleado = ControladorTipoEmpleado::ctrMostrarTipoEmpleado($item,$valor);
+                $tipocosto = ControladorTipoCosto::ctrMostrarTipoCosto($item,$valor);
 
-                foreach($tipoempleado as $key=> $value){ 
-                  echo '<option value="'.$value["idTipoEmpleado"].'">'.$value["descripcion"].'</option>';
+                foreach($tipocosto as $key=> $value){ 
+                  echo '<option value="'.$value["idTipoCosto"].'">'.$value["descripcion"].'</option>';
                 }
 
                 ?>
 
               </select>
 
+             </div>
+
             </div>
 
           </div>
 
 
-          <!-- ENTRADA PARA SUBIR FOTO -->
-
-           <div class="form-group">
-            <div class="card">
-              <ul class="list-group list-group-flush">
-                <li class="list-group-item">Subir Foto</li>
-                <li class="list-group-item"><input type="file" class="nuevaImagenEmpleado" name="editarImagenEmpleado"></li>
-                <li class="list-group-item"> Peso máximo de la foto 2MB</li>
-              </ul>
-            </div>
-            
-            <img src="vistas\img\empleados\default\empleado.png" class="img-thumbnail previsualizar" width="100px">
-            <input type="hidden" name="ImagenEmpleadoActual" id="ImagenEmpleadoActual">
-          </div>
-
-      </div>
+        </div>
 
       </div>
 
@@ -464,8 +717,8 @@ MODAL EDITAR EMPLEADO
 
         <?php
 
-          #$editarEmpleado = new ControladorEmpleados();
-          #$editarEmpleado -> ctrEditarEmpleado();
+          $editarEmpleado = new ControladorEmpleados();
+          $editarEmpleado -> ctrEditarEmpleado();
 
         ?> 
 
@@ -479,7 +732,7 @@ MODAL EDITAR EMPLEADO
 
 <?php
 
-  #$borrarEmpleado = new ControladorEmpleados();
-  #$borrarEmpleado -> ctrEliminarEmpleado();
+  $borrarEmpleado = new ControladorEmpleados();
+  $borrarEmpleado -> ctrEliminarEmpleado();
 
 ?> 

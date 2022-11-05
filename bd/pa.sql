@@ -358,3 +358,117 @@ END$$
 DELIMITER ;
 
 
+
+-- Procedimientos almacenados de Tipo de Costo --
+DROP procedure IF EXISTS `mostrar_tipocosto`;
+DELIMITER $$
+USE `caticao`$$
+CREATE PROCEDURE `mostrar_tipocosto` ()
+BEGIN
+	select * from tipocosto;
+END$$
+DELIMITER ;
+
+-- Procedimientos almacenados de Tipo de Documento --
+DROP procedure IF EXISTS `mostrar_tipodocumento`;
+DELIMITER $$
+USE `caticao`$$
+CREATE PROCEDURE `mostrar_tipodocumento` ()
+BEGIN
+	select * from tipodocumento;
+END$$
+DELIMITER ;
+
+
+
+-- Procedimientos almacenados de Empleados --
+use caticao;
+DROP procedure IF EXISTS `mostrar_empleados`;
+DELIMITER $$
+USE `caticao`$$
+CREATE PROCEDURE `mostrar_empleados` ()
+BEGIN
+	select * from empleado;
+END$$
+DELIMITER ;
+
+
+DROP procedure IF EXISTS `insertar_empleado`;
+DELIMITER $$
+USE `caticao`$$
+CREATE PROCEDURE `insertar_empleado` (  in nombreI VARCHAR(50),
+                                        in apellidoI VARCHAR(50),
+                                        in idUsuarioI INT,
+                                        in correoI VARCHAR(50),
+                                        in idTipoDocumentoI INT,
+                                        in numeroDocumentoI INT,
+                                        in direccionI  VARCHAR(50),
+                                        in telefonoI  INT,
+                                        in fechaNacimientoI DATE,
+                                        in cargoI  VARCHAR(50),
+                                        in horarioTrabajoI  VARCHAR(50),
+                                        in horasPorDiaI INT,
+                                        in sueldoPorDiaI DECIMAL(10,2),
+                                        in sueldoPorMesI DECIMAL(10,2),
+                                        in idTipoCostoI INT)
+BEGIN
+	insert into empleado (nombre,apellido,idUsuario,correo,idTipoDocumento,numeroDocumento,direccion,telefono,fechaNacimiento,cargo,horarioTrabajo,horasPorDia,sueldoPorDia,sueldoPorMes,idTipoCosto)
+				 values  (nombreI,apellidoI,idUsuarioI,correoI,idTipoDocumentoI,numeroDocumentoI,direccionI,telefonoI,fechaNacimientoI,cargoI,horarioTrabajoI,horasPorDiaI,sueldoPorDiaI,sueldoPorMesI,idTipoCostoI);
+END$$
+DELIMITER ;
+
+
+DROP procedure IF EXISTS `editar_empleado`;
+DELIMITER $$
+USE `caticao`$$
+CREATE PROCEDURE `editar_empleado` (    in idEmpleadoE INT,
+										in nombreE VARCHAR(50),
+                                        in apellidoE VARCHAR(50),
+                                        in idUsuarioE INT,
+                                        in correoE VARCHAR(50),
+                                        in idTipoDocumentoE INT,
+                                        in numeroDocumentoE INT,
+                                        in direccionE  VARCHAR(50),
+                                        in telefonoE  INT,
+                                        in fechaNacimientoE DATE,
+                                        in cargoE  VARCHAR(50),
+                                        in horarioTrabajoE  VARCHAR(50),
+                                        in horasPorDiaE INT,
+                                        in sueldoPorDiaE DECIMAL(10,2),
+                                        in sueldoPorMesE DECIMAL(10,2),
+                                        in idTipoCostoE INT)
+BEGIN
+	update empleado set idEmpleado=idEmpleadoE,
+                        nombre=nombreE,
+                        apellido=apellidoE,
+                        idUsuario=idUsuarioE,
+                        correo=correoE,
+                        idTipoDocumento=idTipoDocumentoE,
+                        numeroDocumento=numeroDocumentoE,
+                        direccion=direccionE,
+                        telefono=telefonoE,
+                        fechaNacimiento=fechaNacimientoE,
+                        cargo=cargoE,
+                        horarioTrabajo=horarioTrabajoE,
+                        horasPorDia=horasPorDiaE,
+                        horasPorDia=horasPorDiaE,
+                        sueldoPorDia=sueldoPorDiaE,
+                        sueldoPorMes=sueldoPorMesE,
+                        idTipoCosto=idTipoCostoE
+				where idEmpleado=idEmpleadoE;
+END$$
+DELIMITER ;
+
+
+DROP procedure IF EXISTS `eliminar_empleado`;
+DELIMITER $$
+USE `caticao`$$
+CREATE PROCEDURE `eliminar_empleado` (in idEmpleadoE int)
+BEGIN
+	delete from empleado
+    where idEmpleado=idEmpleadoE;
+END$$
+DELIMITER ;
+
+
+
