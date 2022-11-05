@@ -22,7 +22,7 @@ class AjaxMarcas{
 
 	}
 
-
+	
 	/*=============================================
 	VALIDAR NO REPETIR MARCAS
 	=============================================*/	
@@ -39,12 +39,15 @@ class AjaxMarcas{
 		echo json_encode($respuesta);
 
 	}
+
+
+	
 }
 
 /*=============================================
 EDITAR MARCAS
 =============================================*/
-if(isset($_POST["idMarcas"])){
+if(isset($_POST["idMarca"])){
 
 	$editar = new AjaxMarcas();
 	$editar -> idMarca = $_POST["idMarca"];
@@ -63,4 +66,3 @@ if(isset( $_POST["validarDescripcion"])){
 	$valDescripcion -> ajaxValidarDescripcion();
 
 }
-
