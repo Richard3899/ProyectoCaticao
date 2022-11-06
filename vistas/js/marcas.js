@@ -106,7 +106,7 @@ $(".tablaMarcas tbody").on("click", "button.btnEliminarMarca", function(){
 REVISAR SI LA MARCA YA ESTÁ REGISTRADO
 =============================================*/
 
-$("#nuevoDescripcionMarca").change(function(){
+$("#nuevaDescripcionMarca").change(function(){
 
 	$(".alert").remove();
 
@@ -127,9 +127,46 @@ $("#nuevoDescripcionMarca").change(function(){
 	    	
 	    	if(respuesta){
 
-	    		$("#nuevoDescripcionMarca").parent().after('<div class="alert alert-warning">Esta Marca ya existe en la base de datos</div>');
+	    		$("#nuevaDescripcionMarca").parent().after('<div class="alert alert-warning">Esta marca ya existe en la base de datos</div>');
 
-	    		$("#nuevoDescripcionMarca").val("");
+	    		$("#nuevaDescripcionMarca").val("");
+
+	    	}
+
+	    }
+
+	})
+})
+
+
+/*=============================================
+REVISAR SI LA MARCA YA ESTÁ REGISTRADO
+=============================================*/
+
+$("#editarDescripcionMarca").change(function(){
+
+	$(".alert").remove();
+
+	var marca = $(this).val();
+
+	var datos = new FormData();
+	datos.append("validarDescripcion", marca);
+
+	 $.ajax({
+	    url:"ajax/marcas.ajax.php",
+	    method:"POST",
+	    data: datos,
+	    cache: false,
+	    contentType: false,
+	    processData: false,
+	    dataType: "json",
+	    success:function(respuesta){
+	    	
+	    	if(respuesta){
+
+	    		$("#editarDescripcionMarca").parent().after('<div class="alert alert-warning">Esta marca ya existe en la base de datos</div>');
+
+	    		$("#editarDescripcionMarca").val("");
 
 	    	}
 

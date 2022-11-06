@@ -22,10 +22,10 @@ class ControladorMarcas{
 
 	static public function ctrCrearMarca(){
 
-		if(isset($_POST["nuevoDescripcionMarca"])){
+		if(isset($_POST["nuevaDescripcionMarca"])){
 
 		   		
-				$datos = array("descripcion" => $_POST["nuevoDescripcionMarca"]
+				$datos = array("descripcion" => $_POST["nuevaDescripcionMarca"]
 			     );
 							   
 				$respuesta = ModeloMarcas::mdlIngresarMarca($datos);
@@ -63,11 +63,11 @@ class ControladorMarcas{
 
 	static public function ctrEditarMarca(){
 
-		if(isset($_POST["editarDescripcion"])){
+		if(isset($_POST["editarDescripcionMarca"])){
 
 
 				$datos = array("idMarca" =>$_POST["idMarca"],
-							   "descripcion" => $_POST["editarDescripcion"]
+							   "descripcion" => $_POST["editarDescripcionMarca"]
 							);
 							   
 				

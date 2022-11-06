@@ -64,7 +64,7 @@ class TablaMateriales{
  	 		TRAEMOS LAS ACCIONES
   			=============================================*/ 
 
-		  	$botones =  "<div class='btn-group'><button class='btn btn-warning btnEditarInsumo' idInsumo='".$materiales[$i]["idMateria"]."' data-toggle='modal' data-target='#modalEditarInsumo'><i class='fa fa-pen'></i></button><button class='btn btn-danger btnEliminarMaterial' idInsumo='".$materiales[$i]["idMateria"]."' codigo='".$materiales[$i]["codigo"]."' imagen='".$materiales[$i]["imagen"]."'><i class='fa fa-times'></i></button></div>"; 
+		  	$botones =  "<div class='btn-group'><button class='btn btn-warning btnEditarMaterial' idInsumo='".$materiales[$i]["idMateria"]."' data-toggle='modal' data-target='#modalEditarMaterial'><i class='fa fa-pen'></i></button><button class='btn btn-danger btnEliminarMaterial' idInsumo='".$materiales[$i]["idMateria"]."' codigo='".$materiales[$i]["codigo"]."' imagen='".$materiales[$i]["imagen"]."'><i class='fa fa-times'></i></button></div>"; 
 
 		  	$datosJson .='[
 			      "'.($i+1).'",

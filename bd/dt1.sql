@@ -38,12 +38,17 @@
 
 -- Volcando datos para la tabla caticao.desembolso: ~0 rows (aproximadamente)
 /*!40000 ALTER TABLE `desembolso` DISABLE KEYS */;
+INSERT IGNORE INTO `desembolso` (`idDesembolso`, `descripcion`) VALUES
+	(1, 'Gastos Administrativos'),
+	(2, 'Costo de venta'),
+	(3, 'Costo de Marketing'),
+	(4, 'Costo Operativo');
 /*!40000 ALTER TABLE `desembolso` ENABLE KEYS */;
 
--- Volcando datos para la tabla caticao.empleado: ~0 rows (aproximadamente)
+-- Volcando datos para la tabla caticao.empleado: ~1 rows (aproximadamente)
 /*!40000 ALTER TABLE `empleado` DISABLE KEYS */;
-INSERT INTO `empleado` (`idEmpleado`, `nombre`, `apellido`, `direccion`, `telefono`, `correoElectronico`, `numeroDocumento`, `fechaNacimiento`, `cargoEmpresa`, `horarioTrabajo`, `horasPorDia`, `sueldoPorDia`, `sueldoPorMes`, `idtipoDocumento`, `idUsuario`, `idTipoCosto`) VALUES
-	(1, 'Admin', 'Gon', 'Av. Ug', 987654321, 'admin@gmail.com', 12345678, '1997-11-05', 'Admin', '10am-8pm', 8, 40.00, 1000.00, 1, 1, 1);
+INSERT IGNORE INTO `empleado` (`idEmpleado`, `nombre`, `apellido`, `direccion`, `telefono`, `correo`, `numeroDocumento`, `fechaNacimiento`, `cargo`, `horarioTrabajo`, `horasPorDia`, `sueldoPorDia`, `sueldoPorMes`, `idTipoDocumento`, `idUsuario`, `idTipoCosto`) VALUES
+	(1, 'Julio', 'Gonzales', 'Av. Alfonso Ugarte Lt.12', 987654321, 'julio@gmail.com', 432187654, '2022-11-03', 'Empaquetador', '8am - 6pm', 8, 30.00, 1000.00, 1, NULL, 1);
 /*!40000 ALTER TABLE `empleado` ENABLE KEYS */;
 
 -- Volcando datos para la tabla caticao.gastoadmin: ~0 rows (aproximadamente)
@@ -82,19 +87,25 @@ INSERT INTO `empleado` (`idEmpleado`, `nombre`, `apellido`, `direccion`, `telefo
 /*!40000 ALTER TABLE `manoobrareceta` DISABLE KEYS */;
 /*!40000 ALTER TABLE `manoobrareceta` ENABLE KEYS */;
 
--- Volcando datos para la tabla caticao.maquina: ~0 rows (aproximadamente)
+-- Volcando datos para la tabla caticao.maquina: ~1 rows (aproximadamente)
 /*!40000 ALTER TABLE `maquina` DISABLE KEYS */;
+INSERT IGNORE INTO `maquina` (`idMaquina`, `codigo`, `nombre`, `serie`, `modelo`, `descripcion`, `marca`, `precio`, `añoCompra`, `capacidad`, `potencia`, `vidaUtil`) VALUES
+	(3, 'SL-0002', 'Seleccionadora', 'SL9212', 'MD-2022', 'Selecciona y limpia la materia prima', 'KAT', 15000.00, 2022, 60.00, 1.00, 5);
 /*!40000 ALTER TABLE `maquina` ENABLE KEYS */;
 
--- Volcando datos para la tabla caticao.marca: ~2 rows (aproximadamente)
+-- Volcando datos para la tabla caticao.marca: ~3 rows (aproximadamente)
 /*!40000 ALTER TABLE `marca` DISABLE KEYS */;
-INSERT INTO `marca` (`idMarca`, `descripcion`) VALUES
+INSERT IGNORE INTO `marca` (`idMarca`, `descripcion`) VALUES
 	(1, 'GLORIA'),
-	(2, 'DULFINA');
+	(2, 'DULFINA'),
+	(4, 'SAFE');
 /*!40000 ALTER TABLE `marca` ENABLE KEYS */;
 
--- Volcando datos para la tabla caticao.materia: ~0 rows (aproximadamente)
+-- Volcando datos para la tabla caticao.materia: ~2 rows (aproximadamente)
 /*!40000 ALTER TABLE `materia` DISABLE KEYS */;
+INSERT IGNORE INTO `materia` (`idMateria`, `codigo`, `nombre`, `descripcion`, `precio`, `cantidad`, `imagen`, `idUnidadMedida`, `idMarca`, `idTipoMateria`) VALUES
+	(1, 'LC-12', 'LECHE', 'SIN LACTOSA', 55.00, 12.00, '', 2, 1, 1),
+	(2, 'CJ-1245', 'CAJAS', 'DE CARTON', 15.00, 100.00, '', 3, 4, 2);
 /*!40000 ALTER TABLE `materia` ENABLE KEYS */;
 
 -- Volcando datos para la tabla caticao.modulo: ~0 rows (aproximadamente)
@@ -119,7 +130,7 @@ INSERT INTO `marca` (`idMarca`, `descripcion`) VALUES
 
 -- Volcando datos para la tabla caticao.producto: ~1 rows (aproximadamente)
 /*!40000 ALTER TABLE `producto` DISABLE KEYS */;
-INSERT INTO `producto` (`idProducto`, `codigo`, `nombre`, `descripcion`, `cantidad`, `imagen`, `idUnidadMedida`, `idTipoProducto`) VALUES
+INSERT IGNORE INTO `producto` (`idProducto`, `codigo`, `nombre`, `descripcion`, `cantidad`, `imagen`, `idUnidadMedida`, `idTipoProducto`) VALUES
 	(1, '123456', 'Chocolate con pasa', '50% cacao', 20.00, NULL, 3, 2);
 /*!40000 ALTER TABLE `producto` ENABLE KEYS */;
 
@@ -137,14 +148,14 @@ INSERT INTO `producto` (`idProducto`, `codigo`, `nombre`, `descripcion`, `cantid
 
 -- Volcando datos para la tabla caticao.tipocosto: ~2 rows (aproximadamente)
 /*!40000 ALTER TABLE `tipocosto` DISABLE KEYS */;
-INSERT INTO `tipocosto` (`idTipoCosto`, `descripcion`) VALUES
+INSERT IGNORE INTO `tipocosto` (`idTipoCosto`, `descripcion`) VALUES
 	(1, 'Fijo'),
 	(2, 'Variable');
 /*!40000 ALTER TABLE `tipocosto` ENABLE KEYS */;
 
 -- Volcando datos para la tabla caticao.tipodocumento: ~3 rows (aproximadamente)
 /*!40000 ALTER TABLE `tipodocumento` DISABLE KEYS */;
-INSERT INTO `tipodocumento` (`idTipoDocumento`, `descripcion`) VALUES
+INSERT IGNORE INTO `tipodocumento` (`idTipoDocumento`, `descripcion`) VALUES
 	(1, 'DNI'),
 	(2, 'RUC'),
 	(3, 'Pasaporte');
@@ -152,7 +163,7 @@ INSERT INTO `tipodocumento` (`idTipoDocumento`, `descripcion`) VALUES
 
 -- Volcando datos para la tabla caticao.tipomateria: ~2 rows (aproximadamente)
 /*!40000 ALTER TABLE `tipomateria` DISABLE KEYS */;
-INSERT INTO `tipomateria` (`idTipoMateria`, `descripcion`) VALUES
+INSERT IGNORE INTO `tipomateria` (`idTipoMateria`, `descripcion`) VALUES
 	(1, 'Insumo'),
 	(2, 'Material');
 /*!40000 ALTER TABLE `tipomateria` ENABLE KEYS */;
@@ -163,7 +174,7 @@ INSERT INTO `tipomateria` (`idTipoMateria`, `descripcion`) VALUES
 
 -- Volcando datos para la tabla caticao.tipoproducto: ~2 rows (aproximadamente)
 /*!40000 ALTER TABLE `tipoproducto` DISABLE KEYS */;
-INSERT INTO `tipoproducto` (`idTipoProducto`, `descripcion`) VALUES
+INSERT IGNORE INTO `tipoproducto` (`idTipoProducto`, `descripcion`) VALUES
 	(1, 'Intermedio'),
 	(2, 'Terminado');
 /*!40000 ALTER TABLE `tipoproducto` ENABLE KEYS */;
@@ -174,7 +185,7 @@ INSERT INTO `tipoproducto` (`idTipoProducto`, `descripcion`) VALUES
 
 -- Volcando datos para la tabla caticao.unidadmedida: ~3 rows (aproximadamente)
 /*!40000 ALTER TABLE `unidadmedida` DISABLE KEYS */;
-INSERT INTO `unidadmedida` (`idUnidadMedida`, `descripcion`, `idTipoUnidad`) VALUES
+INSERT IGNORE INTO `unidadmedida` (`idUnidadMedida`, `descripcion`, `idTipoUnidad`) VALUES
 	(1, 'Kilogramos', NULL),
 	(2, 'Litros', NULL),
 	(3, 'Unidades', NULL);
@@ -182,8 +193,8 @@ INSERT INTO `unidadmedida` (`idUnidadMedida`, `descripcion`, `idTipoUnidad`) VAL
 
 -- Volcando datos para la tabla caticao.usuario: ~1 rows (aproximadamente)
 /*!40000 ALTER TABLE `usuario` DISABLE KEYS */;
-INSERT INTO `usuario` (`idUsuario`, `nombre`, `usuario`, `password`, `perfil`, `foto`, `estado`, `ultimo_login`, `fecha`) VALUES
-	(1, 'Administrador', 'admin', '$2a$07$asxx54ahjppf45sd87a5aunxs9bkpyGmGE/.vekdjFg83yRec789S', 'Administrador', NULL, 1, NULL, '2022-10-18 16:42:18');
+INSERT IGNORE INTO `usuario` (`idUsuario`, `nombre`, `usuario`, `password`, `perfil`, `foto`, `estado`, `ultimo_login`, `fecha`) VALUES
+	(1, 'Administrador', 'admin', '$2a$07$asxx54ahjppf45sd87a5aunxs9bkpyGmGE/.vekdjFg83yRec789S', 'Administrador', 'vistas/img/usuarios/admin/592.png', 1, '2022-11-06 01:28:04', '2022-10-18 16:42:18');
 /*!40000 ALTER TABLE `usuario` ENABLE KEYS */;
 
 -- Volcando datos para la tabla caticao.usuariomodulo: ~0 rows (aproximadamente)

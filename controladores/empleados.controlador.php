@@ -26,7 +26,7 @@ class ControladorEmpleados{
 
 				$datos = array("nombre" => $_POST["nuevoNombre"],
 							   "apellido" => $_POST["nuevoApellido"],
-							   "idUsuario" => $_POST["nuevoUsuarioEmpleado"],
+							   "idUsuario" => (!empty($_POST['nuevoUsuarioEmpleado'])) ? $_POST['nuevoUsuarioEmpleado'] : NULL,
 							   "correo" => $_POST["nuevoCorreo"],
 							   "idTipoDocumento" => $_POST["nuevoTipoDocumento"],
 							   "numeroDocumento" => $_POST["nuevoNumeroDocumento"],
@@ -78,21 +78,22 @@ class ControladorEmpleados{
 
 		if(isset($_POST["editarNombre"])){
 
-				$datos = array("nombre" => $_POST["editarNombre"],
-						"apellido" => $_POST["editarApellido"],
-						"idUsuario" => $_POST["editarUsuarioEmpleado"],
-						"correo" => $_POST["editarCorreo"],
-						"idTipoDocumento" => $_POST["editarTipoDocumento"],
-						"numeroDocumento" => $_POST["editarNumeroDocumento"],
-						"direccion" => $_POST["editarDireccion"],
-						"telefono" => $_POST["editarTelefono"],
-						"fechaNacimiento" => $_POST["editarFechaNacimiento"],
-						"cargo" => $_POST["editarCargo"],
-						"horarioTrabajo" => $_POST["editarHorarioTrabajo"],
-						"horasPorDia" => $_POST["editarHorasPorDia"],
-						"sueldoPorDia" => $_POST["editarSueldoPorDia"],
-						"sueldoPorMes" => $_POST["editarSueldoPorMes"],
-						"idTipoCosto" => $_POST["editarTipoCosto"]);		   
+				$datos = array( "idEmpleado" => $_POST["idEmpleado"],
+					            "nombre" => $_POST["editarNombre"],
+								"apellido" => $_POST["editarApellido"],
+								"idUsuario" => (!empty($_POST['editarUsuarioEmpleado'])) ? $_POST['editarUsuarioEmpleado'] : NULL,
+								"correo" => $_POST["editarCorreo"],
+								"idTipoDocumento" => $_POST["editarTipoDocumento"],
+								"numeroDocumento" => $_POST["editarNumeroDocumento"],
+								"direccion" => $_POST["editarDireccion"],
+								"telefono" => $_POST["editarTelefono"],
+								"fechaNacimiento" => $_POST["editarFechaNacimiento"],
+								"cargo" => $_POST["editarCargo"],
+								"horarioTrabajo" => $_POST["editarHorarioTrabajo"],
+								"horasPorDia" => $_POST["editarHorasPorDia"],
+								"sueldoPorDia" => $_POST["editarSueldoPorDia"],
+								"sueldoPorMes" => $_POST["editarSueldoPorMes"],
+								"idTipoCosto" => $_POST["editarTipoCosto"]);		   
 							   
 				$respuesta = ModeloEmpleados::mdlEditarEmpleado($datos);
 

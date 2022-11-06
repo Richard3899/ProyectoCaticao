@@ -37,6 +37,9 @@ class TablaEmpleados{
 
 		  	$usuario = ControladorUsuarios::ctrMostrarUsuarios($item1, $valor1);
 
+            $user=$usuario['usuario'] ?? 'No tiene usuario';
+
+
 			/*=============================================
  	 		TRAEMOS LA TIPO DE DOCUMENTO
   			=============================================*/ 
@@ -66,7 +69,7 @@ class TablaEmpleados{
 			      "'.($i+1).'",
 			      "'.$empleados[$i]["nombre"].'",
 			      "'.$empleados[$i]["apellido"].'",
-			      "'.$usuario["usuario"].'",
+			      "'.$user.'",
 				  "'.$empleados[$i]["correo"].'",
 				  "'.$tipodocumento["descripcion"].'",
 				  "'.$empleados[$i]["numeroDocumento"].'",

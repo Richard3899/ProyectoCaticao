@@ -59,27 +59,35 @@ $(".tablaEmpleados tbody").on("click", "button.btnEditarEmpleado", function(){
 
 		   $("#idEmpleado").val(respuesta["idEmpleado"]);
 
-           $("#editarCodigo").val(respuesta["codigo"]);
-
 		   $("#editarNombre").val(respuesta["nombre"]);
 
-           $("#editarDescripcion").val(respuesta["descripcion"]);
+		   $("#editarApellido").val(respuesta["apellido"]);
 
-		   $("#editarSerie").val(respuesta["serie"]);
+		   $("#editarUsuarioEmpleado").val(respuesta["idUsuario"]);
 
-		   $("#editarModelo").val(respuesta["modelo"]);
+		   $("#editarCorreo").val(respuesta["correo"]);
 
-           $("#editarMarca").val(respuesta["marca"]);
+           $("#editarTipoDocumento").val(respuesta["idTipoDocumento"]);
 
-           $("#editarPrecio").val(respuesta["precio"]);
+           $("#editarNumeroDocumento").val(respuesta["numeroDocumento"]);
 
-		   $("#editarAñoCompra").val(respuesta["añoCompra"]);
+		   $("#editarDireccion").val(respuesta["direccion"]);
 
-		   $("#editarCapacidad").val(respuesta["capacidad"]);
+		   $("#editarTelefono").val(respuesta["telefono"]);
 
-		   $("#editarPotencia").val(respuesta["potencia"]);
+		   $("#editarFechaNacimiento").val(respuesta["fechaNacimiento"]);
 
-		   $("#editarVidaUtil").val(respuesta["vidaUtil"]);
+		   $("#editarCargo").val(respuesta["cargo"]);
+
+		   $("#editarHorarioTrabajo").val(respuesta["horarioTrabajo"]);
+
+		   $("#editarHorasPorDia").val(respuesta["horasPorDia"]);
+
+		   $("#editarSueldoPorDia").val(respuesta["sueldoPorDia"]);
+
+		   $("#editarSueldoPorMes").val(respuesta["sueldoPorMes"]);
+
+		   $("#editarTipoCosto").val(respuesta["idTipoCosto"]);
 
 
       }
@@ -122,14 +130,14 @@ $(".tablaEmpleados tbody").on("click", "button.btnEliminarEmpleado", function(){
 REVISAR SI EL EMPLEADO YA ESTÁ REGISTRADO
 =============================================*/
 
-$("#nuevoCodigoEmpleado").change(function(){
+$("#nuevoNumeroDocumento").change(function(){
 
 	$(".alert").remove();
 
 	var empleado = $(this).val();
 
 	var datos = new FormData();
-	datos.append("validarCodigo", empleado);
+	datos.append("validarNumeroDocumento", empleado);
 
 	 $.ajax({
 	    url:"ajax/empleados.ajax.php",
@@ -143,9 +151,41 @@ $("#nuevoCodigoEmpleado").change(function(){
 	    	
 	    	if(respuesta){
 
-	    		$("#nuevoCodigoEmpleado").parent().after('<div class="alert alert-warning">Este código ya existe en la base de datos</div>');
+	    		$("#nuevoNumeroDocumento").parent().after('<div class="alert alert-warning">Este documento ya existe en la base de datos</div>');
 
-	    		$("#nuevoCodigoEmpleado").val("");
+	    		$("#nuevoNumeroDocumento").val("");
+
+	    	}
+
+	    }
+
+	})
+})
+
+$("#editarNumeroDocumento").change(function(){
+
+	$(".alert").remove();
+
+	var empleado = $(this).val();
+
+	var datos = new FormData();
+	datos.append("validarNumeroDocumento", empleado);
+
+	 $.ajax({
+	    url:"ajax/empleados.ajax.php",
+	    method:"POST",
+	    data: datos,
+	    cache: false,
+	    contentType: false,
+	    processData: false,
+	    dataType: "json",
+	    success:function(respuesta){
+	    	
+	    	if(respuesta){
+
+	    		$("#editarNumeroDocumento").parent().after('<div class="alert alert-warning">Este documento ya existe en la base de datos</div>');
+
+	    		$("#editarNumeroDocumento").val("");
 
 	    	}
 

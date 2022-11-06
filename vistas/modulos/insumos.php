@@ -192,7 +192,7 @@ MODAL AGREGAR INSUMO
 
                 <select class="form-control input-lg" id="nuevaMarca" name="nuevaMarca" required>
                 
-                <option value="">Marca</option>
+                <option value="">Seleccionar Marca</option>
 
                 <?php 
                 $item = null;
@@ -417,7 +417,7 @@ MODAL EDITAR INSUMO
 
                 <select class="form-control input-lg" id="editarMarca" name="editarMarca" required>
                 
-                <option value="">Marca</option>
+                <option value="">Seleccionar Marca</option>
 
                 <?php 
                 $item = null;

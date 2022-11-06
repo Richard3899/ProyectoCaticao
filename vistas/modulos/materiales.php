@@ -26,7 +26,7 @@
     <div class="card">
       <div class="card-header">
       
-      <button class="btn btn-primary" data-toggle="modal" data-target="#modalAgregarInsumo">
+      <button class="btn btn-primary" data-toggle="modal" data-target="#modalAgregarMaterial">
         
         Agregar Materiales
 
@@ -79,7 +79,7 @@
 MODAL AGREGAR MATERIAL
 ======================================-->
 
-<div id="modalAgregarInsumo" class="modal fade" role="dialog">
+<div id="modalAgregarMaterial" class="modal fade" role="dialog">
 
 <div class="modal-dialog modal-lg">
 
@@ -193,7 +193,7 @@ MODAL AGREGAR MATERIAL
 
                 <select class="form-control input-lg" id="nuevaMarca" name="nuevaMarca" required>
                 
-                <option value="">Marca</option>
+                <option value="">Seleccionar Marca</option>
 
                 <?php 
                 $item = null;
@@ -304,7 +304,7 @@ MODAL AGREGAR MATERIAL
 MODAL EDITAR MATERIAL
 ======================================-->
 
-<div id="modalEditarInsumo" class="modal fade" role="dialog">
+<div id="modalEditarMaterial" class="modal fade" role="dialog">
 
 <div class="modal-dialog modal-lg">
 
@@ -419,7 +419,7 @@ MODAL EDITAR MATERIAL
 
                 <select class="form-control input-lg" id="editarMarca" name="editarMarca" required>
                 
-                <option value="">Marca</option>
+                <option value="">Seleccionar Marca</option>
 
                 <?php 
                 $item = null;

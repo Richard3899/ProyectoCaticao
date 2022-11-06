@@ -39,7 +39,7 @@ $('.tablaMateriales').DataTable( {
 EDITAR MATERIAL
 =============================================*/
 
-$(".tablaMateriales tbody").on("click", "button.btnEditarInsumo", function(){
+$(".tablaMateriales tbody").on("click", "button.btnEditarMaterial", function(){
 
 	var idInsumo = $(this).attr("idInsumo");
 	

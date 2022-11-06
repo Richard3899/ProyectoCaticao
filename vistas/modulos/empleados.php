@@ -149,7 +149,7 @@ MODAL AGREGAR EMPLEADO
 
                 <select class="form-control input-lg" id="nuevoUsuarioEmpleado" name="nuevoUsuarioEmpleado">
                 
-                <option value="">Usuario</option>
+                <option value="" >Seleccionar Usuario</option>
 
                 <?php 
                 $item = null;
@@ -195,7 +195,7 @@ MODAL AGREGAR EMPLEADO
                 <span class="input-group-text"><i class="fas fa-id-card"></i></span>
                 </div>
 
-                <select class="form-control input-lg" id="nuevoTipoDocumento" name="nuevoTipoDocumento" >
+                <select class="form-control input-lg" id="nuevoTipoDocumento" name="nuevoTipoDocumento" required>
                 
                 <option value="">Tipo de Documento</option>
 
@@ -346,7 +346,7 @@ MODAL AGREGAR EMPLEADO
                 <span class="input-group-text"><i class="fas fa-tag"></i></span>
                 </div>
 
-                <select class="form-control input-lg" id="nuevoTipoCosto" name="nuevoTipoCosto">
+                <select class="form-control input-lg" id="nuevoTipoCosto" name="nuevoTipoCosto" required>
                 
                 <option value="">Tipo de Sueldo</option>
 
@@ -476,7 +476,7 @@ MODAL EDITAR EMPLEADO
 
                 <select class="form-control input-lg" id="editarUsuarioEmpleado" name="editarUsuarioEmpleado">
                 
-                <option value="">Usuario</option>
+                <option value="" >Seleccionar Usuario</option>
 
                 <?php 
                 $item = null;
@@ -522,7 +522,7 @@ MODAL EDITAR EMPLEADO
                 <span class="input-group-text"><i class="fas fa-id-card"></i></span>
                 </div>
 
-                <select class="form-control input-lg" id="editarTipoDocumento" name="editarTipoDocumento" >
+                <select class="form-control input-lg" id="editarTipoDocumento" name="editarTipoDocumento" required>
                 
                 <option value="">Tipo de Documento</option>
 
@@ -563,7 +563,7 @@ MODAL EDITAR EMPLEADO
               <div class="input-group-prepend">
               <span class="input-group-text"><i class="fas fa-map"></i></span>
               </div>
-              <input type="text" class="form-control input-lg" id="nuevaDireccion" name="nuevaDireccion" placeholder="Ingresar dirección" 
+              <input type="text" class="form-control input-lg" id="editarDireccion" name="editarDireccion" placeholder="Ingresar dirección" 
                maxlength="50"  pattern="[A-Za-z0-9\u00f1\u00d1\-. ]+" title="Solo se acepta letras,numeros,guiones y puntos " required>
           </div>
           </div>
@@ -588,7 +588,7 @@ MODAL EDITAR EMPLEADO
               <div class="input-group-prepend">
               <span class="input-group-text"><i class="fas fa-calendar-alt"></i></span>
               </div>
-              <input type="date" class="form-control input-lg" name="nuevaFechaNacimiento" id="nuevaFechaNacimiento"
+              <input type="date" class="form-control input-lg" name="editarFechaNacimiento" id="editarFechaNacimiento"
                placeholder="Ingresar fecha de nacimiento" required>
           </div>
           </div>
@@ -673,7 +673,7 @@ MODAL EDITAR EMPLEADO
                 <span class="input-group-text"><i class="fas fa-tag"></i></span>
                 </div>
 
-                <select class="form-control input-lg" id="editarTipoCosto" name="editarTipoCosto">
+                <select class="form-control input-lg" id="editarTipoCosto" name="editarTipoCosto" required>
                 
                 <option value="">Tipo de Sueldo</option>
 

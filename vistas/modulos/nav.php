@@ -10,7 +10,7 @@
     <div class="navbar-custom-menu ml-auto">
         <ul class="nav navbar-nav">
           <div class="dropdown">
-          <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           <?php
 
               if($_SESSION["foto"] != ""){
