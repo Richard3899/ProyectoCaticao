@@ -3,7 +3,7 @@
     <!-- Brand Logo -->
     <a href="#" class="brand-link">
       <img src="vistas/img/plantilla/logo-mini.jpg" alt="Logo" class="brand-image" >
-      <span class="brand-text font-weight-light">
+      <span class="brand-text font-weight-light text-white">
       Caticao
 
       </span>
