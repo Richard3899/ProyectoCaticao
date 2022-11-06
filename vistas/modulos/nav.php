@@ -1,5 +1,5 @@
 <!-- Navbar -->
-<nav class="main-header navbar navbar-expand navbar-white navbar-light">
+<nav class="main-header navbar navbar-expand navbar-dark navbar-light">
     <!-- Left navbar links -->
     <ul class="navbar-nav">
       <li class="nav-item">
@@ -26,7 +26,7 @@
 
               ?>
 
-                <span class="hidden-xs"><?php echo $_SESSION["nombre"]; ?></span>
+                <span class="hidden-xs text-white"><?php echo $_SESSION["nombre"]; ?></span>
           </button>
           <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
             <button class="dropdown-item btnCerrarSesion" type="button">Salir</button>

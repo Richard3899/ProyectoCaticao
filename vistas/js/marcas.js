@@ -61,7 +61,7 @@ $(".tablaMarcas tbody").on("click", "button.btnEditarMarca", function(){
 
 		   $("#idMarca").val(respuesta["idMarca"]);
 
-           $("#editarDescripcion").val(respuesta["descripcion"]);
+           $("#editarDescripcionMarca").val(respuesta["descripcion"]);
 
 		
         }

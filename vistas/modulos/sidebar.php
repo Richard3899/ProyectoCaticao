@@ -12,7 +12,7 @@
 <div class="sidebar">  
       <!-- Sidebar Menu -->
       <nav class="mt-2">
-        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+        <ul class="nav nav-pills nav-sidebar flex-column nav-child-indent" data-widget="treeview" role="menu" data-accordion="false">
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
           <li class="nav-item">
@@ -85,6 +85,43 @@
                 <i class="nav-icon fas fa-angle-double-right"></i>
                   <p>Empleados</p>
                 </a>
+              </li>
+
+
+              <li class="nav-item">
+                <a href="#" class="nav-link">
+                  <i class="nav-icon fas fa-angle-double-right"></i>
+                  <p>Gastos y Costos
+                  <i class="right fas fa-angle-left"></i>
+                  </p>
+                </a>
+                
+                <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="#" class="nav-link">
+                  <i class="nav-icon fas fa-angle-right"></i>
+                  <p>Gastos Administrativos</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="#" class="nav-link">
+                <i class="nav-icon fas fa-angle-right"></i>
+                  <p>Costos de Ventas</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="#" class="nav-link">
+                <i class="nav-icon fas fa-angle-right"></i>
+                  <p>Costos de Marketing</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="#" class="nav-link">
+                <i class="nav-icon fas fa-angle-right"></i>
+                  <p>Costos Operativos</p>
+                </a>
+              </li>
+            </ul>
               </li>
 
 

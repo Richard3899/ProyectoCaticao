@@ -12,7 +12,7 @@ session_start();
 ?> 
 
 
-<body class="hold-transition skin-blue sidebar-mini">
+<body class="hold-transition skin-blue sidebar-mini dark-mode">
  
   <?php
 

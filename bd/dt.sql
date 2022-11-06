@@ -27,9 +27,9 @@ INSERT INTO `tipodocumento` (`idTipoDocumento`, `descripcion`) VALUES
 
 INSERT INTO `desembolso` (`idDesembolso`, `descripcion`) VALUES
 	(1, 'Gastos Administrativos'),
-	(2, 'Costo de Venta'),
-	(3, 'Costo de Marketing'),
-	(4, 'Costo Operativo');
+	(2, 'Costos de Ventas'),
+	(3, 'Costos de Marketing'),
+	(4, 'Costos Operativos');
 
 INSERT INTO `producto` (`idProducto`, `codigo`, `nombre`, `descripcion`, `cantidad`, `imagen`, `idUnidadMedida`, `idTipoProducto`) VALUES
 	(1, '123456', 'Chocolate con pasa', '50% cacao', 20.00, NULL, 3, 2);
