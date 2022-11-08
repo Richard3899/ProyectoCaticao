@@ -12,8 +12,8 @@
           <ol class="breadcrumb float-sm-right">
             <li class="breadcrumb-item"><a href="inicio">Inicio</a></li>
             <li class="breadcrumb-item active">Registros</li>
+            <li class="breadcrumb-item active">Insumos y Materiales</li>
             <li class="breadcrumb-item active">Materiales</li>
-            <li class="breadcrumb-item active">Administrador de Materiales</li>
           </ol>
         </div>
       </div>
@@ -28,7 +28,7 @@
       
       <button class="btn btn-primary" data-toggle="modal" data-target="#modalAgregarMaterial">
         
-        Agregar Materiales
+        Agregar Material
 
       </button>
         
@@ -318,7 +318,7 @@ MODAL EDITAR MATERIAL
 
       <div class="modal-header" style="background:gray; color:white">
 
-      <h4 id="idMateria" class="modal-title">Agregar Material</h4>
+      <h4 id="idMateria" class="modal-title">Editar Material</h4>
       <button type="button" class="close" data-dismiss="modal">&times;</button>
 
       </div>
@@ -503,7 +503,7 @@ MODAL EDITAR MATERIAL
 
         <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Salir</button>
 
-        <button type="submit" class="btn btn-primary">Guardar Material</button>
+        <button type="submit" class="btn btn-primary">Editar Material</button>
 
       </div>
 

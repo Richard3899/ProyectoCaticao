@@ -26,7 +26,7 @@
             
           </li>
 
-          <li class="nav-item">
+          <li class="nav-item menu-open">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-pen"></i>
               <p>
@@ -98,25 +98,25 @@
                 
                 <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="#" class="nav-link">
+                <a href="gastoadmin" class="nav-link">
                   <i class="nav-icon fas fa-angle-right"></i>
-                  <p>Gastos Administrativos</p>
+                  <p>Gastos Admin</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="#" class="nav-link">
+                <a href="costoventa" class="nav-link">
                 <i class="nav-icon fas fa-angle-right"></i>
                   <p>Costos de Ventas</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="#" class="nav-link">
+                <a href="costomarketing" class="nav-link">
                 <i class="nav-icon fas fa-angle-right"></i>
                   <p>Costos de Marketing</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="#" class="nav-link">
+                <a href="costooperativo" class="nav-link">
                 <i class="nav-icon fas fa-angle-right"></i>
                   <p>Costos Operativos</p>
                 </a>

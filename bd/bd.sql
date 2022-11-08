@@ -121,7 +121,7 @@ CREATE TABLE depreciacionreceta (
 CREATE TABLE gastoadmin (
   idGastoAdmin INT  AUTO_INCREMENT  primary key,
   descripcion VARCHAR(50) ,
-  precioUnitario DECIMAL(10,2) ,
+  precio DECIMAL(10,2) ,
   idUnidadMedida INT REFERENCES unidadmedida (idUnidadMedida),
   idTipoCosto INT REFERENCES tipocosto (idTipoCosto),
   idDesembolso int REFERENCES desembolso (idDesembolso)
@@ -517,8 +517,6 @@ CREATE TABLE UsuarioModulo (
   idUsuario INT REFERENCES usuario (idUsuario),
   idModulo INT REFERENCES Modulo (idModulo)
 );
-
-
 
 
 alter Table consumoenergia add foreign key (idMaquina) REFERENCES  maquina (idMaquina);

@@ -471,4 +471,132 @@ END$$
 DELIMITER ;
 
 
+-- Procedimientos almacenados de GastoAdmin --
+
+DROP procedure IF EXISTS `mostrar_gastoadmin`;
+DELIMITER $$
+USE `caticao`$$
+CREATE PROCEDURE `mostrar_gastoadmin` ()
+BEGIN
+	select * from gastoadmin where idDesembolso=1;
+END$$
+DELIMITER ;
+
+DROP procedure IF EXISTS `insertar_gastoadmin`;
+DELIMITER $$
+USE `caticao`$$
+CREATE PROCEDURE `insertar_gastoadmin` (in descripcionI VARCHAR(100),
+                                        in idUnidadMedidaI INT,
+                                        in precioI DECIMAL(10,2),
+                                        in idTipoCostoI INT)
+BEGIN
+	insert into gastoadmin (descripcion,idUnidadMedida,precio,idTipoCosto,idDesembolso)
+				  values   (descripcionI,idUnidadMedidaI,precioI,idTipoCostoI,1);
+END$$
+DELIMITER ;
+
+
+DROP procedure IF EXISTS `editar_gastoadmin`;
+DELIMITER $$
+USE `caticao`$$
+CREATE PROCEDURE `editar_gastoadmin` (  in idGastoAdminE INT,
+                                        in descripcionE VARCHAR(100),
+                                        in idUnidadMedidaE INT,
+                                        in precioE DECIMAL(10,2),
+                                        in idTipoCostoE INT)
+BEGIN
+	update gastoadmin set   idGastoAdmin=idGastoAdminE,
+							descripcion=descripcionE,
+							idUnidadMedida=idUnidadMedidaE,
+							precio=precioE,
+							idTipoCosto=idTipoCostoE
+				      where idGastoAdmin=idGastoAdminE;
+END$$
+DELIMITER ;
+
+
+DROP procedure IF EXISTS `eliminar_gastoadmin`;
+DELIMITER $$
+USE `caticao`$$
+CREATE PROCEDURE `eliminar_gastoadmin` (in idGastoAdminE int)
+BEGIN
+	delete from gastoadmin
+    where idGastoAdmin=idGastoAdminE;
+END$$
+DELIMITER ;
+
+
+-- Procedimientos almacenados de Costo de Venta --
+
+DROP procedure IF EXISTS `mostrar_costoventa`;
+DELIMITER $$
+USE `caticao`$$
+CREATE PROCEDURE `mostrar_costoventa` ()
+BEGIN
+	select * from gastoadmin where idDesembolso=2;
+END$$
+DELIMITER ;
+
+DROP procedure IF EXISTS `insertar_costoventa`;
+DELIMITER $$
+USE `caticao`$$
+CREATE PROCEDURE `insertar_costoventa` (in descripcionI VARCHAR(100),
+                                        in idUnidadMedidaI INT,
+                                        in precioI DECIMAL(10,2),
+                                        in idTipoCostoI INT)
+BEGIN
+	insert into gastoadmin (descripcion,idUnidadMedida,precio,idTipoCosto,idDesembolso)
+				  values   (descripcionI,idUnidadMedidaI,precioI,idTipoCostoI,2);
+END$$
+DELIMITER ;
+
+-- Procedimientos almacenados de Costo de Marketing --
+
+DROP procedure IF EXISTS `mostrar_costomarketing`;
+DELIMITER $$
+USE `caticao`$$
+CREATE PROCEDURE `mostrar_costomarketing` ()
+BEGIN
+	select * from gastoadmin where idDesembolso=3;
+END$$
+DELIMITER ;
+
+DROP procedure IF EXISTS `insertar_costomarketing`;
+DELIMITER $$
+USE `caticao`$$
+CREATE PROCEDURE `insertar_costomarketing` (in descripcionI VARCHAR(100),
+                                        in idUnidadMedidaI INT,
+                                        in precioI DECIMAL(10,2),
+                                        in idTipoCostoI INT)
+BEGIN
+	insert into gastoadmin (descripcion,idUnidadMedida,precio,idTipoCosto,idDesembolso)
+				  values   (descripcionI,idUnidadMedidaI,precioI,idTipoCostoI,3);
+END$$
+DELIMITER ;
+
+
+-- Procedimientos almacenados de Costo Operativo--
+
+DROP procedure IF EXISTS `mostrar_costooperativo`;
+DELIMITER $$
+USE `caticao`$$
+CREATE PROCEDURE `mostrar_costooperativo` ()
+BEGIN
+	select * from gastoadmin where idDesembolso=4;
+END$$
+DELIMITER ;
+
+DROP procedure IF EXISTS `insertar_costooperativo`;
+DELIMITER $$
+USE `caticao`$$
+CREATE PROCEDURE `insertar_costooperativo` (in descripcionI VARCHAR(100),
+                                        in idUnidadMedidaI INT,
+                                        in precioI DECIMAL(10,2),
+                                        in idTipoCostoI INT)
+BEGIN
+	insert into gastoadmin (descripcion,idUnidadMedida,precio,idTipoCosto,idDesembolso)
+				  values   (descripcionI,idUnidadMedidaI,precioI,idTipoCostoI,4);
+END$$
+DELIMITER ;
+
 

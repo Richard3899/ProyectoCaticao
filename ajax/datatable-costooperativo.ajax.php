@@ -1,0 +1,85 @@
+<?php
+
+require_once "../controladores/costooperativo.controlador.php";
+require_once "../modelos/costooperativo.modelo.php";
+
+require_once "../controladores/tipocosto.controlador.php";
+require_once "../modelos/tipocosto.modelo.php";
+
+require_once "../controladores/unidadmedida.controlador.php";
+require_once "../modelos/unidadmedida.modelo.php";
+
+class TablaCostoOperativo{
+
+ 	/*=============================================
+ 	 MOSTRAR LA TABLA DE COSTOS OPERATIVOS
+  	=============================================*/ 
+
+	public function mostrarTablaCostoOperativo(){
+
+		$item = null;
+    	$valor = null;
+
+  		$costooperativo = ControladorCostoOperativo::ctrMostrarCostoOperativo($item, $valor);	
+		
+  		$datosJson = '{
+		  "data": [';
+
+		  for($i = 0; $i < count($costooperativo); $i++){
+	  
+
+		  	/*=============================================
+ 	 		TRAEMOS LA TIPO DE COSTO
+  			=============================================*/ 
+
+		  	$item = "idTipoCosto";
+		  	$valor = $costooperativo[$i]["idTipoCosto"];
+
+		  	$tipocosto = ControladorTipoCosto::ctrMostrarTipoCosto($item, $valor);
+
+			/*=============================================
+ 	 		TRAEMOS LA UNIDAD DE MEDIDA
+  			=============================================*/ 
+
+		  	$items = "idUnidadMedida";
+		  	$valors = $costooperativo[$i]["idUnidadMedida"];
+
+		  	$unidadmedida = ControladorUnidadMedida::ctrMostrarUnidadMedida($items, $valors);
+
+
+		  	/*=============================================
+ 	 		TRAEMOS LAS ACCIONES
+  			=============================================*/ 
+
+		  	$botones =  "<div class='btn-group'><button class='btn btn-warning btnEditarCostoOperativo' idCostoOperativo='".$costooperativo[$i]["idGastoAdmin"]."' data-toggle='modal' data-target='#modalEditarCostoOperativo'><i class='fa fa-pen'></i></button><button class='btn btn-danger btnEliminarCostoOperativo' idCostoOperativo='".$costooperativo[$i]["idGastoAdmin"]."'><i class='fa fa-times'></i></button></div>"; 
+
+		  	$datosJson .='[
+			      "'.($i+1).'",
+			      "'.$costooperativo[$i]["descripcion"].'",
+				  "'.$unidadmedida["descripcion"].'",
+			      "'."S/. ".$costooperativo[$i]["precio"].'",
+				  "'.$tipocosto["descripcion"].'",
+			      "'.$botones.'"
+			    ],';
+
+		  }
+
+		  $datosJson = substr($datosJson, 0, -1);
+
+		 $datosJson .=   '] 
+
+		 }';
+		
+		echo $datosJson;
+
+
+	}
+
+
+}
+
+/*=============================================
+ACTIVAR TABLA DE COSTOS OPERATIVOS
+=============================================*/ 
+$activarCostoOperativo = new TablaCostoOperativo();
+$activarCostoOperativo -> mostrarTablaCostoOperativo();

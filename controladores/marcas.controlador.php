@@ -37,7 +37,7 @@ class ControladorMarcas{
 					Swal.fire({
 					
 						icon: "success",
-						title: "¡La Marca ha sido guardado correctamente!",
+						title: "¡La marca ha sido guardada correctamente!",
 						showConfirmButton: false,
 						timer: 1500
 					
@@ -81,7 +81,7 @@ class ControladorMarcas{
 					Swal.fire({
 					
 						icon: "success",
-						title: "¡La Marca ha sido editado correctamente!",
+						title: "¡La marca ha sido editada correctamente!",
 						showConfirmButton: false,
 						timer: 1500
 					
@@ -122,7 +122,7 @@ class ControladorMarcas{
 				Swal.fire({
 				
 					icon: "success",
-					title: "¡La Marca ha sido eliminado correctamente!",
+					title: "¡La marca ha sido eliminada correctamente!",
 					showConfirmButton: false,
 					timer: 1500
 				

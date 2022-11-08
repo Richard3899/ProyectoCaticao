@@ -11,6 +11,7 @@
         <div class="col-sm-6">
           <ol class="breadcrumb float-sm-right">
             <li class="breadcrumb-item"><a href="inicio">Inicio</a></li>
+            <li class="breadcrumb-item active">Registros</li>
             <li class="breadcrumb-item active">Administrador de Empleados</li>
           </ol>
         </div>
@@ -711,7 +712,7 @@ MODAL EDITAR EMPLEADO
 
           <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Salir</button>
 
-          <button type="submit" class="btn btn-primary">Modificar Empleado</button>
+          <button type="submit" class="btn btn-primary">Editar Empleado</button>
 
         </div>
 

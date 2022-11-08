@@ -12,8 +12,8 @@
           <ol class="breadcrumb float-sm-right">
             <li class="breadcrumb-item"><a href="inicio">Inicio</a></li>
             <li class="breadcrumb-item active">Registros</li>
+            <li class="breadcrumb-item active">Insumos y Materiales</li>
             <li class="breadcrumb-item active">Insumos</li>
-            <li class="breadcrumb-item active">Administrador de Insumos</li>
           </ol>
         </div>
       </div>
@@ -317,7 +317,7 @@ MODAL EDITAR INSUMO
 
       <div class="modal-header" style="background:gray; color:white">
 
-      <h4 id="idMateria" class="modal-title">Agregar Insumo</h4>
+      <h4 class="modal-title">Editar Insumo</h4>
       <button type="button" class="close" data-dismiss="modal">&times;</button>
 
       </div>
@@ -501,7 +501,7 @@ MODAL EDITAR INSUMO
 
         <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Salir</button>
 
-        <button type="submit" class="btn btn-primary">Guardar Insumo</button>
+        <button type="submit" class="btn btn-primary">Editar Insumo</button>
 
       </div>
 

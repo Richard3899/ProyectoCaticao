@@ -46,7 +46,7 @@ class ControladorMaquinas{
 					Swal.fire({
 					
 						icon: "success",
-						title: "¡El maquina ha sido guardado correctamente!",
+						title: "¡El maquina ha sido guardada correctamente!",
 						showConfirmButton: false,
 						timer: 1500
 					
@@ -95,7 +95,7 @@ class ControladorMaquinas{
 					Swal.fire({
 					
 						icon: "success",
-						title: "¡El maquina ha sido editado correctamente!",
+						title: "¡El maquina ha sido editada correctamente!",
 						showConfirmButton: false,
 						timer: 1500
 					
@@ -135,7 +135,7 @@ class ControladorMaquinas{
 				Swal.fire({
 				
 					icon: "success",
-					title: "¡El maquina ha sido eliminado correctamente!",
+					title: "¡El maquina ha sido eliminada correctamente!",
 					showConfirmButton: false,
 					timer: 1500
 				

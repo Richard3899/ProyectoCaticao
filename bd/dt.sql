@@ -1,7 +1,7 @@
 use caticao;
 
 INSERT INTO `marca` (`idMarca`, `descripcion`) VALUES
-	(1, 'GLORIA'),(2, 'DULFINA');
+	(1, 'GLORIA'),(2, 'DULFINA'),(3, 'SAFE');
 
 INSERT INTO `tipoproducto` (`idTipoProducto`, `descripcion`) VALUES
 	(1, 'Intermedio'),
@@ -42,7 +42,13 @@ INSERT INTO `empleado` (`idEmpleado`, `nombre`, `apellido`, `direccion`, `telefo
 
 INSERT INTO `materia` (`idMateria`, `codigo`, `nombre`, `descripcion`, `precio`, `cantidad`, `imagen`, `idUnidadMedida`, `idMarca`, `idTipoMateria`) VALUES
 	(1, 'LC-12', 'LECHE', 'SIN LACTOSA', 55.00, 12.00, '', 2, 1, 1),
-	(2, 'CJ-1245', 'CAJAS', 'DE CARTON', 15.00, 100.00, '', 3, 4, 2);
+	(2, 'CJ-1245', 'CAJAS', 'DE CARTON', 15.00, 100.00, '', 3, 3, 2);
 
 INSERT INTO `maquina` (`idMaquina`, `codigo`, `nombre`, `serie`, `modelo`, `descripcion`, `marca`, `precio`, `añoCompra`, `capacidad`, `potencia`, `vidaUtil`) VALUES
 	(1, 'SL-0002', 'Seleccionadora', 'SL9212', 'MD-2022', 'Selecciona y limpia la materia prima', 'KAT', 15000.00, 2022, 60.00, 1.00, 5);
+
+INSERT INTO `gastoadmin` (`idGastoAdmin`, `descripcion`, `precio`, `idUnidadMedida`, `idTipoCosto`, `idDesembolso`) VALUES
+	(1, 'Gasto Administrativo 1', 70.00, 1, 1, 1),
+	(2, 'Costo de Venta 1', 15.00, 3, 2, 2),
+	(3, 'Costo de Marketing 1', 10.00, 3, 2, 3),
+	(4, 'Costo Operativo 1', 12.00, 3, 1, 4);

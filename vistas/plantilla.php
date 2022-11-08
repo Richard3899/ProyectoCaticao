@@ -40,6 +40,10 @@ session_start();
          $_GET["ruta"] == "materiales" ||
          $_GET["ruta"] == "maquinas" ||
          $_GET["ruta"] == "empleados" ||
+         $_GET["ruta"] == "gastoadmin" ||
+         $_GET["ruta"] == "costoventa" ||
+         $_GET["ruta"] == "costomarketing" ||
+         $_GET["ruta"] == "costooperativo" ||
          $_GET["ruta"] == "salir"){
 
         include "modulos/".$_GET["ruta"].".php";
@@ -77,6 +81,10 @@ session_start();
 <script src="vistas/js/marcas.js"></script>
 <script src="vistas/js/maquinas.js"></script>
 <script src="vistas/js/empleados.js"></script>
+<script src="vistas/js/gastoadmin.js"></script>
+<script src="vistas/js/costoventa.js"></script>
+<script src="vistas/js/costomarketing.js"></script>
+<script src="vistas/js/costooperativo.js"></script>
 
 </body>
 
