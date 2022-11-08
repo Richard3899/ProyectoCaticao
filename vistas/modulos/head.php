@@ -8,20 +8,26 @@
   <!--=====================================
   PLUGINS DE CSS
   ======================================-->
-
+  
+  <link href="vistas\plugins\font-awesome-4.7.0/css/font-awesome.css" rel="stylesheet"/>
 
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
   <!-- Font Awesome -->
-  <link rel="stylesheet" href="vistas/plugins/fontawesome-free/css/all.min.css">
+  <link rel="stylesheet" href="vistas/plugins/fontawesome-free/css/all.css">
   <!-- SweetAlert2 -->
   <link rel="stylesheet" href="vistas/plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css">
   <!-- Toastr -->
   <link rel="stylesheet" href="vistas/plugins/toastr/toastr.min.css">
+  <!-- Select2 -->
+  <link rel="stylesheet" href="vistas/plugins/select2/css/select2.min.css">
+  <link rel="stylesheet" href="vistas/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="vistas/dist/css/adminlte.css">
 
- 
+  <link rel="stylesheet" href="vistas/css/plantilla.css">
+
+
   <!-- DataTables -->
   <link rel="stylesheet" href="vistas/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
   <link rel="stylesheet" href="vistas/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
@@ -41,6 +47,7 @@
   <link rel="stylesheet" href="vistas/plugins/daterangepicker/daterangepicker.css">
   <!-- summernote -->
   <link rel="stylesheet" href="vistas/plugins/summernote/summernote-bs4.min.css">
+
 
 
   <!--=====================================
@@ -74,5 +81,13 @@
   <script src="vistas/plugins/datatables-buttons/js/buttons.html5.min.js"></script>
   <script src="vistas/plugins/datatables-buttons/js/buttons.print.min.js"></script>
   <script src="vistas/plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
+
+  <!-- Select2 -->
+  <script src="vistas/plugins/select2/js/select2.full.min.js"></script>
+
+
+
+
+  
 
 </head>

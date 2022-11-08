@@ -32,7 +32,6 @@
 
       </button>
         
-        
       </div>
       <div class="card-body">
 
@@ -152,28 +151,28 @@ MODAL AGREGAR INSUMO
           <div class="form-group col-sm">
             
             <div class="input-group">
-            
-                <div class="input-group-prepend">
-                <span class="input-group-text"><i class="fas fa-ruler"></i></span>
-                </div>
+                              
+                            
+            <select class="form-grupo select2 input-lg fa" style="width: 100%;" id="nuevaUnidadMedida" name="nuevaUnidadMedida" required>
+                                                        
+            <option value=""> ◈ Unidad de Medida
+                     
+              </option>
 
-                <select class="form-control input-lg" id="nuevaUnidadMedida" name="nuevaUnidadMedida" required>
-                
-                <option value="">Unidad de Medida</option>
+            <?php 
+            $item = null;
+            $valor = null;
 
-                <?php 
-                $item = null;
-                $valor = null;
+            $unidadmedida = ControladorUnidadMedida::ctrMostrarUnidadMedida($item,$valor);
 
-                $unidadmedida = ControladorUnidadMedida::ctrMostrarUnidadMedida($item,$valor);
+            foreach($unidadmedida as $key=> $value){ 
+              echo '<option value="'.$value["idUnidadMedida"].'">'.$value["descripcion"].'</option>';
+            }
 
-                foreach($unidadmedida as $key=> $value){ 
-                  echo '<option value="'.$value["idUnidadMedida"].'">'.$value["descripcion"].'</option>';
-                }
+            ?>
 
-                ?>
-
-              </select>
+            </select>
+  
 
             </div>
 
