@@ -150,14 +150,15 @@ MODAL AGREGAR INSUMO
 
           <div class="form-group col-sm">
             
-            <div class="input-group">
-                              
-                            
-            <select class="form-grupo select2 input-lg fa" style="width: 100%;" id="nuevaUnidadMedida" name="nuevaUnidadMedida" required>
-                                                        
-            <option value=""> ◈ Unidad de Medida
-                     
-              </option>
+          <div class="input-group">
+            
+            <div class="input-group-prepend">
+            <span class="input-group-text"><i class="fas fa-ruler"></i></span>
+            </div>
+
+            <select class="form-control input-lg" id="nuevaUnidadMedida" name="nuevaUnidadMedida" required>
+            
+            <option value="">Unidad de Medida</option>
 
             <?php 
             $item = null;
@@ -171,10 +172,9 @@ MODAL AGREGAR INSUMO
 
             ?>
 
-            </select>
-  
+          </select>
 
-            </div>
+        </div>
 
           </div>
 
