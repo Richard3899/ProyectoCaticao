@@ -31,6 +31,10 @@ INSERT INTO `desembolso` (`idDesembolso`, `descripcion`) VALUES
 	(3, 'Costos de Marketing'),
 	(4, 'Costos Operativos');
 
+INSERT INTO `movimiento` (`idMovimiento`, `descripcion`) VALUES
+	(1, 'Ingreso'),
+	(2, 'Salida');
+
 INSERT INTO `producto` (`idProducto`, `codigo`, `nombre`, `descripcion`, `cantidad`, `imagen`, `idUnidadMedida`, `idTipoProducto`) VALUES
 	(1, '123456', 'Chocolate con pasa', '50% cacao', 20.00, NULL, 3, 2);
 
@@ -43,6 +47,10 @@ INSERT INTO `empleado` (`idEmpleado`, `nombre`, `apellido`, `direccion`, `telefo
 INSERT INTO `materia` (`idMateria`, `codigo`, `nombre`, `descripcion`, `precio`, `cantidad`, `imagen`, `idUnidadMedida`, `idMarca`, `idTipoMateria`) VALUES
 	(1, 'LC-12', 'LECHE', 'SIN LACTOSA', 55.00, 12.00, '', 2, 1, 1),
 	(2, 'CJ-1245', 'CAJAS', 'DE CARTON', 15.00, 100.00, '', 3, 3, 2);
+    
+INSERT INTO `inventariomateria` (`idInventarioMateria`,`stock`) VALUES
+	(1,0),
+	(2,0);
 
 INSERT INTO `maquina` (`idMaquina`, `codigo`, `nombre`, `serie`, `modelo`, `descripcion`, `marca`, `precio`, `añoCompra`, `capacidad`, `potencia`, `vidaUtil`) VALUES
 	(1, 'SL-0002', 'Seleccionadora', 'SL9212', 'MD-2022', 'Selecciona y limpia la materia prima', 'KAT', 15000.00, 2022, 60.00, 1.00, 5);

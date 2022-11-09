@@ -196,19 +196,6 @@ CREATE TABLE materia (
 );
 
 
-
-
-
--- -----------------------------------------------------
--- Table tipomovimiento
--- -----------------------------------------------------
-
-
-CREATE TABLE tipomovimiento (
-  idTipoMovimiento INT  AUTO_INCREMENT primary key,
-  descripcion VARCHAR(50) 
-);
-
 -- -----------------------------------------------------
 -- Table movimiento
 -- -----------------------------------------------------
@@ -216,9 +203,7 @@ CREATE TABLE tipomovimiento (
 
 CREATE TABLE movimiento (
   idMovimiento INT  AUTO_INCREMENT primary key,
-  descripcion VARCHAR(100) ,
-  fecha DATETIME ,
-  idTipoMovimiento INT REFERENCES tipomovimiento (idTipoMovimiento) 
+  descripcion VARCHAR(100)
 );
 
 
@@ -311,13 +296,13 @@ CREATE TABLE gastoadminpormes (
 
 CREATE TABLE MovimientoMateria (
   idMovimientoMateria INT  AUTO_INCREMENT primary key,
-  cantidad DECIMAL(10,2) ,
+  ingreso DECIMAL(10,2) ,
+  salida DECIMAL(10,2) ,
   observacion VARCHAR(50) ,
   fecha DATE ,
-  hora TIME ,
-  estado VARCHAR(50) ,
+  hora TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP ,
   idMateria INT REFERENCES Materia (idMateria),
-  idMovimiento int REFERENCES Movimiento (idMovimiento)
+  idMovimiento INT REFERENCES Movimiento (idMovimiento)
 );
 
 -- -----------------------------------------------------
@@ -353,7 +338,6 @@ CREATE TABLE MovimientoProducto (
   observacion VARCHAR(50) ,
   fecha DATE ,
   hora TIME ,
-  estado VARCHAR(50) ,
   lote VARCHAR(50) ,
   idProducto INT REFERENCES Producto (idProducto),
   idMovimiento INT REFERENCES Movimiento (idMovimiento)
@@ -388,7 +372,6 @@ CREATE TABLE MovimientoMaquina (
   observacion VARCHAR(50) ,
   fecha DATE ,
   hora TIME ,
-  estado VARCHAR(50) ,
   lote VARCHAR(50) ,
   condicion VARCHAR(50) ,
   idMaquina INT REFERENCES Maquina (idMaquina),
@@ -555,8 +538,6 @@ alter Table materia add foreign key (idMarca) REFERENCES  marca (idMarca);
 
 alter Table unidadmedida add foreign key (idTipoUnidad) REFERENCES  tipounidad  (idTipoUnidad);
 
-alter Table movimiento add foreign key (idTipoMovimiento) REFERENCES  tipomovimiento (idTipoMovimiento);
-
 alter Table movimientoproducto add foreign key (idProducto) REFERENCES producto (idProducto);
 alter Table MovimientoProducto add foreign key (idMovimiento) REFERENCES Movimiento (idMovimiento);
 
@@ -571,15 +552,13 @@ alter Table Producto add foreign key (idUnidadMedida) REFERENCES unidadmedida (i
 alter Table Producto add foreign key (idTipoProducto) REFERENCES TipoProducto (idTipoProducto);
 
 
-  alter Table MovimientoMateria add foreign key (idMateria) REFERENCES Materia (idMateria);
-  alter Table MovimientoMateria add foreign key (idMovimiento) REFERENCES Movimiento (idMovimiento);
+alter Table MovimientoMateria add foreign key (idMateria) REFERENCES Materia (idMateria);
+alter Table MovimientoMateria add foreign key (idMovimiento) REFERENCES Movimiento (idMovimiento);
 
 
-  alter Table InventarioMateria add foreign key (idMateria) REFERENCES Materia (idMateria);
+alter Table InventarioMateria add foreign key (idMateria) REFERENCES Materia (idMateria);
 
-  alter Table InventarioProducto add foreign key (idProducto) REFERENCES Producto (idProducto);
-
-
+alter Table InventarioProducto add foreign key (idProducto) REFERENCES Producto (idProducto);
 
  alter Table ManoObra add foreign key (idEmpleado) REFERENCES Empleado (idEmpleado);
  alter Table ManoObra add foreign key (idMaquina) REFERENCES Maquina (idMaquina);

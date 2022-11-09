@@ -26,7 +26,7 @@
             
           </li>
 
-          <li class="nav-item menu-open">
+          <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-pen"></i>
               <p>
@@ -63,7 +63,7 @@
                   <p>Marcas</p>
                 </a>
               </li>
-            </ul>
+               </ul>
               </li>
 
               <li class="nav-item">
@@ -136,8 +136,37 @@
                 Inventario
                 <i class="right fas fa-angle-left"></i>
               </p>
-              
             </a>
+
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="inventarioinsumos" class="nav-link">
+                <i class="nav-icon fas fa-angle-double-right"></i>
+                  <p>Inventario Insumos</p>
+                </a>
+              </li>
+
+              <li class="nav-item">
+                <a href="inventariomateriales" class="nav-link">
+                <i class="nav-icon fas fa-angle-double-right"></i>
+                  <p>Inventario Materiales</p>
+                </a>
+              </li>
+
+              <li class="nav-item">
+                <a href="inventarioproductos" class="nav-link">
+                <i class="nav-icon fas fa-angle-double-right"></i>
+                  <p>Inventario Productos</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="inventariomaquinas" class="nav-link">
+                <i class="nav-icon fas fa-angle-double-right"></i>
+                  <p>Inventario Maquinas</p>
+                </a>
+              </li>
+
+            </ul>
             
           </li>
 

@@ -44,6 +44,7 @@ session_start();
          $_GET["ruta"] == "costoventa" ||
          $_GET["ruta"] == "costomarketing" ||
          $_GET["ruta"] == "costooperativo" ||
+         $_GET["ruta"] == "inventarioinsumos" ||
          $_GET["ruta"] == "salir"){
 
         include "modulos/".$_GET["ruta"].".php";
@@ -85,6 +86,7 @@ session_start();
 <script src="vistas/js/costoventa.js"></script>
 <script src="vistas/js/costomarketing.js"></script>
 <script src="vistas/js/costooperativo.js"></script>
+<script src="vistas/js/inventarioinsumos.js"></script>
 
 </body>
 

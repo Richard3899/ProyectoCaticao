@@ -169,8 +169,12 @@ CREATE PROCEDURE `insertar_insumo` (    in codigoI VARCHAR(20),
                                         in precioI DECIMAL(10,2),
                                         in imagenI VARCHAR(50))
 BEGIN
+    insert into inventariomateria (stock)
+				  values (0);
+                  
 	insert into materia (codigo,nombre,descripcion,idUnidadMedida,idMarca,cantidad,precio,imagen,idTipoMateria)
 				  values (codigoI,nombreI,descripcionI,idUnidadMedidaI,idMarcaI,cantidadI,precioI,imagenI,1);
+                  
 END$$
 DELIMITER ;
 
@@ -232,6 +236,8 @@ CREATE PROCEDURE `insertar_material` (  in codigoI VARCHAR(20),
                                         in precioI DECIMAL(10,2),
                                         in imagenI VARCHAR(50))
 BEGIN
+    insert into inventariomateria (stock)
+				  values (0);
 	insert into materia (codigo,nombre,descripcion,idUnidadMedida,idMarca,cantidad,precio,imagen,idTipoMateria)
 				  values (codigoI,nombreI,descripcionI,idUnidadMedidaI,idMarcaI,cantidadI,precioI,imagenI,2);
 END$$
@@ -599,4 +605,55 @@ BEGIN
 END$$
 DELIMITER ;
 
+-- Procedimientos almacenados de mostrar inventario de insumos --
+
+DROP procedure IF EXISTS `mostrar_inventarioinsumos`;
+DELIMITER $$
+USE `caticao`$$
+CREATE PROCEDURE `mostrar_inventarioinsumos` ()
+BEGIN
+	Select * from inventariomateria im 
+             right join materia m on m.idMateria=im.idMateria
+             where m.idTipoMateria=1;
+END$$
+DELIMITER ;
+
+-- Procedimientos almacenados de ingreso y salida de insumos --
+
+DROP procedure IF EXISTS `insertar_ingresoinsumo`;
+DELIMITER $$
+USE `caticao`$$
+CREATE PROCEDURE `insertar_ingresoinsumo` (     in idMateriaI INT,
+                                                in ingresoI double(10,2),
+                                                in observacionI varchar(50),
+                                                in fechaI date)
+BEGIN
+
+    UPDATE inventariomateria SET stock = stock + ingresoI, idMateria=idMateriaI
+						   WHERE idInventarioMateria=idMateriaI;
+                           
+    insert into movimientomateria (idMateria,ingreso,salida,observacion,fecha,idMovimiento)
+				           values (idMateriaI,ingresoI,0,observacionI,fechaI,1);
+
+END$$
+DELIMITER ;
+
+
+DROP procedure IF EXISTS `insertar_salidainsumo`;
+DELIMITER $$
+USE `caticao`$$
+CREATE PROCEDURE `insertar_salidainsumo` (      in idMateriaI INT,
+                                                in salidaI double(10,2),
+                                                in observacionI varchar(50),
+                                                in fechaI date)
+BEGIN
+     UPDATE inventariomateria SET stock = stock - salidaI, idMateria=idMateriaI
+						   WHERE idInventarioMateria=idMateriaI;
+	insert into movimientomateria (idMateria,ingreso,salida,observacion,fecha,idMovimiento)
+				           values (idMateriaI,0,salidaI,observacionI,fechaI,1);
+						
+    
+
+END$$
+DELIMITER ;
 

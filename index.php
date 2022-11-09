@@ -17,6 +17,7 @@ require_once "controladores/gastoadmin.controlador.php";
 require_once "controladores/costoventa.controlador.php";
 require_once "controladores/costomarketing.controlador.php";
 require_once "controladores/costooperativo.controlador.php";
+require_once "controladores/inventarioinsumos.controlador.php";
 
 require_once "modelos/usuarios.modelo.php";
 require_once "modelos/marcas.modelo.php";
@@ -33,6 +34,7 @@ require_once "modelos/gastoadmin.modelo.php";
 require_once "modelos/costoventa.modelo.php";
 require_once "modelos/costomarketing.modelo.php";
 require_once "modelos/costooperativo.modelo.php";
+require_once "modelos/inventarioinsumos.modelo.php";
 
 $plantilla = new ControladorPlantilla();
 $plantilla -> ctrPlantilla();
