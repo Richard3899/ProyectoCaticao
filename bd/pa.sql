@@ -650,7 +650,7 @@ BEGIN
      UPDATE inventariomateria SET stock = stock - salidaI, idMateria=idMateriaI
 						   WHERE idInventarioMateria=idMateriaI;
 	insert into movimientomateria (idMateria,ingreso,salida,observacion,fecha,idMovimiento)
-				           values (idMateriaI,0,salidaI,observacionI,fechaI,1);
+				           values (idMateriaI,0,salidaI,observacionI,fechaI,2);
 						
     
 
