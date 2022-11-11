@@ -22,6 +22,13 @@ class TablaMateriales{
 
   		$materiales = Controladormateriales::ctrMostrarMateriales($item, $valor);	
 		
+		if(count($materiales) == 0){
+
+			echo '{"data": []}';
+
+			return;
+		}
+		
   		$datosJson = '{
 		  "data": [';
 

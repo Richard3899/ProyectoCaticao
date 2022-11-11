@@ -22,6 +22,13 @@ class TablaCostoOperativo{
 
   		$costooperativo = ControladorCostoOperativo::ctrMostrarCostoOperativo($item, $valor);	
 		
+		if(count($costooperativo) == 0){
+
+			echo '{"data": []}';
+
+			return;
+		}
+
   		$datosJson = '{
 		  "data": [';
 

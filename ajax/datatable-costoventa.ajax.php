@@ -22,6 +22,13 @@ class TablaCostoVenta{
 
   		$costoventa = ControladorCostoVenta::ctrMostrarCostoVenta($item, $valor);	
 		
+		if(count($costoventa) == 0){
+
+			echo '{"data": []}';
+
+			return;
+		}
+
   		$datosJson = '{
 		  "data": [';
 

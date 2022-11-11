@@ -16,7 +16,14 @@ class TablaMaquinas{
 		$item = null;
     	$valor = null;
 
-  		$maquinas = ControladorMaquinas::ctrMostrarMaquinas($item, $valor);	
+  		$maquinas = ControladorMaquinas::ctrMostrarMaquinas($item, $valor);
+		  
+		if(count($maquinas) == 0){
+
+			echo '{"data": []}';
+
+			return;
+		}	
 		
   		$datosJson = '{
 		  "data": [';

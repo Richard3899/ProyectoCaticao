@@ -22,6 +22,13 @@ class TablaCostoMarketing{
 
   		$costomarketing = ControladorCostoMarketing::ctrMostrarCostoMarketing($item, $valor);	
 		
+		if(count($costomarketing) == 0){
+
+			echo '{"data": []}';
+
+			return;
+		}
+
   		$datosJson = '{
 		  "data": [';
 

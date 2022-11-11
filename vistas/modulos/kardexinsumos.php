@@ -6,7 +6,7 @@
     <div class="container-fluid">
       <div class="row mb-2">
         <div class="col-sm-6">
-          <h1>Inventario de Insumos</h1>
+          <h1>Kardex de Insumos</h1>
         </div>
         <div class="col-sm-6">
           <ol class="breadcrumb float-sm-right">
@@ -26,41 +26,19 @@
       <div class="card-header">
         <div class="form-group">
 
-            <button class="btn btn-success m-2" data-toggle="modal" data-target="#modalIngresoInsumo">
+            <a type="button" class="btn btn-secondary m-1" href="inventarioinsumos">
                 
-                Ingreso Insumo
-
-            </button>
-        
-            <button class="btn btn-primary" data-toggle="modal" data-target="#modalSalidaInsumo">
-                
-                Salida Insumo
-
-            </button>
-
-
-            
-        <div class="float-right">
-          
-            <a type="button" class="btn btn-info m-2" href="kardexinsumos" >
-                
-               Kardex de Insumo
+                Volver al Inventario
 
             </a>
-          
 
         </div>
-        </div>
-
-      
-      
-
 
         
       </div>
       <div class="card-body">
 
-      <table class="table table-bordered table-striped dt-responsive tablaInventarioInsumos" width="100%">
+      <table class="table table-bordered table-striped dt-responsive tablaKardexInsumos" width="100%">
        
       <thead>
        
@@ -68,8 +46,13 @@
          
          <th style="width:10px">#</th>
          <th>Nombre</th>
-         <th>Stock</th>
-
+         <th>Tipo de Transacción</th>
+         <th>Descripción de Transacción</th>
+         <th>Fecha</th>
+         <th>Hora</th>
+         <th>ingreso</th>
+         <th>salida</th>
+         <th>saldo</th>
        </tr> 
 
       </thead>

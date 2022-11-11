@@ -20,6 +20,13 @@ class TablaMarcas{
     	$valor = null;
 
   		$marcas = ControladorMarcas::ctrMostrarMarcas($item, $valor);	
+
+		if(count($marcas) == 0){
+
+			echo '{"data": []}';
+
+			return;
+		}		
 		
   		$datosJson = '{
 		  "data": [';

@@ -23,6 +23,13 @@ class TablaEmpleados{
 
   		$empleados = ControladorEmpleados::ctrMostrarEmpleados($item, $valor);	
 		
+		if(count($empleados) == 0){
+
+			echo '{"data": []}';
+
+			return;
+		}
+
   		$datosJson = '{
 		  "data": [';
 

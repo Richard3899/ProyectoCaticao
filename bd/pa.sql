@@ -657,3 +657,31 @@ BEGIN
 END$$
 DELIMITER ;
 
+-- Procedimientos almacenados de mostrar Movimiento --
+DROP procedure IF EXISTS `mostrar_movimiento`;
+DELIMITER $$
+USE `caticao`$$
+CREATE PROCEDURE `mostrar_movimiento` ()
+BEGIN
+
+Select * from movimiento;
+
+END$$
+DELIMITER ;
+
+-- Procedimientos almacenados de mostrar kardex de insumos --
+DROP procedure IF EXISTS `mostrar_kardexinsumos`;
+DELIMITER $$
+USE `caticao`$$
+CREATE PROCEDURE `mostrar_kardexinsumos` ()
+BEGIN
+		Select mm.idMateria,m.nombre,mm.idMovimiento,mv.descripcion,mm.observacion,mm.fecha,DATE_FORMAT(mm.hora, "%I:%i:%s") AS hora,
+				mm.ingreso,mm.salida ,SUM(+ingreso-salida) 
+				OVER(ORDER BY mm.fecha ASC ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW)
+				AS saldo from movimientomateria mm 
+				inner join materia m on m.idMateria=mm.idMateria
+				inner join movimiento mv on mv.idMovimiento=mm.idMovimiento
+				where m.idTipoMateria=1;
+END$$
+DELIMITER ;
+

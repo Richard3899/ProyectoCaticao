@@ -22,6 +22,13 @@ class TablaGastoAdmin{
 
   		$gastoadmin = ControladorGastoAdmin::ctrMostrarGastoAdmin($item, $valor);	
 		
+		if(count($gastoadmin) == 0){
+
+			echo '{"data": []}';
+
+			return;
+		}
+
   		$datosJson = '{
 		  "data": [';
 

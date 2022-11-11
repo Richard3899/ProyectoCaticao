@@ -1,6 +1,9 @@
 <?php
-require_once "../controladores/inventarioinsumos.controlador.php";
-require_once "../modelos/inventarioinsumos.modelo.php";
+require_once "../controladores/kardexinsumos.controlador.php";
+require_once "../modelos/kardexinsumos.modelo.php";
+
+require_once "../controladores/movimiento.controlador.php";
+require_once "../modelos/movimiento.modelo.php";
 
 require_once "../controladores/insumos.controlador.php";
 require_once "../modelos/insumos.modelo.php";
@@ -11,20 +14,20 @@ require_once "../modelos/marcas.modelo.php";
 require_once "../controladores/unidadmedida.controlador.php";
 require_once "../modelos/unidadmedida.modelo.php";
 
-class TablaInventarioInsumos{
+class TablaKardexInsumos{
 
  	/*=============================================
  	 MOSTRAR LA TABLA DE INSUMOS
   	=============================================*/ 
 
-	public function mostrarTablaInventarioInsumos(){
+	public function mostrarTablaKardexInsumos(){
 
 		$item = null;
     	$valor = null;
 
-  		$inventarioinsumos = ControladorInventarioInsumos::ctrMostrarInventarioInsumos($item, $valor);	
+  		$kardexinsumos = ControladorKardexInsumos::ctrMostrarKardexInsumos($item, $valor);	
 		
-		if(count($inventarioinsumos) == 0){
+		if(count($kardexinsumos) == 0){
 
 			echo '{"data": []}';
 
@@ -34,7 +37,7 @@ class TablaInventarioInsumos{
   		$datosJson = '{
 		  "data": [';
 
-		  for($i = 0; $i < count($inventarioinsumos); $i++){
+		  for($i = 0; $i < count($kardexinsumos); $i++){
 
 
 			/*=============================================
@@ -42,7 +45,7 @@ class TablaInventarioInsumos{
   			=============================================*/ 
 
 		  	$item1 = "idMateria";
-		  	$valor1 = $inventarioinsumos[$i]["idMateria"];
+		  	$valor1 = $kardexinsumos[$i]["idMateria"];
 
 		  	$insumos = ControladorInsumos::ctrMostrarInsumos($item1, $valor1);
 
@@ -66,12 +69,27 @@ class TablaInventarioInsumos{
 
 		  	$unidadmedida = ControladorUnidadMedida::ctrMostrarUnidadMedida($item3, $valor3);
 
-			$stock=$inventarioinsumos[$i]["stock"] ?? 0;
+			$stock=$kardexinsumos[$i]["stock"] ?? 0;
+
+			/*=============================================
+ 	 		TRAEMOS EL MOVIMIENTO
+  			=============================================*/ 
+
+		  	$item4 = "idMovimiento";
+		  	$valor4 = $kardexinsumos[$i]["idMovimiento"];
+
+		  	$movimiento = ControladorMovimiento::ctrMostrarMovimiento($item4, $valor4);
 
 		  	$datosJson .='[
 			      "'.($i+1).'",
 				  "'.$insumos["nombre"].' - '.$marcas["descripcion"].'",
-			      "'.$stock.' - '.$unidadmedida["descripcion"].'"
+				  "'.$movimiento["descripcion"].'",
+			      "'.$kardexinsumos[$i]["observacion"].'",
+				  "'.$kardexinsumos[$i]["fecha"].'",
+				  "'.$kardexinsumos[$i]["hora"].'",
+				  "'.$kardexinsumos[$i]["ingreso"].'",
+				  "'.$kardexinsumos[$i]["salida"].'",
+				  "'.$kardexinsumos[$i]["saldo"].'"
 			    ],';
 
 		  }
@@ -93,5 +111,5 @@ class TablaInventarioInsumos{
 /*=============================================
 ACTIVAR TABLA DE INSUMOS
 =============================================*/ 
-$activarInventarioInsumos = new TablaInventarioInsumos();
-$activarInventarioInsumos -> mostrarTablaInventarioInsumos();
+$activarKardexInsumos = new TablaKardexInsumos();
+$activarKardexInsumos -> mostrarTablaKardexInsumos();

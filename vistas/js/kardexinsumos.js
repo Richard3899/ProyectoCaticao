@@ -1,6 +1,6 @@
 
-$('.tablaInventarioInsumos').DataTable( {
-    "ajax": "ajax/datatable-inventarioinsumos.ajax.php",
+$('.tablaKardexInsumos').DataTable( {
+    "ajax": "ajax/datatable-kardexinsumos.ajax.php",
     "deferRender": true,
 	"retrieve": true,
 	"processing": true,

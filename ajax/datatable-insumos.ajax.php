@@ -20,7 +20,14 @@ class TablaInsumos{
 		$item = null;
     	$valor = null;
 
-  		$insumos = ControladorInsumos::ctrMostrarInsumos($item, $valor);	
+  		$insumos = ControladorInsumos::ctrMostrarInsumos($item, $valor);
+		
+		if(count($insumos) == 0){
+
+			echo '{"data": []}';
+
+			return;
+		}
 		
   		$datosJson = '{
 		  "data": [';

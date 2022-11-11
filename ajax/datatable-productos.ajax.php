@@ -20,6 +20,13 @@ class TablaProductos{
 
   		$productos = ControladorProductos::ctrMostrarProductos($item, $valor);	
 		
+		if(count($productos) == 0){
+
+			echo '{"data": []}';
+
+			return;
+		}
+
   		$datosJson = '{
 		  "data": [';
 

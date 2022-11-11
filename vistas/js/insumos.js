@@ -1,12 +1,11 @@
-
 $('.tablaInsumos').DataTable( {
     "ajax": "ajax/datatable-insumos.ajax.php",
     "deferRender": true,
 	"retrieve": true,
 	"processing": true,
-	 "language": {
+	"language": {
 
-			"sProcessing":     "",
+			"sProcessing":     "Procesando...",
 			"sLengthMenu":     "Mostrar _MENU_ registros",
 			"sZeroRecords":    "No se encontraron resultados",
 			"sEmptyTable":     "Ningún dato disponible en esta tabla",
@@ -17,7 +16,7 @@ $('.tablaInsumos').DataTable( {
 			"sSearch":         "Buscar:",
 			"sUrl":            "",
 			"sInfoThousands":  ",",
-			"sLoadingRecords": "Ningún dato disponible en esta tabla",
+			"sLoadingRecords": "Cargando...",
 			"oPaginate": {
 			"sFirst":    "Primero",
 			"sLast":     "Último",
