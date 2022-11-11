@@ -37,9 +37,16 @@ class TablaMarcas{
 		  	$item2 = "idMarca";
 		  	$valor2 = $marcas[$i]["idMarca"];
 
+
+			/*=============================================
+ 	 		TRAEMOS A INSUMOS
+  			=============================================*/ 
 		  	$insumos = ControladorInsumos::ctrMostrarInsumos($item2, $valor2);
   
 			$v1=$insumos['idMarca'] ?? 'usado';
+			/*=============================================
+ 	 		TRAEMOS A MATERIALES
+  			=============================================*/ 
 
 			$materiales = ControladorMateriales::ctrMostrarMateriales($item2, $valor2);
   
@@ -51,11 +58,12 @@ class TablaMarcas{
   			=============================================*/
 		  	
 			if($v1!="usado" ||  $v2!="usado"){
+            /*==Botón Editar=*/
 
 				$botones =  "<div class='btn-group'><button class='btn btn-warning btnEditarMarca' idMarca='".$marcas[$i]["idMarca"]."' data-toggle='modal' data-target='#modalEditarMarca'><i class='fa fa-pen'></i></button></div>"; 
 				
 			}else{
-
+			/*==Botón Editar y Eliminar=*/
 				$botones =  "<div class='btn-group'><button class='btn btn-warning btnEditarMarca' idMarca='".$marcas[$i]["idMarca"]."' data-toggle='modal' data-target='#modalEditarMarca'><i class='fa fa-pen'></i></button><button class='btn btn-danger btnEliminarMarca' idMarca='".$marcas[$i]["idMarca"]."' descripcion='".$marcas[$i]["descripcion"]."'><i class='fa fa-times'></i></button></div>"; 
 				
 			}
