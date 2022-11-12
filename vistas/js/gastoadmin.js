@@ -2,6 +2,9 @@
 $('.tablaGastoAdmin').DataTable( {
     "ajax": "ajax/datatable-gastoadmin.ajax.php",
     "deferRender": true,
+	"columnDefs": [
+		{"className": "dt-center", "targets": "_all"}
+	  ],
 	"retrieve": true,
 	"processing": true,
 	"language": {

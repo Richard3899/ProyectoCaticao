@@ -1,5 +1,19 @@
-<!-- Navbar -->
-<nav class="main-header navbar navbar-expand navbar-dark navbar-light">
+<?php
+
+foreach ($configuracion as $key => $value){
+
+      if($value["mododark"] == 0){
+
+        echo '<nav class="main-header navbar navbar-expand navbar-dark navbar-light">';
+
+      }else{
+
+        echo '<nav class="main-header navbar navbar-expand navbar-white navbar-light">';
+
+      };
+}
+
+?>
     <!-- Left navbar links -->
     <ul class="navbar-nav">
       <li class="nav-item">
@@ -24,9 +38,21 @@
 
               }
 
-              ?>
+              foreach ($configuracion as $key => $value){
 
-                <span class="hidden-xs text-white"><?php echo $_SESSION["nombre"]; ?></span>
+                if($value["mododark"] == 0){
+          
+                  echo '<span class="hidden-xs text-white m-1">'.$_SESSION["nombre"].'</span>';
+          
+                }else{
+          
+                  echo '<span class="hidden-xs m-1">'.$_SESSION["nombre"].'</span>';
+          
+                };
+          }
+
+              ?>
+              
           </button>
           <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
             <button class="dropdown-item btnCerrarSesion" type="button">Salir</button>

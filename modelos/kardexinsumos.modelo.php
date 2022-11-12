@@ -8,7 +8,8 @@ class ModeloKardexInsumos{
 	MOSTRAR INSUMOS
 	=============================================*/
 
-	static public function mdlMostrarKardexInsumos($tabla, $item, $valor){
+	static public function mdlMostrarKardexInsumos($tabla,$item,$valor){
+
 
 		if($item != null){
 
@@ -22,14 +23,29 @@ class ModeloKardexInsumos{
 
 		}else{
 
-			$stmt = Conexion::conectar()->prepare("call mostrar_kardexinsumos");
+			$stmt = Conexion::conectar()->prepare("call mostrar_kardexinsumos($valor)");
 
 			$stmt -> execute();
 
 			return $stmt -> fetchAll();
 
 		}
-		
+
+		#$stmt -> close();
+
+		$stmt = null;
+
+	}
+
+	static public function mdlMostrarKardexInsumos2($valor){
+
+
+			$stmt = Conexion::conectar()->prepare("call mostrar_kardexinsumos($valor)");
+
+			$stmt -> execute();
+
+			return $stmt -> fetchAll();
+
 
 		#$stmt -> close();
 

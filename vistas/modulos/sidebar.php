@@ -218,6 +218,18 @@
             
           </li>
 
+          <li class="nav-item">
+            <a href="configuracion" class="nav-link">
+              <i class="nav-icon fas fa-gear"></i>
+              <p>
+                Configuración
+                <i class="right fas fa-angle-left"></i>
+              </p>
+              
+            </a>
+            
+          </li>
+
       
         </ul>
       </nav>

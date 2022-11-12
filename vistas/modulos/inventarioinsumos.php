@@ -26,35 +26,33 @@
       <div class="card-header">
         <div class="form-group">
 
-            <button class="btn btn-success m-2" data-toggle="modal" data-target="#modalIngresoInsumo">
-                
-                Ingreso Insumo
+            <div class="btn-toolbar justify-content-between m-2">
 
-            </button>
+                <div class="input-group">
+
+                <button type="button" class="btn btn-success m-1" data-toggle="modal" data-target="#modalIngresoInsumo">
+                    
+                    Ingreso Insumo
+
+                </button>
+
+                <button type="button" class="btn btn-warning m-1" data-toggle="modal" data-target="#modalSalidaInsumo">
+                    
+                    Salida Insumo
+
+                </button>
+
+                </div>
+                
+              
+                <a type="button" class="btn btn-info m-1" href="kardexinsumos" >
+                    
+                  Kardex de Insumo
+
+                </a>
+          
         
-            <button class="btn btn-primary" data-toggle="modal" data-target="#modalSalidaInsumo">
-                
-                Salida Insumo
-
-            </button>
-
-
-            
-        <div class="float-right">
-          
-            <a type="button" class="btn btn-info m-2" href="kardexinsumos" >
-                
-               Kardex de Insumo
-
-            </a>
-          
-
-        </div>
-        </div>
-
-      
-      
-
+            </div>
 
         
       </div>
@@ -125,27 +123,33 @@ MODAL INGRESO DE INSUMO
 
           <div class="row">
 
-            <!-- ENTRADA PARA SELECCIONAR INSUMO -->
+          <!-- ENTRADA PARA SELECCIONAR INSUMO -->
 
-            <div class="form-group col-sm">
+          <div class="form-group col-sm">
             
             <div class="input-group">
 
-                <select class="form-control select2 input-lg" style="width: 100%;" id="nuevoInsumoI" name="nuevoInsumoI" required>
+                <select class="form-control select input-lg" style="width: 100%;" id="nuevoInsumoI" name="nuevoInsumoI" required>
                 
                 <option value="">Seleccionar Insumo</option>
 
                 <?php 
-                $item = null;
-                $valor = null;
+                  $item = null;
+                  $valor = null;
 
-                $insumos = ControladorInsumos::ctrMostrarInsumos($item,$valor);
+                  $insumos = ControladorInsumos::ctrMostrarInsumos($item,$valor);
 
-                foreach($insumos as $key=> $value){ 
-                  echo '<option value="'.$value["idMateria"].'">'.$value["nombre"].'</option>';
-                }
+                  foreach($insumos as $key=> $value){ 
 
-                ?>
+                    $item = "idMarca";
+                    $valor = $insumos[$key]["idMarca"];
+
+                    $marcas = ControladorMarcas::ctrMostrarMarcas($item,$valor);
+
+                    echo '<option value="'.$value["idMateria"].'">'.$value["nombre"].' - '.$marcas["descripcion"].'</option>';
+                  }
+
+                  ?>
 
               </select>
 
@@ -277,16 +281,22 @@ MODAL SALIDA DE INSUMO
                 <option value="">Seleccionar Insumo</option>
 
                 <?php 
-                $item = null;
-                $valor = null;
+                  $item = null;
+                  $valor = null;
 
-                $insumos = ControladorInsumos::ctrMostrarInsumos($item,$valor);
+                  $insumos = ControladorInsumos::ctrMostrarInsumos($item,$valor);
 
-                foreach($insumos as $key=> $value){ 
-                  echo '<option value="'.$value["idMateria"].'">'.$value["nombre"].'</option>';
-                }
+                  foreach($insumos as $key=> $value){ 
 
-                ?>
+                    $item = "idMarca";
+                    $valor = $insumos[$key]["idMarca"];
+
+                    $marcas = ControladorMarcas::ctrMostrarMarcas($item,$valor);
+
+                    echo '<option value="'.$value["idMateria"].'">'.$value["nombre"].' - '.$marcas["descripcion"].'</option>';
+                  }
+
+                  ?>
 
               </select>
 

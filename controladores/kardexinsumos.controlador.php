@@ -15,6 +15,13 @@ class ControladorKardexInsumos{
 		return $respuesta;
 	}
 
+	static public function ctrMostrarKardexInsumos2($valor){
+
+		$respuesta = ModeloKardexInsumos::MdlMostrarKardexInsumos2($valor);
+
+		return $respuesta;
+	}
+
 }
 
 

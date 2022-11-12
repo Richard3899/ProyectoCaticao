@@ -34,6 +34,9 @@ INSERT INTO `desembolso` (`idDesembolso`, `descripcion`) VALUES
 INSERT INTO `movimiento` (`idMovimiento`, `descripcion`) VALUES
 	(1, 'Ingreso'),
 	(2, 'Salida');
+    
+INSERT INTO `configuracion` (`idConfiguracion`, `mododark`) VALUES
+	(1, 1);
 
 INSERT INTO `producto` (`idProducto`, `codigo`, `nombre`, `descripcion`, `cantidad`, `imagen`, `idUnidadMedida`, `idTipoProducto`) VALUES
 	(1, '123456', 'Chocolate con pasa', '50% cacao', 20.00, NULL, 3, 2);

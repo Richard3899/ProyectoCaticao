@@ -501,6 +501,15 @@ CREATE TABLE UsuarioModulo (
   idModulo INT REFERENCES Modulo (idModulo)
 );
 
+-- -----------------------------------------------------
+-- Table Configuración
+-- -----------------------------------------------------
+
+CREATE TABLE Configuracion (
+  idConfiguracion INT  AUTO_INCREMENT primary key,
+  mododark INT 
+);
+
 
 alter Table consumoenergia add foreign key (idMaquina) REFERENCES  maquina (idMaquina);
 alter Table consumoenergia add foreign key (idTipoCosto) REFERENCES  tipocosto (idTipoCosto);

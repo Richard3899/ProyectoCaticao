@@ -11,10 +11,26 @@ session_start();
  
 ?> 
 
+<?php
 
-<body class="hold-transition skin-blue sidebar-mini dark-mode">
- 
-  <?php
+$item = null;
+$valor = null;
+
+$configuracion = ControladorConfiguracion::ctrMostrarConfiguracion($item, $valor);
+
+foreach ($configuracion as $key => $value){
+
+      if($value["mododark"] == 0){
+
+        echo '<body class="hold-transition skin-blue sidebar-mini dark-mode">';
+
+      }else{
+
+        echo '<body class="hold-transition skin-blue sidebar-mini">';
+
+      };
+}
+
 
   if(isset($_SESSION["iniciarSesion"]) && $_SESSION["iniciarSesion"] == "ok"){
 
@@ -34,6 +50,7 @@ session_start();
 
       if($_GET["ruta"] == "inicio" ||
          $_GET["ruta"] == "usuarios" ||
+         $_GET["ruta"] == "configuracion" ||
          $_GET["ruta"] == "productos" ||
          $_GET["ruta"] == "insumos" ||
          $_GET["ruta"] == "marcas" ||
@@ -77,6 +94,7 @@ session_start();
 
 <script src="vistas/js/plantilla.js"></script>
 <script src="vistas/js/usuarios.js"></script>
+<script src="vistas/js/configuracion.js"></script>
 <script src="vistas/js/productos.js"></script>
 <script src="vistas/js/insumos.js"></script>
 <script src="vistas/js/materiales.js"></script>

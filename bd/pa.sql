@@ -673,7 +673,7 @@ DELIMITER ;
 DROP procedure IF EXISTS `mostrar_kardexinsumos`;
 DELIMITER $$
 USE `caticao`$$
-CREATE PROCEDURE `mostrar_kardexinsumos` ()
+CREATE PROCEDURE `mostrar_kardexinsumos` (in idMateriaK int)
 BEGIN
 		Select mm.idMateria,m.nombre,mm.idMovimiento,mv.descripcion,mm.observacion,mm.fecha,DATE_FORMAT(mm.hora, "%I:%i:%s") AS hora,
 				mm.ingreso,mm.salida ,SUM(+ingreso-salida) 
@@ -681,7 +681,17 @@ BEGIN
 				AS saldo from movimientomateria mm 
 				inner join materia m on m.idMateria=mm.idMateria
 				inner join movimiento mv on mv.idMovimiento=mm.idMovimiento
-				where m.idTipoMateria=1;
+				where m.idTipoMateria=1 and mm.idMateria=idMateriaK;
 END$$
 DELIMITER ;
 
+
+-- Procedimientos almacenados de mostrar Configuracion --
+DROP procedure IF EXISTS `mostrar_configuracion`;
+DELIMITER $$
+USE `caticao`$$
+CREATE PROCEDURE `mostrar_configuracion` ()
+BEGIN
+		Select * from configuracion;
+END$$
+DELIMITER ;

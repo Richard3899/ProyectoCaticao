@@ -2,6 +2,9 @@
 $('.tablaMateriales').DataTable( {
     "ajax": "ajax/datatable-materiales.ajax.php",
     "deferRender": true,
+	"columnDefs": [
+		{"className": "dt-center", "targets": "_all"}
+	  ],
 	"retrieve": true,
 	"processing": true,
 	"language": {

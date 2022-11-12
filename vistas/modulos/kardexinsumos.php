@@ -24,40 +24,76 @@
     <!-- Default box -->
     <div class="card">
       <div class="card-header">
-        <div class="form-group">
 
-            <a type="button" class="btn btn-secondary m-1" href="inventarioinsumos">
-                
-                Volver al Inventario
+        <div class="row justify-content-center m-2">
+            
+              <!-- ENTRADA PARA SELECCIONAR INSUMO -->
+              <div class="form-group col-6 m-1">
+                  <select class="form-control select2" style="width: 100%;" id="InsumoK" name="InsumoK" required>
+                  
+                  <option value="0">Seleccionar Insumo</option>
 
-            </a>
+                  <?php 
+                  $item = null;
+                  $valor = null;
+
+                  $insumos = ControladorInsumos::ctrMostrarInsumos($item,$valor);
+
+                  foreach($insumos as $key=> $value){ 
+
+                    $item = "idMarca";
+                    $valor = $insumos[$key]["idMarca"];
+
+                    $marcas = ControladorMarcas::ctrMostrarMarcas($item,$valor);
+
+                    echo '<option value="'.$value["idMateria"].'">'.$value["nombre"].' - '.$marcas["descripcion"].'</option>';
+                  }
+
+                  ?>
+
+                </select>
+              </div>
+              <div class="form-group col-3">
+              <div class="row justify-content-between">
+              <div class="btn-group col m-1">
+              <button type="button" class="btn btn-primary btnKardexInsumos" id="KardexInsumos">  
+                 Buscar
+              </button>
+              </div>
+
+              <div class="btn-group col m-1">
+
+              <a type="button" class="btn btn-secondary" href="inventarioinsumos">Volver</a>
+
+              </div>
+              </div>
+              </div>
+
 
         </div>
 
-        
-      </div>
-      <div class="card-body">
+
+      <div  class="card-body">
 
       <table class="table table-bordered table-striped dt-responsive tablaKardexInsumos" width="100%">
        
-      <thead>
-       
-       <tr>
-         
-         <th style="width:10px">#</th>
-         <th>Nombre</th>
-         <th>Tipo de Transacción</th>
-         <th>Descripción de Transacción</th>
-         <th>Fecha</th>
-         <th>Hora</th>
-         <th>ingreso</th>
-         <th>salida</th>
-         <th>saldo</th>
-       </tr> 
-
-      </thead>
-
-     </table>
+       <thead>
+        
+        <tr>
+          
+          <th style="width:0px">#</th>
+          <th>Transacción</th>
+          <th>Descripción</th>
+          <th>Fecha</th>
+          <th>Hora</th>
+          <th>ingreso</th>
+          <th>salida</th>
+          <th>saldo</th>
+        </tr> 
+ 
+       </thead>
+ 
+      </table>
 
       </div>
       <!-- /.card-body -->

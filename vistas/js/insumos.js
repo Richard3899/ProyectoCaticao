@@ -1,6 +1,9 @@
 $('.tablaInsumos').DataTable( {
     "ajax": "ajax/datatable-insumos.ajax.php",
     "deferRender": true,
+	"columnDefs": [
+		{"className": "dt-center", "targets": "_all"}
+	  ],
 	"retrieve": true,
 	"processing": true,
 	"language": {

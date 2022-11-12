@@ -2,6 +2,9 @@
 $('.tablaMaquinas').DataTable( {
     "ajax": "ajax/datatable-maquinas.ajax.php",
     "deferRender": true,
+	"columnDefs": [
+		{"className": "dt-center", "targets": "_all"}
+	  ],
 	"retrieve": true,
 	"processing": true,
 	"language": {

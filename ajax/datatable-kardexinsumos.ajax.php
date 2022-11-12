@@ -22,17 +22,23 @@ class TablaKardexInsumos{
 
 	public function mostrarTablaKardexInsumos(){
 
-		$item = null;
-    	$valor = null;
+		$idInsumo=$_GET["InsumoK"];
 
-  		$kardexinsumos = ControladorKardexInsumos::ctrMostrarKardexInsumos($item, $valor);	
+  		$kardexinsumos = ControladorKardexInsumos::ctrMostrarKardexInsumos2($idInsumo);	
 		
+		if($idInsumo == 0){
+
+			echo '{"data": []}';
+
+			return;
+		}
 		if(count($kardexinsumos) == 0){
 
 			echo '{"data": []}';
 
 			return;
 		}
+
 
   		$datosJson = '{
 		  "data": [';
@@ -80,16 +86,45 @@ class TablaKardexInsumos{
 
 		  	$movimiento = ControladorMovimiento::ctrMostrarMovimiento($item4, $valor4);
 
+			$ingreso=0;
+			$salida=0;
+			$saldo=0;
+			$movimientos="";
+
+			if($kardexinsumos[$i]["ingreso"]>0){
+				
+				$ingreso =  "<p class='text-success'>".$kardexinsumos[$i]["ingreso"]."</p>";				
+			}
+
+			if($kardexinsumos[$i]["salida"]>0){
+				
+				$salida =  "<p class='text-danger'>".$kardexinsumos[$i]["salida"]."</p>";				
+			}
+
+			if($kardexinsumos[$i]["saldo"]){
+				
+				$saldo =  "<p class='text-primary'>".$kardexinsumos[$i]["saldo"]."</p>";				
+			}
+
+			if($kardexinsumos[$i]["idMovimiento"]==1){
+				
+				$movimientos =  "<p class='text-success bg-success'>".$movimiento["descripcion"]."</p>";				
+			}else{
+				$movimientos =  "<p class='text-danger bg-danger'>".$movimiento["descripcion"]."</p>";	
+			}
+
+
+
+
 		  	$datosJson .='[
 			      "'.($i+1).'",
-				  "'.$insumos["nombre"].' - '.$marcas["descripcion"].'",
-				  "'.$movimiento["descripcion"].'",
+				  "'.$movimientos.'",
 			      "'.$kardexinsumos[$i]["observacion"].'",
 				  "'.$kardexinsumos[$i]["fecha"].'",
 				  "'.$kardexinsumos[$i]["hora"].'",
-				  "'.$kardexinsumos[$i]["ingreso"].'",
-				  "'.$kardexinsumos[$i]["salida"].'",
-				  "'.$kardexinsumos[$i]["saldo"].'"
+				  "'.$ingreso.'",
+				  "'.$salida.'",
+				  "'.$saldo.'"
 			    ],';
 
 		  }

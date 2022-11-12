@@ -19,6 +19,7 @@ require_once "controladores/costomarketing.controlador.php";
 require_once "controladores/costooperativo.controlador.php";
 require_once "controladores/inventarioinsumos.controlador.php";
 require_once "controladores/kardexinsumos.controlador.php";
+require_once "controladores/configuracion.controlador.php";
 
 require_once "modelos/usuarios.modelo.php";
 require_once "modelos/marcas.modelo.php";
@@ -37,6 +38,7 @@ require_once "modelos/costomarketing.modelo.php";
 require_once "modelos/costooperativo.modelo.php";
 require_once "modelos/inventarioinsumos.modelo.php";
 require_once "modelos/kardexinsumos.modelo.php";
+require_once "modelos/configuracion.modelo.php";
 
 $plantilla = new ControladorPlantilla();
 $plantilla -> ctrPlantilla();
