@@ -1,19 +1,4 @@
-<?php
-
-foreach ($configuracion as $key => $value){
-
-      if($value["mododark"] == 0){
-
-        echo '<nav class="main-header navbar navbar-expand navbar-dark navbar-light">';
-
-      }else{
-
-        echo '<nav class="main-header navbar navbar-expand navbar-white navbar-light">';
-
-      };
-}
-
-?>
+<nav class="main-header navbar navbar-expand">
     <!-- Left navbar links -->
     <ul class="navbar-nav">
       <li class="nav-item">

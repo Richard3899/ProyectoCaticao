@@ -1,11 +1,10 @@
 <!-- Main Sidebar Container -->
-<aside class="main-sidebar sidebar-dark-primary elevation-4">
+<aside class="main-sidebar elevation-4">
     <!-- Brand Logo -->
-    <a href="#" class="brand-link">
-      <img src="vistas/img/plantilla/logo-mini.jpg" alt="Logo" class="brand-image" >
-      <span class="brand-text font-weight-light text-white">
-      Caticao
-
+    <a href="#" class="brand-link ">
+      <img src="vistas/img/plantilla/logo-mini.jpg" alt="Logo" class="brand-image ml-3" >
+      <span class="brand-text p-2 ml-3 badge badge-dark">
+      CATICAO
       </span>
     </a>
 <!-- Sidebar -->
