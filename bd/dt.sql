@@ -8,9 +8,9 @@ INSERT INTO `tipoproducto` (`idTipoProducto`, `descripcion`) VALUES
 	(2, 'Terminado');
 
 INSERT INTO `unidadmedida` (`idUnidadMedida`, `descripcion`) VALUES
-	(1, 'Kilogramos'),
-	(2, 'Litros'),
-	(3, 'Unidades');
+	(1, 'Kg'),
+	(2, 'Lt'),
+	(3, 'Niu');
 
 INSERT INTO `tipomateria` (`idTipoMateria`, `descripcion`) VALUES
 	(1, 'Insumo'),

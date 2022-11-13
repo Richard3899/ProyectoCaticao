@@ -596,9 +596,9 @@ DROP procedure IF EXISTS `insertar_costooperativo`;
 DELIMITER $$
 USE `caticao`$$
 CREATE PROCEDURE `insertar_costooperativo` (in descripcionI VARCHAR(100),
-                                        in idUnidadMedidaI INT,
-                                        in precioI DECIMAL(10,2),
-                                        in idTipoCostoI INT)
+											in idUnidadMedidaI INT,
+											in precioI DECIMAL(10,2),
+											in idTipoCostoI INT)
 BEGIN
 	insert into gastoadmin (descripcion,idUnidadMedida,precio,idTipoCosto,idDesembolso)
 				  values   (descripcionI,idUnidadMedidaI,precioI,idTipoCostoI,4);
@@ -614,7 +614,8 @@ CREATE PROCEDURE `mostrar_inventarioinsumos` ()
 BEGIN
 	Select * from inventariomateria im 
              right join materia m on m.idMateria=im.idMateria
-             where m.idTipoMateria=1;
+             where m.idTipoMateria=1
+             order by im.stock asc;
 END$$
 DELIMITER ;
 
@@ -675,9 +676,9 @@ DELIMITER $$
 USE `caticao`$$
 CREATE PROCEDURE `mostrar_kardexinsumos` (in idMateriaK int)
 BEGIN
-		Select mm.idMateria,m.nombre,mm.idMovimiento,mv.descripcion,mm.observacion,mm.fecha,DATE_FORMAT(mm.hora, "%I:%i:%s") AS hora,
+		Select mm.idMateria,m.nombre,mm.idMovimiento,mv.descripcion,mm.observacion,mm.fecha,mm.hora,
 				mm.ingreso,mm.salida ,SUM(+ingreso-salida) 
-				OVER(ORDER BY mm.fecha ASC ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW)
+				OVER(ORDER BY mm.hora ASC ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW)
 				AS saldo from movimientomateria mm 
 				inner join materia m on m.idMateria=mm.idMateria
 				inner join movimiento mv on mv.idMovimiento=mm.idMovimiento
@@ -693,5 +694,75 @@ USE `caticao`$$
 CREATE PROCEDURE `mostrar_configuracion` ()
 BEGIN
 		Select * from configuracion;
+END$$
+DELIMITER ;
+
+
+-- Procedimientos almacenados de mostrar inventario de materiales --
+
+DROP procedure IF EXISTS `mostrar_inventariomateriales`;
+DELIMITER $$
+USE `caticao`$$
+CREATE PROCEDURE `mostrar_inventariomateriales` ()
+BEGIN
+	Select * from inventariomateria im 
+             right join materia m on m.idMateria=im.idMateria
+             where m.idTipoMateria=2
+             order by im.stock asc;
+END$$
+DELIMITER ;
+
+-- Procedimientos almacenados de ingreso y salida de materiales --
+
+DROP procedure IF EXISTS `insertar_ingresomaterial`;
+DELIMITER $$
+USE `caticao`$$
+CREATE PROCEDURE `insertar_ingresomaterial` (   in idMateriaI INT,
+                                                in ingresoI double(10,2),
+                                                in observacionI varchar(50),
+                                                in fechaI date)
+BEGIN
+
+    UPDATE inventariomateria SET stock = stock + ingresoI, idMateria=idMateriaI
+						   WHERE idInventarioMateria=idMateriaI;
+                           
+    insert into movimientomateria (idMateria,ingreso,salida,observacion,fecha,idMovimiento)
+				           values (idMateriaI,ingresoI,0,observacionI,fechaI,1);
+
+END$$
+DELIMITER ;
+
+
+DROP procedure IF EXISTS `insertar_salidamaterial`;
+DELIMITER $$
+USE `caticao`$$
+CREATE PROCEDURE `insertar_salidamaterial` (    in idMateriaI INT,
+                                                in salidaI double(10,2),
+                                                in observacionI varchar(50),
+                                                in fechaI date)
+BEGIN
+     UPDATE inventariomateria SET stock = stock - salidaI, idMateria=idMateriaI
+						   WHERE idInventarioMateria=idMateriaI;
+	insert into movimientomateria (idMateria,ingreso,salida,observacion,fecha,idMovimiento)
+				           values (idMateriaI,0,salidaI,observacionI,fechaI,2);
+						
+    
+
+END$$
+DELIMITER ;
+
+-- Procedimientos almacenados de mostrar kardex de materiales --
+DROP procedure IF EXISTS `mostrar_kardexmateriales`;
+DELIMITER $$
+USE `caticao`$$
+CREATE PROCEDURE `mostrar_kardexmateriales` (in idMateriaK int)
+BEGIN
+		Select mm.idMateria,m.nombre,mm.idMovimiento,mv.descripcion,mm.observacion,mm.fecha,mm.hora,
+				mm.ingreso,mm.salida ,SUM(+ingreso-salida) 
+				OVER(ORDER BY mm.hora ASC ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW)
+				AS saldo from movimientomateria mm 
+				inner join materia m on m.idMateria=mm.idMateria
+				inner join movimiento mv on mv.idMovimiento=mm.idMovimiento
+				where m.idTipoMateria=2 and mm.idMateria=idMateriaK;
 END$$
 DELIMITER ;

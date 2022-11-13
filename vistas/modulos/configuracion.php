@@ -47,11 +47,11 @@
 
                           if($value["mododark"] != 0){
 
-                                echo '<td><button class="btn btn-success btnActivarModoDark col" idConfiguracion="'.$value["idConfiguracion"].'" mododark="0">Activado</button></td>';
+                                echo '<td><button class="btn btn-success btnActivarModoDark col" idConfiguracion="'.$value["idConfiguracion"].'" mododark="0">Activar</button></td>';
 
                           }else{
 
-                                echo '<td><button class="btn btn-danger btnActivarModoDark col" idConfiguracion="'.$value["idConfiguracion"].'" mododark="1">Desactivado</button></td>';
+                                echo '<td><button class="btn btn-danger btnActivarModoDark col" idConfiguracion="'.$value["idConfiguracion"].'" mododark="1">Desactivar</button></td>';
 
                           };
                     }
@@ -69,11 +69,12 @@
             <div class="form-group col-sm">
             
 
+
             </div>
 
             <div class="form-group col-sm">
-            
 
+                  
             </div>
 
             <div class="form-group col-sm">
@@ -83,10 +84,6 @@
 
 
           </div>
-
-
-
-
 
 
     <!-- /.card -->

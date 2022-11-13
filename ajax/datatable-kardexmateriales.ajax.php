@@ -1,12 +1,12 @@
 <?php
-require_once "../controladores/kardexinsumos.controlador.php";
-require_once "../modelos/kardexinsumos.modelo.php";
+require_once "../controladores/kardexmateriales.controlador.php";
+require_once "../modelos/kardexmateriales.modelo.php";
 
 require_once "../controladores/movimiento.controlador.php";
 require_once "../modelos/movimiento.modelo.php";
 
-require_once "../controladores/insumos.controlador.php";
-require_once "../modelos/insumos.modelo.php";
+require_once "../controladores/materiales.controlador.php";
+require_once "../modelos/materiales.modelo.php";
 
 require_once "../controladores/marcas.controlador.php";
 require_once "../modelos/marcas.modelo.php";
@@ -14,25 +14,25 @@ require_once "../modelos/marcas.modelo.php";
 require_once "../controladores/unidadmedida.controlador.php";
 require_once "../modelos/unidadmedida.modelo.php";
 
-class TablaKardexInsumos{
+class TablaKardexMateriales{
 
  	/*=============================================
- 	 MOSTRAR LA TABLA DE INSUMOS
+ 	 MOSTRAR LA TABLA DE MATERIALES
   	=============================================*/ 
 
-	public function mostrarTablaKardexInsumos(){
+	public function mostrarTablaKardexMateriales(){
 
-		$idInsumo=$_GET["InsumoK"];
+		$idMaterial=$_GET["MaterialK"];
 
-  		$kardexinsumos = ControladorKardexInsumos::ctrMostrarKardexInsumos2($idInsumo);	
+  		$kardexmateriales = ControladorKardexMateriales::ctrMostrarKardexMateriales2($idMaterial);	
 		
-		if($idInsumo == 0){
+		if($idMaterial == 0){
 
 			echo '{"data": []}';
 
 			return;
 		}
-		if(count($kardexinsumos) == 0){
+		if(count($kardexmateriales) == 0){
 
 			echo '{"data": []}';
 
@@ -43,17 +43,17 @@ class TablaKardexInsumos{
   		$datosJson = '{
 		  "data": [';
 
-		  for($i = 0; $i < count($kardexinsumos); $i++){
+		  for($i = 0; $i < count($kardexmateriales); $i++){
 
 
 			/*=============================================
- 	 		TRAEMOS AL INSUMO
+ 	 		TRAEMOS AL MATERIAL
   			=============================================*/ 
 
 		  	$item1 = "idMateria";
-		  	$valor1 = $kardexinsumos[$i]["idMateria"];
+		  	$valor1 = $kardexmateriales[$i]["idMateria"];
 
-		  	$insumos = ControladorInsumos::ctrMostrarInsumos($item1, $valor1);
+		  	$materiales = ControladorMateriales::ctrMostrarMateriales($item1, $valor1);
 
 		
 			/*=============================================
@@ -61,7 +61,7 @@ class TablaKardexInsumos{
   			=============================================*/ 
 
 		  	$item2 = "idMarca";
-		  	$valor2 = $insumos["idMarca"];
+		  	$valor2 = $materiales["idMarca"];
 
 		  	$marcas = ControladorMarcas::ctrMostrarMarcas($item2, $valor2);
 
@@ -71,7 +71,7 @@ class TablaKardexInsumos{
   			=============================================*/ 
 
 		  	$item3 = "idUnidadMedida";
-		  	$valor3 = $insumos["idUnidadMedida"];
+		  	$valor3 = $materiales["idUnidadMedida"];
 
 		  	$unidadmedida = ControladorUnidadMedida::ctrMostrarUnidadMedida($item3, $valor3);
 
@@ -80,7 +80,7 @@ class TablaKardexInsumos{
   			=============================================*/ 
 
 		  	$item4 = "idMovimiento";
-		  	$valor4 = $kardexinsumos[$i]["idMovimiento"];
+		  	$valor4 = $kardexmateriales[$i]["idMovimiento"];
 
 		  	$movimiento = ControladorMovimiento::ctrMostrarMovimiento($item4, $valor4);
 
@@ -89,22 +89,22 @@ class TablaKardexInsumos{
 			$saldo=0;
 			$movimientos="";
 
-			if($kardexinsumos[$i]["ingreso"]>0){
+			if($kardexmateriales[$i]["ingreso"]>0){
 				
-				$ingreso =  "<p class='text-success'>".$kardexinsumos[$i]["ingreso"].' '.$unidadmedida["descripcion"]."</p>";				
+				$ingreso =  "<p class='text-success'>".$kardexmateriales[$i]["ingreso"].' '.$unidadmedida["descripcion"]."</p>";				
 			}
 
-			if($kardexinsumos[$i]["salida"]>0){
+			if($kardexmateriales[$i]["salida"]>0){
 				
-				$salida =  "<p class='text-danger'>".$kardexinsumos[$i]["salida"].' '.$unidadmedida["descripcion"]."</p>";				
+				$salida =  "<p class='text-danger'>".$kardexmateriales[$i]["salida"].' '.$unidadmedida["descripcion"]."</p>";				
 			}
 
-			if($kardexinsumos[$i]["saldo"]){
+			if($kardexmateriales[$i]["saldo"]){
 				
-				$saldo =  "<p class='text-primary'>".$kardexinsumos[$i]["saldo"].' '.$unidadmedida["descripcion"]."</p>";				
+				$saldo =  "<p class='text-primary'>".$kardexmateriales[$i]["saldo"].' '.$unidadmedida["descripcion"]."</p>";				
 			}
 
-			if($kardexinsumos[$i]["idMovimiento"]==1){
+			if($kardexmateriales[$i]["idMovimiento"]==1){
 				
 				$movimientos =  "<p class='text-success bg-success'>".$movimiento["descripcion"]."</p>";				
 			}else{
@@ -116,10 +116,10 @@ class TablaKardexInsumos{
 
 		  	$datosJson .='[
 			      "'.($i+1).'",
-				  "'.$kardexinsumos[$i]["hora"].'",
+				  "'.$kardexmateriales[$i]["hora"].'",
 				  "'.$movimientos.'",
-			      "'.$kardexinsumos[$i]["observacion"].'",
-				  "'.$kardexinsumos[$i]["fecha"].'",
+			      "'.$kardexmateriales[$i]["observacion"].'",
+				  "'.$kardexmateriales[$i]["fecha"].'",
 				  "'.$ingreso.'",
 				  "'.$salida.'",
 				  "'.$saldo.'"
@@ -142,7 +142,7 @@ class TablaKardexInsumos{
 }
 
 /*=============================================
-ACTIVAR TABLA DE INSUMOS
+ACTIVAR TABLA DE MATERIALES
 =============================================*/ 
-$activarKardexInsumos = new TablaKardexInsumos();
-$activarKardexInsumos -> mostrarTablaKardexInsumos();
+$activarKardexMateriales = new TablaKardexMateriales();
+$activarKardexMateriales -> mostrarTablaKardexMateriales();

@@ -1,4 +1,4 @@
-$('.tablaKardexInsumos').dataTable( {
+$('.tablaKardexMateriales').dataTable( {
 	"searching": false,
 	"language": {
 	
@@ -27,18 +27,18 @@ $('.tablaKardexInsumos').dataTable( {
 
 }
   } );
-document.getElementById("KardexInsumos").onclick = function() {
-	KardexInsumos();
+document.getElementById("KardexMateriales").onclick = function() {
+	KardexMateriales();
 };
 
-function KardexInsumos() {
+function KardexMateriales() {
 
-	$(".tablaKardexInsumos").dataTable().fnDestroy();
-	$(".tablaKardexInsumos > tbody").empty();
-	var InsumoK = $("#InsumoK").val();
+	$(".tablaKardexMateriales").dataTable().fnDestroy();
+	$(".tablaKardexMateriales > tbody").empty();
+	var MaterialK = $("#MaterialK").val();
 
-	table =$('.tablaKardexInsumos').DataTable( {
-		"ajax": "ajax/datatable-kardexinsumos.ajax.php?InsumoK="+InsumoK,
+	table =$('.tablaKardexMateriales').DataTable( {
+		"ajax": "ajax/datatable-kardexmateriales.ajax.php?MaterialK="+MaterialK,
 		"deferRender": true,
 		"columnDefs": [
 			{"className": "dt-center", "targets": "_all",

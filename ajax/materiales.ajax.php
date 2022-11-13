@@ -3,18 +3,18 @@
 require_once "../controladores/materiales.controlador.php";
 require_once "../modelos/materiales.modelo.php";
 
-class AjaxInsumos{
+class AjaxMateriales{
 
 	/*=============================================
 	EDITAR INSUMO
 	=============================================*/	
 
-	public $idInsumo;
+	public $idMaterial;
 
-	public function ajaxEditarInsumo(){
+	public function ajaxEditarMaterial(){
 
 		$item = "idMateria";
-		$valor = $this->idInsumo;
+		$valor = $this->idMaterial;
 
 		$respuesta = ControladorMateriales::ctrMostrarMateriales($item, $valor);
 
@@ -44,11 +44,11 @@ class AjaxInsumos{
 /*=============================================
 EDITAR INSUMO
 =============================================*/
-if(isset($_POST["idInsumo"])){
+if(isset($_POST["idMaterial"])){
 
-	$editar = new AjaxInsumos();
-	$editar -> idInsumo = $_POST["idInsumo"];
-	$editar -> ajaxEditarInsumo();
+	$editar = new AjaxMateriales();
+	$editar -> idMaterial = $_POST["idMaterial"];
+	$editar -> ajaxEditarMaterial();
 
 }
 
@@ -58,7 +58,7 @@ VALIDAR NO REPETIR INSUMO
 
 if(isset( $_POST["validarCodigo"])){
 
-	$valCodigo = new AjaxInsumos();
+	$valCodigo = new AjaxMateriales();
 	$valCodigo -> validarCodigo = $_POST["validarCodigo"];
 	$valCodigo -> ajaxValidarCodigo();
 

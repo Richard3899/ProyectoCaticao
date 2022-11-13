@@ -6,13 +6,13 @@
     <div class="container-fluid">
       <div class="row mb-2">
         <div class="col-sm-6">
-          <h1>Inventario de Insumos</h1>
+          <h1>Inventario de Materiales</h1>
         </div>
         <div class="col-sm-6">
           <ol class="breadcrumb float-sm-right">
             <li class="breadcrumb-item"><a href="inicio">Inicio</a></li>
             <li class="breadcrumb-item active">Inventario</li>
-            <li class="breadcrumb-item active">Insumos</li>
+            <li class="breadcrumb-item active">Materiales</li>
           </ol>
         </div>
       </div>
@@ -30,24 +30,24 @@
 
                 <div class="input-group">
 
-                <button type="button" class="btn btn-success m-1" data-toggle="modal" data-target="#modalIngresoInsumo">
+                <button type="button" class="btn btn-success m-1" data-toggle="modal" data-target="#modalIngresoMaterial">
                     
-                    Ingreso Insumo
+                    Ingreso Material
 
                 </button>
 
-                <button type="button" class="btn btn-primary m-1" data-toggle="modal" data-target="#modalSalidaInsumo">
+                <button type="button" class="btn btn-primary m-1" data-toggle="modal" data-target="#modalSalidaMaterial">
                     
-                    Salida Insumo
+                    Salida Material
 
                 </button>
 
                 </div>
                 
               
-                <a type="button" class="btn btn-info m-1" href="kardexinsumos" >
+                <a type="button" class="btn btn-info m-1" href="kardexmateriales" >
                     
-                  Kardex de Insumo
+                  Kardex de Material
 
                 </a>
           
@@ -58,7 +58,7 @@
       </div>
       <div class="card-body">
 
-      <table class="table table-bordered table-striped dt-responsive tablaInventarioInsumos" width="100%">
+      <table class="table table-bordered table-striped dt-responsive tablaInventarioMateriales" width="100%">
        
       <thead>
        
@@ -91,10 +91,10 @@
 
 
 <!--=====================================
-MODAL INGRESO DE INSUMO
+MODAL INGRESO DE MATERIAL
 ======================================-->
 
-<div id="modalIngresoInsumo" class="modal fade" role="dialog">
+<div id="modalIngresoMaterial" class="modal fade" role="dialog">
 
 <div class="modal-dialog modal-lg">
 
@@ -108,7 +108,7 @@ MODAL INGRESO DE INSUMO
 
       <div class="modal-header" style="background:gray; color:white">
 
-      <h4 class="modal-title">Ingreso de Insumo</h4>
+      <h4 class="modal-title">Ingreso de Material</h4>
       <button type="button" class="close" data-dismiss="modal">&times;</button>
 
       </div>
@@ -123,26 +123,26 @@ MODAL INGRESO DE INSUMO
 
           <div class="row">
 
-          <!-- ENTRADA PARA SELECCIONAR INSUMO -->
+          <!-- ENTRADA PARA SELECCIONAR MATERIAL -->
 
           <div class="form-group col-sm">
             
             <div class="input-group">
 
-                <select class="form-control select input-lg" style="width: 100%;" id="nuevoInsumoI" name="nuevoInsumoI" required>
+                <select class="form-control select input-lg" style="width: 100%;" id="nuevoMaterialI" name="nuevoMaterialI" required>
                 
-                <option value="">Seleccionar Insumo</option>
+                <option value="">Seleccionar Material</option>
 
                 <?php 
                   $item = null;
                   $valor = null;
 
-                  $insumos = ControladorInsumos::ctrMostrarInsumos($item,$valor);
+                  $materiales = ControladorMateriales::ctrMostrarMateriales($item,$valor);
 
-                  foreach($insumos as $key=> $value){ 
+                  foreach($materiales as $key=> $value){ 
 
                     $item = "idMarca";
-                    $valor = $insumos[$key]["idMarca"];
+                    $valor = $materiales[$key]["idMarca"];
 
                     $marcas = ControladorMarcas::ctrMostrarMarcas($item,$valor);
 
@@ -220,8 +220,8 @@ MODAL INGRESO DE INSUMO
 
       <?php
 
-        $crearIngresoInsumo= new ControladorInventarioInsumos();
-        $crearIngresoInsumo -> ctrCrearIngresoInsumo();
+        $crearIngresoMaterial= new ControladorInventarioMateriales();
+        $crearIngresoMaterial -> ctrCrearIngresoMaterial();
 
       ?>
 
@@ -238,10 +238,10 @@ MODAL INGRESO DE INSUMO
 
 
 <!--=====================================
-MODAL SALIDA DE INSUMO
+MODAL SALIDA DE MATERIAL
 ======================================-->
 
-<div id="modalSalidaInsumo" class="modal fade" role="dialog">
+<div id="modalSalidaMaterial" class="modal fade" role="dialog">
 
 <div class="modal-dialog modal-lg">
 
@@ -255,7 +255,7 @@ MODAL SALIDA DE INSUMO
 
       <div class="modal-header" style="background:gray; color:white">
 
-      <h4 class="modal-title">Salida de Insumo</h4>
+      <h4 class="modal-title">Salida de Material</h4>
       <button type="button" class="close" data-dismiss="modal">&times;</button>
 
       </div>
@@ -270,26 +270,26 @@ MODAL SALIDA DE INSUMO
 
           <div class="row">
 
-            <!-- ENTRADA PARA SELECCIONAR INSUMO -->
+            <!-- ENTRADA PARA SELECCIONAR MATERIAL -->
 
             <div class="form-group col-sm">
             
             <div class="input-group">
 
-                <select class="form-control select2 input-lg" style="width: 100%;" id="nuevoInsumoS" name="nuevoInsumoS" required>
+                <select class="form-control select2 input-lg" style="width: 100%;" id="nuevoMaterialS" name="nuevoMaterialS" required>
                 
-                <option value="">Seleccionar Insumo</option>
+                <option value="">Seleccionar Material</option>
 
                 <?php 
                   $item = null;
                   $valor = null;
 
-                  $insumos = ControladorInsumos::ctrMostrarInsumos($item,$valor);
+                  $materiales = ControladorMateriales::ctrMostrarMateriales($item,$valor);
 
-                  foreach($insumos as $key=> $value){ 
+                  foreach($materiales as $key=> $value){ 
 
                     $item = "idMarca";
-                    $valor = $insumos[$key]["idMarca"];
+                    $valor = $materiales[$key]["idMarca"];
 
                     $marcas = ControladorMarcas::ctrMostrarMarcas($item,$valor);
 
@@ -368,8 +368,8 @@ MODAL SALIDA DE INSUMO
 
       <?php
 
-          $crearSalidaInsumo= new ControladorInventarioInsumos();
-          $crearSalidaInsumo -> ctrCrearSalidaInsumo();
+          $crearSalidaMaterial= new ControladorInventarioMateriales();
+          $crearSalidaMaterial -> ctrCrearSalidaMaterial();
 
       ?>
 

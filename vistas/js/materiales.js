@@ -36,7 +36,56 @@ $('.tablaMateriales').DataTable( {
 
 } );
 
+/*=============================================
+SUBIENDO LA FOTO DEL INSUMO
+=============================================*/
 
+$(".nuevaImagenMaterial").change(function(){
+
+	var imagen = this.files[0];
+	
+	/*=============================================
+  	VALIDAMOS EL FORMATO DE LA IMAGEN SEA JPG O PNG
+  	=============================================*/
+
+  	if(imagen["type"] != "image/jpeg" && imagen["type"] != "image/png"){
+
+		$(".nuevaImagenMaterial").val("");
+
+		 Swal.fire({
+			title: "Error al subir la imagen",
+			text: "¡La imagen debe estar en formato JPG o PNG!",
+			icon: "error",
+			confirmButtonText: "¡Cerrar!"
+		  });
+
+	}else if(imagen["size"] > 2000000){
+
+		$(".nuevaImagenMaterial").val("");
+
+		 Swal.fire({
+			title: "Error al subir la imagen",
+			text: "¡La imagen no debe pesar más de 2MB!",
+			icon: "error",
+			confirmButtonText: "¡Cerrar!"
+		  });
+
+	}
+	else{
+
+  		var datosImagen = new FileReader;
+  		datosImagen.readAsDataURL(imagen);
+
+  		$(datosImagen).on("load", function(event){
+
+  			var rutaImagen = event.target.result;
+
+  			$(".previsualizar").attr("src", rutaImagen);
+
+  		})
+
+  	}
+})
 
 /*=============================================
 EDITAR MATERIAL
@@ -44,10 +93,10 @@ EDITAR MATERIAL
 
 $(".tablaMateriales tbody").on("click", "button.btnEditarMaterial", function(){
 
-	var idInsumo = $(this).attr("idInsumo");
+	var idMaterial = $(this).attr("idMaterial");
 	
 	var datos = new FormData();
-    datos.append("idInsumo", idInsumo);
+    datos.append("idMaterial", idMaterial);
 
      $.ajax({
 
@@ -60,7 +109,7 @@ $(".tablaMateriales tbody").on("click", "button.btnEditarMaterial", function(){
       dataType:"json",
       success:function(respuesta){
 
-		   $("#idInsumo").val(respuesta["idMateria"]);
+		   $("#idMaterial").val(respuesta["idMateria"]);
 
            $("#editarCodigo").val(respuesta["codigo"]);
 
@@ -78,7 +127,7 @@ $(".tablaMateriales tbody").on("click", "button.btnEditarMaterial", function(){
 
            if(respuesta["imagen"] != ""){
 
-           	$("#ImagenInsumoActual").val(respuesta["imagen"]);
+           	$("#ImagenMaterialActual").val(respuesta["imagen"]);
 
            	$(".previsualizar").attr("src",respuesta["imagen"]);
 
@@ -97,7 +146,7 @@ ELIMINAR MATERIAL
 
 $(".tablaMateriales tbody").on("click", "button.btnEliminarMaterial", function(){
 
-	var idInsumo = $(this).attr("idInsumo");
+	var idMaterial = $(this).attr("idMaterial");
 	var codigo = $(this).attr("codigo");
 	var imagen = $(this).attr("imagen");
 	
@@ -114,7 +163,7 @@ $(".tablaMateriales tbody").on("click", "button.btnEliminarMaterial", function()
         }).then(function(result){
         if (result.value) {
 
-        	window.location = "index.php?ruta=materiales&idInsumo="+idInsumo+"&imagen="+imagen+"&codigo="+codigo;
+        	window.location = "index.php?ruta=materiales&idMaterial="+idMaterial+"&imagen="+imagen+"&codigo="+codigo;
 
         }
 
@@ -131,10 +180,10 @@ $("#nuevoCodigoMaterial").change(function(){
 
 	$(".alert").remove();
 
-	var insumo = $(this).val();
+	var material = $(this).val();
 
 	var datos = new FormData();
-	datos.append("validarCodigo", insumo);
+	datos.append("validarCodigo", material);
 
 	 $.ajax({
 	    url:"ajax/materiales.ajax.php",

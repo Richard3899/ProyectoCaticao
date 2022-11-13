@@ -1,10 +1,23 @@
 <!-- Main Sidebar Container -->
-<aside class="main-sidebar elevation-4">
+<?php  
+foreach ($configuracion as $key => $value){
+
+if($value["mododark"] == 0){
+
+  echo '<aside class="main-sidebar sidebar-dark-primary elevation-4">';
+
+}else{
+
+  echo '<aside class="main-sidebar sidebar-light-primary elevation-4">';
+
+};
+}
+?>
     <!-- Brand Logo -->
-    <a href="#" class="brand-link ">
-      <img src="vistas/img/plantilla/logo-mini.jpg" alt="Logo" class="brand-image ml-3" >
-      <span class="brand-text p-2 ml-3 badge badge-dark">
-      CATICAO
+    <a href="inicio" class="brand-link">
+      <img src="vistas/img/plantilla/logo-mini.png" alt="Logo" class="brand-image ml-3 img-circle" >
+      <span class="brand-text p-2 ml-4 badge badge-dark">
+      C-A-T-I-CA-O
       </span>
     </a>
 <!-- Sidebar -->

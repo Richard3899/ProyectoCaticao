@@ -12,7 +12,7 @@
           <ol class="breadcrumb float-sm-right">
             <li class="breadcrumb-item"><a href="inicio">Inicio</a></li>
             <li class="breadcrumb-item active">Registros</li>
-            <li class="breadcrumb-item active">Insumos y Materiales</li>
+            <li class="breadcrumb-item active">Inssumos y Materiales</li>
             <li class="breadcrumb-item active">Materiales</li>
           </ol>
         </div>
@@ -256,7 +256,7 @@ MODAL AGREGAR MATERIAL
             <div class="card">
               <ul class="list-group list-group-flush">
                 <li class="list-group-item">Subir Foto</li>
-                <li class="list-group-item"><input type="file" class="nuevaImagenInsumo" name="nuevaImagenInsumo"></li>
+                <li class="list-group-item"><input type="file" class="nuevaImagenMaterial" name="nuevaImagenMaterial"></li>
                 <li class="list-group-item"> Peso máximo de la foto 2MB</li>
               </ul>
             </div>
@@ -341,7 +341,7 @@ MODAL EDITAR MATERIAL
                 </div>
                 <input type="text" class="form-control input-lg" name="editarCodigo" id="editarCodigo" 
                  maxlength="20" pattern="[A-Za-z0-9-]+" title="Solo se aceptan letras,números y guiones sin espacios" readonly required>
-                <input type="hidden" id="idInsumo" name="idInsumo">
+                <input type="hidden" id="idMaterial" name="idMaterial">
             </div>
             </div>
 
@@ -482,13 +482,13 @@ MODAL EDITAR MATERIAL
             <div class="card">
               <ul class="list-group list-group-flush">
                 <li class="list-group-item">Subir Foto</li>
-                <li class="list-group-item"><input type="file" class="nuevaImagenInsumo" name="editarImagenInsumo"></li>
+                <li class="list-group-item"><input type="file" class="nuevaImagenMaterial" name="editarImagenMaterial"></li>
                 <li class="list-group-item"> Peso máximo de la foto 2MB</li>
               </ul>
             </div>
             
             <img src="vistas/img/materiales/default/material.png" class="img-thumbnail previsualizar" width="100px">
-            <input type="hidden" name="ImagenInsumoActual" id="ImagenInsumoActual">
+            <input type="hidden" name="ImagenMaterialActual" id="ImagenMaterialActual">
           </div>
 
         </div>

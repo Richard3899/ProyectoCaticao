@@ -245,11 +245,11 @@ MODAL AGREGAR USUARIO
             <div class="card">
               <ul class="list-group list-group-flush">
                 <li class="list-group-item">Subir Foto</li>
-                <li class="list-group-item"><input type="file" class="nuevaFoto" name="nuevaFoto"></li>
+                <li class="list-group-item"><input type="file" class=" btn btn-primary nuevaFoto" name="nuevaFoto"></li>
                 <li class="list-group-item"> Peso máximo de la foto 2MB</li>
               </ul>
             </div>
-            
+
             <img src="vistas/img/usuarios/default/usuario.png" class="img-thumbnail previsualizar" width="100px">
 
           </div>

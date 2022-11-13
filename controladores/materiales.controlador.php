@@ -30,9 +30,9 @@ class ControladorMateriales{
 
 			   	$ruta = "";
 
-			   	if(is_uploaded_file($_FILES["nuevaImagenInsumo"]["tmp_name"])){
+			   	if(is_uploaded_file($_FILES["nuevaImagenMaterial"]["tmp_name"])){
 
-					list($ancho, $alto) = getimagesize($_FILES["nuevaImagenInsumo"]["tmp_name"]);
+					list($ancho, $alto) = getimagesize($_FILES["nuevaImagenMaterial"]["tmp_name"]);
 
 					$nuevoAncho = 500;
 					$nuevoAlto = 500;
@@ -49,7 +49,7 @@ class ControladorMateriales{
 					DE ACUERDO AL TIPO DE IMAGEN APLICAMOS LAS FUNCIONES POR DEFECTO DE PHP
 					=============================================*/
 
-					if($_FILES["nuevaImagenInsumo"]["type"] == "image/jpeg"){
+					if($_FILES["nuevaImagenMaterial"]["type"] == "image/jpeg"){
 
 						/*=============================================
 						GUARDAMOS LA IMAGEN EN EL DIRECTORIO
@@ -59,7 +59,7 @@ class ControladorMateriales{
 
 						$ruta = "vistas/img/materiales/".$_POST["nuevoCodigoMaterial"]."/".$aleatorio.".jpg";
 
-						$origen = imagecreatefromjpeg($_FILES["nuevaImagenInsumo"]["tmp_name"]);						
+						$origen = imagecreatefromjpeg($_FILES["nuevaImagenMaterial"]["tmp_name"]);						
 
 						$destino = imagecreatetruecolor($nuevoAncho, $nuevoAlto);
 
@@ -69,7 +69,7 @@ class ControladorMateriales{
 
 					}
 
-					if($_FILES["nuevaImagenInsumo"]["type"] == "image/png"){
+					if($_FILES["nuevaImagenMaterial"]["type"] == "image/png"){
 
 						/*=============================================
 						GUARDAMOS LA IMAGEN EN EL DIRECTORIO
@@ -79,7 +79,7 @@ class ControladorMateriales{
 
 						$ruta = "vistas/img/materiales/".$_POST["nuevoCodigoMaterial"]."/".$aleatorio.".png";
 
-						$origen = imagecreatefrompng($_FILES["nuevaImagenInsumo"]["tmp_name"]);						
+						$origen = imagecreatefrompng($_FILES["nuevaImagenMaterial"]["tmp_name"]);						
 
 						$destino = imagecreatetruecolor($nuevoAncho, $nuevoAlto);
 
@@ -142,11 +142,11 @@ class ControladorMateriales{
 				VALIDAR IMAGEN
 				=============================================*/
 
-			   	$ruta = $_POST["ImagenInsumoActual"];
+			   	$ruta = $_POST["ImagenMaterialActual"];
 
-			   	if(isset($_FILES["editarImagenInsumo"]["tmp_name"]) && !empty($_FILES["editarImagenInsumo"]["tmp_name"])){
+			   	if(isset($_FILES["editarImagenMaterial"]["tmp_name"]) && !empty($_FILES["editarImagenMaterial"]["tmp_name"])){
 
-					list($ancho, $alto) = getimagesize($_FILES["editarImagenInsumo"]["tmp_name"]);
+					list($ancho, $alto) = getimagesize($_FILES["editarImagenMaterial"]["tmp_name"]);
 
 					$nuevoAncho = 500;
 					$nuevoAlto = 500;
@@ -161,9 +161,9 @@ class ControladorMateriales{
 					PRIMERO PREGUNTAMOS SI EXISTE OTRA IMAGEN EN LA BD
 					=============================================*/
 
-					if(!empty($_POST["ImagenInsumoActual"]) && $_POST["ImagenInsumoActual"] != "vistas/img/materiales/default/material.png"){
+					if(!empty($_POST["ImagenMaterialActual"]) && $_POST["ImagenMaterialActual"] != "vistas/img/materiales/default/material.png"){
 
-						unlink($_POST["ImagenInsumoActual"]);
+						unlink($_POST["ImagenMaterialActual"]);
 
 					}else{
 
@@ -175,7 +175,7 @@ class ControladorMateriales{
 					DE ACUERDO AL TIPO DE IMAGEN APLICAMOS LAS FUNCIONES POR DEFECTO DE PHP
 					=============================================*/
 
-					if($_FILES["editarImagenInsumo"]["type"] == "image/jpeg"){
+					if($_FILES["editarImagenMaterial"]["type"] == "image/jpeg"){
 
 						/*=============================================
 						GUARDAMOS LA IMAGEN EN EL DIRECTORIO
@@ -185,7 +185,7 @@ class ControladorMateriales{
 
 						$ruta = "vistas/img/materiales/".$_POST["editarCodigo"]."/".$aleatorio.".jpg";
 
-						$origen = imagecreatefromjpeg($_FILES["editarImagenInsumo"]["tmp_name"]);						
+						$origen = imagecreatefromjpeg($_FILES["editarImagenMaterial"]["tmp_name"]);						
 
 						$destino = imagecreatetruecolor($nuevoAncho, $nuevoAlto);
 
@@ -195,7 +195,7 @@ class ControladorMateriales{
 
 					}
 
-					if($_FILES["editarImagenInsumo"]["type"] == "image/png"){
+					if($_FILES["editarImagenMaterial"]["type"] == "image/png"){
 
 						/*=============================================
 						GUARDAMOS LA IMAGEN EN EL DIRECTORIO
@@ -205,7 +205,7 @@ class ControladorMateriales{
 
 						$ruta = "vistas/img/materiales/".$_POST["editarCodigo"]."/".$aleatorio.".png";
 
-						$origen = imagecreatefrompng($_FILES["editarImagenInsumo"]["tmp_name"]);						
+						$origen = imagecreatefrompng($_FILES["editarImagenMaterial"]["tmp_name"]);						
 
 						$destino = imagecreatetruecolor($nuevoAncho, $nuevoAlto);
 
@@ -218,7 +218,7 @@ class ControladorMateriales{
 				}
 
 
-				$datos = array("idMateria" =>$_POST["idInsumo"],
+				$datos = array("idMateria" =>$_POST["idMaterial"],
 							   "nombre" => $_POST["editarNombre"],
 							   "descripcion" => $_POST["editarDescripcion"],
 							   "idMarca" => $_POST["editarMarca"],
@@ -265,9 +265,9 @@ class ControladorMateriales{
 	=============================================*/
 	static public function ctrEliminarMaterial(){
 
-		if(isset($_GET["idInsumo"])){
+		if(isset($_GET["idMaterial"])){
 
-			$datos = $_GET["idInsumo"];
+			$datos = $_GET["idMaterial"];
 
 			if($_GET["imagen"] != "" && $_GET["imagen"] != "vistas/img/materiales/default/material.png"){
 

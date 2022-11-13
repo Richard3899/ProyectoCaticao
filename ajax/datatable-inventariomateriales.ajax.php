@@ -1,9 +1,9 @@
 <?php
-require_once "../controladores/inventarioinsumos.controlador.php";
-require_once "../modelos/inventarioinsumos.modelo.php";
+require_once "../controladores/inventariomateriales.controlador.php";
+require_once "../modelos/inventariomateriales.modelo.php";
 
-require_once "../controladores/insumos.controlador.php";
-require_once "../modelos/insumos.modelo.php";
+require_once "../controladores/materiales.controlador.php";
+require_once "../modelos/materiales.modelo.php";
 
 require_once "../controladores/marcas.controlador.php";
 require_once "../modelos/marcas.modelo.php";
@@ -11,20 +11,20 @@ require_once "../modelos/marcas.modelo.php";
 require_once "../controladores/unidadmedida.controlador.php";
 require_once "../modelos/unidadmedida.modelo.php";
 
-class TablaInventarioInsumos{
+class TablaInventarioMateriales{
 
  	/*=============================================
- 	 MOSTRAR LA TABLA DE INSUMOS
+ 	 MOSTRAR LA TABLA DE MATERIALES
   	=============================================*/ 
 
-	public function mostrarTablaInventarioInsumos(){
+	public function mostrarTablaInventarioMateriales(){
 
 		$item = null;
     	$valor = null;
 
-  		$inventarioinsumos = ControladorInventarioInsumos::ctrMostrarInventarioInsumos($item, $valor);	
+  		$inventariomateriales = ControladorInventarioMateriales::ctrMostrarInventarioMateriales($item, $valor);	
 		
-		if(count($inventarioinsumos) == 0){
+		if(count($inventariomateriales) == 0){
 
 			echo '{"data": []}';
 
@@ -34,17 +34,17 @@ class TablaInventarioInsumos{
   		$datosJson = '{
 		  "data": [';
 
-		  for($i = 0; $i < count($inventarioinsumos); $i++){
+		  for($i = 0; $i < count($inventariomateriales); $i++){
 
 
 			/*=============================================
- 	 		TRAEMOS AL INSUMO
+ 	 		TRAEMOS AL MATERIAL
   			=============================================*/ 
 
 		  	$item1 = "idMateria";
-		  	$valor1 = $inventarioinsumos[$i]["idMateria"];
+		  	$valor1 = $inventariomateriales[$i]["idMateria"];
 
-		  	$insumos = ControladorInsumos::ctrMostrarInsumos($item1, $valor1);
+		  	$materiales = ControladorMateriales::ctrMostrarMateriales($item1, $valor1);
 
 		
 			/*=============================================
@@ -52,7 +52,7 @@ class TablaInventarioInsumos{
   			=============================================*/ 
 
 		  	$item2 = "idMarca";
-		  	$valor2 = $insumos["idMarca"];
+		  	$valor2 = $materiales["idMarca"];
 
 		  	$marcas = ControladorMarcas::ctrMostrarMarcas($item2, $valor2);
 
@@ -62,11 +62,11 @@ class TablaInventarioInsumos{
   			=============================================*/ 
 
 		  	$item3 = "idUnidadMedida";
-		  	$valor3 = $insumos["idUnidadMedida"];
+		  	$valor3 = $materiales["idUnidadMedida"];
 
 		  	$unidadmedida = ControladorUnidadMedida::ctrMostrarUnidadMedida($item3, $valor3);
 
-			$stock=$inventarioinsumos[$i]["stock"] ?? 0;
+			$stock=$inventariomateriales[$i]["stock"] ?? 0;
 
 
 			if($stock<10){
@@ -79,7 +79,7 @@ class TablaInventarioInsumos{
 
 		  	$datosJson .='[
 			      "'.($i+1).'",
-				  "'.$insumos["nombre"].' - '.$marcas["descripcion"].'",
+				  "'.$materiales["nombre"].' - '.$marcas["descripcion"].'",
 			      "'.$stock.'"
 			    ],';
 
@@ -100,7 +100,7 @@ class TablaInventarioInsumos{
 }
 
 /*=============================================
-ACTIVAR TABLA DE INSUMOS
+ACTIVAR TABLA DE MATERIALES
 =============================================*/ 
-$activarInventarioInsumos = new TablaInventarioInsumos();
-$activarInventarioInsumos -> mostrarTablaInventarioInsumos();
+$activarInventarioMateriales = new TablaInventarioMateriales();
+$activarInventarioMateriales -> mostrarTablaInventarioMateriales();

@@ -1,20 +1,12 @@
-/*=============================================
-Select Dynamic
-=============================================*/
-//Initialize Select2 Elements
-$('.select2').select2();
 
-//Date picker
-$('#reservationdate').datetimepicker({
-        format: 'L'
-});
-
-  
-/*=============================================
-Data Table
-=============================================*/
-$(".tablas").DataTable({
-
+$('.tablaInventarioMateriales').DataTable( {
+    "ajax": "ajax/datatable-inventariomateriales.ajax.php",
+    "deferRender": true,
+	"columnDefs": [
+		{"className": "dt-center", "targets": "_all"}
+	  ],
+	"retrieve": true,
+	"processing": true,
 	"language": {
 
 		"sProcessing":     "Procesando...",
@@ -40,6 +32,6 @@ $(".tablas").DataTable({
 			"sSortDescending": ": Activar para ordenar la columna de manera descendente"
 		}
 
-	}
+}
 
-});
+} );

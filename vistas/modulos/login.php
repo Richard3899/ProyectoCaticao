@@ -4,11 +4,10 @@
   <!-- /.login-logo -->
   <div class="card card-outline card-primary">
     <div class="card-header text-center">
-      <h2>CATICAO</h2>
       <img src="vistas/img/plantilla/logo.jpg" class="img-responsive" >
     </div>
     <div class="card-body">
-      <p class="login-box-msg">Inicie Sesión</p>
+      <p class="login-box-msg font-weight-bold">Inicie Sesión</p>
 
       <form method="post">
         <div class="input-group mb-3">
@@ -41,7 +40,7 @@
         <div class="row">
           <!-- /.col -->
           <div class="col-12">
-            <button type="submit" class="btn btn-dark btn-block">Ingresar</button>
+            <button type="submit" class="btn btn-dark btn-block font-weight-bold">Ingresar</button>
           </div>
           <!-- /.col -->
         </div>
