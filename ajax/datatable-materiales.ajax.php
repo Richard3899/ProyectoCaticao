@@ -85,7 +85,7 @@ class TablaMateriales{
   
 			$v1=$inventariomateriales['idMateria'] ?? 'usado';
 			/*=============================================
- 	 		TRAEMOS A KARDES MATERIALES
+ 	 		TRAEMOS A KARDEX MATERIALES
   			=============================================*/ 
 
 			$kardexmateriales = ControladorKardexMateriales::ctrMostrarKardexMateriales($item2, $valor2);

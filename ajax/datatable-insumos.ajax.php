@@ -87,7 +87,7 @@ class TablaInsumos{
   
 			$v1=$inventarioinsumos['idMateria'] ?? 'usado';
 			/*=============================================
- 	 		TRAEMOS A KARDES INSUMOS
+ 	 		TRAEMOS A KARDEX INSUMOS
   			=============================================*/ 
 
 			$kardexinsumos = ControladorKardexInsumos::ctrMostrarKardexInsumos($item2, $valor2);

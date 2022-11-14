@@ -38,8 +38,8 @@ INSERT INTO `movimiento` (`idMovimiento`, `descripcion`) VALUES
 INSERT INTO `configuracion` (`idConfiguracion`, `mododark`) VALUES
 	(1, 1);
 
-INSERT INTO `producto` (`idProducto`, `codigo`, `nombre`, `descripcion`, `cantidad`, `imagen`, `idUnidadMedida`, `idTipoProducto`) VALUES
-	(1, '123456', 'Chocolate con pasa', '50% cacao', 20.00, NULL, 3, 2);
+INSERT INTO `producto` (`idProducto`, `codigo`, `nombre`, `descripcion`, `imagen`, `idUnidadMedida`, `idTipoProducto`) VALUES
+	(1, '123456', 'Chocolate con pasa', '50% cacao', NULL, 3, 2);
 
 INSERT INTO `usuario` (`idUsuario`, `nombre`, `usuario`, `password`, `perfil`, `foto`, `estado`, `ultimo_login`, `fecha`) VALUES
 	(1, 'Administrador', 'admin', '$2a$07$asxx54ahjppf45sd87a5aunxs9bkpyGmGE/.vekdjFg83yRec789S', 'Administrador', 'vistas/img/usuarios/admin/592.png', 1, NULL, '2022-10-18 16:42:18');
@@ -54,6 +54,9 @@ INSERT INTO `materia` (`idMateria`, `codigo`, `nombre`, `descripcion`, `precio`,
 INSERT INTO `inventariomateria` (`idInventarioMateria`,`stock`) VALUES
 	(1,0),
 	(2,0);
+
+INSERT INTO `inventarioproducto` (`idInventarioProducto`,`stock`) VALUES
+	(1,0);
 
 INSERT INTO `maquina` (`idMaquina`, `codigo`, `nombre`, `serie`, `modelo`, `descripcion`, `marca`, `precio`, `añoCompra`, `capacidad`, `potencia`, `vidaUtil`) VALUES
 	(1, 'SL-0002', 'Seleccionadora', 'SL9212', 'MD-2022', 'Selecciona y limpia la materia prima', 'KAT', 15000.00, 2022, 60.00, 1.00, 5);

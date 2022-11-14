@@ -120,8 +120,6 @@ $(".tablaProductos tbody").on("click", "button.btnEditarProducto", function(){
 
 		   $("#editarUnidadMedida").val(respuesta["idUnidadMedida"]);
 
-           $("#editarCantidad").val(respuesta["cantidad"]);
-
            $("#editarTipoProducto").val(respuesta["idTipoProducto"]);
 
            if(respuesta["imagen"] != ""){

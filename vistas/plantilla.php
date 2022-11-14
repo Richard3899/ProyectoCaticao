@@ -65,6 +65,8 @@ foreach ($configuracion as $key => $value){
          $_GET["ruta"] == "kardexinsumos" ||
          $_GET["ruta"] == "inventariomateriales" ||
          $_GET["ruta"] == "kardexmateriales" ||
+         $_GET["ruta"] == "inventarioproductos" ||
+         $_GET["ruta"] == "kardexproductos" ||
          $_GET["ruta"] == "salir"){
 
         include "modulos/".$_GET["ruta"].".php";
@@ -111,6 +113,8 @@ foreach ($configuracion as $key => $value){
 <script src="vistas/js/kardexinsumos.js"></script>
 <script src="vistas/js/inventariomateriales.js"></script>
 <script src="vistas/js/kardexmateriales.js"></script>
+<script src="vistas/js/inventarioproductos.js"></script>
+<script src="vistas/js/kardexproductos.js"></script>
 
 </body>
 

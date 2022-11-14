@@ -95,7 +95,6 @@ class ControladorProductos{
 							   "nombre" => $_POST["nuevoNombre"],
 							   "descripcion" => $_POST["nuevaDescripcion"],
 							   "idUnidadMedida" => $_POST["nuevaUnidadMedida"],
-							   "cantidad" => $_POST["nuevaCantidad"],
 							   "idTipoProducto" => $_POST["nuevoTipoProducto"],
 							   "imagen" => $ruta);
 							 
@@ -221,7 +220,6 @@ class ControladorProductos{
 							   "nombre" => $_POST["editarNombre"],
 							   "descripcion" => $_POST["editarDescripcion"],
 							   "idUnidadMedida" => $_POST["editarUnidadMedida"],
-							   "cantidad" => $_POST["editarCantidad"],
 							   "idTipoProducto" => $_POST["editarTipoProducto"],
 							   "imagen" => $ruta);
 							   

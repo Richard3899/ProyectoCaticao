@@ -90,12 +90,14 @@ CREATE PROCEDURE `insertar_producto` (  in codigoI VARCHAR(20),
                                         in nombreI VARCHAR(50),
                                         in descripcionI VARCHAR(100),
                                         in idUnidadMedidaI INT,
-                                        in cantidadI DECIMAL(10,3),
                                         in idTipoProductoI INT,
                                         in imagenI VARCHAR(50))
 BEGIN
-	insert into producto (codigo,nombre,descripcion,idUnidadMedida,cantidad,idTipoProducto,imagen)
-				  values (codigoI,nombreI,descripcionI,idUnidadMedidaI,cantidadI,idTipoProductoI,imagenI);
+
+    insert into inventarioproducto (stock)
+				  values (0);
+	insert into producto (codigo,nombre,descripcion,idUnidadMedida,idTipoProducto,imagen)
+				  values (codigoI,nombreI,descripcionI,idUnidadMedidaI,idTipoProductoI,imagenI);
 END$$
 DELIMITER ;
 
@@ -107,7 +109,6 @@ CREATE PROCEDURE `editar_producto` (    in idProductoE VARCHAR(20),
                                         in nombreE VARCHAR(50),
                                         in descripcionE VARCHAR(100),
                                         in idUnidadMedidaE INT,
-                                        in cantidadE DECIMAL(10,3),
                                         in idTipoProductoE INT,
                                         in imagenE VARCHAR(50))
 BEGIN
@@ -115,7 +116,6 @@ BEGIN
                         nombre=nombreE,
                         descripcion=descripcionE,
                         idUnidadMedida=idUnidadMedidaE,
-                        cantidad=cantidadE,
                         idTipoProducto=idTipoProductoE,
                         imagen=imagenE
 				where idProducto=idProductoE;
@@ -764,5 +764,78 @@ BEGIN
 				inner join materia m on m.idMateria=mm.idMateria
 				inner join movimiento mv on mv.idMovimiento=mm.idMovimiento
 				where m.idTipoMateria=2 and mm.idMateria=idMateriaK;
+END$$
+DELIMITER ;
+
+
+
+
+-- Procedimientos almacenados de mostrar inventario de productos --
+
+DROP procedure IF EXISTS `mostrar_inventarioproductos`;
+DELIMITER $$
+USE `caticao`$$
+CREATE PROCEDURE `mostrar_inventarioproductos` ()
+BEGIN
+	Select * from inventarioproducto ip
+             right join producto p on p.idProducto=ip.idProducto
+             order by ip.stock asc;
+END$$
+DELIMITER ;
+
+-- Procedimientos almacenados de ingreso y salida de productos --
+
+DROP procedure IF EXISTS `insertar_ingresoproducto`;
+DELIMITER $$
+USE `caticao`$$
+CREATE PROCEDURE `insertar_ingresoproducto` (   in idProductoI INT,
+                                                in ingresoI double(10,2),
+                                                in observacionI varchar(50),
+                                                in fechaI date)
+BEGIN
+
+    UPDATE inventarioproducto SET stock = stock + ingresoI, idProducto=idProductoI
+						   WHERE idInventarioProducto=idProductoI;
+                           
+    insert into movimientoproducto (idProducto,ingreso,salida,observacion,fecha,idMovimiento)
+				           values (idProductoI,ingresoI,0,observacionI,fechaI,1);
+
+END$$
+DELIMITER ;
+
+
+DROP procedure IF EXISTS `insertar_salidaproducto`;
+DELIMITER $$
+USE `caticao`$$
+CREATE PROCEDURE `insertar_salidaproducto` (    in idProductoI INT,
+                                                in salidaI double(10,2),
+                                                in observacionI varchar(50),
+                                                in fechaI date)
+BEGIN
+     UPDATE inventarioproducto SET stock = stock - salidaI, idProducto=idProductoI
+						   WHERE idInventarioProducto=idProductoI;
+                           
+	insert into movimientoproducto (idProducto,ingreso,salida,observacion,fecha,idMovimiento)
+				           values (idProductoI,0,salidaI,observacionI,fechaI,2);
+						
+    
+
+END$$
+DELIMITER ;
+
+use caticao;
+-- Procedimientos almacenados de mostrar kardex de productos --
+DROP procedure IF EXISTS `mostrar_kardexproductos`;
+DELIMITER $$
+USE `caticao`$$
+CREATE PROCEDURE `mostrar_kardexproductos` (in idProductoK int)
+BEGIN
+		Select mp.idProducto,p.nombre,mp.idMovimiento,mv.descripcion,mp.observacion,mp.fecha,mp.hora,
+				mp.ingreso,mp.salida ,SUM(+ingreso-salida) 
+				OVER(ORDER BY mp.hora ASC ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW)
+				AS saldo from movimientoproducto mp 
+				inner join producto p on p.idProducto=mp.idProducto
+				inner join movimiento mv on mv.idMovimiento=mp.idMovimiento
+				where mp.idProducto=idProductoK;
 END$$
 DELIMITER ;

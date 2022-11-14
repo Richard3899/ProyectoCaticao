@@ -3,9 +3,16 @@
 require_once "../controladores/productos.controlador.php";
 require_once "../controladores/unidadmedida.controlador.php";
 require_once "../controladores/tipoproducto.controlador.php";
+
 require_once "../modelos/productos.modelo.php";
 require_once "../modelos/unidadmedida.modelo.php";
 require_once "../modelos/tipoproducto.modelo.php";
+
+require_once "../controladores/inventarioproductos.controlador.php";
+require_once "../modelos/inventarioproductos.modelo.php";
+
+require_once "../controladores/kardexproductos.controlador.php";
+require_once "../modelos/kardexproductos.modelo.php";
 
 class TablaProductos{
 
@@ -45,23 +52,6 @@ class TablaProductos{
 
 			  };
 
-			/*=============================================
- 	 		CANTIDAD
-  			=============================================*/ 
-
-  			if($productos[$i]["cantidad"] <= 10){
-
-				$cantidad = "<button class='btn btn-danger'>".$productos[$i]["cantidad"]."</button>";
-
-			}else if($productos[$i]["cantidad"] > 11 && $productos[$i]["cantidad"] <= 15){
-
-				$cantidad = "<button class='btn btn-warning'>".$productos[$i]["cantidad"]."</button>";
-
-			}else{
-
-				$cantidad = "<button class='btn btn-success'>".$productos[$i]["cantidad"]."</button>";
-
-			}
 
 			/*=============================================
  	 		TRAEMOS LA UNIDAD DE MEDIDA
@@ -73,7 +63,7 @@ class TablaProductos{
 		  	$unidadmedida = ControladorUnidadMedida::ctrMostrarUnidadMedida($items, $valors);
 
 			/*=============================================
- 	 		TRAEMOS LA MARCA
+ 	 		TRAEMOS TIPO PRODUCTO
   			=============================================*/ 
 
 		  	$item = "idTipoProducto";
@@ -81,11 +71,47 @@ class TablaProductos{
 
 		  	$tipoproducto = ControladorTipoProducto::ctrMostrarTipoProducto($item, $valor);
 
-		  	/*=============================================
- 	 		TRAEMOS LAS ACCIONES
+
+
+
+			$item2 = "idProducto";
+		  	$valor2 = $productos[$i]["idProducto"];
+
+
+			/*=============================================
+ 	 		TRAEMOS AL INVENTARIO PRODUCTOS
+  			=============================================*/ 
+		  	$inventarioproductos = ControladorInventarioProductos::ctrMostrarInventarioProductos($item2, $valor2);
+  
+			$v1=$inventarioproductos['idProducto'] ?? 'usado';
+			/*=============================================
+ 	 		TRAEMOS A KARDEX PRODUCTOS
   			=============================================*/ 
 
-		  	$botones =  "<div class='btn-group'><button class='btn btn-warning btnEditarProducto' idProducto='".$productos[$i]["idProducto"]."' data-toggle='modal' data-target='#modalEditarProducto'><i class='fa fa-pen'></i></button><button class='btn btn-danger btnEliminarProducto' idProducto='".$productos[$i]["idProducto"]."' codigo='".$productos[$i]["codigo"]."' imagen='".$productos[$i]["imagen"]."'><i class='fa fa-times'></i></button></div>"; 
+			$kardexproductos = ControladorKardexProductos::ctrMostrarKardexProductos($item2, $valor2);
+  
+			$v2=$kardexproductos['idProducto'] ?? 'usado';
+
+
+		  	/*=============================================
+ 	 		TRAEMOS LAS ACCIONES
+  			=============================================*/
+		  	
+			if($v1!="usado" ||  $v2!="usado"){
+            /*==Botón Editar=*/
+			$botones =  "<div class='btn-group'><button class='btn btn-warning btnEditarProducto' idProducto='".$productos[$i]["idProducto"]."' data-toggle='modal' data-target='#modalEditarProducto'><i class='fa fa-pen'></i></button></div>";				
+			}else{
+			/*==Botón Editar y Eliminar=*/
+			$botones =  "<div class='btn-group'><button class='btn btn-warning btnEditarProducto' idProducto='".$productos[$i]["idProducto"]."' data-toggle='modal' data-target='#modalEditarProducto'><i class='fa fa-pen'></i></button><button class='btn btn-danger btnEliminarProducto' idProducto='".$productos[$i]["idProducto"]."' codigo='".$productos[$i]["codigo"]."' imagen='".$productos[$i]["imagen"]."'><i class='fa fa-times'></i></button></div>";				
+			}
+
+
+			if($productos[$i]["idTipoProducto"]==1){
+				
+				$tp =  "<p class='text-info'>".$tipoproducto["descripcion"]."</p>";				
+			}else{
+				$tp =  "<p class='text-success'>".$tipoproducto["descripcion"]."</p>";	
+			}
 
 		  	$datosJson .='[
 			      "'.($i+1).'",
@@ -94,8 +120,7 @@ class TablaProductos{
 			      "'.$productos[$i]["nombre"].'",
 			      "'.$productos[$i]["descripcion"].'",
 				  "'.$unidadmedida["descripcion"].'",
-			      "'.$cantidad.'",
-			      "'.$tipoproducto["descripcion"].'",
+			      "'.$tp.'",
 			      "'.$botones.'"
 			    ],';
 

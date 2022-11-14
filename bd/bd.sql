@@ -265,7 +265,6 @@ CREATE TABLE producto (
   codigo VARCHAR(50) ,
   nombre VARCHAR(50) ,
   descripcion VARCHAR(100) ,
-  cantidad DECIMAL(10,2) ,
   imagen VARCHAR(50) NULL DEFAULT NULL COLLATE 'latin1_swedish_ci',
   idUnidadMedida INT REFERENCES unidadmedida (idUnidadMedida),
   idTipoProducto INT REFERENCES TipoProducto (idTipo_Producto)
@@ -334,17 +333,14 @@ CREATE TABLE InventarioProducto (
 
 CREATE TABLE MovimientoProducto (
   idMovimientoProducto INT  AUTO_INCREMENT primary key,
-  cantidad DECIMAL(10,2) ,
+  ingreso DECIMAL(10,2) ,
+  salida DECIMAL(10,2) ,
   observacion VARCHAR(50) ,
   fecha DATE ,
-  hora TIME ,
-  lote VARCHAR(50) ,
+  hora TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP ,
   idProducto INT REFERENCES Producto (idProducto),
   idMovimiento INT REFERENCES Movimiento (idMovimiento)
 );
-
-
-
 
 
 -- -----------------------------------------------------

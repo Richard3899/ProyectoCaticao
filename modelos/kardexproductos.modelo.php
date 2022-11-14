@@ -2,13 +2,13 @@
 
 require_once "conexion.php";
 
-class ModeloKardexInsumos{
+class ModeloKardexProductos{
 
 	/*=============================================
-	MOSTRAR INSUMOS
+	MOSTRAR PRODUCTOS
 	=============================================*/
 
-	static public function mdlMostrarKardexInsumos($tabla,$item,$valor){
+	static public function mdlMostrarKardexProductos($tabla,$item,$valor){
 
 
 		if($item != null){
@@ -29,10 +29,10 @@ class ModeloKardexInsumos{
 
 	}
 
-	static public function mdlMostrarKardexInsumos2($valor){
+	static public function mdlMostrarKardexProductos2($valor){
 
 
-			$stmt = Conexion::conectar()->prepare("call mostrar_kardexinsumos($valor)");
+			$stmt = Conexion::conectar()->prepare("call mostrar_kardexproductos($valor)");
 
 			$stmt -> execute();
 

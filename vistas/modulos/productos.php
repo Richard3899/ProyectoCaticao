@@ -49,7 +49,6 @@
          <th>Nombre</th>
          <th>Descripción</th>
          <th>Tipo de Unidad</th>
-         <th>Cantidad</th>
          <th>Tipo de Producto</th>
          <th>Acciones</th>
 
@@ -178,26 +177,9 @@ MODAL AGREGAR PRODUCTO
           </div>
 
 
-          <!-- ENTRADA PARA EL CANTIDAD -->
+          <!-- ENTRADA PARA SELECCIONAR SU TIPO DE PRODUCTO -->
 
           <div class="form-group col-sm">
-            
-            <div class="input-group">
-                <div class="input-group-prepend">
-                <span class="input-group-text"><i class="fas fa-layer-group"></i></span>
-                <font-awesome-icon icon="fa-solid fa-layer-group" />
-                </div>
-                <input type="number" class="form-control input-lg" name="nuevaCantidad" 
-                 placeholder="Ingresar cantidad" min="0" max="9999999" step="0.001" required>
-            </div>
-
-          </div>
-
-          </div>
-
-            <!-- ENTRADA PARA SELECCIONAR SU TIPO DE PRODUCTO -->
-
-            <div class="form-group">
             
             <div class="input-group">
             
@@ -226,6 +208,11 @@ MODAL AGREGAR PRODUCTO
             </div>
 
           </div>
+
+
+          </div>
+
+
 
 
           <!-- ENTRADA PARA SUBIR FOTO -->
@@ -382,27 +369,9 @@ MODAL EDITAR PRODUCTO
 
            </div>
 
-            <!-- ENTRADA PARA EL CANTIDAD -->
+          <!-- ENTRADA PARA SELECCIONAR SU TIPO DE PRODUCTO -->
 
-            <div class="form-group col-sm">
-            
-            <div class="input-group">
-                <div class="input-group-prepend">
-                <span class="input-group-text"><i class="fas fa-layer-group"></i></span>
-                </div>
-                <input type="number" class="form-control input-lg" name="editarCantidad"  id="editarCantidad" 
-                placeholder="Ingresar cantidad" min="0" max="9999999" step="0.001" required>
-            </div>
-
-            </div>
-
-
-          </div>
-
-
-            <!-- ENTRADA PARA SELECCIONAR SU TIPO DE PRODUCTO -->
-
-            <div class="form-group">
+          <div class="form-group col-sm">
             
             <div class="input-group">
             
@@ -431,6 +400,10 @@ MODAL EDITAR PRODUCTO
             </div>
 
           </div>
+
+
+          </div>
+
 
 
           <!-- ENTRADA PARA SUBIR FOTO -->

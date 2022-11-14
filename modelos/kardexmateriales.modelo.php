@@ -21,14 +21,6 @@ class ModeloKardexMateriales{
 
 			return $stmt -> fetch();
 
-		}else{
-
-			$stmt = Conexion::conectar()->prepare("call mostrar_kardexmateriales($valor)");
-
-			$stmt -> execute();
-
-			return $stmt -> fetchAll();
-
 		}
 
 		#$stmt -> close();

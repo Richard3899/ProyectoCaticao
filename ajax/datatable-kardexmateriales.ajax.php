@@ -55,16 +55,6 @@ class TablaKardexMateriales{
 
 		  	$materiales = ControladorMateriales::ctrMostrarMateriales($item1, $valor1);
 
-		
-			/*=============================================
- 	 		TRAEMOS LA MARCA
-  			=============================================*/ 
-
-		  	$item2 = "idMarca";
-		  	$valor2 = $materiales["idMarca"];
-
-		  	$marcas = ControladorMarcas::ctrMostrarMarcas($item2, $valor2);
-
 
 			/*=============================================
  	 		TRAEMOS LA UNIDAD DE MEDIDA
