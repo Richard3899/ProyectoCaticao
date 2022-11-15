@@ -364,12 +364,11 @@ CREATE TABLE InventarioMaquina (
 
 CREATE TABLE MovimientoMaquina (
   idMovimientoMaquina INT  AUTO_INCREMENT primary key,
-  cantidad DECIMAL(10,2) ,
+  ingreso DECIMAL(10,2) ,
+  salida DECIMAL(10,2) ,
   observacion VARCHAR(50) ,
   fecha DATE ,
-  hora TIME ,
-  lote VARCHAR(50) ,
-  condicion VARCHAR(50) ,
+  hora TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP ,
   idMaquina INT REFERENCES Maquina (idMaquina),
   idMovimiento INT REFERENCES Movimiento (idMovimiento)
 );

@@ -271,6 +271,8 @@ CREATE PROCEDURE `insertar_maquina` (   in codigoI VARCHAR(20),
                                         in potenciaI DECIMAL(10,2),
                                         in vidaUtilI INT)
 BEGIN
+    insert into inventariomaquina (stock)
+				  values (0);
 	insert into maquina (codigo,nombre,descripcion,serie,modelo,marca,precio,añoCompra,capacidad,potencia,vidaUtil)
 				 values (codigoI,nombreI,descripcionI,serieI,modeloI,marcaI,precioI,añoCompraI,capacidadI,potenciaI,vidaUtilI);
 END$$
@@ -837,5 +839,76 @@ BEGIN
 				inner join producto p on p.idProducto=mp.idProducto
 				inner join movimiento mv on mv.idMovimiento=mp.idMovimiento
 				where mp.idProducto=idProductoK;
+END$$
+DELIMITER ;
+
+
+-- Procedimientos almacenados de mostrar inventario de maquinas --
+use caticao;
+DROP procedure IF EXISTS `mostrar_inventariomaquinas`;
+DELIMITER $$
+USE `caticao`$$
+CREATE PROCEDURE `mostrar_inventariomaquinas` ()
+BEGIN
+	Select * from inventariomaquina im
+             right join maquina m on m.idMaquina=im.idMaquina
+             order by im.stock asc;
+END$$
+DELIMITER ;
+
+-- Procedimientos almacenados de ingreso y salida de maquinas --
+
+DROP procedure IF EXISTS `insertar_ingresomaquina`;
+DELIMITER $$
+USE `caticao`$$
+CREATE PROCEDURE `insertar_ingresomaquina` (   in idMaquinaI INT,
+                                                in ingresoI double(10,2),
+                                                in observacionI varchar(50),
+                                                in fechaI date)
+BEGIN
+
+    UPDATE inventariomaquina SET stock = stock + ingresoI, idMaquina=idMaquinaI
+						   WHERE idInventarioMaquina=idMaquinaI;
+                           
+    insert into movimientomaquina (idMaquina,ingreso,salida,observacion,fecha,idMovimiento)
+				           values (idMaquinaI,ingresoI,0,observacionI,fechaI,1);
+
+END$$
+DELIMITER ;
+
+
+DROP procedure IF EXISTS `insertar_salidamaquina`;
+DELIMITER $$
+USE `caticao`$$
+CREATE PROCEDURE `insertar_salidamaquina` (    in idMaquinaI INT,
+                                                in salidaI double(10,2),
+                                                in observacionI varchar(50),
+                                                in fechaI date)
+BEGIN
+     UPDATE inventariomaquina SET stock = stock - salidaI, idMaquina=idMaquinaI
+						   WHERE idInventarioMaquina=idMaquinaI;
+                           
+	insert into movimientomaquina (idMaquina,ingreso,salida,observacion,fecha,idMovimiento)
+				           values (idMaquinaI,0,salidaI,observacionI,fechaI,2);
+						
+    
+
+END$$
+DELIMITER ;
+
+use caticao;
+-- Procedimientos almacenados de mostrar kardex de maquinas --
+DROP procedure IF EXISTS `mostrar_kardexmaquinas`;
+DELIMITER $$
+USE `caticao`$$
+CREATE PROCEDURE `mostrar_kardexmaquinas` (in idMaquinaK int)
+BEGIN
+		Select mm.idMaquina,m.nombre,mm.idMovimiento,mv.descripcion,mm.observacion,mm.fecha,mm.hora,
+				mm.ingreso,mm.salida ,SUM(+ingreso-salida) 
+				OVER(ORDER BY mm.hora ASC ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW)
+				AS saldo from movimientomaquina mm
+				inner join maquina m on m.idMaquina=mm.idMaquina
+				inner join movimiento mv on mv.idMovimiento=mm.idMovimiento
+				where mm.idMaquina=idMaquinaK;
 END$$
 DELIMITER ;

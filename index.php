@@ -24,6 +24,8 @@ require_once "controladores/inventariomateriales.controlador.php";
 require_once "controladores/kardexmateriales.controlador.php";
 require_once "controladores/inventarioproductos.controlador.php";
 require_once "controladores/kardexproductos.controlador.php";
+require_once "controladores/inventariomaquinas.controlador.php";
+require_once "controladores/kardexmaquinas.controlador.php";
 
 
 require_once "modelos/usuarios.modelo.php";
@@ -48,6 +50,8 @@ require_once "modelos/inventariomateriales.modelo.php";
 require_once "modelos/kardexmateriales.modelo.php";
 require_once "modelos/inventarioproductos.modelo.php";
 require_once "modelos/kardexproductos.modelo.php";
+require_once "modelos/inventariomaquinas.modelo.php";
+require_once "modelos/kardexmaquinas.modelo.php";
 
 
 $plantilla = new ControladorPlantilla();

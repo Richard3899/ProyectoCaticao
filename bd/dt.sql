@@ -57,6 +57,9 @@ INSERT INTO `inventariomateria` (`idInventarioMateria`,`stock`) VALUES
 
 INSERT INTO `inventarioproducto` (`idInventarioProducto`,`stock`) VALUES
 	(1,0);
+    
+INSERT INTO `inventariomaquina` (`idInventarioMaquina`,`stock`) VALUES
+	(1,0);
 
 INSERT INTO `maquina` (`idMaquina`, `codigo`, `nombre`, `serie`, `modelo`, `descripcion`, `marca`, `precio`, `añoCompra`, `capacidad`, `potencia`, `vidaUtil`) VALUES
 	(1, 'SL-0002', 'Seleccionadora', 'SL9212', 'MD-2022', 'Selecciona y limpia la materia prima', 'KAT', 15000.00, 2022, 60.00, 1.00, 5);
