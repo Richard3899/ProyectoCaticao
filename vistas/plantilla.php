@@ -22,11 +22,11 @@ foreach ($configuracion as $key => $value){
 
       if($value["mododark"] == 0){
 
-        echo '<body class="hold-transition skin-blue sidebar-mini dark-mode">';
+        echo '<body class="hold-transition skin-blue sidebar-mini-xs dark-mode">';
 
       }else{
 
-        echo '<body class="hold-transition skin-blue sidebar-mini">';
+        echo '<body class="hold-transition skin-blue sidebar-mini-xs">';
 
       };
 }

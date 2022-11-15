@@ -225,9 +225,9 @@ CREATE TABLE Empleado (
   nombre VARCHAR(50) ,
   apellido VARCHAR(50) ,
   direccion VARCHAR(50) ,
-  telefono INT ,
+  telefono VARCHAR(15) ,
   correo VARCHAR(50) ,
-  numeroDocumento INT ,
+  numeroDocumento VARCHAR(15) ,
   fechaNacimiento DATE ,
   cargo VARCHAR(50) ,
   horarioTrabajo VARCHAR(50) ,
@@ -240,9 +240,6 @@ CREATE TABLE Empleado (
 );
 
 
-
-
-
 -- -----------------------------------------------------
 -- Table Tipo Unidad
 -- -----------------------------------------------------
@@ -251,8 +248,6 @@ CREATE TABLE tipounidad (
   idTipoUnidad INT  AUTO_INCREMENT primary key,
   descripcion VARCHAR(50) 
 );
-
-
 
 
 -- -----------------------------------------------------
@@ -297,7 +292,7 @@ CREATE TABLE MovimientoMateria (
   idMovimientoMateria INT  AUTO_INCREMENT primary key,
   ingreso DECIMAL(10,2) ,
   salida DECIMAL(10,2) ,
-  observacion VARCHAR(50) ,
+  observacion VARCHAR(100) ,
   fecha DATE ,
   hora TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP ,
   idMateria INT REFERENCES Materia (idMateria),
@@ -335,7 +330,7 @@ CREATE TABLE MovimientoProducto (
   idMovimientoProducto INT  AUTO_INCREMENT primary key,
   ingreso DECIMAL(10,2) ,
   salida DECIMAL(10,2) ,
-  observacion VARCHAR(50) ,
+  observacion VARCHAR(100) ,
   fecha DATE ,
   hora TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP ,
   idProducto INT REFERENCES Producto (idProducto),
@@ -366,7 +361,7 @@ CREATE TABLE MovimientoMaquina (
   idMovimientoMaquina INT  AUTO_INCREMENT primary key,
   ingreso DECIMAL(10,2) ,
   salida DECIMAL(10,2) ,
-  observacion VARCHAR(50) ,
+  observacion VARCHAR(100) ,
   fecha DATE ,
   hora TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP ,
   idMaquina INT REFERENCES Maquina (idMaquina),

@@ -118,7 +118,7 @@ MODAL AGREGAR EMPLEADO
                 <span class="input-group-text"><i class="fas fa-file-signature"></i></span>
                 </div>
                 <input type="text" class="form-control input-lg" id="nuevoNombre" name="nuevoNombre" placeholder="Ingresar nombre" 
-                 maxlength="50"  pattern="[A-Za-z\u00f1\u00d1 ]+" title="Solo se acepta letras" required>
+                 maxlength="50"  pattern="[A-Za-zñÑáéíóúÁÉÍÓÚ ]+" title="Solo se acepta letras" required>
             </div>
             </div>
 
@@ -129,7 +129,7 @@ MODAL AGREGAR EMPLEADO
                 <span class="input-group-text"><i class="fas fa-file-signature"></i></span>
                 </div>
                 <input type="text" class="form-control input-lg" id="nuevoApellido" name="nuevoApellido" placeholder="Ingresar apellido" 
-                 maxlength="50"  pattern="[A-Za-z\u00f1\u00d1 ]+" title="Solo se acepta letras" required>
+                 maxlength="50"  pattern="[A-Za-zñÑáéíóúÁÉÍÓÚ ]+" title="Solo se acepta letras" required>
             </div>
             </div>
 
@@ -225,7 +225,7 @@ MODAL AGREGAR EMPLEADO
               <span class="input-group-text"><i class="fas fa-hashtag"></i></span>
               </div>
               <input type="text" class="form-control input-lg" id="nuevoNumeroDocumento" name="nuevoNumeroDocumento" placeholder="Ingresar número de documento" 
-               pattern="[0-9]{8,12}" title="Solo se acepta números entre 8-12" required>
+               pattern="[0-9]{8,12}" title="Números entre 8 y 12 caracteres" required>
           </div>
           </div>
 
@@ -238,7 +238,7 @@ MODAL AGREGAR EMPLEADO
               <span class="input-group-text"><i class="fas fa-map"></i></span>
               </div>
               <input type="text" class="form-control input-lg" id="nuevaDireccion" name="nuevaDireccion" placeholder="Ingresar dirección" 
-               maxlength="50"  pattern="[A-Za-z0-9\u00f1\u00d1\-. ]+" title="Solo se acepta letras,numeros,guiones y puntos " required>
+               maxlength="50"  pattern="[A-Za-z0-9ñÑáéíóúÁÉÍÓÚ-. ]+" title="Solo se acepta letras, números, guiones y puntos" required>
           </div>
           </div>
 
@@ -252,7 +252,7 @@ MODAL AGREGAR EMPLEADO
               <span class="input-group-text"><i class="fas fa-phone"></i></span>
               </div>
               <input type="text" class="form-control input-lg" name="nuevoTelefono" id="nuevoTelefono"
-               placeholder="Ingresar teléfono" pattern="[0-9]{9}" title="Solo se acepta 9 números" required>
+               placeholder="Ingresar teléfono" pattern="[0-9]{9}" title="Solo números de 9 caracteres" required>
           </div>
           </div>
 
@@ -279,7 +279,7 @@ MODAL AGREGAR EMPLEADO
                 <span class="input-group-text"><i class="fas fa-users"></i></span>
                 </div>
                 <input type="text" class="form-control input-lg" id="nuevoCargo" name="nuevoCargo" placeholder="Ingresar cargo" 
-                 maxlength="50"  pattern="[A-Za-z\u00f1\u00d1 ]+" title="Solo se acepta letras" required>
+                 maxlength="50"  pattern="[A-Za-zñÑáéíóúÁÉÍÓÚ ]+" title="Solo se acepta letras" required>
             </div>
             </div>
 
@@ -444,7 +444,7 @@ MODAL EDITAR EMPLEADO
                 <span class="input-group-text"><i class="fas fa-file-signature"></i></span>
                 </div>
                 <input type="text" class="form-control input-lg" id="editarNombre" name="editarNombre" placeholder="Ingresar nombre" 
-                 maxlength="50"  pattern="[A-Za-z\u00f1\u00d1 ]+" title="Solo se acepta letras" required>
+                 maxlength="50"  pattern="[A-Za-zñÑáéíóúÁÉÍÓÚ ]+" title="Solo se acepta letras" required>
                  <input type="hidden" id="idEmpleado" name="idEmpleado">
             </div>
             </div>
@@ -456,7 +456,7 @@ MODAL EDITAR EMPLEADO
                 <span class="input-group-text"><i class="fas fa-file-signature"></i></span>
                 </div>
                 <input type="text" class="form-control input-lg" id="editarApellido" name="editarApellido" placeholder="Ingresar apellido" 
-                 maxlength="50"  pattern="[A-Za-z\u00f1\u00d1 ]+" title="Solo se acepta letras" required>
+                 maxlength="50"  pattern="[A-Za-zñÑáéíóúÁÉÍÓÚ ]+" title="Solo se acepta letras" required>
             </div>
             </div>
 
@@ -552,7 +552,7 @@ MODAL EDITAR EMPLEADO
               <span class="input-group-text"><i class="fas fa-hashtag"></i></span>
               </div>
               <input type="text" class="form-control input-lg" id="editarNumeroDocumento" name="editarNumeroDocumento" placeholder="Ingresar número de documento" 
-               pattern="[0-9]{8,12}" title="Solo se acepta números entre 8-12" required>
+               pattern="[0-9]{8,12}" title="Números entre 8 y 12 caracteres" required>
           </div>
           </div>
 
@@ -565,7 +565,7 @@ MODAL EDITAR EMPLEADO
               <span class="input-group-text"><i class="fas fa-map"></i></span>
               </div>
               <input type="text" class="form-control input-lg" id="editarDireccion" name="editarDireccion" placeholder="Ingresar dirección" 
-               maxlength="50"  pattern="[A-Za-z0-9\u00f1\u00d1\-. ]+" title="Solo se acepta letras,numeros,guiones y puntos " required>
+               maxlength="50"  pattern="[A-Za-z0-9ñÑáéíóúÁÉÍÓÚ-. ]+" title="Solo se acepta letras, números, guiones y puntos" required>
           </div>
           </div>
 
@@ -579,7 +579,7 @@ MODAL EDITAR EMPLEADO
               <span class="input-group-text"><i class="fas fa-phone"></i></span>
               </div>
               <input type="text" class="form-control input-lg" name="editarTelefono" id="editarTelefono"
-               placeholder="Ingresar teléfono" pattern="[0-9]{9}" title="Solo se acepta 9 números" required>
+               placeholder="Ingresar teléfono" pattern="[0-9]{9}" title="Solo números de 9 caracteres" required>
           </div>
           </div>
 
@@ -606,7 +606,7 @@ MODAL EDITAR EMPLEADO
                 <span class="input-group-text"><i class="fas fa-users"></i></span>
                 </div>
                 <input type="text" class="form-control input-lg" id="editarCargo" name="editarCargo" placeholder="Ingresar cargo" 
-                 maxlength="50"  pattern="[A-Za-z\u00f1\u00d1 ]+" title="Solo se acepta letras" required>
+                 maxlength="50"  pattern="[A-Za-zñÑáéíóúÁÉÍÓÚ ]+" title="Solo se acepta letras" required>
             </div>
             </div>
 

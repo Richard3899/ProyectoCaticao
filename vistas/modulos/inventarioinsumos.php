@@ -185,12 +185,12 @@ MODAL INGRESO DE INSUMO
                 <span class="input-group-text"><i class="fas fa-bars"></i></span>
                 </div>
                 <input type="text" class="form-control input-lg" id="nuevaObservacionI" name="nuevaObservacionI" 
-                 placeholder="Ingresar observación" maxlength="100" pattern="[A-Za-z0-9\u00f1\u00d1 ]+" 
+                 placeholder="Ingresar observación" maxlength="100" pattern="[A-Za-z0-9ñÑáéíóúÁÉÍÓÚ ]+"
                  title="Solo se acepta letras y números" required>
             </div>
            </div>
 
-          <!-- ENTRADA PARA EL FECHA -->
+          <!-- ENTRADA PARA LA FECHA -->
           <div class="form-group col-sm">
           <div class="input-group">
               <div class="input-group-prepend">
@@ -332,12 +332,12 @@ MODAL SALIDA DE INSUMO
                 <span class="input-group-text"><i class="fas fa-bars"></i></span>
                 </div>
                 <input type="text" class="form-control input-lg" id="nuevaObservacionS" name="nuevaObservacionS" 
-                 placeholder="Ingresar observación" maxlength="100" pattern="[A-Za-z0-9\u00f1\u00d1 ]+" 
+                 placeholder="Ingresar observación" maxlength="100" pattern="[A-Za-z0-9ñÑáéíóúÁÉÍÓÚ ]+"
                  title="Solo se acepta letras y números" required>
             </div>
            </div>
 
-          <!-- ENTRADA PARA EL FECHA -->
+          <!-- ENTRADA PARA LA FECHA -->
           <div class="form-group col-sm">
           <div class="input-group">
               <div class="input-group-prepend">

@@ -128,7 +128,7 @@ MODAL AGREGAR MAQUINA
                 <span class="input-group-text"><i class="fas fa-file-signature"></i></span>
                 </div>
                 <input type="text" class="form-control input-lg" id="nuevoNombre" name="nuevoNombre" placeholder="Ingresar nombre" 
-                 maxlength="50"  pattern="[A-Za-z0-9\u00f1\u00d1 ]+" title="Solo se acepta letras y números" required>
+                 maxlength="50"  pattern="[A-Za-z0-9ñÑáéíóúÁÉÍÓÚ ]+" title="Solo se acepta letras y números" required>
             </div>
             </div>
 
@@ -142,7 +142,7 @@ MODAL AGREGAR MAQUINA
                 <span class="input-group-text"><i class="fas fa-bars"></i></span>
                 </div>
                 <input type="text" class="form-control input-lg" name="nuevaDescripcion" placeholder="Ingresar descripción" 
-                maxlength="100" pattern="[A-Za-z0-9\u00f1\u00d1 ]+" title="Solo se acepta letras y números" required>
+                maxlength="100" pattern="[A-Za-z0-9ñÑáéíóúÁÉÍÓÚ ]+" title="Solo se acepta letras y números" required>
             </div>
            </div>
 
@@ -181,7 +181,7 @@ MODAL AGREGAR MAQUINA
                 <span class="input-group-text"><i class="fas fa-file-signature"></i>  </span>
                 </div>
                 <input type="text" class="form-control input-lg" id="nuevaMarca" name="nuevaMarca" placeholder="Ingresar marca" 
-                maxlength="50"  pattern="[A-Za-z0-9\u00f1\u00d1 ]+" title="Solo se acepta letras y números" required>
+                maxlength="50"  pattern="[A-Za-z0-9ñÑáéíóúÁÉÍÓÚ ]+" title="Solo se acepta letras y números" required>
             </div>
             </div>
 
@@ -211,7 +211,8 @@ MODAL AGREGAR MAQUINA
                 <span class="input-group-text"><i class="fas fa-calendar-alt"></i></span>
                 </div>
                 <input type="number" class="form-control input-lg" name="nuevoAñoCompra"  id="nuevoAñoCompra" 
-                 placeholder="Ingresar año de compra" min="0" max="9999"required>
+                 placeholder="Ingresar año de compra" min="2000" max="2100" required>
+                
             </div>
             </div>
 
@@ -253,8 +254,8 @@ MODAL AGREGAR MAQUINA
                 <div class="input-group-prepend">
                 <span class="input-group-text"><i class="fas fa-hourglass-half"></i></span>
                 </div>
-                <input type="number" class="form-control input-lg" name="nuevaVidaUtil" max="99"  id="nuevaVidaUtil" 
-                 placeholder="Ingresar vida util (Años)" min="0" required>
+                <input type="number" class="form-control input-lg" name="nuevaVidaUtil"  id="nuevaVidaUtil" 
+                 placeholder="Ingresar vida util (Años)" min="0"  max="99" required>
             </div>
             </div>
 
@@ -347,7 +348,7 @@ MODAL EDITAR MAQUINA
                 <span class="input-group-text"><i class="fas fa-file-signature"></i></span>
                 </div>
                 <input type="text" class="form-control input-lg" name="editarNombre" id="editarNombre" placeholder="Ingresar nombre"
-                 maxlength="50"  pattern="[A-Za-z0-9\u00f1\u00d1 ]+" title="Solo se acepta letras y números" required>
+                 maxlength="50"  pattern="[A-Za-z0-9ñÑáéíóúÁÉÍÓÚ ]+" title="Solo se acepta letras y números" required>
             </div>
             </div>
 
@@ -362,7 +363,7 @@ MODAL EDITAR MAQUINA
                 <span class="input-group-text"><i class="fas fa-bars"></i></span>
                 </div>
                 <input type="text" class="form-control input-lg" name="editarDescripcion" id="editarDescripcion" placeholder="Ingresar descripcion"
-                 maxlength="100" pattern="[A-Za-z0-9\u00f1\u00d1 ]+" title="Solo se acepta letras y números" required>
+                 maxlength="100" pattern="[A-Za-z0-9ñÑáéíóúÁÉÍÓÚ ]+" title="Solo se acepta letras y números" required>
             </div>
             </div>
 
@@ -403,7 +404,7 @@ MODAL EDITAR MAQUINA
                 <span class="input-group-text"><i class="fas fa-file-signature"></i>  </span>
                 </div>
                 <input type="text" class="form-control input-lg" id="editarMarca" name="editarMarca" placeholder="Ingresar marca"
-                maxlength="50"  pattern="[A-Za-z0-9\u00f1\u00d1 ]+" title="Solo se acepta letras y números" required>
+                maxlength="50"  pattern="[A-Za-z0-9ñÑáéíóúÁÉÍÓÚ ]+" title="Solo se acepta letras y números" required>
             </div>
             </div>
 
@@ -433,7 +434,7 @@ MODAL EDITAR MAQUINA
                 <span class="input-group-text"><i class="fas fa-calendar-alt"></i></span>
                 </div>
                 <input type="number" class="form-control input-lg" name="editarAñoCompra"  id="editarAñoCompra" 
-                placeholder="Ingresar año de compra" min="0" max="9999" required>
+                placeholder="Ingresar año de compra" min="2000" max="2100" required>
             </div>
             </div>
 
