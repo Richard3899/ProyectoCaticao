@@ -36,7 +36,12 @@ INSERT INTO `movimiento` (`idMovimiento`, `descripcion`) VALUES
 	(2, 'Salida');
     
 INSERT INTO `configuracion` (`idConfiguracion`, `mododark`) VALUES
-	(1, 1);
+	(1, 0);
+    
+INSERT INTO `estado` (`idEstado`, `descripcion`) VALUES
+	(1, "Iniciado"),
+    (2, "En proceso"),
+    (3, "Terminado");
 
 INSERT INTO `producto` (`idProducto`, `codigo`, `nombre`, `descripcion`, `imagen`, `idUnidadMedida`, `idTipoProducto`) VALUES
 	(1, '123456', 'Chocolate con pasa', '50% cacao', NULL, 3, 2);

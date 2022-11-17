@@ -1,0 +1,188 @@
+
+$('.tablaRecetas').DataTable( {
+    "ajax": "ajax/datatable-recetas.ajax.php",
+    "deferRender": true,
+	"columnDefs": [
+		{"className": "dt-center", "targets": "_all"}
+	  ],
+	"retrieve": true,
+	"processing": true,
+	"language": {
+
+		"sProcessing":     "Procesando...",
+		"sLengthMenu":     "Mostrar _MENU_ registros",
+		"sZeroRecords":    "No se encontraron resultados",
+		"sEmptyTable":     "Ningún dato disponible en esta tabla",
+		"sInfo":           "Mostrando registros del _START_ al _END_ de un total de _TOTAL_",
+		"sInfoEmpty":      "Mostrando registros del 0 al 0 de un total de 0",
+		"sInfoFiltered":   "(filtrado de un total de _MAX_ registros)",
+		"sInfoPostFix":    "",
+		"sSearch":         "Buscar:",
+		"sUrl":            "",
+		"sInfoThousands":  ",",
+		"sLoadingRecords": "Cargando...",
+		"oPaginate": {
+		"sFirst":    "Primero",
+		"sLast":     "Último",
+		"sNext":     "Siguiente",
+		"sPrevious": "Anterior"
+		},
+		"oAria": {
+			"sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
+			"sSortDescending": ": Activar para ordenar la columna de manera descendente"
+		}
+
+}
+
+} );
+
+
+/*=============================================
+EDITAR RECETA
+=============================================*/
+
+$(".tablaRecetas tbody").on("click", "button.btnEditarReceta", function(){
+
+	var idReceta = $(this).attr("idReceta");
+	
+	var datos = new FormData();
+    datos.append("idReceta", idReceta);
+
+     $.ajax({
+
+      url:"ajax/recetas.ajax.php",
+      method: "POST",
+      data: datos,
+      cache: false,
+      contentType: false,
+      processData: false,
+      dataType:"json",
+      success:function(respuesta){
+
+		   $("#idReceta").val(respuesta["idReceta"]);
+
+           $("#editarCodigoReceta").val(respuesta["codigo"]);
+
+		   $("#editarNombre").val(respuesta["nombre"]);
+
+		   $("#editaridProducto").val(respuesta["idProducto"]);
+
+           $("#editarBatch").val(respuesta["batch"]);
+
+		   $("#editaridEstado").val(respuesta["idEstado"]);
+
+		   $("#editarFechaInicio").val(respuesta["fechaInicio"]);
+
+		   $("#editarFechaFin").val(respuesta["fechaFin"]);
+
+		   $("#editarPesoPorTableta").val(respuesta["pesoPorTableta"]);
+
+		   $("#editarPesoEnTableta").val(respuesta["pesoEnTableta"]);
+
+		   $("#editarMerma").val(respuesta["merma"]);
+
+		   $("#editarReproceso").val(respuesta["reproceso"]);
+
+
+      }
+  
+
+  })
+
+  var codigoLote = $(this).attr("codigoLote");
+	
+  var datos = new FormData();
+  datos.append("codigoLote", codigoLote);
+
+   $.ajax({
+
+	url:"ajax/recetas.ajax.php",
+	method: "POST",
+	data: datos,
+	cache: false,
+	contentType: false,
+	processData: false,
+	dataType:"json",
+	success:function(respuesta){
+
+		 $("#idLote").val(respuesta["idLote"]);
+
+		 $("#editarCodigoLote").val(respuesta["codigoLote"]);
+
+		 $("#editaridProducto").val(respuesta["idProducto"]);
+
+		 $("#editarFechaVencimiento").val(respuesta["fechaVencimiento"]);
+
+	}
+
+})
+
+
+})
+
+/*=============================================
+ELIMINAR RECETA
+=============================================*/
+
+$(".tablaRecetas tbody").on("click", "button.btnEliminarReceta", function(){
+
+	var idReceta = $(this).attr("idReceta");
+	var codigo = $(this).attr("codigo");
+	
+	Swal.fire({
+
+		title: '¿Está seguro de borrar el receta?',
+		text: "¡Si no lo está puede cancelar la acción!",
+		icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        cancelButtonText: 'Cancelar',
+        confirmButtonText: 'Si, borrar receta!'
+        }).then(function(result){
+        if (result.value) {
+
+        	window.location = "index.php?ruta=recetas&idReceta="+idReceta+"&codigo="+codigo;
+
+        }
+
+
+	})
+
+})
+	
+/*=============================================
+REVISAR SI EL RECETA YA ESTÁ REGISTRADO
+=============================================*/
+
+$("#nuevoCodigoReceta").change(function(){
+
+	$(".alert").remove();
+
+	var receta = $(this).val();
+
+	var datos = new FormData();
+	datos.append("validarCodigo", receta);
+
+	 $.ajax({
+	    url:"ajax/recetas.ajax.php",
+	    method:"POST",
+	    data: datos,
+	    cache: false,
+	    contentType: false,
+	    processData: false,
+	    dataType: "json",
+	    success:function(respuesta){
+	    	
+	    	if(respuesta){
+
+	    		$("#nuevoCodigoReceta").parent().after('<div class="alert alert-warning">Este código ya existe en la base de datos</div>');
+
+	    		$("#nuevoCodigoReceta").val("");
+
+	    	}
+
+	    }
+
+	})
+})

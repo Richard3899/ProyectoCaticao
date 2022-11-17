@@ -189,8 +189,17 @@ if($value["mododark"] == 0){
                 Operaciones
                 <i class="right fas fa-angle-left"></i>
               </p>
-              
             </a>
+
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="recetas" class="nav-link">
+                <i class="nav-icon fas fa-angle-double-right"></i>
+                  <p>Receta</p>
+                </a>
+              </li>
+
+            </ul>
             
           </li>
 

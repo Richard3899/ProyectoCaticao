@@ -142,13 +142,12 @@ CREATE TABLE gastoadminreceta (
 -- Table lote
 -- -----------------------------------------------------
 
-CREATE TABLE lote (
-  idLote INT  AUTO_INCREMENT primary key,
-  codigo INT ,
-  idReceta INT REFERENCES receta (idReceta)
+CREATE TABLE lote(
+  idLote INT AUTO_INCREMENT primary key,
+  codigoLote VARCHAR(20),
+  fechaVencimiento DATE,
+  idProducto INT REFERENCES producto (idProducto)
 );
-
-
 
 
 -- -----------------------------------------------------
@@ -266,8 +265,6 @@ CREATE TABLE producto (
 );
 
 
-
-
 -- -----------------------------------------------------
 -- Table Gastos_Administrativos_por_mes
 -- -----------------------------------------------------
@@ -286,7 +283,6 @@ CREATE TABLE gastoadminpormes (
 -- -----------------------------------------------------
 -- Table Movimiento Materia
 -- -----------------------------------------------------
-
 
 CREATE TABLE MovimientoMateria (
   idMovimientoMateria INT  AUTO_INCREMENT primary key,
@@ -370,23 +366,32 @@ CREATE TABLE MovimientoMaquina (
 
 
 -- -----------------------------------------------------
+-- Table Estado
+-- -----------------------------------------------------
+
+CREATE TABLE Estado (
+  idEstado INT  AUTO_INCREMENT primary key,
+  descripcion VARCHAR(50)
+);
+
+
+-- -----------------------------------------------------
 -- Table Receta
 -- -----------------------------------------------------
 
 CREATE TABLE Receta (
   idReceta INT  AUTO_INCREMENT primary key,
-  descripcion VARCHAR(50) ,
+  codigo VARCHAR(20) ,
+  nombre VARCHAR(50) ,
   batch DECIMAL(10,2) ,
-  estado INT ,
-  fechaincio DATE ,
-  fechafin DATE ,
-  lote VARCHAR(50) ,
-  pesoportableta DECIMAL(10,2) ,
-  pesoentableta DECIMAL(10,2) ,
+  fechaInicio DATE ,
+  fechaFin DATE ,
+  pesoPorTableta DECIMAL(10,2) ,
+  pesoEnTableta DECIMAL(10,2) ,
   merma DECIMAL(10,2) ,
-  reproceso DECIMAL(10,2) ,
-  fechavencimiento DATE ,
-  idproducto INT REFERENCES Producto (idproducto)
+  reproceso DECIMAL(10,2),
+  codigoLote VARCHAR(20),
+  idEstado INT REFERENCES Estado (idEstado)
 );
 
 
@@ -506,7 +511,7 @@ alter Table consumoenergia add foreign key (idTipoCosto) REFERENCES  tipocosto (
 alter Table consumoenergia add foreign key (idUnidadMedida) REFERENCES  unidadmedida (idUnidadMedida);
 alter Table consumoenergia add foreign key (idTarifaEnergia) REFERENCES  TarifaEnergia (idTarifaEnergia);
 
-alter Table receta add foreign key (idProducto) REFERENCES  producto (idProducto);
+alter Table receta add foreign key (idEstado) REFERENCES  estado (idEstado);
 
 alter Table consumoenergiareceta add foreign key (idConsumoEnergia) REFERENCES  consumoenergia (idConsumoEnergia);
 alter Table consumoenergiareceta add foreign key (idReceta) REFERENCES  receta (idReceta);
@@ -517,16 +522,12 @@ alter Table depreciacion add foreign key (idTipoCosto) REFERENCES  tipocosto (id
 alter Table depreciacionreceta add foreign key (idDepreciacion) REFERENCES  depreciacion(idDepreciacion);
 alter Table depreciacionreceta add foreign key (idReceta) REFERENCES  receta (idReceta);
 
-
 alter Table gastoadmin add foreign key (idUnidadMedida) REFERENCES  unidadmedida (idUnidadMedida);
 alter Table gastoadmin add foreign key (idTipoCosto) REFERENCES  tipocosto (idTipoCosto);
 alter Table gastoadmin add foreign key (idDesembolso) REFERENCES  desembolso (idDesembolso);
 
 alter Table gastoadminreceta add foreign key (idGastoAdmin) REFERENCES  gastoadmin (idGastoAdmin);
 alter Table gastoadminreceta add foreign key (idReceta) REFERENCES  receta (idReceta);
-
-alter Table lote add foreign key (idReceta) REFERENCES  receta (idReceta);
-
 
 alter Table ManoObrareceta add foreign key (idReceta) REFERENCES  receta (idReceta); 
 alter Table ManoObrareceta add foreign key (idManoObra) REFERENCES  ManoObra (idManoObra);
@@ -550,6 +551,7 @@ alter Table recetamateria add foreign key (idReceta) REFERENCES receta (idReceta
 alter Table Producto add foreign key (idUnidadMedida) REFERENCES unidadmedida (idUnidadMedida);
 alter Table Producto add foreign key (idTipoProducto) REFERENCES TipoProducto (idTipoProducto);
 
+alter Table Lote add foreign key (idProducto) REFERENCES Producto (idProducto);
 
 alter Table MovimientoMateria add foreign key (idMateria) REFERENCES Materia (idMateria);
 alter Table MovimientoMateria add foreign key (idMovimiento) REFERENCES Movimiento (idMovimiento);

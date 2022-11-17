@@ -69,8 +69,6 @@ BEGIN
 END$$
 DELIMITER ;
 
-
-
 -- Procedimientos almacenados de Productos --
 
 DROP procedure IF EXISTS `mostrar_productos`;
@@ -678,6 +676,7 @@ DELIMITER $$
 USE `caticao`$$
 CREATE PROCEDURE `mostrar_kardexinsumos` (in idMateriaK int)
 BEGIN
+
 		Select mm.idMateria,m.nombre,mm.idMovimiento,mv.descripcion,mm.observacion,mm.fecha,mm.hora,
 				mm.ingreso,mm.salida ,SUM(+ingreso-salida) 
 				OVER(ORDER BY mm.hora ASC ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW)
@@ -910,5 +909,27 @@ BEGIN
 				inner join maquina m on m.idMaquina=mm.idMaquina
 				inner join movimiento mv on mv.idMovimiento=mm.idMovimiento
 				where mm.idMaquina=idMaquinaK;
+END$$
+DELIMITER ;
+
+-- Procedimientos almacenados de estado --
+
+DROP procedure IF EXISTS `mostrar_estados`;
+DELIMITER $$
+USE `caticao`$$
+CREATE PROCEDURE `mostrar_estados` ()
+BEGIN
+	select * from estado;
+END$$
+DELIMITER ;
+
+-- Procedimientos almacenados de lote --
+
+DROP procedure IF EXISTS `mostrar_lotes`;
+DELIMITER $$
+USE `caticao`$$
+CREATE PROCEDURE `mostrar_lotes` ()
+BEGIN
+	select * from lote;
 END$$
 DELIMITER ;

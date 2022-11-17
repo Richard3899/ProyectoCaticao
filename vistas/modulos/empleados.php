@@ -262,8 +262,8 @@ MODAL AGREGAR EMPLEADO
               <div class="input-group-prepend">
               <span class="input-group-text"><i class="fas fa-calendar-alt"></i></span>
               </div>
-              <input type="date" class="form-control input-lg" name="nuevaFechaNacimiento" id="nuevaFechaNacimiento"
-               placeholder="Ingresar fecha de nacimiento" required>
+              <input type="text" class="textbox-n form-control"  name="nuevaFechaNacimiento" id="nuevaFechaNacimiento"
+              placeholder="Ingresar fecha de nacimiento" onfocus="(this.type='date')" onblur="(this.type='date')" id="date" required>
           </div>
           </div>
 
@@ -589,8 +589,8 @@ MODAL EDITAR EMPLEADO
               <div class="input-group-prepend">
               <span class="input-group-text"><i class="fas fa-calendar-alt"></i></span>
               </div>
-              <input type="date" class="form-control input-lg" name="editarFechaNacimiento" id="editarFechaNacimiento"
-               placeholder="Ingresar fecha de nacimiento" required>
+               <input type="text" class="textbox-n form-control"  name="editarFechaNacimiento" id="editarFechaNacimiento"
+               placeholder="Ingresar fecha de nacimiento" onfocus="(this.type='date')" onblur="(this.type='date')" id="date" required>
           </div>
           </div>
 

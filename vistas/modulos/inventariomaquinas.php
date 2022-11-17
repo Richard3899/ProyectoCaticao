@@ -129,7 +129,7 @@ MODAL INGRESO DE MAQUINA
             
             <div class="input-group">
 
-                <select class="form-control select input-lg" style="width: 100%;" id="nuevoMaquinaI" name="nuevoMaquinaI" required>
+                <select class="form-control select2 input-lg" style="width: 100%;" id="nuevoMaquinaI" name="nuevoMaquinaI" required>
                 
                 <option value="">Seleccionar Maquina</option>
 
@@ -192,8 +192,8 @@ MODAL INGRESO DE MAQUINA
               <div class="input-group-prepend">
               <span class="input-group-text"><i class="fas fa-calendar-alt"></i></span>
               </div>
-              <input type="date" class="form-control input-lg" name="nuevaFechaI" id="nuevaFechaI"
-               placeholder="Ingresar fecha de registro" required>
+               <input type="text" class="textbox-n form-control"  name="nuevaFechaI" id="nuevaFechaI"
+               placeholder="Ingresar fecha de emisión" onfocus="(this.type='date')" onblur="(this.type='date')" id="date" required>
           </div>
           </div>
           </div>
@@ -335,8 +335,8 @@ MODAL SALIDA DE MAQUINA
               <div class="input-group-prepend">
               <span class="input-group-text"><i class="fas fa-calendar-alt"></i></span>
               </div>
-              <input type="date" class="form-control input-lg" name="nuevaFechaS" id="nuevaFechaS"
-               placeholder="Ingresar fecha de registro" required>
+               <input type="text" class="textbox-n form-control"  name="nuevaFechaS" id="nuevaFechaS"
+               placeholder="Ingresar fecha de emisión" onfocus="(this.type='date')" onblur="(this.type='date')" id="date" required>
           </div>
           </div>
 
