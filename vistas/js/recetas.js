@@ -43,6 +43,43 @@ EDITAR RECETA
 
 $(".tablaRecetas tbody").on("click", "button.btnEditarReceta", function(){
 
+	var codigoLote = $(this).attr("codigoLote");
+	
+	var datos = new FormData();
+	datos.append("codigoLote", codigoLote);
+
+	 $.ajax({
+  
+	  url:"ajax/recetas.ajax.php",
+	  method: "POST",
+	  data: datos,
+	  cache: false,
+	  contentType: false,
+	  processData: false,
+	  dataType:"json",
+	  success:function(respuesta){
+  
+		$idLote=respuesta["idLote"];
+  
+		$codigoLote=respuesta["codigoLote"];
+
+		$fechaVencimiento=respuesta["fechaVencimiento"];
+
+		$idProducto=respuesta["idProducto"];
+
+		$("#idLote").val($idLote);
+  
+		$("#editarCodigoLote").val($codigoLote);
+
+		$("#editarFechaVencimiento").val($fechaVencimiento);
+
+		$("#editaridProducto").val($idProducto);
+  
+	  }
+  
+  })
+	
+	
 	var idReceta = $(this).attr("idReceta");
 	
 	var datos = new FormData();
@@ -65,8 +102,6 @@ $(".tablaRecetas tbody").on("click", "button.btnEditarReceta", function(){
 
 		   $("#editarNombre").val(respuesta["nombre"]);
 
-		   $("#editaridProducto").val(respuesta["idProducto"]);
-
            $("#editarBatch").val(respuesta["batch"]);
 
 		   $("#editaridEstado").val(respuesta["idEstado"]);
@@ -83,39 +118,9 @@ $(".tablaRecetas tbody").on("click", "button.btnEditarReceta", function(){
 
 		   $("#editarReproceso").val(respuesta["reproceso"]);
 
-
       }
-  
 
   })
-
-  var codigoLote = $(this).attr("codigoLote");
-	
-  var datos = new FormData();
-  datos.append("codigoLote", codigoLote);
-
-   $.ajax({
-
-	url:"ajax/recetas.ajax.php",
-	method: "POST",
-	data: datos,
-	cache: false,
-	contentType: false,
-	processData: false,
-	dataType:"json",
-	success:function(respuesta){
-
-		 $("#idLote").val(respuesta["idLote"]);
-
-		 $("#editarCodigoLote").val(respuesta["codigoLote"]);
-
-		 $("#editaridProducto").val(respuesta["idProducto"]);
-
-		 $("#editarFechaVencimiento").val(respuesta["fechaVencimiento"]);
-
-	}
-
-})
 
 
 })
@@ -179,6 +184,82 @@ $("#nuevoCodigoReceta").change(function(){
 	    		$("#nuevoCodigoReceta").parent().after('<div class="alert alert-warning">Este código ya existe en la base de datos</div>');
 
 	    		$("#nuevoCodigoReceta").val("");
+
+	    	}
+
+	    }
+
+	})
+})
+
+
+
+
+/*=============================================
+REVISAR SI EL CODIGO LOTE ESTA REGISTRADO
+=============================================*/
+
+$("#nuevoCodigoLote").change(function(){
+
+	$(".alert").remove();
+
+	var receta = $(this).val();
+
+	var datos = new FormData();
+	datos.append("validarCodigoLote", receta);
+
+	 $.ajax({
+	    url:"ajax/recetas.ajax.php",
+	    method:"POST",
+	    data: datos,
+	    cache: false,
+	    contentType: false,
+	    processData: false,
+	    dataType: "json",
+	    success:function(respuesta){
+	    	
+	    	if(respuesta){
+
+	    		$("#nuevoCodigoLote").parent().after('<div class="alert alert-warning">Este código ya existe en la base de datos</div>');
+
+	    		$("#nuevoCodigoLote").val("");
+
+	    	}
+
+	    }
+
+	})
+})
+
+
+/*=============================================
+REVISAR SI EL CODIGO LOTE ESTÁ REGISTRADO
+=============================================*/
+
+$("#editarCodigoLote").change(function(){
+
+	$(".alert").remove();
+
+	var receta = $(this).val();
+
+	var datos = new FormData();
+	datos.append("validarCodigoLote", receta);
+
+	 $.ajax({
+	    url:"ajax/recetas.ajax.php",
+	    method:"POST",
+	    data: datos,
+	    cache: false,
+	    contentType: false,
+	    processData: false,
+	    dataType: "json",
+	    success:function(respuesta){
+	    	
+	    	if(respuesta){
+
+	    		$("#editarCodigoLote").parent().after('<div class="alert alert-warning">Este código ya existe en la base de datos</div>');
+
+	    		$("#editarCodigoLote").val("");
 
 	    	}
 

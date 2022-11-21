@@ -74,8 +74,6 @@ class TablaInsumos{
 		  	$unidadmedida = ControladorUnidadMedida::ctrMostrarUnidadMedida($items, $valors);
 
 
-
-
 			$item2 = "idMateria";
 		  	$valor2 = $insumos[$i]["idMateria"];
 

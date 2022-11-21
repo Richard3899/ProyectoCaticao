@@ -54,6 +54,22 @@ class AjaxRecetas{
 		echo json_encode($respuesta);
 
 	}
+	/*=============================================
+	VALIDAR NO REPETIR CODIGO LOTE
+	=============================================*/	
+
+	public $validarCodigoLote;
+
+	public function ajaxValidarCodigoLote(){
+
+		$item = "codigoLote";
+		$valor = $this->validarCodigoLote;
+
+		$respuesta = ControladorLotes::ctrMostrarLotes($item, $valor);
+
+		echo json_encode($respuesta);
+
+	}
 }
 
 /*=============================================
@@ -86,4 +102,17 @@ if(isset( $_POST["validarCodigo"])){
 	$valCodigo -> ajaxValidarCodigo();
 
 }
+
+/*=============================================
+VALIDAR NO REPETIR CODIGO LOTE
+=============================================*/
+
+if(isset( $_POST["validarCodigoLote"])){
+
+	$valCodigoLote = new AjaxRecetas();
+	$valCodigoLote -> validarCodigoLote = $_POST["validarCodigoLote"];
+	$valCodigoLote -> ajaxValidarCodigoLote();
+
+}
+
 
