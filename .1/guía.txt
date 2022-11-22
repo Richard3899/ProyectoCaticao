@@ -25,3 +25,5 @@ procedimiento almacenado en la carpeta /bd archivo pa.sql.
 9-Creas las consultas ajax en la carpeta /ajax y el data table en caso
 
 sean una tabla que va contener tener muchos datos. Y agregar los modelos y controladores.
+
+PRUEBA
