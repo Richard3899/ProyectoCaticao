@@ -1,26 +1,31 @@
-var idInsumo = $(this).attr("idInsumo");
+  foreach ($configuracion as $key => $value){
 
-$(this).removeClass("btn-info agregarInsumo");
+    if($value["modoDark"] == 1 && $value["contraerBarraLateral"]==1 && $value["ocultarBarraLateral"]==1 ){
+    
+      echo '<body class="hold-transition skin-blue dark-mode sidebar-collapse">';
+    
+    }else if($value["modoDark"] == 0 && $value["contraerBarraLateral"]==1 && $value["ocultarBarraLateral"]==1 ){
+    
+      echo '<body class="hold-transition skin-blue sidebar-collapse">';
+    
+    }else if($value["modoDark"] == 0 && $value["contraerBarraLateral"]==0 && $value["ocultarBarraLateral"]==1 ){
+    
+      echo '<body class="hold-transition skin-blue sidebar-collapse">';
+    
+    }else if($value["modoDark"] == 1 && $value["contraerBarraLateral"]==1 && $value["ocultarBarraLateral"]==0){
+    
+    echo '<body class="hold-transition skin-blue sidebar-mini-xs dark-mode sidebar-collapse">';
+    
+    }else if($value["modoDark"] == 1 && $value["contraerBarraLateral"]==0 && $value["ocultarBarraLateral"]==0){
+    
+    echo '<body class="hold-transition skin-blue sidebar-mini-xs dark-mode">';
+    
+    }else if($value["modoDark"] == 0 && $value["contraerBarraLateral"]==1 && $value["ocultarBarraLateral"]==0){
+    
+      echo '<body class="hold-transition skin-blue sidebar-mini-xs sidebar-collapse">';
 
-$(this).addClass("btn-default");
-
-var datos = new FormData();
-datos.append("idInsumo", idInsumo);
-
- $.ajax({
-
-  url:"ajax/insumos.ajax.php",
-  method: "POST",
-  data: datos,
-  cache: false,
-  contentType: false,
-  processData: false,
-  dataType:"json",
-  success:function(respuesta){
-
-    $stock=respuesta["stock"];
-
-
+    }else if($value["modoDark"] == 1 && $value["contraerBarraLateral"]==0 && $value["ocultarBarraLateral"]==1){
+    
+      echo '<body class="hold-transition skin-blue sidebar-collapse dark-mode">';
+    };
   }
-
-})

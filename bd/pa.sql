@@ -170,8 +170,8 @@ BEGIN
     insert into inventariomateria (stock)
 				  values (0);
                   
-	insert into materia (codigo,nombre,descripcion,idUnidadMedida,idMarca,cantidad,precio,imagen,idTipoMateria)
-				  values (codigoI,nombreI,descripcionI,idUnidadMedidaI,idMarcaI,cantidadI,precioI,imagenI,1);
+	insert into materia (codigo,nombre,descripcion,idUnidadMedida,idMarca,cantidad,precio,precioUnitario,imagen,idTipoMateria)
+				  values (codigoI,nombreI,descripcionI,idUnidadMedidaI,idMarcaI,cantidadI,precioI,precio/cantidad,imagenI,1);
                   
 END$$
 DELIMITER ;
@@ -931,5 +931,96 @@ USE `caticao`$$
 CREATE PROCEDURE `mostrar_lotes` ()
 BEGIN
 	select * from lote;
+END$$
+DELIMITER ;
+
+
+-- Procedimientos almacenados de Recetas --
+
+DROP procedure IF EXISTS `mostrar_recetas`;
+DELIMITER $$
+USE `caticao`$$
+CREATE PROCEDURE `mostrar_recetas` ()
+BEGIN
+	select * from receta ;
+END$$
+DELIMITER ;
+
+
+DROP procedure IF EXISTS `insertar_receta`;
+DELIMITER $$
+USE `caticao`$$
+CREATE PROCEDURE `insertar_receta` (    in codigoI VARCHAR(20),
+                                        in nombreI VARCHAR(50),
+                                        in idProductoI INT,
+                                        in batchI DECIMAL(10,2),
+                                        in idEstadoI INT,
+                                        in fechaInicioI date,
+                                        in fechaFinI date,
+                                        in codigoLoteI VARCHAR(20),
+                                        in fechaVencimientoI date,
+                                        in pesoPorTabletaI DECIMAL(10,2),
+                                        in pesoEnTabletaI DECIMAL(10,2),
+                                        in mermaI DECIMAL(10,2),
+                                        in reprocesoI DECIMAL(10,2))
+BEGIN
+
+    insert into lote (codigoLote,fechaVencimiento,idProducto)
+			  values (codigoLoteI,fechaVencimientoI,idProductoI);
+                
+	insert into receta (codigo,nombre,batch,idEstado,fechaInicio,fechaFin,pesoPorTableta,pesoEnTableta,merma,reproceso,codigoLote)
+			    values (codigoI,nombreI,batchI,idEstadoI,fechaInicioI,fechaFinI,pesoPorTabletaI,pesoEnTabletaI,mermaI,reprocesoI,codigoLoteI);
+	
+END$$
+DELIMITER ;
+
+
+DROP procedure IF EXISTS `editar_receta`;
+DELIMITER $$
+USE `caticao`$$
+CREATE PROCEDURE `editar_receta` (      in idRecetaE INT,
+									    in idLoteE INT,
+                                        in codigoE VARCHAR(20),
+                                        in nombreE VARCHAR(50),
+                                        in idProductoE INT,
+                                        in batchE DECIMAL(10,2),
+                                        in idEstadoE INT,
+                                        in fechaInicioE date,
+                                        in fechaFinE date,
+                                        in codigoLoteE VARCHAR(20),
+                                        in fechaVencimientoE date,
+                                        in pesoPorTabletaE DECIMAL(10,2),
+                                        in pesoEnTabletaE DECIMAL(10,2),
+                                        in mermaE DECIMAL(10,2),
+                                        in reprocesoE DECIMAL(10,2))
+BEGIN
+	update lote  set    codigoLote=codigoLoteE,
+                        fechaVencimiento=fechaVencimientoE,
+                        idProducto=idProductoE
+			   where    idLote=idLoteE;
+
+	update receta set   codigo=codigoE,
+                        nombre=nombreE,
+                        batch=batchE,
+                        idEstado=idEstadoE,
+                        fechaInicio=fechaInicioE,
+                        fechaFin=fechaFinE,
+                        codigoLote=codigoLoteE,
+                        pesoPorTableta=pesoPorTabletaE,
+                        pesoEnTableta=pesoEnTabletaE,
+                        merma=mermaE,
+                        reproceso=reprocesoE
+				where idReceta=idRecetaE;
+END$$
+DELIMITER ;
+
+
+DROP procedure IF EXISTS `eliminar_receta`;
+DELIMITER $$
+USE `caticao`$$
+CREATE PROCEDURE `eliminar_receta` (in idRecetaE int)
+BEGIN
+	delete from receta
+    where idReceta=idRecetaE;
 END$$
 DELIMITER ;

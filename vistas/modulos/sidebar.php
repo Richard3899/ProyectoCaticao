@@ -2,7 +2,7 @@
 <?php  
 foreach ($configuracion as $key => $value){
 
-if($value["mododark"] == 0){
+if($value["modoDark"] == 1){
 
   echo '<aside class="main-sidebar sidebar-dark-primary elevation-4">';
 
@@ -12,6 +12,7 @@ if($value["mododark"] == 0){
 
 };
 }
+
 ?>
     <!-- Brand Logo -->
     <a href="inicio" class="brand-link">
@@ -28,7 +29,7 @@ if($value["mododark"] == 0){
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
           <li class="nav-item">
-            <a href="inicio" class="nav-link">
+            <a href="inicio" class="nav-link <?php if($url=='inicio'){ echo "active"; }?>">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
                 Dashboard
@@ -38,8 +39,8 @@ if($value["mododark"] == 0){
             
           </li>
 
-          <li class="nav-item">
-            <a href="#" class="nav-link">
+          <li class="nav-item <?php if(in_array($url, array('insumos', 'materiales','marcas','productos','maquinas','empleados','gastoadmin', 'costoventa','costomarketing','costooperativo'))){ echo "menu-open"; }?>">
+            <a href="#" class="nav-link <?php if(in_array($url, array('insumos', 'materiales','marcas','productos','maquinas','empleados','gastoadmin', 'costoventa','costomarketing','costooperativo'))){ echo "active"; }?>">
               <i class="nav-icon fas fa-pen"></i>
               <p>
                 Registros
@@ -48,29 +49,28 @@ if($value["mododark"] == 0){
             </a>
 
             <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="#" class="nav-link">
+              <li class="nav-item <?php if(in_array($url, array('insumos', 'materiales','marcas'))){ echo "menu-open"; }?>">
+                <a href="#" class="nav-link <?php if(in_array($url, array('insumos', 'materiales','marcas'))){ echo "active"; }?>">
                   <i class="nav-icon fas fa-angle-double-right"></i>
                   <p>Insumos y Materiales
                   <i class="right fas fa-angle-left"></i>
                   </p>
                 </a>
-                
                 <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="insumos" class="nav-link">
+                <a href="insumos" class="nav-link <?php if($url=='insumos'){ echo "active"; }?>">
                   <i class="nav-icon fas fa-angle-right"></i>
                   <p>Insumos</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="materiales" class="nav-link">
+                <a href="materiales" class="nav-link <?php if($url=='materiales'){ echo "active"; }?>">
                 <i class="nav-icon fas fa-angle-right"></i>
                   <p>Materiales</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="marcas" class="nav-link">
+                <a href="marcas" class="nav-link <?php if($url=='marcas'){ echo "active"; }?>">
                 <i class="nav-icon fas fa-angle-right"></i>
                   <p>Marcas</p>
                 </a>
@@ -79,29 +79,29 @@ if($value["mododark"] == 0){
               </li>
 
               <li class="nav-item">
-                <a href="productos" class="nav-link">
+                <a href="productos" class="nav-link <?php if($url=='productos'){ echo "active"; }?>">
                 <i class="nav-icon fas fa-angle-double-right"></i>
                   <p>Productos</p>
                 </a>
               </li>
 
               <li class="nav-item">
-                <a href="maquinas" class="nav-link">
+                <a href="maquinas" class="nav-link <?php if($url=='maquinas'){ echo "active"; }?>">
                 <i class="nav-icon fas fa-angle-double-right"></i>
                   <p>Maquinas</p>
                 </a>
               </li>
 
               <li class="nav-item">
-                <a href="empleados" class="nav-link">
+                <a href="empleados" class="nav-link <?php if($url=='empleados'){ echo "active"; }?>">
                 <i class="nav-icon fas fa-angle-double-right"></i>
                   <p>Empleados</p>
                 </a>
               </li>
 
 
-              <li class="nav-item">
-                <a href="#" class="nav-link">
+              <li class="nav-item <?php if(in_array($url, array('gastoadmin', 'costoventa','costomarketing','costooperativo'))){ echo "menu-open"; }?>">
+                <a href="#" class="nav-link <?php if(in_array($url, array('gastoadmin', 'costoventa','costomarketing','costooperativo'))){ echo "active"; }?>">
                   <i class="nav-icon fas fa-angle-double-right"></i>
                   <p>Gastos y Costos
                   <i class="right fas fa-angle-left"></i>
@@ -110,25 +110,25 @@ if($value["mododark"] == 0){
                 
                 <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="gastoadmin" class="nav-link">
+                <a href="gastoadmin" class="nav-link <?php if($url=='gastoadmin'){ echo "active"; }?>">
                   <i class="nav-icon fas fa-angle-right"></i>
                   <p>Gastos Admin</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="costoventa" class="nav-link">
+                <a href="costoventa" class="nav-link <?php if($url=='costoventa'){ echo "active"; }?>">
                 <i class="nav-icon fas fa-angle-right"></i>
                   <p>Costos de Ventas</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="costomarketing" class="nav-link">
+                <a href="costomarketing" class="nav-link <?php if($url=='costomarketing'){ echo "active"; }?>">
                 <i class="nav-icon fas fa-angle-right"></i>
                   <p>Costos de Marketing</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="costooperativo" class="nav-link">
+                <a href="costooperativo" class="nav-link <?php if($url=='costooperativo'){ echo "active"; }?>">
                 <i class="nav-icon fas fa-angle-right"></i>
                   <p>Costos Operativos</p>
                 </a>
@@ -141,8 +141,8 @@ if($value["mododark"] == 0){
             
           </li>
 
-          <li class="nav-item">
-            <a href="#" class="nav-link">
+          <li class="nav-item <?php if (in_array($url, array('inventariomateriales', 'inventarioinsumos','inventarioproductos','inventariomaquinas'))){echo "menu-open";}?>">
+            <a href="#" class="nav-link <?php if(in_array($url, array('inventariomateriales', 'inventarioinsumos','inventarioproductos','inventariomaquinas'))){ echo "active"; }?>">
               <i class="nav-icon fas fa-box"></i>
               <p>
                 Inventario
@@ -152,27 +152,27 @@ if($value["mododark"] == 0){
 
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="inventarioinsumos" class="nav-link">
+                <a href="inventarioinsumos" class="nav-link <?php if($url=='inventarioinsumos'){ echo "active"; }?>">
                 <i class="nav-icon fas fa-angle-double-right"></i>
                   <p>Inventario Insumos</p>
                 </a>
               </li>
 
               <li class="nav-item">
-                <a href="inventariomateriales" class="nav-link">
+                <a href="inventariomateriales" class="nav-link <?php if($url=='inventariomateriales'){ echo "active"; }?>">
                 <i class="nav-icon fas fa-angle-double-right"></i>
                   <p>Inventario Materiales</p>
                 </a>
               </li>
 
               <li class="nav-item">
-                <a href="inventarioproductos" class="nav-link">
+                <a href="inventarioproductos" class="nav-link <?php if($url=='inventarioproductos'){ echo "active"; }?>">
                 <i class="nav-icon fas fa-angle-double-right"></i>
                   <p>Inventario Productos</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="inventariomaquinas" class="nav-link">
+                <a href="inventariomaquinas" class="nav-link <?php if($url=='inventariomaquinas'){ echo "active"; }?>">
                 <i class="nav-icon fas fa-angle-double-right"></i>
                   <p>Inventario Maquinas</p>
                 </a>
@@ -182,8 +182,8 @@ if($value["mododark"] == 0){
             
           </li>
 
-          <li class="nav-item">
-            <a href="#" class="nav-link">
+          <li class="nav-item <?php if($url=='recetas'){ echo "menu-open"; }?>">
+            <a href="#" class="nav-link <?php if($url=='recetas'){ echo "active"; }?>">
               <i class="nav-icon fas fa-receipt"></i>
               <p>
                 Operaciones
@@ -193,7 +193,7 @@ if($value["mododark"] == 0){
 
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="recetas" class="nav-link">
+                <a href="recetas" class="nav-link <?php if($url=='recetas'){ echo "active"; }?>">
                 <i class="nav-icon fas fa-angle-double-right"></i>
                   <p>Receta</p>
                 </a>
@@ -204,7 +204,7 @@ if($value["mododark"] == 0){
           </li>
 
           <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="#" class="nav-link <?php if($url=='costos'){ echo "active"; }?>">
               <i class="nav-icon fas fa-money-bill"></i>
               <p>
                 Costos
@@ -216,7 +216,7 @@ if($value["mododark"] == 0){
           </li>
 
           <li class="nav-item">
-            <a href="usuarios" class="nav-link">
+            <a href="usuarios" class="nav-link <?php if($url=='usuarios'){ echo "active"; }?>">
               <i class="nav-icon fas fa-user"></i>
               <p>
                 Usuarios
@@ -228,7 +228,7 @@ if($value["mododark"] == 0){
           </li>
 
           <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="#" class="nav-link <?php if($url=='reportes'){ echo "active"; }?>">
               <i class="nav-icon fas fa-chart-line"></i>
               <p>
                 Reportes
@@ -240,7 +240,7 @@ if($value["mododark"] == 0){
           </li>
 
           <li class="nav-item">
-            <a href="configuracion" class="nav-link">
+            <a href="configuracion" class="nav-link <?php if($url=='configuracion'){ echo "active"; }?>">
               <i class="nav-icon fas fa-gear"></i>
               <p>
                 Configuración

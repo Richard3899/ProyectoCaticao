@@ -188,6 +188,7 @@ CREATE TABLE materia (
   descripcion VARCHAR(100) ,
   precio DECIMAL(10,2) ,
   cantidad DECIMAL(10,2) ,
+  precioUnitario DECIMAL(10,2) ,
   imagen VARCHAR(100),
   idUnidadMedida INT REFERENCES unidadmedida(idUnidadMedida),
   idMarca INT REFERENCES Marca (idMarca),
@@ -401,8 +402,10 @@ CREATE TABLE Receta (
 
 CREATE TABLE RecetaMateria (
   idRecetaMateria INT  AUTO_INCREMENT primary key,
-  pesoneto DECIMAL(10,2) ,
-  costo DECIMAL(10,2) ,
+  insumos TEXT,
+  pesoneto DECIMAL(10,2),
+  costo DECIMAL(10,2),
+  total DECIMAL(10,2),
   idMateria INT REFERENCES Materia (idMateria),
   idReceta INT REFERENCES Receta (idReceta)
 );
@@ -502,7 +505,9 @@ CREATE TABLE UsuarioModulo (
 
 CREATE TABLE Configuracion (
   idConfiguracion INT  AUTO_INCREMENT primary key,
-  mododark INT 
+  modoDark INT,
+  contraerBarraLateral INT,
+  ocultarBarraLateral INT
 );
 
 

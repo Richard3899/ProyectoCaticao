@@ -28,7 +28,7 @@
         <div class="row justify-content-center m-2">
             
               <!-- ENTRADA PARA SELECCIONAR INSUMO -->
-              <div class="form-group col-6 m-1">
+              <div class="form-group col-9 col-sm-9 col-md-6 col-lg-6 m-1">
                   <select class="form-control select2" style="width: 100%;" id="InsumoK" name="InsumoK" required>
                   
                   <option value="0">Seleccionar Insumo</option>
@@ -53,7 +53,7 @@
 
                 </select>
               </div>
-              <div class="form-group col-3">
+              <div class="form-group col-9 col-sm-9 col-md-4 col-lg-4">
               <div class="row justify-content-between">
               <div class="btn-group col m-1">
               <button type="button" class="btn btn-primary btnKardexInsumos" id="KardexInsumos">  

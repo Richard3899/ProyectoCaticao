@@ -2,7 +2,27 @@
     <!-- Left navbar links -->
     <ul class="navbar-nav">
       <li class="nav-item">
-        <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+           <?php
+
+            $item = null;
+            $valor = null;
+
+            $configuracion = ControladorConfiguracion::ctrMostrarConfiguracion($item, $valor);
+
+            foreach ($configuracion as $key => $value){
+
+                  if($value["contraerBarraLateral"] == 1){
+
+                        echo '<a class="nav-link btnActivarContraerBarraLateral"  idConfiguracion="'.$value["idConfiguracion"].'" contraerbarralateral="0" data-widget="pushmenu" role="button"><i class="fas fa-bars"></i></a>';
+                  }else{
+
+                        echo '<a class="nav-link btnActivarContraerBarraLateral"  idConfiguracion="'.$value["idConfiguracion"].'" contraerbarralateral="1" data-widget="pushmenu" role="button"><i class="fas fa-bars"></i></a>';
+                  };
+            }
+
+
+            ?>
+
       </li>
     </ul>
 
@@ -25,7 +45,7 @@
 
               foreach ($configuracion as $key => $value){
 
-                if($value["mododark"] == 0){
+                if($value["modoDark"] == 1){
           
                   echo '<span class="hidden-xs text-white m-1">'.$_SESSION["nombre"].'</span>';
           

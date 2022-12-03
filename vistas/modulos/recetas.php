@@ -187,7 +187,7 @@ MODAL AGREGAR RECETA
             <div class="input-group">
             
                 <div class="input-group-prepend">
-                <span class="input-group-text"><i class="fas fa-ruler"></i></span>
+                <span class="input-group-text"><i class="fas fa-sync"></i></span>
                 </div>
 
                 <select class="form-control input-lg" id="nuevoidEstado" name="nuevoidEstado" required>
@@ -481,7 +481,7 @@ MODAL EDITAR RECETA
             <div class="input-group">
             
                 <div class="input-group-prepend">
-                <span class="input-group-text"><i class="fas fa-ruler"></i></span>
+                <span class="input-group-text"><i class="fas fa-sync"></i></span>
                 </div>
 
                 <select class="form-control input-lg" id="editaridEstado" name="editaridEstado">

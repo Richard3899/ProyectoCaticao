@@ -35,7 +35,7 @@ $('.tablaAgregarInsumos').DataTable( {
 
 } );
 
-
+const idArray=[];
 
 /*=============================================
 AGREGANDO INSUMOS A LA RECETA
@@ -43,7 +43,6 @@ AGREGANDO INSUMOS A LA RECETA
 
 $(".tablaAgregarInsumos tbody").on("click", "button.agregarInsumo", function(){
 
-	
 	var idInsumo = $(this).attr("idInsumo");
 
 	$(this).removeClass("btn-info agregarInsumo");
@@ -79,7 +78,9 @@ $(".tablaAgregarInsumos tbody").on("click", "button.agregarInsumo", function(){
    
 				 var nombre = respuesta["nombre"];
 				 var stock = $stock;
-				 var precio = respuesta["precio"];
+				 var precioUnitario = respuesta["precioUnitario"];
+
+				 idArray.push(respuesta["idMateria"]);
    
 				 /*=============================================
 				 EVITAR AGREGAR PRODUTO CUANDO EL STOCK ESTÁ EN CERO
@@ -87,7 +88,7 @@ $(".tablaAgregarInsumos tbody").on("click", "button.agregarInsumo", function(){
    
 				 if(stock <= 0){
    
-					 swal.fire({
+					 Swal.fire({
 					 title: "No hay stock disponible",
 					 icon: "error",
 					 showConfirmButton: false,
@@ -101,48 +102,47 @@ $(".tablaAgregarInsumos tbody").on("click", "button.agregarInsumo", function(){
 				 }
    
 				 $(".nuevoInsumo").append(
-			   '<div class="row mx-2">'+
-				   '<!-- ENTRADA PARA EL NOMBRE -->'+
-				   '<div class="form-group col-12 col-sm-5 col-md-5 col-xl-5">'+
-				   '<div class="input-group">'+
-				   '<input type="text" class="form-control nuevoNombreInsumo" idInsumo="'+idInsumo+'" name="agregarInsumo" value="'+nombre+'" readonly required>'+
-				   '</div>'+
-				   '</div>'+
-				'<!-- ENTRADA PARA EL CANTIDAD -->'+
-				 '<div class="form-group col-4 col-sm-3 col-md-3 col-xl-3">'+
-				   '<div class="input-group ">'+
-				   '<input type="number" class="form-control nuevaCantidadInsumo" name="nuevaCantidadInsumo" min="1" value="1" stock="'+stock+'" nuevoStock="'+Number(stock-1)+'" required>'+
-				   '</div>'+
-				 '</div>'+
-				 '<!-- ENTRADA PARA EL PRECIO -->'+
-				  '<div class="form-group col-8 col-sm-4 col-md-4 col-xl-4">'+
-				   '<div class="input-group">'+
-					   '<input type="text" class="form-control nuevoPrecioInsumo" precioReal="'+precio+'" name="nuevoPrecioInsumo" value="S/.'+precio+'" readonly required>'+
-					   '<input type="hidden" name="idVendedor" value="">'+
-					   '<div class="input-group-prepend">'+
-					   '<span class="input-group-addon"><button type="button" class="btn btn-danger quitarInsumo" idInsumo="'+idInsumo+'"><i class="fa fa-times"></i></button></span>'+
-					   '</div>'+
-					   ' </div>'+
-				   '</div>'+
-				   '</div>') 
+
+					'<div class="row mx-2">'+
+					  '<!-- ENTRADA PARA EL NOMBRE -->'+
+					  '<div class="form-group col-12 col-sm-5 col-md-5 col-xl-5 ingresoNombre">'+
+					  '<div class="input-group">'+
+					  '<input type="text" class="form-control nuevoNombreInsumo" idInsumo="'+idInsumo+'" name="agregarInsumo" value="'+nombre+'" readonly required>'+
+					  '</div>'+
+					  '</div>'+
+					'<!-- ENTRADA PARA EL CANTIDAD -->'+
+					'<div class="form-group col-4 col-sm-3 col-md-3 col-xl-3 ingresoCantidad">'+
+					  '<div class="input-group ">'+
+					  '<input type="number" class="form-control nuevaCantidadInsumo" name="nuevaCantidadInsumo" min="1" value="1" stock="'+stock+'" nuevoStock="'+Number(stock-1)+'" required>'+
+					  '</div>'+
+					'</div>'+
+					'<!-- ENTRADA PARA EL PRECIO -->'+
+					 '<div class="form-group col-8 col-sm-4 col-md-4 col-xl-4 ingresoPrecioUnitario">'+
+					  '<div class="input-group">'+
+					    '<span class="input-group-text"><i class="ion ion-social-usd"></i></span>'+
+						'<input type="text" class="form-control nuevoPrecioUnitarioInsumo" precioUnitarioReal="'+precioUnitario+'" name="nuevoPrecioUnitarioInsumo" value="'+precioUnitario+'" readonly required>'+
+						'<div class="input-group-prepend">'+
+						'<span class="input-group-addon"><button type="button" class="btn btn-danger quitarInsumo" idInsumo="'+idInsumo+'"><i class="fa fa-times"></i></button></span>'+
+						'</div>'+
+						' </div>'+
+					  '</div>'+
+					  '</div>') 
+					
    
 			   // SUMAR TOTAL DE PRECIOS
    
-			   sumarTotalPrecios()
+			   sumarTotalPrecioUnitario()
    
-			   // AGREGAR IMPUESTO
-   
-			   agregarImpuesto()
-   
-			   // AGRUPAR PRODUCTOS EN FORMATO JSON
+			   // AGRUPAR INSUMOS EN FORMATO JSON
    
 			   listarInsumos()
+
    
-			   // PONER FORMATO AL PRECIO DE LOS PRODUCTOS
+			   // PONER FORMATO AL PRECIO DE LOS INSUMOS
+
+			   $(".nuevoPrecioUnitarioInsumo").number(true,3);
    
-			   $(".nuevoPrecioInsumo").number(true, 2);
-   
-   
+
 			   localStorage.removeItem("quitarInsumo");
    
 			 
@@ -175,15 +175,13 @@ $(".tablaAgregarInsumos").on("draw.dt", function(){
 
 		}
 
-
 	}
-
 
 })
 
 
 /*=============================================
-QUITAR PRODUCTOS DE LA VENTA Y RECUPERAR BOTÓN
+QUITAR INSUMOS DE LA RECETA Y RECUPERAR BOTÓN
 =============================================*/
 
 var idQuitarInsumo = [];
@@ -194,10 +192,24 @@ $(".formularioAgregarInsumo").on("click", "button.quitarInsumo", function(){
 
 	$(this).parent().parent().parent().parent().parent().remove();
 
-	var idInsumo = $(this).attr("idInsumo");
+	var nuevoNombreInsumo = $(this).parent().parent().parent().parent().parent().children(".ingresoNombre").children().children(".nuevoNombreInsumo");
+
+	var idInsumo = $(nuevoNombreInsumo).attr("idInsumo");
 
 	/*=============================================
-	ALMACENAR EN EL LOCALSTORAGE EL ID DEL PRODUCTO A QUITAR
+	ALMACENAR EN EL ARRAY EL ID DEL INSUMO A QUITAR
+	=============================================*/
+	for(i=0;i<idArray.length;i++){
+		
+		if(idArray[i]==idInsumo){
+
+			idArray.splice(i,1);
+			
+		}
+	 }
+
+	/*=============================================
+	ALMACENAR EN EL LOCALSTORAGE EL ID DEL INSUMO A QUITAR
 	=============================================*/
 
 	if(localStorage.getItem("quitarInsumo") == null){
@@ -221,21 +233,17 @@ $(".formularioAgregarInsumo").on("click", "button.quitarInsumo", function(){
 	if($(".nuevoInsumo").children().length == 0){
 
 		$("#nuevoImpuestoVenta").val(0);
-		$("#nuevoTotalVenta").val(0);
-		$("#totalVenta").val(0);
-		$("#nuevoTotalVenta").attr("total",0);
+		$("#nuevoTotalInsumos").val(0);
+		$("#totalInsumos").val(0);
+		$("#nuevoTotalInsumos").attr("total",0);
 
 	}else{
 
 		// SUMAR TOTAL DE PRECIOS
 
-    	sumarTotalPrecios()
+    	sumarTotalPrecioUnitario()
 
-    	// AGREGAR IMPUESTO
-	        
-        agregarImpuesto()
-
-        // AGRUPAR PRODUCTOS EN FORMATO JSON
+        // AGRUPAR INSUMOS EN FORMATO JSON
 
         listarInsumos()
 
@@ -244,7 +252,7 @@ $(".formularioAgregarInsumo").on("click", "button.quitarInsumo", function(){
 })
 
 /*=============================================
-AGREGANDO PRODUCTOS DESDE EL BOTÓN PARA DISPOSITIVOS
+AGREGANDO INSUMOS DESDE EL BOTÓN PARA DISPOSITIVOS
 =============================================*/
 
 var numInsumo = 0;
@@ -267,64 +275,57 @@ $(".btnAgregarInsumo").click(function(){
       	dataType:"json",
       	success:function(respuesta){
       	    
-      	    	$(".nuevoInsumo").append(
-
-					'<div class="row mx-2">'+
-					'<!-- ENTRADA PARA EL NOMBRE -->'+
-					'<div class="form-group col-12 col-sm-5 col-md-5 col-xl-5">'+
-					'<div class="input-group">'+
-					'<input type="text" class="form-control nuevoNombreInsumo" idInsumo="'+idInsumo+'" name="agregarInsumo" value="'+nombre+'" readonly required>'+
-					'</div>'+
-					'</div>'+
+			$(".nuevoInsumo").append(
+				'<script src="vistas/js/plantilla.js"></script>'+
+				'<div class="row mx-2">'+
+				  '<!-- ENTRADA PARA EL NOMBRE -->'+
+				  '<div class="form-group col-12 col-sm-5 col-md-5 col-xl-5 ingresoNombre">'+
+				  '<div class="input-group">'+
+				  '<select class="form-control select2 input-lg nuevoNombreInsumo" nombre id="insumo'+numInsumo+'" style="width: 100%;" name="agregarInsumo" idInsumo required>'+
+				  '<option value="0">Seleccionar Insumo</option>'+
+				  '</select>'+
+				  '</div>'+
+				  '</div>'+
 				 '<!-- ENTRADA PARA EL CANTIDAD -->'+
-				  '<div class="form-group col-4 col-sm-3 col-md-3 col-xl-3">'+
-					'<div class="input-group ">'+
-					'<input type="number" class="form-control nuevaCantidadInsumo" name="nuevaCantidadInsumo" min="1" value="1" stock="'+stock+'" nuevoStock="'+Number(stock-1)+'" required>'+
-					'</div>'+
+				  '<div class="form-group col-4 col-sm-3 col-md-3 col-xl-3 ingresoCantidad">'+
+				  '<div class="input-group ">'+
+				  '<input type="number" class="form-control nuevaCantidadInsumo" name="nuevaCantidadInsumo" min="1" value="0" stock nuevoStock required>'+
+				  '</div>'+
 				  '</div>'+
 				  '<!-- ENTRADA PARA EL PRECIO -->'+
-				   '<div class="form-group col-8 col-sm-4 col-md-4 col-xl-4">'+
-					'<div class="input-group">'+
-						'<input type="text" class="form-control nuevoPrecioInsumo" precioReal="'+precio+'" name="nuevoPrecioInsumo" value="S/.'+precio+'" readonly required>'+
-						'<input type="hidden" name="idVendedor" value="">'+
-						'<div class="input-group-prepend">'+
-						'<span class="input-group-addon"><button type="button" class="btn btn-danger quitarInsumo" idInsumo="'+idInsumo+'"><i class="fa fa-times"></i></button></span>'+
-						'</div>'+
-						' </div>'+
+				  '<div class="form-group col-8 col-sm-4 col-md-4 col-xl-4 ingresoPrecioUnitario">'+
+				  '<div class="input-group">'+
+				    '<span class="input-group-text"><i class="ion ion-social-usd"></i></span>'+
+					'<input type="text" class="form-control nuevoPrecioUnitarioInsumo" precioUnitarioReal value="0" name="nuevoPrecioUnitarioInsumo" readonly required>'+
+					'<div class="input-group-prepend">'+
+					'<span class="input-group-addon"><button type="button" class="btn btn-danger quitarInsumo"><i class="fa fa-times"></i></button></span>'+
 					'</div>'+
-					'</div>');
+					' </div>'+
+				  '</div>'+
+				  '</div>') 
 
 
-	        // AGREGAR LOS PRODUCTOS AL SELECT 
+	        // AGREGAR LOS INSUMOS AL SELECT 
 
 	         respuesta.forEach(funcionForEach);
 
-	         function funcionForEach(item, index){
-
-	         	if(item.stock != 0){
+	         function funcionForEach(item){
 
 		         	$("#insumo"+numInsumo).append(
 
-						'<option idInsumo="'+item.id+'" value="'+item.descripcion+'">'+item.descripcion+'</option>'
+						'<option idInsumo="'+item.idMateria+'" value="'+item.idMateria+'">'+item.nombre+'</option>'
+						
 		         	)
-
-		         
-		         }	         
-
+  		   
 	         }
 
         	 // SUMAR TOTAL DE PRECIOS
 
-    		sumarTotalPrecios()
+    		sumarTotalPrecioUnitario()
 
-    		// AGREGAR IMPUESTO
-	        
-	        agregarImpuesto()
+	        // PONER FORMATO AL PRECIO DE LOS INSUMOS
 
-	        // PONER FORMATO AL PRECIO DE LOS PRODUCTOS
-
-	        $(".nuevoPrecioInsumo").number(true, 2);
-
+			$(".nuevoPrecioUnitarioInsumo").number(true,3);
 
       	}
 
@@ -332,23 +333,38 @@ $(".btnAgregarInsumo").click(function(){
 
 })
 
+
+
 /*=============================================
-SELECCIONAR PRODUCTO
+SELECCIONAR INSUMO
 =============================================*/
 
-$(".formularioAgregarInsumo").on("change", "select.nuevaDescripcionInsumo", function(){
+$(".formularioAgregarInsumo").on("change", "select.nuevoNombreInsumo", function(){
 
-	var nombreInsumo = $(this).val();
-
-	var nuevaDescripcionInsumo = $(this).parent().parent().parent().children().children().children(".nuevaDescripcionInsumo");
-
-	var nuevoPrecioInsumo = $(this).parent().parent().parent().children(".ingresoPrecio").children().children(".nuevoPrecioInsumo");
-
-	var nuevaCantidadInsumo = $(this).parent().parent().parent().children(".ingresoCantidad").children(".nuevaCantidadInsumo");
+	var idInsumo = $(this).val();
 
 	var datos = new FormData();
-    datos.append("nombreInsumo", nombreInsumo);
 
+	datos.append("idInsumo", idInsumo);
+
+	var nuevoNombreInsumo = $(this).parent().parent().parent().children().children().children(".nuevoNombreInsumo");
+
+	var nuevoPrecioUnitarioInsumo = $(this).parent().parent().parent().children(".ingresoPrecioUnitario").children().children(".nuevoPrecioUnitarioInsumo");
+
+	var nuevaCantidadInsumo = $(this).parent().parent().parent().children(".ingresoCantidad").children().children(".nuevaCantidadInsumo");
+
+	$.ajax({
+
+	url:"ajax/inventarioinsumos.ajax.php",
+	method: "POST",
+	data: datos,
+	cache: false,
+	contentType: false,
+	processData: false,
+	dataType:"json",
+	success:function(respuesta){
+
+		$stock=respuesta["stock"];
 
 	  $.ajax({
 
@@ -360,21 +376,51 @@ $(".formularioAgregarInsumo").on("change", "select.nuevaDescripcionInsumo", func
       	processData: false,
       	dataType:"json",
       	success:function(respuesta){
-      	    
-      	     $(nuevaDescripcionInsumo).attr("idInsumo", respuesta["id"]);
-      	    $(nuevaCantidadInsumo).attr("stock", respuesta["stock"]);
-      	    $(nuevaCantidadInsumo).attr("nuevoStock", Number(respuesta["stock"])-1);
-      	    $(nuevoPrecioInsumo).val(respuesta["precio_venta"]);
-      	    $(nuevoPrecioInsumo).attr("precioReal", respuesta["precio_venta"]);
 
-  	      // AGRUPAR PRODUCTOS EN FORMATO JSON
+			$(nuevaCantidadInsumo).attr("stock",$stock);
+			$(nuevaCantidadInsumo).attr("nuevoStock", Number($stock)-1);
+			$(nuevaCantidadInsumo).val(1);
+			$(nuevoNombreInsumo).attr('disabled', 'disabled');	
+			$(nuevoNombreInsumo).attr("nombre", respuesta["nombre"]);	
+      	    $(nuevoPrecioUnitarioInsumo).val(respuesta["precioUnitario"]);
+			$(nuevoPrecioUnitarioInsumo).attr( "precioUnitarioReal",respuesta["precioUnitario"]);
+			$(nuevoNombreInsumo).attr("idInsumo", respuesta["idMateria"]);
+
+			for(i=0;i<idArray.length;i++){
+		
+				if(idArray[i]==$(nuevoNombreInsumo).attr("idInsumo")){
+
+					Swal.fire({
+						title: "El insumo ya está seleccionado",
+						text: "¡Seleccionar otro insumo!",
+						icon: "error",
+						confirmButtonText: "¡Cerrar!"
+					  })
+
+					$(nuevoNombreInsumo).parent().parent().parent().remove();
+
+					idArray.splice(i,1);
+				}
+			
+			}
+
+			idArray.push($(nuevoNombreInsumo).attr("idInsumo"));
+			
+  	        // AGRUPAR INSUMOS EN FORMATO JSON
 
 	        listarInsumos()
+
+			sumarTotalPrecioUnitario();
 
       	}
 
       })
+	}
+
+	})
+
 })
+
 
 /*=============================================
 MODIFICAR LA CANTIDAD
@@ -382,52 +428,68 @@ MODIFICAR LA CANTIDAD
 
 $(".formularioAgregarInsumo").on("change", "input.nuevaCantidadInsumo", function(){
 
-	var precio = $(this).parent().parent().children(".ingresoPrecio").children().children(".nuevoPrecioInsumo");
+	var precioUnitario = $(this).parent().parent().parent().children(".ingresoPrecioUnitario").children().children(".nuevoPrecioUnitarioInsumo");
 
-	var precioFinal = $(this).val() * precio.attr("precioReal");
-	
-	precio.val(precioFinal);
+	var precioUnitarioFinal = $(this).val() * precioUnitario.attr("precioUnitarioReal");
+
+	precioUnitario.val(precioUnitarioFinal);
 
 	var nuevoStock = Number($(this).attr("stock")) - $(this).val();
 
 	$(this).attr("nuevoStock", nuevoStock);
 
-	if(Number($(this).val()) > Number($(this).attr("stock"))){
+		if(Number($(this).val()) > Number($(this).attr("stock"))){
 
-		/*=============================================
-		SI LA CANTIDAD ES SUPERIOR AL STOCK REGRESAR VALORES INICIALES
-		=============================================*/
 
-		$(this).val(0);
+			if(Number($(this).attr("stock")) <= 0){
+	
+				$(this).val(0);
+	
+				precioUnitario.val(0);
+				
+	
+				Swal.fire({
+					title: "No hay stock disponible",
+					text: "¡El stock es de "+$(this).attr("stock")+" unidades!",
+					icon: "error",
+					confirmButtonText: "¡Cerrar!"
+				  });
+		
+		
+			 }else{
+	
+				/*=============================================
+				SI LA CANTIDAD ES SUPERIOR AL STOCK REGRESAR VALORES INICIALES
+				=============================================*/
+				$(this).val($(this).attr("stock"));
+	
+				$(this).attr("nuevoStock", $(this).attr("stock"));
+		
+				var precioUnitarioFinal = $(this).val() * precioUnitario.attr("precioUnitarioReal");
+		
+				precioUnitario.val(precioUnitarioFinal);
+		
+				sumarTotalPrecioUnitario();
+		
+				Swal.fire({
+				  title: "La cantidad supera el stock",
+				  text: "¡Sólo hay "+$(this).attr("stock")+" unidades!",
+				  icon: "error",
+				  confirmButtonText: "¡Cerrar!"
+				});
+		
+				return;
+	
+			 }
+	
+		}
 
-		$(this).attr("nuevoStock", $(this).attr("stock"));
-
-		var precioFinal = $(this).val() * precio.attr("precioReal");
-
-		precio.val(precioFinal);
-
-		sumarTotalPrecios();
-
-		swal({
-	      title: "La cantidad supera el Stock",
-	      text: "¡Sólo hay "+$(this).attr("stock")+" unidades!",
-	      type: "error",
-	      confirmButtonText: "¡Cerrar!"
-	    });
-
-	    return;
-
-	}
 
 	// SUMAR TOTAL DE PRECIOS
 
-	sumarTotalPrecios()
+	sumarTotalPrecioUnitario()
 
-	// AGREGAR IMPUESTO
-	        
-    agregarImpuesto()
-
-    // AGRUPAR PRODUCTOS EN FORMATO JSON
+    // AGRUPAR INSUMOS EN FORMATO JSON
 
     listarInsumos()
 
@@ -437,199 +499,72 @@ $(".formularioAgregarInsumo").on("change", "input.nuevaCantidadInsumo", function
 SUMAR TODOS LOS PRECIOS
 =============================================*/
 
-function sumarTotalPrecios(){
+function sumarTotalPrecioUnitario(){
 
-	var precioItem = $(".nuevoPrecioInsumo");
-	
-	var arraySumaPrecio = [];  
+	var precioUnitarioItem = $(".nuevoPrecioUnitarioInsumo");
 
-	for(var i = 0; i < precioItem.length; i++){
+	var arraySumaPrecioUnitario = [];  
 
-		 arraySumaPrecio.push(Number($(precioItem[i]).val()));
-		
+	for(var i = 0; i < precioUnitarioItem.length; i++){
+
+		 arraySumaPrecioUnitario.push(Number($(precioUnitarioItem[i]).val()));
 		 
 	}
 
-	function sumaArrayPrecios(total, numero){
+
+	function sumaArrayPrecioUnitario(total, numero){
 
 		return total + numero;
 
 	}
 
-	var sumaTotalPrecio = arraySumaPrecio.reduce(sumaArrayPrecios);
-	
-	$("#nuevoTotalVenta").val(sumaTotalPrecio);
-	$("#totalVenta").val(sumaTotalPrecio);
-	$("#nuevoTotalVenta").attr("total",sumaTotalPrecio);
+	var sumaTotalPrecioUnitario = arraySumaPrecioUnitario.reduce(sumaArrayPrecioUnitario,0);
+
+	$("#nuevoTotalInsumos").val(sumaTotalPrecioUnitario);
+	$("#totalInsumos").val(sumaTotalPrecioUnitario);
+	$("#nuevoTotalInsumos").attr("total",sumaTotalPrecioUnitario);
 
 
 }
 
-/*=============================================
-FUNCIÓN AGREGAR IMPUESTO
-=============================================*/
-
-function agregarImpuesto(){
-
-	var impuesto = $("#nuevoImpuestoVenta").val();
-	var precioTotal = $("#nuevoTotalVenta").attr("total");
-
-	var precioImpuesto = Number(precioTotal * impuesto/100);
-
-	var totalConImpuesto = Number(precioImpuesto) + Number(precioTotal);
-	
-	$("#nuevoTotalVenta").val(totalConImpuesto);
-
-	$("#totalVenta").val(totalConImpuesto);
-
-	$("#nuevoPrecioImpuesto").val(precioImpuesto);
-
-	$("#nuevoPrecioNeto").val(precioTotal);
-
-}
-
-/*=============================================
-CUANDO CAMBIA EL IMPUESTO
-=============================================*/
-
-$("#nuevoImpuestoVenta").change(function(){
-
-	agregarImpuesto();
-
-});
 
 /*=============================================
 FORMATO AL PRECIO FINAL
 =============================================*/
 
-$("#nuevoTotalVenta").number(true, 2);
-
-/*=============================================
-SELECCIONAR MÉTODO DE PAGO
-=============================================*/
-
-$("#nuevoMetodoPago").change(function(){
-
-	var metodo = $(this).val();
-
-	if(metodo == "Efectivo"){
-
-		$(this).parent().parent().removeClass("col-xs-6");
-
-		$(this).parent().parent().addClass("col-xs-4");
-
-		$(this).parent().parent().parent().children(".cajasMetodoPago").html(
-
-			 '<div class="col-xs-4">'+ 
-
-			 	'<div class="input-group">'+ 
-
-			 		'<span class="input-group-addon"><i class="ion ion-social-usd"></i></span>'+ 
-
-			 		'<input type="text" class="form-control" id="nuevoValorEfectivo" placeholder="000000" required>'+
-
-			 	'</div>'+
-
-			 '</div>'+
-
-			 '<div class="col-xs-4" id="capturarCambioEfectivo" style="padding-left:0px">'+
-
-			 	'<div class="input-group">'+
-
-			 		'<span class="input-group-addon"><i class="ion ion-social-usd"></i></span>'+
-
-			 		'<input type="text" class="form-control" id="nuevoCambioEfectivo" placeholder="000000" readonly required>'+
-
-			 	'</div>'+
-
-			 '</div>'
-
-		 )
-
-		// Agregar formato al precio
-
-		$('#nuevoValorEfectivo').number( true, 2);
-      	$('#nuevoCambioEfectivo').number( true, 2);
-
-
-      	// Listar método en la entrada
-      	listarMetodos()
-
-	}else{
-
-		$(this).parent().parent().removeClass('col-xs-4');
-
-		$(this).parent().parent().addClass('col-xs-6');
-
-		 $(this).parent().parent().parent().children('.cajasMetodoPago').html(
-
-		 	'<div class="col-xs-6" style="padding-left:0px">'+
-                        
-                '<div class="input-group">'+
-                     
-                  '<input type="number" min="0" class="form-control" id="nuevoCodigoTransaccion" placeholder="Código transacción"  required>'+
-                       
-                  '<span class="input-group-addon"><i class="fa fa-lock"></i></span>'+
-                  
-                '</div>'+
-
-              '</div>')
-
-	}
-
-	
-
-})
-
-/*=============================================
-CAMBIO EN EFECTIVO
-=============================================*/
-$(".formularioAgregarInsumo").on("change", "input#nuevoValorEfectivo", function(){
-
-	var efectivo = $(this).val();
-
-	var cambio =  Number(efectivo) - Number($('#nuevoTotalVenta').val());
-
-	var nuevoCambioEfectivo = $(this).parent().parent().parent().children('#capturarCambioEfectivo').children().children('#nuevoCambioEfectivo');
-
-	nuevoCambioEfectivo.val(cambio);
-
-})
-
-/*=============================================
-CAMBIO TRANSACCIÓN
-=============================================*/
-$(".formularioAgregarInsumo").on("change", "input#nuevoCodigoTransaccion", function(){
-
-	// Listar método en la entrada
-     listarMetodos()
-
-
-})
+$("#nuevoTotalInsumos").number(true,3);
 
 
 /*=============================================
-LISTAR TODOS LOS PRODUCTOS
+LISTAR TODOS LOS INSUMOS
 =============================================*/
 
 function listarInsumos(){
 
 	var listaInsumos = [];
 
-	var descripcion = $(".nuevaDescripcionInsumo");
+	var nombre = $(".nuevoNombreInsumo");
 
 	var cantidad = $(".nuevaCantidadInsumo");
 
-	var precio = $(".nuevoPrecioInsumo");
+	var precioUnitario = $(".nuevoPrecioUnitarioInsumo");
 
-	for(var i = 0; i < descripcion.length; i++){
+	for(var i = 0; i < nombre.length; i++){
 
-		listaInsumos.push({ "id" : $(descripcion[i]).attr("idInsumo"), 
-							  "descripcion" : $(descripcion[i]).val(),
+		if($(nombre[i]).val() > 0){
+
+			var nm=$(nombre[i]).attr("nombre");
+
+		}else{
+			    nm =$(nombre[i]).val();
+		}
+
+		listaInsumos.push({   "id" : $(nombre[i]).attr("idInsumo"), 
+							  "nombre" : nm,
 							  "cantidad" : $(cantidad[i]).val(),
 							  "stock" : $(cantidad[i]).attr("nuevoStock"),
-							  "precio" : $(precio[i]).attr("precioReal"),
-							  "total" : $(precio[i]).val()})
+							  "precioUnitario" : $(precioUnitario[i]).attr("precioUnitarioReal"),
+							  "total" : $(precioUnitario[i]).val()})
 
 	}
 
@@ -637,25 +572,7 @@ function listarInsumos(){
 
 }
 
-/*=============================================
-LISTAR MÉTODO DE PAGO
-=============================================*/
 
-function listarMetodos(){
-
-	var listaMetodos = "";
-
-	if($("#nuevoMetodoPago").val() == "Efectivo"){
-
-		$("#listaMetodoPago").val("Efectivo");
-
-	}else{
-
-		$("#listaMetodoPago").val($("#nuevoMetodoPago").val()+"-"+$("#nuevoCodigoTransaccion").val());
-
-	}
-
-}
 
 /*=============================================
 BOTON EDITAR VENTA
@@ -670,7 +587,7 @@ $(".tablas").on("click", ".btnEditarVenta", function(){
 })
 
 /*=============================================
-FUNCIÓN PARA DESACTIVAR LOS BOTONES AGREGAR CUANDO EL PRODUCTO YA HABÍA SIDO SELECCIONADO EN LA CARPETA
+FUNCIÓN PARA DESACTIVAR LOS BOTONES AGREGAR CUANDO EL INSUMO YA HABÍA SIDO SELECCIONADO EN LA CARPETA
 =============================================*/
 
 function quitarAgregarInsumo(){
@@ -738,125 +655,3 @@ $(".tablas").on("click", ".btnEliminarVenta", function(){
   })
 
 })
-
-/*=============================================
-IMPRIMIR FACTURA
-=============================================*/
-
-$(".tablas").on("click", ".btnImprimirFactura", function(){
-
-	var codigoVenta = $(this).attr("codigoVenta");
-
-	window.open("extensiones/tcpdf/pdf/factura.php?codigo="+codigoVenta, "_blank");
-
-})
-
-/*=============================================
-RANGO DE FECHAS
-=============================================*/
-
-$('#daterange-btn').daterangepicker(
-  {
-    ranges   : {
-      'Hoy'       : [moment(), moment()],
-      'Ayer'   : [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
-      'Últimos 7 días' : [moment().subtract(6, 'days'), moment()],
-      'Últimos 30 días': [moment().subtract(29, 'days'), moment()],
-      'Este mes'  : [moment().startOf('month'), moment().endOf('month')],
-      'Último mes'  : [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
-    },
-    startDate: moment(),
-    endDate  : moment()
-  },
-  function (start, end) {
-    $('#daterange-btn span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
-
-    var fechaInicial = start.format('YYYY-MM-DD');
-
-    var fechaFinal = end.format('YYYY-MM-DD');
-
-    var capturarRango = $("#daterange-btn span").html();
-   
-   	localStorage.setItem("capturarRango", capturarRango);
-
-   	window.location = "index.php?ruta=ventas&fechaInicial="+fechaInicial+"&fechaFinal="+fechaFinal;
-
-  }
-
-)
-
-/*=============================================
-CANCELAR RANGO DE FECHAS
-=============================================*/
-
-$(".daterangepicker.opensleft .range_inputs .cancelBtn").on("click", function(){
-
-	localStorage.removeItem("capturarRango");
-	localStorage.clear();
-	window.location = "ventas";
-})
-
-/*=============================================
-CAPTURAR HOY
-=============================================*/
-
-$(".daterangepicker.opensleft .ranges li").on("click", function(){
-
-	var textoHoy = $(this).attr("data-range-key");
-
-	if(textoHoy == "Hoy"){
-
-		var d = new Date();
-		
-		var dia = d.getDate();
-		var mes = d.getMonth()+1;
-		var año = d.getFullYear();
-
-		// if(mes < 10){
-
-		// 	var fechaInicial = año+"-0"+mes+"-"+dia;
-		// 	var fechaFinal = año+"-0"+mes+"-"+dia;
-
-		// }else if(dia < 10){
-
-		// 	var fechaInicial = año+"-"+mes+"-0"+dia;
-		// 	var fechaFinal = año+"-"+mes+"-0"+dia;
-
-		// }else if(mes < 10 && dia < 10){
-
-		// 	var fechaInicial = año+"-0"+mes+"-0"+dia;
-		// 	var fechaFinal = año+"-0"+mes+"-0"+dia;
-
-		// }else{
-
-		// 	var fechaInicial = año+"-"+mes+"-"+dia;
-	 //    	var fechaFinal = año+"-"+mes+"-"+dia;
-
-		// }
-
-		dia = ("0"+dia).slice(-2);
-		mes = ("0"+mes).slice(-2);
-
-		var fechaInicial = año+"-"+mes+"-"+dia;
-		var fechaFinal = año+"-"+mes+"-"+dia;	
-
-    	localStorage.setItem("capturarRango", "Hoy");
-
-    	window.location = "index.php?ruta=ventas&fechaInicial="+fechaInicial+"&fechaFinal="+fechaFinal;
-
-	}
-
-})
-
-/*=============================================
-ABRIR ARCHIVO XML EN NUEVA PESTAÑA
-=============================================*/
-
-$(".abrirXML").click(function(){
-
-	var archivo = $(this).attr("archivo");
-	window.open(archivo, "_blank");
-
-
-})
-

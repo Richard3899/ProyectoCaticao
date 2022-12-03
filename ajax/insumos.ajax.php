@@ -10,15 +10,29 @@ class AjaxInsumos{
 	=============================================*/	
 
 	public $idInsumo;
+	public $traerInsumos;
 
 	public function ajaxEditarInsumo(){
 
-		$item = "idMateria";
-		$valor = $this->idInsumo;
+		if($this->traerInsumos == "ok"){
 
-		$respuesta = ControladorInsumos::ctrMostrarInsumos($item, $valor);
+			$item = null;
+			$valor = null;
+	
+			$respuesta = ControladorInsumos::ctrMostrarInsumos($item, $valor);
+	
+			echo json_encode($respuesta);
 
-		echo json_encode($respuesta);
+		}
+			else{
+
+			$item = "idMateria";
+			$valor = $this->idInsumo;
+	
+			$respuesta = ControladorInsumos::ctrMostrarInsumos($item, $valor);
+	
+			echo json_encode($respuesta);
+		}
 
 	}
 
@@ -61,5 +75,17 @@ if(isset( $_POST["validarCodigo"])){
 	$valCodigo = new AjaxInsumos();
 	$valCodigo -> validarCodigo = $_POST["validarCodigo"];
 	$valCodigo -> ajaxValidarCodigo();
+
+}
+
+/*=============================================
+TRAER INSUMO
+=============================================*/
+
+if(isset( $_POST["traerInsumos"])){
+
+	$traerInsumos = new AjaxInsumos();
+	$traerInsumos -> traerInsumos = $_POST["traerInsumos"];
+	$traerInsumos -> ajaxEditarInsumo();
 
 }

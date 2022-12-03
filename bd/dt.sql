@@ -35,8 +35,8 @@ INSERT INTO `movimiento` (`idMovimiento`, `descripcion`) VALUES
 	(1, 'Ingreso'),
 	(2, 'Salida');
     
-INSERT INTO `configuracion` (`idConfiguracion`, `mododark`) VALUES
-	(1, 0);
+INSERT INTO `configuracion` (`idConfiguracion`, `modoDark`,`contraerBarraLateral`,`ocultarBarraLateral`) VALUES
+	(1, 0,0,0);
     
 INSERT INTO `estado` (`idEstado`, `descripcion`) VALUES
 	(1, "Iniciado"),
@@ -52,9 +52,9 @@ INSERT INTO `usuario` (`idUsuario`, `nombre`, `usuario`, `password`, `perfil`, `
 INSERT INTO `empleado` (`idEmpleado`, `nombre`, `apellido`, `direccion`, `telefono`, `correo`, `numeroDocumento`, `fechaNacimiento`, `cargo`, `horarioTrabajo`, `horasPorDia`, `sueldoPorDia`, `sueldoPorMes`, `idTipoDocumento`, `idUsuario`, `idTipoCosto`) VALUES
 	(1, 'Julio', 'Gonzales', 'Av. Alfonso Ugarte Lt.12', 987654321, 'julio@gmail.com', 432187654, '2022-11-03', 'Empaquetador', '8am - 6pm', 8, 30.00, 1000.00, 1, NULL, 1);
 
-INSERT INTO `materia` (`idMateria`, `codigo`, `nombre`, `descripcion`, `precio`, `cantidad`, `imagen`, `idUnidadMedida`, `idMarca`, `idTipoMateria`) VALUES
-	(1, 'LC-12', 'LECHE', 'SIN LACTOSA', 55.00, 12.00, '', 2, 1, 1),
-	(2, 'CJ-1245', 'CAJAS', 'DE CARTON', 15.00, 100.00, '', 3, 3, 2);
+INSERT INTO `materia` (`idMateria`, `codigo`, `nombre`, `descripcion`, `precio`, `cantidad`,`precioUnitario`, `imagen`, `idUnidadMedida`, `idMarca`, `idTipoMateria`) VALUES
+	(1, 'LC-12', 'LECHE', 'SIN LACTOSA', 55.00, 12.00,4.583,'', 2, 1, 1),
+	(2, 'CJ-1245', 'CAJAS', 'DE CARTON', 15.00, 100.00,4.583,'', 3, 3, 2);
     
 INSERT INTO `inventariomateria` (`idInventarioMateria`,`stock`) VALUES
 	(1,0),

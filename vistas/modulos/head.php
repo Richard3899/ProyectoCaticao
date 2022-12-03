@@ -45,7 +45,6 @@
 
   <link rel="stylesheet" href="vistas/css/plantilla.css">
 
-
   <!-- DataTables -->
   <link rel="stylesheet" href="vistas/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
   <link rel="stylesheet" href="vistas/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
@@ -53,14 +52,9 @@
   
 
 
-
-
-
   <!--=====================================
   PLUGINS DE JAVASCRIPT
   ======================================-->
-  <!-- Bootstrap Switch -->
-  <script src="vistas/plugins/bootstrap-switch/js/bootstrap-switch.min.js"></script>
   <!-- jQuery -->
   <script src="vistas/plugins/jquery/jquery.min.js"></script>
   <!-- Bootstrap 4 -->
@@ -102,7 +96,8 @@
   <script src="vistas/plugins/select2/js/select2.full.min.js"></script>
 
 
-
+  <!-- jQuery Number -->
+  <script src="vistas/plugins/jqueryNumber/jquerynumber.min.js"></script>
 
   
 

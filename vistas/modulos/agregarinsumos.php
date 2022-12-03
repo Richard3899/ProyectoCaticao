@@ -41,25 +41,23 @@
                       <div class="input-group-prepend">
                       <span class="input-group-text"><i class="fas fa-hashtag"></i></span>
                       </div>
-                      <input type="text" class="form-control input-lg" name="nuevoCodigo" id="nuevoCodigo" placeholder="Ingresar código" 
-                      maxlength="20" pattern="[A-Za-z0-9-]+" title="Solo se aceptan letras,números y guiones sin espacios" readonly required>
+                      <input type="text" class="form-control input-lg" value="<?php echo $_GET['codigo']; ?>"  name="nuevoCodigo" id="nuevoCodigo" readonly required>
                   </div>
                   </div>
 
-                  <!-- ENTRADA PARA EL INSUMO -->
+                  <!-- ENTRADA PARA LA RECETA -->
                   <div class="form-group col-sm">
                   <div class="input-group">
                       <div class="input-group-prepend">
                       <span class="input-group-text"><i class="fas fa-file-signature"></i></span>
                       </div>
-                      <input type="text" class="form-control input-lg" id="nuevoNombre" name="nuevoNombre" placeholder="Ingresar nombre" 
-                      maxlength="50"  pattern="[A-Za-z0-9ñÑáéíóúÁÉÍÓÚ ]+" title="Solo se acepta letras y números" readonly required>
-                      <input type="hidden" name="idVendedor" value="">
+                      <input type="text" class="form-control input-lg" value="<?php echo $_GET['nombre']; ?>" id="nuevoNombre" name="nuevoNombre" readonly required>
+                      <input type="hidden" name="idReceta" id="idReceta" value="<?php echo $_GET['idReceta']; ?>">
                       </div>
                   </div>
 
                 <!--=====================================
-                ENTRADA PARA AGREGAR PRODUCTO
+                ENTRADA PARA AGREGAR INSUMO
                 ======================================--> 
 
                 <div class="form-group row nuevoInsumo">
@@ -69,10 +67,10 @@
                 <input type="hidden" id="listaInsumos" name="listaInsumos">
 
                 <!--=====================================
-                BOTÓN PARA AGREGAR PRODUCTO
+                BOTÓN PARA AGREGAR INSUMO
                 ======================================-->
                 <div class="form-group col-sm">
-                <button type="button" class="btn btn-default d-lg-none btnAgregarInsumo">Agregar producto</button>
+                <button type="button" class="btn btn-default d-lg-none btnAgregarInsumo">Agregar Insumo</button>
                 </div>
                 <hr>
 
@@ -81,16 +79,17 @@
                   <!--=====================================
                   ENTRADA TOTAL
                   ======================================-->
-                  
-                  <div class="col float-right">
+                  <div class="col-4 col-sm-8 col-md-8 col-xl-8">
+                  </div>
+                  <div class="col-8 col-sm-4 col-md-4 col-xl-4">
                     
                     <table class="table">
 
                       <thead>
 
                         <tr>
-                        <th style="width:50% ;"></th> 
-                          <th class="text center">Total</th>      
+
+                        <th class="text center">Total</th>      
                         </tr>
 
                       </thead>
@@ -99,18 +98,14 @@
                       
                         <tr>
 
-                          <td>
-                          </td>
-
                            <td>
                             <!-- TOTAL -->
                             <div class="input-group">
                                 <div class="input-group-prepend">
                                 <span class="input-group-text"><i class="ion ion-social-usd"></i></span>
                                 </div>
-                                <input type="number" class="form-control input-lg" name="nuevaCantidad" placeholder="0000" 
-                                 total="" min="0" max="9999999" step="0.001" readonly required>
-                                <input type="hidden" name="totalVenta" id="totalVenta">
+                                <input type="text" class="form-control input-lg" id="nuevoTotalInsumos" name="nuevoTotalInsumos" total="" placeholder="0" readonly required>
+                                <input type="hidden" name="totalInsumos" id="totalInsumos">
                             </div>             
                             </td>
 
@@ -138,8 +133,8 @@
 
         <?php
 
-          #$guardarVenta = new ControladorVentas();
-          #$guardarVenta -> ctrCrearVenta();
+          $guardarAgregarInsumos = new ControladorAgregarInsumos();
+          $guardarAgregarInsumos -> ctrCrearAgregarInsumo();
           
         ?>
 
@@ -148,7 +143,7 @@
       </div>
 
       <!--=====================================
-      LA TABLA DE PRODUCTOS
+      LA TABLA DE INSUMOS
       ======================================-->
 
       <div class="col-lg-6 d-none d-lg-block">

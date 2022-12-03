@@ -28,15 +28,15 @@
 
             <div class="btn-toolbar justify-content-between m-2">
 
-                <div class="input-group">
+                <div class="btn-group col-12 col-sm-8 col-md-6 col-lg-5 col-xl-4 my-1">
 
-                <button type="button" class="btn btn-success m-1" data-toggle="modal" data-target="#modalIngresoProducto">
+                <button type="button" class="btn btn-success col-6 col-sm" data-toggle="modal" data-target="#modalIngresoProducto">
                     
                     Ingreso Producto
 
                 </button>
 
-                <button type="button" class="btn btn-primary m-1" data-toggle="modal" data-target="#modalSalidaProducto">
+                <button type="button" class="btn btn-primary col-6 col-sm" data-toggle="modal" data-target="#modalSalidaProducto">
                     
                     Salida Producto
 
@@ -45,7 +45,7 @@
                 </div>
                 
               
-                <a type="button" class="btn btn-info m-1" href="kardexproductos" >
+                <a type="button" class="btn btn-info col-12 col-sm-4 col-md-3 col-lg-3 col-xl-2 my-1" href="kardexproductos" >
                     
                   Kardex de Producto
 

@@ -38,10 +38,10 @@ class ModeloConfiguracion{
 	}
 
 	/*=============================================
-	ACTIVAR MODO DARK
+	ACTIVAR CONFIGURACIÓN
 	=============================================*/
 
-	static public function mdlActivarModoDark($tabla, $item1, $valor1, $item2, $valor2){
+	static public function mdlActivarConfiguracion($tabla, $item1, $valor1, $item2, $valor2){
 
 		$stmt = Conexion::conectar()->prepare("UPDATE $tabla SET $item1 = :$item1 WHERE $item2 = :$item2");
 

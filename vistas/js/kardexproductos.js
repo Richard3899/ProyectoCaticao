@@ -27,9 +27,11 @@ $('.tablaKardexProductos').dataTable( {
 
 }
   } );
-document.getElementById("KardexProductos").onclick = function() {
-	KardexProductos();
-};
+
+
+$(document).on('click','#KardexProductos',function() {
+	KardexProductos()
+});  
 
 function KardexProductos() {
 

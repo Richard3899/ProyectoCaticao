@@ -27,9 +27,10 @@ $('.tablaKardexMaquinas').dataTable( {
 
 }
   } );
-document.getElementById("KardexMaquinas").onclick = function() {
+
+$(document).on('click','#KardexMaquinas',function() {
 	KardexMaquinas();
-};
+});  
 
 function KardexMaquinas() {
 

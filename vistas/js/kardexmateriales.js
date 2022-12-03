@@ -27,9 +27,10 @@ $('.tablaKardexMateriales').dataTable( {
 
 }
   } );
-document.getElementById("KardexMateriales").onclick = function() {
+
+$(document).on('click','#KardexMateriales',function() {
 	KardexMateriales();
-};
+});  
 
 function KardexMateriales() {
 

@@ -6,6 +6,9 @@ session_start();
 <html lang="es">
 
 <?php 
+  if(isset($_GET["ruta"])){
+    $url=$_GET["ruta"];
+  }; 
 
   include "modulos/head.php";
  
@@ -20,24 +23,42 @@ $configuracion = ControladorConfiguracion::ctrMostrarConfiguracion($item, $valor
 
 foreach ($configuracion as $key => $value){
 
-      if($value["mododark"] == 0){
+  if($value["modoDark"] == 1 && $value["contraerBarraLateral"]==1 && $value["ocultarBarraLateral"]==1 ){
+  
+    echo '<body class="hold-transition skin-blue dark-mode sidebar-collapse">';
+  
+  }else if($value["modoDark"] == 0 && $value["contraerBarraLateral"]==1 && $value["ocultarBarraLateral"]==1 ){
+  
+    echo '<body class="hold-transition skin-blue sidebar-collapse">';
+  
+  }else if($value["modoDark"] == 0 && $value["contraerBarraLateral"]==0 && $value["ocultarBarraLateral"]==1 ){
+  
+    echo '<body class="hold-transition skin-blue">';
+  
+  }else if($value["modoDark"] == 1 && $value["contraerBarraLateral"]==1 && $value["ocultarBarraLateral"]==0){
+  
+  echo '<body class="hold-transition skin-blue sidebar-mini-xs dark-mode sidebar-collapse">';
+  
+  }else if($value["modoDark"] == 1 && $value["contraerBarraLateral"]==0 && $value["ocultarBarraLateral"]==0){
+  
+  echo '<body class="hold-transition skin-blue sidebar-mini-xs dark-mode">';
+  
+  }else if($value["modoDark"] == 0 && $value["contraerBarraLateral"]==1 && $value["ocultarBarraLateral"]==0){
+  
+    echo '<body class="hold-transition skin-blue sidebar-mini-xs sidebar-collapse">';
 
-        echo '<body class="hold-transition skin-blue sidebar-mini-xs dark-mode">';
-
-      }else{
-
-        echo '<body class="hold-transition skin-blue sidebar-mini-xs">';
-
-      };
-}
-
+  }else if($value["modoDark"] == 1 && $value["contraerBarraLateral"]==0 && $value["ocultarBarraLateral"]==1){
+  
+    echo '<body class="hold-transition skin-blue dark-mode">';
+  };
+} 
+  
 
   if(isset($_SESSION["iniciarSesion"]) && $_SESSION["iniciarSesion"] == "ok"){
 
    echo '<div class="wrapper">';
 
- 
-
+   
     include "modulos/nav.php";
 
  
@@ -123,6 +144,8 @@ foreach ($configuracion as $key => $value){
 <script src="vistas/js/kardexmaquinas.js"></script>
 <script src="vistas/js/recetas.js"></script>
 <script src="vistas/js/agregarinsumos.js"></script>
+
+
 
 </body>
 
