@@ -400,17 +400,25 @@ CREATE TABLE Receta (
 -- Table Receta Materia
 -- -----------------------------------------------------
 
+-- CREATE TABLE RecetaMateria (
+--   idRecetaMateria INT  AUTO_INCREMENT primary key,
+--   insumos TEXT,
+--   pesoneto DECIMAL(10,2),
+--   costo DECIMAL(10,2),
+--   total DECIMAL(10,2),
+--   idMateria INT REFERENCES Materia (idMateria),
+--   idReceta INT REFERENCES Receta (idReceta)
+-- );
+
 CREATE TABLE RecetaMateria (
   idRecetaMateria INT  AUTO_INCREMENT primary key,
-  insumos TEXT,
-  pesoneto DECIMAL(10,2),
-  costo DECIMAL(10,2),
+  nombre VARCHAR(50),
+  cantidad DECIMAL(10,2),
+  precioUnitario DECIMAL(10,2),
   total DECIMAL(10,2),
   idMateria INT REFERENCES Materia (idMateria),
   idReceta INT REFERENCES Receta (idReceta)
 );
-
-
 
 -- -----------------------------------------------------
 -- Table ManoObra

@@ -4,52 +4,84 @@ require_once "conexion.php";
 
 class ModeloAgregarInsumos{
 
+
 	/*=============================================
-	MOSTRAR AGREGAR INSUMOS
+	MOSTRAR DETALLE INSUMOS
 	=============================================*/
 
-	// static public function mdlMostrarAgregarInsumos($tabla, $item, $valor){
-
-	// 	if($item != null){
-
-	// 		$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item ORDER BY id ASC");
-
-	// 		$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
-
-	// 		$stmt -> execute();
-
-	// 		return $stmt -> fetch();
-
-	// 	}else{
-
-	// 		$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla ORDER BY id ASC");
-
-	// 		$stmt -> execute();
-
-	// 		return $stmt -> fetchAll();
-
-	// 	}
+	static public function mdlMostrarAgregarInsumos($item,$valor){
 		
-	// 	#$stmt -> close();
+		if($item != "Receta"){ 
 
-	// 	$stmt = null;
+			$stmt = Conexion::conectar()->prepare("call mostrar_agregarinsumos1(?)");
 
-	// }
+			$stmt->bindParam(1, $valor, PDO::PARAM_INT);
+	
+			$stmt -> execute();
+		
+			return $stmt -> fetch();
+
+		}else{
+
+			$stmt = Conexion::conectar()->prepare("call mostrar_agregarinsumos2(?)");
+
+			$stmt->bindParam(1, $valor, PDO::PARAM_INT);
+	
+			$stmt -> execute();
+		
+			return $stmt -> fetchAll();
+		}
+
+
+		#$stmt -> close();
+
+		$stmt = null;
+
+	}
+
+	static public function mdlMostrarDetalleInsumos($valor){
+
+		if($valor != null){
+
+			$stmt = Conexion::conectar()->prepare("call mostrar_detalleinsumos1(?)");
+
+			$stmt->bindParam(1, $valor, PDO::PARAM_INT);
+	
+			$stmt -> execute();
+	
+			return $stmt -> fetch();
+
+		}else{
+
+			$stmt = Conexion::conectar()->prepare("call mostrar_detalleinsumos2");
+	
+			$stmt -> execute();
+	
+			return $stmt -> fetchAll();
+
+		}
+
+		#$stmt -> close();
+
+		$stmt = null;
+
+	}
 
 	/*=============================================
-	REGISTRO DE AGREGAR INSUMO
+	REGISTRO DE INSUMOS
 	=============================================*/
 
 	static public function mdlIngresarAgregarInsumo($datos){
 
-		$stmt = Conexion::conectar()->prepare("call insertar_agregarinsumo(?,?,?,?,?,?)");
+		$stmt = Conexion::conectar()->prepare("call insertar_agregarinsumo(?,?,?,?,?,?,?)");
 
-		$stmt->bindParam(1, $datos["insumos"], PDO::PARAM_STR);
-		$stmt->bindParam(2, $datos["pesoneto"], PDO::PARAM_STR);
-		$stmt->bindParam(3, $datos["costo"], PDO::PARAM_STR);
-		$stmt->bindParam(4, $datos["total"], PDO::PARAM_STR);
-		$stmt->bindParam(5, $datos["idMateria"], PDO::PARAM_INT);
-		$stmt->bindParam(6, $datos["idReceta"], PDO::PARAM_INT);
+		$stmt->bindParam(1, $datos["idReceta"], PDO::PARAM_INT);
+		$stmt->bindParam(2, $datos["codigoReceta"], PDO::PARAM_STR);
+		$stmt->bindParam(3, $datos["idMateria"], PDO::PARAM_INT);
+		$stmt->bindParam(4, $datos["nombre"], PDO::PARAM_STR);
+		$stmt->bindParam(5, $datos["cantidad"], PDO::PARAM_STR);
+		$stmt->bindParam(6, $datos["precioUnitario"], PDO::PARAM_STR);
+		$stmt->bindParam(7, $datos["total"], PDO::PARAM_STR);
 
 		if($stmt->execute()){
 
@@ -70,18 +102,20 @@ class ModeloAgregarInsumos{
 	EDITAR AGREGAR INSUMO
 	=============================================*/
 
-	static public function mdlEditarAgregarInsumo($tabla, $datos){
+	static public function mdlEditarAgregarInsumo($datos){
 
-		$stmt = Conexion::conectar()->prepare("UPDATE $tabla SET  id_cliente = :id_cliente, id_vendedor = :id_vendedor, productos = :productos, impuesto = :impuesto, neto = :neto, total= :total, metodo_pago = :metodo_pago WHERE codigo = :codigo");
+		$stmt = Conexion::conectar()->prepare("call editar_agregarinsumo(?,?,?,?,?,?,?,?,?,?)");
 
-		$stmt->bindParam(":codigo", $datos["codigo"], PDO::PARAM_INT);
-		$stmt->bindParam(":id_cliente", $datos["id_cliente"], PDO::PARAM_INT);
-		$stmt->bindParam(":id_vendedor", $datos["id_vendedor"], PDO::PARAM_INT);
-		$stmt->bindParam(":productos", $datos["productos"], PDO::PARAM_STR);
-		$stmt->bindParam(":impuesto", $datos["impuesto"], PDO::PARAM_STR);
-		$stmt->bindParam(":neto", $datos["neto"], PDO::PARAM_STR);
-		$stmt->bindParam(":total", $datos["total"], PDO::PARAM_STR);
-		$stmt->bindParam(":metodo_pago", $datos["metodo_pago"], PDO::PARAM_STR);
+		$stmt->bindParam(1, $datos["idInsumoReceta"], PDO::PARAM_INT);
+		$stmt->bindParam(2, $datos["idReceta"], PDO::PARAM_INT);
+		$stmt->bindParam(3, $datos["codigoReceta"], PDO::PARAM_STR);
+		$stmt->bindParam(4, $datos["idMateria"], PDO::PARAM_INT);		
+		$stmt->bindParam(5, $datos["nombre"], PDO::PARAM_STR);
+		$stmt->bindParam(6, $datos["cantidadAnterior"], PDO::PARAM_STR);
+		$stmt->bindParam(7, $datos["diferenciaCantidad"], PDO::PARAM_STR);
+		$stmt->bindParam(8, $datos["cantidad"], PDO::PARAM_STR);
+		$stmt->bindParam(9, $datos["precioUnitario"], PDO::PARAM_STR);
+		$stmt->bindParam(10, $datos["total"], PDO::PARAM_STR);
 
 		if($stmt->execute()){
 
@@ -102,81 +136,30 @@ class ModeloAgregarInsumos{
 	ELIMINAR AGREGAR INSUMO
 	=============================================*/
 
-	static public function mdlEliminarAgregarInsumo($tabla, $datos){
+	static public function mdlEliminarAgregarInsumo($datos){
 
-		$stmt = Conexion::conectar()->prepare("DELETE FROM $tabla WHERE id = :id");
+		$stmt = Conexion::conectar()->prepare("call eliminar_agregarinsumo(?,?,?,?)");
 
-		$stmt -> bindParam(":id", $datos, PDO::PARAM_INT);
+		$stmt->bindParam(1, $datos["idRecetaInsumo"], PDO::PARAM_INT);
+		$stmt->bindParam(2, $datos["codigoReceta"], PDO::PARAM_STR);
+		$stmt->bindParam(3, $datos["idMateria"], PDO::PARAM_INT);
+		$stmt->bindParam(4, $datos["cantidad"], PDO::PARAM_STR);
 
-		if($stmt -> execute()){
+		if($stmt->execute()){
 
 			return "ok";
-		
+
 		}else{
 
-			return "error";	
-
+			return "error";
+		
 		}
 
-		#$stmt -> close();
-
+		#$stmt->close();
 		$stmt = null;
 
 	}
 
-	/*=============================================
-	RANGO FECHAS
-	=============================================*/	
-
-	static public function mdlRangoFechasAgregarInsumos($tabla, $fechaInicial, $fechaFinal){
-
-		if($fechaInicial == null){
-
-			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla ORDER BY id ASC");
-
-			$stmt -> execute();
-
-			return $stmt -> fetchAll();	
-
-
-		}else if($fechaInicial == $fechaFinal){
-
-			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE fecha like '%$fechaFinal%'");
-
-			$stmt -> bindParam(":fecha", $fechaFinal, PDO::PARAM_STR);
-
-			$stmt -> execute();
-
-			return $stmt -> fetchAll();
-
-		}else{
-
-			$fechaActual = new DateTime();
-			$fechaActual ->add(new DateInterval("P1D"));
-			$fechaActualMasUno = $fechaActual->format("Y-m-d");
-
-			$fechaFinal2 = new DateTime($fechaFinal);
-			$fechaFinal2 ->add(new DateInterval("P1D"));
-			$fechaFinalMasUno = $fechaFinal2->format("Y-m-d");
-
-			if($fechaFinalMasUno == $fechaActualMasUno){
-
-				$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE fecha BETWEEN '$fechaInicial' AND '$fechaFinalMasUno'");
-
-			}else{
-
-
-				$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE fecha BETWEEN '$fechaInicial' AND '$fechaFinal'");
-
-			}
-		
-			$stmt -> execute();
-
-			return $stmt -> fetchAll();
-
-		}
-
-	}
 
 	/*=============================================
 	SUMAR EL TOTAL DE AGREGAR INSUMOS

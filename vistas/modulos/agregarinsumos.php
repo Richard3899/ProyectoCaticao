@@ -1,10 +1,12 @@
+<!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
-<div class="container">
-<section class="content-header">
+  <!-- Content Header (Page header) -->
+  <div class="container">
+  <section class="content-header">
     <div class="container-fluid">
       <div class="row mb-2">
         <div class="col-sm-6">
-          <h1>Insumos de la receta</h1>
+          <h1>Insumos de la Receta</h1>
         </div>
         <div class="col-sm-6">
           <ol class="breadcrumb float-sm-right">
@@ -17,168 +19,404 @@
     </div><!-- /.container-fluid -->
   </section>
 
+  <!-- Main content -->
   <section class="content">
-
-    <div class="row">
-
-      <!--=====================================
-      EL FORMULARIO
-      ======================================-->
-      
-      <div class="col-lg-6 col-xs-12">
-        
-        <div class="card card-info card-outline pt-3 px-1">
-
-          <form role="form" method="post" class="formularioAgregarInsumo">
-
-            <div class="box-body">
-  
-              <div class="box">
-
-                  <!-- ENTRADA PARA EL CÓDIGO -->
-                  <div class="form-group col-sm">
-                  <div class="input-group ">
-                      <div class="input-group-prepend">
-                      <span class="input-group-text"><i class="fas fa-hashtag"></i></span>
-                      </div>
-                      <input type="text" class="form-control input-lg" value="<?php echo $_GET['codigo']; ?>"  name="nuevoCodigo" id="nuevoCodigo" readonly required>
-                  </div>
-                  </div>
-
-                  <!-- ENTRADA PARA LA RECETA -->
-                  <div class="form-group col-sm">
-                  <div class="input-group">
-                      <div class="input-group-prepend">
-                      <span class="input-group-text"><i class="fas fa-file-signature"></i></span>
-                      </div>
-                      <input type="text" class="form-control input-lg" value="<?php echo $_GET['nombre']; ?>" id="nuevoNombre" name="nuevoNombre" readonly required>
-                      <input type="hidden" name="idReceta" id="idReceta" value="<?php echo $_GET['idReceta']; ?>">
-                      </div>
-                  </div>
-
-                <!--=====================================
-                ENTRADA PARA AGREGAR INSUMO
-                ======================================--> 
-
-                <div class="form-group row nuevoInsumo">
-
-                </div>
-
-                <input type="hidden" id="listaInsumos" name="listaInsumos">
-
-                <!--=====================================
-                BOTÓN PARA AGREGAR INSUMO
-                ======================================-->
-                <div class="form-group col-sm">
-                <button type="button" class="btn btn-default d-lg-none btnAgregarInsumo">Agregar Insumo</button>
-                </div>
-                <hr>
-
-                <div class="row">
-
-                  <!--=====================================
-                  ENTRADA TOTAL
-                  ======================================-->
-                  <div class="col-4 col-sm-8 col-md-8 col-xl-8">
-                  </div>
-                  <div class="col-8 col-sm-4 col-md-4 col-xl-4">
-                    
-                    <table class="table">
-
-                      <thead>
-
-                        <tr>
-
-                        <th class="text center">Total</th>      
-                        </tr>
-
-                      </thead>
-
-                      <tbody>
-                      
-                        <tr>
-
-                           <td>
-                            <!-- TOTAL -->
-                            <div class="input-group">
-                                <div class="input-group-prepend">
-                                <span class="input-group-text"><i class="ion ion-social-usd"></i></span>
-                                </div>
-                                <input type="text" class="form-control input-lg" id="nuevoTotalInsumos" name="nuevoTotalInsumos" total="" placeholder="0" readonly required>
-                                <input type="hidden" name="totalInsumos" id="totalInsumos">
-                            </div>             
-                            </td>
-
-                        </tr>
-
-                      </tbody>
-
-                    </table>
-                    <hr>
-                  </div>
-
-                </div>
-      
-              </div>
-
+    <!-- Default box -->
+    <div class="card">
+      <div class="card-header">
+      <div class="row ">
+      <div class="row col-12 col-lg-8">
+       <!-- ENTRADA PARA EL CÓDIGO -->
+       <div class="form-group my-1 col-12 col-sm-5 col-md-4 col-lg-5 col-xl-4">
+          <div class="input-group ">
+            <div class="input-group-prepend">
+            <span class="input-group-text"><i class="fas fa-hashtag"></i></span>
+            </div>
+            <input type="text" class="form-control input-lg cd" value="<?php echo $_GET['codigo']; ?>" readonly required>
           </div>
-
-          <div class="box-footer">
-
-            <button type="submit" class="btn btn-primary pull-right mx-2 mb-2">Guardar Insumos</button>
-
-          </div>
-
-        </form>
-
-        <?php
-
-          $guardarAgregarInsumos = new ControladorAgregarInsumos();
-          $guardarAgregarInsumos -> ctrCrearAgregarInsumo();
-          
-        ?>
-
-        </div>
-            
-      </div>
-
-      <!--=====================================
-      LA TABLA DE INSUMOS
-      ======================================-->
-
-      <div class="col-lg-6 d-none d-lg-block">
-        
-        <div class="card card-warning card-outline pt-3 px-2">
-
-          <div class="box-body">
-            
-            <table class="table table-bordered table-striped dt-responsive tablaAgregarInsumos">
-              
-               <thead>
-
-                 <tr>
-                  <th style="width: 10px">#</th>
-                  <th>Imagen</th>
-                  <th>Nombre</th>
-                  <th>Stock</th>
-                  <th>Acciones</th>
-                </tr>
-
-              </thead>
-
-            </table>
-
-          </div>
-
         </div>
 
+        <!-- ENTRADA PARA LA RECETA -->
+        <div class="form-group my-1 col-12 col-sm-7 col-md-8 col-lg-6 col-xl-6">
+          <div class="input-group">
+            <div class="input-group-prepend">
+            <span class="input-group-text"><i class="fas fa-file-signature"></i></span>
+            </div>
+            <input type="text" class="form-control input-lg nm" value="<?php echo $_GET['nombre']; ?>" readonly required>
+          </div>
+       </div>
+       </div>
+       
+        <div class="form-group row  col-12 col-lg-4 justify-content-sm-end">
+          <button class="btn btn-primary my-1 col-12 col-sm-4 col-md-3 mr-2 col-lg-7 col-xl-6" id="btnAgregarInsumo" data-toggle="modal" data-target="#modalAgregarInsumo">
+           Agregar Insumo
+         </button>
+         <a type="button" class="btn btn-secondary my-1 col-12 col-sm-4 col-md-3 col-lg-4 col-xl-3" href="recetas">Volver</a>
+        </div>
+        
 
       </div>
 
+      </div>
+      <div class="card-body">
+
+      <table class="table table-bordered table-striped dt-responsive tablaAgregarInsumos" width="100%">
+       
+      <thead>
+       
+       <tr>
+         
+         <th style="width:20px">#</th>
+         <th>Nombre</th>
+         <th>Cantidad</th>
+         <th>Precio Unitario</th>
+         <th>Total</th>
+         <th>Acciones</th>
+
+       </tr> 
+
+      </thead>
+
+     </table>
+
+        
+
+      </div>
+      <!-- /.card-body -->
     </div>
-   
+    <!-- /.card -->
   </section>
+  <!-- /.content -->
+  </div>
+</div>
+<!-- /.content-wrapper -->
+
+<!--=====================================
+MODAL AGREGAR INSUMO
+======================================-->
+
+<div id="modalAgregarInsumo" class="modal fade" role="dialog">
+
+<div class="modal-dialog modal-lg">
+
+  <div class="modal-content">
+
+    <form role="form" method="post" enctype="multipart/form-data" class="formularioAgregarInsumo">
+
+      <!--=====================================
+      CABEZA DEL MODAL
+      ======================================-->
+
+      <div class="modal-header" style="background:gray; color:white">
+
+      <h4 class="modal-title">Agregar Insumo</h4>
+
+      <button type="button" class="close" data-dismiss="modal">&times;</button>
+
+      </div>
+
+      <input type="hidden" name="codigoReceta" id="codigoReceta" value="<?php echo $_GET['codigo']; ?>">
+      
+      <input type="hidden" name="idReceta" id="idReceta" value="<?php echo $_GET['idReceta']; ?>">
+
+      <input type="hidden" name="nombreReceta" id="nombreReceta" value="<?php echo $_GET['nombre']; ?>">
+
+      <!--=====================================
+      CUERPO DEL MODAL
+      ======================================-->
+
+      <div class="modal-body">
+
+        <div class="box-body">
+
+          <div class="row">
+
+          <!-- ENTRADA PARA SELECCIONAR INSUMO -->
+
+          <div class="form-group col-sm">
+            
+            <div class="input-group">
+
+                <input type="hidden" name="idInsumo" id="idInsumo">
+
+                <input type="hidden" name="nuevoNombre" id="nuevoNombre">
+
+                <select class="form-control select2 input-lg nuevoNombreInsumo" id="nuevoNombreInsumo" name="nuevoNombreInsumo" style="width: 100%;" required>
+                
+                <option value="">Seleccionar Insumo</option>
+
+                <?php 
+                    $valor = null;
+
+                    $insumos = ControladorAgregarInsumos::ctrMostrarDetalleInsumos($valor);
+
+                  foreach($insumos as $key=> $value){ 
+
+                    $item = "idMarca";
+                    $valor = $insumos[$key]["idMarca"];
+
+                    $marcas = ControladorMarcas::ctrMostrarMarcas($item,$valor);
+
+                    echo '<option value="'.$value["idMateria"].'">'.$value["nombre"].' - '.$marcas["descripcion"].'</option>';
+                  }
+
+                  ?>
+
+              </select>
+              
+
+            </div>
+
+          </div>
+
+            <!-- ENTRADA PARA EL STOCK -->
+            <div class="form-group col-sm">
+            <div class="input-group">
+                <div class="input-group-prepend">
+                <span class="input-group-text"><i class="fas fa-box"></i></span>
+                </div>
+                <input type="text" class="form-control input-lg" id="nuevoStock" name="nuevoStock" readonly required>
+            </div>
+            </div>
+
+          </div>
+
+          <div class="row">
+
+            <!-- ENTRADA PARA EL CANTIDAD -->
+
+            <div class="form-group col-sm">
+            
+            <div class="input-group">
+                <div class="input-group-prepend">
+                <span class="input-group-text"><i class="fas fa-layer-group"></i></span>
+                </div>
+                <input type="number" class="form-control input-lg nuevaCantidadInsumo" stock id="nuevaCantidad" name="nuevaCantidad" 
+                 min="0.1" step="0.001" required>
+            </div>
+
+            </div>
+
+            <!-- ENTRADA PARA EL PRECIO -->
+
+            <div class="form-group col-sm">
+            
+            <div class="input-group">
+                <div class="input-group-prepend">
+                <span class="input-group-text"><i class="fas fa-dollar-sign"></i></span>
+                </div>
+                <input type="hidden" id="precioUnitarioReal" name="precioUnitarioReal">
+                <input type="hidden" id="precioTotal" name="precioTotal">
+                <input type="text" class="form-control input-lg nuevoPrecioUnitarioInsumo" name="nuevoPrecioUnitario" id="nuevoPrecioUnitario"
+                 required readonly>
+            </div>
+
+            </div>
+
+
+          </div>
+
+
+        </div>
+
+      </div>
+
+      <!--=====================================
+      PIE DEL MODAL
+      ======================================-->
+
+      <div class="modal-footer">
+
+        <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Salir</button>
+
+        <button type="submit" class="btn btn-primary">Guardar Insumo</button>
+
+      </div>
+
+      <?php
+
+        $guardarAgregarInsumos = new ControladorAgregarInsumos();
+        $guardarAgregarInsumos -> ctrCrearAgregarInsumo();
+
+      ?>
+
+
+    </form>
+
+  </div>
 
 </div>
 
 </div>
+
+
+
+
+<!--=====================================
+MODAL EDITAR INSUMO
+======================================-->
+
+<div id="modalEditarInsumo" class="modal fade" role="dialog">
+
+<div class="modal-dialog modal-lg">
+
+  <div class="modal-content">
+
+    <form role="form" method="post" enctype="multipart/form-data" class="formularioEditarAgregarInsumo">
+
+      <!--=====================================
+      CABEZA DEL MODAL
+      ======================================-->
+
+      <div class="modal-header" style="background:gray; color:white">
+
+      <h4 class="modal-title">Editar Insumo</h4>
+      <button type="button" class="close" data-dismiss="modal">&times;</button>
+
+      </div>
+
+      <input type="hidden" name="editarcodigoReceta" id="editarcodigoReceta" value="<?php echo $_GET['codigo']; ?>">
+      
+      <input type="hidden" name="editaridReceta" id="editaridReceta" value="<?php echo $_GET['idReceta']; ?>">
+
+      <input type="hidden" name="editarnombreReceta" id="editarnombreReceta" value="<?php echo $_GET['nombre']; ?>">
+
+
+      <!--=====================================
+      CUERPO DEL MODAL
+      ======================================-->
+
+      <div class="modal-body">
+
+        <div class="box-body">
+
+          <div class="row">
+
+          <!-- ENTRADA PARA SELECCIONAR INSUMO -->
+
+          <div class="form-group col-sm">
+            
+            <div class="input-group">
+
+                <input type="hidden" name="editaridInsumoReceta" id="editaridInsumoReceta">
+
+                <input type="hidden" name="editaridInsumo" id="editaridInsumo">
+
+                <input type="hidden" name="editarNombre" id="editarNombre">
+
+                <select class="form-control select2 input-lg editarNombreInsumo" id="editarNombreInsumo" name="editarNombreInsumo" style="width: 100%;" required>
+                
+                <option value="">Seleccionar Insumo</option>
+
+                <?php 
+                  $valor = null;
+                  $insumos = ControladorAgregarInsumos::ctrMostrarDetalleInsumos($valor);
+
+                  foreach($insumos as $key=> $value){ 
+
+                    $item = "idMarca";
+                    $valor = $insumos[$key]["idMarca"];
+
+                    $marcas = ControladorMarcas::ctrMostrarMarcas($item,$valor);
+
+                    echo '<option value="'.$value["idMateria"].'">'.$value["nombre"].' - '.$marcas["descripcion"].'</option>';
+                  }
+
+                  ?>
+
+              </select>
+              
+
+            </div>
+
+          </div>
+
+            <!-- ENTRADA PARA EL STOCK -->
+            <div class="form-group col-sm">
+            <div class="input-group">
+                <div class="input-group-prepend">
+                <span class="input-group-text"><i class="fas fa-box"></i></span>
+                </div>
+                <input type="text" class="form-control input-lg" id="editarStock" name="editarStock" readonly required>
+            </div>
+            </div>
+
+          </div>
+
+          <div class="row">
+
+            <!-- ENTRADA PARA EL CANTIDAD -->
+
+            <div class="form-group col-sm">
+            
+            <div class="input-group">
+                <div class="input-group-prepend">
+                <span class="input-group-text"><i class="fas fa-layer-group"></i></span>
+                </div>
+                <input type="hidden" id="cantidadAnterior" name="cantidadAnterior">
+                <input type="hidden" id="diferenciaCantidad" name="diferenciaCantidad">
+                <input type="number" class="form-control input-lg editarCantidadInsumo" edistock id="editarCantidad" name="editarCantidad" 
+                min="0.1" step="0.001" required>
+            </div>
+
+            </div>
+
+            <!-- ENTRADA PARA EL PRECIO -->
+
+            <div class="form-group col-sm">
+            
+            <div class="input-group">
+                <div class="input-group-prepend">
+                <span class="input-group-text"><i class="fas fa-dollar-sign"></i></span>
+                </div>
+                <input type="hidden" id="editarprecioUnitarioReal" name="editarprecioUnitarioReal">
+                <input type="hidden" id="editarprecioTotal" name="editarprecioTotal">
+                <input type="text" class="form-control input-lg editarPrecioUnitarioInsumo" name="editarPrecioUnitario" id="editarPrecioUnitario"
+                 required readonly>
+            </div>
+
+            </div>
+
+
+          </div>
+
+
+        </div>
+
+      </div>
+
+      <!--=====================================
+      PIE DEL MODAL
+      ======================================-->
+
+      <div class="modal-footer">
+
+        <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Salir</button>
+
+        <button type="submit" class="btn btn-primary">Editar Insumo</button>
+
+      </div>
+
+      <?php
+
+          $editarAgregarInsumos = new ControladorAgregarInsumos();
+          $editarAgregarInsumos -> ctrEditarAgregarInsumo();
+
+      ?>
+
+
+    </form>
+
+  </div>
+
+</div>
+
+</div>
+
+
+<?php
+
+  $borrarAgregarInsumo = new ControladorAgregarInsumos();
+  $borrarAgregarInsumo -> ctrEliminarAgregarInsumo();
+
+?> 

@@ -47,13 +47,15 @@ window.onload = function(){
 			"columnDefs": [
 				{"className": "dt-center", "targets": "_all",
 				"targets": '_all',
-				"createdCell": function (td, cellData, rowData, row, col) {
-					$(td).css('padding', '3px')
+				"sortable": false,
+				"createdCell": function (td) {
+				    $(td).css('padding', '3px')
+					
 				}}
 			  ],
 			"deferLoading": 0,        
 			"retrieve": true,
-			"searching": false,
+			"searching": true,
 			"processing": true,
 			"language": {
 		

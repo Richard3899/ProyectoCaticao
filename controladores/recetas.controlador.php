@@ -157,6 +157,26 @@ class ControladorRecetas{
 				
 				</script>';
 
+			}else{
+
+				echo '<script>
+
+				Swal.fire({
+				
+					icon: "error",
+					title: "¡No se puede eliminar la receta!",
+					showConfirmButton: false,
+					timer: 1500
+				
+				}).then(function(result){
+				
+						window.location = "recetas";
+				
+				});
+				
+				
+				</script>';
+
 			}		
 		}
 

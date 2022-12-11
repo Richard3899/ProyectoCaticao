@@ -23,7 +23,7 @@ INSERT INTO `tipocosto` (`idTipoCosto`, `descripcion`) VALUES
 INSERT INTO `tipodocumento` (`idTipoDocumento`, `descripcion`) VALUES
 	(1, 'DNI'),
 	(2, 'RUC'),
-    (3, 'Pasaporte');
+   (3, 'Pasaporte');
 
 INSERT INTO `desembolso` (`idDesembolso`, `descripcion`) VALUES
 	(1, 'Gastos Administrativos'),
@@ -36,12 +36,12 @@ INSERT INTO `movimiento` (`idMovimiento`, `descripcion`) VALUES
 	(2, 'Salida');
     
 INSERT INTO `configuracion` (`idConfiguracion`, `modoDark`,`contraerBarraLateral`,`ocultarBarraLateral`) VALUES
-	(1, 0,0,0);
+	(1,1,0,0);
     
 INSERT INTO `estado` (`idEstado`, `descripcion`) VALUES
 	(1, "Iniciado"),
-    (2, "En proceso"),
-    (3, "Terminado");
+   (2, "En proceso"),
+   (3, "Terminado");
 
 INSERT INTO `producto` (`idProducto`, `codigo`, `nombre`, `descripcion`, `imagen`, `idUnidadMedida`, `idTipoProducto`) VALUES
 	(1, '123456', 'Chocolate con pasa', '50% cacao', NULL, 3, 2);
@@ -53,12 +53,25 @@ INSERT INTO `empleado` (`idEmpleado`, `nombre`, `apellido`, `direccion`, `telefo
 	(1, 'Julio', 'Gonzales', 'Av. Alfonso Ugarte Lt.12', 987654321, 'julio@gmail.com', 432187654, '2022-11-03', 'Empaquetador', '8am - 6pm', 8, 30.00, 1000.00, 1, NULL, 1);
 
 INSERT INTO `materia` (`idMateria`, `codigo`, `nombre`, `descripcion`, `precio`, `cantidad`,`precioUnitario`, `imagen`, `idUnidadMedida`, `idMarca`, `idTipoMateria`) VALUES
-	(1, 'LC-12', 'LECHE', 'SIN LACTOSA', 55.00, 12.00,4.583,'', 2, 1, 1),
-	(2, 'CJ-1245', 'CAJAS', 'DE CARTON', 15.00, 100.00,4.583,'', 3, 3, 2);
+	(1, 'LC-12', 'LECHE', 'SIN LACTOSA', 55.00, 12.00, 4.58, '', 2, 1, 1),
+	(2, 'CJ-1245', 'CAJAS', 'DE CARTON', 15.00, 100.00, 4.58, '', 3, 3, 2),
+	(3, 'A12', 'AGUA', 'EVAPORADA', 12.00, 12.00, 1.00, '', 2, 3, 1),
+	(4, 'VN01', 'VAINILLA', 'DULCE', 7.00, 12.00, 0.58, '', 2, 1, 1),
+	(5, 'CC001', 'CACAO', 'NATURAL', 6.00, 56.00, 0.11, '', 1, 3, 1);
     
-INSERT INTO `inventariomateria` (`idInventarioMateria`,`stock`) VALUES
-	(1,0),
-	(2,0);
+INSERT INTO `inventariomateria` (`idInventarioMateria`, `stock`, `idMateria`) VALUES
+	(1, 250.00, 1),
+	(2, 0.00, NULL),
+	(3, 600.00, 3),
+	(4, 150.00, 4),
+	(5, 500.00, 5);
+
+INSERT INTO `movimientomateria` (`idMovimientoMateria`, `ingreso`, `salida`, `observacion`, `fecha`, `hora`, `idMateria`, `idMovimiento`) VALUES
+	(1, 250.00, 0.00, 'Produccion', '2022-12-17', '2022-12-11 10:23:25', 1, 1),
+	(2, 150.00, 0.00, 'Produccion', '2022-12-31', '2022-12-11 10:23:37', 4, 1),
+	(3, 100.00, 0.00, 'Produccion', '2022-12-10', '2022-12-11 10:23:50', 3, 1),
+	(4, 500.00, 0.00, 'Produccion', '2022-12-10', '2022-12-11 10:24:03', 3, 1),
+	(5, 500.00, 0.00, 'Produccion', '2022-12-17', '2022-12-11 10:24:33', 5, 1);
 
 INSERT INTO `inventarioproducto` (`idInventarioProducto`,`stock`) VALUES
 	(1,0);
@@ -74,3 +87,9 @@ INSERT INTO `gastoadmin` (`idGastoAdmin`, `descripcion`, `precio`, `idUnidadMedi
 	(2, 'Costo de Venta 1', 15.00, 3, 2, 2),
 	(3, 'Costo de Marketing 1', 10.00, 3, 2, 3),
 	(4, 'Costo Operativo 1', 12.00, 3, 1, 4);
+
+INSERT INTO `receta` (`idReceta`, `codigo`, `nombre`, `batch`, `fechaInicio`, `fechaFin`, `pesoPorTableta`, `pesoEnTableta`, `merma`, `reproceso`, `codigoLote`, `idEstado`) VALUES
+	(1, 'RC001', 'Receta 1', 60.00, '2022-12-10', '2022-12-10', 1.00, 1.00, 1.00, 1.00, '123456', 1);
+
+INSERT INTO `lote` (`idLote`, `codigoLote`, `fechaVencimiento`, `idProducto`) VALUES
+	(1, '123456', '2022-12-11', 1);

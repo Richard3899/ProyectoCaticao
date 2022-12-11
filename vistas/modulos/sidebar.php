@@ -141,8 +141,8 @@ if($value["modoDark"] == 1){
             
           </li>
 
-          <li class="nav-item <?php if (in_array($url, array('inventariomateriales', 'inventarioinsumos','inventarioproductos','inventariomaquinas'))){echo "menu-open";}?>">
-            <a href="#" class="nav-link <?php if(in_array($url, array('inventariomateriales', 'inventarioinsumos','inventarioproductos','inventariomaquinas'))){ echo "active"; }?>">
+          <li class="nav-item <?php if (in_array($url, array('inventariomateriales', 'inventarioinsumos','inventarioproductos','inventariomaquinas','kardexinsumos','kardexmateriales','kardexproductos','kardexmaquinas'))){echo "menu-open";}?>">
+            <a href="#" class="nav-link <?php if(in_array($url, array('inventariomateriales', 'inventarioinsumos','inventarioproductos','inventariomaquinas','kardexinsumos','kardexmateriales','kardexproductos','kardexmaquinas'))){ echo "active"; }?>">
               <i class="nav-icon fas fa-box"></i>
               <p>
                 Inventario
@@ -152,27 +152,27 @@ if($value["modoDark"] == 1){
 
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="inventarioinsumos" class="nav-link <?php if($url=='inventarioinsumos'){ echo "active"; }?>">
+                <a href="inventarioinsumos" class="nav-link <?php if(in_array($url, array('inventarioinsumos','kardexinsumos'))){ echo "active"; }?>">
                 <i class="nav-icon fas fa-angle-double-right"></i>
                   <p>Inventario Insumos</p>
                 </a>
               </li>
 
               <li class="nav-item">
-                <a href="inventariomateriales" class="nav-link <?php if($url=='inventariomateriales'){ echo "active"; }?>">
+                <a href="inventariomateriales" class="nav-link <?php if(in_array($url, array('inventariomateriales','kardexmateriales'))){ echo "active"; }?>">
                 <i class="nav-icon fas fa-angle-double-right"></i>
                   <p>Inventario Materiales</p>
                 </a>
               </li>
 
               <li class="nav-item">
-                <a href="inventarioproductos" class="nav-link <?php if($url=='inventarioproductos'){ echo "active"; }?>">
+                <a href="inventarioproductos" class="nav-link <?php if(in_array($url, array('inventarioproductos','kardexproductos'))){ echo "active"; }?>">
                 <i class="nav-icon fas fa-angle-double-right"></i>
                   <p>Inventario Productos</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="inventariomaquinas" class="nav-link <?php if($url=='inventariomaquinas'){ echo "active"; }?>">
+                <a href="inventariomaquinas" class="nav-link <?php if(in_array($url, array('inventariomaquinas','kardexmaquinas'))){ echo "active"; }?>">
                 <i class="nav-icon fas fa-angle-double-right"></i>
                   <p>Inventario Maquinas</p>
                 </a>

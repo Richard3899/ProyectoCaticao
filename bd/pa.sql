@@ -208,6 +208,8 @@ CREATE PROCEDURE `eliminar_insumo` (in idMateriaE int)
 BEGIN
 	delete from materia
     where idMateria=idMateriaE;
+    delete from inventariomateria
+    where idInventarioMateria=idMateriaE;
 END$$
 DELIMITER;
 
