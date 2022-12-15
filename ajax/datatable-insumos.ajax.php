@@ -74,36 +74,9 @@ class TablaInsumos{
 		  	$unidadmedida = ControladorUnidadMedida::ctrMostrarUnidadMedida($items, $valors);
 
 
-			$item2 = "idMateria";
-		  	$valor2 = $insumos[$i]["idMateria"];
-
-
-			/*=============================================
- 	 		TRAEMOS AL INVENTARIO INSUMOS
-  			=============================================*/ 
-		  	$inventarioinsumos = ControladorInventarioInsumos::ctrMostrarInventarioInsumos($item2, $valor2);
-  
-			$v1=$inventarioinsumos['idMateria'] ?? 'usado';
-			/*=============================================
- 	 		TRAEMOS A KARDEX INSUMOS
-  			=============================================*/ 
-
-			$kardexinsumos = ControladorKardexInsumos::ctrMostrarKardexInsumos($item2, $valor2);
-  
-			$v2=$kardexinsumos['idMateria'] ?? 'usado';
-
-
-		  	/*=============================================
- 	 		TRAEMOS LAS ACCIONES
-  			=============================================*/
-		  	
-			if($v1!="usado" ||  $v2!="usado"){
-            /*==Botón Editar=*/
-			$botones =  "<div class='btn-group'><button class='btn btn-warning btnEditarInsumo' idInsumo='".$insumos[$i]["idMateria"]."' data-toggle='modal' data-target='#modalEditarInsumo'><i class='fa fa-pen'></i></button></div>";				
-			}else{
 			/*==Botón Editar y Eliminar=*/
 			$botones =  "<div class='btn-group'><button class='btn btn-warning btnEditarInsumo' idInsumo='".$insumos[$i]["idMateria"]."' data-toggle='modal' data-target='#modalEditarInsumo'><i class='fa fa-pen'></i></button><button class='btn btn-danger btnEliminarInsumo' idInsumo='".$insumos[$i]["idMateria"]."' codigo='".$insumos[$i]["codigo"]."' imagen='".$insumos[$i]["imagen"]."'><i class='fa fa-times'></i></button></div>";				
-			}
+			
 
 		  	$datosJson .='[
 			      "'.($i+1).'",

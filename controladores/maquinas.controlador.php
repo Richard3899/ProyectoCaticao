@@ -148,6 +148,24 @@ class ControladorMaquinas{
 				
 				</script>';
 
+			}else{
+				echo '<script>
+
+				Swal.fire({
+				
+					icon: "error",
+					title: "¡La maquina está en uso!",
+					showConfirmButton: false,
+					timer: 1500
+				
+				}).then(function(result){
+				
+						window.location = "maquinas";
+				
+				});
+				
+				
+				</script>';
 			}		
 		}
 

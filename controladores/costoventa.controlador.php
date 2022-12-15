@@ -134,7 +134,25 @@ class ControladorCostoVenta{
 				
 				</script>';
 
-			}		
+			}else{
+				echo '<script>
+
+				Swal.fire({
+				
+					icon: "error",
+					title: "¡El costo de venta está en uso!",
+					showConfirmButton: false,
+					timer: 1500
+				
+				}).then(function(result){
+				
+						window.location = "costoventa";
+				
+				});
+				
+				
+				</script>';
+			}	
 		}
 
 

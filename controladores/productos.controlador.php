@@ -294,7 +294,25 @@ class ControladorProductos{
 				
 				</script>';
 
-			}		
+			}else{
+				echo '<script>
+
+				Swal.fire({
+				
+					icon: "error",
+					title: "¡El producto está en uso!",
+					showConfirmButton: false,
+					timer: 1500
+				
+				}).then(function(result){
+				
+						window.location = "productos";
+				
+				});
+				
+				
+				</script>';
+			}	
 		}
 
 

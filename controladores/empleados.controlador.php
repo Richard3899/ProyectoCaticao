@@ -157,6 +157,24 @@ class ControladorEmpleados{
 				
 				</script>';
 
+			}else{
+				echo '<script>
+
+				Swal.fire({
+				
+					icon: "error",
+					title: "¡El empleado está en uso!",
+					showConfirmButton: false,
+					timer: 1500
+				
+				}).then(function(result){
+				
+						window.location = "empleados";
+				
+				});
+				
+				
+				</script>';
 			}		
 		}
 

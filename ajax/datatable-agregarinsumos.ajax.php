@@ -20,6 +20,10 @@ class TablaAgregarInsumos{
          
   		$insumosreceta = ControladorAgregarInsumos::ctrMostrarAgregarInsumos($item,$idRecetaC);	
 
+		$sumatotalinsumosreceta = ControladorAgregarInsumos::ctrSumaTotalAgregarInsumos($idRecetaC);	
+
+		$total = $sumatotalinsumosreceta[0];
+
 		if(count($insumosreceta) == 0){
 
 			echo '{"data": []}';
@@ -48,7 +52,7 @@ class TablaAgregarInsumos{
 
 		  $datosJson = substr($datosJson, 0, -1);
 
-		 $datosJson .=   '] 
+		 $datosJson .=   ',["Total","","","",'.$total.',""]] 
 
 		 }';
 		

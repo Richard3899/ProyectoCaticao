@@ -20,6 +20,13 @@ class ControladorAgregarInsumos{
 		return $respuesta;
 	}
 
+	static public function ctrSumaTotalAgregarInsumos($valor){
+
+		$respuesta = ModeloAgregarInsumos::mdlSumaTotalAgregarInsumos($valor);
+
+		return $respuesta;
+	}
+
 	/*=============================================
 	AGREGAR LOS INSUMOS
 	=============================================*/

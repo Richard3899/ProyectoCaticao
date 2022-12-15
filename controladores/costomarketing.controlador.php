@@ -134,6 +134,24 @@ class ControladorCostoMarketing{
 				
 				</script>';
 
+			}else{
+				echo '<script>
+
+				Swal.fire({
+				
+					icon: "error",
+					title: "¡El costo de marketing está en uso!",
+					showConfirmButton: false,
+					timer: 1500
+				
+				}).then(function(result){
+				
+						window.location = "costomarketing";
+				
+				});
+				
+				
+				</script>';
 			}		
 		}
 

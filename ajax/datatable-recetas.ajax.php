@@ -66,14 +66,20 @@ class TablaRecetas{
 		  	$productos = ControladorProductos::ctrMostrarProductos($item1, $valor1);
 
 
-
+			if($estados["idEstado"]==1){
+				$estado =  "<button class='btn btn-success'>".$estados["descripcion"]."</button>";				
+			}else if($estados["idEstado"]==2){
+				$estado =  "<button class='btn btn-primary'>".$estados["descripcion"]."</button>";	
+			}else{
+				$estado =  "<button class='btn btn-danger'>".$estados["descripcion"]."</button>";
+			}
 		  	/*=============================================
  	 		TRAEMOS LAS ACCIONES
   			=============================================*/
 		  	
 			/*==Botón Editar y Eliminar=*/
 			$botones =  "<div class='btn-group'><button class='btn btn-warning btnEditarReceta' idReceta='".$recetas[$i]["idReceta"]."' codigoLote='".$recetas[$i]["codigoLote"]."' data-toggle='modal' data-target='#modalEditarReceta'><i class='fa fa-pen'></i></button><button class='btn btn-danger btnEliminarReceta' idReceta='".$recetas[$i]["idReceta"]."' codigo='".$recetas[$i]["codigo"]."'><i class='fa fa-times'></i></button></div>";				
-			$opciones = "<div class='btn-group dropleft'><button class='btn btn-secondary btn-sm' type='button' id='dropdownMenuButton' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'><i class='fas fa-ellipsis-v'></i></button><div class='dropdown-menu' aria-labelledby='dropdownMenuButton'><a class='dropdown-item' href='index.php?ruta=agregarinsumos&codigo=".$recetas[$i]["codigo"]."&nombre=".$recetas[$i]["nombre"]."&idReceta=".$recetas[$i]["idReceta"]."';>Agregar Insumo</a><a class='dropdown-item' href='#'>Another action</a><a class='dropdown-item' href='#'>Something else here</a></div></div>";
+			$opciones = "<div class='btn-group dropleft'><button type='button' class='btn btn-secondary dropdown-toggle' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'><i lass='fas fa-ellipsis-v'></i></button><div class='dropdown-menu' aria-labelledby='dropdownMenuButton'><a class='dropdown-item' href='index.php?ruta=agregarinsumos&codigo=".$recetas[$i]["codigo"]."&nombre=".$recetas[$i]["nombre"]."&idReceta=".$recetas[$i]["idReceta"]."';>Agregar Insumo</a><a class='dropdown-item' href='#'>Another action</a><a class='dropdown-item' href='#'>Something else here</a></div></div>";
 
 		  	$datosJson .='[
 			      "'.($i+1).'",
@@ -81,7 +87,7 @@ class TablaRecetas{
 				  "'.$recetas[$i]["nombre"].'",
 				  "'.$productos["nombre"].'",
 				  "'.$recetas[$i]["batch"].'",
-				  "'.$estados["descripcion"].'",
+				  "'.$estado.'",
 				  "'.$recetas[$i]["fechaInicio"].'",
 				  "'.$recetas[$i]["fechaFin"].'",
 				  "'.$recetas[$i]["codigoLote"].'",

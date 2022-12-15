@@ -72,39 +72,9 @@ class TablaMateriales{
 
 		  	$unidadmedida = ControladorUnidadMedida::ctrMostrarUnidadMedida($items, $valors);
 
-
-
-			$item2 = "idMateria";
-		  	$valor2 = $materiales[$i]["idMateria"];
-
-
-			/*=============================================
- 	 		TRAEMOS AL INVENTARIO MATERIALES
-  			=============================================*/ 
-		  	$inventariomateriales = ControladorInventarioMateriales::ctrMostrarInventarioMateriales($item2, $valor2);
-  
-			$v1=$inventariomateriales['idMateria'] ?? 'usado';
-			/*=============================================
- 	 		TRAEMOS A KARDEX MATERIALES
-  			=============================================*/ 
-
-			$kardexmateriales = ControladorKardexMateriales::ctrMostrarKardexMateriales($item2, $valor2);
-  
-			$v2=$kardexmateriales['idMateria'] ?? 'usado';
-
-
-		  	/*=============================================
- 	 		TRAEMOS LAS ACCIONES
-  			=============================================*/
-		  	
-			if($v1!="usado" ||  $v2!="usado"){
-            /*==Botón Editar=*/
-			$botones =  "<div class='btn-group'><button class='btn btn-warning btnEditarMaterial' idMaterial='".$materiales[$i]["idMateria"]."' data-toggle='modal' data-target='#modalEditarMaterial'><i class='fa fa-pen'></i></button></div>";				
-			}else{
 			/*==Botón Editar y Eliminar=*/
 			$botones =  "<div class='btn-group'><button class='btn btn-warning btnEditarMaterial' idMaterial='".$materiales[$i]["idMateria"]."' data-toggle='modal' data-target='#modalEditarMaterial'><i class='fa fa-pen'></i></button><button class='btn btn-danger btnEliminarMaterial' idMaterial='".$materiales[$i]["idMateria"]."' codigo='".$materiales[$i]["codigo"]."' imagen='".$materiales[$i]["imagen"]."'><i class='fa fa-times'></i></button></div>";				
-			}
-
+			
 
 		  	$datosJson .='[
 			      "'.($i+1).'",

@@ -39,8 +39,8 @@ INSERT INTO `configuracion` (`idConfiguracion`, `modoDark`,`contraerBarraLateral
 	(1,1,0,0);
     
 INSERT INTO `estado` (`idEstado`, `descripcion`) VALUES
-	(1, "Iniciado"),
-   (2, "En proceso"),
+   (1, "Iniciado"),
+   (2, "Proceso"),
    (3, "Terminado");
 
 INSERT INTO `producto` (`idProducto`, `codigo`, `nombre`, `descripcion`, `imagen`, `idUnidadMedida`, `idTipoProducto`) VALUES

@@ -134,7 +134,25 @@ class ControladorCostoOperativo{
 				
 				</script>';
 
-			}		
+			}else{
+				echo '<script>
+
+				Swal.fire({
+				
+					icon: "error",
+					title: "¡El costo operativo está en uso!",
+					showConfirmButton: false,
+					timer: 1500
+				
+				}).then(function(result){
+				
+						window.location = "costooperativo";
+				
+				});
+				
+				
+				</script>';
+			}			
 		}
 
 

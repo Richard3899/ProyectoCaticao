@@ -134,6 +134,24 @@ class ControladorGastoAdmin{
 				
 				</script>';
 
+			}else{
+				echo '<script>
+
+				Swal.fire({
+				
+					icon: "error",
+					title: "¡El gasto administrativo está en uso!",
+					showConfirmButton: false,
+					timer: 1500
+				
+				}).then(function(result){
+				
+						window.location = "gastoadmin";
+				
+				});
+				
+				
+				</script>';
 			}		
 		}
 

@@ -165,9 +165,11 @@ class ModeloAgregarInsumos{
 	SUMAR EL TOTAL DE AGREGAR INSUMOS
 	=============================================*/
 
-	static public function mdlSumaTotalAgregarInsumos($tabla){	
+	static public function mdlSumaTotalAgregarInsumos($valor){	
 
-		$stmt = Conexion::conectar()->prepare("SELECT SUM(neto) as total FROM $tabla");
+		$stmt = Conexion::conectar()->prepare("call sumatotal_agregarinsumo(?)");
+
+		$stmt->bindParam(1, $valor, PDO::PARAM_INT);
 
 		$stmt -> execute();
 

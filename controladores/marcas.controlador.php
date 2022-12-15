@@ -135,7 +135,25 @@ class ControladorMarcas{
 				
 				</script>';
 
-			}		
+			}else{
+				echo '<script>
+
+				Swal.fire({
+				
+					icon: "error",
+					title: "¡La marca está en uso!",
+					showConfirmButton: false,
+					timer: 1500
+				
+				}).then(function(result){
+				
+						window.location = "marcas";
+				
+				});
+				
+				
+				</script>';
+			}			
 		}
 
 

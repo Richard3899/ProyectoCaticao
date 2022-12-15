@@ -71,40 +71,9 @@ class TablaProductos{
 
 		  	$tipoproducto = ControladorTipoProducto::ctrMostrarTipoProducto($item, $valor);
 
-
-
-
-			$item2 = "idProducto";
-		  	$valor2 = $productos[$i]["idProducto"];
-
-
-			/*=============================================
- 	 		TRAEMOS AL INVENTARIO PRODUCTOS
-  			=============================================*/ 
-		  	$inventarioproductos = ControladorInventarioProductos::ctrMostrarInventarioProductos($item2, $valor2);
-  
-			$v1=$inventarioproductos['idProducto'] ?? 'usado';
-			/*=============================================
- 	 		TRAEMOS A KARDEX PRODUCTOS
-  			=============================================*/ 
-
-			$kardexproductos = ControladorKardexProductos::ctrMostrarKardexProductos($item2, $valor2);
-  
-			$v2=$kardexproductos['idProducto'] ?? 'usado';
-
-
-		  	/*=============================================
- 	 		TRAEMOS LAS ACCIONES
-  			=============================================*/
-		  	
-			if($v1!="usado" ||  $v2!="usado"){
-            /*==Botón Editar=*/
-			$botones =  "<div class='btn-group'><button class='btn btn-warning btnEditarProducto' idProducto='".$productos[$i]["idProducto"]."' data-toggle='modal' data-target='#modalEditarProducto'><i class='fa fa-pen'></i></button></div>";				
-			}else{
 			/*==Botón Editar y Eliminar=*/
 			$botones =  "<div class='btn-group'><button class='btn btn-warning btnEditarProducto' idProducto='".$productos[$i]["idProducto"]."' data-toggle='modal' data-target='#modalEditarProducto'><i class='fa fa-pen'></i></button><button class='btn btn-danger btnEliminarProducto' idProducto='".$productos[$i]["idProducto"]."' codigo='".$productos[$i]["codigo"]."' imagen='".$productos[$i]["imagen"]."'><i class='fa fa-times'></i></button></div>";				
-			}
-
+			
 
 			if($productos[$i]["idTipoProducto"]==1){
 				
