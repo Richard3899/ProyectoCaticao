@@ -77,9 +77,10 @@ class TablaProductos{
 
 			if($productos[$i]["idTipoProducto"]==1){
 				
-				$tp =  "<p class='text-info'>".$tipoproducto["descripcion"]."</p>";				
+				$tp =  "<button class='btn btn-info'>".$tipoproducto["descripcion"]."</button>";	
+							
 			}else{
-				$tp =  "<p class='text-success'>".$tipoproducto["descripcion"]."</p>";	
+				$tp =  "<button class='btn btn-success'>".$tipoproducto["descripcion"]."</button>";
 			}
 
 		  	$datosJson .='[
