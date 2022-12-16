@@ -1,26 +1,26 @@
 <?php
 
-require_once "../controladores/agregarinsumos.controlador.php";
-require_once "../modelos/agregarinsumos.modelo.php";
+require_once "../controladores/recetainsumos.controlador.php";
+require_once "../modelos/recetainsumos.modelo.php";
 
 require_once "../controladores/unidadmedida.controlador.php";
 require_once "../modelos/unidadmedida.modelo.php";
 
-class TablaAgregarInsumos{
+class TablaRecetaInsumos{
 
  	/*=============================================
  	 MOSTRAR LA TABLA DE INSUMOS
   	=============================================*/ 
 
-	public function mostrarTablaAgregarInsumos(){
+	public function mostrarTablaRecetaInsumos(){
 
     	$idRecetaC=$_GET["idRecetaC"];
 
 		$item = "Receta";
          
-  		$insumosreceta = ControladorAgregarInsumos::ctrMostrarAgregarInsumos($item,$idRecetaC);	
+  		$insumosreceta = ControladorRecetaInsumos::ctrMostrarRecetaInsumos($item,$idRecetaC);	
 
-		$sumatotalinsumosreceta = ControladorAgregarInsumos::ctrSumaTotalAgregarInsumos($idRecetaC);	
+		$sumatotalinsumosreceta = ControladorRecetaInsumos::ctrSumaTotalRecetaInsumos($idRecetaC);	
 
 		$total = $sumatotalinsumosreceta[0];
 
@@ -37,7 +37,7 @@ class TablaAgregarInsumos{
 		  for($i = 0; $i < count($insumosreceta); $i++){
 			
 			/*==Botón Editar y Eliminar=*/
-			$botones =  "<div class='btn-group'><button class='btn btn-warning btnEditarInsumoReceta' idInsumoReceta='".$insumosreceta[$i]["idRecetaMateria"]."' data-toggle='modal' data-target='#modalEditarInsumo'><i class='fa fa-pen'></i></button><button class='btn btn-danger btnEliminarInsumoReceta' idRecetaInsumo='".$insumosreceta[$i]["idRecetaMateria"]."' idInsumo='".$insumosreceta[$i]["idMateria"]."' cantidadInsumo='".$insumosreceta[$i]["cantidad"]."' ><i class='fa fa-times'></i></button></div>";				
+			$botones =  "<div class='btn-group'><button class='btn btn-warning btnEditarInsumoReceta' idRecetaInsumo='".$insumosreceta[$i]["idRecetaMateria"]."' data-toggle='modal' data-target='#modalEditarInsumo'><i class='fa fa-pen'></i></button><button class='btn btn-danger btnEliminarInsumoReceta' idRecetaInsumo='".$insumosreceta[$i]["idRecetaMateria"]."' idInsumo='".$insumosreceta[$i]["idMateria"]."' cantidadInsumo='".$insumosreceta[$i]["cantidad"]."' ><i class='fa fa-times'></i></button></div>";				
 				
 		  	$datosJson .='[
 			      "'.($i+1).'",
@@ -52,7 +52,7 @@ class TablaAgregarInsumos{
 
 		  $datosJson = substr($datosJson, 0, -1);
 
-		 $datosJson .=   ',["Total","","","",'.$total.',""]] 
+		 $datosJson .=   ',["Total","","","","S/. '.$total.'",""]] 
 
 		 }';
 		
@@ -67,5 +67,5 @@ class TablaAgregarInsumos{
 /*=============================================
 ACTIVAR TABLA DE INSUMOS
 =============================================*/ 
-$activarAgregarInsumos = new TablaAgregarInsumos();
-$activarAgregarInsumos -> mostrarTablaAgregarInsumos();
+$activarRecetaInsumos = new TablaRecetaInsumos();
+$activarRecetaInsumos -> mostrarTablaRecetaInsumos();

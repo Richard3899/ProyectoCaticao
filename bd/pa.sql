@@ -1028,7 +1028,8 @@ END$$
 DELIMITER ;
 
 
--- Procedimientos almacenados de Agregar Insumos --
+-- Procedimientos almacenados de Receta Insumos --
+
 DROP procedure IF EXISTS `mostrar_detalleinsumos1`;
 DELIMITER $$
 USE `caticao`$$
@@ -1055,10 +1056,10 @@ BEGIN
 END$$
 DELIMITER ;
 
-DROP procedure IF EXISTS `mostrar_agregarinsumos1`;
+DROP procedure IF EXISTS `mostrar_recetainsumos1`;
 DELIMITER $$
 USE `caticao`$$
-CREATE PROCEDURE `mostrar_agregarinsumos1` (in idRecetaMateriaC INT)
+CREATE PROCEDURE `mostrar_recetainsumos1` (in idRecetaMateriaC INT)
 BEGIN
 	 select rm.idReceta,rm.idRecetaMateria,rm.idMateria,rm.nombre,im.stock,um.descripcion as unidadMedida,rm.cantidad,rm.precioUnitario,rm.total from recetamateria rm
     inner join materia m on m.idMateria=rm.idMateria
@@ -1068,10 +1069,10 @@ BEGIN
 END$$
 DELIMITER ;
 
-DROP procedure IF EXISTS `mostrar_agregarinsumos2`;
+DROP procedure IF EXISTS `mostrar_recetainsumos2`;
 DELIMITER $$
 USE `caticao`$$
-CREATE PROCEDURE `mostrar_agregarinsumos2` (in idRecetaC INT)
+CREATE PROCEDURE `mostrar_recetainsumos2` (in idRecetaC INT)
 BEGIN
 	 select rm.idReceta,rm.idRecetaMateria,rm.idMateria,rm.nombre,im.stock,um.descripcion as unidadMedida,rm.cantidad,rm.precioUnitario,rm.total from recetamateria rm
     inner join materia m on m.idMateria=rm.idMateria
@@ -1082,10 +1083,10 @@ END$$
 DELIMITER ;
 
 
-DROP procedure IF EXISTS `insertar_agregarinsumo`;
+DROP procedure IF EXISTS `insertar_recetainsumo`;
 DELIMITER $$
 USE `caticao`$$
-CREATE PROCEDURE `insertar_agregarinsumo` (     in idRecetaI INT,
+CREATE PROCEDURE `insertar_recetainsumo` (     in idRecetaI INT,
 																in codigoRecetaI VARCHAR(20),
                                                 in idMateriaI INT,
                                                 in nombreI VARCHAR(50),
@@ -1106,10 +1107,10 @@ END$$
 DELIMITER ;
 
 
-DROP procedure IF EXISTS `editar_agregarinsumo`;
+DROP procedure IF EXISTS `editar_recetainsumo`;
 DELIMITER $$
 USE `caticao`$$
-CREATE PROCEDURE `editar_agregarinsumo` (       in idRecetaMateriaE INT,
+CREATE PROCEDURE `editar_recetainsumo` (       in idRecetaMateriaE INT,
 																in idRecetaE INT,
 																in codigoRecetaE VARCHAR(20),
                                                 in idMateriaE INT,
@@ -1142,10 +1143,10 @@ DELIMITER ;
 
 
 
-DROP procedure IF EXISTS `eliminar_agregarinsumo`;
+DROP procedure IF EXISTS `eliminar_recetainsumo`;
 DELIMITER $$
 USE `caticao`$$
-CREATE PROCEDURE `eliminar_agregarinsumo` (in idRecetaMateriaE INT,
+CREATE PROCEDURE `eliminar_recetainsumo` (in idRecetaMateriaE INT,
 														 in codigoRecetaE VARCHAR(20),
 										             in idMateriaE int,
                                            in cantidadE DECIMAL(10,3))
@@ -1162,4 +1163,13 @@ BEGIN
 END$$
 DELIMITER ;
 
-SELECT SUM(total) FROM recetamateria;
+
+DROP procedure IF EXISTS `sumatotal_recetainsumo`;
+DELIMITER $$
+USE `caticao`$$
+CREATE PROCEDURE `sumatotal_recetainsumo` (in idRecetaC INT)
+BEGIN
+      SELECT SUM(total) FROM recetamateria rm WHERE rm.idReceta=idRecetaC;
+END$$
+DELIMITER ;
+

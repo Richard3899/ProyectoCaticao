@@ -1,7 +1,7 @@
 var idRecetaC = $("#idReceta").val();
 
-$('.tablaAgregarInsumos').DataTable( {
-	"ajax": "ajax/datatable-agregarinsumos.ajax.php?idRecetaC="+idRecetaC,
+$('.tablaRecetaInsumos').DataTable( {
+	"ajax": "ajax/datatable-recetainsumos.ajax.php?idRecetaC="+idRecetaC,
     "deferRender": true,
 	"columnDefs": [
 		{"className": "dt-center", "targets": "_all",
@@ -42,7 +42,7 @@ $('.tablaAgregarInsumos').DataTable( {
 
 const idArray=[0];
 
-$(".tablaAgregarInsumos").on("draw.dt", function() {
+$(".tablaRecetaInsumos").on("draw.dt", function() {
 	
 	var x = $(".nm").val();
 
@@ -60,7 +60,7 @@ $(".tablaAgregarInsumos").on("draw.dt", function() {
 
 	  $.ajax({
 
-     	url:"ajax/agregarinsumos.ajax.php",
+     	url:"ajax/recetainsumos.ajax.php",
       	method: "POST",
       	data: datos,
       	cache: false,
@@ -85,7 +85,7 @@ $(".tablaAgregarInsumos").on("draw.dt", function() {
 SELECCIONAR INSUMO
 =============================================*/
 
-$(".formularioAgregarInsumo").on("change", "select.nuevoNombreInsumo", function(){
+$(".formularioRecetaInsumos").on("change", "select.seleccionarNombreInsumo", function(){
 	
 	var idInsumoDetalle = $(this).val();
 
@@ -95,7 +95,7 @@ $(".formularioAgregarInsumo").on("change", "select.nuevoNombreInsumo", function(
     
 	  $.ajax({
 
-     	url:"ajax/agregarinsumos.ajax.php",
+     	url:"ajax/recetainsumos.ajax.php",
       	method: "POST",
       	data: datos,
       	cache: false,
@@ -104,11 +104,11 @@ $(".formularioAgregarInsumo").on("change", "select.nuevoNombreInsumo", function(
       	dataType:"json",
       	success:function(respuesta){
 
-				if($(".nuevoNombreInsumo").val() == ""){
+				if($(".seleccionarNombreInsumo").val() == ""){
 
 					$("#nuevaCantidad").val(0);
 					$("#nuevoStock").val(0);
-					$(".nuevoPrecioUnitarioInsumo").attr("precioUnitarioReal",0);
+					$(".precioInsumo").attr("precioReal",0);
 					$("#precioTotal").val(0);
 					
 				}else{
@@ -124,18 +124,18 @@ $(".formularioAgregarInsumo").on("change", "select.nuevoNombreInsumo", function(
 							    timer: 2000
 							  })
 
-							$('#nuevoNombreInsumo').val(null).trigger('change');
+							$('#seleccionarNombreInsumo').val(null).trigger('change');
 
 						}else{
 
 							$("#idInsumo").val(respuesta["idMateria"]);
-							$("#nuevoNombre").val(respuesta["nombre"]+" - "+respuesta["marca"]);
+							$("#nombreInsumo").val(respuesta["nombre"]+" - "+respuesta["marca"]);
 							$(".nuevaCantidadInsumo").attr("stock",respuesta["stock"]);
 							$("#nuevaCantidad").val(1);
 							$("#nuevoStock").val(respuesta["stock"]+" "+respuesta["unidadMedida"]);
-							$("#precioUnitarioReal").val(respuesta["precioUnitario"]);
-							$(".nuevoPrecioUnitarioInsumo").val(respuesta["precioUnitario"]);
-							$(".nuevoPrecioUnitarioInsumo").attr("precioUnitarioReal",respuesta["precioUnitario"]);
+							$("#precioUnitario").val(respuesta["precioUnitario"]);
+							$(".precioInsumo").val(respuesta["precioUnitario"]);
+							$(".precioInsumo").attr("precioReal",respuesta["precioUnitario"]);
 							
 
 							if(respuesta["stock"] <= 0){
@@ -153,7 +153,7 @@ $(".formularioAgregarInsumo").on("change", "select.nuevoNombreInsumo", function(
 			  
 			  // SUMAR TOTAL DE PRECIOS
 			  
-			  sumarTotalPrecioUnitario();
+			  sumaTotalPrecio();
 	
       	}
 
@@ -166,11 +166,11 @@ $(".formularioAgregarInsumo").on("change", "select.nuevoNombreInsumo", function(
 MODIFICAR LA CANTIDAD
 =============================================*/
 
-$(".formularioAgregarInsumo").on("change", "input.nuevaCantidadInsumo", function(){
+$(".formularioRecetaInsumos").on("change", "input.nuevaCantidadInsumo", function(){
 
-	var precioUnitario = $(".nuevoPrecioUnitarioInsumo");
+	var precioUnitario = $(".precioInsumo");
 
-	var precioUnitarioFinal = $(this).val() * precioUnitario.attr("precioUnitarioReal");
+	var precioUnitarioFinal = $(this).val() * precioUnitario.attr("precioReal");
 
 	precioUnitario.val(precioUnitarioFinal);
 
@@ -204,11 +204,11 @@ $(".formularioAgregarInsumo").on("change", "input.nuevaCantidadInsumo", function
 	
 				$(this).attr("nuevoStock", $(this).attr("stock"));
 		
-				var precioUnitarioFinal = $(this).val() * precioUnitario.attr("precioUnitarioReal");
+				var precioUnitarioFinal = $(this).val() * precioUnitario.attr("precioReal");
 		
 				precioUnitario.val(precioUnitarioFinal);
 		
-				sumarTotalPrecioUnitario();
+				sumaTotalPrecio();
 		
 				Swal.fire({
 				  title: "La cantidad supera el stock",
@@ -226,7 +226,7 @@ $(".formularioAgregarInsumo").on("change", "input.nuevaCantidadInsumo", function
 
 	// SUMAR TOTAL DE PRECIOS
 
-	sumarTotalPrecioUnitario()
+	sumaTotalPrecio()
 
 
 })
@@ -235,9 +235,9 @@ $(".formularioAgregarInsumo").on("change", "input.nuevaCantidadInsumo", function
 SUMAR TODOS LOS PRECIOS
 =============================================*/
 
-function sumarTotalPrecioUnitario(){
+function sumaTotalPrecio(){
 
-	var precioUnitarioItem = $(".nuevoPrecioUnitarioInsumo");
+	var precioUnitarioItem = $(".precioInsumo");
 
 	var arraySumaPrecioUnitario = [];  
 
@@ -256,14 +256,14 @@ function sumarTotalPrecioUnitario(){
 
 	var sumaTotalPrecioUnitario = arraySumaPrecioUnitario.reduce(sumaArrayPrecioUnitario,0);
 
-	if($(".nuevoPrecioUnitarioInsumo").attr("precioUnitarioReal") == 0){
+	if($(".precioInsumo").attr("precioReal") == 0){
 
-		$(".nuevoPrecioUnitarioInsumo").val("");
+		$(".precioInsumo").val("");
 
 	}else{
 
-		$(".nuevoPrecioUnitarioInsumo").number(true,3);
-		$(".nuevoPrecioUnitarioInsumo").val(sumaTotalPrecioUnitario);
+		$(".precioInsumo").number(true,3);
+		$(".precioInsumo").val(sumaTotalPrecioUnitario);
 		$("#precioTotal").val(sumaTotalPrecioUnitario);
 
 	}
@@ -274,17 +274,17 @@ function sumarTotalPrecioUnitario(){
 EDITAR INSUMO
 =============================================*/
 
-$(".tablaAgregarInsumos tbody").on("click", "button.btnEditarInsumoReceta", function(){
+$(".tablaRecetaInsumos tbody").on("click", "button.btnEditarInsumoReceta", function(){
 
-	var idInsumoReceta = $(this).attr("idInsumoReceta");
+	var idRecetaInsumo = $(this).attr("idRecetaInsumo");
 	
 	var datos = new FormData();
 
-    datos.append("idInsumoReceta", idInsumoReceta);
+    datos.append("idRecetaInsumo", idRecetaInsumo);
 
      $.ajax({
 
-      url:"ajax/agregarinsumos.ajax.php",
+      url:"ajax/recetainsumos.ajax.php",
       method: "POST",
       data: datos,
       cache: false,
@@ -294,22 +294,22 @@ $(".tablaAgregarInsumos tbody").on("click", "button.btnEditarInsumoReceta", func
       success:function(respuesta){
 
 		   $("#editaridInsumo").val(respuesta["idMateria"]);
-		   $("#editaridInsumoReceta").val(respuesta["idRecetaMateria"]);
+		   $("#editaridRecetaInsumo").val(respuesta["idRecetaMateria"]);
 		   $("#editarNombreInsumo").val(respuesta["idMateria"]);
 		   $("#editarNombreInsumo").attr('disabled', 'disabled');	
 		   $("#editarNombreInsumo").trigger('change');
 		   $("#editarNombre").val(respuesta["nombre"]);
 
-		   $(".editarCantidadInsumo").attr("edistock",(Number(respuesta["stock"])+Number(respuesta["cantidad"])));
+		   $(".editarCantidadInsumo").attr("edStock",(Number(respuesta["stock"])+Number(respuesta["cantidad"])));
 		   $("#editarCantidad").val(respuesta["cantidad"]);
-		   $("#editarStock").val((Number(respuesta["stock"])+Number(respuesta["cantidad"]))+" "+respuesta["unidadMedida"]);
+		   $("#editarStock").val((Number(respuesta["stock"])+Number(respuesta["cantidad"])).toFixed(3)+" "+respuesta["unidadMedida"]);
 		   $("#cantidadAnterior").val(respuesta["cantidad"]);
 
-		   $("#editarprecioUnitarioReal").val(respuesta["precioUnitario"]);
-		   $(".editarPrecioUnitarioInsumo").val(respuesta["total"]);
-		   $(".editarPrecioUnitarioInsumo").attr("editarprecioUnitarioReal",respuesta["precioUnitario"]);
+		   $("#editarprecioUnitario").val(respuesta["precioUnitario"]);
+		   $(".editarPrecioInsumo").val(respuesta["total"]);
+		   $(".editarPrecioInsumo").attr("editarprecioReal",respuesta["precioUnitario"]);
 		   
-		   editarsumarTotalPrecioUnitario();
+		   editarsumaTotalPrecio();
       }
 
   })
@@ -321,15 +321,15 @@ $(".tablaAgregarInsumos tbody").on("click", "button.btnEditarInsumoReceta", func
 MODIFICAR LA CANTIDAD
 =============================================*/
 
-$(".formularioEditarAgregarInsumo").on("change", "input.editarCantidadInsumo", function(){
+$(".formularioEditarRecetaInsumo").on("change", "input.editarCantidadInsumo", function(){
 
-	var editarprecioUnitario = $(".editarPrecioUnitarioInsumo");
+	var editarprecioUnitario = $(".editarPrecioInsumo");
 
-	var precioUnitarioFinal = $(this).val() * editarprecioUnitario.attr("editarprecioUnitarioReal");
+	var precioUnitarioFinal = $(this).val() * editarprecioUnitario.attr("editarprecioReal");
 
 	editarprecioUnitario.val(precioUnitarioFinal);
 
-	var editarStock = Number($(this).attr("edistock")) - $(this).val();
+	var editarStock = Number($(this).attr("edStock")) - $(this).val();
 
     $(this).attr("editarStock", editarStock);
 
@@ -337,10 +337,10 @@ $(".formularioEditarAgregarInsumo").on("change", "input.editarCantidadInsumo", f
 	
 	$("#diferenciaCantidad").val(diferenciaCantidad);
     
-		if(Number($(this).val()) > Number($(this).attr("edistock"))){
+		if(Number($(this).val()) > Number($(this).attr("edStock"))){
 
 
-			if(Number($(this).attr("edistock")) <= 0){
+			if(Number($(this).attr("edStock")) <= 0){
 	
 				$(this).val(0);
 	
@@ -359,15 +359,15 @@ $(".formularioEditarAgregarInsumo").on("change", "input.editarCantidadInsumo", f
 				/*=============================================
 				SI LA CANTIDAD ES SUPERIOR AL STOCK REGRESAR VALORES INICIALES
 				=============================================*/
-				$(this).val($(this).attr("edistock"));
+				$(this).val($(this).attr("edStock"));
 	
-				$(this).attr("editarStock", $(this).attr("edistock"));
+				$(this).attr("editarStock", $(this).attr("edStock"));
 		
-				var precioUnitarioFinal = $(this).val() * editarprecioUnitario.attr("editarprecioUnitarioReal");
+				var precioUnitarioFinal = $(this).val() * editarprecioUnitario.attr("editarprecioReal");
 		
 				editarprecioUnitario.val(precioUnitarioFinal);
 		
-				editarsumarTotalPrecioUnitario();
+				editarsumaTotalPrecio();
 		
 				Swal.fire({
 				  title: "La cantidad supera el stock",
@@ -385,7 +385,7 @@ $(".formularioEditarAgregarInsumo").on("change", "input.editarCantidadInsumo", f
 
 	// SUMAR TOTAL DE PRECIOS
 
-	editarsumarTotalPrecioUnitario();
+	editarsumaTotalPrecio();
 
 
 })
@@ -394,9 +394,9 @@ $(".formularioEditarAgregarInsumo").on("change", "input.editarCantidadInsumo", f
 SUMAR TODOS LOS PRECIOS
 =============================================*/
 
-function editarsumarTotalPrecioUnitario(){
+function editarsumaTotalPrecio(){
 
-	var precioUnitarioItem = $(".editarPrecioUnitarioInsumo");
+	var precioUnitarioItem = $(".editarPrecioInsumo");
 
 	var arraySumaPrecioUnitario = [];  
 
@@ -415,14 +415,14 @@ function editarsumarTotalPrecioUnitario(){
 
 	var sumaTotalPrecioUnitario = arraySumaPrecioUnitario.reduce(sumaArrayPrecioUnitario,0);
 
-	if($(".editarPrecioUnitarioInsumo").attr("editarprecioUnitarioReal") == 0){
+	if($(".editarPrecioInsumo").attr("editarprecioReal") == 0){
 
-		$(".editarPrecioUnitarioInsumo").val("");
+		$(".editarPrecioInsumo").val("");
 
 	}else{
 
-		$(".editarPrecioUnitarioInsumo").number(true,3);
-		$(".editarPrecioUnitarioInsumo").val(sumaTotalPrecioUnitario);
+		$(".editarPrecioInsumo").number(true,3);
+		$(".editarPrecioInsumo").val(sumaTotalPrecioUnitario);
 		$("#editarprecioTotal").val(sumaTotalPrecioUnitario);
 
 	}
@@ -434,7 +434,8 @@ function editarsumarTotalPrecioUnitario(){
 ELIMINAR INSUMO
 =============================================*/
 
-$(".tablaAgregarInsumos tbody").on("click", "button.btnEliminarInsumoReceta", function(){
+$(".tablaRecetaInsumos tbody").on("click", "button.btnEliminarInsumoReceta", function(){
+
 	var codigoReceta = $("#codigoReceta").val();
 	var idReceta = $("#idReceta").val();
 	var nombreReceta = $("#nombreReceta").val();
@@ -455,7 +456,7 @@ $(".tablaAgregarInsumos tbody").on("click", "button.btnEliminarInsumoReceta", fu
         }).then(function(result){
         if (result.value) {
 
-        window.location = "index.php?ruta=agregarinsumos&idRecetaInsumo="+idRecetaInsumo+"&idInsumo="+idInsumo+"&cantidadInsumo="+
+        window.location = "index.php?ruta=recetainsumos&idRecetaInsumo="+idRecetaInsumo+"&idInsumo="+idInsumo+"&cantidadInsumo="+
 			               cantidadInsumo+"&codigoReceta="+codigoReceta+"&nombreReceta="+nombreReceta+"&idReceta="+idReceta;
 
         }

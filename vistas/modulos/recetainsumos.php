@@ -48,7 +48,7 @@
        </div>
        
         <div class="form-group row  col-12 col-lg-4 justify-content-sm-end">
-          <button class="btn btn-primary my-1 col-12 col-sm-4 col-md-3 mr-2 col-lg-7 col-xl-6" id="btnAgregarInsumo" data-toggle="modal" data-target="#modalAgregarInsumo">
+          <button class="btn btn-primary my-1 col-12 col-sm-4 col-md-3 mr-2 col-lg-7 col-xl-6" id="btnRecetaInsumo" data-toggle="modal" data-target="#modalRecetaInsumo">
            Agregar Insumo
          </button>
          <a type="button" class="btn btn-secondary my-1 col-12 col-sm-4 col-md-3 col-lg-4 col-xl-3" href="recetas">Volver</a>
@@ -60,7 +60,7 @@
       </div>
       <div class="card-body">
 
-      <table class="table table-bordered table-striped dt-responsive tablaAgregarInsumos" width="100%">
+      <table class="table table-bordered table-striped dt-responsive tablaRecetaInsumos" width="100%">
        
       <thead>
        
@@ -95,13 +95,13 @@
 MODAL AGREGAR INSUMO
 ======================================-->
 
-<div id="modalAgregarInsumo" class="modal fade" role="dialog">
+<div id="modalRecetaInsumo" class="modal fade" role="dialog">
 
 <div class="modal-dialog modal-lg">
 
   <div class="modal-content">
 
-    <form role="form" method="post" enctype="multipart/form-data" class="formularioAgregarInsumo">
+    <form role="form" method="post" enctype="multipart/form-data" class="formularioRecetaInsumos">
 
       <!--=====================================
       CABEZA DEL MODAL
@@ -139,16 +139,16 @@ MODAL AGREGAR INSUMO
 
                 <input type="hidden" name="idInsumo" id="idInsumo">
 
-                <input type="hidden" name="nuevoNombre" id="nuevoNombre">
+                <input type="hidden" name="nombreInsumo" id="nombreInsumo">
 
-                <select class="form-control select2 input-lg nuevoNombreInsumo" id="nuevoNombreInsumo" name="nuevoNombreInsumo" style="width: 100%;" required>
+                <select class="form-control select2 input-lg seleccionarNombreInsumo" id="seleccionarNombreInsumo" name="seleccionarNombreInsumo" style="width: 100%;" required>
                 
                 <option value="">Seleccionar Insumo</option>
 
                 <?php 
                     $valor = null;
 
-                    $insumos = ControladorAgregarInsumos::ctrMostrarDetalleInsumos($valor);
+                    $insumos = ControladorRecetaInsumos::ctrMostrarDetalleInsumos($valor);
 
                   foreach($insumos as $key=> $value){ 
 
@@ -205,9 +205,9 @@ MODAL AGREGAR INSUMO
                 <div class="input-group-prepend">
                 <span class="input-group-text"><i class="fas fa-dollar-sign"></i></span>
                 </div>
-                <input type="hidden" id="precioUnitarioReal" name="precioUnitarioReal">
+                <input type="hidden" id="precioUnitario" name="precioUnitario">
                 <input type="hidden" id="precioTotal" name="precioTotal">
-                <input type="text" class="form-control input-lg nuevoPrecioUnitarioInsumo" name="nuevoPrecioUnitario" id="nuevoPrecioUnitario"
+                <input type="text" class="form-control input-lg precioInsumo" precioReal name="nuevoPrecioUnitario" id="nuevoPrecioUnitario"
                  required readonly>
             </div>
 
@@ -235,8 +235,8 @@ MODAL AGREGAR INSUMO
 
       <?php
 
-        $guardarAgregarInsumos = new ControladorAgregarInsumos();
-        $guardarAgregarInsumos -> ctrCrearAgregarInsumo();
+        $guardarRecetaInsumos = new ControladorRecetaInsumos();
+        $guardarRecetaInsumos -> ctrCrearRecetaInsumo();
 
       ?>
 
@@ -262,7 +262,7 @@ MODAL EDITAR INSUMO
 
   <div class="modal-content">
 
-    <form role="form" method="post" enctype="multipart/form-data" class="formularioEditarAgregarInsumo">
+    <form role="form" method="post" enctype="multipart/form-data" class="formularioEditarRecetaInsumo">
 
       <!--=====================================
       CABEZA DEL MODAL
@@ -298,7 +298,7 @@ MODAL EDITAR INSUMO
             
             <div class="input-group">
 
-                <input type="hidden" name="editaridInsumoReceta" id="editaridInsumoReceta">
+                <input type="hidden" name="editaridRecetaInsumo" id="editaridRecetaInsumo">
 
                 <input type="hidden" name="editaridInsumo" id="editaridInsumo">
 
@@ -310,7 +310,7 @@ MODAL EDITAR INSUMO
 
                 <?php 
                   $valor = null;
-                  $insumos = ControladorAgregarInsumos::ctrMostrarDetalleInsumos($valor);
+                  $insumos = ControladorRecetaInsumos::ctrMostrarDetalleInsumos($valor);
 
                   foreach($insumos as $key=> $value){ 
 
@@ -355,7 +355,7 @@ MODAL EDITAR INSUMO
                 </div>
                 <input type="hidden" id="cantidadAnterior" name="cantidadAnterior">
                 <input type="hidden" id="diferenciaCantidad" name="diferenciaCantidad">
-                <input type="number" class="form-control input-lg editarCantidadInsumo" edistock id="editarCantidad" name="editarCantidad" 
+                <input type="number" class="form-control input-lg editarCantidadInsumo" edStock id="editarCantidad" name="editarCantidad" 
                 min="0.1" step="0.001" required>
             </div>
 
@@ -369,9 +369,9 @@ MODAL EDITAR INSUMO
                 <div class="input-group-prepend">
                 <span class="input-group-text"><i class="fas fa-dollar-sign"></i></span>
                 </div>
-                <input type="hidden" id="editarprecioUnitarioReal" name="editarprecioUnitarioReal">
+                <input type="hidden" id="editarprecioUnitario" name="editarprecioUnitario">
                 <input type="hidden" id="editarprecioTotal" name="editarprecioTotal">
-                <input type="text" class="form-control input-lg editarPrecioUnitarioInsumo" name="editarPrecioUnitario" id="editarPrecioUnitario"
+                <input type="text" class="form-control input-lg editarPrecioInsumo" name="editarPrecioUnitario" id="editarPrecioUnitario"
                  required readonly>
             </div>
 
@@ -399,8 +399,8 @@ MODAL EDITAR INSUMO
 
       <?php
 
-          $editarAgregarInsumos = new ControladorAgregarInsumos();
-          $editarAgregarInsumos -> ctrEditarAgregarInsumo();
+          $editarRecetaInsumos = new ControladorRecetaInsumos();
+          $editarRecetaInsumos -> ctrEditarRecetaInsumo();
 
       ?>
 
@@ -416,7 +416,7 @@ MODAL EDITAR INSUMO
 
 <?php
 
-  $borrarAgregarInsumo = new ControladorAgregarInsumos();
-  $borrarAgregarInsumo -> ctrEliminarAgregarInsumo();
+  $borrarRecetaInsumo = new ControladorRecetaInsumos();
+  $borrarRecetaInsumo -> ctrEliminarRecetaInsumo();
 
 ?> 

@@ -1,15 +1,15 @@
 <?php
 
-require_once "../controladores/agregarinsumos.controlador.php";
-require_once "../modelos/agregarinsumos.modelo.php";
+require_once "../controladores/recetainsumos.controlador.php";
+require_once "../modelos/recetainsumos.modelo.php";
 
-class AjaxAgregarInsumos{
+class AjaxRecetaInsumos{
 
 	/*=============================================
 	MOSTRAR DETALLE INSUMO
 	=============================================*/	
 
-	public $idInsumoReceta;
+	public $idRecetaInsumo;
 	public $idReceta;
 	public $idInsumo;
 
@@ -17,9 +17,9 @@ class AjaxAgregarInsumos{
 
 		$item="InsumoReceta";
 
-		$valor = $this->idInsumoReceta;
+		$valor = $this->idRecetaInsumo;
 
-		$respuesta = ControladorAgregarInsumos::ctrMostrarAgregarInsumos($item,$valor);
+		$respuesta = ControladorRecetaInsumos::ctrMostrarRecetaInsumos($item,$valor);
 
 		echo json_encode($respuesta);
 
@@ -31,7 +31,7 @@ class AjaxAgregarInsumos{
 
 		$valor = $this->idReceta;
 
-		$respuesta = ControladorAgregarInsumos::ctrMostrarAgregarInsumos($item,$valor);
+		$respuesta = ControladorRecetaInsumos::ctrMostrarRecetaInsumos($item,$valor);
 
 		echo json_encode($respuesta);
 
@@ -41,7 +41,7 @@ class AjaxAgregarInsumos{
 
 		$valor = $this->idInsumo;
 
-		$respuesta = ControladorAgregarInsumos::ctrMostrarDetalleInsumos($valor);
+		$respuesta = ControladorRecetaInsumos::ctrMostrarDetalleInsumos($valor);
 
 		echo json_encode($respuesta);
 
@@ -53,10 +53,10 @@ class AjaxAgregarInsumos{
 /*=============================================
 DETALLE INSUMO
 =============================================*/
-if(isset($_POST["idInsumoReceta"])){
+if(isset($_POST["idRecetaInsumo"])){
 
-	$editar = new AjaxAgregarInsumos();
-	$editar -> idInsumoReceta = $_POST["idInsumoReceta"];
+	$editar = new AjaxRecetaInsumos();
+	$editar -> idRecetaInsumo = $_POST["idRecetaInsumo"];
 	$editar -> ajaxInsumoReceta();
 
 }
@@ -66,7 +66,7 @@ DETALLE INSUMO
 =============================================*/
 if(isset($_POST["idReceta"])){
 
-	$editar = new AjaxAgregarInsumos();
+	$editar = new AjaxRecetaInsumos();
 	$editar -> idReceta = $_POST["idReceta"];
 	$editar -> ajaxReceta();
 
@@ -77,7 +77,7 @@ DETALLE INSUMO
 =============================================*/
 if(isset($_POST["idInsumoDetalle"])){
 
-	$editar = new AjaxAgregarInsumos();
+	$editar = new AjaxRecetaInsumos();
 	$editar -> idInsumo = $_POST["idInsumoDetalle"];
 	$editar -> ajaxDetalleInsumo();
 

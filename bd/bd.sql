@@ -287,8 +287,8 @@ CREATE TABLE gastoadminpormes (
 
 CREATE TABLE MovimientoMateria (
   idMovimientoMateria INT  AUTO_INCREMENT primary key,
-  ingreso DECIMAL(10,2) ,
-  salida DECIMAL(10,2) ,
+  ingreso DECIMAL(10,3) ,
+  salida DECIMAL(10,3) ,
   observacion VARCHAR(100) ,
   fecha DATE ,
   hora TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP ,
@@ -302,7 +302,7 @@ CREATE TABLE MovimientoMateria (
 
 CREATE TABLE InventarioMateria (
   idInventarioMateria INT  AUTO_INCREMENT primary key,
-  stock DECIMAL(10,2) ,
+  stock DECIMAL(10,3) ,
   idMateria INT REFERENCES Materia (idMateria)
 );
 
@@ -396,26 +396,12 @@ CREATE TABLE Receta (
 );
 
 
--- -----------------------------------------------------
--- Table Receta Materia
--- -----------------------------------------------------
-
--- CREATE TABLE RecetaMateria (
---   idRecetaMateria INT  AUTO_INCREMENT primary key,
---   insumos TEXT,
---   pesoneto DECIMAL(10,2),
---   costo DECIMAL(10,2),
---   total DECIMAL(10,2),
---   idMateria INT REFERENCES Materia (idMateria),
---   idReceta INT REFERENCES Receta (idReceta)
--- );
-
 CREATE TABLE RecetaMateria (
   idRecetaMateria INT  AUTO_INCREMENT primary key,
   nombre VARCHAR(50),
-  cantidad DECIMAL(10,2),
-  precioUnitario DECIMAL(10,2),
-  total DECIMAL(10,2),
+  cantidad DECIMAL(10,3),
+  precioUnitario DECIMAL(10,3),
+  total DECIMAL(10,3),
   idMateria INT REFERENCES Materia (idMateria),
   idReceta INT REFERENCES Receta (idReceta)
 );

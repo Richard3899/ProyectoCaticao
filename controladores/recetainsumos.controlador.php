@@ -1,28 +1,28 @@
 <?php
 
-class ControladorAgregarInsumos{
+class ControladorRecetaInsumos{
 
 	/*=============================================
 	MOSTRAR LISTA DE INSUMOS
 	=============================================*/
 
-	static public function ctrMostrarAgregarInsumos($item,$valor){
+	static public function ctrMostrarRecetaInsumos($item,$valor){
 
-		$respuesta = ModeloAgregarInsumos::mdlMostrarAgregarInsumos($item,$valor);
+		$respuesta = ModeloRecetaInsumos::mdlMostrarRecetaInsumos($item,$valor);
 
 		return $respuesta;
 	}
 
 	static public function ctrMostrarDetalleInsumos($valor){
 
-		$respuesta = ModeloAgregarInsumos::mdlMostrarDetalleinsumos($valor);
+		$respuesta = ModeloRecetaInsumos::mdlMostrarDetalleinsumos($valor);
 
 		return $respuesta;
 	}
 
-	static public function ctrSumaTotalAgregarInsumos($valor){
+	static public function ctrSumaTotalRecetaInsumos($valor){
 
-		$respuesta = ModeloAgregarInsumos::mdlSumaTotalAgregarInsumos($valor);
+		$respuesta = ModeloRecetaInsumos::mdlSumaTotalRecetaInsumos($valor);
 
 		return $respuesta;
 	}
@@ -31,7 +31,7 @@ class ControladorAgregarInsumos{
 	AGREGAR LOS INSUMOS
 	=============================================*/
 
-	static public function ctrCrearAgregarInsumo(){
+	static public function ctrCrearRecetaInsumo(){
 			
 		if(isset($_POST["idInsumo"])){
 
@@ -42,12 +42,12 @@ class ControladorAgregarInsumos{
 			$datos = array("idReceta"=>$_POST["idReceta"],
 						   "codigoReceta"=>$_POST["codigoReceta"],
 						   "idMateria"=>$_POST["idInsumo"],
-						   "nombre"=>$_POST["nuevoNombre"],
+						   "nombre"=>$_POST["nombreInsumo"],
 						   "cantidad"=>$_POST["nuevaCantidad"],
-						   "precioUnitario"=>$_POST["precioUnitarioReal"],
+						   "precioUnitario"=>$_POST["precioUnitario"],
 						   "total"=>$_POST["precioTotal"]);
 		
-			$respuesta = ModeloAgregarInsumos::mdlIngresarAgregarInsumo($datos);
+			$respuesta = ModeloRecetaInsumos::mdlIngresarRecetaInsumo($datos);
 
 			if($respuesta == "ok"){
 		    
@@ -62,7 +62,7 @@ class ControladorAgregarInsumos{
 				
 				}).then(function(result){
 				
-					window.location = "index.php?ruta=agregarinsumos&codigo='.$_POST["codigoReceta"].'&nombre='.$_POST["nombreReceta"].'&idReceta='.$_POST["idReceta"].'";
+					window.location = "index.php?ruta=recetainsumos&codigo='.$_POST["codigoReceta"].'&nombre='.$_POST["nombreReceta"].'&idReceta='.$_POST["idReceta"].'";
 			
 			    });
 				
@@ -82,11 +82,11 @@ class ControladorAgregarInsumos{
 	EDITAR INSUMOS
 	=============================================*/
 
-	static public function ctrEditarAgregarInsumo(){
+	static public function ctrEditarRecetaInsumo(){
 
-		if(isset($_POST["editaridInsumoReceta"])){
+		if(isset($_POST["editaridRecetaInsumo"])){
 
-			$datos = array( "idInsumoReceta"=>$_POST["editaridInsumoReceta"],
+			$datos = array( "idInsumoReceta"=>$_POST["editaridRecetaInsumo"],
 			                "idReceta"=>$_POST["editaridReceta"],
 							"codigoReceta"=>$_POST["editarcodigoReceta"],
 							"idMateria"=>$_POST["editaridInsumo"],
@@ -94,10 +94,10 @@ class ControladorAgregarInsumos{
 							"cantidadAnterior"=>$_POST["cantidadAnterior"],
 							"diferenciaCantidad"=>$_POST["diferenciaCantidad"],
 							"cantidad"=>$_POST["editarCantidad"],
-							"precioUnitario"=>$_POST["editarprecioUnitarioReal"],
+							"precioUnitario"=>$_POST["editarprecioUnitario"],
 							"total"=>$_POST["editarprecioTotal"]);
 							   
-			$respuesta = ModeloAgregarInsumos::mdlEditarAgregarInsumo($datos);
+			$respuesta = ModeloRecetaInsumos::mdlEditarRecetaInsumo($datos);
 
 				if($respuesta == "ok"){
 		    
@@ -112,7 +112,7 @@ class ControladorAgregarInsumos{
 					
 					}).then(function(result){
 					
-						window.location = "index.php?ruta=agregarinsumos&codigo='.$_POST["editarcodigoReceta"].'&nombre='.$_POST["editarnombreReceta"].'&idReceta='.$_POST["editaridReceta"].'";
+						window.location = "index.php?ruta=recetainsumos&codigo='.$_POST["editarcodigoReceta"].'&nombre='.$_POST["editarnombreReceta"].'&idReceta='.$_POST["editaridReceta"].'";
 				
 					});
 					
@@ -129,7 +129,7 @@ class ControladorAgregarInsumos{
 	/*=============================================
 	BORRAR INSUMO
 	=============================================*/
-	static public function ctrEliminarAgregarInsumo(){
+	static public function ctrEliminarRecetaInsumo(){
 
 		if(isset($_GET["idRecetaInsumo"])){
             
@@ -138,7 +138,7 @@ class ControladorAgregarInsumos{
 			               "idMateria"=>$_GET["idInsumo"],
 						   "cantidad"=>$_GET["cantidadInsumo"]);
 			
-			$respuesta = ModeloAgregarInsumos::mdlEliminarAgregarInsumo($datos);
+			$respuesta = ModeloRecetaInsumos::mdlEliminarRecetaInsumo($datos);
 			
 			if($respuesta == "ok"){
 
@@ -157,7 +157,7 @@ class ControladorAgregarInsumos{
 				
 				}).then(function(result){
 
-					window.location = "index.php?ruta=agregarinsumos&codigo='.$_GET["codigoReceta"].'&nombre='.$_GET["nombreReceta"].'&idReceta='.$_GET["idReceta"].'";
+					window.location = "index.php?ruta=recetainsumos&codigo='.$_GET["codigoReceta"].'&nombre='.$_GET["nombreReceta"].'&idReceta='.$_GET["idReceta"].'";
 			
 			    });
 				

@@ -29,7 +29,7 @@ require_once "controladores/kardexmaquinas.controlador.php";
 require_once "controladores/recetas.controlador.php";
 require_once "controladores/estados.controlador.php";
 require_once "controladores/lotes.controlador.php";
-require_once "controladores/agregarinsumos.controlador.php";
+require_once "controladores/recetainsumos.controlador.php";
 
 require_once "modelos/usuarios.modelo.php";
 require_once "modelos/configuracion.modelo.php";
@@ -58,7 +58,7 @@ require_once "modelos/kardexmaquinas.modelo.php";
 require_once "modelos/recetas.modelo.php";
 require_once "modelos/estados.modelo.php";
 require_once "modelos/lotes.modelo.php";
-require_once "modelos/agregarinsumos.modelo.php";
+require_once "modelos/recetainsumos.modelo.php";
 
 $plantilla = new ControladorPlantilla();
 $plantilla -> ctrPlantilla();
