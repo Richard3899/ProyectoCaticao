@@ -54,7 +54,7 @@ INSERT INTO `empleado` (`idEmpleado`, `nombre`, `apellido`, `direccion`, `telefo
 
 INSERT INTO `materia` (`idMateria`, `codigo`, `nombre`, `descripcion`, `precio`, `cantidad`,`precioUnitario`, `imagen`, `idUnidadMedida`, `idMarca`, `idTipoMateria`) VALUES
 	(1, 'LC-12', 'LECHE', 'SIN LACTOSA', 55.00, 12.00, 4.58, '', 2, 1, 1),
-	(2, 'CJ-1245', 'CAJAS', 'DE CARTON', 15.00, 100.00, 4.58, '', 3, 3, 2),
+	(2, 'CJ-1245', 'CAJAS', 'DE CARTON', 10, 10, 1, '', 3, 3, 2),
 	(3, 'A12', 'AGUA', 'EVAPORADA', 12.00, 12.00, 1.00, '', 2, 3, 1),
 	(4, 'VN01', 'VAINILLA', 'DULCE', 7.00, 12.00, 0.58, '', 2, 1, 1),
 	(5, 'CC001', 'CACAO', 'NATURAL', 6.00, 56.00, 0.11, '', 1, 3, 1);

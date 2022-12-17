@@ -1,10 +1,10 @@
 /*=============================================
-TABLA RECETA INSUMO
+TABLA RECETA MATERIAL
 =============================================*/
 var idRecetaC = $("#idReceta").val();
 
-$('.tablaRecetaInsumos').DataTable( {
-	"ajax": "ajax/datatable-recetainsumos.ajax.php?idRecetaC="+idRecetaC,
+$('.tablaRecetaMateriales').DataTable( {
+	"ajax": "ajax/datatable-recetamateriales.ajax.php?idRecetaC="+idRecetaC,
     "deferRender": true,
 	"columnDefs": [
 		{"className": "dt-center", "targets": "_all",
@@ -43,11 +43,12 @@ $('.tablaRecetaInsumos').DataTable( {
 } );
 
 /*=============================================
-CONSULTA DE RECETA INSUMO
+CONSULTA DE RECETA MATERIAL
 =============================================*/
-const idArrayRecetaInsumos=[0];
 
-$(".tablaRecetaInsumos").on("draw.dt", function() {
+const idArrayRecetaMateriales=[0];
+
+$(".tablaRecetaMateriales").on("draw.dt", function() {
 	
 	var x = $(".nm").val();
 
@@ -65,7 +66,7 @@ $(".tablaRecetaInsumos").on("draw.dt", function() {
 
 	  $.ajax({
 
-     	url:"ajax/recetainsumos.ajax.php",
+     	url:"ajax/recetamateriales.ajax.php",
       	method: "POST",
       	data: datos,
       	cache: false,
@@ -76,7 +77,7 @@ $(".tablaRecetaInsumos").on("draw.dt", function() {
 		
 		for (var i=0; i<respuesta.length; i++) { 
 
-			idArrayRecetaInsumos.push(respuesta[i]["idMateria"]);
+			idArrayRecetaMateriales.push(respuesta[i]["idMateria"]);
 		
 		}
 		
@@ -87,20 +88,20 @@ $(".tablaRecetaInsumos").on("draw.dt", function() {
 
 
 /*=============================================
-SELECCIONAR INSUMO DE LA RECETA
+SELECCIONAR MATERIAL DE LA RECETA
 =============================================*/
 
-$(".formularioRecetaInsumos").on("change", "select.seleccionarNombreInsumo", function(){
+$(".formularioRecetaMateriales").on("change", "select.seleccionarNombreMaterial", function(){
 	
-	var idInsumoDetalle = $(this).val();
+	var idMaterialDetalle = $(this).val();
 
 	var datos = new FormData();
 
-	datos.append("idInsumoDetalle", idInsumoDetalle);
+	datos.append("idMaterialDetalle", idMaterialDetalle);
     
 	  $.ajax({
 
-     	url:"ajax/recetainsumos.ajax.php",
+     	url:"ajax/recetamateriales.ajax.php",
       	method: "POST",
       	data: datos,
       	cache: false,
@@ -109,45 +110,45 @@ $(".formularioRecetaInsumos").on("change", "select.seleccionarNombreInsumo", fun
       	dataType:"json",
       	success:function(respuesta){
 
-				if($(".seleccionarNombreInsumo").val() == ""){
+				if($(".seleccionarNombreMaterial").val() == ""){
 
 					$("#nuevaCantidad").val(0);
 					$("#nuevoStock").val(0);
-					$(".precioInsumo").attr("precioReal",0);
+					$(".precioMaterial").attr("precioReal",0);
 					$("#precioTotal").val(0);
 					
 				}else{
 						
-					for(i=0;i<idArrayRecetaInsumos.length;i++){
+					for(i=0;i<idArrayRecetaMateriales.length;i++){
 		
-						if(idArrayRecetaInsumos[i]==idInsumoDetalle){
+						if(idArrayRecetaMateriales[i]==idMaterialDetalle){
 				
 							Swal.fire({
 								icon: "error",
-								title: "El insumo ya está en la receta",
+								title: "El material ya está en la receta",
 								showConfirmButton: false,
 							    timer: 2000
 							  })
 
-							$('#seleccionarNombreInsumo').val(null).trigger('change');
+							$('#seleccionarNombreMaterial').val(null).trigger('change');
 
 						}else{
 
-							$("#idInsumo").val(respuesta["idMateria"]);
-							$("#nombreInsumo").val(respuesta["nombre"]+" - "+respuesta["marca"]);
-							$(".nuevaCantidadInsumo").attr("stock",respuesta["stock"]);
+							$("#idMaterial").val(respuesta["idMateria"]);
+							$("#nombreMaterial").val(respuesta["nombre"]+" - "+respuesta["marca"]);
+							$(".nuevaCantidadMaterial").attr("stock",respuesta["stock"]);
 							$("#nuevaCantidad").val(0);
 							$("#nuevoStock").val(respuesta["stock"]+" "+respuesta["unidadMedida"]);
 							$("#precioUnitario").val(respuesta["precioUnitario"]);
-							$(".precioInsumo").val(0);
-							$(".precioInsumo").attr("precioReal",respuesta["precioUnitario"]);
+							$(".precioMaterial").val(0);
+							$(".precioMaterial").attr("precioReal",respuesta["precioUnitario"]);
 							
 
 							if(respuesta["stock"] <= 0){
 
 								$("#nuevaCantidad").val(0);
 								$("#nuevoStock").val("0 "+respuesta["unidadMedida"]);
-								$(".nuevaCantidadInsumo").attr("stock",0);
+								$(".nuevaCantidadMaterial").attr("stock",0);
 							}
 							
 						}
@@ -158,9 +159,7 @@ $(".formularioRecetaInsumos").on("change", "select.seleccionarNombreInsumo", fun
 			  
 			  // SUMAR TOTAL DE PRECIOS
 			  
-			  sumaTotalPrecioRecetaInsumos();
-
-			  
+			  sumaTotalPrecioRecetaMateriales();
 	
       	}
 
@@ -173,9 +172,9 @@ $(".formularioRecetaInsumos").on("change", "select.seleccionarNombreInsumo", fun
 MODIFICAR LA CANTIDAD
 =============================================*/
 
-$(".formularioRecetaInsumos").on("change", "input.nuevaCantidadInsumo", function(){
+$(".formularioRecetaMateriales").on("change", "input.nuevaCantidadMaterial", function(){
 
-	var precioUnitario = $(".precioInsumo");
+	var precioUnitario = $(".precioMaterial");
 
 	var precioUnitarioFinal = $(this).val() * precioUnitario.attr("precioReal");
 
@@ -220,7 +219,7 @@ $(".formularioRecetaInsumos").on("change", "input.nuevaCantidadInsumo", function
 		
 				precioUnitario.val(precioUnitarioFinal);
 		
-				sumaTotalPrecioRecetaInsumos();
+				sumaTotalPrecioRecetaMateriales();
 		
 				Swal.fire({
 				  title: "La cantidad supera el stock",
@@ -238,18 +237,18 @@ $(".formularioRecetaInsumos").on("change", "input.nuevaCantidadInsumo", function
 
 	// SUMAR TOTAL DE PRECIOS
 
-	sumaTotalPrecioRecetaInsumos()
+	sumaTotalPrecioRecetaMateriales()
 
-	
+
 })
 
 /*=============================================
 SUMAR TODOS LOS PRECIOS
 =============================================*/
 
-function sumaTotalPrecioRecetaInsumos(){
+function sumaTotalPrecioRecetaMateriales(){
 
-	var precioUnitarioItem = $(".precioInsumo");
+	var precioUnitarioItem = $(".precioMaterial");
 
 	var arraySumaPrecioUnitario = [];  
 
@@ -268,35 +267,35 @@ function sumaTotalPrecioRecetaInsumos(){
 
 	var sumaTotalPrecioUnitario = arraySumaPrecioUnitario.reduce(sumaArrayPrecioUnitario,0);
 
-	if($(".precioInsumo").attr("precioReal") == 0){
+	if($(".precioMaterial").attr("precioReal") == 0){
 
-		$(".precioInsumo").val("");
+		$(".precioMaterial").val("");
 
 	}else{
 
-		$(".precioInsumo").number(true,3);
-		$(".precioInsumo").val(sumaTotalPrecioUnitario);
+		$(".precioMaterial").number(true,3);
+		$(".precioMaterial").val(sumaTotalPrecioUnitario);
 		$("#precioTotal").val(sumaTotalPrecioUnitario);
-		
+
 	}
 
 }
 
 /*=============================================
-EDITAR INSUMO DE LA RECETA
+EDITAR MATERIAL DE LA RECETA
 =============================================*/
 
-$(".tablaRecetaInsumos tbody").on("click", "button.btnEditarInsumoReceta", function(){
+$(".tablaRecetaMateriales tbody").on("click", "button.btnEditarMaterialReceta", function(){
 
-	var idRecetaInsumo = $(this).attr("idRecetaInsumo");
+	var idRecetaMaterial = $(this).attr("idRecetaMaterial");
 	
 	var datos = new FormData();
 
-    datos.append("idRecetaInsumo", idRecetaInsumo);
+    datos.append("idRecetaMaterial", idRecetaMaterial);
 
      $.ajax({
 
-      url:"ajax/recetainsumos.ajax.php",
+      url:"ajax/recetamateriales.ajax.php",
       method: "POST",
       data: datos,
       cache: false,
@@ -305,23 +304,23 @@ $(".tablaRecetaInsumos tbody").on("click", "button.btnEditarInsumoReceta", funct
       dataType:"json",
       success:function(respuesta){
 
-		   $("#editaridInsumo").val(respuesta["idMateria"]);
-		   $("#editaridRecetaInsumo").val(respuesta["idRecetaMateria"]);
-		   $("#editarNombreInsumo").val(respuesta["idMateria"]);
-		   $("#editarNombreInsumo").attr('disabled', 'disabled');	
-		   $("#editarNombreInsumo").trigger('change');
+		   $("#editaridMaterial").val(respuesta["idMateria"]);
+		   $("#editaridRecetaMaterial").val(respuesta["idRecetaMateria"]);
+		   $("#editarNombreMaterial").val(respuesta["idMateria"]);
+		   $("#editarNombreMaterial").attr('disabled', 'disabled');	
+		   $("#editarNombreMaterial").trigger('change');
 		   $("#editarNombre").val(respuesta["nombre"]);
 
-		   $(".editarCantidadInsumo").attr("edStock",(Number(respuesta["stock"])+Number(respuesta["cantidad"])));
+		   $(".editarCantidadMaterial").attr("edStock",(Number(respuesta["stock"])+Number(respuesta["cantidad"])));
 		   $("#editarCantidad").val(respuesta["cantidad"]);
 		   $("#editarStock").val(Number(respuesta["stock"]).toFixed(3)+" "+respuesta["unidadMedida"]);
 		   $("#cantidadAnterior").val(respuesta["cantidad"]);
 
 		   $("#editarprecioUnitario").val(respuesta["precioUnitario"]);
-		   $(".editarPrecioInsumo").val(respuesta["total"]);
-		   $(".editarPrecioInsumo").attr("editarprecioReal",respuesta["precioUnitario"]);
+		   $(".editarPrecioMaterial").val(respuesta["total"]);
+		   $(".editarPrecioMaterial").attr("editarprecioReal",respuesta["precioUnitario"]);
 		   
-		   editarsumaTotalPrecioRecetaInsumos();
+		   editarsumaTotalPrecioRecetaMateriales();
       }
 
   })
@@ -333,9 +332,9 @@ $(".tablaRecetaInsumos tbody").on("click", "button.btnEditarInsumoReceta", funct
 MODIFICAR LA CANTIDAD AL EDITAR
 =============================================*/
 
-$(".formularioEditarRecetaInsumo").on("change", "input.editarCantidadInsumo", function(){
+$(".formularioEditarRecetaMaterial").on("change", "input.editarCantidadMaterial", function(){
 
-	var editarprecioUnitario = $(".editarPrecioInsumo");
+	var editarprecioUnitario = $(".editarPrecioMaterial");
 
 	var precioUnitarioFinal = $(this).val() * editarprecioUnitario.attr("editarprecioReal");
 
@@ -383,7 +382,7 @@ $(".formularioEditarRecetaInsumo").on("change", "input.editarCantidadInsumo", fu
 		
 				editarprecioUnitario.val(precioUnitarioFinal);
 		
-				editarsumaTotalPrecioRecetaInsumos();
+				editarsumaTotalPrecioRecetaMateriales();
 		
 				Swal.fire({
 				  title: "La cantidad supera el stock",
@@ -401,7 +400,7 @@ $(".formularioEditarRecetaInsumo").on("change", "input.editarCantidadInsumo", fu
 
 	// SUMAR TOTAL DE PRECIOS
 
-	editarsumaTotalPrecioRecetaInsumos();
+	editarsumaTotalPrecioRecetaMateriales();
 
 
 })
@@ -410,9 +409,9 @@ $(".formularioEditarRecetaInsumo").on("change", "input.editarCantidadInsumo", fu
 SUMAR TODOS LOS PRECIOS AL EDITAR
 =============================================*/
 
-function editarsumaTotalPrecioRecetaInsumos(){
+function editarsumaTotalPrecioRecetaMateriales(){
 
-	var precioUnitarioItem = $(".editarPrecioInsumo");
+	var precioUnitarioItem = $(".editarPrecioMaterial");
 
 	var arraySumaPrecioUnitario = [];  
 
@@ -431,14 +430,14 @@ function editarsumaTotalPrecioRecetaInsumos(){
 
 	var sumaTotalPrecioUnitario = arraySumaPrecioUnitario.reduce(sumaArrayPrecioUnitario,0);
 
-	if($(".editarPrecioInsumo").attr("editarprecioReal") == 0){
+	if($(".editarPrecioMaterial").attr("editarprecioReal") == 0){
 
-		$(".editarPrecioInsumo").val("");
+		$(".editarPrecioMaterial").val("");
 
 	}else{
 
-		$(".editarPrecioInsumo").number(true,3);
-		$(".editarPrecioInsumo").val(sumaTotalPrecioUnitario);
+		$(".editarPrecioMaterial").number(true,3);
+		$(".editarPrecioMaterial").val(sumaTotalPrecioUnitario);
 		$("#editarprecioTotal").val(sumaTotalPrecioUnitario);
 
 	}
@@ -447,33 +446,33 @@ function editarsumaTotalPrecioRecetaInsumos(){
 
 
 /*=============================================
-ELIMINAR INSUMO DE LA RECETA
+ELIMINAR MATERIAL DE LA RECETA
 =============================================*/
 
-$(".tablaRecetaInsumos tbody").on("click", "button.btnEliminarInsumoReceta", function(){
+$(".tablaRecetaMateriales tbody").on("click", "button.btnEliminarMaterialReceta", function(){
 
 	var codigoReceta = $("#codigoReceta").val();
 	var idReceta = $("#idReceta").val();
 	var nombreReceta = $("#nombreReceta").val();
-	var idRecetaInsumo = $(this).attr("idRecetaInsumo");
-	var idInsumo = $(this).attr("idInsumo");
-	var cantidadInsumo = $(this).attr("cantidadInsumo");
+	var idRecetaMaterial = $(this).attr("idRecetaMaterial");
+	var idMaterial = $(this).attr("idMaterial");
+	var cantidadMaterial = $(this).attr("cantidadMaterial");
 	
 	Swal.fire({
 
-		title: '¿Está seguro de borrar el insumo?',
+		title: '¿Está seguro de borrar el material?',
 		text: "¡Si no lo está puede cancelar la acción!",
 		icon: 'warning',
         showCancelButton: true,
         confirmButtonColor: '#3085d6',
         cancelButtonColor: '#d33',
         cancelButtonText: 'Cancelar',
-        confirmButtonText: 'Si, borrar insumo!'
+        confirmButtonText: 'Si, borrar material!'
         }).then(function(result){
         if (result.value) {
 
-        window.location = "index.php?ruta=recetainsumos&idRecetaInsumo="+idRecetaInsumo+"&idInsumo="+idInsumo+"&cantidadInsumo="+
-			               cantidadInsumo+"&codigoReceta="+codigoReceta+"&nombreReceta="+nombreReceta+"&idReceta="+idReceta;
+        window.location = "index.php?ruta=recetamateriales&idRecetaMaterial="+idRecetaMaterial+"&idMaterial="+idMaterial+"&cantidadMaterial="+
+			               cantidadMaterial+"&codigoReceta="+codigoReceta+"&nombreReceta="+nombreReceta+"&idReceta="+idReceta;
 
         }
 

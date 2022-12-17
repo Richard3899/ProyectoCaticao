@@ -1,53 +1,53 @@
 <?php
 
-class ControladorRecetaInsumos{
+class ControladorRecetaMateriales{
 
 	/*=============================================
-	MOSTRAR LISTA DE RECETA INSUMOS
+	MOSTRAR LISTA DE RECETA MATERIALES
 	=============================================*/
 
-	static public function ctrMostrarRecetaInsumos($item,$valor){
+	static public function ctrMostrarRecetaMateriales($item,$valor){
 
-		$respuesta = ModeloRecetaInsumos::mdlMostrarRecetaInsumos($item,$valor);
+		$respuesta = ModeloRecetaMateriales::mdlMostrarRecetaMateriales($item,$valor);
 
 		return $respuesta;
 	}
 	/*=============================================
-	MOSTRAR LISTA DETALLE INSUMOS
+	MOSTRAR LISTA DETALLE MATERIALES
 	=============================================*/
-	static public function ctrMostrarDetalleInsumos($valor){
+	static public function ctrMostrarDetalleMateriales($valor){
 
-		$respuesta = ModeloRecetaInsumos::mdlMostrarDetalleinsumos($valor);
+		$respuesta = ModeloRecetaMateriales::mdlMostrarDetallemateriales($valor);
 
 		return $respuesta;
 	}
 	/*=============================================
-	SUMAR TOTAL DE RECETA INSUMOS
+	SUMAR TOTAL DE RECETA MATERIALES
 	=============================================*/
-	static public function ctrSumaTotalRecetaInsumos($valor){
+	static public function ctrSumaTotalRecetaMateriales($valor){
 
-		$respuesta = ModeloRecetaInsumos::mdlSumaTotalRecetaInsumos($valor);
+		$respuesta = ModeloRecetaMateriales::mdlSumaTotalRecetaMateriales($valor);
 
 		return $respuesta;
 	}
 
 	/*=============================================
-	AGREGAR LOS INSUMOS EN LA RECETA
+	AGREGAR LOS MATERIALES EN LA RECETA
 	=============================================*/
 
-	static public function ctrCrearRecetaInsumo(){
+	static public function ctrCrearRecetaMaterial(){
 			
-		if(isset($_POST["idInsumo"])){
+		if(isset($_POST["idMaterial"])){
 
 			$datos = array("idReceta"=>$_POST["idReceta"],
 						   "codigoReceta"=>$_POST["codigoReceta"],
-						   "idMateria"=>$_POST["idInsumo"],
-						   "nombre"=>$_POST["nombreInsumo"],
+						   "idMateria"=>$_POST["idMaterial"],
+						   "nombre"=>$_POST["nombreMaterial"],
 						   "cantidad"=>$_POST["nuevaCantidad"],
 						   "precioUnitario"=>$_POST["precioUnitario"],
 						   "total"=>$_POST["precioTotal"]);
 		
-			$respuesta = ModeloRecetaInsumos::mdlIngresarRecetaInsumo($datos);
+			$respuesta = ModeloRecetaMateriales::mdlIngresarRecetaMaterial($datos);
 
 			if($respuesta == "ok"){
 		    
@@ -56,13 +56,13 @@ class ControladorRecetaInsumos{
 				Swal.fire({
 				
 					icon: "success",
-					title: "¡El insumo fue agregado correctamente!",
+					title: "¡El material fue agregado correctamente!",
 					showConfirmButton: false,
 					timer: 1500
 				
 				}).then(function(result){
 				
-					window.location = "index.php?ruta=recetainsumos&codigo='.$_POST["codigoReceta"].'&nombre='.$_POST["nombreReceta"].'&idReceta='.$_POST["idReceta"].'";
+					window.location = "index.php?ruta=recetamateriales&codigo='.$_POST["codigoReceta"].'&nombre='.$_POST["nombreReceta"].'&idReceta='.$_POST["idReceta"].'";
 			
 			    });
 				
@@ -79,17 +79,17 @@ class ControladorRecetaInsumos{
 
 
 	/*=============================================
-	EDITAR INSUMOS DE LA RECETA
+	EDITAR MATERIALES DE LA RECETA
 	=============================================*/
 
-	static public function ctrEditarRecetaInsumo(){
+	static public function ctrEditarRecetaMaterial(){
 
-		if(isset($_POST["editaridRecetaInsumo"])){
+		if(isset($_POST["editaridRecetaMaterial"])){
 
-			$datos = array( "idInsumoReceta"=>$_POST["editaridRecetaInsumo"],
+			$datos = array( "idMaterialReceta"=>$_POST["editaridRecetaMaterial"],
 			                "idReceta"=>$_POST["editaridReceta"],
 							"codigoReceta"=>$_POST["editarcodigoReceta"],
-							"idMateria"=>$_POST["editaridInsumo"],
+							"idMateria"=>$_POST["editaridMaterial"],
 							"nombre"=>$_POST["editarNombre"],
 							"cantidadAnterior"=>$_POST["cantidadAnterior"],
 							"diferenciaCantidad"=>$_POST["diferenciaCantidad"],
@@ -97,7 +97,7 @@ class ControladorRecetaInsumos{
 							"precioUnitario"=>$_POST["editarprecioUnitario"],
 							"total"=>$_POST["editarprecioTotal"]);
 							   
-			$respuesta = ModeloRecetaInsumos::mdlEditarRecetaInsumo($datos);
+			$respuesta = ModeloRecetaMateriales::mdlEditarRecetaMaterial($datos);
 
 				if($respuesta == "ok"){
 		    
@@ -106,13 +106,13 @@ class ControladorRecetaInsumos{
 					Swal.fire({
 					
 						icon: "success",
-						title: "¡El insumo fue editado correctamente!",
+						title: "¡El material fue editado correctamente!",
 						showConfirmButton: false,
 						timer: 1500
 					
 					}).then(function(result){
 					
-						window.location = "index.php?ruta=recetainsumos&codigo='.$_POST["editarcodigoReceta"].'&nombre='.$_POST["editarnombreReceta"].'&idReceta='.$_POST["editaridReceta"].'";
+						window.location = "index.php?ruta=recetamateriales&codigo='.$_POST["editarcodigoReceta"].'&nombre='.$_POST["editarnombreReceta"].'&idReceta='.$_POST["editaridReceta"].'";
 				
 					});
 					
@@ -127,18 +127,18 @@ class ControladorRecetaInsumos{
 
 
 	/*=============================================
-	BORRAR INSUMO DE LA RECETA
+	BORRAR MATERIAL DE LA RECETA
 	=============================================*/
-	static public function ctrEliminarRecetaInsumo(){
+	static public function ctrEliminarRecetaMaterial(){
 
-		if(isset($_GET["idRecetaInsumo"])){
+		if(isset($_GET["idRecetaMaterial"])){
             
-			$datos = array("idRecetaInsumo"=>$_GET["idRecetaInsumo"],
+			$datos = array("idRecetaMaterial"=>$_GET["idRecetaMaterial"],
 						   "codigoReceta"=>$_GET["codigoReceta"],
-			               "idMateria"=>$_GET["idInsumo"],
-						   "cantidad"=>$_GET["cantidadInsumo"]);
+			               "idMateria"=>$_GET["idMaterial"],
+						   "cantidad"=>$_GET["cantidadMaterial"]);
 			
-			$respuesta = ModeloRecetaInsumos::mdlEliminarRecetaInsumo($datos);
+			$respuesta = ModeloRecetaMateriales::mdlEliminarRecetaMaterial($datos);
 			
 			if($respuesta == "ok"){
 
@@ -151,13 +151,13 @@ class ControladorRecetaInsumos{
 				Swal.fire({
 				
 					icon: "success",
-					title: "¡El insumo ha sido eliminado correctamente!",
+					title: "¡El material ha sido eliminado correctamente!",
 					showConfirmButton: false,
 					timer: 1500
 				
 				}).then(function(result){
 
-					window.location = "index.php?ruta=recetainsumos&codigo='.$_GET["codigoReceta"].'&nombre='.$_GET["nombreReceta"].'&idReceta='.$_GET["idReceta"].'";
+					window.location = "index.php?ruta=recetamateriales&codigo='.$_GET["codigoReceta"].'&nombre='.$_GET["nombreReceta"].'&idReceta='.$_GET["idReceta"].'";
 			
 			    });
 				

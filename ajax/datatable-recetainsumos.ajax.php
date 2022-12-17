@@ -3,13 +3,10 @@
 require_once "../controladores/recetainsumos.controlador.php";
 require_once "../modelos/recetainsumos.modelo.php";
 
-require_once "../controladores/unidadmedida.controlador.php";
-require_once "../modelos/unidadmedida.modelo.php";
-
 class TablaRecetaInsumos{
 
  	/*=============================================
- 	 MOSTRAR LA TABLA DE INSUMOS
+ 	 MOSTRAR LA TABLA DE RECETA INSUMOS
   	=============================================*/ 
 
 	public function mostrarTablaRecetaInsumos(){
@@ -17,8 +14,12 @@ class TablaRecetaInsumos{
     	$idRecetaC=$_GET["idRecetaC"];
 
 		$item = "Receta";
-         
+
   		$insumosreceta = ControladorRecetaInsumos::ctrMostrarRecetaInsumos($item,$idRecetaC);	
+
+		/*=============================================
+ 	 	TRAEMOS EL TOTAL DE RECETA INSUMOS
+  		=============================================*/
 
 		$sumatotalinsumosreceta = ControladorRecetaInsumos::ctrSumaTotalRecetaInsumos($idRecetaC);	
 
@@ -36,7 +37,9 @@ class TablaRecetaInsumos{
 
 		  for($i = 0; $i < count($insumosreceta); $i++){
 			
-			/*==Botón Editar y Eliminar=*/
+			/*=============================================
+ 	 		TRAEMOS LAS ACCIONES
+  			=============================================*/
 			$botones =  "<div class='btn-group'><button class='btn btn-warning btnEditarInsumoReceta' idRecetaInsumo='".$insumosreceta[$i]["idRecetaMateria"]."' data-toggle='modal' data-target='#modalEditarInsumo'><i class='fa fa-pen'></i></button><button class='btn btn-danger btnEliminarInsumoReceta' idRecetaInsumo='".$insumosreceta[$i]["idRecetaMateria"]."' idInsumo='".$insumosreceta[$i]["idMateria"]."' cantidadInsumo='".$insumosreceta[$i]["cantidad"]."' ><i class='fa fa-times'></i></button></div>";				
 				
 		  	$datosJson .='[

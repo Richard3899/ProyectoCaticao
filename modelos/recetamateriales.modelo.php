@@ -2,18 +2,18 @@
 
 require_once "conexion.php";
 
-class ModeloRecetaInsumos{
+class ModeloRecetaMateriales{
 
 
 	/*=============================================
-	MOSTRAR INSUMOS DE LA RECETA
+	MOSTRAR MATERIALES DE LA RECETA
 	=============================================*/
 
-	static public function mdlMostrarRecetaInsumos($item,$valor){
+	static public function mdlMostrarRecetaMateriales($item,$valor){
 		
 		if($item != "Receta"){ 
 
-			$stmt = Conexion::conectar()->prepare("call mostrar_recetainsumos1(?)");
+			$stmt = Conexion::conectar()->prepare("call mostrar_recetamateriales1(?)");
 
 			$stmt->bindParam(1, $valor, PDO::PARAM_INT);
 	
@@ -23,7 +23,7 @@ class ModeloRecetaInsumos{
 
 		}else{
 
-			$stmt = Conexion::conectar()->prepare("call mostrar_recetainsumos2(?)");
+			$stmt = Conexion::conectar()->prepare("call mostrar_recetamateriales2(?)");
 
 			$stmt->bindParam(1, $valor, PDO::PARAM_INT);
 	
@@ -40,14 +40,14 @@ class ModeloRecetaInsumos{
 	}
 
 	/*=============================================
-	MOSTRAR DETALLE INSUMOS
+	MOSTRAR DETALLE MATERIALES
 	=============================================*/
 
-	static public function mdlMostrarDetalleInsumos($valor){
+	static public function mdlMostrarDetalleMateriales($valor){
 
 		if($valor != null){
 
-			$stmt = Conexion::conectar()->prepare("call mostrar_detalleinsumos1(?)");
+			$stmt = Conexion::conectar()->prepare("call mostrar_detallemateriales1(?)");
 
 			$stmt->bindParam(1, $valor, PDO::PARAM_INT);
 	
@@ -57,7 +57,7 @@ class ModeloRecetaInsumos{
 
 		}else{
 
-			$stmt = Conexion::conectar()->prepare("call mostrar_detalleinsumos2");
+			$stmt = Conexion::conectar()->prepare("call mostrar_detallemateriales2");
 	
 			$stmt -> execute();
 	
@@ -72,12 +72,12 @@ class ModeloRecetaInsumos{
 	}
 
 	/*=============================================
-	REGISTRO DE INSUMOS DE LA RECETA
+	REGISTRO DE MATERIALES DE LA RECETA
 	=============================================*/
 
-	static public function mdlIngresarRecetaInsumo($datos){
+	static public function mdlIngresarRecetaMaterial($datos){
 
-		$stmt = Conexion::conectar()->prepare("call insertar_recetainsumo(?,?,?,?,?,?,?)");
+		$stmt = Conexion::conectar()->prepare("call insertar_recetamaterial(?,?,?,?,?,?,?)");
 
 		$stmt->bindParam(1, $datos["idReceta"], PDO::PARAM_INT);
 		$stmt->bindParam(2, $datos["codigoReceta"], PDO::PARAM_STR);
@@ -103,14 +103,14 @@ class ModeloRecetaInsumos{
 	}
 
 	/*=============================================
-	EDITAR RECETA INSUMO
+	EDITAR RECETA MATERIAL
 	=============================================*/
 
-	static public function mdlEditarRecetaInsumo($datos){
+	static public function mdlEditarRecetaMaterial($datos){
 
-		$stmt = Conexion::conectar()->prepare("call editar_recetainsumo(?,?,?,?,?,?,?,?,?,?)");
+		$stmt = Conexion::conectar()->prepare("call editar_recetamaterial(?,?,?,?,?,?,?,?,?,?)");
 
-		$stmt->bindParam(1, $datos["idInsumoReceta"], PDO::PARAM_INT);
+		$stmt->bindParam(1, $datos["idMaterialReceta"], PDO::PARAM_INT);
 		$stmt->bindParam(2, $datos["idReceta"], PDO::PARAM_INT);
 		$stmt->bindParam(3, $datos["codigoReceta"], PDO::PARAM_STR);
 		$stmt->bindParam(4, $datos["idMateria"], PDO::PARAM_INT);		
@@ -137,14 +137,14 @@ class ModeloRecetaInsumos{
 	}
 
 	/*=============================================
-	ELIMINAR RECETA INSUMO
+	ELIMINAR RECETA MATERIAL
 	=============================================*/
 
-	static public function mdlEliminarRecetaInsumo($datos){
+	static public function mdlEliminarRecetaMaterial($datos){
 
-		$stmt = Conexion::conectar()->prepare("call eliminar_recetainsumo(?,?,?,?)");
+		$stmt = Conexion::conectar()->prepare("call eliminar_recetamaterial(?,?,?,?)");
 
-		$stmt->bindParam(1, $datos["idRecetaInsumo"], PDO::PARAM_INT);
+		$stmt->bindParam(1, $datos["idRecetaMaterial"], PDO::PARAM_INT);
 		$stmt->bindParam(2, $datos["codigoReceta"], PDO::PARAM_STR);
 		$stmt->bindParam(3, $datos["idMateria"], PDO::PARAM_INT);
 		$stmt->bindParam(4, $datos["cantidad"], PDO::PARAM_STR);
@@ -166,12 +166,12 @@ class ModeloRecetaInsumos{
 
 
 	/*=============================================
-	SUMAR EL TOTAL DE RECETA INSUMOS
+	SUMAR EL TOTAL DE RECETA MATERIALES
 	=============================================*/
 
-	static public function mdlSumaTotalRecetaInsumos($valor){
+	static public function mdlSumaTotalRecetaMateriales($valor){
 
-		$stmt = Conexion::conectar()->prepare("call sumatotal_recetainsumo(?)");
+		$stmt = Conexion::conectar()->prepare("call sumatotal_recetamaterial(?)");
 
 		$stmt->bindParam(1, $valor, PDO::PARAM_INT);
 

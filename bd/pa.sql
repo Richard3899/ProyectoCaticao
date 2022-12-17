@@ -238,8 +238,8 @@ CREATE PROCEDURE `insertar_material` (  in codigoI VARCHAR(20),
 BEGIN
     insert into inventariomateria (stock)
 				  values (0);
-	insert into materia (codigo,nombre,descripcion,idUnidadMedida,idMarca,cantidad,precio,imagen,idTipoMateria)
-				  values (codigoI,nombreI,descripcionI,idUnidadMedidaI,idMarcaI,cantidadI,precioI,imagenI,2);
+	insert into materia (codigo,nombre,descripcion,idUnidadMedida,idMarca,cantidad,precio,precioUnitario,imagen,idTipoMateria)
+				  values (codigoI,nombreI,descripcionI,idUnidadMedidaI,idMarcaI,cantidadI,precioI,precio/cantidad,imagenI,2);
 END$$
 DELIMITER ;
 
@@ -1078,7 +1078,7 @@ BEGIN
     inner join materia m on m.idMateria=rm.idMateria
     inner join inventariomateria im on im.idMateria=m.idMateria
     inner join unidadmedida um on um.idUnidadMedida=m.idUnidadMedida
-    where rm.idReceta=idRecetaC;
+    where rm.idReceta=idRecetaC and m.idTipoMateria=1;
 END$$
 DELIMITER ;
 
@@ -1098,7 +1098,7 @@ BEGIN
 						         WHERE idMateria=idMateriaI;
                             
     INSERT INTO movimientomateria (idMateria,ingreso,salida,observacion,fecha,idMovimiento)
-				               VALUES (idMateriaI,0,cantidadI,CONCAT("Receta : ",codigoRecetaI),CURRENT_DATE(),2);
+				               VALUES (idMateriaI,0,cantidadI,CONCAT("Agregado Receta : ",codigoRecetaI),CURRENT_DATE(),2);
 
 	 INSERT INTO recetamateria (idMateria,idReceta,nombre,cantidad,precioUnitario,total)
 			              VALUES (idMateriaI,idRecetaI,nombreI,cantidadI,precioUnitarioI,totalI);
@@ -1123,7 +1123,7 @@ CREATE PROCEDURE `editar_recetainsumo` (       in idRecetaMateriaE INT,
 BEGIN
 
    INSERT INTO movimientomateria (idMateria,ingreso,salida,observacion,fecha,idMovimiento)
-				               VALUES (idMateriaE,cantidadAntE,0,CONCAT("Receta : ",codigoRecetaE),CURRENT_DATE(),1);
+				               VALUES (idMateriaE,cantidadAntE,0,CONCAT("Editado Receta : ",codigoRecetaE),CURRENT_DATE(),1);
     	   
    DELETE from recetamateria WHERE idRecetaMateria=idRecetaMateriaE;
    
@@ -1132,7 +1132,7 @@ BEGIN
 						         WHERE idMateria=idMateriaE;
                             
    INSERT INTO movimientomateria (idMateria,ingreso,salida,observacion,fecha,idMovimiento)
-				              VALUES (idMateriaE,0,cantidade,CONCAT("Receta : ",codigoRecetaE),CURRENT_DATE(),2);
+				              VALUES (idMateriaE,0,cantidade,CONCAT("Editado Receta : ",codigoRecetaE),CURRENT_DATE(),2);
 
 	INSERT INTO recetamateria (idRecetaMateria,idMateria,idReceta,nombre,cantidad,precioUnitario,total)
 			             VALUES (idRecetaMateriaE,idMateriaE,idRecetaE,nombreE,cantidadE,precioUnitarioE,totalE);
@@ -1156,7 +1156,7 @@ BEGIN
 						         WHERE idMateria=idMateriaE;
 
    INSERT INTO movimientomateria (idMateria,ingreso,salida,observacion,fecha,idMovimiento)
-				               VALUES (idMateriaE,cantidadE,0,CONCAT("Receta : ",codigoRecetaE),CURRENT_DATE(),1);
+				               VALUES (idMateriaE,cantidadE,0,CONCAT("Eliminado Receta : ",codigoRecetaE),CURRENT_DATE(),1);
     	   
    DELETE from recetamateria WHERE idRecetaMateria=idRecetaMateriaE;
 						
@@ -1169,7 +1169,8 @@ DELIMITER $$
 USE `caticao`$$
 CREATE PROCEDURE `sumatotal_recetainsumo` (in idRecetaC INT)
 BEGIN
-      SELECT SUM(total) FROM recetamateria rm WHERE rm.idReceta=idRecetaC;
+      SELECT SUM(total) FROM recetamateria rm INNER JOIN materia m ON m.idMateria=rm.idMateria
+		                                        WHERE rm.idReceta=idRecetaC and m.idTipoMateria=1;
 END$$
 DELIMITER ;
 

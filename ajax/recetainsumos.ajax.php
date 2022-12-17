@@ -6,7 +6,7 @@ require_once "../modelos/recetainsumos.modelo.php";
 class AjaxRecetaInsumos{
 
 	/*=============================================
-	MOSTRAR DETALLE INSUMO
+	EDITAR RECETA INSUMO
 	=============================================*/	
 
 	public $idRecetaInsumo;
@@ -24,7 +24,9 @@ class AjaxRecetaInsumos{
 		echo json_encode($respuesta);
 
 	}
-
+	/*=============================================
+	MOSTRAR RECETA INSUMOS
+	=============================================*/
 	public function ajaxReceta(){
 
 		$item="Receta";
@@ -36,7 +38,9 @@ class AjaxRecetaInsumos{
 		echo json_encode($respuesta);
 
 	}
-
+	/*=============================================
+	MOSTRAR DETALLE INSUMO
+	=============================================*/
 	public function ajaxDetalleInsumo(){
 
 		$valor = $this->idInsumo;
@@ -51,7 +55,7 @@ class AjaxRecetaInsumos{
 
 
 /*=============================================
-DETALLE INSUMO
+EDITAR RECETA INSUMO
 =============================================*/
 if(isset($_POST["idRecetaInsumo"])){
 
@@ -62,7 +66,7 @@ if(isset($_POST["idRecetaInsumo"])){
 }
 
 /*=============================================
-DETALLE INSUMO
+MOSTRAR RECETA INSUMOS
 =============================================*/
 if(isset($_POST["idReceta"])){
 
@@ -73,7 +77,7 @@ if(isset($_POST["idReceta"])){
 }
 
 /*=============================================
-DETALLE INSUMO
+MOSTRAR DETALLE INSUMO
 =============================================*/
 if(isset($_POST["idInsumoDetalle"])){
 
