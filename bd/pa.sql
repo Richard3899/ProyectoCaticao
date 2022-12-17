@@ -1052,7 +1052,8 @@ BEGIN
     left join inventariomateria im on im.idMateria=m.idMateria
     inner join unidadmedida um on um.idUnidadMedida=m.idUnidadMedida
     inner join marca mr on mr.idMarca=m.idMarca
-    where m.idTipoMateria=1;
+    where m.idTipoMateria=1
+	 ORDER BY m.nombre ASC;
 END$$
 DELIMITER ;
 
@@ -1171,6 +1172,153 @@ CREATE PROCEDURE `sumatotal_recetainsumo` (in idRecetaC INT)
 BEGIN
       SELECT SUM(total) FROM recetamateria rm INNER JOIN materia m ON m.idMateria=rm.idMateria
 		                                        WHERE rm.idReceta=idRecetaC and m.idTipoMateria=1;
+END$$
+DELIMITER ;
+
+-- Procedimientos almacenados de Receta Materiales --
+
+DROP procedure IF EXISTS `mostrar_detallemateriales1`;
+DELIMITER $$
+USE `caticao`$$
+CREATE PROCEDURE `mostrar_detallemateriales1` (in idMateriaC INT)
+BEGIN
+	select m.idMateria,m.nombre,mr.idMarca,mr.descripcion as marca,m.precioUnitario,im.stock,um.descripcion as unidadMedida  from materia m 
+    left join inventariomateria im on im.idMateria=m.idMateria
+    inner join unidadmedida um on um.idUnidadMedida=m.idUnidadMedida
+    inner join marca mr on mr.idMarca=m.idMarca
+    where m.idMateria=idMateriaC;
+END$$
+DELIMITER ;
+
+DROP procedure IF EXISTS `mostrar_detallemateriales2`;
+DELIMITER $$
+USE `caticao`$$
+CREATE PROCEDURE `mostrar_detallemateriales2` ()
+BEGIN
+	select m.idMateria,m.nombre,mr.idMarca,mr.descripcion as marca,m.precioUnitario,im.stock,um.descripcion as unidadMedida  from materia m 
+    left join inventariomateria im on im.idMateria=m.idMateria
+    inner join unidadmedida um on um.idUnidadMedida=m.idUnidadMedida
+    inner join marca mr on mr.idMarca=m.idMarca
+    where m.idTipoMateria=2
+	 ORDER BY m.nombre ASC;
+END$$
+DELIMITER ;
+
+DROP procedure IF EXISTS `mostrar_recetamateriales1`;
+DELIMITER $$
+USE `caticao`$$
+CREATE PROCEDURE `mostrar_recetamateriales1` (in idRecetaMateriaC INT)
+BEGIN
+	 select rm.idReceta,rm.idRecetaMateria,rm.idMateria,rm.nombre,im.stock,um.descripcion as unidadMedida,rm.cantidad,rm.precioUnitario,rm.total from recetamateria rm
+    inner join materia m on m.idMateria=rm.idMateria
+    inner join inventariomateria im on im.idMateria=m.idMateria
+    inner join unidadmedida um on um.idUnidadMedida=m.idUnidadMedida
+    where rm.idRecetaMateria=idRecetaMateriaC;
+END$$
+DELIMITER ;
+
+DROP procedure IF EXISTS `mostrar_recetamateriales2`;
+DELIMITER $$
+USE `caticao`$$
+CREATE PROCEDURE `mostrar_recetamateriales2` (in idRecetaC INT)
+BEGIN
+	 select rm.idReceta,rm.idRecetaMateria,rm.idMateria,rm.nombre,im.stock,um.descripcion as unidadMedida,rm.cantidad,rm.precioUnitario,rm.total from recetamateria rm
+    inner join materia m on m.idMateria=rm.idMateria
+    inner join inventariomateria im on im.idMateria=m.idMateria
+    inner join unidadmedida um on um.idUnidadMedida=m.idUnidadMedida
+    where rm.idReceta=idRecetaC and m.idTipoMateria=2;
+END$$
+DELIMITER ;
+
+
+DROP procedure IF EXISTS `insertar_recetamaterial`;
+DELIMITER $$
+USE `caticao`$$
+CREATE PROCEDURE `insertar_recetamaterial` (     in idRecetaI INT,
+																in codigoRecetaI VARCHAR(20),
+                                                in idMateriaI INT,
+                                                in nombreI VARCHAR(50),
+                                                in cantidadI DECIMAL(10,3),
+                                                in precioUnitarioI DECIMAL(10,3),
+												            in totalI DECIMAL(10,3) )
+BEGIN
+    UPDATE inventariomateria SET stock = stock - cantidadI
+						         WHERE idMateria=idMateriaI;
+                            
+    INSERT INTO movimientomateria (idMateria,ingreso,salida,observacion,fecha,idMovimiento)
+				               VALUES (idMateriaI,0,cantidadI,CONCAT("Receta : ",codigoRecetaI),CURRENT_DATE(),2);
+
+	 INSERT INTO recetamateria (idMateria,idReceta,nombre,cantidad,precioUnitario,total)
+			              VALUES (idMateriaI,idRecetaI,nombreI,cantidadI,precioUnitarioI,totalI);
+	
+END$$
+DELIMITER ;
+
+
+DROP procedure IF EXISTS `editar_recetamaterial`;
+DELIMITER $$
+USE `caticao`$$
+CREATE PROCEDURE `editar_recetamaterial` (       in idRecetaMateriaE INT,
+																in idRecetaE INT,
+																in codigoRecetaE VARCHAR(20),
+                                                in idMateriaE INT,
+                                                in nombreE VARCHAR(50),
+                                                in cantidadAntE DECIMAL(10,3),
+                                                in difcantidadE DECIMAL(10,3),
+                                                in cantidadE DECIMAL(10,3),
+                                                in precioUnitarioE DECIMAL(10,3),
+												            in totalE DECIMAL(10,3))
+BEGIN
+
+   INSERT INTO movimientomateria (idMateria,ingreso,salida,observacion,fecha,idMovimiento)
+				               VALUES (idMateriaE,cantidadAntE,0,CONCAT("Receta : ",codigoRecetaE),CURRENT_DATE(),1);
+    	   
+   DELETE from recetamateria WHERE idRecetaMateria=idRecetaMateriaE;
+   
+
+   UPDATE inventariomateria SET stock = stock + (difcantidadE)
+						         WHERE idMateria=idMateriaE;
+                            
+   INSERT INTO movimientomateria (idMateria,ingreso,salida,observacion,fecha,idMovimiento)
+				              VALUES (idMateriaE,0,cantidade,CONCAT("Receta : ",codigoRecetaE),CURRENT_DATE(),2);
+
+	INSERT INTO recetamateria (idRecetaMateria,idMateria,idReceta,nombre,cantidad,precioUnitario,total)
+			             VALUES (idRecetaMateriaE,idMateriaE,idRecetaE,nombreE,cantidadE,precioUnitarioE,totalE);
+
+
+END$$
+DELIMITER ;
+
+
+
+DROP procedure IF EXISTS `eliminar_recetamaterial`;
+DELIMITER $$
+USE `caticao`$$
+CREATE PROCEDURE `eliminar_recetamaterial` (in idRecetaMateriaE INT,
+														 in codigoRecetaE VARCHAR(20),
+										             in idMateriaE int,
+                                           in cantidadE DECIMAL(10,3))
+BEGIN
+
+	UPDATE inventariomateria SET stock = stock + cantidadE
+						         WHERE idMateria=idMateriaE;
+
+   INSERT INTO movimientomateria (idMateria,ingreso,salida,observacion,fecha,idMovimiento)
+				               VALUES (idMateriaE,cantidadE,0,CONCAT("Receta : ",codigoRecetaE),CURRENT_DATE(),1);
+    	   
+   DELETE from recetamateria WHERE idRecetaMateria=idRecetaMateriaE;
+						
+END$$
+DELIMITER ;
+
+
+DROP procedure IF EXISTS `sumatotal_recetamaterial`;
+DELIMITER $$
+USE `caticao`$$
+CREATE PROCEDURE `sumatotal_recetamaterial` (in idRecetaC INT)
+BEGIN
+			SELECT SUM(total) FROM recetamateria rm INNER JOIN materia m ON m.idMateria=rm.idMateria
+		                                           WHERE rm.idReceta=idRecetaC and m.idTipoMateria=2;
 END$$
 DELIMITER ;
 
