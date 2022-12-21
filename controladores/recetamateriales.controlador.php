@@ -90,7 +90,7 @@ class ControladorRecetaMateriales{
 			                "idReceta"=>$_POST["editaridReceta"],
 							"codigoReceta"=>$_POST["editarcodigoReceta"],
 							"idMateria"=>$_POST["editaridMaterial"],
-							"nombre"=>$_POST["editarNombre"],
+							"nombre"=>$_POST["editarNombreMaterial"],
 							"cantidadAnterior"=>$_POST["cantidadAnterior"],
 							"diferenciaCantidad"=>$_POST["diferenciaCantidad"],
 							"cantidad"=>$_POST["editarCantidad"],

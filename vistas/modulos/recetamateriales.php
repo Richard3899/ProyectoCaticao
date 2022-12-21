@@ -296,37 +296,16 @@ MODAL EDITAR RECETA MATERIAL
           <!-- ENTRADA PARA SELECCIONAR MATERIAL -->
 
           <div class="form-group col-sm">
-            
-            <div class="input-group">
 
                 <input type="hidden" name="editaridRecetaMaterial" id="editaridRecetaMaterial">
 
                 <input type="hidden" name="editaridMaterial" id="editaridMaterial">
 
-                <input type="hidden" name="editarNombre" id="editarNombre">
+                <input type="hidden" name="editarNombreMaterial" id="editarNombreMaterial">
 
-                <select class="form-control select2 input-lg editarNombreMaterial" id="editarNombreMaterial" name="editarNombreMaterial" style="width: 100%;" required>
-                
-                <option value="">Seleccionar Material</option>
+            <div class="input-group">
 
-                <?php 
-                  $valor = null;
-                  $materiales = ControladorRecetaMateriales::ctrMostrarDetalleMateriales($valor);
-
-                  foreach($materiales as $key=> $value){ 
-
-                    $item = "idMarca";
-                    $valor = $materiales[$key]["idMarca"];
-
-                    $marcas = ControladorMarcas::ctrMostrarMarcas($item,$valor);
-
-                    echo '<option value="'.$value["idMateria"].'">'.$value["nombre"].' - '.$marcas["descripcion"].'</option>';
-                  }
-
-                  ?>
-
-              </select>
-              
+                <input type="text" class="form-control input-lg" name="editarNombreM" id="editarNombreM">
 
             </div>
 
@@ -372,7 +351,7 @@ MODAL EDITAR RECETA MATERIAL
                 </div>
                 <input type="hidden" id="editarprecioUnitario" name="editarprecioUnitario">
                 <input type="hidden" id="editarprecioTotal" name="editarprecioTotal">
-                <input type="text" class="form-control input-lg editarPrecioMaterial" name="editarPrecioUnitario" id="editarPrecioUnitario"
+                <input type="text" class="form-control input-lg editarPrecioMaterial" name="editarPrecioMaterial" id="editarPrecioMaterial"
                  required readonly>
             </div>
 

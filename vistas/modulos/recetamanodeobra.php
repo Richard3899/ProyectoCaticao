@@ -6,7 +6,7 @@
     <div class="container-fluid">
       <div class="row mb-2">
         <div class="col-sm-6">
-          <h1>Insumos de la Receta</h1>
+          <h1>Mano de Obra de la Receta</h1>
         </div>
         <div class="col-sm-6">
           <ol class="breadcrumb float-sm-right">
@@ -48,8 +48,8 @@
        </div>
        
         <div class="form-group row  col-12 col-lg-4 justify-content-sm-end">
-          <button class="btn btn-primary my-1 col-12 col-sm-4 col-md-3 mr-2 col-lg-7 col-xl-6" id="btnRecetaInsumo" data-toggle="modal" data-target="#modalRecetaInsumo">
-           Agregar Insumo
+          <button class="btn btn-primary my-1 col-12 col-sm-4 col-md-3 mr-2 col-lg-7 col-xl-6" id="btnRecetaManodeObra" data-toggle="modal" data-target="#modalRecetaManodeObra">
+           Agregar Mano de Obra
          </button>
          <a type="button" class="btn btn-secondary my-1 col-12 col-sm-4 col-md-3 col-lg-4 col-xl-3" href="recetas">Volver</a>
         </div>
@@ -60,14 +60,15 @@
       </div>
       <div class="card-body">
 
-      <table class="table table-bordered table-striped dt-responsive tablaRecetaInsumos" width="100%">
+      <table class="table table-bordered table-striped dt-responsive tablaRecetaManodeObra" width="100%">
        
       <thead>
        
        <tr>
          
          <th style="width:20px">#</th>
-         <th>Nombre</th>
+         <th>Empleado</th>
+         <th>Maquina</th>
          <th>Cantidad</th>
          <th>Precio</th>
          <th>Total</th>
@@ -92,16 +93,16 @@
 <!-- /.content-wrapper -->
 
 <!--=====================================
-MODAL RECETA INSUMO
+MODAL RECETA MANO DE OBRA
 ======================================-->
 
-<div id="modalRecetaInsumo" class="modal fade" role="dialog">
+<div id="modalRecetaManodeObra" class="modal fade" role="dialog">
 
 <div class="modal-dialog modal-lg">
 
   <div class="modal-content">
 
-    <form role="form" method="post" enctype="multipart/form-data" class="formularioRecetaInsumos">
+    <form role="form" method="post" enctype="multipart/form-data" class="formularioRecetaManodeObra">
 
       <!--=====================================
       CABEZA DEL MODAL
@@ -109,7 +110,7 @@ MODAL RECETA INSUMO
 
       <div class="modal-header" style="background:gray; color:white">
 
-      <h4 class="modal-title">Receta Insumo</h4>
+      <h4 class="modal-title">Receta Mano de Obra</h4>
 
       <button type="button" class="close" data-dismiss="modal">&times;</button>
 
@@ -129,35 +130,31 @@ MODAL RECETA INSUMO
 
         <div class="box-body">
 
-          <div class="row">
+        <div class="row">
 
-          <!-- ENTRADA PARA SELECCIONAR INSUMO -->
+          <!-- ENTRADA PARA SELECCIONAR MANO DE OBRA -->
 
           <div class="form-group col-sm">
             
             <div class="input-group">
 
-                <input type="hidden" name="idInsumo" id="idInsumo">
+                <input type="hidden" name="idEmpleado" id="idEmpleado">
 
-                <input type="hidden" name="nombreInsumo" id="nombreInsumo">
+                <input type="hidden" name="nombreEmpleado" id="nombreEmpleado">
 
-                <select class="form-control select2 input-lg seleccionarNombreInsumo" id="seleccionarNombreInsumo" name="seleccionarNombreInsumo" style="width: 100%;" required>
+                <select class="form-control select2 input-lg seleccionarNombreEmpleado" id="seleccionarNombreEmpleado" name="seleccionarNombreEmpleado" style="width: 100%;" required>
                 
-                <option value="">Seleccionar Insumo</option>
+                <option value="">Seleccionar Empleado</option>
 
                 <?php 
+                    $item = null;
                     $valor = null;
 
-                    $insumos = ControladorRecetaInsumos::ctrMostrarDetalleInsumos($valor);
+                    $empleado = ControladorEmpleados::ctrMostrarEmpleados($item,$valor);
 
-                  foreach($insumos as $key=> $value){ 
+                  foreach($empleado as $key=> $value){ 
 
-                    $item = "idMarca";
-                    $valor = $insumos[$key]["idMarca"];
-
-                    $marcas = ControladorMarcas::ctrMostrarMarcas($item,$valor);
-
-                    echo '<option value="'.$value["idMateria"].'">'.$value["nombre"].' - '.$marcas["descripcion"].'</option>';
+                    echo '<option value="'.$value["idEmpleado"].'">'.$value["nombre"].' '.$value["apellido"].'</option>';
                   }
 
                   ?>
@@ -169,15 +166,39 @@ MODAL RECETA INSUMO
 
           </div>
 
-            <!-- ENTRADA PARA EL STOCK -->
+            <!-- ENTRADA PARA SELECCIONAR LA MAQUINA -->
+
             <div class="form-group col-sm">
+            
             <div class="input-group">
-                <div class="input-group-prepend">
-                <span class="input-group-text"><i class="fas fa-box"></i></span>
-                </div>
-                <input type="text" class="form-control input-lg" id="nuevoStock" name="nuevoStock" readonly required>
+
+                <input type="hidden" name="idMaquina" id="idMaquina">
+
+                <input type="hidden" name="nombreMaquina" id="nombreMaquina">
+
+                <select class="form-control select2 input-lg seleccionarNombreMaquina" id="seleccionarNombreMaquina" name="seleccionarNombreMaquina" style="width: 100%;" required>
+                
+                <option value="">Seleccionar Maquina</option>
+
+                <?php 
+                    $item = null;
+                    $valor = null;
+
+                    $maquina = ControladorMaquinas::ctrMostrarMaquinas($item,$valor);
+
+                  foreach($maquina as $key=> $value){ 
+
+                    echo '<option value="'.$value["idMaquina"].'">'.$value["nombre"].'</option>';
+                  }
+
+                  ?>
+
+              </select>
+              
+
             </div>
-            </div>
+
+          </div>
 
           </div>
 
@@ -191,8 +212,8 @@ MODAL RECETA INSUMO
                 <div class="input-group-prepend">
                 <span class="input-group-text"><i class="fas fa-layer-group"></i></span>
                 </div>
-                <input type="number" class="form-control input-lg nuevaCantidadInsumo" stock id="nuevaCantidad" name="nuevaCantidad" 
-                 min="0.1" step="0.001" required>
+                <input type="number" class="form-control input-lg nuevaCantidadManodeObra" id="nuevaCantidad" name="nuevaCantidad" 
+                 min="0.5" step="0.5" required>
             </div>
 
             </div>
@@ -207,7 +228,7 @@ MODAL RECETA INSUMO
                 </div>
                 <input type="hidden" id="precioUnitario" name="precioUnitario">
                 <input type="hidden" id="precioTotal" name="precioTotal">
-                <input type="text" class="form-control input-lg precioInsumo" precioReal name="nuevoPrecioUnitario" id="nuevoPrecioUnitario"
+                <input type="text" class="form-control input-lg precioManodeObra" precioReal name="nuevoPrecioUnitario" id="nuevoPrecioUnitario"
                  required readonly>
             </div>
 
@@ -229,14 +250,14 @@ MODAL RECETA INSUMO
 
         <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Salir</button>
 
-        <button type="submit" class="btn btn-primary">Guardar Insumo</button>
+        <button type="submit" class="btn btn-primary">Guardar Mano de Obra</button>
 
       </div>
 
       <?php
 
-        $guardarRecetaInsumos = new ControladorRecetaInsumos();
-        $guardarRecetaInsumos -> ctrCrearRecetaInsumo();
+        $guardarRecetaManodeObra = new ControladorRecetaManodeObra();
+        $guardarRecetaManodeObra -> ctrCrearRecetaManodeObra();
 
       ?>
 
@@ -253,16 +274,16 @@ MODAL RECETA INSUMO
 
 
 <!--=====================================
-MODAL EDITAR RECETA INSUMO
+MODAL EDITAR RECETA MANO DE OBRA
 ======================================-->
 
-<div id="modalEditarInsumo" class="modal fade" role="dialog">
+<div id="modalEditarManodeObra" class="modal fade" role="dialog">
 
 <div class="modal-dialog modal-lg">
 
   <div class="modal-content">
 
-    <form role="form" method="post" enctype="multipart/form-data" class="formularioEditarRecetaInsumo">
+    <form role="form" method="post" enctype="multipart/form-data" class="formularioEditarRecetaManodeObra">
 
       <!--=====================================
       CABEZA DEL MODAL
@@ -270,7 +291,7 @@ MODAL EDITAR RECETA INSUMO
 
       <div class="modal-header" style="background:gray; color:white">
 
-      <h4 class="modal-title">Editar Receta Insumo</h4>
+      <h4 class="modal-title">Editar Receta Mano de Obra</h4>
 
       <button type="button" class="close" data-dismiss="modal">&times;</button>
 
@@ -293,33 +314,31 @@ MODAL EDITAR RECETA INSUMO
 
           <div class="row">
 
-          <!-- ENTRADA PARA SELECCIONAR INSUMO -->
+          <!-- ENTRADA PARA SELECCIONAR MANO DE OBRA -->
 
           <div class="form-group col-sm">
-            
-                <input type="hidden" name="editaridRecetaInsumo" id="editaridRecetaInsumo">
 
-                <input type="hidden" name="editaridInsumo" id="editaridInsumo">
-
-                <input type="hidden" name="editarNombreInsumo" id="editarNombreInsumo">
+                <input type="hidden" name="editaridRecetaManodeObra" id="editaridRecetaManodeObra">
 
             <div class="input-group">
 
-                <input type="text" class="form-control input-lg" name="editarNombreI" id="editarNombreI">
-
+                <input type="text" class="form-control input-lg" name="editarNombreEmpleado" id="editarNombreEmpleado">
+              
             </div>
 
           </div>
 
-            <!-- ENTRADA PARA EL STOCK -->
+            <!-- ENTRADA PARA SELECCIONAR LA MAQUINA -->
+
             <div class="form-group col-sm">
+            
             <div class="input-group">
-                <div class="input-group-prepend">
-                <span class="input-group-text"><i class="fas fa-box"></i></span>
-                </div>
-                <input type="text" class="form-control input-lg" id="editarStock" name="editarStock" readonly required>
+
+                <input type="text" class="form-control input-lg" name="editarNombreMaquina" id="editarNombreMaquina">
+
             </div>
-            </div>
+
+          </div>
 
           </div>
 
@@ -333,10 +352,8 @@ MODAL EDITAR RECETA INSUMO
                 <div class="input-group-prepend">
                 <span class="input-group-text"><i class="fas fa-layer-group"></i></span>
                 </div>
-                <input type="hidden" id="cantidadAnterior" name="cantidadAnterior">
-                <input type="hidden" id="diferenciaCantidad" name="diferenciaCantidad">
-                <input type="number" class="form-control input-lg editarCantidadInsumo" edStock id="editarCantidad" name="editarCantidad" 
-                min="0.1" step="0.001" required>
+                <input type="number" class="form-control input-lg editarCantidadManodeObra" id="editarCantidad" name="editarCantidad" 
+                 min="0.5" step="0.5" required>
             </div>
 
             </div>
@@ -349,9 +366,8 @@ MODAL EDITAR RECETA INSUMO
                 <div class="input-group-prepend">
                 <span class="input-group-text"><i class="fas fa-dollar-sign"></i></span>
                 </div>
-                <input type="hidden" id="editarprecioUnitario" name="editarprecioUnitario">
                 <input type="hidden" id="editarprecioTotal" name="editarprecioTotal">
-                <input type="text" class="form-control input-lg editarPrecioInsumo" name="editarPrecioInsumo" id="editarPrecioInsumo"
+                <input type="text" class="form-control input-lg editarPrecioManodeObra" name="editarPrecioManodeObra" id="editarPrecioManodeObra"
                  required readonly>
             </div>
 
@@ -373,14 +389,14 @@ MODAL EDITAR RECETA INSUMO
 
         <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Salir</button>
 
-        <button type="submit" class="btn btn-primary">Editar Insumo</button>
+        <button type="submit" class="btn btn-primary">Editar Mano de Obra</button>
 
       </div>
 
       <?php
 
-          $editarRecetaInsumos = new ControladorRecetaInsumos();
-          $editarRecetaInsumos -> ctrEditarRecetaInsumo();
+          $editarRecetaManodeObra = new ControladorRecetaManodeObra();
+          $editarRecetaManodeObra -> ctrEditarRecetaManodeObra();
 
       ?>
 
@@ -396,7 +412,7 @@ MODAL EDITAR RECETA INSUMO
 
 <?php
 
-  $borrarRecetaInsumo = new ControladorRecetaInsumos();
-  $borrarRecetaInsumo -> ctrEliminarRecetaInsumo();
+  $borrarRecetaManodeObra = new ControladorRecetaManodeObra();
+  $borrarRecetaManodeObra -> ctrEliminarRecetaManodeObra();
 
 ?> 

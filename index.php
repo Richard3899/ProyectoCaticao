@@ -31,6 +31,7 @@ require_once "controladores/estados.controlador.php";
 require_once "controladores/lotes.controlador.php";
 require_once "controladores/recetainsumos.controlador.php";
 require_once "controladores/recetamateriales.controlador.php";
+require_once "controladores/recetamanodeobra.controlador.php";
 
 require_once "modelos/usuarios.modelo.php";
 require_once "modelos/configuracion.modelo.php";
@@ -61,6 +62,7 @@ require_once "modelos/estados.modelo.php";
 require_once "modelos/lotes.modelo.php";
 require_once "modelos/recetainsumos.modelo.php";
 require_once "modelos/recetamateriales.modelo.php";
+require_once "modelos/recetamanodeobra.modelo.php";
 
 $plantilla = new ControladorPlantilla();
 $plantilla -> ctrPlantilla();

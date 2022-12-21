@@ -420,8 +420,8 @@ CREATE PROCEDURE `insertar_empleado` (  in nombreI VARCHAR(50),
                                         in sueldoPorMesI DECIMAL(10,2),
                                         in idTipoCostoI INT)
 BEGIN
-	insert into empleado (nombre,apellido,idUsuario,correo,idTipoDocumento,numeroDocumento,direccion,telefono,fechaNacimiento,cargo,horarioTrabajo,horasPorDia,sueldoPorDia,sueldoPorMes,idTipoCosto)
-				 values  (nombreI,apellidoI,idUsuarioI,correoI,idTipoDocumentoI,numeroDocumentoI,direccionI,telefonoI,fechaNacimientoI,cargoI,horarioTrabajoI,horasPorDiaI,sueldoPorDiaI,sueldoPorMesI,idTipoCostoI);
+	insert into empleado (nombre,apellido,idUsuario,correo,idTipoDocumento,numeroDocumento,direccion,telefono,fechaNacimiento,cargo,horarioTrabajo,horasPorDia,sueldoPorDia,precioUnitario,sueldoPorMes,idTipoCosto)
+				 values  (nombreI,apellidoI,idUsuarioI,correoI,idTipoDocumentoI,numeroDocumentoI,direccionI,telefonoI,fechaNacimientoI,cargoI,horarioTrabajoI,horasPorDiaI,sueldoPorDiaI,sueldoPorDiaI/horasPorDiaI,sueldoPorMesI,idTipoCostoI);
 END$$
 DELIMITER ;
 
@@ -461,6 +461,7 @@ BEGIN
                         horasPorDia=horasPorDiaE,
                         horasPorDia=horasPorDiaE,
                         sueldoPorDia=sueldoPorDiaE,
+                        precioUnitario=sueldoPorDiaE/horasPorDiaE,
                         sueldoPorMes=sueldoPorMesE,
                         idTipoCosto=idTipoCostoE
 				where idEmpleado=idEmpleadoE;
@@ -1234,7 +1235,7 @@ DELIMITER ;
 DROP procedure IF EXISTS `insertar_recetamaterial`;
 DELIMITER $$
 USE `caticao`$$
-CREATE PROCEDURE `insertar_recetamaterial` (     in idRecetaI INT,
+CREATE PROCEDURE `insertar_recetamaterial` (    in idRecetaI INT,
 																in codigoRecetaI VARCHAR(20),
                                                 in idMateriaI INT,
                                                 in nombreI VARCHAR(50),
@@ -1258,7 +1259,7 @@ DELIMITER ;
 DROP procedure IF EXISTS `editar_recetamaterial`;
 DELIMITER $$
 USE `caticao`$$
-CREATE PROCEDURE `editar_recetamaterial` (       in idRecetaMateriaE INT,
+CREATE PROCEDURE `editar_recetamaterial` (      in idRecetaMateriaE INT,
 																in idRecetaE INT,
 																in codigoRecetaE VARCHAR(20),
                                                 in idMateriaE INT,

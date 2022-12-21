@@ -194,6 +194,8 @@ $(".formularioRecetaMateriales").on("change", "input.nuevaCantidadMaterial", fun
 				$(this).val(0);
 	
 				precioUnitario.val(0);
+
+				$("#nuevoStock").val(0);
 				
 				Swal.fire({
 					title: "No hay stock disponible",
@@ -304,12 +306,11 @@ $(".tablaRecetaMateriales tbody").on("click", "button.btnEditarMaterialReceta", 
       dataType:"json",
       success:function(respuesta){
 
-		   $("#editaridMaterial").val(respuesta["idMateria"]);
 		   $("#editaridRecetaMaterial").val(respuesta["idRecetaMateria"]);
-		   $("#editarNombreMaterial").val(respuesta["idMateria"]);
-		   $("#editarNombreMaterial").attr('disabled', 'disabled');	
-		   $("#editarNombreMaterial").trigger('change');
-		   $("#editarNombre").val(respuesta["nombre"]);
+		   $("#editaridMaterial").val(respuesta["idMateria"]);
+		   $("#editarNombreMaterial").val(respuesta["nombre"]);
+		   $("#editarNombreM").attr('disabled', 'disabled');	
+		   $("#editarNombreM").val(respuesta["nombre"]);
 
 		   $(".editarCantidadMaterial").attr("edStock",(Number(respuesta["stock"])+Number(respuesta["cantidad"])));
 		   $("#editarCantidad").val(respuesta["cantidad"]);

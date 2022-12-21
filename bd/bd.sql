@@ -74,10 +74,10 @@ CREATE TABLE tipoproducto (
 
 
 -- -----------------------------------------------------
--- Table consumoenergiareceta
+-- Table Receta Consumo Energia
 -- -----------------------------------------------------
 
-CREATE TABLE consumoenergiareceta (
+CREATE TABLE RecetaConsumoEnergia (
   idConsumoEnergiaReceta INT  AUTO_INCREMENT primary key,
   idConsumoEnergia INT REFERENCES consumoenergia (idConsumoEnergia),
   idReceta INT REFERENCES receta (idReceta)
@@ -104,10 +104,10 @@ CREATE TABLE depreciacion (
 
 
 -- -----------------------------------------------------
--- Table depreciacionreceta
+-- Table Receta Depreciacion
 -- -----------------------------------------------------
 
-CREATE TABLE depreciacionreceta (
+CREATE TABLE RecetaDepreciacion (
   idDepreciacionReceta INT  AUTO_INCREMENT  primary key,
   idDepreciacion INT REFERENCES depreciacion (idDepreciacion),
   idReceta INT REFERENCES receta (idReceta)
@@ -128,10 +128,10 @@ CREATE TABLE gastoadmin (
 );
 
 -- -----------------------------------------------------
--- Table gastoadminreceta
+-- Table Receta Gasto Admin
 -- -----------------------------------------------------
 
-CREATE TABLE gastoadminreceta (
+CREATE TABLE RecetaGastoAdmin (
   idGastosAdminReceta INT  AUTO_INCREMENT primary key,
   cantidad DECIMAL(10,2) ,
   idGastoAdmin INT REFERENCES gastosadmin (idGastoAdmin),
@@ -151,12 +151,17 @@ CREATE TABLE lote(
 
 
 -- -----------------------------------------------------
--- Table ManoObrareceta
+-- Table Receta Mano de Obra
 -- -----------------------------------------------------
-CREATE TABLE ManoObrareceta (
-  idManoObraReceta INT  AUTO_INCREMENT primary key,
-  cantidad DECIMAL(10,2) ,
-  idManoObra INT REFERENCES ManoObra (idManoObra),
+CREATE TABLE RecetaManodeObra (
+  idRecetaManodeObra INT  AUTO_INCREMENT primary key,
+  nombreEmpleado VARCHAR(50),
+  nombreMaquina VARCHAR(50),
+  cantidad DECIMAL(10,3),
+  precioUnitario DECIMAL(10,3),
+  total DECIMAL(10,3),
+  idMaquina INT REFERENCES maquina (idMaquina),
+  idEmpleado INT REFERENCES empleado (idEmpleado),
   idReceta INT REFERENCES receta (idReceta)
 );
 
@@ -233,6 +238,7 @@ CREATE TABLE Empleado (
   horarioTrabajo VARCHAR(50) ,
   horasPorDia INT ,
   sueldoPorDia DECIMAL(10,2) ,
+  precioUnitario DECIMAL(10,2) ,
   sueldoPorMes DECIMAL(10,2) ,
   idTipoDocumento INT REFERENCES tipodocumento(idTipoDocumento),
   idUsuario INT REFERENCES Usuario (idUsuario),
@@ -407,19 +413,6 @@ CREATE TABLE RecetaMateria (
 );
 
 -- -----------------------------------------------------
--- Table ManoObra
--- -----------------------------------------------------
-
-CREATE TABLE ManoObra (
-  idManoObra INT  AUTO_INCREMENT primary key,
-  requerimiento TIME ,
-  costo DECIMAL(10,2) ,
-  idEmpleado INT REFERENCES Empleado (idEmpleado),
-  idMaquina INT REFERENCES Maquina (idMaquina)
-);
-
-
--- -----------------------------------------------------
 -- Table TarifaEnergia
 -- -----------------------------------------------------
 
@@ -512,24 +505,25 @@ alter Table consumoenergia add foreign key (idTarifaEnergia) REFERENCES  TarifaE
 
 alter Table receta add foreign key (idEstado) REFERENCES  estado (idEstado);
 
-alter Table consumoenergiareceta add foreign key (idConsumoEnergia) REFERENCES  consumoenergia (idConsumoEnergia);
-alter Table consumoenergiareceta add foreign key (idReceta) REFERENCES  receta (idReceta);
+alter Table RecetaConsumoEnergia add foreign key (idConsumoEnergia) REFERENCES  consumoenergia (idConsumoEnergia);
+alter Table RecetaConsumoEnergia add foreign key (idReceta) REFERENCES  receta (idReceta);
 
 alter Table depreciacion add foreign key (idMaquina) REFERENCES  maquina (idMaquina);
 alter Table depreciacion add foreign key (idTipoCosto) REFERENCES  tipocosto (idTipoCosto);
 
-alter Table depreciacionreceta add foreign key (idDepreciacion) REFERENCES  depreciacion(idDepreciacion);
-alter Table depreciacionreceta add foreign key (idReceta) REFERENCES  receta (idReceta);
+alter Table RecetaDepreciacion add foreign key (idDepreciacion) REFERENCES  depreciacion(idDepreciacion);
+alter Table RecetaDepreciacion add foreign key (idReceta) REFERENCES  receta (idReceta);
 
 alter Table gastoadmin add foreign key (idUnidadMedida) REFERENCES  unidadmedida (idUnidadMedida);
 alter Table gastoadmin add foreign key (idTipoCosto) REFERENCES  tipocosto (idTipoCosto);
 alter Table gastoadmin add foreign key (idDesembolso) REFERENCES  desembolso (idDesembolso);
 
-alter Table gastoadminreceta add foreign key (idGastoAdmin) REFERENCES  gastoadmin (idGastoAdmin);
-alter Table gastoadminreceta add foreign key (idReceta) REFERENCES  receta (idReceta);
+alter Table RecetaGastoAdmin add foreign key (idGastoAdmin) REFERENCES  gastoadmin (idGastoAdmin);
+alter Table RecetaGastoAdmin add foreign key (idReceta) REFERENCES  receta (idReceta);
 
-alter Table ManoObrareceta add foreign key (idReceta) REFERENCES  receta (idReceta); 
-alter Table ManoObrareceta add foreign key (idManoObra) REFERENCES  ManoObra (idManoObra);
+alter Table RecetaManodeObra add foreign key (idReceta) REFERENCES  receta (idReceta);
+alter Table RecetaManodeObra add foreign key (idEmpleado) REFERENCES Empleado (idEmpleado);
+alter Table RecetaManodeObra add foreign key (idMaquina) REFERENCES Maquina (idMaquina);
 
 alter Table materia add foreign key (idTipoMateria) REFERENCES  tipomateria (idTipoMateria); 
 alter Table materia add foreign key (idUnidadMedida) REFERENCES  unidadmedida (idUnidadMedida);
@@ -560,8 +554,7 @@ alter Table InventarioMateria add foreign key (idMateria) REFERENCES Materia (id
 
 alter Table InventarioProducto add foreign key (idProducto) REFERENCES Producto (idProducto);
 
- alter Table ManoObra add foreign key (idEmpleado) REFERENCES Empleado (idEmpleado);
- alter Table ManoObra add foreign key (idMaquina) REFERENCES Maquina (idMaquina);
+ 
 
 
  alter Table ConsumoGas add foreign key (idMaquina) REFERENCES Maquina (idMaquina);
