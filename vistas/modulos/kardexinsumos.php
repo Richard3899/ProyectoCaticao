@@ -84,6 +84,7 @@
           <th>Fecha y Hora</th>
           <th>Transacción</th>
           <th>Descripción</th>
+          <th>Codigo Receta</th>
           <th>Fecha Emisión</th>
           <th>Ingreso</th>
           <th>Salida</th>

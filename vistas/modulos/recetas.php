@@ -48,10 +48,9 @@
          <th>Producto</th>
          <th>Batch</th>
          <th>Estado</th>
-         <th>Fecha Inicio</th>
-         <th>Fecha Fin</th>
          <th>Lote</th>
          <th>Más detalle</th>
+         <th>Duplicar</th>
          <th>Acciones</th>
 
        </tr> 
@@ -59,7 +58,6 @@
       </thead>
 
      </table>
-        
 
       </div>
       <!-- /.card-body -->
@@ -70,7 +68,6 @@
   </div>
 </div>
 <!-- /.content-wrapper -->
-
 
 
 <!--=====================================
@@ -662,9 +659,99 @@ MODAL EDITAR RECETA
 
 </div>
 
+
+<!--=====================================
+MODAL EDITAR RECETA
+======================================-->
+
+<div id="modalDuplicarReceta" class="modal fade" role="dialog">
+  
+  <div class="modal-dialog modal-lg">
+
+    <div class="modal-content">
+
+      <form role="form" method="post" enctype="multipart/form-data">
+
+        <!--=====================================
+        CABEZA DEL MODAL
+        ======================================-->
+
+        <div class="modal-header" style="background:gray; color:white">
+
+        <h4 class="modal-title">Duplicar Receta</h4>
+
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+
+        </div>
+
+        <!--=====================================
+        CUERPO DEL MODAL
+        ======================================-->
+
+        <div class="modal-body">
+
+        <div class="box-body">
+
+          <div class="row">
+
+            <!-- ENTRADA PARA EL CÓDIGO DUPLICAR RECETA -->
+            <div class="form-group col-sm">
+
+            <input type="hidden" id="duplicarIdReceta" name="duplicarIdReceta">
+            <input type="hidden" id="codigoLote" name="codigoLote">
+            <input type="hidden" id="nuevoIdReceta" name="nuevoIdReceta">
+
+             <div class="input-group ">
+                <div class="input-group-prepend">
+                <span class="input-group-text"><i class="fas fa-hashtag"></i></span>
+                </div>
+                <input type="text" class="form-control input-lg" name="duplicarCodigoReceta" id="duplicarCodigoReceta" placeholder="Ingresar código" 
+                maxlength="20" pattern="[A-Za-z0-9-]+" title="Solo se aceptan letras,números y guiones sin espacios" required>
+                
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+        </div>
+
+
+        <!--=====================================
+        PIE DEL MODAL
+        ======================================-->
+
+        <div class="modal-footer">
+
+          <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Salir</button>
+
+          <button type="submit" class="btn btn-primary">Duplicar Receta</button>
+
+        </div>
+
+        <?php
+
+          $duplicarReceta = new ControladorRecetas();
+          $duplicarReceta -> ctrDuplicarReceta();
+
+        ?> 
+
+      </form>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+
+
 <?php
 
   $borrarReceta = new ControladorRecetas();
   $borrarReceta -> ctrEliminarReceta();
 
 ?> 
+

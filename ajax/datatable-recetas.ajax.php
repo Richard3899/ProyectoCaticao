@@ -25,7 +25,7 @@ class TablaRecetas{
     	$valor = null;
 
   		$recetas = ControladorRecetas::ctrMostrarRecetas($item, $valor);
-
+		
 		if(count($recetas) == 0){
 
 			echo '{"data": []}';
@@ -76,24 +76,34 @@ class TablaRecetas{
 		  	/*=============================================
  	 		TRAEMOS LAS ACCIONES
   			=============================================*/
-			$botones =  "<div class='btn-group'><button class='btn btn-warning btnEditarReceta' idReceta='".$recetas[$i]["idReceta"]."' codigoLote='".$recetas[$i]["codigoLote"]."' data-toggle='modal' data-target='#modalEditarReceta'><i class='fa fa-pen'></i></button><button class='btn btn-danger btnEliminarReceta' idReceta='".$recetas[$i]["idReceta"]."' codigo='".$recetas[$i]["codigo"]."'><i class='fa fa-times'></i></button></div>";				
+			$botones =  "<div class='btn-group'><button class='btn btn-warning btnEditarReceta' idReceta='".$recetas[$i]["idReceta"]."' codigoLote='".$recetas[$i]["codigoLote"]."' data-toggle='modal' data-target='#modalEditarReceta'><i class='fa fa-pen'></i></button><button class='btn btn-danger btnEliminarReceta' idReceta='".$recetas[$i]["idReceta"]."' codigoLote='".$recetas[$i]["codigoLote"]."'><i class='fa fa-times'></i></button></div>";				
 			
 			/*=============================================
  	 		TRAEMOS LAS OPCIONES
   			=============================================*/
 			$opciones = "<div class='btn-group dropleft'><button type='button' class='btn btn-secondary dropdown-toggle' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'><i lass='fas fa-ellipsis-v'></i></button><div class='dropdown-menu' aria-labelledby='dropdownMenuButton'><a class='dropdown-item' href='index.php?ruta=recetainsumos&codigo=".$recetas[$i]["codigo"]."&nombre=".$recetas[$i]["nombre"]."&idReceta=".$recetas[$i]["idReceta"]."';>Agregar Insumo</a><a class='dropdown-item' href='index.php?ruta=recetamateriales&codigo=".$recetas[$i]["codigo"]."&nombre=".$recetas[$i]["nombre"]."&idReceta=".$recetas[$i]["idReceta"]."';>Agregar Material</a><a class='dropdown-item' href='index.php?ruta=recetamanodeobra&codigo=".$recetas[$i]["codigo"]."&nombre=".$recetas[$i]["nombre"]."&idReceta=".$recetas[$i]["idReceta"]."';>Agregar Mano de Obra</a><a class='dropdown-item' href='#'>Agregar Depreciación</a><a class='dropdown-item' href='#'>Agregar Consumo de Energía</a><a class='dropdown-item' href='#'>Agregar Consumo de Gas</a><a class='dropdown-item' href='#'>Agregar Costo de Venta</a><a class='dropdown-item' href='#'>Agregar Costo de Marketing</a><a class='dropdown-item' href='#'>Agregar Costo Operativo</a></div></div>";
-
-		  	$datosJson .='[
+			
+			/*=============================================
+ 	 		DESIGNAR ID A RECETA DUPLICADA
+  			=============================================*/
+			$CantidadId=count($recetas)-1;
+			$NuevoId=$recetas[$CantidadId]["idReceta"]+1;
+			
+			/*=============================================
+ 	 		BOTÓN PARA DUPLICAR
+  			=============================================*/
+			$duplicar =  "<div class='btn-group'><button class='btn btn-success btnDuplicarReceta' idReceta='".$recetas[$i]["idReceta"]."' codigoReceta='".$recetas[$i]["codigo"]."' codigoLote='".$recetas[$i]["codigoLote"]."' nuevoIdReceta='".$NuevoId."'  data-toggle='modal' data-target='#modalDuplicarReceta' ><i class='fa fa-clone'></i></button></div>";
+		  	
+			$datosJson .='[
 			      "'.($i+1).'",
 			      "'.$recetas[$i]["codigo"].'",
 				  "'.$recetas[$i]["nombre"].'",
 				  "'.$productos["nombre"].'",
 				  "'.$recetas[$i]["batch"].'",
 				  "'.$estado.'",
-				  "'.$recetas[$i]["fechaInicio"].'",
-				  "'.$recetas[$i]["fechaFin"].'",
 				  "'.$recetas[$i]["codigoLote"].'",
 				  "'.$botones.'",
+				  "'.$duplicar.'",
 			      "'.$opciones.'"
 			    ],';
 			}

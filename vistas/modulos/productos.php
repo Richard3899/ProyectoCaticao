@@ -14,7 +14,6 @@
             <li class="breadcrumb-item active">Registros</li>
             <li class="breadcrumb-item active">Administrador de Productos</li>
 
-
           </ol>
         </div>
       </div>

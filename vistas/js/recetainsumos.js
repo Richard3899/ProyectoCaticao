@@ -51,7 +51,7 @@ $(".tablaRecetaInsumos").on("draw.dt", function() {
 	
 	var x = $(".nm").val();
 
-	if(x.length > 20){
+	if(x.length > 50){
 
 		window.location ="recetas";
 

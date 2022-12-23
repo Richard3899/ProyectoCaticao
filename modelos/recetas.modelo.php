@@ -123,9 +123,40 @@ class ModeloRecetas{
 
 	static public function mdlEliminarReceta($datos){
 
-		$stmt = Conexion::conectar()->prepare("call eliminar_receta(?)");
+		$stmt = Conexion::conectar()->prepare("call eliminar_receta(?,?)");
 
-		$stmt -> bindParam(1, $datos, PDO::PARAM_INT);
+		$stmt->bindParam(1, $datos["idReceta"], PDO::PARAM_INT);
+		$stmt->bindParam(2, $datos["codigoLote"], PDO::PARAM_STR);
+
+		if($stmt -> execute()){
+
+			return "ok";
+		
+		}else{
+
+			return "error";	
+
+		}
+
+		#$stmt -> close();
+
+		$stmt = null;
+
+
+	}
+
+	/*=============================================
+	DUPLICAR RECETA
+	=============================================*/
+
+	static public function mdlDuplicarReceta($datos){
+
+		$stmt = Conexion::conectar()->prepare("call duplicar_receta(?,?,?,?)");
+
+		$stmt->bindParam(1, $datos["idReceta"], PDO::PARAM_INT);
+		$stmt->bindParam(2, $datos["codigoReceta"], PDO::PARAM_STR);
+		$stmt->bindParam(3, $datos["codigoLote"], PDO::PARAM_STR);
+		$stmt->bindParam(4, $datos["nuevoIdReceta"], PDO::PARAM_INT);
 
 		if($stmt -> execute()){
 

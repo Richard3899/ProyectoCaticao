@@ -150,7 +150,9 @@ DELIMITER $$
 USE `caticao`$$
 CREATE PROCEDURE `mostrar_insumos` ()
 BEGIN
-	select * from materia where idTipoMateria=1;
+	select * from materia m
+	where idTipoMateria=1
+	ORDER BY m.nombre asc;
 END$$
 DELIMITER ;
 
@@ -220,7 +222,9 @@ DELIMITER $$
 USE `caticao`$$
 CREATE PROCEDURE `mostrar_materiales` ()
 BEGIN
-	select * from materia where idTipoMateria=2;
+	select * from materia m
+	where idTipoMateria=2
+	ORDER BY m.nombre asc;
 END$$
 DELIMITER ;
 
@@ -636,8 +640,8 @@ BEGIN
     UPDATE inventariomateria SET stock = stock + ingresoI, idMateria=idMateriaI
 						   WHERE idInventarioMateria=idMateriaI;
                            
-    insert into movimientomateria (idMateria,ingreso,salida,observacion,fecha,idMovimiento)
-				           values (idMateriaI,ingresoI,0,observacionI,fechaI,1);
+    insert into movimientomateria (idMateria,ingreso,salida,observacion,codigoReceta,fecha,idMovimiento)
+				           values (idMateriaI,ingresoI,0,observacionI,"S-C",fechaI,1);
 
 END$$
 DELIMITER ;
@@ -680,7 +684,7 @@ USE `caticao`$$
 CREATE PROCEDURE `mostrar_kardexinsumos` (in idMateriaK int)
 BEGIN
 
-		Select mm.idMateria,m.nombre,mm.idMovimiento,mv.descripcion,mm.observacion,mm.fecha,mm.hora,
+		Select mm.idMateria,m.nombre,mm.idMovimiento,mv.descripcion,mm.observacion,mm.codigoReceta,mm.fecha,mm.hora,
 				mm.ingreso,mm.salida ,SUM(+ingreso-salida) 
 				OVER(ORDER BY mm.hora ASC ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW)
 				AS saldo from movimientomateria mm 
@@ -969,10 +973,10 @@ CREATE PROCEDURE `insertar_receta` (    in codigoI VARCHAR(20),
 BEGIN
 
     insert into lote (codigoLote,fechaVencimiento,idProducto)
-			  values (codigoLoteI,fechaVencimientoI,idProductoI);
+			   values (codigoLoteI,fechaVencimientoI,idProductoI);
                 
 	insert into receta (codigo,nombre,batch,idEstado,fechaInicio,fechaFin,pesoPorTableta,pesoEnTableta,merma,reproceso,codigoLote)
-			    values (codigoI,nombreI,batchI,idEstadoI,fechaInicioI,fechaFinI,pesoPorTabletaI,pesoEnTabletaI,mermaI,reprocesoI,codigoLoteI);
+			      values (codigoI,nombreI,batchI,idEstadoI,fechaInicioI,fechaFinI,pesoPorTabletaI,pesoEnTabletaI,mermaI,reprocesoI,codigoLoteI);
 	
 END$$
 DELIMITER ;
@@ -1021,10 +1025,14 @@ DELIMITER ;
 DROP procedure IF EXISTS `eliminar_receta`;
 DELIMITER $$
 USE `caticao`$$
-CREATE PROCEDURE `eliminar_receta` (in idRecetaE int)
+CREATE PROCEDURE `eliminar_receta` (in idRecetaE INT,in codigoLoteE VARCHAR(20))
 BEGIN
-	delete from receta
+	 delete from receta
     where idReceta=idRecetaE;
+    
+    delete from lote
+    where codigoLote=codigoLoteE;
+    
 END$$
 DELIMITER ;
 
@@ -1099,8 +1107,8 @@ BEGIN
     UPDATE inventariomateria SET stock = stock - cantidadI
 						         WHERE idMateria=idMateriaI;
                             
-    INSERT INTO movimientomateria (idMateria,ingreso,salida,observacion,fecha,idMovimiento)
-				               VALUES (idMateriaI,0,cantidadI,CONCAT("Agregado Receta : ",codigoRecetaI),CURRENT_DATE(),2);
+    INSERT INTO movimientomateria (idMateria,ingreso,salida,observacion,codigoReceta,fecha,idMovimiento)
+				               VALUES (idMateriaI,0,cantidadI,"Agregado Receta:",codigoRecetaI,CURRENT_DATE(),2);
 
 	 INSERT INTO recetamateria (idMateria,idReceta,nombre,cantidad,precioUnitario,total)
 			              VALUES (idMateriaI,idRecetaI,nombreI,cantidadI,precioUnitarioI,totalI);
@@ -1124,8 +1132,8 @@ CREATE PROCEDURE `editar_recetainsumo` (       in idRecetaMateriaE INT,
 												            in totalE DECIMAL(10,3))
 BEGIN
 
-   INSERT INTO movimientomateria (idMateria,ingreso,salida,observacion,fecha,idMovimiento)
-				               VALUES (idMateriaE,cantidadAntE,0,CONCAT("Editado Receta : ",codigoRecetaE),CURRENT_DATE(),1);
+   INSERT INTO movimientomateria (idMateria,ingreso,salida,observacion,codigoReceta,fecha,idMovimiento)
+				               VALUES (idMateriaE,cantidadAntE,0,"Editado Receta:",codigoRecetaE,CURRENT_DATE(),1);
     	   
    DELETE from recetamateria WHERE idRecetaMateria=idRecetaMateriaE;
    
@@ -1133,8 +1141,8 @@ BEGIN
    UPDATE inventariomateria SET stock = stock + (difcantidadE)
 						         WHERE idMateria=idMateriaE;
                             
-   INSERT INTO movimientomateria (idMateria,ingreso,salida,observacion,fecha,idMovimiento)
-				              VALUES (idMateriaE,0,cantidade,CONCAT("Editado Receta : ",codigoRecetaE),CURRENT_DATE(),2);
+   INSERT INTO movimientomateria (idMateria,ingreso,salida,observacion,codigoReceta,fecha,idMovimiento)
+				              VALUES (idMateriaE,0,cantidade,"Editado Receta:",codigoRecetaE,CURRENT_DATE(),2);
 
 	INSERT INTO recetamateria (idRecetaMateria,idMateria,idReceta,nombre,cantidad,precioUnitario,total)
 			             VALUES (idRecetaMateriaE,idMateriaE,idRecetaE,nombreE,cantidadE,precioUnitarioE,totalE);
@@ -1153,14 +1161,22 @@ CREATE PROCEDURE `eliminar_recetainsumo` (in idRecetaMateriaE INT,
 										             in idMateriaE int,
                                            in cantidadE DECIMAL(10,3))
 BEGIN
-
-	UPDATE inventariomateria SET stock = stock + cantidadE
-						         WHERE idMateria=idMateriaE;
-
-   INSERT INTO movimientomateria (idMateria,ingreso,salida,observacion,fecha,idMovimiento)
-				               VALUES (idMateriaE,cantidadE,0,CONCAT("Eliminado Receta : ",codigoRecetaE),CURRENT_DATE(),1);
     	   
    DELETE from recetamateria WHERE idRecetaMateria=idRecetaMateriaE;
+   
+   DELETE movimientomateria FROM movimientomateria
+	                         INNER JOIN materia ON movimientomateria.idMateria=movimientomateria.idMateria 
+					             WHERE movimientomateria.idMateria=idMateriaE  AND movimientomateria.codigoReceta=codigoRecetaE;
+					             
+	-- ACTUALIZA EL INVENTARIO CON ELIMINAR E INSERTAR--						   
+	DELETE inventariomateria FROM inventariomateria
+	                         INNER JOIN materia ON inventariomateria.idMateria=inventariomateria.idMateria 
+					             WHERE inventariomateria.stock > 0;
+								
+	INSERT INTO inventariomateria (idInventarioMateria,stock,idMateria)		
+	                       SELECT mm.idMateria AS idInventarioMateria,SUM(mm.ingreso) - SUM(mm.salida) AS stock,mm.idMateria FROM movimientomateria mm
+                          INNER JOIN materia m ON m.idMateria=mm.idMateria
+                          GROUP BY mm.idMateria;
 						
 END$$
 DELIMITER ;

@@ -62,16 +62,15 @@ INSERT INTO `materia` (`idMateria`, `codigo`, `nombre`, `descripcion`, `precio`,
 INSERT INTO `inventariomateria` (`idInventarioMateria`, `stock`, `idMateria`) VALUES
 	(1, 250.00, 1),
 	(2, 0.00, NULL),
-	(3, 600.00, 3),
+	(3, 100.00, 3),
 	(4, 150.00, 4),
 	(5, 500.00, 5);
 
-INSERT INTO `movimientomateria` (`idMovimientoMateria`, `ingreso`, `salida`, `observacion`, `fecha`, `hora`, `idMateria`, `idMovimiento`) VALUES
-	(1, 250.00, 0.00, 'Produccion', '2022-12-17', '2022-12-11 10:23:25', 1, 1),
-	(2, 150.00, 0.00, 'Produccion', '2022-12-31', '2022-12-11 10:23:37', 4, 1),
-	(3, 100.00, 0.00, 'Produccion', '2022-12-10', '2022-12-11 10:23:50', 3, 1),
-	(4, 500.00, 0.00, 'Produccion', '2022-12-10', '2022-12-11 10:24:03', 3, 1),
-	(5, 500.00, 0.00, 'Produccion', '2022-12-17', '2022-12-11 10:24:33', 5, 1);
+INSERT INTO `movimientomateria` (`idMovimientoMateria`, `ingreso`, `salida`, `observacion`, `codigoReceta`, `fecha`, `hora`, `idMateria`, `idMovimiento`) VALUES
+	(1, 250.00, 0.00, 'Produccion', 'S-R', '2022-12-17', '2022-12-11 10:23:25', 1, 1),
+	(2, 150.00, 0.00, 'Produccion', 'S-R', '2022-12-31', '2022-12-11 10:23:37', 4, 1),
+	(3, 100.00, 0.00, 'Produccion', 'S-R', '2022-12-10', '2022-12-11 10:23:50', 3, 1),
+	(4, 500.00, 0.00, 'Produccion', 'S-R', '2022-12-17', '2022-12-11 10:24:33', 5, 1);
 
 INSERT INTO `inventarioproducto` (`idInventarioProducto`,`stock`) VALUES
 	(1,0);

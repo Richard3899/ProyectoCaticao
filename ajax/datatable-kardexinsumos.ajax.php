@@ -109,6 +109,7 @@ class TablaKardexInsumos{
 				  "'.$kardexinsumos[$i]["hora"].'",
 				  "'.$movimientos.'",
 			      "'.$kardexinsumos[$i]["observacion"].'",
+				  "'.$kardexinsumos[$i]["codigoReceta"].'",
 				  "'.$kardexinsumos[$i]["fecha"].'",
 				  "'.$ingreso.'",
 				  "'.$salida.'",

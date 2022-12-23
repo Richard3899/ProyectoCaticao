@@ -132,8 +132,8 @@ ELIMINAR RECETA
 $(".tablaRecetas tbody").on("click", "button.btnEliminarReceta", function(){
 
 	var idReceta = $(this).attr("idReceta");
-	var codigo = $(this).attr("codigo");
-	
+	var codigoLote = $(this).attr("codigoLote");
+
 	Swal.fire({
 
 		title: '¿Está seguro de borrar el receta?',
@@ -147,7 +147,8 @@ $(".tablaRecetas tbody").on("click", "button.btnEliminarReceta", function(){
         }).then(function(result){
         if (result.value) {
 
-        	window.location = "index.php?ruta=recetas&idReceta="+idReceta+"&codigo="+codigo;
+			window.location = "index.php?ruta=recetas&idReceta="+idReceta+"&codigoLote="+codigoLote+"&CDPE="+1;
+
 
         }
 
@@ -155,9 +156,21 @@ $(".tablaRecetas tbody").on("click", "button.btnEliminarReceta", function(){
 	})
 
 })
+
+/*=============================================
+DUPLICAR RECETA
+=============================================*/
+
+$(".tablaRecetas tbody").on("click", "button.btnDuplicarReceta", function(){
+
+	$("#duplicarIdReceta").val($(this).attr("idReceta"));
+	$("#codigoLote").val($(this).attr("codigoLote"));
+	$("#nuevoIdReceta").val($(this).attr("nuevoIdReceta"));
+
+})
 	
 /*=============================================
-REVISAR SI EL RECETA YA ESTÁ REGISTRADO
+REVISAR SI LA RECETA YA ESTÁ REGISTRADO
 =============================================*/
 
 $("#nuevoCodigoReceta").change(function(){
@@ -193,6 +206,41 @@ $("#nuevoCodigoReceta").change(function(){
 })
 
 
+/*=============================================
+REVISAR SI LA RECETA YA ESTÁ REGISTRADO
+=============================================*/
+
+$("#duplicarCodigoReceta").change(function(){
+
+	$(".alert").remove();
+
+	var receta = $(this).val();
+
+	var datos = new FormData();
+	datos.append("validarCodigo", receta);
+
+	 $.ajax({
+	    url:"ajax/recetas.ajax.php",
+	    method:"POST",
+	    data: datos,
+	    cache: false,
+	    contentType: false,
+	    processData: false,
+	    dataType: "json",
+	    success:function(respuesta){
+	    	
+	    	if(respuesta){
+
+	    		$("#duplicarCodigoReceta").parent().after('<div class="alert alert-warning">Este código ya existe en la base de datos</div>');
+
+	    		$("#duplicarCodigoReceta").val("");
+
+	    	}
+
+	    }
+
+	})
+})
 
 
 /*=============================================

@@ -48,7 +48,7 @@ class ControladorRecetas{
 					Swal.fire({
 					
 						icon: "success",
-						title: "¡El receta ha sido guardado correctamente!",
+						title: "¡La receta ha sido guardada correctamente!",
 						showConfirmButton: false,
 						timer: 1500
 					
@@ -104,7 +104,7 @@ class ControladorRecetas{
 					Swal.fire({
 					
 						icon: "success",
-						title: "¡El receta ha sido editado correctamente!",
+						title: "¡La receta ha sido editada correctamente!",
 						showConfirmButton: false,
 						timer: 1500
 					
@@ -131,9 +131,10 @@ class ControladorRecetas{
 	=============================================*/
 	static public function ctrEliminarReceta(){
 
-		if(isset($_GET["idReceta"])){
+		if(isset($_GET["idReceta"]) && isset($_GET["CDPE"])){
 
-			$datos = $_GET["idReceta"];
+			$datos = array("idReceta" => $_GET["idReceta"],
+						   "codigoLote" => $_GET["codigoLote"]);
 
 			$respuesta = ModeloRecetas::mdlEliminarReceta($datos);
 
@@ -144,7 +145,7 @@ class ControladorRecetas{
 				Swal.fire({
 				
 					icon: "success",
-					title: "¡El receta ha sido eliminado correctamente!",
+					title: "¡La receta ha sido eliminada correctamente!",
 					showConfirmButton: false,
 					timer: 1500
 				
@@ -165,6 +166,7 @@ class ControladorRecetas{
 				
 					icon: "error",
 					title: "¡No se puede eliminar la receta!",
+					text: "Tiene que eliminar todos los items de la receta",
 					showConfirmButton: false,
 					timer: 1500
 				
@@ -176,6 +178,47 @@ class ControladorRecetas{
 				
 				
 				</script>';
+
+			}		
+		}
+
+
+	}
+
+
+	/*=============================================
+	DUPLICAR RECETA
+	=============================================*/
+	static public function ctrDuplicarReceta(){
+
+		if(isset($_POST["duplicarCodigoReceta"])){
+
+			$datos = array("idReceta" => $_POST["duplicarIdReceta"],
+						   "codigoReceta" => $_POST["duplicarCodigoReceta"],
+						   "codigoLote" => $_POST["codigoLote"],
+						   "nuevoIdReceta" => $_POST["nuevoIdReceta"]);
+
+			$respuesta = ModeloRecetas::mdlDuplicarReceta($datos);
+
+			if($respuesta == "ok"){
+
+				echo '<script>
+
+				Swal.fire({
+				
+					icon: "success",
+					title: "¡La receta ha sido duplicada correctamente!",
+					showConfirmButton: false,
+					timer: 1500
+				
+				}).then(function(result){
+				
+						window.location = "recetas";
+				
+				});
+				
+				</script>';
+
 
 			}		
 		}

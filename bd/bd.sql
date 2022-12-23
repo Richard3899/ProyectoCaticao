@@ -295,8 +295,9 @@ CREATE TABLE MovimientoMateria (
   idMovimientoMateria INT  AUTO_INCREMENT primary key,
   ingreso DECIMAL(10,3) ,
   salida DECIMAL(10,3) ,
-  observacion VARCHAR(100) ,
-  fecha DATE ,
+  observacion VARCHAR(100),
+  fecha DATE,
+  codigoReceta VARCHAR(20),
   hora TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP ,
   idMateria INT REFERENCES Materia (idMateria),
   idMovimiento INT REFERENCES Movimiento (idMovimiento)
