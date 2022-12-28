@@ -102,13 +102,12 @@ class TablaKardexMateriales{
 			}
 
 
-
-
 		  	$datosJson .='[
 			      "'.($i+1).'",
 				  "'.$kardexmateriales[$i]["hora"].'",
 				  "'.$movimientos.'",
 			      "'.$kardexmateriales[$i]["observacion"].'",
+				  "'.$kardexmateriales[$i]["codigoReceta"].'",
 				  "'.$kardexmateriales[$i]["fecha"].'",
 				  "'.$ingreso.'",
 				  "'.$salida.'",
