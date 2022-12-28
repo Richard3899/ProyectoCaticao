@@ -38,18 +38,6 @@ class AjaxRecetaManodeObra{
 		echo json_encode($respuesta);
 
 	}
-	/*=============================================
-	MOSTRAR DETALLE MANO DE OBRA
-	=============================================*/
-	public function ajaxDetalleManodeObra(){
-
-		$valor = $this->idManodeObra;
-
-		$respuesta = ControladorRecetaManodeObra::ctrMostrarDetalleManodeObra($valor);
-
-		echo json_encode($respuesta);
-
-}
 
 }
 
@@ -75,16 +63,4 @@ if(isset($_POST["idReceta"])){
 	$editar -> ajaxReceta();
 
 }
-
-/*=============================================
-MOSTRAR DETALLE MANO DE OBRA
-=============================================*/
-if(isset($_POST["idManodeObraDetalle"])){
-
-	$editar = new AjaxRecetaManodeObra();
-	$editar -> idManodeObra = $_POST["idManodeObraDetalle"];
-	$editar -> ajaxDetalleManodeObra();
-
-}
-
 

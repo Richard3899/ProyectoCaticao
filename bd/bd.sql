@@ -85,31 +85,17 @@ CREATE TABLE RecetaConsumoEnergia (
 
 
 -- -----------------------------------------------------
--- Table depreciacion
--- -----------------------------------------------------
-
-
-CREATE TABLE depreciacion (
-  idDepreciacion INT AUTO_INCREMENT  primary key,
-  importe DECIMAL(10,2) ,
-  vidaUtil INT ,
-  depreciacionAnual DECIMAL(10,2) ,
-  depreciacionMensual DECIMAL(10,2) ,
-  depreciacionHora DECIMAL(10,2) ,
-  tiempoDeUso DECIMAL(10,2) ,
-  depreciacionPorBatch DECIMAL(10,2) ,
-  idMaquina INT REFERENCES maquina (idMaquina),
-  idTipoCosto INT REFERENCES tipocosto (idTipoCosto)
-);
-
-
--- -----------------------------------------------------
 -- Table Receta Depreciacion
 -- -----------------------------------------------------
 
 CREATE TABLE RecetaDepreciacion (
-  idDepreciacionReceta INT  AUTO_INCREMENT  primary key,
-  idDepreciacion INT REFERENCES depreciacion (idDepreciacion),
+  idRecetaDepreciacion INT  AUTO_INCREMENT  primary key,
+  depreciacionAnual DECIMAL(10,2),
+  depreciacionMensual DECIMAL(10,2),
+  depreciacionHora DECIMAL(10,2),
+  tiempoDeUso DECIMAL(10,2),
+  depreciacionPorBatch DECIMAL(10,2),
+  idMaquina INT REFERENCES maquina (idMaquina),
   idReceta INT REFERENCES receta (idReceta)
 );
 
@@ -509,10 +495,7 @@ alter Table receta add foreign key (idEstado) REFERENCES  estado (idEstado);
 alter Table RecetaConsumoEnergia add foreign key (idConsumoEnergia) REFERENCES  consumoenergia (idConsumoEnergia);
 alter Table RecetaConsumoEnergia add foreign key (idReceta) REFERENCES  receta (idReceta);
 
-alter Table depreciacion add foreign key (idMaquina) REFERENCES  maquina (idMaquina);
-alter Table depreciacion add foreign key (idTipoCosto) REFERENCES  tipocosto (idTipoCosto);
-
-alter Table RecetaDepreciacion add foreign key (idDepreciacion) REFERENCES  depreciacion(idDepreciacion);
+alter Table RecetaDepreciacion add foreign key (idMaquina) REFERENCES  maquina(idMaquina);
 alter Table RecetaDepreciacion add foreign key (idReceta) REFERENCES  receta (idReceta);
 
 alter Table gastoadmin add foreign key (idUnidadMedida) REFERENCES  unidadmedida (idUnidadMedida);
