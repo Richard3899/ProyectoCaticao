@@ -6,7 +6,7 @@ require_once "../modelos/recetadepreciacion.modelo.php";
 class TablaRecetaDepreciacion{
 
  	/*=============================================
- 	 MOSTRAR LA TABLA DE RECETA DEPRECIACION
+ 	 MOSTRAR LA TABLA DE RECETA DEPRECIACIÓN
   	=============================================*/ 
 
 	public function mostrarTablaRecetaDepreciacion(){
@@ -15,17 +15,17 @@ class TablaRecetaDepreciacion{
 
 		$item = "Receta";
 
-  		$depreciacionreceta = ControladorRecetaDepreciacion::ctrMostrarRecetaDepreciacion($item,$idRecetaC);	
+  		$recetadepreciacion = ControladorRecetaDepreciacion::ctrMostrarRecetaDepreciacion($item,$idRecetaC);	
 
-		/*=============================================
- 	 	TRAEMOS EL TOTAL DE RECETA DEPRECIACION
+		/*============================================
+ 	 	TRAEMOS EL TOTAL DE RECETA DEPRECIACIÓN
   		=============================================*/
 
 		$sumatotaldepreciacionreceta = ControladorRecetaDepreciacion::ctrSumaTotalRecetaDepreciacion($idRecetaC);	
 
 		$total = $sumatotaldepreciacionreceta[0];
 
-		if(count($depreciacionreceta) == 0){
+		if(count($recetadepreciacion) == 0){
 
 			echo '{"data": []}';
 			
@@ -35,28 +35,27 @@ class TablaRecetaDepreciacion{
   		$datosJson = '{
 		  "data": [';
 
-		  for($i = 0; $i < count($depreciacionreceta); $i++){
+		  for($i = 0; $i < count($recetadepreciacion); $i++){
 			
-			/*=============================================
+			/*============================================
  	 		TRAEMOS LAS ACCIONES
   			=============================================*/
-			$botones =  "<div class='btn-group'><button class='btn btn-warning btnEditarDepreciacionReceta' idRecetaDepreciacion='".$depreciacionreceta[$i]["idRecetaDepreciacion"]."' data-toggle='modal' data-target='#modalEditarDepreciacion'><i class='fa fa-pen'></i></button><button class='btn btn-danger btnEliminarDepreciacionReceta' idRecetaDepreciacion='".$depreciacionreceta[$i]["idRecetaDepreciacion"]."' idDepreciacion='".$depreciacionreceta[$i]["idMaquina"]."' ><i class='fa fa-times'></i></button></div>";				
+			$botones =  "<div class='btn-group'><button class='btn btn-warning btnEditarDepreciacionReceta' idRecetaDepreciacion='".$recetadepreciacion[$i]["idRecetaDepreciacion"]."' data-toggle='modal' data-target='#modalEditarDepreciacion'><i class='fa fa-pen'></i></button><button class='btn btn-danger btnEliminarDepreciacionReceta' idRecetaDepreciacion='".$recetadepreciacion[$i]["idRecetaDepreciacion"]."'><i class='fa fa-times'></i></button></div>";				
 				
 		  	$datosJson .='[
 			      "'.($i+1).'",
-				  "'.$depreciacionreceta[$i]["depreciacionAnual"].'",
-			      "'.$depreciacionreceta[$i]["depreciacionMensual"].'",
-				  "'.$depreciacionreceta[$i]["depreciacionHora"].'",
-				  "'.$depreciacionreceta[$i]["tiempoDeUso"].'",
-				  "'.$depreciacionreceta[$i]["depreciacionPorBatch"].'",
+				  "'.$recetadepreciacion[$i]["nombreMaquina"].'",
+			      "'.$recetadepreciacion[$i]["tiempoHoras"].'",
+				  "'.$recetadepreciacion[$i]["depreciacionHora"].'",
+				  "'.$recetadepreciacion[$i]["depreciacionPorBatch"].'",
 				  "'.$botones.'"
 			    ],';
 
 		  }
 
-		  $datosJson = substr($datosJson, 0, -1);
+		 $datosJson = substr($datosJson, 0, -1);
 
-		 $datosJson .=   ',["Total","","","","","S/. '.$total.'",""]] 
+		 $datosJson .=   ',["Total","","","","S/. '.$total.'",""]] 
 
 		 }';
 		
@@ -69,7 +68,7 @@ class TablaRecetaDepreciacion{
 }
 
 /*=============================================
-ACTIVAR TABLA DE DEPRECIACION
+ACTIVAR TABLA DE DEPRECIACIÓN
 =============================================*/ 
 $activarRecetaDepreciacion = new TablaRecetaDepreciacion();
 $activarRecetaDepreciacion -> mostrarTablaRecetaDepreciacion();

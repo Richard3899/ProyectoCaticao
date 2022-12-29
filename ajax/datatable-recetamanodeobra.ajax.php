@@ -46,7 +46,7 @@ class TablaRecetaManodeObra{
 			      "'.($i+1).'",
 				  "'.$recetamanodeobra[$i]["nombreEmpleado"].'",
 				  "'.$recetamanodeobra[$i]["nombreMaquina"].'",
-			      "'.$recetamanodeobra[$i]["cantidad"].'",
+			      "'.$recetamanodeobra[$i]["tiempoHoras"].'",
 				  "'.$recetamanodeobra[$i]["precioUnitario"].'",
 				  "'.$recetamanodeobra[$i]["total"].'",
 				  "'.$botones.'"

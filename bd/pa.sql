@@ -275,10 +275,10 @@ CREATE PROCEDURE `insertar_maquina` (   in codigoI VARCHAR(20),
                                         in potenciaI DECIMAL(10,2),
                                         in vidaUtilI INT)
 BEGIN
-    insert into inventariomaquina (stock)
+   insert into inventariomaquina (stock)
 				  values (0);
-	insert into maquina (codigo,nombre,descripcion,serie,modelo,marca,precio,añoCompra,capacidad,potencia,vidaUtil)
-				 values (codigoI,nombreI,descripcionI,serieI,modeloI,marcaI,precioI,añoCompraI,capacidadI,potenciaI,vidaUtilI);
+	insert into maquina (codigo,nombre,descripcion,serie,modelo,marca,precio,añoCompra,capacidad,potencia,vidaUtil,depreciacionAnual,depreciacionMensual,depreciacionHora)
+				 values (codigoI,nombreI,descripcionI,serieI,modeloI,marcaI,precioI,añoCompraI,capacidadI,potenciaI,vidaUtilI,(precioI/vidaUtilI),(precioI/vidaUtilI)/12,((precioI/vidaUtilI)/12)/(25*24));
 END$$
 DELIMITER ;
 
@@ -307,7 +307,11 @@ BEGIN
                         añoCompra=añoCompraE,
                         capacidad=capacidadE,
                         potencia=potenciaE,
-                        vidaUtil=vidaUtilE
+                        vidaUtil=vidaUtilE,
+                        depreciacionAnual=(precioE/vidaUtilE),
+                        depreciacionMensual=(precioE/vidaUtilE)/12,
+                        depreciacionHora=((precioE/vidaUtilE)/12)/(25*24)
+                        
 				where idMaquina=idMaquinaE;
 END$$
 DELIMITER ;
@@ -1358,7 +1362,7 @@ DELIMITER $$
 USE `caticao`$$
 CREATE PROCEDURE `mostrar_recetamanodeobra1` (in idRecetaManodeObraC INT)
 BEGIN
-	 select rm.idRecetaManodeObra,rm.idReceta,rm.idEmpleado,rm.nombreEmpleado,rm.idMaquina,rm.nombreMaquina, rm.cantidad,rm.precioUnitario,rm.total from recetamanodeobra rm
+	 select rm.idRecetaManodeObra,rm.idReceta,rm.idEmpleado,rm.nombreEmpleado,rm.idMaquina,rm.nombreMaquina, rm.tiempoHoras,rm.precioUnitario,rm.total from recetamanodeobra rm
     inner join empleado e on e.idEmpleado=rm.idEmpleado
     inner join maquina m ON m.idMaquina=rm.idMaquina
     where rm.idRecetaManodeObra=idRecetaManodeObraC;
@@ -1370,7 +1374,7 @@ DELIMITER $$
 USE `caticao`$$
 CREATE PROCEDURE `mostrar_recetamanodeobra2` (in idRecetaC INT)
 BEGIN
-	 select rm.idRecetaManodeObra,rm.idReceta,rm.idEmpleado,rm.nombreEmpleado, rm.nombreMaquina, rm.cantidad,rm.precioUnitario,rm.total from recetamanodeobra rm
+	 select rm.idRecetaManodeObra,rm.idReceta,rm.idEmpleado,rm.nombreEmpleado, rm.nombreMaquina, rm.tiempoHoras,rm.precioUnitario,rm.total from recetamanodeobra rm
     inner join empleado e on e.idEmpleado=rm.idEmpleado
     inner join maquina m ON m.idMaquina=rm.idMaquina
     where rm.idReceta=idRecetaC;
@@ -1386,27 +1390,28 @@ CREATE PROCEDURE `insertar_recetamanodeobra` (  in idRecetaI INT,
                                                 in idMaquinaI INT,
                                                 in nombreEmpleadoI VARCHAR(50),
                                                 in nombreMaquinaI VARCHAR(50),
-                                                in cantidadI DECIMAL(10,3),
+                                                in tiempoHorasI DECIMAL(10,3),
                                                 in precioUnitarioI DECIMAL(10,3),
 												            in totalI DECIMAL(10,3) )
 BEGIN
 
-	 INSERT INTO recetamanodeobra(idReceta,idEmpleado,idMaquina,nombreEmpleado,nombreMaquina,cantidad,precioUnitario,total)
-			              VALUES (idRecetaI,idEmpleadoI,idMaquinaI,nombreEmpleadoI,nombreMaquinaI,cantidadI,precioUnitarioI,totalI);
+	 INSERT INTO recetamanodeobra(idReceta,idEmpleado,idMaquina,nombreEmpleado,nombreMaquina,tiempoHoras,precioUnitario,total)
+			              VALUES (idRecetaI,idEmpleadoI,idMaquinaI,nombreEmpleadoI,nombreMaquinaI,tiempoHorasI,precioUnitarioI,totalI);
 	
 END$$
 DELIMITER ;
+
 
 
 DROP procedure IF EXISTS `editar_recetamanodeobra`;
 DELIMITER $$
 USE `caticao`$$
 CREATE PROCEDURE `editar_recetamanodeobra` (    in idRecetaManodeObraE INT,
-                                                in cantidadE DECIMAL(10,3),
+                                                in tiempoHorasE DECIMAL(10,3),
 												            in totalE DECIMAL(10,3))
 BEGIN
 
-   UPDATE recetamanodeobra SET cantidad = cantidadE,
+   UPDATE recetamanodeobra SET tiempoHoras = tiempoHorasE,
                                total=totalE
 						         WHERE idRecetaManodeObra=idRecetaManodeObraE;
                             

@@ -69,8 +69,8 @@
          <th style="width:20px">#</th>
          <th>Empleado</th>
          <th>Maquina</th>
-         <th>Cantidad</th>
-         <th>Precio</th>
+         <th>Tiempo(Horas)</th>
+         <th>Precio Unitario</th>
          <th>Total</th>
          <th>Acciones</th>
 
@@ -204,7 +204,7 @@ MODAL RECETA MANO DE OBRA
 
           <div class="row">
 
-            <!-- ENTRADA PARA EL CANTIDAD -->
+            <!-- ENTRADA PARA EL TIEMPO HORAS -->
 
             <div class="form-group col-sm">
             
@@ -212,8 +212,8 @@ MODAL RECETA MANO DE OBRA
                 <div class="input-group-prepend">
                 <span class="input-group-text"><i class="fas fa-layer-group"></i></span>
                 </div>
-                <input type="number" class="form-control input-lg nuevaCantidadManodeObra" id="nuevaCantidad" name="nuevaCantidad" 
-                 min="0.5" step="0.5" required>
+                <input type="number" class="form-control input-lg nuevoTiempoHorasManodeObra" id="nuevoTiempoHoras" name="nuevoTiempoHoras" 
+                 min="0.1" step="0.1" required>
             </div>
 
             </div>
@@ -344,7 +344,7 @@ MODAL EDITAR RECETA MANO DE OBRA
 
           <div class="row">
 
-            <!-- ENTRADA PARA EL CANTIDAD -->
+            <!-- ENTRADA PARA EL TIEMPO HORAS -->
 
             <div class="form-group col-sm">
             
@@ -352,8 +352,8 @@ MODAL EDITAR RECETA MANO DE OBRA
                 <div class="input-group-prepend">
                 <span class="input-group-text"><i class="fas fa-layer-group"></i></span>
                 </div>
-                <input type="number" class="form-control input-lg editarCantidadManodeObra" id="editarCantidad" name="editarCantidad" 
-                 min="0.5" step="0.5" required>
+                <input type="number" class="form-control input-lg editarTiempoHorasManodeObra" id="editarTiempoHoras" name="editarTiempoHoras" 
+                 min="0.1" step="0.1" required>
             </div>
 
             </div>

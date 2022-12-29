@@ -6,7 +6,7 @@
     <div class="container-fluid">
       <div class="row mb-2">
         <div class="col-sm-6">
-          <h1>Depreciacion de la Receta</h1>
+          <h1>Depreciación de la Receta</h1>
         </div>
         <div class="col-sm-6">
           <ol class="breadcrumb float-sm-right">
@@ -49,7 +49,7 @@
        
         <div class="form-group row  col-12 col-lg-4 justify-content-sm-end">
           <button class="btn btn-primary my-1 col-12 col-sm-4 col-md-3 mr-2 col-lg-7 col-xl-6" id="btnRecetaDepreciacion" data-toggle="modal" data-target="#modalRecetaDepreciacion">
-           Agregar Depreciacion
+           Agregar Depreciación
          </button>
          <a type="button" class="btn btn-secondary my-1 col-12 col-sm-4 col-md-3 col-lg-4 col-xl-3" href="recetas">Volver</a>
         </div>
@@ -67,10 +67,9 @@
        <tr>
          
          <th style="width:20px">#</th>
-         <th>Depreciación Anual</th>
-         <th>Depreciación Mensual</th>
-         <th>Depreciación Hora</th>
-         <th>Tiempo de Uso</th>
+         <th>Maquina</th>
+         <th>Tiempo(Horas)</th>
+         <th>Depreciación(Hora)</th>
          <th>Depreciación Por Batch</th>
          <th>Acciones</th>
 
@@ -93,7 +92,7 @@
 <!-- /.content-wrapper -->
 
 <!--=====================================
-MODAL RECETA DEPRECIACION
+MODAL RECETA DEPRECIACIÓN
 ======================================-->
 
 <div id="modalRecetaDepreciacion" class="modal fade" role="dialog">
@@ -110,7 +109,7 @@ MODAL RECETA DEPRECIACION
 
       <div class="modal-header" style="background:gray; color:white">
 
-      <h4 class="modal-title">Receta Depreciacion</h4>
+      <h4 class="modal-title">Receta Depreciación</h4>
 
       <button type="button" class="close" data-dismiss="modal">&times;</button>
 
@@ -130,23 +129,47 @@ MODAL RECETA DEPRECIACION
 
         <div class="box-body">
 
-          <div class="row">
+        <div class="row">
 
-            <!-- ENTRADA PARA EL STOCK -->
+            <!-- ENTRADA PARA SELECCIONAR LA MAQUINA -->
+
             <div class="form-group col-sm">
+            
             <div class="input-group">
-                <div class="input-group-prepend">
-                <span class="input-group-text"><i class="fas fa-box"></i></span>
-                </div>
-                <input type="text" class="form-control input-lg" id="nuevoStock" name="nuevoStock" readonly required>
+
+                <input type="hidden" name="idMaquina" id="idMaquina">
+
+                <input type="hidden" name="nombreMaquina" id="nombreMaquina">
+
+                <select class="form-control select2 input-lg seleccionarNombreMaquina" id="seleccionarNombreMaquina" name="seleccionarNombreMaquina" style="width: 100%;" required>
+                
+                <option value="">Seleccionar Maquina</option>
+
+                <?php 
+                    $item = null;
+                    $valor = null;
+
+                    $maquina = ControladorMaquinas::ctrMostrarMaquinas($item,$valor);
+
+                  foreach($maquina as $key=> $value){ 
+
+                    echo '<option value="'.$value["idMaquina"].'">'.$value["nombre"].'</option>';
+                  }
+
+                  ?>
+
+              </select>
+              
+
             </div>
-            </div>
+
+          </div>
 
           </div>
 
           <div class="row">
 
-            <!-- ENTRADA PARA EL CANTIDAD -->
+            <!-- ENTRADA PARA EL TIEMPO HORAS -->
 
             <div class="form-group col-sm">
             
@@ -154,8 +177,8 @@ MODAL RECETA DEPRECIACION
                 <div class="input-group-prepend">
                 <span class="input-group-text"><i class="fas fa-layer-group"></i></span>
                 </div>
-                <input type="number" class="form-control input-lg nuevaCantidadDepreciacion" stock id="nuevaCantidad" name="nuevaCantidad" 
-                 min="0.1" step="0.001" required>
+                <input type="number" class="form-control input-lg nuevoTiempoHorasDepreciacion" id="nuevoTiempoHoras" name="nuevoTiempoHoras" 
+                 min="0.1" step="0.1" required>
             </div>
 
             </div>
@@ -192,14 +215,14 @@ MODAL RECETA DEPRECIACION
 
         <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Salir</button>
 
-        <button type="submit" class="btn btn-primary">Guardar Depreciacion</button>
+        <button type="submit" class="btn btn-primary">Guardar Depreciación</button>
 
       </div>
 
       <?php
 
-        // $guardarRecetaDepreciacion = new ControladorRecetaDepreciacion();
-        // $guardarRecetaDepreciacion -> ctrCrearRecetaDepreciacion();
+        $guardarRecetaDepreciacion = new ControladorRecetaDepreciacion();
+        $guardarRecetaDepreciacion -> ctrCrearRecetaDepreciacion();
 
       ?>
 
@@ -216,7 +239,7 @@ MODAL RECETA DEPRECIACION
 
 
 <!--=====================================
-MODAL EDITAR RECETA DEPRECIACION
+MODAL EDITAR RECETA DEPRECIACIÓN
 ======================================-->
 
 <div id="modalEditarDepreciacion" class="modal fade" role="dialog">
@@ -233,7 +256,7 @@ MODAL EDITAR RECETA DEPRECIACION
 
       <div class="modal-header" style="background:gray; color:white">
 
-      <h4 class="modal-title">Editar Receta Depreciacion</h4>
+      <h4 class="modal-title">Editar Receta Depreciación</h4>
 
       <button type="button" class="close" data-dismiss="modal">&times;</button>
 
@@ -256,39 +279,25 @@ MODAL EDITAR RECETA DEPRECIACION
 
           <div class="row">
 
-          <!-- ENTRADA PARA SELECCIONAR DEPRECIACION -->
+            <!-- ENTRADA PARA SELECCIONAR LA MAQUINA -->
 
-          <div class="form-group col-sm">
-            
-                <input type="hidden" name="editaridRecetaDepreciacion" id="editaridRecetaDepreciacion">
-
-                <input type="hidden" name="editaridDepreciacion" id="editaridDepreciacion">
-
-                <input type="hidden" name="editarNombreDepreciacion" id="editarNombreDepreciacion">
-
-            <div class="input-group">
-
-                <input type="text" class="form-control input-lg" name="editarNombreI" id="editarNombreI">
-
-            </div>
-
-          </div>
-
-            <!-- ENTRADA PARA EL STOCK -->
             <div class="form-group col-sm">
+
+                <input type="hidden" name="editaridRecetaDepreciacion" id="editaridRecetaDepreciacion">
+            
             <div class="input-group">
-                <div class="input-group-prepend">
-                <span class="input-group-text"><i class="fas fa-box"></i></span>
-                </div>
-                <input type="text" class="form-control input-lg" id="editarStock" name="editarStock" readonly required>
+
+                <input type="text" class="form-control input-lg" name="editarNombreMaquina" id="editarNombreMaquina">
+
             </div>
+
             </div>
 
           </div>
 
           <div class="row">
 
-            <!-- ENTRADA PARA EL CANTIDAD -->
+            <!-- ENTRADA PARA EL TIEMPO HORAS -->
 
             <div class="form-group col-sm">
             
@@ -296,10 +305,8 @@ MODAL EDITAR RECETA DEPRECIACION
                 <div class="input-group-prepend">
                 <span class="input-group-text"><i class="fas fa-layer-group"></i></span>
                 </div>
-                <input type="hidden" id="cantidadAnterior" name="cantidadAnterior">
-                <input type="hidden" id="diferenciaCantidad" name="diferenciaCantidad">
-                <input type="number" class="form-control input-lg editarCantidadDepreciacion" edStock id="editarCantidad" name="editarCantidad" 
-                min="0.1" step="0.001" required>
+                <input type="number" class="form-control input-lg editarTiempoHorasDepreciacion" id="editarTiempoHoras" name="editarTiempoHoras" 
+                 min="0.1" step="0.1" required>
             </div>
 
             </div>
@@ -312,7 +319,6 @@ MODAL EDITAR RECETA DEPRECIACION
                 <div class="input-group-prepend">
                 <span class="input-group-text"><i class="fas fa-dollar-sign"></i></span>
                 </div>
-                <input type="hidden" id="editarprecioUnitario" name="editarprecioUnitario">
                 <input type="hidden" id="editarprecioTotal" name="editarprecioTotal">
                 <input type="text" class="form-control input-lg editarPrecioDepreciacion" name="editarPrecioDepreciacion" id="editarPrecioDepreciacion"
                  required readonly>
@@ -336,14 +342,14 @@ MODAL EDITAR RECETA DEPRECIACION
 
         <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Salir</button>
 
-        <button type="submit" class="btn btn-primary">Editar Depreciacion</button>
+        <button type="submit" class="btn btn-primary">Editar Depreciación</button>
 
       </div>
 
       <?php
 
-          // $editarRecetaDepreciacion = new ControladorRecetaDepreciacion();
-          // $editarRecetaDepreciacion -> ctrEditarRecetaDepreciacion();
+          $editarRecetaDepreciacion = new ControladorRecetaDepreciacion();
+          $editarRecetaDepreciacion -> ctrEditarRecetaDepreciacion();
 
       ?>
 
@@ -359,7 +365,7 @@ MODAL EDITAR RECETA DEPRECIACION
 
 <?php
 
-  // $borrarRecetaDepreciacion = new ControladorRecetaDepreciacion();
-  // $borrarRecetaDepreciacion -> ctrEliminarRecetaDepreciacion();
+  $borrarRecetaDepreciacion = new ControladorRecetaDepreciacion();
+  $borrarRecetaDepreciacion -> ctrEliminarRecetaDepreciacion();
 
 ?> 

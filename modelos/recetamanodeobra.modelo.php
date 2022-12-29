@@ -53,7 +53,7 @@ class ModeloRecetaManodeObra{
 		$stmt->bindParam(3, $datos["idMaquina"], PDO::PARAM_INT);
 		$stmt->bindParam(4, $datos["nombreEmpleado"], PDO::PARAM_STR);
 		$stmt->bindParam(5, $datos["nombreMaquina"], PDO::PARAM_STR);
-		$stmt->bindParam(6, $datos["cantidad"], PDO::PARAM_STR);
+		$stmt->bindParam(6, $datos["tiempoHoras"], PDO::PARAM_STR);
 		$stmt->bindParam(7, $datos["precioUnitario"], PDO::PARAM_STR);
 		$stmt->bindParam(8, $datos["total"], PDO::PARAM_STR);
 
@@ -80,8 +80,8 @@ class ModeloRecetaManodeObra{
 
 		$stmt = Conexion::conectar()->prepare("call editar_recetamanodeobra(?,?,?)");
 
-		$stmt->bindParam(1, $datos["idManodeObraReceta"], PDO::PARAM_INT);
-		$stmt->bindParam(2, $datos["cantidad"], PDO::PARAM_STR);
+		$stmt->bindParam(1, $datos["idRecetaManodeObra"], PDO::PARAM_INT);
+		$stmt->bindParam(2, $datos["tiempoHoras"], PDO::PARAM_STR);
 		$stmt->bindParam(3, $datos["total"], PDO::PARAM_STR);
 
 		if($stmt->execute()){

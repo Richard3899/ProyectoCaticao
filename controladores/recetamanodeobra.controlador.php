@@ -36,7 +36,7 @@ class ControladorRecetaManodeObra{
 						   "idMaquina"=>$_POST["idMaquina"],
 						   "nombreEmpleado"=>$_POST["nombreEmpleado"],
 						   "nombreMaquina"=>$_POST["nombreMaquina"],
-						   "cantidad"=>$_POST["nuevaCantidad"],
+						   "tiempoHoras"=>$_POST["nuevoTiempoHoras"],
 						   "precioUnitario"=>$_POST["precioUnitario"],
 						   "total"=>$_POST["precioTotal"]);
 		
@@ -79,8 +79,8 @@ class ControladorRecetaManodeObra{
 
 		if(isset($_POST["editaridRecetaManodeObra"])){
 
-			$datos = array( "idManodeObraReceta"=>$_POST["editaridRecetaManodeObra"],
-							"cantidad"=>$_POST["editarCantidad"],
+			$datos = array( "idRecetaManodeObra"=>$_POST["editaridRecetaManodeObra"],
+							"tiempoHoras"=>$_POST["editarTiempoHoras"],
 							"total"=>$_POST["editarprecioTotal"]);
 							   
 			$respuesta = ModeloRecetaManodeObra::mdlEditarRecetaManodeObra($datos);

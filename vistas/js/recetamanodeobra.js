@@ -112,7 +112,7 @@ $(".formularioRecetaManodeObra").on("change", "select.seleccionarNombreEmpleado"
 
 				if($(".seleccionarNombreEmpleado").val() == ""){
 
-					$("#nuevaCantidad").val(0);
+					$("#nuevoTiempoHoras").val(0);
 					$(".precioManodeObra").attr("precioReal",0);
 					$("#precioTotal").val(0);
 					
@@ -135,7 +135,7 @@ $(".formularioRecetaManodeObra").on("change", "select.seleccionarNombreEmpleado"
 
 							$("#idEmpleado").val(respuesta["idEmpleado"]);
 							$("#nombreEmpleado").val(respuesta["nombre"]+" "+respuesta["apellido"]);
-							$("#nuevaCantidad").val(0);
+							$("#nuevoTiempoHoras").val(0);
 							$("#precioUnitario").val(respuesta["precioUnitario"]);
 							$(".precioManodeObra").val(0);
 							$(".precioManodeObra").attr("precioReal",respuesta["precioUnitario"]);
@@ -192,10 +192,10 @@ $(".formularioRecetaManodeObra").on("change", "select.seleccionarNombreMaquina",
 })
 
 /*=============================================
-MODIFICAR LA CANTIDAD
+MODIFICAR LA TIEMPO HORAS
 =============================================*/
 
-$(".formularioRecetaManodeObra").on("change", "input.nuevaCantidadManodeObra", function(){
+$(".formularioRecetaManodeObra").on("change", "input.nuevoTiempoHorasManodeObra", function(){
 
 	var precioUnitario = $(".precioManodeObra");
 
@@ -297,7 +297,7 @@ $(".tablaRecetaManodeObra tbody").on("click", "button.btnEditarManodeObraReceta"
 		   $("#editarNombreMaquina").val(respuesta["nombreMaquina"]);
 		   $("#editarNombreMaquina").attr('disabled', 'disabled');	
 
-		   $("#editarCantidad").val(respuesta["cantidad"]);
+		   $("#editarTiempoHoras").val(respuesta["tiempoHoras"]);
 
 		   $(".editarPrecioManodeObra").val(respuesta["total"]);
 		   $(".editarPrecioManodeObra").attr("editarprecioReal",respuesta["precioUnitario"]);
@@ -311,10 +311,10 @@ $(".tablaRecetaManodeObra tbody").on("click", "button.btnEditarManodeObraReceta"
 
 
 /*=============================================
-MODIFICAR LA CANTIDAD AL EDITAR
+MODIFICAR LA TIEMPO HORAS AL EDITAR
 =============================================*/
 
-$(".formularioEditarRecetaManodeObra").on("change", "input.editarCantidadManodeObra", function(){
+$(".formularioEditarRecetaManodeObra").on("change", "input.editarTiempoHorasManodeObra", function(){
 
 	var editarprecioUnitario = $(".editarPrecioManodeObra");
 

@@ -55,13 +55,11 @@ DELIMITER ;
 DROP procedure IF EXISTS `mostrar_recetadepreciacion1`;
 DELIMITER $$
 USE `caticao`$$
-CREATE PROCEDURE `mostrar_recetadepreciacion1` (in idRecetaManodeObraC INT)
+CREATE PROCEDURE `mostrar_recetadepreciacion1` (in idRecetaDepreciacionC INT)
 BEGIN
-	 select rm.idRecetaManodeObra,rm.idReceta,rm.idEmpleado,rm.nombreEmpleado,rm.idMaquina,rm.nombreMaquina, rm.cantidad,rm.precioUnitario,rm.total from recetamanodeobra rm
-    inner join empleado e on e.idEmpleado=rm.idEmpleado
-    inner join maquina m ON m.idMaquina=rm.idMaquina
-    where rm.idRecetaManodeObra=idRecetaManodeObraC;
-    
+
+	 SELECT * FROM recetadepreciacion
+    where idRecetaDepreciacion=idRecetaDepreciacionC;
     
 END$$
 DELIMITER ;
@@ -71,59 +69,57 @@ DELIMITER $$
 USE `caticao`$$
 CREATE PROCEDURE `mostrar_recetadepreciacion2` (in idRecetaC INT)
 BEGIN
-	 SELECT rd.idRecetaDepreciacion,rd.idReceta,rd.idMaquina,m.nombre,rd.depreciacionAnual,rd.depreciacionMensual,rd.depreciacionHora,
-	        rd.depreciacionHora,rd.tiempoDeUso,rd.depreciacionPorBatch from recetadepreciacion rd
-    inner join maquina m ON m.idMaquina=rd.idMaquina
-    where rd.idReceta=idRecetaC;
+
+	 SELECT * FROM recetadepreciacion
+    WHERE idReceta=idRecetaC;
 
 END$$
 DELIMITER ;
 
 
-DROP procedure IF EXISTS `insertar_recetamanodeobra`;
+DROP procedure IF EXISTS `insertar_recetadepreciacion`;
 DELIMITER $$
 USE `caticao`$$
-CREATE PROCEDURE `insertar_recetamanodeobra` (  in idRecetaI INT,
-                                                in idEmpleadoI INT,
-                                                in idMaquinaI INT,
-                                                in nombreEmpleadoI VARCHAR(50),
-                                                in nombreMaquinaI VARCHAR(50),
-                                                in cantidadI DECIMAL(10,3),
-                                                in precioUnitarioI DECIMAL(10,3),
-												            in totalI DECIMAL(10,3) )
+CREATE PROCEDURE `insertar_recetadepreciacion` (   in idRecetaI INT,
+	                                                in idMaquinaI INT,
+	                                                in nombreMaquinaI VARCHAR(50),
+	                                                in tiempoHorasI DECIMAL(10,3),
+	                                                in depreciacionHoraI DECIMAL(10,3),
+													            in depreciacionPorBatchI DECIMAL(10,3) )
 BEGIN
 
-	 INSERT INTO recetamanodeobra(idReceta,idEmpleado,idMaquina,nombreEmpleado,nombreMaquina,cantidad,precioUnitario,total)
-			              VALUES (idRecetaI,idEmpleadoI,idMaquinaI,nombreEmpleadoI,nombreMaquinaI,cantidadI,precioUnitarioI,totalI);
+	 INSERT INTO recetadepreciacion(idReceta,idMaquina,nombreMaquina,tiempoHoras,depreciacionHora,depreciacionPorBatch)
+			                 VALUES (idRecetaI,idMaquinaI,nombreMaquinaI,tiempoHorasI,depreciacionHoraI,depreciacionPorBatchI);
 	
 END$$
 DELIMITER ;
 
 
-DROP procedure IF EXISTS `editar_recetamanodeobra`;
+
+DROP procedure IF EXISTS `editar_recetadepreciacion`;
 DELIMITER $$
 USE `caticao`$$
-CREATE PROCEDURE `editar_recetamanodeobra` (    in idRecetaManodeObraE INT,
-                                                in cantidadE DECIMAL(10,3),
-												            in totalE DECIMAL(10,3))
+CREATE PROCEDURE `editar_recetadepreciacion` (  in idRecetaDepreciacionE INT,
+                                                in tiempoHorasE DECIMAL(10,3),
+												            in depreciacionPorBatchE DECIMAL(10,3))
 BEGIN
 
-   UPDATE recetamanodeobra SET cantidad = cantidadE,
-                               total=totalE
-						         WHERE idRecetaManodeObra=idRecetaManodeObraE;
+   UPDATE recetadepreciacion SET tiempoHoras = tiempoHorasE,
+                               depreciacionPorBatch=depreciacionPorBatchE
+						         WHERE idRecetaDepreciacion=idRecetaDepreciacionE;
                             
 END$$
 DELIMITER ;
 
+CALL editar_recetadepreciacion(5,1,1)
 
-
-DROP procedure IF EXISTS `eliminar_recetamanodeobra`;
+DROP procedure IF EXISTS `eliminar_recetadepreciacion`;
 DELIMITER $$
 USE `caticao`$$
-CREATE PROCEDURE `eliminar_recetamanodeobra` (in idRecetaManodeObraE INT)
+CREATE PROCEDURE `eliminar_recetadepreciacion` (in idRecetaDepreciacionE INT)
 BEGIN
     	   
-   DELETE from recetamanodeobra WHERE idRecetaManodeObra=idRecetaManodeObraE;
+   DELETE from recetadepreciacion WHERE idRecetaDepreciacion=idRecetaDepreciacionE;
 						
 END$$
 DELIMITER ;
@@ -141,6 +137,4 @@ END$$
 DELIMITER ;
 
  
-			    
-	
  

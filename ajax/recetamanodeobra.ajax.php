@@ -11,11 +11,10 @@ class AjaxRecetaManodeObra{
 
 	public $idRecetaManodeObra;
 	public $idReceta;
-	public $idManodeObra;
 
 	public function ajaxManodeObraReceta(){
 
-		$item="ManodeObraReceta";
+		$item="RecetaManodeObra";
 
 		$valor = $this->idRecetaManodeObra;
 

@@ -1,5 +1,5 @@
 /*=============================================
-TABLA RECETA DEPRECIACION
+TABLA DEPRECIACIÓN
 =============================================*/
 var idRecetaC = $("#idReceta").val();
 
@@ -43,7 +43,7 @@ $('.tablaRecetaDepreciacion').DataTable( {
 } );
 
 /*=============================================
-CONSULTA DE RECETA DEPRECIACION
+CONSULTA DE DEPRECIACIÓN
 =============================================*/
 const idArrayRecetaDepreciacion=[0];
 
@@ -51,7 +51,7 @@ $(".tablaRecetaDepreciacion").on("draw.dt", function() {
 	
 	var x = $(".nm").val();
 
-	if(x.length > 50){
+	if(x.length > 20){
 
 		window.location ="recetas";
 
@@ -76,7 +76,7 @@ $(".tablaRecetaDepreciacion").on("draw.dt", function() {
 		
 		for (var i=0; i<respuesta.length; i++) { 
 
-			idArrayRecetaDepreciacion.push(respuesta[i]["idMateria"]);
+			idArrayRecetaDepreciacion.push(respuesta[i]["idMaquina"]);
 		
 		}
 		
@@ -87,20 +87,20 @@ $(".tablaRecetaDepreciacion").on("draw.dt", function() {
 
 
 /*=============================================
-SELECCIONAR DEPRECIACION DE LA RECETA
+SELECCIONAR MAQUINA DE LA RECETA
 =============================================*/
 
-$(".formularioRecetaDepreciacion").on("change", "select.seleccionarNombreDepreciacion", function(){
+$(".formularioRecetaDepreciacion").on("change", "select.seleccionarNombreMaquina", function(){
 	
-	var idDepreciacionDetalle = $(this).val();
+	var idMaquina = $(this).val();
 
 	var datos = new FormData();
 
-	datos.append("idDepreciacionDetalle", idDepreciacionDetalle);
+	datos.append("idMaquina", idMaquina);
     
 	  $.ajax({
 
-     	url:"ajax/recetadepreciacion.ajax.php",
+     	url:"ajax/maquinas.ajax.php",
       	method: "POST",
       	data: datos,
       	cache: false,
@@ -109,10 +109,9 @@ $(".formularioRecetaDepreciacion").on("change", "select.seleccionarNombreDepreci
       	dataType:"json",
       	success:function(respuesta){
 
-				if($(".seleccionarNombreDepreciacion").val() == ""){
+				if($(".seleccionarNombreMaquina").val() == ""){
 
-					$("#nuevaCantidad").val(0);
-					$("#nuevoStock").val(0);
+					$("#nuevoTiempoHoras").val(0);
 					$(".precioDepreciacion").attr("precioReal",0);
 					$("#precioTotal").val(0);
 					
@@ -120,35 +119,25 @@ $(".formularioRecetaDepreciacion").on("change", "select.seleccionarNombreDepreci
 						
 					for(i=0;i<idArrayRecetaDepreciacion.length;i++){
 		
-						if(idArrayRecetaDepreciacion[i]==idDepreciacionDetalle){
+						if(idArrayRecetaDepreciacion[i]==idMaquina){
 				
 							Swal.fire({
 								icon: "error",
-								title: "El depreciacion ya está en la receta",
+								title: "El maquina ya está en la receta",
 								showConfirmButton: false,
 							    timer: 2000
 							  })
 
-							$('#seleccionarNombreDepreciacion').val(null).trigger('change');
+							$('#seleccionarNombreMaquina').val(null).trigger('change');
 
 						}else{
 
-							$("#idDepreciacion").val(respuesta["idMateria"]);
-							$("#nombreDepreciacion").val(respuesta["nombre"]+" - "+respuesta["marca"]);
-							$(".nuevaCantidadDepreciacion").attr("stock",respuesta["stock"]);
-							$("#nuevaCantidad").val(0);
-							$("#nuevoStock").val(respuesta["stock"]+" "+respuesta["unidadMedida"]);
-							$("#precioUnitario").val(respuesta["precioUnitario"]);
+							$("#idMaquina").val(respuesta["idMaquina"]);
+							$("#nombreMaquina").val(respuesta["nombre"]);
+							$("#nuevoTiempoHoras").val(0);
+							$("#precioUnitario").val(respuesta["depreciacionHora"]);
 							$(".precioDepreciacion").val(0);
-							$(".precioDepreciacion").attr("precioReal",respuesta["precioUnitario"]);
-							
-
-							if(respuesta["stock"] <= 0){
-
-								$("#nuevaCantidad").val(0);
-								$("#nuevoStock").val("0 "+respuesta["unidadMedida"]);
-								$(".nuevaCantidadDepreciacion").attr("stock",0);
-							}
+							$(".precioDepreciacion").attr("precioReal",respuesta["depreciacionHora"]);
 							
 						}
 					 }
@@ -161,7 +150,6 @@ $(".formularioRecetaDepreciacion").on("change", "select.seleccionarNombreDepreci
 			  sumaTotalPrecioRecetaDepreciacion();
 
 			  
-	
       	}
 
 
@@ -169,11 +157,12 @@ $(".formularioRecetaDepreciacion").on("change", "select.seleccionarNombreDepreci
 
 })
 
+
 /*=============================================
-MODIFICAR LA CANTIDAD
+MODIFICAR LA TIEMPO HORAS
 =============================================*/
 
-$(".formularioRecetaDepreciacion").on("change", "input.nuevaCantidadDepreciacion", function(){
+$(".formularioRecetaDepreciacion").on("change", "input.nuevoTiempoHorasDepreciacion", function(){
 
 	var precioUnitario = $(".precioDepreciacion");
 
@@ -181,62 +170,22 @@ $(".formularioRecetaDepreciacion").on("change", "input.nuevaCantidadDepreciacion
 
 	precioUnitario.val(precioUnitarioFinal);
 
-	var nuevoStock = (Number($(this).attr("stock")) - $(this).val()).toFixed(3);
+	$(".precioDepreciacion").val(precioUnitarioFinal);
 
-	$(this).attr("nuevoStock", nuevoStock);
-
-	$("#nuevoStock").val(nuevoStock);
-
-		if(Number($(this).val()) > Number($(this).attr("stock"))){
-
-
-			if(Number($(this).attr("stock")) <= 0){
-	
-				$(this).val(0);
-	
-				precioUnitario.val(0);
-
-				$("#nuevoStock").val(0);
-				
-				Swal.fire({
-					title: "No hay stock disponible",
-					icon: "error",
-					showConfirmButton: false,
-					timer: 2000
-				  });
+	if($('#seleccionarNombreMaquina').val() == ""){
 		
-		
-			 }else{
-	
-				/*=============================================
-				SI LA CANTIDAD ES SUPERIOR AL STOCK REGRESAR VALORES INICIALES
-				=============================================*/
+		$(this).val(0);
 
-				$(this).val($(this).attr("stock"));
-	
-				$(this).attr("nuevoStock", $(this).attr("stock"));
+		precioUnitario.val(0);
 
-				$("#nuevoStock").val(0);
-		
-				var precioUnitarioFinal = $(this).val() * precioUnitario.attr("precioReal");
-		
-				precioUnitario.val(precioUnitarioFinal);
-		
-				sumaTotalPrecioRecetaDepreciacion();
-		
-				Swal.fire({
-				  title: "La cantidad supera el stock",
-				  icon: "error",
-				  showConfirmButton: false,
-				  timer: 2000
-				});
-		
-				return;
-	
-			 }
-	
-		}
+		Swal.fire({
+			title: "Seleccionar maquina",
+			icon: "error",
+			showConfirmButton: false,
+			timer: 2000
+		  });
 
+	}
 
 	// SUMAR TOTAL DE PRECIOS
 
@@ -285,7 +234,7 @@ function sumaTotalPrecioRecetaDepreciacion(){
 }
 
 /*=============================================
-EDITAR DEPRECIACION DE LA RECETA
+EDITAR DEPRECIACIÓN DE LA RECETA
 =============================================*/
 
 $(".tablaRecetaDepreciacion tbody").on("click", "button.btnEditarDepreciacionReceta", function(){
@@ -307,20 +256,15 @@ $(".tablaRecetaDepreciacion tbody").on("click", "button.btnEditarDepreciacionRec
       dataType:"json",
       success:function(respuesta){
 
-		   $("#editaridRecetaDepreciacion").val(respuesta["idRecetaMateria"]);
-		   $("#editaridDepreciacion").val(respuesta["idMateria"]);
-		   $("#editarNombreDepreciacion").val(respuesta["nombre"]);
-	       $("#editarNombreI").attr('disabled', 'disabled');
-		   $("#editarNombreI").val(respuesta["nombre"]);
+		   $("#editaridRecetaDepreciacion").val(respuesta["idRecetaDepreciacion"]);
 
-		   $(".editarCantidadDepreciacion").attr("edStock",(Number(respuesta["stock"])+Number(respuesta["cantidad"])));
-		   $("#editarCantidad").val(respuesta["cantidad"]);
-		   $("#editarStock").val(Number(respuesta["stock"]).toFixed(3)+" "+respuesta["unidadMedida"]);
-		   $("#cantidadAnterior").val(respuesta["cantidad"]);
+		   $("#editarNombreMaquina").val(respuesta["nombreMaquina"]);
+		   $("#editarNombreMaquina").attr('disabled', 'disabled');	
 
-		   $("#editarprecioUnitario").val(respuesta["precioUnitario"]);
-		   $(".editarPrecioDepreciacion").val(respuesta["total"]);
-		   $(".editarPrecioDepreciacion").attr("editarprecioReal",respuesta["precioUnitario"]);
+		   $("#editarTiempoHoras").val(respuesta["tiempoHoras"]);
+
+		   $(".editarPrecioDepreciacion").val(respuesta["depreciacionPorBatch"]);
+		   $(".editarPrecioDepreciacion").attr("editarprecioReal",respuesta["depreciacionHora"]);
 		   
 		   editarsumaTotalPrecioRecetaDepreciacion();
       }
@@ -331,74 +275,16 @@ $(".tablaRecetaDepreciacion tbody").on("click", "button.btnEditarDepreciacionRec
 
 
 /*=============================================
-MODIFICAR LA CANTIDAD AL EDITAR
+MODIFICAR LA TIEMPO HORAS AL EDITAR
 =============================================*/
 
-$(".formularioEditarRecetaDepreciacion").on("change", "input.editarCantidadDepreciacion", function(){
+$(".formularioEditarRecetaDepreciacion").on("change", "input.editarTiempoHorasDepreciacion", function(){
 
 	var editarprecioUnitario = $(".editarPrecioDepreciacion");
 
 	var precioUnitarioFinal = $(this).val() * editarprecioUnitario.attr("editarprecioReal");
 
 	editarprecioUnitario.val(precioUnitarioFinal);
-
-	var editarStock = (Number($(this).attr("edStock")) - $(this).val()).toFixed(3);
-
-    $(this).attr("editarStock", editarStock);
-
-	var diferenciaCantidad= Number($("#cantidadAnterior").val()) - $(this).val();
-
-	$("#editarStock").val(editarStock);
-	
-	$("#diferenciaCantidad").val(diferenciaCantidad);
-    
-		if(Number($(this).val()) > Number($(this).attr("edStock"))){
-
-
-			if(Number($(this).attr("edStock")) <= 0){
-	
-				$(this).val(0);
-	
-				editarprecioUnitario.val(0);
-				
-				Swal.fire({
-					title: "No hay stock disponible",
-					icon: "error",
-					showConfirmButton: false,
-					timer: 2000
-				  });
-		
-		
-			 }else{
-	
-				/*=============================================
-				SI LA CANTIDAD ES SUPERIOR AL STOCK REGRESAR VALORES INICIALES
-				=============================================*/
-				$(this).val($(this).attr("edStock"));
-	
-				$(this).attr("editarStock", $(this).attr("edStock"));
-				
-				$("#editarStock").val(0);
-
-				var precioUnitarioFinal = $(this).val() * editarprecioUnitario.attr("editarprecioReal");
-		
-				editarprecioUnitario.val(precioUnitarioFinal);
-		
-				editarsumaTotalPrecioRecetaDepreciacion();
-		
-				Swal.fire({
-				  title: "La cantidad supera el stock",
-				  icon: "error",
-				  showConfirmButton: false,
-				  timer: 2000
-				});
-		
-				return;
-	
-			 }
-	
-		}
-
 
 	// SUMAR TOTAL DE PRECIOS
 
@@ -448,7 +334,7 @@ function editarsumaTotalPrecioRecetaDepreciacion(){
 
 
 /*=============================================
-ELIMINAR DEPRECIACION DE LA RECETA
+ELIMINAR DEPRECIACIÓN DE LA RECETA
 =============================================*/
 
 $(".tablaRecetaDepreciacion tbody").on("click", "button.btnEliminarDepreciacionReceta", function(){
@@ -457,24 +343,22 @@ $(".tablaRecetaDepreciacion tbody").on("click", "button.btnEliminarDepreciacionR
 	var idReceta = $("#idReceta").val();
 	var nombreReceta = $("#nombreReceta").val();
 	var idRecetaDepreciacion = $(this).attr("idRecetaDepreciacion");
-	var idDepreciacion = $(this).attr("idDepreciacion");
-	var cantidadDepreciacion = $(this).attr("cantidadDepreciacion");
 	
 	Swal.fire({
 
-		title: '¿Está seguro de borrar el depreciacion?',
+		title: '¿Está seguro de borrar la mano de obra?',
 		text: "¡Si no lo está puede cancelar la acción!",
 		icon: 'warning',
         showCancelButton: true,
         confirmButtonColor: '#3085d6',
         cancelButtonColor: '#d33',
         cancelButtonText: 'Cancelar',
-        confirmButtonText: 'Si, borrar depreciacion!'
+        confirmButtonText: 'Si, borrar mano de obra!'
         }).then(function(result){
         if (result.value) {
 
-        window.location = "index.php?ruta=recetadepreciacion&idRecetaDepreciacion="+idRecetaDepreciacion+"&idDepreciacion="+idDepreciacion+"&cantidadDepreciacion="+
-			               cantidadDepreciacion+"&codigoReceta="+codigoReceta+"&nombreReceta="+nombreReceta+"&idReceta="+idReceta;
+        window.location = "index.php?ruta=recetadepreciacion&idRecetaDepreciacion="+idRecetaDepreciacion+
+		                  "&codigoReceta="+codigoReceta+"&nombreReceta="+nombreReceta+"&idReceta="+idReceta;
 
         }
 

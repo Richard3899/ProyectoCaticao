@@ -18,17 +18,21 @@ CREATE TABLE desembolso(
 
 CREATE TABLE maquina (
   idMaquina INT  AUTO_INCREMENT  primary key,
-  codigo VARCHAR(20) ,
-  nombre VARCHAR(50) ,
-  serie VARCHAR(20) ,
-  modelo VARCHAR(100) ,
-  descripcion VARCHAR(100) ,
-  marca VARCHAR(50) ,
-  precio DECIMAL(10,2) ,
-  añoCompra INT ,
-  capacidad DECIMAL(10,2) ,
-  potencia DECIMAL(10,2) ,
+  codigo VARCHAR(20),
+  nombre VARCHAR(50),
+  serie VARCHAR(20),
+  modelo VARCHAR(100),
+  descripcion VARCHAR(100),
+  marca VARCHAR(50),
+  precio DECIMAL(10,2),
+  añoCompra INT,
+  capacidad DECIMAL(10,2),
+  potencia DECIMAL(10,2),
+  depreciacionAnual DECIMAL(10,2),
+  depreciacionMensual DECIMAL(10,2),
+  depreciacionHora DECIMAL(10,2),
   vidaUtil INT 
+
 );
 -- -----------------------------------------------------
 -- Table tipocosto
@@ -87,13 +91,11 @@ CREATE TABLE RecetaConsumoEnergia (
 -- -----------------------------------------------------
 -- Table Receta Depreciacion
 -- -----------------------------------------------------
-
 CREATE TABLE RecetaDepreciacion (
   idRecetaDepreciacion INT  AUTO_INCREMENT  primary key,
-  depreciacionAnual DECIMAL(10,2),
-  depreciacionMensual DECIMAL(10,2),
+  nombreMaquina VARCHAR(50),
   depreciacionHora DECIMAL(10,2),
-  tiempoDeUso DECIMAL(10,2),
+  tiempoHoras DECIMAL(10,2),
   depreciacionPorBatch DECIMAL(10,2),
   idMaquina INT REFERENCES maquina (idMaquina),
   idReceta INT REFERENCES receta (idReceta)
@@ -143,7 +145,7 @@ CREATE TABLE RecetaManodeObra (
   idRecetaManodeObra INT  AUTO_INCREMENT primary key,
   nombreEmpleado VARCHAR(50),
   nombreMaquina VARCHAR(50),
-  cantidad DECIMAL(10,3),
+  tiempoHoras DECIMAL(10,3),
   precioUnitario DECIMAL(10,3),
   total DECIMAL(10,3),
   idMaquina INT REFERENCES maquina (idMaquina),

@@ -6,7 +6,7 @@ require_once "../modelos/recetadepreciacion.modelo.php";
 class AjaxRecetaDepreciacion{
 
 	/*=============================================
-	EDITAR RECETA DEPRECIACION
+	EDITAR RECETA DEPRECIACIÓN
 	=============================================*/	
 
 	public $idRecetaDepreciacion;
@@ -14,7 +14,7 @@ class AjaxRecetaDepreciacion{
 
 	public function ajaxDepreciacionReceta(){
 
-		$item="DepreciacionReceta";
+		$item="RecetaDepreciacion";
 
 		$valor = $this->idRecetaDepreciacion;
 
@@ -24,7 +24,7 @@ class AjaxRecetaDepreciacion{
 
 	}
 	/*=============================================
-	MOSTRAR RECETA DEPRECIACION
+	MOSTRAR RECETA DEPRECIACIÓNS
 	=============================================*/
 	public function ajaxReceta(){
 
@@ -38,12 +38,11 @@ class AjaxRecetaDepreciacion{
 
 	}
 
-
 }
 
 
 /*=============================================
-EDITAR RECETA DEPRECIACION
+EDITAR RECETA DEPRECIACIÓN
 =============================================*/
 if(isset($_POST["idRecetaDepreciacion"])){
 
@@ -54,7 +53,7 @@ if(isset($_POST["idRecetaDepreciacion"])){
 }
 
 /*=============================================
-MOSTRAR RECETA DEPRECIACION
+MOSTRAR RECETA DEPRECIACIÓNS
 =============================================*/
 if(isset($_POST["idReceta"])){
 
@@ -63,5 +62,4 @@ if(isset($_POST["idReceta"])){
 	$editar -> ajaxReceta();
 
 }
-
 

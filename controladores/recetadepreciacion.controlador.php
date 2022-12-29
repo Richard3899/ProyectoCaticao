@@ -3,7 +3,7 @@
 class ControladorRecetaDepreciacion{
 
 	/*=============================================
-	MOSTRAR LISTA DE RECETA DEPRECIACION
+	MOSTRAR LISTA DE RECETA DEPRECIACIÓN
 	=============================================*/
 
 	static public function ctrMostrarRecetaDepreciacion($item,$valor){
@@ -14,7 +14,7 @@ class ControladorRecetaDepreciacion{
 	}
 
 	/*=============================================
-	SUMAR TOTAL DE RECETA DEPRECIACION
+	SUMAR TOTAL DE RECETA DEPRECIACIÓN
 	=============================================*/
 	static public function ctrSumaTotalRecetaDepreciacion($valor){
 
@@ -24,18 +24,17 @@ class ControladorRecetaDepreciacion{
 	}
 
 	/*=============================================
-	AGREGAR LOS DEPRECIACION EN LA RECETA
+	AGREGAR LOS DEPRECIACIÓN EN LA RECETA
 	=============================================*/
 
 	static public function ctrCrearRecetaDepreciacion(){
 			
-		if(isset($_POST["idDepreciacion"])){
+		if(isset($_POST["idMaquina"])){
 
 			$datos = array("idReceta"=>$_POST["idReceta"],
-						   "codigoReceta"=>$_POST["codigoReceta"],
-						   "idMateria"=>$_POST["idDepreciacion"],
-						   "nombre"=>$_POST["nombreDepreciacion"],
-						   "cantidad"=>$_POST["nuevaCantidad"],
+						   "idMaquina"=>$_POST["idMaquina"],
+						   "nombreMaquina"=>$_POST["nombreMaquina"],
+						   "tiempoHoras"=>$_POST["nuevoTiempoHoras"],
 						   "precioUnitario"=>$_POST["precioUnitario"],
 						   "total"=>$_POST["precioTotal"]);
 		
@@ -48,7 +47,7 @@ class ControladorRecetaDepreciacion{
 				Swal.fire({
 				
 					icon: "success",
-					title: "¡El depreciacion fue agregado correctamente!",
+					title: "¡La depreciación fue agregada correctamente!",
 					showConfirmButton: false,
 					timer: 1500
 				
@@ -71,26 +70,19 @@ class ControladorRecetaDepreciacion{
 
 
 	/*=============================================
-	EDITAR DEPRECIACION DE LA RECETA
+	EDITAR DEPRECIACIÓN DE LA RECETA
 	=============================================*/
 
 	static public function ctrEditarRecetaDepreciacion(){
 
 		if(isset($_POST["editaridRecetaDepreciacion"])){
 
-			$datos = array( "idDepreciacionReceta"=>$_POST["editaridRecetaDepreciacion"],
-			                "idReceta"=>$_POST["editaridReceta"],
-							"codigoReceta"=>$_POST["editarcodigoReceta"],
-							"idMateria"=>$_POST["editaridDepreciacion"],
-							"nombre"=>$_POST["editarNombreDepreciacion"],
-							"cantidadAnterior"=>$_POST["cantidadAnterior"],
-							"diferenciaCantidad"=>$_POST["diferenciaCantidad"],
-							"cantidad"=>$_POST["editarCantidad"],
-							"precioUnitario"=>$_POST["editarprecioUnitario"],
+			$datos = array( "idRecetaDepreciacion"=>$_POST["editaridRecetaDepreciacion"],
+							"tiempoHoras"=>$_POST["editarTiempoHoras"],
 							"total"=>$_POST["editarprecioTotal"]);
 							   
 			$respuesta = ModeloRecetaDepreciacion::mdlEditarRecetaDepreciacion($datos);
-
+		echo var_dump($datos);
 				if($respuesta == "ok"){
 		    
 					echo '<script>
@@ -98,7 +90,7 @@ class ControladorRecetaDepreciacion{
 					Swal.fire({
 					
 						icon: "success",
-						title: "¡El depreciacion fue editado correctamente!",
+						title: "¡La depreciación fue editada correctamente!",
 						showConfirmButton: false,
 						timer: 1500
 					
@@ -119,16 +111,13 @@ class ControladorRecetaDepreciacion{
 
 
 	/*=============================================
-	BORRAR DEPRECIACION DE LA RECETA
+	BORRAR DEPRECIACIÓN DE LA RECETA
 	=============================================*/
 	static public function ctrEliminarRecetaDepreciacion(){
 
 		if(isset($_GET["idRecetaDepreciacion"])){
             
-			$datos = array("idRecetaDepreciacion"=>$_GET["idRecetaDepreciacion"],
-						   "codigoReceta"=>$_GET["codigoReceta"],
-			               "idMateria"=>$_GET["idDepreciacion"],
-						   "cantidad"=>$_GET["cantidadDepreciacion"]);
+			$datos = array("idRecetaDepreciacion"=>$_GET["idRecetaDepreciacion"]);
 			
 			$respuesta = ModeloRecetaDepreciacion::mdlEliminarRecetaDepreciacion($datos);
 			
@@ -143,7 +132,7 @@ class ControladorRecetaDepreciacion{
 				Swal.fire({
 				
 					icon: "success",
-					title: "¡El depreciacion ha sido eliminado correctamente!",
+					title: "¡La depreciación ha sido eliminada correctamente!",
 					showConfirmButton: false,
 					timer: 1500
 				
