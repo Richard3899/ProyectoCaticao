@@ -82,7 +82,7 @@ class ControladorRecetaDepreciacion{
 							"total"=>$_POST["editarprecioTotal"]);
 							   
 			$respuesta = ModeloRecetaDepreciacion::mdlEditarRecetaDepreciacion($datos);
-		echo var_dump($datos);
+		
 				if($respuesta == "ok"){
 		    
 					echo '<script>

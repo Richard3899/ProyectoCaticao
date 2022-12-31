@@ -54,7 +54,7 @@ class ModeloMaquinas{
 		$stmt->bindParam(7, $datos["precio"], PDO::PARAM_STR);
 		$stmt->bindParam(8, $datos["añoCompra"], PDO::PARAM_STR);
 		$stmt->bindParam(9, $datos["capacidad"], PDO::PARAM_STR);
-		$stmt->bindParam(10, $datos["potencia"], PDO::PARAM_STR);
+		$stmt->bindParam(10, $datos["potenciaHP"], PDO::PARAM_STR);
 		$stmt->bindParam(11, $datos["vidaUtil"], PDO::PARAM_STR);
 
 		if($stmt->execute()){
@@ -90,7 +90,7 @@ class ModeloMaquinas{
 		$stmt->bindParam(7, $datos["precio"], PDO::PARAM_STR);
 		$stmt->bindParam(8, $datos["añoCompra"], PDO::PARAM_INT);
 		$stmt->bindParam(9, $datos["capacidad"], PDO::PARAM_STR);
-		$stmt->bindParam(10, $datos["potencia"], PDO::PARAM_STR);
+		$stmt->bindParam(10, $datos["potenciaHP"], PDO::PARAM_STR);
 		$stmt->bindParam(11, $datos["vidaUtil"], PDO::PARAM_INT);
 		
 

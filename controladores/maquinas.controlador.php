@@ -33,7 +33,7 @@ class ControladorMaquinas{
 							   "precio" => $_POST["nuevoPrecio"],
 							   "añoCompra" => $_POST["nuevoAñoCompra"],
 							   "capacidad" => $_POST["nuevaCapacidad"],
-							   "potencia" => $_POST["nuevaPotencia"],
+							   "potenciaHP" => $_POST["nuevaPotenciaHP"],
 							   "vidaUtil" => $_POST["nuevaVidaUtil"]);
 							 
 
@@ -83,7 +83,7 @@ class ControladorMaquinas{
 							   "precio" => $_POST["editarPrecio"],
 							   "añoCompra" => $_POST["editarAñoCompra"],
 							   "capacidad" => $_POST["editarCapacidad"],
-							   "potencia" => $_POST["editarPotencia"],
+							   "potenciaHP" => $_POST["editarPotenciaHP"],
 							   "vidaUtil" => $_POST["editarVidaUtil"]);			   
 							   
 				$respuesta = ModeloMaquinas::mdlEditarMaquina($datos);

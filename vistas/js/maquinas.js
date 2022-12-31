@@ -80,7 +80,7 @@ $(".tablaMaquinas tbody").on("click", "button.btnEditarMaquina", function(){
 
 		   $("#editarCapacidad").val(respuesta["capacidad"]);
 
-		   $("#editarPotencia").val(respuesta["potencia"]);
+		   $("#editarPotenciaHP").val(respuesta["potenciaHP"]);
 
 		   $("#editarVidaUtil").val(respuesta["vidaUtil"]);
 

@@ -81,7 +81,7 @@ class TablaRecetas{
 			/*=============================================
  	 		TRAEMOS LAS OPCIONES
   			=============================================*/
-			$opciones = "<div class='btn-group dropleft'><button type='button' class='btn btn-secondary dropdown-toggle' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'><i lass='fas fa-ellipsis-v'></i></button><div class='dropdown-menu' aria-labelledby='dropdownMenuButton'><a class='dropdown-item' href='index.php?ruta=recetainsumos&codigo=".$recetas[$i]["codigo"]."&nombre=".$recetas[$i]["nombre"]."&idReceta=".$recetas[$i]["idReceta"]."';>Agregar Insumo</a><a class='dropdown-item' href='index.php?ruta=recetamateriales&codigo=".$recetas[$i]["codigo"]."&nombre=".$recetas[$i]["nombre"]."&idReceta=".$recetas[$i]["idReceta"]."';>Agregar Material</a><a class='dropdown-item' href='index.php?ruta=recetamanodeobra&codigo=".$recetas[$i]["codigo"]."&nombre=".$recetas[$i]["nombre"]."&idReceta=".$recetas[$i]["idReceta"]."';>Agregar Mano de Obra</a><a class='dropdown-item' href='index.php?ruta=recetadepreciacion&codigo=".$recetas[$i]["codigo"]."&nombre=".$recetas[$i]["nombre"]."&idReceta=".$recetas[$i]["idReceta"]."';>Agregar Depreciación</a><a class='dropdown-item' href='#'>Agregar Consumo de Energía</a><a class='dropdown-item' href='#'>Agregar Consumo de Gas</a><a class='dropdown-item' href='#'>Agregar Costo de Venta</a><a class='dropdown-item' href='#'>Agregar Costo de Marketing</a><a class='dropdown-item' href='#'>Agregar Costo Operativo</a></div></div>";
+			$opciones = "<div class='btn-group dropleft'><button type='button' class='btn btn-secondary dropdown-toggle' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'><i lass='fas fa-ellipsis-v'></i></button><div class='dropdown-menu' aria-labelledby='dropdownMenuButton'><a class='dropdown-item' href='index.php?ruta=recetainsumos&codigo=".$recetas[$i]["codigo"]."&nombre=".$recetas[$i]["nombre"]."&idReceta=".$recetas[$i]["idReceta"]."';>Agregar Insumo</a><a class='dropdown-item' href='index.php?ruta=recetamateriales&codigo=".$recetas[$i]["codigo"]."&nombre=".$recetas[$i]["nombre"]."&idReceta=".$recetas[$i]["idReceta"]."';>Agregar Material</a><a class='dropdown-item' href='index.php?ruta=recetamanodeobra&codigo=".$recetas[$i]["codigo"]."&nombre=".$recetas[$i]["nombre"]."&idReceta=".$recetas[$i]["idReceta"]."';>Agregar Mano de Obra</a><a class='dropdown-item' href='index.php?ruta=recetadepreciacion&codigo=".$recetas[$i]["codigo"]."&nombre=".$recetas[$i]["nombre"]."&idReceta=".$recetas[$i]["idReceta"]."';>Agregar Depreciación</a><a class='dropdown-item' href='index.php?ruta=recetaconsumoenergia&codigo=".$recetas[$i]["codigo"]."&nombre=".$recetas[$i]["nombre"]."&idReceta=".$recetas[$i]["idReceta"]."';>Agregar Consumo de Energía</a><a class='dropdown-item' href='#'>Agregar Consumo de Gas</a><a class='dropdown-item' href='#'>Agregar Costo de Venta</a><a class='dropdown-item' href='#'>Agregar Costo de Marketing</a><a class='dropdown-item' href='#'>Agregar Costo Operativo</a></div></div>";
 			
 			/*=============================================
  	 		DESIGNAR ID A RECETA DUPLICADA
@@ -101,7 +101,7 @@ class TablaRecetas{
 				  "'.$productos["nombre"].'",
 				  "'.$recetas[$i]["batch"].'",
 				  "'.$estado.'",
-				  "'.$recetas[$i]["codigoLote"].'",
+				  "'.$lotes["codigoLote"].'",
 				  "'.$botones.'",
 				  "'.$duplicar.'",
 			      "'.$opciones.'"

@@ -272,15 +272,16 @@ CREATE PROCEDURE `insertar_maquina` (   in codigoI VARCHAR(20),
                                         in precioI DECIMAL(10,2),
                                         in añoCompraI INT,
                                         in capacidadI DECIMAL(10,2),
-                                        in potenciaI DECIMAL(10,2),
+                                        in potenciaHPI DECIMAL(10,2),
                                         in vidaUtilI INT)
 BEGIN
-   insert into inventariomaquina (stock)
+   INSERT INTO inventariomaquina (stock)
 				  values (0);
-	insert into maquina (codigo,nombre,descripcion,serie,modelo,marca,precio,añoCompra,capacidad,potencia,vidaUtil,depreciacionAnual,depreciacionMensual,depreciacionHora)
-				 values (codigoI,nombreI,descripcionI,serieI,modeloI,marcaI,precioI,añoCompraI,capacidadI,potenciaI,vidaUtilI,(precioI/vidaUtilI),(precioI/vidaUtilI)/12,((precioI/vidaUtilI)/12)/(25*24));
+	INSERT INTO maquina (codigo,nombre,descripcion,serie,modelo,marca,precio,añoCompra,capacidad,potenciaHP,potenciaWatts,potenciaKw,vidaUtil,depreciacionAnual,depreciacionMensual,depreciacionHora)
+				  values (codigoI,nombreI,descripcionI,serieI,modeloI,marcaI,precioI,añoCompraI,capacidadI,potenciaHPI,(potenciaHPI*745.7),((potenciaHPI*745.7)/1000),vidaUtilI,(precioI/vidaUtilI),(precioI/vidaUtilI)/12,((precioI/vidaUtilI)/12)/(25*24));
 END$$
 DELIMITER ;
+
 
 DROP procedure IF EXISTS `editar_maquina`;
 DELIMITER $$
@@ -294,7 +295,7 @@ CREATE PROCEDURE `editar_maquina` (     in idMaquinaE INT,
                                         in precioE DECIMAL(10,2),
                                         in añoCompraE INT,
                                         in capacidadE DECIMAL(10,2),
-                                        in potenciaE DECIMAL(10,2),
+                                        in potenciaHPE DECIMAL(10,2),
                                         in vidaUtilE INT)
 BEGIN
 	update maquina set  idMaquina=idMaquinaE,
@@ -306,7 +307,9 @@ BEGIN
                         precio=precioE,
                         añoCompra=añoCompraE,
                         capacidad=capacidadE,
-                        potencia=potenciaE,
+                        potenciaHP=potenciaHPE,
+                        potenciaWatts=(potenciaHPE*745.7),
+                        potenciaKw=((potenciaHPE*745.7)/1000),
                         vidaUtil=vidaUtilE,
                         depreciacionAnual=(precioE/vidaUtilE),
                         depreciacionMensual=(precioE/vidaUtilE)/12,
@@ -1442,3 +1445,204 @@ BEGIN
 		                     WHERE rm.idReceta=idRecetaC;
 END$$
 DELIMITER ;
+
+
+-- Procedimientos almacenados de Receta Depreciación--
+
+DROP procedure IF EXISTS `mostrar_recetadepreciacion1`;
+DELIMITER $$
+USE `caticao`$$
+CREATE PROCEDURE `mostrar_recetadepreciacion1` (in idRecetaDepreciacionC INT)
+BEGIN
+
+	 SELECT * FROM recetadepreciacion
+    where idRecetaDepreciacion=idRecetaDepreciacionC;
+    
+END$$
+DELIMITER ;
+
+DROP procedure IF EXISTS `mostrar_recetadepreciacion2`;
+DELIMITER $$
+USE `caticao`$$
+CREATE PROCEDURE `mostrar_recetadepreciacion2` (in idRecetaC INT)
+BEGIN
+
+	 SELECT * FROM recetadepreciacion
+    WHERE idReceta=idRecetaC;
+
+END$$
+DELIMITER ;
+
+
+DROP procedure IF EXISTS `insertar_recetadepreciacion`;
+DELIMITER $$
+USE `caticao`$$
+CREATE PROCEDURE `insertar_recetadepreciacion` (   in idRecetaI INT,
+	                                                in idMaquinaI INT,
+	                                                in nombreMaquinaI VARCHAR(50),
+	                                                in tiempoHorasI DECIMAL(10,3),
+	                                                in depreciacionHoraI DECIMAL(10,3),
+													            in depreciacionPorBatchI DECIMAL(10,3) )
+BEGIN
+
+	 INSERT INTO recetadepreciacion(idReceta,idMaquina,nombreMaquina,tiempoHoras,depreciacionHora,depreciacionPorBatch)
+			                 VALUES (idRecetaI,idMaquinaI,nombreMaquinaI,tiempoHorasI,depreciacionHoraI,depreciacionPorBatchI);
+	
+END$$
+DELIMITER ;
+
+
+
+DROP procedure IF EXISTS `editar_recetadepreciacion`;
+DELIMITER $$
+USE `caticao`$$
+CREATE PROCEDURE `editar_recetadepreciacion` (  in idRecetaDepreciacionE INT,
+                                                in tiempoHorasE DECIMAL(10,3),
+												            in depreciacionPorBatchE DECIMAL(10,3))
+BEGIN
+
+   UPDATE recetadepreciacion SET tiempoHoras = tiempoHorasE,
+                               depreciacionPorBatch=depreciacionPorBatchE
+						         WHERE idRecetaDepreciacion=idRecetaDepreciacionE;
+                            
+END$$
+DELIMITER ;
+
+
+DROP procedure IF EXISTS `eliminar_recetadepreciacion`;
+DELIMITER $$
+USE `caticao`$$
+CREATE PROCEDURE `eliminar_recetadepreciacion` (in idRecetaDepreciacionE INT)
+BEGIN
+    	   
+   DELETE from recetadepreciacion WHERE idRecetaDepreciacion=idRecetaDepreciacionE;
+						
+END$$
+DELIMITER ;
+
+
+DROP procedure IF EXISTS `sumatotal_recetadepreciacion`;
+DELIMITER $$
+USE `caticao`$$
+CREATE PROCEDURE `sumatotal_recetadepreciacion` (in idRecetaC INT)
+BEGIN
+			SELECT SUM(rd.depreciacionPorBatch) FROM recetadepreciacion rd 
+		                     WHERE rd.idReceta=idRecetaC;
+END$$
+DELIMITER ;
+
+
+-- Procedimientos almacenados de Receta Consumo de Energía--
+
+DROP procedure IF EXISTS `mostrar_tarifaKwh`;
+DELIMITER $$
+USE `caticao`$$
+CREATE PROCEDURE `mostrar_tarifaKwh` ()
+BEGIN
+
+   SELECT * FROM tarifaenergia;
+                            
+END$$
+DELIMITER ;
+
+
+DROP procedure IF EXISTS `editar_tarifaKwh`;
+DELIMITER $$
+USE `caticao`$$
+CREATE PROCEDURE `editar_tarifaKwh` (  in tarifaKwhE DECIMAL(10,2))
+BEGIN
+
+   UPDATE tarifaenergia SET tarifaKwh = tarifaKwhE
+						         WHERE idTarifaEnergia=1;
+                            
+END$$
+DELIMITER ;
+
+
+DROP procedure IF EXISTS `mostrar_recetaconsumoenergia1`;
+DELIMITER $$
+USE `caticao`$$
+CREATE PROCEDURE `mostrar_recetaconsumoenergia1` (in idRecetaConsumoEnergiaC INT)
+BEGIN
+
+	 SELECT * FROM recetaconsumoenergia
+    where idRecetaConsumoEnergia=idRecetaConsumoEnergiaC;
+    
+END$$
+DELIMITER ;
+
+DROP procedure IF EXISTS `mostrar_recetaconsumoenergia2`;
+DELIMITER $$
+USE `caticao`$$
+CREATE PROCEDURE `mostrar_recetaconsumoenergia2` (in idRecetaC INT)
+BEGIN
+
+	 SELECT * FROM recetaconsumoenergia
+    WHERE idReceta=idRecetaC;
+
+END$$
+DELIMITER ;
+
+
+DROP procedure IF EXISTS `insertar_recetaconsumoenergia`;
+DELIMITER $$
+USE `caticao`$$
+CREATE PROCEDURE `insertar_recetaconsumoenergia` (    in idRecetaI INT,
+		                                                in idMaquinaI INT,
+		                                                in nombreMaquinaI VARCHAR(50),
+		                                                in potenciaKwI DECIMAL(10,3),
+		                                                in horasTrabajoBatchI DECIMAL(10,3),
+		                                                in consumoKwhI DECIMAL(10,3),
+		                                                in tarifaKwhI DECIMAL(10,3),
+		                                                in pagoPorBatchI DECIMAL(10,3))
+BEGIN
+
+	 INSERT INTO recetaconsumoenergia(idReceta,idMaquina,nombreMaquina,potenciaKw,horasTrabajoBatch,consumoKwh,idTarifaEnergia,tarifaKwh,pagoPorBatch)
+			                 VALUES (idRecetaI,idMaquinaI,nombreMaquinaI,potenciaKwI,horasTrabajoBatchI,consumoKwhI,1,tarifaKwhI,pagoPorBatchI);
+	
+END$$
+DELIMITER ;
+
+
+
+DROP procedure IF EXISTS `editar_recetaconsumoenergia`;
+DELIMITER $$
+USE `caticao`$$
+CREATE PROCEDURE `editar_recetaconsumoenergia` (  in idRecetaConsumoEnergiaE INT,
+																  in horasTrabajoBatchE DECIMAL(10,3),	
+                                                  in consumoKwhE DECIMAL(10,3),
+												              in pagoPorBatchE DECIMAL(10,3))
+BEGIN
+
+   UPDATE recetaconsumoenergia SET horasTrabajoBatch = horasTrabajoBatchE,
+                                   consumoKwh=consumoKwhE,
+                                   pagoPorBatch = pagoPorBatchE
+						         WHERE idRecetaConsumoEnergia=idRecetaConsumoEnergiaE;
+                            
+END$$
+DELIMITER ;
+
+
+
+DROP procedure IF EXISTS `eliminar_recetaconsumoenergia`;
+DELIMITER $$
+USE `caticao`$$
+CREATE PROCEDURE `eliminar_recetaconsumoenergia` (in idRecetaConsumoEnergiaE INT)
+BEGIN
+    	   
+   DELETE from recetaconsumoenergia WHERE idRecetaConsumoEnergia=idRecetaConsumoEnergiaE;
+						
+END$$
+DELIMITER ;
+
+
+DROP procedure IF EXISTS `sumatotal_recetaconsumoenergia`;
+DELIMITER $$
+USE `caticao`$$
+CREATE PROCEDURE `sumatotal_recetaconsumoenergia` (in idRecetaC INT)
+BEGIN
+			SELECT SUM(pagoPorBatch) FROM recetaconsumoenergia 
+		                     WHERE idReceta=idRecetaC;
+END$$
+DELIMITER ;
+

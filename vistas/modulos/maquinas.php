@@ -53,7 +53,7 @@
          <th>Precio</th>
          <th>Año de Compra</th>
          <th>Capacidad</th>
-         <th>Potencia</th>
+         <th>Potencia HP</th>
          <th>Vida Util</th>
          <th>Acciones</th>
 
@@ -234,7 +234,7 @@ MODAL AGREGAR MAQUINA
 
             <div class="row">
             
-            <!-- ENTRADA PARA LA POTENCIA -->
+            <!-- ENTRADA PARA LA POTENCIA HP -->
 
             <div class="form-group col-sm">
 
@@ -242,8 +242,8 @@ MODAL AGREGAR MAQUINA
                 <div class="input-group-prepend">
                 <span class="input-group-text"><i class="fas fa-bolt"></i></span>
                 </div>
-                <input type="number" class="form-control input-lg" name="nuevaPotencia"  id="nuevaPotencia" 
-                 placeholder="Ingresar potencia" min="0" step="0.01" max="9999999" required>
+                <input type="number" class="form-control input-lg" name="nuevaPotenciaHP"  id="nuevaPotenciaHP" 
+                 placeholder="Ingresar potencia HP" min="0" step="0.01" max="9999999" required>
             </div>
 
             </div>
@@ -456,7 +456,7 @@ MODAL EDITAR MAQUINA
 
             <div class="row">
 
-            <!-- ENTRADA PARA LA POTENCIA -->
+            <!-- ENTRADA PARA LA POTENCIA HP -->
 
             <div class="form-group col-sm">
 
@@ -464,8 +464,8 @@ MODAL EDITAR MAQUINA
                 <div class="input-group-prepend">
                 <span class="input-group-text"><i class="fas fa-bolt"></i></span>
                 </div>
-                <input type="number" class="form-control input-lg" name="editarPotencia"  id="editarPotencia" 
-                placeholder="Ingresar potencia" min="0" step="0.01" max="9999999" required>
+                <input type="number" class="form-control input-lg" name="editarPotenciaHP"  id="editarPotenciaHP" 
+                placeholder="Ingresar potencia HP" min="0" step="0.01" max="9999999" required>
             </div>
 
             </div>

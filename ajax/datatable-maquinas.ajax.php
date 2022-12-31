@@ -49,7 +49,7 @@ class TablaMaquinas{
 				  "'.$maquinas[$i]["precio"].'",
 				  "'.$maquinas[$i]["añoCompra"].'",
 				  "'.$maquinas[$i]["capacidad"].'",
-				  "'.$maquinas[$i]["potencia"].'",
+				  "'.$maquinas[$i]["potenciaHP"].'",
 				  "'.$maquinas[$i]["vidaUtil"].'",
 			      "'.$botones.'"
 			    ],';
