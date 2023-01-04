@@ -394,14 +394,16 @@ CREATE TABLE TarifaEnergia (
 
 
 -- -----------------------------------------------------
--- Table Consumo_Gas
+-- Table Receta Consumo de Gas
 -- -----------------------------------------------------
 
-CREATE TABLE ConsumoGas (
-  idConsumoGas INT  AUTO_INCREMENT primary key,
-  pesogas DECIMAL(10,2) ,
-  horastrabajoporbatch TIME ,
-  tarifagasporkg DECIMAL(10,2) ,
+CREATE TABLE RecetaConsumoGas (
+  idRecetaConsumoGas INT  AUTO_INCREMENT primary key,
+  nombreMaquina VARCHAR(50),
+  trabajoPorBatch DECIMAL(10,2),
+  pesoBalonGas DECIMAL(10,2),
+  tarifaGas DECIMAL(10,2) ,
+  pagoPorBatch DECIMAL(10,2),
   idMaquina INT REFERENCES Maquina (idMaquina),
   idReceta INT REFERENCES Receta (idReceta)
 );
@@ -514,8 +516,8 @@ CREATE TABLE Configuracion (
 
   alter table InventarioMaquina add foreign key (idMaquina) REFERENCES Maquina (idMaquina);
 
-  alter Table ConsumoGas add foreign key (idMaquina) REFERENCES Maquina (idMaquina);
-  alter Table ConsumoGas add foreign key (idReceta) REFERENCES Receta (idReceta);
+  alter Table RecetaConsumoGas add foreign key (idMaquina) REFERENCES Maquina (idMaquina);
+  alter Table RecetaConsumoGas add foreign key (idReceta) REFERENCES Receta (idReceta);
 
   alter Table UsuarioModulo add foreign key (idUsuario) REFERENCES usuario (idUsuario);
   alter Table UsuarioModulo add foreign key (idModulo) REFERENCES Modulo (idModulo);

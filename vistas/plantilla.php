@@ -59,14 +59,9 @@ foreach ($configuracion as $key => $value){
 
    echo '<div class="wrapper">';
 
-   
     include "modulos/nav.php";
-
  
-
     include "modulos/sidebar.php";
-
-
 
     if(isset($_GET["ruta"])){
 
@@ -97,6 +92,7 @@ foreach ($configuracion as $key => $value){
          $_GET["ruta"] == "recetamanodeobra" ||
          $_GET["ruta"] == "recetadepreciacion" ||
          $_GET["ruta"] == "recetaconsumoenergia" ||
+         $_GET["ruta"] == "recetaconsumogas" ||
          $_GET["ruta"] == "salir"){
 
         include "modulos/".$_GET["ruta"].".php";
@@ -112,7 +108,6 @@ foreach ($configuracion as $key => $value){
       include "modulos/inicio.php";
 
     }
-
 
     include "modulos/footer.php";
 
@@ -153,6 +148,7 @@ foreach ($configuracion as $key => $value){
 <script src="vistas/js/recetamanodeobra.js"></script>
 <script src="vistas/js/recetadepreciacion.js"></script>
 <script src="vistas/js/recetaconsumoenergia.js"></script>
+<script src="vistas/js/recetaconsumogas.js"></script>
 
 </body>
 

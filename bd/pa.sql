@@ -1646,3 +1646,91 @@ BEGIN
 END$$
 DELIMITER ;
 
+
+-- Procedimientos almacenados de Receta Consumo de Gas--
+
+DROP procedure IF EXISTS `mostrar_recetaconsumogas1`;
+DELIMITER $$
+USE `caticao`$$
+CREATE PROCEDURE `mostrar_recetaconsumogas1` (in idRecetaConsumoGasC INT)
+BEGIN
+
+	 SELECT * FROM recetaconsumogas
+    where idRecetaConsumoGas=idRecetaConsumoGasC;
+    
+END$$
+DELIMITER ;
+
+DROP procedure IF EXISTS `mostrar_recetaconsumogas2`;
+DELIMITER $$
+USE `caticao`$$
+CREATE PROCEDURE `mostrar_recetaconsumogas2` (in idRecetaC INT)
+BEGIN
+
+	 SELECT * FROM recetaconsumogas
+    WHERE idReceta=idRecetaC;
+
+END$$
+DELIMITER ;
+
+
+DROP procedure IF EXISTS `insertar_recetaconsumogas`;
+DELIMITER $$
+USE `caticao`$$
+CREATE PROCEDURE `insertar_recetaconsumogas` (     in idRecetaI INT,
+	                                                in idMaquinaI INT,
+	                                                in nombreMaquinaI VARCHAR(50),
+	                                                in trabajoPorBatchI DECIMAL(10,2),
+	                                                in pesoBalonGasI DECIMAL(10,2),
+													            in tarifaGasI DECIMAL(10,2))
+BEGIN
+
+	 INSERT INTO recetaconsumogas(idReceta,idMaquina,nombreMaquina,trabajoPorBatch,pesoBalonGas,tarifaGas,pagoPorBatch)
+			                 VALUES (idRecetaI,idMaquinaI,nombreMaquinaI,trabajoPorBatchI,pesoBalonGasI,tarifaGasI,pesoBalonGasI*tarifaGasI);
+	
+END$$
+DELIMITER ;
+
+
+
+DROP procedure IF EXISTS `editar_recetaconsumogas`;
+DELIMITER $$
+USE `caticao`$$
+CREATE PROCEDURE `editar_recetaconsumogas` (  in idRecetaConsumoGasE INT,
+                                              in trabajoPorBatchE DECIMAL(10,2),
+	                                           in pesoBalonGasE DECIMAL(10,2),
+													       in tarifaGasE DECIMAL(10,2))
+BEGIN
+
+   UPDATE recetaconsumogas SET trabajoPorBatch = trabajoPorBatchE,
+                               pesoBalonGas=pesoBalonGasE,
+                               tarifaGas=tarifaGasE,
+                               pagoPorBatch=pesoBalonGasE*tarifaGasE
+						         WHERE idRecetaConsumoGas=idRecetaConsumoGasE;
+                            
+END$$
+DELIMITER ;
+
+
+
+DROP procedure IF EXISTS `eliminar_recetaconsumogas`;
+DELIMITER $$
+USE `caticao`$$
+CREATE PROCEDURE `eliminar_recetaconsumogas` (in idRecetaConsumoGasE INT)
+BEGIN
+    	   
+   DELETE from recetaconsumogas WHERE idRecetaConsumoGas=idRecetaConsumoGasE;
+						
+END$$
+DELIMITER ;
+
+
+DROP procedure IF EXISTS `sumatotal_recetaconsumogas`;
+DELIMITER $$
+USE `caticao`$$
+CREATE PROCEDURE `sumatotal_recetaconsumogas` (in idRecetaC INT)
+BEGIN
+			SELECT SUM(pagoPorBatch) FROM recetaconsumogas
+		                     WHERE idReceta=idRecetaC;
+END$$
+DELIMITER ;

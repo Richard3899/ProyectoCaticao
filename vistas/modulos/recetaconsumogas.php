@@ -6,7 +6,7 @@
     <div class="container-fluid">
       <div class="row mb-2">
         <div class="col-sm-6">
-          <h1>Depreciación de la Receta</h1>
+          <h1>Consumo de Gas de la Receta</h1>
         </div>
         <div class="col-sm-6">
           <ol class="breadcrumb float-sm-right">
@@ -48,10 +48,10 @@
        </div>
        
         <div class="form-group row  col-12 col-lg-4 justify-content-sm-end">
-          <button class="btn btn-primary my-1 col-12 col-sm-5 col-md-4 mr-2 col-lg-7 col-xl-6" id="btnRecetaDepreciacion" data-toggle="modal" data-target="#modalRecetaDepreciacion">
-           Agregar Depreciación
+          <button class="btn btn-primary my-1 col-12 col-sm-5 col-md-4 mr-2 col-lg-8 col-xl-7" id="btnRecetaConsumoGas" data-toggle="modal" data-target="#modalRecetaConsumoGas">
+           Agregar Consumo de Gas
          </button>
-         <a type="button" class="btn btn-secondary my-1 col-12 col-sm-4 col-md-3 col-lg-4 col-xl-3" href="recetas">Volver</a>
+         <a type="button" class="btn btn-secondary my-1 col-12 col-sm-4 col-md-3 col-lg-3 col-xl-3" href="recetas">Volver</a>
         </div>
         
 
@@ -60,7 +60,7 @@
       </div>
       <div class="card-body">
 
-      <table class="table table-bordered table-striped dt-responsive tablaRecetaDepreciacion" width="100%">
+      <table class="table table-bordered table-striped dt-responsive tablaRecetaConsumoGas" width="100%">
        
       <thead>
        
@@ -68,9 +68,10 @@
          
          <th style="width:20px">#</th>
          <th>Maquina</th>
-         <th>Tiempo de Uso(Horas)</th>
-         <th>Depreciación(Hora)</th>
-         <th>Depreciación Por Batch</th>
+         <th>Trabajo por Batch (Horas)</th>
+         <th>Peso de Balon de Gas</th>
+         <th>Tarifa de Gas por Kg</th>
+         <th>Pago por batch</th>
          <th>Acciones</th>
 
        </tr> 
@@ -92,16 +93,16 @@
 <!-- /.content-wrapper -->
 
 <!--=====================================
-MODAL RECETA DEPRECIACIÓN
+MODAL RECETA CONSUMO DE GAS
 ======================================-->
 
-<div id="modalRecetaDepreciacion" class="modal fade" role="dialog">
+<div id="modalRecetaConsumoGas" class="modal fade" role="dialog">
 
 <div class="modal-dialog modal-lg">
 
   <div class="modal-content">
 
-    <form role="form" method="post" enctype="multipart/form-data" class="formularioRecetaDepreciacion">
+    <form role="form" method="post" enctype="multipart/form-data" class="formularioRecetaConsumoGas">
 
       <!--=====================================
       CABEZA DEL MODAL
@@ -109,7 +110,7 @@ MODAL RECETA DEPRECIACIÓN
 
       <div class="modal-header" style="background:gray; color:white">
 
-      <h4 class="modal-title">Receta Depreciación</h4>
+      <h4 class="modal-title">Receta Consumo de Gas</h4>
 
       <button type="button" class="close" data-dismiss="modal">&times;</button>
 
@@ -163,13 +164,27 @@ MODAL RECETA DEPRECIACIÓN
 
             </div>
 
-          </div>
+            </div>
+
+              <!-- ENTRADA PARA EL TRABAJO POR BATCH (HORAS) -->
+
+              <div class="form-group col-sm">
+              
+              <div class="input-group">
+                  <div class="input-group-prepend">
+                  <span class="input-group-text"><i class="fas fa-clock"></i></span>
+                  </div>
+                  <input type="number" class="form-control input-lg nuevoTrabajoPorBatch" id="nuevoTrabajoPorBatch" name="nuevoTrabajoPorBatch" 
+                   placeholder="Ingrese el trabajo por batch (Horas)" min="0.1" step="0.1" required>
+              </div>
+
+              </div>
 
           </div>
 
           <div class="row">
 
-            <!-- ENTRADA PARA EL TIEMPO HORAS -->
+            <!-- ENTRADA PARA EL PESO DE BALON DE GAS -->
 
             <div class="form-group col-sm">
             
@@ -177,8 +192,8 @@ MODAL RECETA DEPRECIACIÓN
                 <div class="input-group-prepend">
                 <span class="input-group-text"><i class="fas fa-layer-group"></i></span>
                 </div>
-                <input type="number" class="form-control input-lg nuevoTiempoHorasDepreciacion" id="nuevoTiempoHoras" name="nuevoTiempoHoras" 
-                 min="0.1" step="0.1" required>
+                <input type="number" class="form-control input-lg nuevoPesoBalonGas" id="nuevoPesoBalonGas" name="nuevoPesoBalonGas" 
+                 placeholder="Ingresar peso del balon de gas" min="0.1" step="0.1" required>
             </div>
 
             </div>
@@ -191,10 +206,8 @@ MODAL RECETA DEPRECIACIÓN
                 <div class="input-group-prepend">
                 <span class="input-group-text"><i class="fas fa-dollar-sign"></i></span>
                 </div>
-                <input type="hidden" id="precioUnitario" name="precioUnitario">
-                <input type="hidden" id="precioTotal" name="precioTotal">
-                <input type="text" class="form-control input-lg precioDepreciacion" precioReal name="nuevoPrecioUnitario" id="nuevoPrecioUnitario"
-                 required readonly>
+                <input type="number" class="form-control input-lg nuevaTarifaGas" name="nuevaTarifaGas" id="nuevaTarifaGas"
+                 placeholder="Ingresar tarifa de gas por Kg" min="0.1" step="0.1" required>
             </div>
 
             </div>
@@ -215,14 +228,14 @@ MODAL RECETA DEPRECIACIÓN
 
         <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Salir</button>
 
-        <button type="submit" class="btn btn-primary">Guardar Depreciación</button>
+        <button type="submit" class="btn btn-primary">Guardar Consumo de Gas</button>
 
       </div>
 
       <?php
 
-        $guardarRecetaDepreciacion = new ControladorRecetaDepreciacion();
-        $guardarRecetaDepreciacion -> ctrCrearRecetaDepreciacion();
+        $guardarRecetaConsumoGas = new ControladorRecetaConsumoGas();
+        $guardarRecetaConsumoGas -> ctrCrearRecetaConsumoGas();
 
       ?>
 
@@ -239,16 +252,16 @@ MODAL RECETA DEPRECIACIÓN
 
 
 <!--=====================================
-MODAL EDITAR RECETA DEPRECIACIÓN
+MODAL EDITAR RECETA CONSUMO DE GAS
 ======================================-->
 
-<div id="modalEditarDepreciacion" class="modal fade" role="dialog">
+<div id="modalEditarConsumoGas" class="modal fade" role="dialog">
 
 <div class="modal-dialog modal-lg">
 
   <div class="modal-content">
 
-    <form role="form" method="post" enctype="multipart/form-data" class="formularioEditarRecetaDepreciacion">
+    <form role="form" method="post" enctype="multipart/form-data" class="formularioEditarRecetaConsumoGas">
 
       <!--=====================================
       CABEZA DEL MODAL
@@ -256,7 +269,7 @@ MODAL EDITAR RECETA DEPRECIACIÓN
 
       <div class="modal-header" style="background:gray; color:white">
 
-      <h4 class="modal-title">Editar Receta Depreciación</h4>
+      <h4 class="modal-title">Editar Receta Consumo de Gas</h4>
 
       <button type="button" class="close" data-dismiss="modal">&times;</button>
 
@@ -283,7 +296,7 @@ MODAL EDITAR RECETA DEPRECIACIÓN
 
             <div class="form-group col-sm">
 
-                <input type="hidden" name="editaridRecetaDepreciacion" id="editaridRecetaDepreciacion">
+                <input type="hidden" name="editaridRecetaConsumoGas" id="editaridRecetaConsumoGas">
             
             <div class="input-group">
 
@@ -293,11 +306,25 @@ MODAL EDITAR RECETA DEPRECIACIÓN
 
             </div>
 
+              <!-- ENTRADA PARA EL TRABAJO POR BATCH (HORAS) -->
+
+              <div class="form-group col-sm">
+              
+              <div class="input-group">
+                  <div class="input-group-prepend">
+                  <span class="input-group-text"><i class="fas fa-clock"></i></span>
+                  </div>
+                  <input type="number" class="form-control input-lg editarTrabajoPorBatch" id="editarTrabajoPorBatch" name="editarTrabajoPorBatch" 
+                   placeholder="Ingrese el trabajo por batch (Horas)" min="0.1" step="0.1" required>
+              </div>
+
+              </div>
+
           </div>
 
           <div class="row">
 
-            <!-- ENTRADA PARA EL TIEMPO HORAS -->
+            <!-- ENTRADA PARA EL PESO DE BALON DE GAS -->
 
             <div class="form-group col-sm">
             
@@ -305,8 +332,8 @@ MODAL EDITAR RECETA DEPRECIACIÓN
                 <div class="input-group-prepend">
                 <span class="input-group-text"><i class="fas fa-layer-group"></i></span>
                 </div>
-                <input type="number" class="form-control input-lg editarTiempoHorasDepreciacion" id="editarTiempoHoras" name="editarTiempoHoras" 
-                 min="0.1" step="0.1" required>
+                <input type="number" class="form-control input-lg editarPesoBalonGas" id="editarPesoBalonGas" name="editarPesoBalonGas" 
+                 placeholder="Ingresar peso del balon de gas" min="0.1" step="0.1" required>
             </div>
 
             </div>
@@ -319,9 +346,8 @@ MODAL EDITAR RECETA DEPRECIACIÓN
                 <div class="input-group-prepend">
                 <span class="input-group-text"><i class="fas fa-dollar-sign"></i></span>
                 </div>
-                <input type="hidden" id="editarprecioTotal" name="editarprecioTotal">
-                <input type="text" class="form-control input-lg editarPrecioDepreciacion" name="editarPrecioDepreciacion" id="editarPrecioDepreciacion"
-                 required readonly>
+                <input type="number" class="form-control input-lg editarTarifaGas" name="editarTarifaGas" id="editarTarifaGas"
+                placeholder="Ingresar tarifa de gas por Kg" min="0.1" step="0.1" required>
             </div>
 
             </div>
@@ -342,14 +368,14 @@ MODAL EDITAR RECETA DEPRECIACIÓN
 
         <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Salir</button>
 
-        <button type="submit" class="btn btn-primary">Editar Depreciación</button>
+        <button type="submit" class="btn btn-primary">Editar Consumo de Gas</button>
 
       </div>
 
       <?php
 
-          $editarRecetaDepreciacion = new ControladorRecetaDepreciacion();
-          $editarRecetaDepreciacion -> ctrEditarRecetaDepreciacion();
+          $editarRecetaConsumoGas = new ControladorRecetaConsumoGas();
+          $editarRecetaConsumoGas -> ctrEditarRecetaConsumoGas();
 
       ?>
 
@@ -365,7 +391,7 @@ MODAL EDITAR RECETA DEPRECIACIÓN
 
 <?php
 
-  $borrarRecetaDepreciacion = new ControladorRecetaDepreciacion();
-  $borrarRecetaDepreciacion -> ctrEliminarRecetaDepreciacion();
+  $borrarRecetaConsumoGas = new ControladorRecetaConsumoGas();
+  $borrarRecetaConsumoGas -> ctrEliminarRecetaConsumoGas();
 
 ?> 

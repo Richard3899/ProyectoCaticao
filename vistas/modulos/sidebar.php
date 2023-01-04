@@ -220,7 +220,7 @@ if($value["modoDark"] == 1){
               <i class="nav-icon fas fa-user"></i>
               <p>
                 Usuarios
-                <i class="right fas fa-angle-left"></i>
+                
               </p>
               
             </a>
@@ -244,7 +244,6 @@ if($value["modoDark"] == 1){
               <i class="nav-icon fas fa-gear"></i>
               <p>
                 Configuración
-                <i class="right fas fa-angle-left"></i>
               </p>
               
             </a>

@@ -9,12 +9,6 @@ require_once "../modelos/marcas.modelo.php";
 require_once "../controladores/unidadmedida.controlador.php";
 require_once "../modelos/unidadmedida.modelo.php";
 
-require_once "../controladores/inventariomateriales.controlador.php";
-require_once "../modelos/inventariomateriales.modelo.php";
-
-require_once "../controladores/kardexmateriales.controlador.php";
-require_once "../modelos/kardexmateriales.modelo.php";
-
 class TablaMateriales{
 
  	/*=============================================

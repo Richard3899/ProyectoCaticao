@@ -10,12 +10,6 @@ require_once "../modelos/marcas.modelo.php";
 require_once "../controladores/unidadmedida.controlador.php";
 require_once "../modelos/unidadmedida.modelo.php";
 
-require_once "../controladores/inventarioinsumos.controlador.php";
-require_once "../modelos/inventarioinsumos.modelo.php";
-
-require_once "../controladores/kardexinsumos.controlador.php";
-require_once "../modelos/kardexinsumos.modelo.php";
-
 class TablaInsumos{
 
  	/*=============================================
