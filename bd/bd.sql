@@ -135,6 +135,21 @@ CREATE TABLE RecetaCostoVenta (
   idReceta INT REFERENCES receta (idReceta)
 );
  
+
+-- -----------------------------------------------------
+-- Table Receta Costo Marketing
+-- -----------------------------------------------------
+
+CREATE TABLE RecetaCostoMarketing (
+  idRecetaCostoMarketing INT  AUTO_INCREMENT primary key,
+  nombreCostoMarketing VARCHAR(50),
+  cantidad DECIMAL(10,3),
+  precio DECIMAL(10,3),
+  total DECIMAL(10,3),
+  idGastoAdmin INT REFERENCES gastosadmin (idGastoAdmin),
+  idReceta INT REFERENCES receta (idReceta)
+);
+ 
 -- -----------------------------------------------------
 -- Table lote
 -- -----------------------------------------------------
@@ -502,6 +517,9 @@ CREATE TABLE Configuracion (
 
   alter Table RecetaCostoVenta add foreign key (idGastoAdmin) REFERENCES  gastoadmin (idGastoAdmin);
   alter Table RecetaCostoVenta add foreign key (idReceta) REFERENCES  receta (idReceta);
+
+  alter Table RecetaCostoMarketing add foreign key (idGastoAdmin) REFERENCES  gastoadmin (idGastoAdmin);
+  alter Table RecetaCostoMarketing add foreign key (idReceta) REFERENCES  receta (idReceta);
 
   alter Table RecetaManodeObra add foreign key (idReceta) REFERENCES  receta (idReceta);
   alter Table RecetaManodeObra add foreign key (idEmpleado) REFERENCES Empleado (idEmpleado);

@@ -1,10 +1,10 @@
 /*=============================================
-TABLA COSTO DE VENTA
+TABLA COSTO DE MARKETING
 =============================================*/
 var idRecetaC = $("#idReceta").val();
 
-$('.tablaRecetaCostoVenta').DataTable( {
-	"ajax": "ajax/datatable-recetacostoventa.ajax.php?idRecetaC="+idRecetaC,
+$('.tablaRecetaCostoMarketing').DataTable( {
+	"ajax": "ajax/datatable-recetacostomarketing.ajax.php?idRecetaC="+idRecetaC,
     "deferRender": true,
 	"columnDefs": [
 		{"className": "dt-center", "targets": "_all",
@@ -43,11 +43,11 @@ $('.tablaRecetaCostoVenta').DataTable( {
 } );
 
 /*=============================================
-CONSULTA DE COSTO DE VENTA
+CONSULTA DE COSTO DE MARKETING
 =============================================*/
-const idArrayRecetaCostoVenta=[0];
+const idArrayRecetaCostoMarketing=[0];
 
-$(".tablaRecetaCostoVenta").on("draw.dt", function() {
+$(".tablaRecetaCostoMarketing").on("draw.dt", function() {
 	
 	var x = $(".nm").val();
 
@@ -65,7 +65,7 @@ $(".tablaRecetaCostoVenta").on("draw.dt", function() {
 
 	  $.ajax({
 
-     	url:"ajax/recetacostoventa.ajax.php",
+     	url:"ajax/recetacostomarketing.ajax.php",
       	method: "POST",
       	data: datos,
       	cache: false,
@@ -76,7 +76,7 @@ $(".tablaRecetaCostoVenta").on("draw.dt", function() {
 		
 		for (var i=0; i<respuesta.length; i++) { 
 
-			idArrayRecetaCostoVenta.push(respuesta[i]["idGastoAdmin"]);
+			idArrayRecetaCostoMarketing.push(respuesta[i]["idGastoAdmin"]);
 		
 		}
 		
@@ -89,17 +89,17 @@ $(".tablaRecetaCostoVenta").on("draw.dt", function() {
 SELECCIONAR MAQUINA DE LA RECETA
 =============================================*/
 
-$(".formularioRecetaCostoVenta").on("change", "select.seleccionarNombreCostoVenta", function(){
+$(".formularioRecetaCostoMarketing").on("change", "select.seleccionarNombreCostoMarketing", function(){
 	
-	var idCostoVenta = $(this).val();
+	var idCostoMarketing = $(this).val();
 
 	var datos = new FormData();
 
-	datos.append("idCostoVenta", idCostoVenta);
+	datos.append("idCostoMarketing", idCostoMarketing);
     
 	  $.ajax({
 
-     	url:"ajax/costoventa.ajax.php",
+     	url:"ajax/costomarketing.ajax.php",
       	method: "POST",
       	data: datos,
       	cache: false,
@@ -108,35 +108,35 @@ $(".formularioRecetaCostoVenta").on("change", "select.seleccionarNombreCostoVent
       	dataType:"json",
       	success:function(respuesta){
 
-				if($(".seleccionarNombreCostoVenta").val() == ""){
+				if($(".seleccionarNombreCostoMarketing").val() == ""){
 
 					$("#nuevaCantidad").val(0);
-					$(".precioCostoVenta").val("");
+					$(".precioCostoMarketing").val("");
 					$("#precioTotal").val(0);
 					
 				}else{
 						
-					for(i=0;i<idArrayRecetaCostoVenta.length;i++){
+					for(i=0;i<idArrayRecetaCostoMarketing.length;i++){
 		
-						if(idArrayRecetaCostoVenta[i]==idCostoVenta){
+						if(idArrayRecetaCostoMarketing[i]==idCostoMarketing){
 				
 							Swal.fire({
 								icon: "error",
-								title: "El costo de venta ya está en la receta",
+								title: "El costo de marketing ya está en la receta",
 								showConfirmButton: false,
 							    timer: 2000
 							  })
 
-							$('#seleccionarNombreCostoVenta').val(null).trigger('change');
+							$('#seleccionarNombreCostoMarketing').val(null).trigger('change');
 
 						}else{
 
-							$("#idCostoVenta").val(respuesta["idGastoAdmin"]);
-							$("#nombreCostoVenta").val(respuesta["descripcion"]);
+							$("#idCostoMarketing").val(respuesta["idGastoAdmin"]);
+							$("#nombreCostoMarketing").val(respuesta["descripcion"]);
 							$("#nuevaCantidad").val(0);
 							$("#precio").val(respuesta["precio"]);
-							$(".precioCostoVenta").val(0);
-							$(".precioCostoVenta").attr("precioReal",respuesta["precio"]);
+							$(".precioCostoMarketing").val(0);
+							$(".precioCostoMarketing").attr("precioReal",respuesta["precio"]);
 							
 						}
 					 }
@@ -146,7 +146,7 @@ $(".formularioRecetaCostoVenta").on("change", "select.seleccionarNombreCostoVent
 			  
 			  // SUMAR TOTAL DE PRECIOS
 			  
-			  sumaTotalPrecioRecetaCostoVenta();
+			  sumaTotalPrecioRecetaCostoMarketing();
 
 			  
       	}
@@ -161,24 +161,24 @@ $(".formularioRecetaCostoVenta").on("change", "select.seleccionarNombreCostoVent
 MODIFICAR LA CANTIDAD
 =============================================*/
 
-$(".formularioRecetaCostoVenta").on("change", "input.nuevaCantidadCostoVenta", function(){
+$(".formularioRecetaCostoMarketing").on("change", "input.nuevaCantidadCostoMarketing", function(){
 
-	var precio = $(".precioCostoVenta");
+	var precio = $(".precioCostoMarketing");
 
 	var precioUnitarioFinal = $(this).val() * precio.attr("precioReal");
 
 	precio.val(precioUnitarioFinal);
 
-	$(".precioCostoVenta").val(precioUnitarioFinal);
+	$(".precioCostoMarketing").val(precioUnitarioFinal);
 
-	if($('#seleccionarNombreCostoVenta').val() == ""){
+	if($('#seleccionarNombreCostoMarketing').val() == ""){
 		
 		$(this).val(0);
 
 		precio.val(0);
 
 		Swal.fire({
-			title: "Seleccionar costo de venta",
+			title: "Seleccionar costo de marketing",
 			icon: "error",
 			showConfirmButton: false,
 			timer: 2000
@@ -188,7 +188,7 @@ $(".formularioRecetaCostoVenta").on("change", "input.nuevaCantidadCostoVenta", f
 
 	// SUMAR TOTAL DE PRECIOS
 
-	sumaTotalPrecioRecetaCostoVenta()
+	sumaTotalPrecioRecetaCostoMarketing()
 
 	
 })
@@ -197,9 +197,9 @@ $(".formularioRecetaCostoVenta").on("change", "input.nuevaCantidadCostoVenta", f
 SUMAR TODOS LOS PRECIOS
 =============================================*/
 
-function sumaTotalPrecioRecetaCostoVenta(){
+function sumaTotalPrecioRecetaCostoMarketing(){
 
-	var precioUnitarioItem = $(".precioCostoVenta");
+	var precioUnitarioItem = $(".precioCostoMarketing");
 
 	var arraySumaPrecioUnitario = [];  
 
@@ -218,27 +218,27 @@ function sumaTotalPrecioRecetaCostoVenta(){
 
 	var sumaTotalPrecioUnitario = arraySumaPrecioUnitario.reduce(sumaArrayPrecioUnitario,0);
 
-		$(".precioCostoVenta").number(true,3);
-		$(".precioCostoVenta").val(sumaTotalPrecioUnitario);
+		$(".precioCostoMarketing").number(true,3);
+		$(".precioCostoMarketing").val(sumaTotalPrecioUnitario);
 		$("#precioTotal").val(sumaTotalPrecioUnitario);
 
 }
 
 /*=============================================
-EDITAR COSTO DE VENTA DE LA RECETA
+EDITAR COSTO DE MARKETING DE LA RECETA
 =============================================*/
 
-$(".tablaRecetaCostoVenta tbody").on("click", "button.btnEditarCostoVentaReceta", function(){
+$(".tablaRecetaCostoMarketing tbody").on("click", "button.btnEditarCostoMarketingReceta", function(){
 
-	var idRecetaCostoVenta = $(this).attr("idRecetaCostoVenta");
+	var idRecetaCostoMarketing = $(this).attr("idRecetaCostoMarketing");
 	
 	var datos = new FormData();
 
-    datos.append("idRecetaCostoVenta", idRecetaCostoVenta);
+    datos.append("idRecetaCostoMarketing", idRecetaCostoMarketing);
 
      $.ajax({
 
-      url:"ajax/recetacostoventa.ajax.php",
+      url:"ajax/recetacostomarketing.ajax.php",
       method: "POST",
       data: datos,
       cache: false,
@@ -247,17 +247,17 @@ $(".tablaRecetaCostoVenta tbody").on("click", "button.btnEditarCostoVentaReceta"
       dataType:"json",
       success:function(respuesta){
 
-		   $("#editaridRecetaCostoVenta").val(respuesta["idRecetaCostoVenta"]);
+		   $("#editaridRecetaCostoMarketing").val(respuesta["idRecetaCostoMarketing"]);
 
-		   $("#editarNombreCostoVenta").val(respuesta["nombreCostoVenta"]);
-		   $("#editarNombreCostoVenta").attr('disabled', 'disabled');	
+		   $("#editarNombreCostoMarketing").val(respuesta["nombreCostoMarketing"]);
+		   $("#editarNombreCostoMarketing").attr('disabled', 'disabled');	
 
 		   $("#editarCantidad").val(respuesta["cantidad"]);
 
-		   $(".editarPrecioCostoVenta").val(respuesta["precio"]);
-		   $(".editarPrecioCostoVenta").attr("editarprecioReal",respuesta["precio"]);
+		   $(".editarPrecioCostoMarketing").val(respuesta["precio"]);
+		   $(".editarPrecioCostoMarketing").attr("editarprecioReal",respuesta["precio"]);
 		   
-		   editarsumaTotalPrecioRecetaCostoVenta();
+		   editarsumaTotalPrecioRecetaCostoMarketing();
       }
 
   })
@@ -269,9 +269,9 @@ $(".tablaRecetaCostoVenta tbody").on("click", "button.btnEditarCostoVentaReceta"
 MODIFICAR LA CANTIDAD AL EDITAR
 =============================================*/
 
-$(".formularioEditarRecetaCostoVenta").on("change", "input.editarCantidadCostoVenta", function(){
+$(".formularioEditarRecetaCostoMarketing").on("change", "input.editarCantidadCostoMarketing", function(){
 
-	var editarprecioUnitario = $(".editarPrecioCostoVenta");
+	var editarprecioUnitario = $(".editarPrecioCostoMarketing");
 
 	var precioUnitarioFinal = $(this).val() * editarprecioUnitario.attr("editarprecioReal");
 
@@ -279,7 +279,7 @@ $(".formularioEditarRecetaCostoVenta").on("change", "input.editarCantidadCostoVe
 
 	// SUMAR TOTAL DE PRECIOS
 
-	editarsumaTotalPrecioRecetaCostoVenta();
+	editarsumaTotalPrecioRecetaCostoMarketing();
 
 
 })
@@ -288,9 +288,9 @@ $(".formularioEditarRecetaCostoVenta").on("change", "input.editarCantidadCostoVe
 SUMAR TODOS LOS PRECIOS AL EDITAR
 =============================================*/
 
-function editarsumaTotalPrecioRecetaCostoVenta(){
+function editarsumaTotalPrecioRecetaCostoMarketing(){
 
-	var precioUnitarioItem = $(".editarPrecioCostoVenta");
+	var precioUnitarioItem = $(".editarPrecioCostoMarketing");
 
 	var arraySumaPrecioUnitario = [];  
 
@@ -309,23 +309,23 @@ function editarsumaTotalPrecioRecetaCostoVenta(){
 
 	var sumaTotalPrecioUnitario = arraySumaPrecioUnitario.reduce(sumaArrayPrecioUnitario,0);
 
-		$(".editarPrecioCostoVenta").number(true,3);
-		$(".editarPrecioCostoVenta").val(sumaTotalPrecioUnitario);
+		$(".editarPrecioCostoMarketing").number(true,3);
+		$(".editarPrecioCostoMarketing").val(sumaTotalPrecioUnitario);
 		$("#editarPrecioTotal").val(sumaTotalPrecioUnitario);
 
 }
 
 
 /*=============================================
-ELIMINAR COSTO DE VENTA DE LA RECETA
+ELIMINAR COSTO DE MARKETING DE LA RECETA
 =============================================*/
 
-$(".tablaRecetaCostoVenta tbody").on("click", "button.btnEliminarCostoVentaReceta", function(){
+$(".tablaRecetaCostoMarketing tbody").on("click", "button.btnEliminarCostoMarketingReceta", function(){
 
 	var codigoReceta = $("#codigoReceta").val();
 	var idReceta = $("#idReceta").val();
 	var nombreReceta = $("#nombreReceta").val();
-	var idRecetaCostoVenta = $(this).attr("idRecetaCostoVenta");
+	var idRecetaCostoMarketing = $(this).attr("idRecetaCostoMarketing");
 	
 	Swal.fire({
 
@@ -340,7 +340,7 @@ $(".tablaRecetaCostoVenta tbody").on("click", "button.btnEliminarCostoVentaRecet
         }).then(function(result){
         if (result.value) {
 
-        window.location = "index.php?ruta=recetacostoventa&idRecetaCostoVenta="+idRecetaCostoVenta+
+        window.location = "index.php?ruta=recetacostomarketing&idRecetaCostoMarketing="+idRecetaCostoMarketing+
 		                  "&codigoReceta="+codigoReceta+"&nombreReceta="+nombreReceta+"&idReceta="+idReceta;
 
         }

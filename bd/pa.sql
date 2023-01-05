@@ -1179,7 +1179,7 @@ BEGIN
 	-- ACTUALIZA EL INVENTARIO CON ELIMINAR E INSERTAR--						   
 	DELETE inventariomateria FROM inventariomateria
 	                         INNER JOIN materia ON inventariomateria.idMateria=inventariomateria.idMateria 
-					             WHERE inventariomateria.stock > 0;
+					             WHERE inventariomateria.idMateria > 0;
 								
 	INSERT INTO inventariomateria (idInventarioMateria,stock,idMateria)		
 	                       SELECT mm.idMateria AS idInventarioMateria,SUM(mm.ingreso) - SUM(mm.salida) AS stock,mm.idMateria FROM movimientomateria mm
@@ -1336,7 +1336,7 @@ BEGIN
 	-- ACTUALIZA EL INVENTARIO CON ELIMINAR E INSERTAR--						   
 	DELETE inventariomateria FROM inventariomateria
 	                         INNER JOIN materia ON inventariomateria.idMateria=inventariomateria.idMateria 
-					             WHERE inventariomateria.stock > 0;
+					             WHERE inventariomateria.idMateria > 0;
 								
 	INSERT INTO inventariomateria (idInventarioMateria,stock,idMateria)		
 	                       SELECT mm.idMateria AS idInventarioMateria,SUM(mm.ingreso) - SUM(mm.salida) AS stock,mm.idMateria FROM movimientomateria mm
