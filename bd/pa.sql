@@ -1820,3 +1820,90 @@ BEGIN
 		                     WHERE idReceta=idRecetaC;
 END$$
 DELIMITER ;
+
+
+
+-- Procedimientos almacenados de Receta Costo de Marketing--
+
+DROP procedure IF EXISTS `mostrar_recetacostomarketing1`;
+DELIMITER $$
+USE `caticao`$$
+CREATE PROCEDURE `mostrar_recetacostomarketing1` (in idRecetaCostoMarketingC INT)
+BEGIN
+
+	 SELECT * FROM recetacostomarketing
+    where idRecetaCostoMarketing=idRecetaCostoMarketingC;
+    
+END$$
+DELIMITER ;
+
+DROP procedure IF EXISTS `mostrar_recetacostomarketing2`;
+DELIMITER $$
+USE `caticao`$$
+CREATE PROCEDURE `mostrar_recetacostomarketing2` (in idRecetaC INT)
+BEGIN
+
+	 SELECT * FROM recetacostomarketing
+    WHERE idReceta=idRecetaC;
+
+END$$
+DELIMITER ;
+
+
+DROP procedure IF EXISTS `insertar_recetacostomarketing`;
+DELIMITER $$
+USE `caticao`$$
+CREATE PROCEDURE `insertar_recetacostomarketing` ( in idRecetaI INT,
+	                                                in idCostoMarketingI INT,
+	                                                in nombreCostoMarketingI VARCHAR(50),
+	                                                in cantidadI DECIMAL(10,3),
+	                                                in precioI DECIMAL(10,3),
+													            in totalI DECIMAL(10,3) )
+BEGIN
+
+	 INSERT INTO recetacostomarketing(idReceta,idGastoAdmin,nombreCostoMarketing,cantidad,precio,total)
+			                 VALUES (idRecetaI,idCostoMarketingI,nombreCostoMarketingI,cantidadI,precioI,totalI);
+	
+END$$
+DELIMITER ;
+
+
+
+DROP procedure IF EXISTS `editar_recetacostomarketing`;
+DELIMITER $$
+USE `caticao`$$
+CREATE PROCEDURE `editar_recetacostomarketing` (    in idRecetaCostoMarketingE INT,
+                                                in cantidadE DECIMAL(10,3),
+												            in totalE DECIMAL(10,3))
+BEGIN
+
+   UPDATE recetacostomarketing SET cantidad = cantidadE,
+                               total=totalE
+						         WHERE idRecetaCostoMarketing=idRecetaCostoMarketingE;
+                            
+END$$
+DELIMITER ;
+
+
+
+DROP procedure IF EXISTS `eliminar_recetacostomarketing`;
+DELIMITER $$
+USE `caticao`$$
+CREATE PROCEDURE `eliminar_recetacostomarketing` (in idRecetaCostoMarketingE INT)
+BEGIN
+    	   
+   DELETE from recetacostomarketing WHERE idRecetaCostoMarketing=idRecetaCostoMarketingE;
+						
+END$$
+DELIMITER ;
+
+
+DROP procedure IF EXISTS `sumatotal_recetacostomarketing`;
+DELIMITER $$
+USE `caticao`$$
+CREATE PROCEDURE `sumatotal_recetacostomarketing` (in idRecetaC INT)
+BEGIN
+			SELECT SUM(total) FROM recetacostomarketing
+		                     WHERE idReceta=idRecetaC;
+END$$
+DELIMITER ;

@@ -50,87 +50,87 @@ DELIMITER ;
 
 
 
--- Procedimientos almacenados de Receta Costo de Marketing--
+-- Procedimientos almacenados de Receta Costo de Venta--
 
-DROP procedure IF EXISTS `mostrar_recetacostomarketing1`;
+DROP procedure IF EXISTS `mostrar_recetacostooperativo1`;
 DELIMITER $$
 USE `caticao`$$
-CREATE PROCEDURE `mostrar_recetacostomarketing1` (in idRecetaCostoMarketingC INT)
+CREATE PROCEDURE `mostrar_recetacostooperativo1` (in idRecetaCostoOperativoC INT)
 BEGIN
 
-	 SELECT * FROM recetacostomarketing
-    where idRecetaCostoMarketing=idRecetaCostoMarketingC;
+	 SELECT * FROM recetacostooperativo
+    where idRecetaCostoOperativo=idRecetaCostoOperativoC;
     
 END$$
 DELIMITER ;
 
-DROP procedure IF EXISTS `mostrar_recetacostomarketing2`;
+DROP procedure IF EXISTS `mostrar_recetacostooperativo2`;
 DELIMITER $$
 USE `caticao`$$
-CREATE PROCEDURE `mostrar_recetacostomarketing2` (in idRecetaC INT)
+CREATE PROCEDURE `mostrar_recetacostooperativo2` (in idRecetaC INT)
 BEGIN
 
-	 SELECT * FROM recetacostomarketing
+	 SELECT * FROM recetacostooperativo
     WHERE idReceta=idRecetaC;
 
 END$$
 DELIMITER ;
 
 
-DROP procedure IF EXISTS `insertar_recetacostomarketing`;
+DROP procedure IF EXISTS `insertar_recetacostooperativo`;
 DELIMITER $$
 USE `caticao`$$
-CREATE PROCEDURE `insertar_recetacostomarketing` ( in idRecetaI INT,
-	                                                in idCostoMarketingI INT,
-	                                                in nombreCostoMarketingI VARCHAR(50),
+CREATE PROCEDURE `insertar_recetacostooperativo` (     in idRecetaI INT,
+	                                                in idCostoOperativoI INT,
+	                                                in nombreCostoOperativoI VARCHAR(50),
 	                                                in cantidadI DECIMAL(10,3),
 	                                                in precioI DECIMAL(10,3),
 													            in totalI DECIMAL(10,3) )
 BEGIN
 
-	 INSERT INTO recetacostomarketing(idReceta,idGastoAdmin,nombreCostoMarketing,cantidad,precio,total)
-			                 VALUES (idRecetaI,idCostoMarketingI,nombreCostoMarketingI,cantidadI,precioI,totalI);
+	 INSERT INTO recetacostooperativo(idReceta,idGastoAdmin,nombreCostoOperativo,cantidad,precio,total)
+			                 VALUES (idRecetaI,idCostoOperativoI,nombreCostoOperativoI,cantidadI,precioI,totalI);
 	
 END$$
 DELIMITER ;
 
 
 
-DROP procedure IF EXISTS `editar_recetacostomarketing`;
+DROP procedure IF EXISTS `editar_recetacostooperativo`;
 DELIMITER $$
 USE `caticao`$$
-CREATE PROCEDURE `editar_recetacostomarketing` (    in idRecetaCostoMarketingE INT,
+CREATE PROCEDURE `editar_recetacostooperativo` (    in idRecetaCostoOperativoE INT,
                                                 in cantidadE DECIMAL(10,3),
 												            in totalE DECIMAL(10,3))
 BEGIN
 
-   UPDATE recetacostomarketing SET cantidad = cantidadE,
+   UPDATE recetacostooperativo SET cantidad = cantidadE,
                                total=totalE
-						         WHERE idRecetaCostoMarketing=idRecetaCostoMarketingE;
+						         WHERE idRecetaCostoOperativo=idRecetaCostoOperativoE;
                             
 END$$
 DELIMITER ;
 
 
 
-DROP procedure IF EXISTS `eliminar_recetacostomarketing`;
+DROP procedure IF EXISTS `eliminar_recetacostooperativo`;
 DELIMITER $$
 USE `caticao`$$
-CREATE PROCEDURE `eliminar_recetacostomarketing` (in idRecetaCostoMarketingE INT)
+CREATE PROCEDURE `eliminar_recetacostooperativo` (in idRecetaCostoOperativoE INT)
 BEGIN
     	   
-   DELETE from recetacostomarketing WHERE idRecetaCostoMarketing=idRecetaCostoMarketingE;
+   DELETE from recetacostooperativo WHERE idRecetaCostoOperativo=idRecetaCostoOperativoE;
 						
 END$$
 DELIMITER ;
 
 
-DROP procedure IF EXISTS `sumatotal_recetacostomarketing`;
+DROP procedure IF EXISTS `sumatotal_recetacostooperativo`;
 DELIMITER $$
 USE `caticao`$$
-CREATE PROCEDURE `sumatotal_recetacostomarketing` (in idRecetaC INT)
+CREATE PROCEDURE `sumatotal_recetacostooperativo` (in idRecetaC INT)
 BEGIN
-			SELECT SUM(total) FROM recetacostomarketing
+			SELECT SUM(total) FROM recetacostooperativo
 		                     WHERE idReceta=idRecetaC;
 END$$
 DELIMITER ;
