@@ -168,7 +168,7 @@ $(".formularioRecetaConsumoEnergia").on("change", "select.seleccionarNombreMaqui
 				if($(".seleccionarNombreMaquina").val() == ""){
 
 					$("#nuevoTiempoHoras").val(0);
-					$(".precioConsumoEnergia").attr("precioReal",0);
+					$(".precioConsumoEnergia").val("");
 					$("#precioTotal").val(0);
 					
 				}else{

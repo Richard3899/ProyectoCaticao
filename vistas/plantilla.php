@@ -93,6 +93,7 @@ foreach ($configuracion as $key => $value){
          $_GET["ruta"] == "recetadepreciacion" ||
          $_GET["ruta"] == "recetaconsumoenergia" ||
          $_GET["ruta"] == "recetaconsumogas" ||
+         $_GET["ruta"] == "recetacostoventa" ||
          $_GET["ruta"] == "salir"){
 
         include "modulos/".$_GET["ruta"].".php";
@@ -149,6 +150,7 @@ foreach ($configuracion as $key => $value){
 <script src="vistas/js/recetadepreciacion.js"></script>
 <script src="vistas/js/recetaconsumoenergia.js"></script>
 <script src="vistas/js/recetaconsumogas.js"></script>
+<script src="vistas/js/recetacostoventa.js"></script>
 
 </body>
 

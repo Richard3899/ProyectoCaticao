@@ -111,8 +111,26 @@ CREATE TABLE gastoadmin (
 -- -----------------------------------------------------
 
 CREATE TABLE RecetaGastoAdmin (
-  idGastosAdminReceta INT  AUTO_INCREMENT primary key,
-  cantidad DECIMAL(10,2) ,
+  idRecetaGastoAdmin INT  AUTO_INCREMENT primary key,
+  nombreGastoAdmin VARCHAR(50),
+  cantidad DECIMAL(10,3),
+  precio DECIMAL(10,3),
+  total DECIMAL(10,3),
+  idGastoAdmin INT REFERENCES gastosadmin (idGastoAdmin),
+  idReceta INT REFERENCES receta (idReceta)
+);
+
+
+-- -----------------------------------------------------
+-- Table Receta Costo Venta
+-- -----------------------------------------------------
+
+CREATE TABLE RecetaCostoVenta (
+  idRecetaCostoVenta INT  AUTO_INCREMENT primary key,
+  nombreCostoVenta VARCHAR(50),
+  cantidad DECIMAL(10,3),
+  precio DECIMAL(10,3),
+  total DECIMAL(10,3),
   idGastoAdmin INT REFERENCES gastosadmin (idGastoAdmin),
   idReceta INT REFERENCES receta (idReceta)
 );
@@ -481,6 +499,9 @@ CREATE TABLE Configuracion (
 
   alter Table RecetaGastoAdmin add foreign key (idGastoAdmin) REFERENCES  gastoadmin (idGastoAdmin);
   alter Table RecetaGastoAdmin add foreign key (idReceta) REFERENCES  receta (idReceta);
+
+  alter Table RecetaCostoVenta add foreign key (idGastoAdmin) REFERENCES  gastoadmin (idGastoAdmin);
+  alter Table RecetaCostoVenta add foreign key (idReceta) REFERENCES  receta (idReceta);
 
   alter Table RecetaManodeObra add foreign key (idReceta) REFERENCES  receta (idReceta);
   alter Table RecetaManodeObra add foreign key (idEmpleado) REFERENCES Empleado (idEmpleado);

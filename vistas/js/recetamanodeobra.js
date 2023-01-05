@@ -113,7 +113,7 @@ $(".formularioRecetaManodeObra").on("change", "select.seleccionarNombreEmpleado"
 				if($(".seleccionarNombreEmpleado").val() == ""){
 
 					$("#nuevoTiempoHoras").val(0);
-					$(".precioManodeObra").attr("precioReal",0);
+					$(".precioManodeObra").val("");
 					$("#precioTotal").val(0);
 					
 				}else{
@@ -252,17 +252,9 @@ function sumaTotalPrecioRecetaManodeObra(){
 
 	var sumaTotalPrecioUnitario = arraySumaPrecioUnitario.reduce(sumaArrayPrecioUnitario,0);
 
-	if($(".precioManodeObra").attr("precioReal") == 0){
-
-		$(".precioManodeObra").val("");
-
-	}else{
-
 		$(".precioManodeObra").number(true,3);
 		$(".precioManodeObra").val(sumaTotalPrecioUnitario);
 		$("#precioTotal").val(sumaTotalPrecioUnitario);
-		
-	}
 
 }
 

@@ -1,10 +1,10 @@
-/*=============================================
-TABLA DEPRECIACIÓN
+/*=============================================DEPRECIACIÓN
+TABLA COSTO DE VENTA
 =============================================*/
 var idRecetaC = $("#idReceta").val();
 
-$('.tablaRecetaDepreciacion').DataTable( {
-	"ajax": "ajax/datatable-recetadepreciacion.ajax.php?idRecetaC="+idRecetaC,
+$('.tablaRecetaCostoVenta').DataTable( {
+	"ajax": "ajax/datatable-recetacostoventa.ajax.php?idRecetaC="+idRecetaC,
     "deferRender": true,
 	"columnDefs": [
 		{"className": "dt-center", "targets": "_all",
@@ -43,11 +43,11 @@ $('.tablaRecetaDepreciacion').DataTable( {
 } );
 
 /*=============================================
-CONSULTA DE DEPRECIACIÓN
+CONSULTA DE COSTO DE VENTA
 =============================================*/
-const idArrayRecetaDepreciacion=[0];
+const idArrayRecetaCostoVenta=[0];
 
-$(".tablaRecetaDepreciacion").on("draw.dt", function() {
+$(".tablaRecetaCostoVenta").on("draw.dt", function() {
 	
 	var x = $(".nm").val();
 
@@ -65,7 +65,7 @@ $(".tablaRecetaDepreciacion").on("draw.dt", function() {
 
 	  $.ajax({
 
-     	url:"ajax/recetadepreciacion.ajax.php",
+     	url:"ajax/recetacostoventa.ajax.php",
       	method: "POST",
       	data: datos,
       	cache: false,
@@ -76,7 +76,7 @@ $(".tablaRecetaDepreciacion").on("draw.dt", function() {
 		
 		for (var i=0; i<respuesta.length; i++) { 
 
-			idArrayRecetaDepreciacion.push(respuesta[i]["idMaquina"]);
+			idArrayRecetaCostoVenta.push(respuesta[i]["idGastoAdmin"]);
 		
 		}
 		
@@ -85,22 +85,21 @@ $(".tablaRecetaDepreciacion").on("draw.dt", function() {
 	})
 })
 
-
 /*=============================================
 SELECCIONAR MAQUINA DE LA RECETA
 =============================================*/
 
-$(".formularioRecetaDepreciacion").on("change", "select.seleccionarNombreMaquina", function(){
+$(".formularioRecetaCostoVenta").on("change", "select.seleccionarNombreCostoVenta", function(){
 	
-	var idMaquina = $(this).val();
+	var idCostoVenta = $(this).val();
 
 	var datos = new FormData();
 
-	datos.append("idMaquina", idMaquina);
+	datos.append("idCostoVenta", idCostoVenta);
     
 	  $.ajax({
 
-     	url:"ajax/maquinas.ajax.php",
+     	url:"ajax/costoventa.ajax.php",
       	method: "POST",
       	data: datos,
       	cache: false,
@@ -109,35 +108,35 @@ $(".formularioRecetaDepreciacion").on("change", "select.seleccionarNombreMaquina
       	dataType:"json",
       	success:function(respuesta){
 
-				if($(".seleccionarNombreMaquina").val() == ""){
+				if($(".seleccionarNombreCostoVenta").val() == ""){
 
-					$("#nuevoTiempoHoras").val(0);
-					$(".precioDepreciacion").val("");
+					$("#nuevaCantidad").val(0);
+					$(".precioCostoVenta").val("");
 					$("#precioTotal").val(0);
 					
 				}else{
 						
-					for(i=0;i<idArrayRecetaDepreciacion.length;i++){
+					for(i=0;i<idArrayRecetaCostoVenta.length;i++){
 		
-						if(idArrayRecetaDepreciacion[i]==idMaquina){
+						if(idArrayRecetaCostoVenta[i]==idCostoVenta){
 				
 							Swal.fire({
 								icon: "error",
-								title: "El maquina ya está en la receta",
+								title: "El costo de venta ya está en la receta",
 								showConfirmButton: false,
 							    timer: 2000
 							  })
 
-							$('#seleccionarNombreMaquina').val(null).trigger('change');
+							$('#seleccionarNombreCostoVenta').val(null).trigger('change');
 
 						}else{
 
-							$("#idMaquina").val(respuesta["idMaquina"]);
-							$("#nombreMaquina").val(respuesta["nombre"]);
-							$("#nuevoTiempoHoras").val(0);
-							$("#precioUnitario").val(respuesta["depreciacionHora"]);
-							$(".precioDepreciacion").val(0);
-							$(".precioDepreciacion").attr("precioReal",respuesta["depreciacionHora"]);
+							$("#idCostoVenta").val(respuesta["idGastoAdmin"]);
+							$("#nombreCostoVenta").val(respuesta["descripcion"]);
+							$("#nuevaCantidad").val(0);
+							$("#precio").val(respuesta["precio"]);
+							$(".precioCostoVenta").val(0);
+							$(".precioCostoVenta").attr("precioReal",respuesta["precio"]);
 							
 						}
 					 }
@@ -147,7 +146,7 @@ $(".formularioRecetaDepreciacion").on("change", "select.seleccionarNombreMaquina
 			  
 			  // SUMAR TOTAL DE PRECIOS
 			  
-			  sumaTotalPrecioRecetaDepreciacion();
+			  sumaTotalPrecioRecetaCostoVenta();
 
 			  
       	}
@@ -159,27 +158,27 @@ $(".formularioRecetaDepreciacion").on("change", "select.seleccionarNombreMaquina
 
 
 /*=============================================
-MODIFICAR LA TIEMPO HORAS
+MODIFICAR LA CANTIDAD
 =============================================*/
 
-$(".formularioRecetaDepreciacion").on("change", "input.nuevoTiempoHorasDepreciacion", function(){
+$(".formularioRecetaCostoVenta").on("change", "input.nuevaCantidadCostoVenta", function(){
 
-	var precioUnitario = $(".precioDepreciacion");
+	var precio = $(".precioCostoVenta");
 
-	var precioUnitarioFinal = $(this).val() * precioUnitario.attr("precioReal");
+	var precioUnitarioFinal = $(this).val() * precio.attr("precioReal");
 
-	precioUnitario.val(precioUnitarioFinal);
+	precio.val(precioUnitarioFinal);
 
-	$(".precioDepreciacion").val(precioUnitarioFinal);
+	$(".precioCostoVenta").val(precioUnitarioFinal);
 
-	if($('#seleccionarNombreMaquina').val() == ""){
+	if($('#seleccionarNombreCostoVenta').val() == ""){
 		
 		$(this).val(0);
 
-		precioUnitario.val(0);
+		precio.val(0);
 
 		Swal.fire({
-			title: "Seleccionar maquina",
+			title: "Seleccionar costo de venta",
 			icon: "error",
 			showConfirmButton: false,
 			timer: 2000
@@ -189,7 +188,7 @@ $(".formularioRecetaDepreciacion").on("change", "input.nuevoTiempoHorasDepreciac
 
 	// SUMAR TOTAL DE PRECIOS
 
-	sumaTotalPrecioRecetaDepreciacion()
+	sumaTotalPrecioRecetaCostoVenta()
 
 	
 })
@@ -198,9 +197,9 @@ $(".formularioRecetaDepreciacion").on("change", "input.nuevoTiempoHorasDepreciac
 SUMAR TODOS LOS PRECIOS
 =============================================*/
 
-function sumaTotalPrecioRecetaDepreciacion(){
+function sumaTotalPrecioRecetaCostoVenta(){
 
-	var precioUnitarioItem = $(".precioDepreciacion");
+	var precioUnitarioItem = $(".precioCostoVenta");
 
 	var arraySumaPrecioUnitario = [];  
 
@@ -219,35 +218,27 @@ function sumaTotalPrecioRecetaDepreciacion(){
 
 	var sumaTotalPrecioUnitario = arraySumaPrecioUnitario.reduce(sumaArrayPrecioUnitario,0);
 
-	if($(".precioDepreciacion").attr("precioReal") == 0){
-
-		$(".precioDepreciacion").val("");
-
-	}else{
-
-		$(".precioDepreciacion").number(true,3);
-		$(".precioDepreciacion").val(sumaTotalPrecioUnitario);
+		$(".precioCostoVenta").number(true,3);
+		$(".precioCostoVenta").val(sumaTotalPrecioUnitario);
 		$("#precioTotal").val(sumaTotalPrecioUnitario);
-		
-	}
 
 }
 
 /*=============================================
-EDITAR DEPRECIACIÓN DE LA RECETA
+EDITAR COSTO DE VENTA DE LA RECETA
 =============================================*/
 
-$(".tablaRecetaDepreciacion tbody").on("click", "button.btnEditarDepreciacionReceta", function(){
+$(".tablaRecetaCostoVenta tbody").on("click", "button.btnEditarCostoVentaReceta", function(){
 
-	var idRecetaDepreciacion = $(this).attr("idRecetaDepreciacion");
+	var idRecetaCostoVenta = $(this).attr("idRecetaCostoVenta");
 	
 	var datos = new FormData();
 
-    datos.append("idRecetaDepreciacion", idRecetaDepreciacion);
+    datos.append("idRecetaCostoVenta", idRecetaCostoVenta);
 
      $.ajax({
 
-      url:"ajax/recetadepreciacion.ajax.php",
+      url:"ajax/recetacostoventa.ajax.php",
       method: "POST",
       data: datos,
       cache: false,
@@ -256,17 +247,17 @@ $(".tablaRecetaDepreciacion tbody").on("click", "button.btnEditarDepreciacionRec
       dataType:"json",
       success:function(respuesta){
 
-		   $("#editaridRecetaDepreciacion").val(respuesta["idRecetaDepreciacion"]);
+		   $("#editaridRecetaCostoVenta").val(respuesta["idRecetaCostoVenta"]);
 
-		   $("#editarNombreMaquina").val(respuesta["nombreMaquina"]);
-		   $("#editarNombreMaquina").attr('disabled', 'disabled');	
+		   $("#editarNombreCostoVenta").val(respuesta["nombreCostoVenta"]);
+		   $("#editarNombreCostoVenta").attr('disabled', 'disabled');	
 
-		   $("#editarTiempoHoras").val(respuesta["tiempoHoras"]);
+		   $("#editarCantidad").val(respuesta["cantidad"]);
 
-		   $(".editarPrecioDepreciacion").val(respuesta["depreciacionPorBatch"]);
-		   $(".editarPrecioDepreciacion").attr("editarprecioReal",respuesta["depreciacionHora"]);
+		   $(".editarPrecioCostoVenta").val(respuesta["precio"]);
+		   $(".editarPrecioCostoVenta").attr("editarprecioReal",respuesta["precio"]);
 		   
-		   editarsumaTotalPrecioRecetaDepreciacion();
+		   editarsumaTotalPrecioRecetaCostoVenta();
       }
 
   })
@@ -275,12 +266,12 @@ $(".tablaRecetaDepreciacion tbody").on("click", "button.btnEditarDepreciacionRec
 
 
 /*=============================================
-MODIFICAR LA TIEMPO HORAS AL EDITAR
+MODIFICAR LA CANTIDAD AL EDITAR
 =============================================*/
 
-$(".formularioEditarRecetaDepreciacion").on("change", "input.editarTiempoHorasDepreciacion", function(){
+$(".formularioEditarRecetaCostoVenta").on("change", "input.editarCantidadCostoVenta", function(){
 
-	var editarprecioUnitario = $(".editarPrecioDepreciacion");
+	var editarprecioUnitario = $(".editarPrecioCostoVenta");
 
 	var precioUnitarioFinal = $(this).val() * editarprecioUnitario.attr("editarprecioReal");
 
@@ -288,7 +279,7 @@ $(".formularioEditarRecetaDepreciacion").on("change", "input.editarTiempoHorasDe
 
 	// SUMAR TOTAL DE PRECIOS
 
-	editarsumaTotalPrecioRecetaDepreciacion();
+	editarsumaTotalPrecioRecetaCostoVenta();
 
 
 })
@@ -297,9 +288,9 @@ $(".formularioEditarRecetaDepreciacion").on("change", "input.editarTiempoHorasDe
 SUMAR TODOS LOS PRECIOS AL EDITAR
 =============================================*/
 
-function editarsumaTotalPrecioRecetaDepreciacion(){
+function editarsumaTotalPrecioRecetaCostoVenta(){
 
-	var precioUnitarioItem = $(".editarPrecioDepreciacion");
+	var precioUnitarioItem = $(".editarPrecioCostoVenta");
 
 	var arraySumaPrecioUnitario = [];  
 
@@ -318,24 +309,23 @@ function editarsumaTotalPrecioRecetaDepreciacion(){
 
 	var sumaTotalPrecioUnitario = arraySumaPrecioUnitario.reduce(sumaArrayPrecioUnitario,0);
 
-		$(".editarPrecioDepreciacion").number(true,3);
-		$(".editarPrecioDepreciacion").val(sumaTotalPrecioUnitario);
-		$("#editarprecioTotal").val(sumaTotalPrecioUnitario);
-
+		$(".editarPrecioCostoVenta").number(true,3);
+		$(".editarPrecioCostoVenta").val(sumaTotalPrecioUnitario);
+		$("#editarPrecioTotal").val(sumaTotalPrecioUnitario);
 
 }
 
 
 /*=============================================
-ELIMINAR DEPRECIACIÓN DE LA RECETA
+ELIMINAR COSTO DE VENTA DE LA RECETA
 =============================================*/
 
-$(".tablaRecetaDepreciacion tbody").on("click", "button.btnEliminarDepreciacionReceta", function(){
+$(".tablaRecetaCostoVenta tbody").on("click", "button.btnEliminarCostoVentaReceta", function(){
 
 	var codigoReceta = $("#codigoReceta").val();
 	var idReceta = $("#idReceta").val();
 	var nombreReceta = $("#nombreReceta").val();
-	var idRecetaDepreciacion = $(this).attr("idRecetaDepreciacion");
+	var idRecetaCostoVenta = $(this).attr("idRecetaCostoVenta");
 	
 	Swal.fire({
 
@@ -350,7 +340,7 @@ $(".tablaRecetaDepreciacion tbody").on("click", "button.btnEliminarDepreciacionR
         }).then(function(result){
         if (result.value) {
 
-        window.location = "index.php?ruta=recetadepreciacion&idRecetaDepreciacion="+idRecetaDepreciacion+
+        window.location = "index.php?ruta=recetacostoventa&idRecetaCostoVenta="+idRecetaCostoVenta+
 		                  "&codigoReceta="+codigoReceta+"&nombreReceta="+nombreReceta+"&idReceta="+idReceta;
 
         }
