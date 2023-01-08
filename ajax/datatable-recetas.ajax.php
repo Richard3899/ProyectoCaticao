@@ -76,7 +76,7 @@ class TablaRecetas{
 		  	/*=============================================
  	 		TRAEMOS LAS ACCIONES
   			=============================================*/
-			$botones =  "<div class='btn-group'><button class='btn btn-warning btnEditarReceta' idReceta='".$recetas[$i]["idReceta"]."' codigoLote='".$recetas[$i]["codigoLote"]."' data-toggle='modal' data-target='#modalEditarReceta'><i class='fa fa-pen'></i></button><button class='btn btn-danger btnEliminarReceta' idReceta='".$recetas[$i]["idReceta"]."' codigoLote='".$recetas[$i]["codigoLote"]."'><i class='fa fa-times'></i></button></div>";				
+			$botones =  "<div class='btn-group'><button class='btn btn-warning btnEditarReceta' idReceta='".$recetas[$i]["idReceta"]."' codigoLote='".$recetas[$i]["codigoLote"]."' data-toggle='modal' data-target='#modalEditarReceta'><i class='fa fa-pen'></i></button><button class='btn btn-danger btnEliminarReceta' idReceta='".$recetas[$i]["idReceta"]."' codigoReceta='".$recetas[$i]["codigo"]."' codigoLote='".$recetas[$i]["codigoLote"]."'><i class='fa fa-times'></i></button></div>";				
 			
 			/*=============================================
  	 		TRAEMOS LAS OPCIONES

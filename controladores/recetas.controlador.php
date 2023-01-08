@@ -134,6 +134,7 @@ class ControladorRecetas{
 		if(isset($_GET["idReceta"]) && isset($_GET["CDPE"])){
 
 			$datos = array("idReceta" => $_GET["idReceta"],
+						   "codigoReceta" => $_GET["codigoReceta"],
 						   "codigoLote" => $_GET["codigoLote"]);
 
 			$respuesta = ModeloRecetas::mdlEliminarReceta($datos);

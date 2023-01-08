@@ -55,22 +55,28 @@ INSERT INTO `empleado` (`idEmpleado`, `nombre`, `apellido`, `direccion`, `telefo
 INSERT INTO `materia` (`idMateria`, `codigo`, `nombre`, `descripcion`, `precio`, `cantidad`,`precioUnitario`, `imagen`, `idUnidadMedida`, `idMarca`, `idTipoMateria`) VALUES
 	(1, 'LC-12', 'LECHE', 'SIN LACTOSA', 55.00, 12.00, 4.58, '', 2, 1, 1),
 	(2, 'CJ-1245', 'CAJAS', 'DE CARTON', 10, 10, 1, '', 3, 3, 2),
-	(3, 'A12', 'AGUA', 'EVAPORADA', 12.00, 12.00, 1.00, '', 2, 3, 1),
-	(4, 'VN01', 'VAINILLA', 'DULCE', 7.00, 12.00, 0.58, '', 2, 1, 1),
-	(5, 'CC001', 'CACAO', 'NATURAL', 6.00, 56.00, 0.11, '', 1, 3, 1);
+	(3, 'AG12', 'AGUA', 'EVAPORADA', 12.00, 12.00, 1.00, '', 2, 3, 1),
+	(4, 'VN001', 'VAINILLA', 'DULCE', 7.00, 12.00, 0.58, '', 2, 1, 1),
+	(5, 'CC001', 'CACAO', 'NATURAL', 6.00, 56.00, 0.11, '', 1, 3, 1),
+    (6, 'EMP001', 'EMPAQUES', 'GRANDES', 30.000, 100.000, 0.300, '', 3, 3, 2);
+
     
 INSERT INTO `inventariomateria` (`idInventarioMateria`, `stock`, `idMateria`) VALUES
 	(1, 250.00, 1),
-	(2, 0.00, NULL),
+	(2, 200.00, 2),
 	(3, 100.00, 3),
 	(4, 150.00, 4),
-	(5, 500.00, 5);
+	(5, 500.00, 5),
+	(6, 2000.00, 6);
 
 INSERT INTO `movimientomateria` (`idMovimientoMateria`, `ingreso`, `salida`, `observacion`, `codigoReceta`, `fecha`, `hora`, `idMateria`, `idMovimiento`) VALUES
 	(1, 250.00, 0.00, 'Produccion', 'S-C', '2022-12-17', '2022-12-11 10:23:25', 1, 1),
 	(2, 150.00, 0.00, 'Produccion', 'S-C', '2022-12-31', '2022-12-11 10:23:37', 4, 1),
 	(3, 100.00, 0.00, 'Produccion', 'S-C', '2022-12-10', '2022-12-11 10:23:50', 3, 1),
-	(4, 500.00, 0.00, 'Produccion', 'S-C', '2022-12-17', '2022-12-11 10:24:33', 5, 1);
+	(4, 500.00, 0.00, 'Produccion', 'S-C', '2022-12-17', '2022-12-11 10:24:33', 5, 1),
+    (5, 200.000, 0.000, 'Produccion','S-C', '2023-01-26', '2023-01-08 02:08:42', 2, 1),
+    (6, 2000.000, 0.000, 'Produccion','S-C', '2023-01-10',  '2023-01-08 02:08:52', 6, 1);
+
 
 INSERT INTO `inventarioproducto` (`idInventarioProducto`,`stock`) VALUES
 	(1,0);

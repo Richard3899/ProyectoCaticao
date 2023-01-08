@@ -1,0 +1,2 @@
+En el Kardex de insumos y materiales eliminar el editado y que solo se muestre el agregado
+de esta forma se ahorra filas de datos.

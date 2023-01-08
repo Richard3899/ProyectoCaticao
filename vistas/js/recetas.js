@@ -132,6 +132,7 @@ ELIMINAR RECETA
 $(".tablaRecetas tbody").on("click", "button.btnEliminarReceta", function(){
 
 	var idReceta = $(this).attr("idReceta");
+	var codigoReceta = $(this).attr("codigoReceta");
 	var codigoLote = $(this).attr("codigoLote");
 
 	Swal.fire({
@@ -147,7 +148,7 @@ $(".tablaRecetas tbody").on("click", "button.btnEliminarReceta", function(){
         }).then(function(result){
         if (result.value) {
 
-			window.location = "index.php?ruta=recetas&idReceta="+idReceta+"&codigoLote="+codigoLote+"&CDPE="+1;
+			window.location = "index.php?ruta=recetas&idReceta="+idReceta+"&codigoReceta="+codigoReceta+"&codigoLote="+codigoLote+"&CDPE="+1;
 
 
         }
