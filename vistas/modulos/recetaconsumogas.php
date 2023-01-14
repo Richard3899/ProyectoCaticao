@@ -184,20 +184,6 @@ MODAL RECETA CONSUMO DE GAS
 
           <div class="row">
 
-            <!-- ENTRADA PARA EL PESO DE BALON DE GAS -->
-
-            <div class="form-group col-sm">
-            
-            <div class="input-group">
-                <div class="input-group-prepend">
-                <span class="input-group-text"><i class="fas fa-layer-group"></i></span>
-                </div>
-                <input type="number" class="form-control input-lg nuevoPesoBalonGas" id="nuevoPesoBalonGas" name="nuevoPesoBalonGas" 
-                 placeholder="Ingresar peso del balon de gas" min="0.1" step="0.1" required>
-            </div>
-
-            </div>
-
             <!-- ENTRADA PARA EL PRECIO -->
 
             <div class="form-group col-sm">
@@ -212,9 +198,21 @@ MODAL RECETA CONSUMO DE GAS
 
             </div>
 
+            <!-- ENTRADA PARA EL PESO DE BALON DE GAS -->
+
+            <div class="form-group col-sm">
+            
+            <div class="input-group">
+                <div class="input-group-prepend">
+                <span class="input-group-text"><i class="fas fa-layer-group"></i></span>
+                </div>
+                <input type="number" class="form-control input-lg nuevoPesoBalonGas" id="nuevoPesoBalonGas" name="nuevoPesoBalonGas" 
+                 placeholder="Ingresar peso del balon de gas" min="0.1" step="0.1" required>
+            </div>
+
+            </div>
 
           </div>
-
 
         </div>
 
@@ -324,20 +322,6 @@ MODAL EDITAR RECETA CONSUMO DE GAS
 
           <div class="row">
 
-            <!-- ENTRADA PARA EL PESO DE BALON DE GAS -->
-
-            <div class="form-group col-sm">
-            
-            <div class="input-group">
-                <div class="input-group-prepend">
-                <span class="input-group-text"><i class="fas fa-layer-group"></i></span>
-                </div>
-                <input type="number" class="form-control input-lg editarPesoBalonGas" id="editarPesoBalonGas" name="editarPesoBalonGas" 
-                 placeholder="Ingresar peso del balon de gas" min="0.1" step="0.1" required>
-            </div>
-
-            </div>
-
             <!-- ENTRADA PARA EL PRECIO -->
 
             <div class="form-group col-sm">
@@ -352,9 +336,21 @@ MODAL EDITAR RECETA CONSUMO DE GAS
 
             </div>
 
+            <!-- ENTRADA PARA EL PESO DE BALON DE GAS -->
+
+            <div class="form-group col-sm">
+            
+            <div class="input-group">
+                <div class="input-group-prepend">
+                <span class="input-group-text"><i class="fas fa-layer-group"></i></span>
+                </div>
+                <input type="number" class="form-control input-lg editarPesoBalonGas" id="editarPesoBalonGas" name="editarPesoBalonGas" 
+                 placeholder="Ingresar peso del balon de gas" min="0.1" step="0.1" required>
+            </div>
+
+            </div>
 
           </div>
-
 
         </div>
 

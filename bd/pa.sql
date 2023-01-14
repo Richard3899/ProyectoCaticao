@@ -1224,7 +1224,7 @@ USE `caticao`$$
 CREATE PROCEDURE `sumatotal_recetainsumo` (in idRecetaC INT)
 BEGIN
       SELECT SUM(total) FROM recetamateria rm INNER JOIN materia m ON m.idMateria=rm.idMateria
-		                                        WHERE rm.idReceta=idRecetaC and m.idTipoMateria=1;
+		                                        WHERE rm.idReceta=idRecetaC AND m.idTipoMateria=1;
 END$$
 DELIMITER ;
 
@@ -1381,7 +1381,7 @@ USE `caticao`$$
 CREATE PROCEDURE `sumatotal_recetamaterial` (in idRecetaC INT)
 BEGIN
 			SELECT SUM(total) FROM recetamateria rm INNER JOIN materia m ON m.idMateria=rm.idMateria
-		                                           WHERE rm.idReceta=idRecetaC and m.idTipoMateria=2;
+		                                           WHERE rm.idReceta=idRecetaC AND m.idTipoMateria=2;
 END$$
 DELIMITER ;
 
@@ -1901,8 +1901,8 @@ DROP procedure IF EXISTS `editar_recetacostomarketing`;
 DELIMITER $$
 USE `caticao`$$
 CREATE PROCEDURE `editar_recetacostomarketing` (    in idRecetaCostoMarketingE INT,
-                                                in cantidadE DECIMAL(10,3),
-												            in totalE DECIMAL(10,3))
+                                                    in cantidadE DECIMAL(10,3),
+												                in totalE DECIMAL(10,3))
 BEGIN
 
    UPDATE recetacostomarketing SET cantidad = cantidadE,
@@ -1937,7 +1937,7 @@ END$$
 DELIMITER ;
 
 
--- Procedimientos almacenados de Receta Costo de Venta--
+-- Procedimientos almacenados de Receta Costo Operativo--
 
 DROP procedure IF EXISTS `mostrar_recetacostooperativo1`;
 DELIMITER $$
@@ -1967,7 +1967,7 @@ DELIMITER ;
 DROP procedure IF EXISTS `insertar_recetacostooperativo`;
 DELIMITER $$
 USE `caticao`$$
-CREATE PROCEDURE `insertar_recetacostooperativo` (     in idRecetaI INT,
+CREATE PROCEDURE `insertar_recetacostooperativo` ( in idRecetaI INT,
 	                                                in idCostoOperativoI INT,
 	                                                in nombreCostoOperativoI VARCHAR(50),
 	                                                in cantidadI DECIMAL(10,3),

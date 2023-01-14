@@ -34,9 +34,7 @@ if($value["modoDark"] == 1){
               <p>
                 Dashboard
               </p>
-            
             </a>
-            
           </li>
 
           <li class="nav-item <?php if(in_array($url, array('insumos', 'materiales','marcas','productos','maquinas','empleados','gastoadmin', 'costoventa','costomarketing','costooperativo'))){ echo "menu-open"; }?>">
@@ -135,8 +133,6 @@ if($value["modoDark"] == 1){
               </li>
             </ul>
               </li>
-
-
             </ul>
             
           </li>
@@ -177,7 +173,6 @@ if($value["modoDark"] == 1){
                   <p>Inventario Maquinas</p>
                 </a>
               </li>
-
             </ul>
             
           </li>
@@ -198,20 +193,34 @@ if($value["modoDark"] == 1){
                   <p>Receta</p>
                 </a>
               </li>
-
             </ul>
             
           </li>
 
-          <li class="nav-item">
-            <a href="#" class="nav-link <?php if($url=='costos'){ echo "active"; }?>">
+          <li class="nav-item <?php if (in_array($url, array('costoreceta', 'costorecetagastoadmin'))){echo "menu-open";}?>">
+          <a href="#" class="nav-link <?php if(in_array($url, array('costoreceta', 'costorecetagastoadmin'))){ echo "active"; }?>">
               <i class="nav-icon fas fa-money-bill"></i>
               <p>
                 Costos
                 <i class="right fas fa-angle-left"></i>
               </p>
-              
             </a>
+
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="costoreceta" class="nav-link <?php if(in_array($url, array('costoreceta'))){ echo "active"; }?>">
+                <i class="nav-icon fas fa-angle-double-right"></i>
+                  <p>Costo de Receta</p>
+                </a>
+              </li>
+
+              <li class="nav-item">
+                <a href="costorecetasgastoadmin" class="nav-link <?php if(in_array($url, array('costorecetagastoadmin'))){ echo "active"; }?>">
+                <i class="nav-icon fas fa-angle-double-right"></i>
+                  <p>Costo R. y Gst Admin</p>
+                </a>
+              </li>
+            </ul>
             
           </li>
 
@@ -220,11 +229,8 @@ if($value["modoDark"] == 1){
               <i class="nav-icon fas fa-user"></i>
               <p>
                 Usuarios
-                
               </p>
-              
             </a>
-            
           </li>
 
           <li class="nav-item">
@@ -244,10 +250,8 @@ if($value["modoDark"] == 1){
               <i class="nav-icon fas fa-gear"></i>
               <p>
                 Configuración
-              </p>
-              
-            </a>
-            
+              </p>            
+            </a>           
           </li>
 
       

@@ -9,7 +9,7 @@
   PLUGINS DE CSS
   ======================================-->
   
-  <link href="vistas\plugins\font-awesome-4.7.0/css/font-awesome.css" rel="stylesheet"/>
+  <link href="vistas/plugins/font-awesome-4.7.0/css/font-awesome.css" rel="stylesheet"/>
 
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -25,6 +25,7 @@
   <link rel="stylesheet" href="vistas/plugins/dropzone/min/dropzone.min.css">
   <!-- Select2 -->
   <link rel="stylesheet" href="vistas/plugins/select2/css/select2.min.css">
+
   <link rel="stylesheet" href="vistas/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
 
   
@@ -50,8 +51,6 @@
   <link rel="stylesheet" href="vistas/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
   <link rel="stylesheet" href="vistas/plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
   
-
-
   <!--=====================================
   PLUGINS DE JAVASCRIPT
   ======================================-->
@@ -77,12 +76,12 @@
   <!-- AdminLTE App -->
   <script src="vistas/dist/js/adminlte.min.js"></script>
 
-  
   <!-- DataTables  & Plugins -->
   <script src="vistas/plugins/datatables/jquery.dataTables.min.js"></script>
   <script src="vistas/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
   <script src="vistas/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
   <script src="vistas/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+  <script src="vistas/plugins/datatables-rowgroup/js/dataTables.rowGroup.js"></script>
   <script src="vistas/plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
   <script src="vistas/plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
   <script src="vistas/plugins/jszip/jszip.min.js"></script>
@@ -94,7 +93,6 @@
 
   <!-- Select2 -->
   <script src="vistas/plugins/select2/js/select2.full.min.js"></script>
-
 
   <!-- jQuery Number -->
   <script src="vistas/plugins/jqueryNumber/jquerynumber.min.js"></script>

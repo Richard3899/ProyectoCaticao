@@ -52,7 +52,6 @@ CREATE TABLE unidadmedida (
   idTipoUnidad int REFERENCES tipounidad (idTipoUnidad)
 );
 
-
 -- -----------------------------------------------------
 -- Table tipoproducto
 -- -----------------------------------------------------
@@ -61,7 +60,6 @@ CREATE TABLE tipoproducto (
   idTipoProducto INT  AUTO_INCREMENT  primary key,
   descripcion VARCHAR(50)
 );
-
 
 -- -----------------------------------------------------
 -- Table Receta Consumo Energia
