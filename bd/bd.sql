@@ -105,21 +105,6 @@ CREATE TABLE gastoadmin (
 );
 
 -- -----------------------------------------------------
--- Table Receta Gasto Admin
--- -----------------------------------------------------
-
-CREATE TABLE RecetaGastoAdmin (
-  idRecetaGastoAdmin INT  AUTO_INCREMENT primary key,
-  nombreGastoAdmin VARCHAR(50),
-  cantidad DECIMAL(10,3),
-  precio DECIMAL(10,3),
-  total DECIMAL(10,3),
-  idGastoAdmin INT REFERENCES gastosadmin (idGastoAdmin),
-  idReceta INT REFERENCES receta (idReceta)
-);
-
-
--- -----------------------------------------------------
 -- Table Receta Costo Venta
 -- -----------------------------------------------------
 
@@ -292,19 +277,6 @@ CREATE TABLE producto (
 
 
 -- -----------------------------------------------------
--- Table Gastos_Administrativos_por_mes
--- -----------------------------------------------------
-
-CREATE TABLE gastoadminpormes (
-  idgastoadminpormes INT  AUTO_INCREMENT primary key,
-  requerimiento DECIMAL(10,2) ,
-  costos DECIMAL(10,2),
-  idgastoadmin INT REFERENCES gastoadmin (idgastoadmin),
-  idCostorecetaporMes INT REFERENCES CostorecetaporMes (idCostorecetaporMes)
-);
-
-
--- -----------------------------------------------------
 -- Table Movimiento Materia
 -- -----------------------------------------------------
 
@@ -365,8 +337,6 @@ CREATE TABLE InventarioMaquina (
   stock DECIMAL(10,2) ,
   idMaquina INT REFERENCES Maquina (idMaquina)
 );
-
-
 
 
 -- -----------------------------------------------------
@@ -455,16 +425,30 @@ CREATE TABLE RecetaConsumoGas (
 );
 
 -- -----------------------------------------------------
--- Table Costos_receta_por_Mes
+-- Table Costo de Recetas por Mes
 -- -----------------------------------------------------
 
-CREATE TABLE CostorecetaporMes (
-  idCostorecetaporMes INT  AUTO_INCREMENT primary key,
+CREATE TABLE CostoRecetasGastoAdmin (
+  idCostoRecetasGastoAdmin INT  AUTO_INCREMENT primary key,
   descripcion VARCHAR(50) ,
-  mes VARCHAR(50) ,
-  costototalrecetapormes DECIMAL(10,2) ,
-  idgastoadminpormes INT REFERENCES gastoadminpormes (idgastoadminpormes)
+  mes DATE
 );
+
+-- -----------------------------------------------------
+-- Table Gasto Admin Por Mes
+-- -----------------------------------------------------
+
+CREATE TABLE GastoAdminPorMes (
+  idGastoAdminPorMes INT  AUTO_INCREMENT primary key,
+  nombreGastoAdmin VARCHAR(50),
+  cantidad DECIMAL(10,3),
+  precio DECIMAL(10,3),
+  total DECIMAL(10,3),
+  idGastoAdmin INT REFERENCES gastosadmin (idGastoAdmin),
+  idCostoRecetasGastoAdmin INT REFERENCES CostoRecetasGastoAdmin (idCostoRecetasGastoAdmin)
+);
+
+
 
 -- -----------------------------------------------------
 -- Table usuario
@@ -524,9 +508,9 @@ CREATE TABLE Configuracion (
   alter Table gastoadmin add foreign key (idUnidadMedida) REFERENCES  unidadmedida (idUnidadMedida);
   alter Table gastoadmin add foreign key (idTipoCosto) REFERENCES  tipocosto (idTipoCosto);
   alter Table gastoadmin add foreign key (idDesembolso) REFERENCES  desembolso (idDesembolso);
-
-  alter Table RecetaGastoAdmin add foreign key (idGastoAdmin) REFERENCES  gastoadmin (idGastoAdmin);
-  alter Table RecetaGastoAdmin add foreign key (idReceta) REFERENCES  receta (idReceta);
+  
+  alter Table GastoAdminPorMes add foreign key (idGastoAdmin) REFERENCES  gastoadmin (idGastoAdmin);
+  alter Table GastoAdminPorMes add foreign key (idCostoRecetasGastoAdmin) REFERENCES  CostoRecetasGastoAdmin (idCostoRecetasGastoAdmin);
 
   alter Table RecetaCostoVenta add foreign key (idGastoAdmin) REFERENCES  gastoadmin (idGastoAdmin);
   alter Table RecetaCostoVenta add foreign key (idReceta) REFERENCES  receta (idReceta);
@@ -577,9 +561,7 @@ CREATE TABLE Configuracion (
   alter Table UsuarioModulo add foreign key (idUsuario) REFERENCES usuario (idUsuario);
   alter Table UsuarioModulo add foreign key (idModulo) REFERENCES Modulo (idModulo);
 
-  alter table gastoadminpormes add foreign key (idgastoadmin) REFERENCES gastoadmin (idgastoadmin);
-  alter table gastoadminpormes add foreign key (idCostorecetaporMes) REFERENCES CostorecetaporMes (idCostorecetaporMes);
-
   alter table MovimientoMaquina add foreign key (idMaquina) REFERENCES Maquina (idMaquina);
   alter table MovimientoMaquina add foreign key (idMovimiento) REFERENCES Movimiento (idMovimiento);
+
 

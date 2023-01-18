@@ -1,0 +1,153 @@
+<?php
+
+class ControladorRecetaCostoVenta{
+
+	/*=============================================
+	MOSTRAR LISTA GASTO ADMIN POR MES
+	=============================================*/
+
+	static public function ctrMostrarRecetaCostoVenta($item,$valor){
+
+		$respuesta = ModeloRecetaCostoVenta::mdlMostrarRecetaCostoVenta($item,$valor);
+
+		return $respuesta;
+	}
+
+	/*=============================================
+	SUMAR TOTAL DE GASTO ADMIN POR MES
+	=============================================*/
+	static public function ctrSumaTotalRecetaCostoVenta($valor){
+
+		$respuesta = ModeloRecetaCostoVenta::mdlSumaTotalRecetaCostoVenta($valor);
+
+		return $respuesta;
+	}
+
+	/*=============================================
+	AGREGAR LOS GASTO ADMIN POR MES
+	=============================================*/
+
+	static public function ctrCrearRecetaCostoVenta(){
+			
+		if(isset($_POST["idCostoVenta"])){
+
+			$datos = array("idReceta"=>$_POST["idReceta"],
+						   "idCostoVenta"=>$_POST["idCostoVenta"],
+						   "nombreCostoVenta"=>$_POST["nombreCostoVenta"],
+						   "cantidad"=>$_POST["nuevaCantidad"],
+						   "precio"=>$_POST["precio"],
+						   "total"=>$_POST["precioTotal"]);
+		
+			$respuesta = ModeloRecetaCostoVenta::mdlIngresarRecetaCostoVenta($datos);
+
+			if($respuesta == "ok"){
+		    
+				echo '<script>
+
+				Swal.fire({
+				
+					icon: "success",
+					title: "¡El costo de venta fue agregado correctamente!",
+					showConfirmButton: false,
+					timer: 1500
+				
+				}).then(function(result){
+				
+					window.location = "index.php?ruta=recetacostoventa&codigo='.$_POST["codigoReceta"].'&nombre='.$_POST["nombreReceta"].'&idReceta='.$_POST["idReceta"].'";
+			
+			    });
+				
+				</script>';
+
+			}
+
+		
+
+
+		}
+
+	}
+
+
+	/*=============================================
+	EDITAR GASTO ADMIN POR MES
+	=============================================*/
+
+	static public function ctrEditarRecetaCostoVenta(){
+
+		if(isset($_POST["editaridRecetaCostoVenta"])){
+
+			$datos = array( "idRecetaCostoVenta"=>$_POST["editaridRecetaCostoVenta"],
+							"cantidad"=>$_POST["editarCantidad"],
+							"total"=>$_POST["editarPrecioTotal"]);
+							   
+			$respuesta = ModeloRecetaCostoVenta::mdlEditarRecetaCostoVenta($datos);
+		
+				if($respuesta == "ok"){
+		    
+					echo '<script>
+	
+					Swal.fire({
+					
+						icon: "success",
+						title: "¡El costo de venta fue editado correctamente!",
+						showConfirmButton: false,
+						timer: 1500
+					
+					}).then(function(result){
+					
+						window.location = "index.php?ruta=recetacostoventa&codigo='.$_POST["editarcodigoReceta"].'&nombre='.$_POST["editarnombreReceta"].'&idReceta='.$_POST["editaridReceta"].'";
+				
+					});
+					
+					</script>';
+	
+				}
+
+
+		}
+
+	}
+
+
+	/*=============================================
+	BORRAR GASTO ADMIN POR MES
+	=============================================*/
+	static public function ctrEliminarRecetaCostoVenta(){
+
+		if(isset($_GET["idRecetaCostoVenta"])){
+            
+			$datos = array("idRecetaCostoVenta"=>$_GET["idRecetaCostoVenta"]);
+			
+			$respuesta = ModeloRecetaCostoVenta::mdlEliminarRecetaCostoVenta($datos);
+			
+			if($respuesta == "ok"){
+
+				echo '<script>
+				
+				$(".cd").val("'.$_GET["codigoReceta"].'");
+
+				$(".nm").val("'.$_GET["nombreReceta"].'");
+
+				Swal.fire({
+				
+					icon: "success",
+					title: "¡El costo de venta ha sido eliminado correctamente!",
+					showConfirmButton: false,
+					timer: 1500
+				
+				}).then(function(result){
+
+					window.location = "index.php?ruta=recetacostoventa&codigo='.$_GET["codigoReceta"].'&nombre='.$_GET["nombreReceta"].'&idReceta='.$_GET["idReceta"].'";
+			
+			    });
+				
+				</script>';
+
+			}		
+		}
+
+
+	}
+
+}

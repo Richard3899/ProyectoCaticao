@@ -2114,3 +2114,36 @@ BEGIN
 	
 END$$
 DELIMITER ;
+
+-- Procedimientos almacenados Costo de Recetas y Gasto Administrativo --
+
+DROP procedure IF EXISTS `mostrar_costorecetasgastoadmin`;
+DELIMITER $$
+USE `caticao`$$
+CREATE PROCEDURE `mostrar_costorecetasgastoadmin` ()
+BEGIN
+	SELECT idCostoRecetasGastoAdmin,descripcion, DATE_FORMAT(mes,'%m - %Y') AS mes from costorecetasgastoadmin;
+END$$
+DELIMITER ;
+
+
+DROP procedure IF EXISTS `insertar_costorecetasgastoadmin`;
+DELIMITER $$
+USE `caticao`$$
+CREATE PROCEDURE `insertar_costorecetasgastoadmin` (IN descripcionI VARCHAR(45), IN mesI DATE)
+BEGIN
+	INSERT INTO costorecetasgastoadmin (descripcion,mes)
+				                   VALUES (descripcionI,mesI);
+END$$
+DELIMITER ;
+
+
+DROP procedure IF EXISTS `eliminar_costorecetasgastoadmin`;
+DELIMITER $$
+USE `caticao`$$
+CREATE PROCEDURE `eliminar_costorecetasgastoadmin` (in idCostoRecetasGastoAdminE int)
+BEGIN
+	DELETE FROM costorecetasgastoadmin
+   WHERE idCostoRecetasGastoAdmin=idCostoRecetasGastoAdminE;
+END$$
+DELIMITER ;

@@ -32,7 +32,7 @@ class TablaCostoReceta{
  	 		TRAEMOS LAS ACCIONES
   			=============================================*/ 
 
-		  	$botones =  "<div class='btn-group'><a class='btn btn-success' href='index.php?ruta=costototal&idReceta=".$recetas[$i]["idReceta"]."&codigo=".$recetas[$i]["codigo"]."'><i class='fa fa-dollar'></i></a></div>"; 
+		  	$botones =  "<div class='btn-group'><a class='btn btn-success' href='index.php?ruta=costototal&idReceta=".$recetas[$i]["idReceta"]."&codigo=".$recetas[$i]["codigo"]."'>Costo Total</a></div>"; 
 
 		  	$datosJson .='[
 			      "'.($i+1).'",
