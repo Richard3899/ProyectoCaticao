@@ -8,7 +8,7 @@ if($value["modoDark"] == 1){
 
 }else{
 
-  echo '<aside class="main-sidebar sidebar-light-primary elevation-4">';
+  echo '<aside class="main-sidebar sidebar-dark-primary elevation-4">';
 
 };
 }

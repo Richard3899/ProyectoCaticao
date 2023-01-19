@@ -40,6 +40,8 @@ require_once "controladores/recetacostomarketing.controlador.php";
 require_once "controladores/recetacostooperativo.controlador.php";
 require_once "controladores/costorecetasgastoadmin.controlador.php";
 require_once "controladores/gastoadminpormes.controlador.php";
+require_once "controladores/costototalpormes.controlador.php";
+
 
 require_once "modelos/usuarios.modelo.php";
 require_once "modelos/configuracion.modelo.php";
@@ -79,6 +81,7 @@ require_once "modelos/recetacostomarketing.modelo.php";
 require_once "modelos/recetacostooperativo.modelo.php";
 require_once "modelos/costorecetasgastoadmin.modelo.php";
 require_once "modelos/gastoadminpormes.modelo.php";
+require_once "modelos/costototalpormes.modelo.php";
 
 $plantilla = new ControladorPlantilla();
 $plantilla -> ctrPlantilla();

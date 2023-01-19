@@ -1,46 +1,40 @@
 /*=============================================
-TABLA COSTO TOTAL
+TABLA COSTO TOTAL POR MES
 =============================================*/
-var idRecetaC = $("#idReceta").val();
-var codigo = $("#codigo").val();
+var idCostoRecetasGastoAdmin = $("#idCostoRecetasGastoAdmin").val();
+var mes = $("#mes").val();
+var descripcion = $("#descripcion").val();
 
-$("#tablaCostoTotal").DataTable({
-	"ajax": "ajax/datatable-costototal.ajax.php?idRecetaC="+idRecetaC,
+$("#tablaCostoTotalPorMes").DataTable({
+	"ajax": "ajax/datatable-costototalpormes.ajax.php?idCostoRecetasGastoAdmin="+idCostoRecetasGastoAdmin+"&mes="+mes,
 	"dom": 'Bfrtip',
 	"searching": false,
 	"paging": false,
     "buttons": [{
 		extend: 'pdf',
 		text: "PDF",
-		title:'Costo total de la Receta - '+codigo,
-		filename: "Costo total de la Receta - "+codigo,
+		title:'Costo total de : '+descripcion,
+		filename: 'Costo total de : '+descripcion,
 		exportOptions: {
 			columns: ':visible'
 		},
 		customize: function (doc) {
 			doc.styles.tableHeader.fontSize = 11;
 			doc.defaultStyle.alignment = 'center';
-			doc.content[1].table.widths = [ '*', '*','*','*'];
-            // Posición en de los datos en cada columna
-			var rowCount = doc.content[1].table.body.length;
-			for (i = 1; i < rowCount; i++) {
-			doc.content[1].table.body[i][0].alignment = 'left';
-			}
+			doc.content[1].table.widths = [ '*', '*'];
 		}
 	
 	    },
 		{
 		extend: 'excel',
 		text: "Excel",
-		title:'Costo total de la Receta - '+codigo,
-		filename: "Costo total de la Receta - "+codigo,
+		title:'Costo total de : '+descripcion,
+		filename: "Costo total de : "+descripcion,
 		customize: function( xlsx ) {
                 var sheet = xlsx.xl.worksheets['sheet1.xml'];
 				//Centrar al exportar en Excel
- 				$('row c[r^="A"]', sheet).attr( 's', '51' );
-                $('row c[r^="B"]', sheet).attr( 's', '51' );
-				$('row c[r^="C"]', sheet).attr( 's', '51' );
-				$('row c[r^="D"]', sheet).attr( 's', '52' );
+ 				 $('row c[r^="A"]', sheet).attr( 's', '51' );
+				 $('row c[r^="B"]', sheet).attr( 's', '52' );
 	
             },
 		exportOptions: {
@@ -50,7 +44,7 @@ $("#tablaCostoTotal").DataTable({
 		{
 		extend: 'print',
 		text: "Imprimir",
-		title:'Costo total de la Receta - '+codigo,
+		title:'Costo total de : '+descripcion,
 		exportOptions: {
 			columns: ':visible'
 		},
@@ -67,7 +61,7 @@ $("#tablaCostoTotal").DataTable({
 	"columnDefs": [
 		{"className": "dt-center", "targets": "_all"},
 		//Tipo de dato (Número)
-		{targets:[3], render: DataTable.render.number( ',', '.', 2, 'S/' )},
+	
 		{targets:[1], render: DataTable.render.number( ',', '.', 2, 'S/' )}
 	  ],
 	"processing": true,
@@ -95,3 +89,4 @@ $("#tablaCostoTotal").DataTable({
 			"sSortDescending": ": Activar para ordenar la columna de manera descendente"
 		}}
   });
+

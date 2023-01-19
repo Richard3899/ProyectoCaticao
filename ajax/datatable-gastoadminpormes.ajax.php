@@ -6,24 +6,24 @@ require_once "../modelos/gastoadminpormes.modelo.php";
 class TablaGastoAdminPorMes{
 
  	/*=============================================
- 	 MOSTRAR LA TABLA DE RECETA COSTO DE VENTA
+ 	 MOSTRAR LA TABLA DE GASTOS ADMINISTRATIVOS POR MES
   	=============================================*/ 
 
 	public function mostrarTablaGastoAdminPorMes(){
 
-    	$idRecetaC=$_GET["idCostoRecetasGastoAdminC"];
+    	$idCostoRecetasGastoAdminC=$_GET["idCostoRecetasGastoAdminC"];
 
 		$item = "CostoRecetasGastoAdmin";
 
-  		$gastoadminpormes = ControladorGastoAdminPorMes::ctrMostrarGastoAdminPorMes($item,$idRecetaC);	
+  		$gastoadminpormes = ControladorGastoAdminPorMes::ctrMostrarGastoAdminPorMes($item,$idCostoRecetasGastoAdminC);	
 
 		/*============================================
- 	 	TRAEMOS EL TOTAL DE RECETA COSTO DE VENTA
+ 	 	TRAEMOS EL TOTAL DE GASTOS ADMINISTRATIVOS POR MES
   		=============================================*/
 
-		$sumatotalcostoventareceta = ControladorGastoAdminPorMes::ctrSumaTotalGastoAdminPorMes($idRecetaC);	
+		$sumatotalgastoadminpormes = ControladorGastoAdminPorMes::ctrSumaTotalGastoAdminPorMes($idCostoRecetasGastoAdminC);	
 
-		$total = $sumatotalcostoventareceta[0];
+		$total = $sumatotalgastoadminpormes[0];
 
 		if(count($gastoadminpormes) == 0){
 
