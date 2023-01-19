@@ -28,12 +28,12 @@
       <div class="row col-12 col-lg-8">
 
         <!-- ENTRADA PARA LA RECETA -->
-        <div class="form-group my-1 col-12 col-sm-7 col-md-8 col-lg-6 col-xl-6">
+        <div class="form-group my-1 col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6">
           <div class="input-group">
             <div class="input-group-prepend">
             <span class="input-group-text"><i class="fas fa-file-signature"></i></span>
             </div>
-            <input type="text" class="form-control input-lg nm" value="<?php echo $_GET['nombre']; ?>" readonly required>
+            <input type="text" class="form-control input-lg nm" value="<?php echo $_GET['descripcion']; ?>" readonly required>
           </div>
        </div>
        </div>
@@ -42,7 +42,7 @@
           <button class="btn btn-primary my-1 col-12 col-sm-5 col-md-4 mr-2 col-lg-8 col-xl-7" id="btnGastoAdminPorMes" data-toggle="modal" data-target="#modalGastoAdminPorMes">
            Agregar Gasto Admin
          </button>
-         <a type="button" class="btn btn-secondary my-1 col-12 col-sm-4 col-md-3 col-lg-3 col-xl-3" href="recetas">Volver</a>
+         <a type="button" class="btn btn-secondary my-1 col-12 col-sm-4 col-md-3 col-lg-3 col-xl-3" href="costorecetasgastoadmin">Volver</a>
         </div>
         
 
@@ -83,7 +83,7 @@
 <!-- /.content-wrapper -->
 
 <!--=====================================
-MODAL RECETA COSTO DE VENTA
+MODAL GASTO ADMINISTRATIVO POR MES
 ======================================-->
 
 <div id="modalGastoAdminPorMes" class="modal fade" role="dialog">
@@ -105,12 +105,10 @@ MODAL RECETA COSTO DE VENTA
       <button type="button" class="close" data-dismiss="modal">&times;</button>
 
       </div>
+ 
+      <input type="hidden" name="idCostoRecetasGastoAdmin" id="idCostoRecetasGastoAdmin" value="<?php echo $_GET['idCostoRecetasGastoAdmin']; ?>">
 
-      <input type="hidden" name="codigoReceta" id="codigoReceta" value="<?php echo $_GET['codigo']; ?>">
-      
-      <input type="hidden" name="idReceta" id="idReceta" value="<?php echo $_GET['idReceta']; ?>">
-
-      <input type="hidden" name="nombreReceta" id="nombreReceta" value="<?php echo $_GET['nombre']; ?>">
+      <input type="hidden" name="descripcion" id="descripcion" value="<?php echo $_GET['descripcion']; ?>">
 
       <!--=====================================
       CUERPO DEL MODAL
@@ -122,17 +120,17 @@ MODAL RECETA COSTO DE VENTA
 
         <div class="row">
 
-            <!-- ENTRADA PARA SELECCIONAR COSTO DE VENTA -->
+            <!-- ENTRADA PARA SELECCIONAR GASTO ADMINISTRATIVO -->
 
             <div class="form-group col-sm">
             
             <div class="input-group">
 
-                <input type="hidden" name="idCostoVenta" id="idCostoVenta">
+                <input type="hidden" name="idGastoAdmin" id="idGastoAdmin">
 
-                <input type="hidden" name="nombreCostoVenta" id="nombreCostoVenta">
+                <input type="hidden" name="nombreGastoAdmin" id="nombreGastoAdmin">
 
-                <select class="form-control select2 input-lg seleccionarNombreCostoVenta" id="seleccionarNombreCostoVenta" name="seleccionarNombreCostoVenta" style="width: 100%;" required>
+                <select class="form-control select2 input-lg seleccionarNombreGastoAdmin" id="seleccionarNombreGastoAdmin" name="seleccionarNombreGastoAdmin" style="width: 100%;" required>
                 
                 <option value="">Seleccionar Gasto Admin</option>
 
@@ -140,7 +138,7 @@ MODAL RECETA COSTO DE VENTA
                     $item = null;
                     $valor = null;
 
-                    $maquina = ControladorCostoVenta::ctrMostrarCostoVenta($item,$valor);
+                    $maquina = ControladorGastoAdmin::ctrMostrarGastoAdmin($item,$valor);
 
                   foreach($maquina as $key=> $value){ 
 
@@ -168,7 +166,7 @@ MODAL RECETA COSTO DE VENTA
                 <div class="input-group-prepend">
                 <span class="input-group-text"><i class="fas fa-layer-group"></i></span>
                 </div>
-                <input type="number" class="form-control input-lg nuevaCantidadCostoVenta" id="nuevaCantidad" name="nuevaCantidad" 
+                <input type="number" class="form-control input-lg nuevaCantidadGastoAdmin" id="nuevaCantidad" name="nuevaCantidad" 
                  min="0.1" step="0.1" required>
             </div>
 
@@ -184,7 +182,7 @@ MODAL RECETA COSTO DE VENTA
                 </div>
                 <input type="hidden" id="precio" name="precio">
                 <input type="hidden" id="precioTotal" name="precioTotal">
-                <input type="text" class="form-control input-lg precioCostoVenta" precioReal name="nuevoPrecio" id="nuevoPrecio"
+                <input type="text" class="form-control input-lg precioGastoAdmin" precioReal name="nuevoPrecio" id="nuevoPrecio"
                  required readonly>
             </div>
 
@@ -230,10 +228,10 @@ MODAL RECETA COSTO DE VENTA
 
 
 <!--=====================================
-MODAL EDITAR RECETA COSTO DE VENTA
+MODAL EDITAR GASTO ADMINISTRATIVO POR MES
 ======================================-->
 
-<div id="modalEditarCostoVenta" class="modal fade" role="dialog">
+<div id="modalEditarGastoAdminPorMes" class="modal fade" role="dialog">
 
 <div class="modal-dialog modal-lg">
 
@@ -253,12 +251,9 @@ MODAL EDITAR RECETA COSTO DE VENTA
 
       </div>
 
-      <input type="hidden" name="editarcodigoReceta" id="editarcodigoReceta" value="<?php echo $_GET['codigo']; ?>">
-      
-      <input type="hidden" name="editaridReceta" id="editaridReceta" value="<?php echo $_GET['idReceta']; ?>">
+      <input type="hidden" name="editarIdCostoRecetasGastoAdmin" id="editarIdCostoRecetasGastoAdmin" value="<?php echo $_GET['idCostoRecetasGastoAdmin']; ?>">
 
-      <input type="hidden" name="editarnombreReceta" id="editarnombreReceta" value="<?php echo $_GET['nombre']; ?>">
-
+      <input type="hidden" name="editarDescripcion" id="editarDescripcion" value="<?php echo $_GET['descripcion']; ?>">
 
       <!--=====================================
       CUERPO DEL MODAL
@@ -278,7 +273,7 @@ MODAL EDITAR RECETA COSTO DE VENTA
             
             <div class="input-group">
 
-                <input type="text" class="form-control input-lg" name="editarNombreCostoVenta" id="editarNombreCostoVenta">
+                <input type="text" class="form-control input-lg" name="editarNombreGastoAdmin" id="editarNombreGastoAdmin">
 
             </div>
 
@@ -296,7 +291,7 @@ MODAL EDITAR RECETA COSTO DE VENTA
                 <div class="input-group-prepend">
                 <span class="input-group-text"><i class="fas fa-layer-group"></i></span>
                 </div>
-                <input type="number" class="form-control input-lg editarCantidadCostoVenta" id="editarCantidad" name="editarCantidad" 
+                <input type="number" class="form-control input-lg editarCantidadGastoAdmin" id="editarCantidad" name="editarCantidad" 
                  min="0.1" step="0.1" required>
             </div>
 
@@ -311,7 +306,7 @@ MODAL EDITAR RECETA COSTO DE VENTA
                 <span class="input-group-text"><i class="fas fa-dollar-sign"></i></span>
                 </div>
                 <input type="hidden" id="editarPrecioTotal" name="editarPrecioTotal">
-                <input type="text" class="form-control input-lg editarPrecioCostoVenta" name="editarPrecioCostoVenta" id="editarPrecioCostoVenta"
+                <input type="text" class="form-control input-lg editarPrecioGastoAdmin" name="editarPrecioGastoAdmin" id="editarPrecioGastoAdmin"
                  required readonly>
             </div>
 

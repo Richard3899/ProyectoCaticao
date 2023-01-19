@@ -1,10 +1,10 @@
 /*=============================================
 TABLA GASTO ADMIN POR MES
 =============================================*/
-var idRecetaC = $("#idReceta").val();
+var idCostoRecetasGastoAdminC = $("#idCostoRecetasGastoAdmin").val();
 
-$('.tablaRecetaCostoVenta').DataTable( {
-	"ajax": "ajax/datatable-recetacostoventa.ajax.php?idRecetaC="+idRecetaC,
+$('.tablaGastoAdminPorMes').DataTable( {
+	"ajax": "ajax/datatable-gastoadminpormes.ajax.php?idCostoRecetasGastoAdminC="+idCostoRecetasGastoAdminC,
     "deferRender": true,
 	"columnDefs": [
 		{"className": "dt-center", "targets": "_all",
@@ -45,27 +45,27 @@ $('.tablaRecetaCostoVenta').DataTable( {
 /*=============================================
 CONSULTA DE GASTO ADMIN POR MES
 =============================================*/
-const idArrayRecetaCostoVenta=[0];
+const idArrayGastoAdminPorMes=[0];
 
-$(".tablaRecetaCostoVenta").on("draw.dt", function() {
+$(".tablaGastoAdminPorMes").on("draw.dt", function() {
 	
 	var x = $(".nm").val();
 
 	if(x.length > 20){
 
-		window.location ="recetas";
+		window.location ="costorecetasgastoadmin";
 
 	}
 
-	var idReceta = $("#idReceta").val();
+	var idCostoRecetasGastoAdmin = $("#idCostoRecetasGastoAdmin").val();
 
 	var datos = new FormData();
 
-	datos.append("idReceta", idReceta);
+	datos.append("idCostoRecetasGastoAdmin", idCostoRecetasGastoAdmin);
 
 	  $.ajax({
 
-     	url:"ajax/recetacostoventa.ajax.php",
+     	url:"ajax/gastoadminpormes.ajax.php",
       	method: "POST",
       	data: datos,
       	cache: false,
@@ -76,8 +76,7 @@ $(".tablaRecetaCostoVenta").on("draw.dt", function() {
 		
 		for (var i=0; i<respuesta.length; i++) { 
 
-			idArrayRecetaCostoVenta.push(respuesta[i]["idGastoAdmin"]);
-		
+			idArrayGastoAdminPorMes.push(respuesta[i]["idGastoAdmin"]);
 		}
 		
       	}
@@ -89,17 +88,17 @@ $(".tablaRecetaCostoVenta").on("draw.dt", function() {
 SELECCIONAR GASTO ADMIN
 =============================================*/
 
-$(".formularioRecetaCostoVenta").on("change", "select.seleccionarNombreCostoVenta", function(){
+$(".formularioGastoAdminPorMes").on("change", "select.seleccionarNombreGastoAdmin", function(){
 	
-	var idCostoVenta = $(this).val();
+	var idGastoAdmin = $(this).val();
 
 	var datos = new FormData();
 
-	datos.append("idCostoVenta", idCostoVenta);
+	datos.append("idGastoAdmin", idGastoAdmin);
     
 	  $.ajax({
 
-     	url:"ajax/costoventa.ajax.php",
+     	url:"ajax/gastoadmin.ajax.php",
       	method: "POST",
       	data: datos,
       	cache: false,
@@ -108,35 +107,35 @@ $(".formularioRecetaCostoVenta").on("change", "select.seleccionarNombreCostoVent
       	dataType:"json",
       	success:function(respuesta){
 
-				if($(".seleccionarNombreCostoVenta").val() == ""){
+				if($(".seleccionarNombreGastoAdmin").val() == ""){
 
 					$("#nuevaCantidad").val(0);
-					$(".precioCostoVenta").val("");
+					$(".precioGastoAdmin").val("");
 					$("#precioTotal").val(0);
 					
 				}else{
 						
-					for(i=0;i<idArrayRecetaCostoVenta.length;i++){
+					for(i=0;i<idArrayGastoAdminPorMes.length;i++){
 		
-						if(idArrayRecetaCostoVenta[i]==idCostoVenta){
+						if(idArrayGastoAdminPorMes[i]==idGastoAdmin){
 				
 							Swal.fire({
 								icon: "error",
-								title: "El costo de venta ya está en la receta",
+								title: "El gasto administrativo ya está en la receta",
 								showConfirmButton: false,
 							    timer: 2000
 							  })
 
-							$('#seleccionarNombreCostoVenta').val(null).trigger('change');
+							$('#seleccionarNombreGastoAdmin').val(null).trigger('change');
 
 						}else{
 
-							$("#idCostoVenta").val(respuesta["idGastoAdmin"]);
-							$("#nombreCostoVenta").val(respuesta["descripcion"]);
+							$("#idGastoAdmin").val(respuesta["idGastoAdmin"]);
+							$("#nombreGastoAdmin").val(respuesta["descripcion"]);
 							$("#nuevaCantidad").val(0);
 							$("#precio").val(respuesta["precio"]);
-							$(".precioCostoVenta").val(0);
-							$(".precioCostoVenta").attr("precioReal",respuesta["precio"]);
+							$(".precioGastoAdmin").val(0);
+							$(".precioGastoAdmin").attr("precioReal",respuesta["precio"]);
 							
 						}
 					 }
@@ -146,7 +145,7 @@ $(".formularioRecetaCostoVenta").on("change", "select.seleccionarNombreCostoVent
 			  
 			  // SUMAR TOTAL DE PRECIOS
 			  
-			  sumaTotalPrecioRecetaCostoVenta();
+			  sumaTotalPrecioGastoAdminPorMes();
 
 			  
       	}
@@ -161,24 +160,24 @@ $(".formularioRecetaCostoVenta").on("change", "select.seleccionarNombreCostoVent
 MODIFICAR LA CANTIDAD
 =============================================*/
 
-$(".formularioRecetaCostoVenta").on("change", "input.nuevaCantidadCostoVenta", function(){
+$(".formularioGastoAdminPorMes").on("change", "input.nuevaCantidadGastoAdmin", function(){
 
-	var precio = $(".precioCostoVenta");
+	var precio = $(".precioGastoAdmin");
 
 	var precioUnitarioFinal = $(this).val() * precio.attr("precioReal");
 
 	precio.val(precioUnitarioFinal);
 
-	$(".precioCostoVenta").val(precioUnitarioFinal);
+	$(".precioGastoAdmin").val(precioUnitarioFinal);
 
-	if($('#seleccionarNombreCostoVenta').val() == ""){
+	if($('#seleccionarNombreGastoAdmin').val() == ""){
 		
 		$(this).val(0);
 
 		precio.val(0);
 
 		Swal.fire({
-			title: "Seleccionar costo de venta",
+			title: "Seleccionar gasto administrativo",
 			icon: "error",
 			showConfirmButton: false,
 			timer: 2000
@@ -188,7 +187,7 @@ $(".formularioRecetaCostoVenta").on("change", "input.nuevaCantidadCostoVenta", f
 
 	// SUMAR TOTAL DE PRECIOS
 
-	sumaTotalPrecioRecetaCostoVenta()
+	sumaTotalPrecioGastoAdminPorMes()
 
 	
 })
@@ -197,9 +196,9 @@ $(".formularioRecetaCostoVenta").on("change", "input.nuevaCantidadCostoVenta", f
 SUMAR TODOS LOS PRECIOS
 =============================================*/
 
-function sumaTotalPrecioRecetaCostoVenta(){
+function sumaTotalPrecioGastoAdminPorMes(){
 
-	var precioUnitarioItem = $(".precioCostoVenta");
+	var precioUnitarioItem = $(".precioGastoAdmin");
 
 	var arraySumaPrecioUnitario = [];  
 
@@ -218,8 +217,8 @@ function sumaTotalPrecioRecetaCostoVenta(){
 
 	var sumaTotalPrecioUnitario = arraySumaPrecioUnitario.reduce(sumaArrayPrecioUnitario,0);
 
-		$(".precioCostoVenta").number(true,3);
-		$(".precioCostoVenta").val(sumaTotalPrecioUnitario);
+		$(".precioGastoAdmin").number(true,3);
+		$(".precioGastoAdmin").val(sumaTotalPrecioUnitario);
 		$("#precioTotal").val(sumaTotalPrecioUnitario);
 
 }
@@ -228,17 +227,17 @@ function sumaTotalPrecioRecetaCostoVenta(){
 EDITAR GASTO ADMIN POR MES
 =============================================*/
 
-$(".tablaRecetaCostoVenta tbody").on("click", "button.btnEditarCostoVentaReceta", function(){
+$(".tablaGastoAdminPorMes tbody").on("click", "button.btnEditarGastoAdminPorMes", function(){
 
-	var idRecetaCostoVenta = $(this).attr("idRecetaCostoVenta");
+	var idGastoAdminPorMes = $(this).attr("idGastoAdminPorMes");
 	
 	var datos = new FormData();
 
-    datos.append("idRecetaCostoVenta", idRecetaCostoVenta);
+    datos.append("idGastoAdminPorMes", idGastoAdminPorMes);
 
      $.ajax({
 
-      url:"ajax/recetacostoventa.ajax.php",
+      url:"ajax/gastoadminpormes.ajax.php",
       method: "POST",
       data: datos,
       cache: false,
@@ -247,17 +246,18 @@ $(".tablaRecetaCostoVenta tbody").on("click", "button.btnEditarCostoVentaReceta"
       dataType:"json",
       success:function(respuesta){
 
-		   $("#editaridRecetaCostoVenta").val(respuesta["idRecetaCostoVenta"]);
+		   $("#editaridGastoAdminPorMes").val(respuesta["idGastoAdminPorMes"]);
 
-		   $("#editarNombreCostoVenta").val(respuesta["nombreCostoVenta"]);
-		   $("#editarNombreCostoVenta").attr('disabled', 'disabled');	
+		   $("#editarNombreGastoAdmin").val(respuesta["nombreGastoAdmin"]);
+		   $("#editarNombreGastoAdmin").attr('disabled', 'disabled');	
 
 		   $("#editarCantidad").val(respuesta["cantidad"]);
 
-		   $(".editarPrecioCostoVenta").val(respuesta["precio"]);
-		   $(".editarPrecioCostoVenta").attr("editarprecioReal",respuesta["precio"]);
-		   
-		   editarsumaTotalPrecioRecetaCostoVenta();
+		   $(".editarPrecioGastoAdmin").val(respuesta["total"]);
+		   $(".editarPrecioGastoAdmin").attr("editarprecioReal",respuesta["precio"]);
+	
+		   editarsumaTotalPrecioGastoAdminPorMes();
+
       }
 
   })
@@ -269,9 +269,9 @@ $(".tablaRecetaCostoVenta tbody").on("click", "button.btnEditarCostoVentaReceta"
 MODIFICAR LA CANTIDAD AL EDITAR
 =============================================*/
 
-$(".formularioEditarRecetaCostoVenta").on("change", "input.editarCantidadCostoVenta", function(){
+$(".formularioEditarGastoAdminPorMes").on("change", "input.editarCantidadGastoAdmin", function(){
 
-	var editarprecioUnitario = $(".editarPrecioCostoVenta");
+	var editarprecioUnitario = $(".editarPrecioGastoAdmin");
 
 	var precioUnitarioFinal = $(this).val() * editarprecioUnitario.attr("editarprecioReal");
 
@@ -279,7 +279,7 @@ $(".formularioEditarRecetaCostoVenta").on("change", "input.editarCantidadCostoVe
 
 	// SUMAR TOTAL DE PRECIOS
 
-	editarsumaTotalPrecioRecetaCostoVenta();
+	editarsumaTotalPrecioGastoAdminPorMes();
 
 
 })
@@ -288,9 +288,9 @@ $(".formularioEditarRecetaCostoVenta").on("change", "input.editarCantidadCostoVe
 SUMAR TODOS LOS PRECIOS AL EDITAR
 =============================================*/
 
-function editarsumaTotalPrecioRecetaCostoVenta(){
+function editarsumaTotalPrecioGastoAdminPorMes(){
 
-	var precioUnitarioItem = $(".editarPrecioCostoVenta");
+	var precioUnitarioItem = $(".editarPrecioGastoAdmin");
 
 	var arraySumaPrecioUnitario = [];  
 
@@ -309,8 +309,8 @@ function editarsumaTotalPrecioRecetaCostoVenta(){
 
 	var sumaTotalPrecioUnitario = arraySumaPrecioUnitario.reduce(sumaArrayPrecioUnitario,0);
 
-		$(".editarPrecioCostoVenta").number(true,3);
-		$(".editarPrecioCostoVenta").val(sumaTotalPrecioUnitario);
+		$(".editarPrecioGastoAdmin").number(true,3);
+		$(".editarPrecioGastoAdmin").val(sumaTotalPrecioUnitario);
 		$("#editarPrecioTotal").val(sumaTotalPrecioUnitario);
 
 }
@@ -320,28 +320,27 @@ function editarsumaTotalPrecioRecetaCostoVenta(){
 ELIMINAR GASTO ADMIN POR MES
 =============================================*/
 
-$(".tablaRecetaCostoVenta tbody").on("click", "button.btnEliminarCostoVentaReceta", function(){
+$(".tablaGastoAdminPorMes tbody").on("click", "button.btnEliminarGastoAdminPorMes", function(){
 
-	var codigoReceta = $("#codigoReceta").val();
-	var idReceta = $("#idReceta").val();
-	var nombreReceta = $("#nombreReceta").val();
-	var idRecetaCostoVenta = $(this).attr("idRecetaCostoVenta");
+	var idCostoRecetasGastoAdmin = $("#idCostoRecetasGastoAdmin").val();
+	var descripcion = $("#descripcion").val();
+	var idGastoAdminPorMes = $(this).attr("idGastoAdminPorMes");
 	
 	Swal.fire({
 
-		title: '¿Está seguro de borrar la mano de obra?',
+		title: '¿Está seguro de borrar el gasto admin?',
 		text: "¡Si no lo está puede cancelar la acción!",
 		icon: 'warning',
         showCancelButton: true,
         confirmButtonColor: '#3085d6',
         cancelButtonColor: '#d33',
         cancelButtonText: 'Cancelar',
-        confirmButtonText: 'Si, borrar mano de obra!'
+        confirmButtonText: 'Si, borrar gasto admin!'
         }).then(function(result){
         if (result.value) {
 
-        window.location = "index.php?ruta=recetacostoventa&idRecetaCostoVenta="+idRecetaCostoVenta+
-		                  "&codigoReceta="+codigoReceta+"&nombreReceta="+nombreReceta+"&idReceta="+idReceta;
+        window.location = "index.php?ruta=gastoadminpormes&idGastoAdminPorMes="+idGastoAdminPorMes+"&descripcion="+
+		                   descripcion+"&idCostoRecetasGastoAdmin="+idCostoRecetasGastoAdmin;
 
         }
 

@@ -2,18 +2,18 @@
 
 require_once "conexion.php";
 
-class ModeloRecetaCostoVenta{
+class ModeloGastoAdminPorMes{
 
 
 	/*=============================================
 	MOSTRAR GASTO ADMIN POR MES
 	=============================================*/
 
-	static public function mdlMostrarRecetaCostoVenta($item,$valor){
+	static public function mdlMostrarGastoAdminPorMes($item,$valor){
 		
-		if($item != "Receta"){ 
+		if($item != "CostoRecetasGastoAdmin"){ 
 
-			$stmt = Conexion::conectar()->prepare("call mostrar_recetacostoventa1(?)");
+			$stmt = Conexion::conectar()->prepare("call mostrar_gastoadminpormes1(?)");
 
 			$stmt->bindParam(1, $valor, PDO::PARAM_INT);
 	
@@ -23,7 +23,7 @@ class ModeloRecetaCostoVenta{
 
 		}else{
 
-			$stmt = Conexion::conectar()->prepare("call mostrar_recetacostoventa2(?)");
+			$stmt = Conexion::conectar()->prepare("call mostrar_gastoadminpormes2(?)");
 
 			$stmt->bindParam(1, $valor, PDO::PARAM_INT);
 	
@@ -44,13 +44,13 @@ class ModeloRecetaCostoVenta{
 	REGISTRO DE GASTO ADMIN POR MES
 	=============================================*/
 
-	static public function mdlIngresarRecetaCostoVenta($datos){
+	static public function mdlIngresarGastoAdminPorMes($datos){
 
-		$stmt = Conexion::conectar()->prepare("call insertar_recetacostoventa(?,?,?,?,?,?)");
+		$stmt = Conexion::conectar()->prepare("call insertar_gastoadminpormes(?,?,?,?,?,?)");
 
-		$stmt->bindParam(1, $datos["idReceta"], PDO::PARAM_INT);
-		$stmt->bindParam(2, $datos["idCostoVenta"], PDO::PARAM_INT);
-		$stmt->bindParam(3, $datos["nombreCostoVenta"], PDO::PARAM_STR);
+		$stmt->bindParam(1, $datos["idCostoRecetasGastoAdmin"], PDO::PARAM_INT);
+		$stmt->bindParam(2, $datos["idGastoAdmin"], PDO::PARAM_INT);
+		$stmt->bindParam(3, $datos["nombreGastoAdmin"], PDO::PARAM_STR);
 		$stmt->bindParam(4, $datos["cantidad"], PDO::PARAM_STR);
 		$stmt->bindParam(5, $datos["precio"], PDO::PARAM_STR);
 		$stmt->bindParam(6, $datos["total"], PDO::PARAM_STR);
@@ -74,11 +74,11 @@ class ModeloRecetaCostoVenta{
 	EDITAR GASTO ADMIN POR MES
 	=============================================*/
 
-	static public function mdlEditarRecetaCostoVenta($datos){
+	static public function mdlEditarGastoAdminPorMes($datos){
 
-		$stmt = Conexion::conectar()->prepare("call editar_recetacostoventa(?,?,?)");
+		$stmt = Conexion::conectar()->prepare("call editar_gastoadminpormes(?,?,?)");
 
-		$stmt->bindParam(1, $datos["idRecetaCostoVenta"], PDO::PARAM_INT);
+		$stmt->bindParam(1, $datos["idGastoAdminPorMes"], PDO::PARAM_INT);
 		$stmt->bindParam(2, $datos["cantidad"], PDO::PARAM_STR);
 		$stmt->bindParam(3, $datos["total"], PDO::PARAM_STR);
 
@@ -101,11 +101,11 @@ class ModeloRecetaCostoVenta{
 	ELIMINAR GASTO ADMIN POR MES
 	=============================================*/
 
-	static public function mdlEliminarRecetaCostoVenta($datos){
+	static public function mdlEliminarGastoAdminPorMes($datos){
 
-		$stmt = Conexion::conectar()->prepare("call eliminar_recetacostoventa(?)");
+		$stmt = Conexion::conectar()->prepare("call eliminar_gastoadminpormes(?)");
 
-		$stmt->bindParam(1, $datos["idRecetaCostoVenta"], PDO::PARAM_INT);
+		$stmt->bindParam(1, $datos["idGastoAdminPorMes"], PDO::PARAM_INT);
 
 		if($stmt->execute()){
 
@@ -127,9 +127,9 @@ class ModeloRecetaCostoVenta{
 	SUMAR EL TOTAL DE GASTO ADMIN POR MES
 	=============================================*/
 
-	static public function mdlSumaTotalRecetaCostoVenta($valor){
+	static public function mdlSumaTotalGastoAdminPorMes($valor){
 
-		$stmt = Conexion::conectar()->prepare("call sumatotal_recetacostoventa(?)");
+		$stmt = Conexion::conectar()->prepare("call sumatotal_gastoadminpormes(?)");
 
 		$stmt->bindParam(1, $valor, PDO::PARAM_INT);
 

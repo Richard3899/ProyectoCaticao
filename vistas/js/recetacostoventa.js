@@ -254,7 +254,7 @@ $(".tablaRecetaCostoVenta tbody").on("click", "button.btnEditarCostoVentaReceta"
 
 		   $("#editarCantidad").val(respuesta["cantidad"]);
 
-		   $(".editarPrecioCostoVenta").val(respuesta["precio"]);
+		   $(".editarPrecioCostoVenta").val(respuesta["total"]);
 		   $(".editarPrecioCostoVenta").attr("editarprecioReal",respuesta["precio"]);
 		   
 		   editarsumaTotalPrecioRecetaCostoVenta();

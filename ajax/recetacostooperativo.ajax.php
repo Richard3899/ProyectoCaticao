@@ -12,7 +12,7 @@ class AjaxRecetaCostoOperativo{
 	public $idRecetaCostoOperativo;
 	public $idReceta;
 
-	public function ajaxCostoOperativoReceta(){
+	public function ajaxEditarCostoOperativoReceta(){
 
 		$item="RecetaCostoOperativo";
 
@@ -48,7 +48,7 @@ if(isset($_POST["idRecetaCostoOperativo"])){
 
 	$editar = new AjaxRecetaCostoOperativo();
 	$editar -> idRecetaCostoOperativo = $_POST["idRecetaCostoOperativo"];
-	$editar -> ajaxCostoOperativoReceta();
+	$editar -> ajaxEditarCostoOperativoReceta();
 
 }
 

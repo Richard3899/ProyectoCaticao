@@ -1,14 +1,14 @@
 <?php
 
-class ControladorRecetaCostoVenta{
+class ControladorGastoAdminPorMes{
 
 	/*=============================================
 	MOSTRAR LISTA GASTO ADMIN POR MES
 	=============================================*/
 
-	static public function ctrMostrarRecetaCostoVenta($item,$valor){
+	static public function ctrMostrarGastoAdminPorMes($item,$valor){
 
-		$respuesta = ModeloRecetaCostoVenta::mdlMostrarRecetaCostoVenta($item,$valor);
+		$respuesta = ModeloGastoAdminPorMes::mdlMostrarGastoAdminPorMes($item,$valor);
 
 		return $respuesta;
 	}
@@ -16,9 +16,9 @@ class ControladorRecetaCostoVenta{
 	/*=============================================
 	SUMAR TOTAL DE GASTO ADMIN POR MES
 	=============================================*/
-	static public function ctrSumaTotalRecetaCostoVenta($valor){
+	static public function ctrSumaTotalGastoAdminPorMes($valor){
 
-		$respuesta = ModeloRecetaCostoVenta::mdlSumaTotalRecetaCostoVenta($valor);
+		$respuesta = ModeloGastoAdminPorMes::mdlSumaTotalGastoAdminPorMes($valor);
 
 		return $respuesta;
 	}
@@ -27,18 +27,18 @@ class ControladorRecetaCostoVenta{
 	AGREGAR LOS GASTO ADMIN POR MES
 	=============================================*/
 
-	static public function ctrCrearRecetaCostoVenta(){
+	static public function ctrCrearGastoAdminPorMes(){
 			
-		if(isset($_POST["idCostoVenta"])){
+		if(isset($_POST["idGastoAdmin"])){
 
-			$datos = array("idReceta"=>$_POST["idReceta"],
-						   "idCostoVenta"=>$_POST["idCostoVenta"],
-						   "nombreCostoVenta"=>$_POST["nombreCostoVenta"],
+			$datos = array("idCostoRecetasGastoAdmin"=>$_POST["idCostoRecetasGastoAdmin"],
+						   "idGastoAdmin"=>$_POST["idGastoAdmin"],
+						   "nombreGastoAdmin"=>$_POST["nombreGastoAdmin"],
 						   "cantidad"=>$_POST["nuevaCantidad"],
 						   "precio"=>$_POST["precio"],
 						   "total"=>$_POST["precioTotal"]);
 		
-			$respuesta = ModeloRecetaCostoVenta::mdlIngresarRecetaCostoVenta($datos);
+			$respuesta = ModeloGastoAdminPorMes::mdlIngresarGastoAdminPorMes($datos);
 
 			if($respuesta == "ok"){
 		    
@@ -47,13 +47,13 @@ class ControladorRecetaCostoVenta{
 				Swal.fire({
 				
 					icon: "success",
-					title: "¡El costo de venta fue agregado correctamente!",
+					title: "¡El gasto administrativo fue agregado correctamente!",
 					showConfirmButton: false,
 					timer: 1500
 				
 				}).then(function(result){
 				
-					window.location = "index.php?ruta=recetacostoventa&codigo='.$_POST["codigoReceta"].'&nombre='.$_POST["nombreReceta"].'&idReceta='.$_POST["idReceta"].'";
+					window.location = "index.php?ruta=gastoadminpormes&idCostoRecetasGastoAdmin='.$_POST["idCostoRecetasGastoAdmin"].'&descripcion='.$_POST["descripcion"].'";
 			
 			    });
 				
@@ -73,15 +73,15 @@ class ControladorRecetaCostoVenta{
 	EDITAR GASTO ADMIN POR MES
 	=============================================*/
 
-	static public function ctrEditarRecetaCostoVenta(){
+	static public function ctrEditarGastoAdminPorMes(){
 
-		if(isset($_POST["editaridRecetaCostoVenta"])){
+		if(isset($_POST["editaridGastoAdminPorMes"])){
 
-			$datos = array( "idRecetaCostoVenta"=>$_POST["editaridRecetaCostoVenta"],
+			$datos = array( "idGastoAdminPorMes"=>$_POST["editaridGastoAdminPorMes"],
 							"cantidad"=>$_POST["editarCantidad"],
 							"total"=>$_POST["editarPrecioTotal"]);
 							   
-			$respuesta = ModeloRecetaCostoVenta::mdlEditarRecetaCostoVenta($datos);
+			$respuesta = ModeloGastoAdminPorMes::mdlEditarGastoAdminPorMes($datos);
 		
 				if($respuesta == "ok"){
 		    
@@ -90,13 +90,13 @@ class ControladorRecetaCostoVenta{
 					Swal.fire({
 					
 						icon: "success",
-						title: "¡El costo de venta fue editado correctamente!",
+						title: "¡El gasto administrativo fue editado correctamente!",
 						showConfirmButton: false,
 						timer: 1500
 					
 					}).then(function(result){
 					
-						window.location = "index.php?ruta=recetacostoventa&codigo='.$_POST["editarcodigoReceta"].'&nombre='.$_POST["editarnombreReceta"].'&idReceta='.$_POST["editaridReceta"].'";
+						window.location = "index.php?ruta=gastoadminpormes&idCostoRecetasGastoAdmin='.$_POST["editarIdCostoRecetasGastoAdmin"].'&descripcion='.$_POST["editarDescripcion"].'";
 				
 					});
 					
@@ -113,32 +113,30 @@ class ControladorRecetaCostoVenta{
 	/*=============================================
 	BORRAR GASTO ADMIN POR MES
 	=============================================*/
-	static public function ctrEliminarRecetaCostoVenta(){
+	static public function ctrEliminarGastoAdminPorMes(){
 
-		if(isset($_GET["idRecetaCostoVenta"])){
+		if(isset($_GET["idGastoAdminPorMes"])){
             
-			$datos = array("idRecetaCostoVenta"=>$_GET["idRecetaCostoVenta"]);
+			$datos = array("idGastoAdminPorMes"=>$_GET["idGastoAdminPorMes"]);
 			
-			$respuesta = ModeloRecetaCostoVenta::mdlEliminarRecetaCostoVenta($datos);
+			$respuesta = ModeloGastoAdminPorMes::mdlEliminarGastoAdminPorMes($datos);
 			
 			if($respuesta == "ok"){
 
 				echo '<script>
 				
-				$(".cd").val("'.$_GET["codigoReceta"].'");
-
-				$(".nm").val("'.$_GET["nombreReceta"].'");
+				$(".nm").val("'.$_GET["descripcion"].'");
 
 				Swal.fire({
 				
 					icon: "success",
-					title: "¡El costo de venta ha sido eliminado correctamente!",
+					title: "¡El gasto administrativo ha sido eliminado correctamente!",
 					showConfirmButton: false,
 					timer: 1500
 				
 				}).then(function(result){
 
-					window.location = "index.php?ruta=recetacostoventa&codigo='.$_GET["codigoReceta"].'&nombre='.$_GET["nombreReceta"].'&idReceta='.$_GET["idReceta"].'";
+					window.location = "index.php?ruta=gastoadminpormes&idCostoRecetasGastoAdmin='.$_GET["idCostoRecetasGastoAdmin"].'&descripcion='.$_GET["descripcion"].'";
 			
 			    });
 				

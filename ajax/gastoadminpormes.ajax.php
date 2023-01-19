@@ -1,24 +1,24 @@
 <?php
 
-require_once "../controladores/recetacostoventa.controlador.php";
-require_once "../modelos/recetacostoventa.modelo.php";
+require_once "../controladores/gastoadminpormes.controlador.php";
+require_once "../modelos/gastoadminpormes.modelo.php";
 
-class AjaxRecetaCostoVenta{
+class AjaxGastoAdminPorMes{
 
 	/*=============================================
 	EDITAR GASTO ADMIN POR MES
 	=============================================*/	
 
-	public $idRecetaCostoVenta;
-	public $idReceta;
+	public $idGastoAdminPorMes;
+	public $idCostoRecetasGastoAdmin;
 
-	public function ajaxCostoVentaReceta(){
+	public function ajaxEditarGastoAdminPorMes(){
 
-		$item="RecetaCostoVenta";
+		$item="GastoAdminPorMes";
 
-		$valor = $this->idRecetaCostoVenta;
+		$valor = $this->idGastoAdminPorMes;
 
-		$respuesta = ControladorRecetaCostoVenta::ctrMostrarRecetaCostoVenta($item,$valor);
+		$respuesta = ControladorGastoAdminPorMes::ctrMostrarGastoAdminPorMes($item,$valor);
 
 		echo json_encode($respuesta);
 
@@ -26,13 +26,13 @@ class AjaxRecetaCostoVenta{
 	/*=============================================
 	MOSTRAR GASTO ADMIN POR MESS
 	=============================================*/
-	public function ajaxReceta(){
+	public function ajaxCostoRecetasGastoAdmin(){
 
-		$item="Receta";
+		$item="CostoRecetasGastoAdmin";
 
-		$valor = $this->idReceta;
+		$valor = $this->idCostoRecetasGastoAdmin;
 
-		$respuesta = ControladorRecetaCostoVenta::ctrMostrarRecetaCostoVenta($item,$valor);
+		$respuesta = ControladorGastoAdminPorMes::ctrMostrarGastoAdminPorMes($item,$valor);
 
 		echo json_encode($respuesta);
 
@@ -44,22 +44,22 @@ class AjaxRecetaCostoVenta{
 /*=============================================
 EDITAR GASTO ADMIN POR MES
 =============================================*/
-if(isset($_POST["idRecetaCostoVenta"])){
+if(isset($_POST["idGastoAdminPorMes"])){
 
-	$editar = new AjaxRecetaCostoVenta();
-	$editar -> idRecetaCostoVenta = $_POST["idRecetaCostoVenta"];
-	$editar -> ajaxCostoVentaReceta();
+	$editar = new AjaxGastoAdminPorMes();
+	$editar -> idGastoAdminPorMes = $_POST["idGastoAdminPorMes"];
+	$editar -> ajaxEditarGastoAdminPorMes();
 
 }
 
 /*=============================================
-MOSTRAR GASTO ADMIN POR MESS
+MOSTRAR GASTO ADMIN POR MES
 =============================================*/
-if(isset($_POST["idReceta"])){
+if(isset($_POST["idCostoRecetasGastoAdmin"])){
 
-	$editar = new AjaxRecetaCostoVenta();
-	$editar -> idReceta = $_POST["idReceta"];
-	$editar -> ajaxReceta();
+	$editar = new AjaxGastoAdminPorMes();
+	$editar -> idCostoRecetasGastoAdmin = $_POST["idCostoRecetasGastoAdmin"];
+	$editar -> ajaxCostoRecetasGastoAdmin();
 
 }
 

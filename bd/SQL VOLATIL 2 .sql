@@ -54,20 +54,19 @@ DELIMITER ;
 DROP procedure IF EXISTS `insertar_gastoadminpormes`;
 DELIMITER $$
 USE `caticao`$$
-CREATE PROCEDURE `insertar_gastoadminpormes` (     in idRecetaI INT,
-	                                                in idCostoVentaI INT,
-	                                                in nombreCostoVentaI VARCHAR(50),
+CREATE PROCEDURE `insertar_gastoadminpormes` (     in idCostoRecetasGastoAdminI INT,
+	                                                in idGastoAdminI INT,
+	                                                in nombreGastoAdminI VARCHAR(50),
 	                                                in cantidadI DECIMAL(10,3),
 	                                                in precioI DECIMAL(10,3),
 													            in totalI DECIMAL(10,3) )
 BEGIN
 
-	 INSERT INTO gastoadminpormes(idReceta,idGastoAdmin,nombreCostoVenta,cantidad,precio,total)
-			                 VALUES (idRecetaI,idCostoVentaI,nombreCostoVentaI,cantidadI,precioI,totalI);
+	 INSERT INTO gastoadminpormes(idCostoRecetasGastoAdmin,idGastoAdmin,nombreGastoAdmin,cantidad,precio,total)
+			                 VALUES (idCostoRecetasGastoAdminI,idGastoAdminI,nombreGastoAdminI,cantidadI,precioI,totalI);
 	
 END$$
 DELIMITER ;
-
 
 
 DROP procedure IF EXISTS `editar_gastoadminpormes`;
@@ -86,7 +85,6 @@ END$$
 DELIMITER ;
 
 
-
 DROP procedure IF EXISTS `eliminar_gastoadminpormes`;
 DELIMITER $$
 USE `caticao`$$
@@ -102,10 +100,10 @@ DELIMITER ;
 DROP procedure IF EXISTS `sumatotal_gastoadminpormes`;
 DELIMITER $$
 USE `caticao`$$
-CREATE PROCEDURE `sumatotal_gastoadminpormes` (in idRecetaC INT)
+CREATE PROCEDURE `sumatotal_gastoadminpormes` (in idCostoRecetasGastoAdminC INT)
 BEGIN
 			SELECT SUM(total) FROM gastoadminpormes
-		                     WHERE idReceta=idRecetaC;
+		                     WHERE idCostoRecetasGastoAdmin=idCostoRecetasGastoAdminC;
 END$$
 DELIMITER ;
 

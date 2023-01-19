@@ -21,7 +21,7 @@ class AjaxRecetaConsumoEnergia{
 	EDITAR RECETA CONSUMO DE ENERGÍA
 	=============================================*/	
 
-	public function ajaxConsumoEnergiaReceta(){
+	public function ajaxEditarConsumoEnergiaReceta(){
 
 		$item="RecetaConsumoEnergia";
 
@@ -67,7 +67,7 @@ if(isset($_POST["idRecetaConsumoEnergia"])){
 
 	$editar = new AjaxRecetaConsumoEnergia();
 	$editar -> idRecetaConsumoEnergia = $_POST["idRecetaConsumoEnergia"];
-	$editar -> ajaxConsumoEnergiaReceta();
+	$editar -> ajaxEditarConsumoEnergiaReceta();
 
 }
 

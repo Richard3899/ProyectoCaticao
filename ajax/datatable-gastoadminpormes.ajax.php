@@ -1,53 +1,61 @@
 <?php
 
-require_once "../controladores/costoventa.controlador.php";
-require_once "../modelos/costoventa.modelo.php";
+require_once "../controladores/gastoadminpormes.controlador.php";
+require_once "../modelos/gastoadminpormes.modelo.php";
 
-class TablaCostoVenta{
+class TablaGastoAdminPorMes{
 
  	/*=============================================
- 	 MOSTRAR LA TABLA DE GASTO ADMIN POR MES
+ 	 MOSTRAR LA TABLA DE RECETA COSTO DE VENTA
   	=============================================*/ 
 
-	public function mostrarTablaCostoVenta(){
+	public function mostrarTablaGastoAdminPorMes(){
 
-		$item = null;
-    	$valor = null;
+    	$idRecetaC=$_GET["idCostoRecetasGastoAdminC"];
 
-  		$costoventa = ControladorCostoVenta::ctrMostrarCostoVenta($item, $valor);	
-		
-		if(count($costoventa) == 0){
+		$item = "CostoRecetasGastoAdmin";
+
+  		$gastoadminpormes = ControladorGastoAdminPorMes::ctrMostrarGastoAdminPorMes($item,$idRecetaC);	
+
+		/*============================================
+ 	 	TRAEMOS EL TOTAL DE RECETA COSTO DE VENTA
+  		=============================================*/
+
+		$sumatotalcostoventareceta = ControladorGastoAdminPorMes::ctrSumaTotalGastoAdminPorMes($idRecetaC);	
+
+		$total = $sumatotalcostoventareceta[0];
+
+		if(count($gastoadminpormes) == 0){
 
 			echo '{"data": []}';
-
+			
 			return;
 		}
 
   		$datosJson = '{
 		  "data": [';
 
-		  for($i = 0; $i < count($costoventa); $i++){
-
-		  	/*=============================================
+		  for($i = 0; $i < count($gastoadminpormes); $i++){
+			
+			/*============================================
  	 		TRAEMOS LAS ACCIONES
-  			=============================================*/ 
-
-		  	$botones =  "<div class='btn-group'><button class='btn btn-warning btnEditarCostoVenta' idCostoVenta='".$costoventa[$i]["idGastoAdmin"]."' data-toggle='modal' data-target='#modalEditarCostoVenta'><i class='fa fa-pen'></i></button><button class='btn btn-danger btnEliminarCostoVenta' idCostoVenta='".$costoventa[$i]["idGastoAdmin"]."'><i class='fa fa-times'></i></button></div>"; 
-
+  			=============================================*/
+			$botones =  "<div class='btn-group'><button class='btn btn-warning btnEditarGastoAdminPorMes' idGastoAdminPorMes='".$gastoadminpormes[$i]["idGastoAdminPorMes"]."' data-toggle='modal' data-target='#modalEditarGastoAdminPorMes'><i class='fa fa-pen'></i></button><button class='btn btn-danger btnEliminarGastoAdminPorMes' idGastoAdminPorMes='".$gastoadminpormes[$i]["idGastoAdminPorMes"]."'><i class='fa fa-times'></i></button></div>";				
+				
 		  	$datosJson .='[
 			      "'.($i+1).'",
-			      "'.$costoventa[$i]["descripcion"].'",
-				  "'.$unidadmedida["descripcion"].'",
-			      "'."S/. ".$costoventa[$i]["precio"].'",
-				  "'.$tipocosto["descripcion"].'",
-			      "'.$botones.'"
+				  "'.$gastoadminpormes[$i]["nombreGastoAdmin"].'",
+			      "'.$gastoadminpormes[$i]["cantidad"].'",
+				  "'.$gastoadminpormes[$i]["precio"].'",
+				  "'.$gastoadminpormes[$i]["total"].'",
+				  "'.$botones.'"
 			    ],';
 
 		  }
 
-		  $datosJson = substr($datosJson, 0, -1);
+		 $datosJson = substr($datosJson, 0, -1);
 
-		 $datosJson .=   '] 
+		 $datosJson .=   ',["Total","","","","S/. '.$total.'",""]] 
 
 		 }';
 		
@@ -60,7 +68,7 @@ class TablaCostoVenta{
 }
 
 /*=============================================
-ACTIVAR TABLA DE GASTO ADMIN POR MES
+ACTIVAR TABLA DE COSTO DE VENTA
 =============================================*/ 
-$activarCostoVenta = new TablaCostoVenta();
-$activarCostoVenta -> mostrarTablaCostoVenta();
+$activarGastoAdminPorMes = new TablaGastoAdminPorMes();
+$activarGastoAdminPorMes -> mostrarTablaGastoAdminPorMes();
