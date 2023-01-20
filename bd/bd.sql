@@ -68,11 +68,11 @@ CREATE TABLE tipoproducto (
 CREATE TABLE RecetaConsumoEnergia (
   idRecetaConsumoEnergia INT  AUTO_INCREMENT primary key,
   nombreMaquina VARCHAR(50),
-  potenciaKw DECIMAL(10,3),
-  horasTrabajoBatch DECIMAL(10,3),
-  consumoKwh DECIMAL(10,3),
-  tarifaKwh DECIMAL(10,3),
-  pagoPorBatch DECIMAL(10,3),
+  potenciaKw DECIMAL(10,2),
+  horasTrabajoBatch DECIMAL(10,2),
+  consumoKwh DECIMAL(10,2),
+  tarifaKwh DECIMAL(10,2),
+  pagoPorBatch DECIMAL(10,2),
   idTarifaEnergia INT REFERENCES TarifaEnergia (idTarifaEnergia),
   idMaquina INT REFERENCES maquina (idMaquina),
   idReceta INT REFERENCES receta (idReceta)
@@ -111,9 +111,9 @@ CREATE TABLE gastoadmin (
 CREATE TABLE RecetaCostoVenta (
   idRecetaCostoVenta INT  AUTO_INCREMENT primary key,
   nombreCostoVenta VARCHAR(50),
-  cantidad DECIMAL(10,3),
-  precio DECIMAL(10,3),
-  total DECIMAL(10,3),
+  cantidad DECIMAL(10,2),
+  precio DECIMAL(10,2),
+  total DECIMAL(10,2),
   idGastoAdmin INT REFERENCES gastosadmin (idGastoAdmin),
   idReceta INT REFERENCES receta (idReceta)
 );
@@ -126,9 +126,9 @@ CREATE TABLE RecetaCostoVenta (
 CREATE TABLE RecetaCostoMarketing (
   idRecetaCostoMarketing INT  AUTO_INCREMENT primary key,
   nombreCostoMarketing VARCHAR(50),
-  cantidad DECIMAL(10,3),
-  precio DECIMAL(10,3),
-  total DECIMAL(10,3),
+  cantidad DECIMAL(10,2),
+  precio DECIMAL(10,2),
+  total DECIMAL(10,2),
   idGastoAdmin INT REFERENCES gastosadmin (idGastoAdmin),
   idReceta INT REFERENCES receta (idReceta)
 );
@@ -141,9 +141,9 @@ CREATE TABLE RecetaCostoMarketing (
 CREATE TABLE RecetaCostoOperativo (
   idRecetaCostoOperativo INT  AUTO_INCREMENT primary key,
   nombreCostoOperativo VARCHAR(50),
-  cantidad DECIMAL(10,3),
-  precio DECIMAL(10,3),
-  total DECIMAL(10,3),
+  cantidad DECIMAL(10,2),
+  precio DECIMAL(10,2),
+  total DECIMAL(10,2),
   idGastoAdmin INT REFERENCES gastosadmin (idGastoAdmin),
   idReceta INT REFERENCES receta (idReceta)
 );
@@ -166,9 +166,9 @@ CREATE TABLE RecetaManodeObra (
   idRecetaManodeObra INT  AUTO_INCREMENT primary key,
   nombreEmpleado VARCHAR(50),
   nombreMaquina VARCHAR(50),
-  tiempoHoras DECIMAL(10,3),
-  precioUnitario DECIMAL(10,3),
-  total DECIMAL(10,3),
+  tiempoHoras DECIMAL(10,2),
+  precioUnitario DECIMAL(10,2),
+  total DECIMAL(10,2),
   idMaquina INT REFERENCES maquina (idMaquina),
   idEmpleado INT REFERENCES empleado (idEmpleado),
   idReceta INT REFERENCES receta (idReceta)
@@ -199,9 +199,9 @@ CREATE TABLE materia (
   codigo VARCHAR(20) ,
   nombre VARCHAR(50) ,
   descripcion VARCHAR(100) ,
-  precio DECIMAL(10,3) ,
+  precio DECIMAL(10,2) ,
   cantidad DECIMAL(10,3) ,
-  precioUnitario DECIMAL(10,3) ,
+  precioUnitario DECIMAL(10,2) ,
   imagen VARCHAR(100),
   idUnidadMedida INT REFERENCES unidadmedida(idUnidadMedida),
   idMarca INT REFERENCES Marca (idMarca),
@@ -393,8 +393,8 @@ CREATE TABLE RecetaMateria (
   idRecetaMateria INT  AUTO_INCREMENT primary key,
   nombre VARCHAR(50),
   cantidad DECIMAL(10,3),
-  precioUnitario DECIMAL(10,3),
-  total DECIMAL(10,3),
+  precioUnitario DECIMAL(10,2),
+  total DECIMAL(10,2),
   idMateria INT REFERENCES Materia (idMateria),
   idReceta INT REFERENCES Receta (idReceta)
 );
@@ -441,9 +441,9 @@ CREATE TABLE CostoRecetasGastoAdmin (
 CREATE TABLE GastoAdminPorMes (
   idGastoAdminPorMes INT  AUTO_INCREMENT primary key,
   nombreGastoAdmin VARCHAR(50),
-  cantidad DECIMAL(10,3),
-  precio DECIMAL(10,3),
-  total DECIMAL(10,3),
+  cantidad DECIMAL(10,2),
+  precio DECIMAL(10,2),
+  total DECIMAL(10,2),
   idGastoAdmin INT REFERENCES gastosadmin (idGastoAdmin),
   idCostoRecetasGastoAdmin INT REFERENCES CostoRecetasGastoAdmin (idCostoRecetasGastoAdmin)
 );

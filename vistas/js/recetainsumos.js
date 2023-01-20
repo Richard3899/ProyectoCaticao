@@ -276,7 +276,7 @@ function sumaTotalPrecioRecetaInsumos(){
 
 	}else{
 
-		$(".precioInsumo").number(true,3);
+		$(".precioInsumo").number(true,2);
 		$(".precioInsumo").val(sumaTotalPrecioUnitario);
 		$("#precioTotal").val(sumaTotalPrecioUnitario);
 		
@@ -438,7 +438,7 @@ function editarsumaTotalPrecioRecetaInsumos(){
 
 	}else{
 
-		$(".editarPrecioInsumo").number(true,3);
+		$(".editarPrecioInsumo").number(true,2);
 		$(".editarPrecioInsumo").val(sumaTotalPrecioUnitario);
 		$("#editarprecioTotal").val(sumaTotalPrecioUnitario);
 

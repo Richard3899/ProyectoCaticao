@@ -221,7 +221,7 @@ $(".formularioRecetaConsumoEnergia").on("change", "input.nuevoTiempoHorasConsumo
 
     var precioUnitario = $(".precioConsumoEnergia");
 
-	var consumoKwh = ($(this).val() * $("#potenciaKw").val()).toFixed(3);
+	var consumoKwh = ($(this).val() * $("#potenciaKw").val()).toFixed(2);
 
 	$("#consumoKwh").val(consumoKwh);
 
@@ -275,7 +275,7 @@ function sumaTotalPrecioRecetaConsumoEnergia(){
 
 	var sumaTotalPrecioUnitario = arraySumaPrecioUnitario.reduce(sumaArrayPrecioUnitario,0);
 
-		$(".precioConsumoEnergia").number(true,3);
+		$(".precioConsumoEnergia").number(true,2);
 		$(".precioConsumoEnergia").val(sumaTotalPrecioUnitario);
 		$("#precioTotal").val(sumaTotalPrecioUnitario);
 
@@ -330,7 +330,7 @@ $(".formularioEditarRecetaConsumoEnergia").on("change", "input.editarTiempoHoras
 
 	var editarprecioUnitario = $(".editarPrecioConsumoEnergia");
 
-	var editarConsumoKwh = ($(this).val() * $("#editarPotenciaKw").val()).toFixed(3);
+	var editarConsumoKwh = ($(this).val() * $("#editarPotenciaKw").val()).toFixed(2);
 
 	$("#editarConsumoKwh").val(editarConsumoKwh);
 
@@ -368,7 +368,7 @@ function editarsumaTotalPrecioRecetaConsumoEnergia(){
 
 	var sumaTotalPrecioUnitario = arraySumaPrecioUnitario.reduce(sumaArrayPrecioUnitario,0);
 
-		$(".editarPrecioConsumoEnergia").number(true,3);
+		$(".editarPrecioConsumoEnergia").number(true,2);
 		$(".editarPrecioConsumoEnergia").val(sumaTotalPrecioUnitario);
 		$("#editarprecioTotal").val(sumaTotalPrecioUnitario);
 

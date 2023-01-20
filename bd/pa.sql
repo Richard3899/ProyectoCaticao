@@ -1069,6 +1069,16 @@ BEGIN
     DELETE FROM lote
     WHERE codigoLote=codigoLoteE;
     
+    	-- ACTUALIZA EL INVENTARIO CON ELIMINAR E INSERTAR--						   
+	DELETE inventariomateria FROM inventariomateria
+	                         INNER JOIN materia ON inventariomateria.idMateria=inventariomateria.idMateria 
+					             WHERE inventariomateria.idMateria > 0;
+								
+	INSERT INTO inventariomateria (idInventarioMateria,stock,idMateria)		
+	                       SELECT mm.idMateria AS idInventarioMateria,SUM(mm.ingreso) - SUM(mm.salida) AS stock,mm.idMateria FROM movimientomateria mm
+                          INNER JOIN materia m ON m.idMateria=mm.idMateria
+                          GROUP BY mm.idMateria;
+    
 END$$
 DELIMITER ;
 
@@ -1168,25 +1178,28 @@ CREATE PROCEDURE `editar_recetainsumo` (       in idRecetaMateriaE INT,
 												            in totalE DECIMAL(10,3))
 BEGIN
 
-   INSERT INTO movimientomateria (idMateria,ingreso,salida,observacion,codigoReceta,fecha,idMovimiento)
-				               VALUES (idMateriaE,cantidadAntE,0,"Editado Receta:",codigoRecetaE,CURRENT_DATE(),1);
-    	   
-   DELETE from recetamateria WHERE idRecetaMateria=idRecetaMateriaE;
-   
+	DELETE from recetamateria WHERE idRecetaMateria=idRecetaMateriaE;
 
-   UPDATE inventariomateria SET stock = stock + (difcantidadE)
-						         WHERE idMateria=idMateriaE;
-                            
+	DELETE FROM movimientomateria WHERE idMateria=idMateriaE AND codigoReceta=codigoRecetaE;
+   				                                 
    INSERT INTO movimientomateria (idMateria,ingreso,salida,observacion,codigoReceta,fecha,idMovimiento)
-				              VALUES (idMateriaE,0,cantidade,"Editado Receta:",codigoRecetaE,CURRENT_DATE(),2);
+				              VALUES (idMateriaE,0,cantidadE,"Agregado Receta:",codigoRecetaE,CURRENT_DATE(),2);
 
 	INSERT INTO recetamateria (idRecetaMateria,idMateria,idReceta,nombre,cantidad,precioUnitario,total)
 			             VALUES (idRecetaMateriaE,idMateriaE,idRecetaE,nombreE,cantidadE,precioUnitarioE,totalE);
 
+	-- ACTUALIZA EL INVENTARIO CON ELIMINAR E INSERTAR--						   
+	DELETE inventariomateria FROM inventariomateria
+	                         INNER JOIN materia ON inventariomateria.idMateria=inventariomateria.idMateria 
+					             WHERE inventariomateria.idMateria > 0;
+								
+	INSERT INTO inventariomateria (idInventarioMateria,stock,idMateria)		
+	                       SELECT mm.idMateria AS idInventarioMateria,SUM(mm.ingreso) - SUM(mm.salida) AS stock,mm.idMateria FROM movimientomateria mm
+                          INNER JOIN materia m ON m.idMateria=mm.idMateria
+                          GROUP BY mm.idMateria;
 
 END$$
 DELIMITER ;
-
 
 
 DROP procedure IF EXISTS `eliminar_recetainsumo`;
@@ -1325,25 +1338,29 @@ CREATE PROCEDURE `editar_recetamaterial` (      in idRecetaMateriaE INT,
                                                 in precioUnitarioE DECIMAL(10,3),
 												            in totalE DECIMAL(10,3))
 BEGIN
-
-	INSERT INTO movimientomateria (idMateria,ingreso,salida,observacion,codigoReceta,fecha,idMovimiento)
-				               VALUES (idMateriaE,cantidadAntE,0,"Editado Receta:",codigoRecetaE,CURRENT_DATE(),1);
-    	   
+ 	   
    DELETE from recetamateria WHERE idRecetaMateria=idRecetaMateriaE;
    
-
-   UPDATE inventariomateria SET stock = stock + (difcantidadE)
-						         WHERE idMateria=idMateriaE;
+   DELETE FROM movimientomateria WHERE idMateria=idMateriaE AND codigoReceta=codigoRecetaE;
                             
    INSERT INTO movimientomateria (idMateria,ingreso,salida,observacion,codigoReceta,fecha,idMovimiento)
-				              VALUES (idMateriaE,0,cantidade,"Editado Receta:",codigoRecetaE,CURRENT_DATE(),2);
+				              VALUES (idMateriaE,0,cantidade,"Agregado Receta:",codigoRecetaE,CURRENT_DATE(),2);
 
 	INSERT INTO recetamateria (idRecetaMateria,idMateria,idReceta,nombre,cantidad,precioUnitario,total)
 			             VALUES (idRecetaMateriaE,idMateriaE,idRecetaE,nombreE,cantidadE,precioUnitarioE,totalE);
-
+			             		             
+	-- ACTUALIZA EL INVENTARIO CON ELIMINAR E INSERTAR--						   
+	DELETE inventariomateria FROM inventariomateria
+	                         INNER JOIN materia ON inventariomateria.idMateria=inventariomateria.idMateria 
+					             WHERE inventariomateria.idMateria > 0;
+								
+	INSERT INTO inventariomateria (idInventarioMateria,stock,idMateria)		
+	                       SELECT mm.idMateria AS idInventarioMateria,SUM(mm.ingreso) - SUM(mm.salida) AS stock,mm.idMateria FROM movimientomateria mm
+                          INNER JOIN materia m ON m.idMateria=mm.idMateria
+                          GROUP BY mm.idMateria;			             	             
+			             
 END$$
 DELIMITER ;
-
 
 
 DROP procedure IF EXISTS `eliminar_recetamaterial`;
@@ -2231,6 +2248,54 @@ CREATE PROCEDURE `sumatotal_gastoadminpormes` (in idCostoRecetasGastoAdminC INT)
 BEGIN
 			SELECT SUM(total) FROM gastoadminpormes
 		                     WHERE idCostoRecetasGastoAdmin=idCostoRecetasGastoAdminC;
+END$$
+DELIMITER ;
+
+-- Procedimientos almacenados Costo total de las recetas por mes-
+DROP procedure IF EXISTS `sumatotal_costototalpormes`;
+DELIMITER $$
+USE `caticao`$$
+CREATE PROCEDURE `sumatotal_costototalpormes` (IN mes DATE)
+BEGIN
+	-- Declaramos las variables-
+	DECLARE totalinsumos DECIMAL(10,2);
+	DECLARE totalmanodeobra DECIMAL(10,2);
+	DECLARE totaldepreciacion DECIMAL(10,2);
+	DECLARE totalconsumoenergia DECIMAL(10,2);
+	DECLARE totalconsumogas DECIMAL(10,2);
+	DECLARE totalcostoventa DECIMAL(10,2);
+	DECLARE totalcostomarketing DECIMAL(10,2);
+	DECLARE totalcostooperativo DECIMAL(10,2);
+	DECLARE totalreceta DECIMAL(10,2);
+  -- Calculamos los totales-
+	SELECT SUM(total) FROM recetamateria rm INNER JOIN receta r ON r.idReceta=rm.idReceta
+		            WHERE MONTH(fechaFin) = MONTH(mes) AND YEAR(fechaFin) = YEAR(mes) INTO totalinsumos;
+		                     
+	SELECT SUM(total) FROM recetamanodeobra rmo INNER JOIN receta r ON r.idReceta=rmo.idReceta
+		            WHERE MONTH(fechaFin) = MONTH(mes) AND YEAR(fechaFin) = YEAR(mes) INTO totalmanodeobra;
+		            
+   SELECT SUM(depreciacionPorBatch) FROM recetadepreciacion rd INNER JOIN receta r ON r.idReceta=rd.idReceta
+		            WHERE MONTH(fechaFin) = MONTH(mes) AND YEAR(fechaFin) = YEAR(mes) INTO totaldepreciacion;
+		            
+	SELECT SUM(pagoPorBatch) FROM recetaconsumoenergia rce INNER JOIN receta r ON r.idReceta=rce.idReceta
+		            WHERE MONTH(fechaFin) = MONTH(mes) AND YEAR(fechaFin) = YEAR(mes) INTO totalconsumoenergia;
+		            
+	SELECT SUM(pagoPorBatch) FROM recetaconsumogas rcg INNER JOIN receta r ON r.idReceta=rcg.idReceta
+		            WHERE MONTH(fechaFin) = MONTH(mes) AND YEAR(fechaFin) = YEAR(mes) INTO totalconsumogas;
+		                     
+	SELECT SUM(total) FROM recetacostoventa rcv INNER JOIN receta r ON r.idReceta=rcv.idReceta
+		            WHERE MONTH(fechaFin) = MONTH(mes) AND YEAR(fechaFin) = YEAR(mes) INTO totalcostoventa;
+		            
+   SELECT SUM(total) FROM recetacostomarketing rcm INNER JOIN receta r ON r.idReceta=rcm.idReceta
+		            WHERE MONTH(fechaFin) = MONTH(mes) AND YEAR(fechaFin) = YEAR(mes) INTO totalcostomarketing;
+		            
+	SELECT SUM(total) FROM recetacostooperativo rco INNER JOIN receta r ON r.idReceta=rco.idReceta
+		            WHERE MONTH(fechaFin) = MONTH(mes) AND YEAR(fechaFin) = YEAR(mes) INTO totalcostooperativo;									            
+	
+	SET totalreceta = totalinsumos+totalmanodeobra+totaldepreciacion+totalconsumoenergia+totalconsumogas+totalcostoventa+totalcostomarketing+totalcostooperativo;
+	-- sumamos los totales-
+	SELECT totalreceta,totalinsumos,totalmanodeobra,totaldepreciacion,totalconsumoenergia,totalconsumogas,totalcostoventa,totalcostomarketing,totalcostooperativo;
+		                     
 END$$
 DELIMITER ;
 

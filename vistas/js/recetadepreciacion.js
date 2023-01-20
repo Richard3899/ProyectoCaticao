@@ -225,7 +225,7 @@ function sumaTotalPrecioRecetaDepreciacion(){
 
 	}else{
 
-		$(".precioDepreciacion").number(true,3);
+		$(".precioDepreciacion").number(true,2);
 		$(".precioDepreciacion").val(sumaTotalPrecioUnitario);
 		$("#precioTotal").val(sumaTotalPrecioUnitario);
 		
@@ -318,7 +318,7 @@ function editarsumaTotalPrecioRecetaDepreciacion(){
 
 	var sumaTotalPrecioUnitario = arraySumaPrecioUnitario.reduce(sumaArrayPrecioUnitario,0);
 
-		$(".editarPrecioDepreciacion").number(true,3);
+		$(".editarPrecioDepreciacion").number(true,2);
 		$(".editarPrecioDepreciacion").val(sumaTotalPrecioUnitario);
 		$("#editarprecioTotal").val(sumaTotalPrecioUnitario);
 

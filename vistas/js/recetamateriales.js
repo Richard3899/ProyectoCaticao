@@ -180,7 +180,7 @@ $(".formularioRecetaMateriales").on("change", "input.nuevaCantidadMaterial", fun
 
 	precioUnitario.val(precioUnitarioFinal);
 
-	var nuevoStock = (Number($(this).attr("stock")) - $(this).val()).toFixed(3);
+	var nuevoStock = (Number($(this).attr("stock")) - $(this).val()).toFixed(2);
 
 	$(this).attr("nuevoStock", nuevoStock);
 
@@ -275,7 +275,7 @@ function sumaTotalPrecioRecetaMateriales(){
 
 	}else{
 
-		$(".precioMaterial").number(true,3);
+		$(".precioMaterial").number(true,2);
 		$(".precioMaterial").val(sumaTotalPrecioUnitario);
 		$("#precioTotal").val(sumaTotalPrecioUnitario);
 
@@ -314,7 +314,7 @@ $(".tablaRecetaMateriales tbody").on("click", "button.btnEditarMaterialReceta", 
 
 		   $(".editarCantidadMaterial").attr("edStock",(Number(respuesta["stock"])+Number(respuesta["cantidad"])));
 		   $("#editarCantidad").val(respuesta["cantidad"]);
-		   $("#editarStock").val(Number(respuesta["stock"]).toFixed(3)+" "+respuesta["unidadMedida"]);
+		   $("#editarStock").val(Number(respuesta["stock"]).toFixed(2)+" "+respuesta["unidadMedida"]);
 		   $("#cantidadAnterior").val(respuesta["cantidad"]);
 
 		   $("#editarprecioUnitario").val(respuesta["precioUnitario"]);
@@ -341,7 +341,7 @@ $(".formularioEditarRecetaMaterial").on("change", "input.editarCantidadMaterial"
 
 	editarprecioUnitario.val(precioUnitarioFinal);
 
-	var editarStock = (Number($(this).attr("edStock")) - $(this).val()).toFixed(3);
+	var editarStock = (Number($(this).attr("edStock")) - $(this).val()).toFixed(2);
 
     $(this).attr("editarStock", editarStock);
 
@@ -437,7 +437,7 @@ function editarsumaTotalPrecioRecetaMateriales(){
 
 	}else{
 
-		$(".editarPrecioMaterial").number(true,3);
+		$(".editarPrecioMaterial").number(true,2);
 		$(".editarPrecioMaterial").val(sumaTotalPrecioUnitario);
 		$("#editarprecioTotal").val(sumaTotalPrecioUnitario);
 

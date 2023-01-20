@@ -217,7 +217,7 @@ function sumaTotalPrecioGastoAdminPorMes(){
 
 	var sumaTotalPrecioUnitario = arraySumaPrecioUnitario.reduce(sumaArrayPrecioUnitario,0);
 
-		$(".precioGastoAdmin").number(true,3);
+		$(".precioGastoAdmin").number(true,2);
 		$(".precioGastoAdmin").val(sumaTotalPrecioUnitario);
 		$("#precioTotal").val(sumaTotalPrecioUnitario);
 
@@ -309,7 +309,7 @@ function editarsumaTotalPrecioGastoAdminPorMes(){
 
 	var sumaTotalPrecioUnitario = arraySumaPrecioUnitario.reduce(sumaArrayPrecioUnitario,0);
 
-		$(".editarPrecioGastoAdmin").number(true,3);
+		$(".editarPrecioGastoAdmin").number(true,2);
 		$(".editarPrecioGastoAdmin").val(sumaTotalPrecioUnitario);
 		$("#editarPrecioTotal").val(sumaTotalPrecioUnitario);
 

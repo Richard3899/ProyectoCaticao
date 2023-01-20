@@ -14,7 +14,7 @@ $("#tablaCostoTotalPorMes").DataTable({
 		extend: 'pdf',
 		text: "PDF",
 		title:'Costo total de : '+descripcion,
-		filename: 'Costo total de : '+descripcion,
+		filename: 'Costo total de '+descripcion,
 		exportOptions: {
 			columns: ':visible'
 		},
@@ -29,7 +29,7 @@ $("#tablaCostoTotalPorMes").DataTable({
 		extend: 'excel',
 		text: "Excel",
 		title:'Costo total de : '+descripcion,
-		filename: "Costo total de : "+descripcion,
+		filename: "Costo total de "+descripcion,
 		customize: function( xlsx ) {
                 var sheet = xlsx.xl.worksheets['sheet1.xml'];
 				//Centrar al exportar en Excel

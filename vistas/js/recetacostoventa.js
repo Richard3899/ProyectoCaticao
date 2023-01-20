@@ -218,7 +218,7 @@ function sumaTotalPrecioRecetaCostoVenta(){
 
 	var sumaTotalPrecioUnitario = arraySumaPrecioUnitario.reduce(sumaArrayPrecioUnitario,0);
 
-		$(".precioCostoVenta").number(true,3);
+		$(".precioCostoVenta").number(true,2);
 		$(".precioCostoVenta").val(sumaTotalPrecioUnitario);
 		$("#precioTotal").val(sumaTotalPrecioUnitario);
 
@@ -309,7 +309,7 @@ function editarsumaTotalPrecioRecetaCostoVenta(){
 
 	var sumaTotalPrecioUnitario = arraySumaPrecioUnitario.reduce(sumaArrayPrecioUnitario,0);
 
-		$(".editarPrecioCostoVenta").number(true,3);
+		$(".editarPrecioCostoVenta").number(true,2);
 		$(".editarPrecioCostoVenta").val(sumaTotalPrecioUnitario);
 		$("#editarPrecioTotal").val(sumaTotalPrecioUnitario);
 
