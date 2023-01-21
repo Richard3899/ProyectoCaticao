@@ -12,7 +12,7 @@
   <link href="vistas/plugins/font-awesome-4.7.0/css/font-awesome.css" rel="stylesheet"/>
 
   <!-- Google Font: Source Sans Pro -->
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+  <link rel="stylesheet" href="vistas/dist/css/font/family-fonts.css">
   <!-- Font Awesome -->
   <link rel="stylesheet" href="vistas/plugins/fontawesome-free/css/all.css">
   <!-- daterange picker -->

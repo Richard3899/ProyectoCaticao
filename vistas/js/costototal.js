@@ -18,9 +18,9 @@ $("#tablaCostoTotal").DataTable({
 			columns: ':visible'
 		},
 		customize: function (doc) {
-			doc.styles.tableHeader.fontSize = 11;
+			doc.styles.tableHeader.fontSize = 10;
 			doc.defaultStyle.alignment = 'center';
-			doc.content[1].table.widths = [ '*', '*','*','*'];
+			doc.content[1].table.widths = "*";
             // Posición en de los datos en cada columna
 			var rowCount = doc.content[1].table.body.length;
 			for (i = 1; i < rowCount; i++) {

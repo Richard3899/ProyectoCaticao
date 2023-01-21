@@ -233,15 +233,35 @@ if($value["modoDark"] == 1){
             </a>
           </li>
 
-          <li class="nav-item">
-            <a href="#" class="nav-link <?php if($url=='reportes'){ echo "active"; }?>">
+          <li class="nav-item <?php if (in_array($url, array('reporteinsumos','reportemateriales','reporteproductos'))){echo "menu-open";}?>">
+          <a href="#" class="nav-link <?php if(in_array($url, array('reporteinsumos','reportemateriales','reporteproductos'))){ echo "active"; }?>">
               <i class="nav-icon fas fa-chart-line"></i>
               <p>
                 Reportes
                 <i class="right fas fa-angle-left"></i>
               </p>
-              
             </a>
+
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="reporteinsumos" class="nav-link <?php if(in_array($url, array('reporteinsumos'))){ echo "active"; }?>">
+                <i class="nav-icon fas fa-angle-double-right"></i>
+                  <p>Reporte Insumos</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="reportemateriales" class="nav-link <?php if(in_array($url, array('reportemateriales'))){ echo "active"; }?>">
+                <i class="nav-icon fas fa-angle-double-right"></i>
+                  <p>Reporte Materiales</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="reporteproductos" class="nav-link <?php if(in_array($url, array('reporteproductos'))){ echo "active"; }?>">
+                <i class="nav-icon fas fa-angle-double-right"></i>
+                  <p>Reporte Productos</p>
+                </a>
+              </li>
+            </ul>
             
           </li>
 

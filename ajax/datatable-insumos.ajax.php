@@ -78,8 +78,8 @@ class TablaInsumos{
 			      "'.$insumos[$i]["codigo"].'",
 				  "'.$insumos[$i]["nombre"].'",
 			      "'.$insumos[$i]["descripcion"].'",
-			      "'.$marcas["descripcion"].'",
 				  "'.$unidadmedida["descripcion"].'",
+			      "'.$marcas["descripcion"].'",
 			      "'.$insumos[$i]["cantidad"].'",
 			      "'."S/. ".$insumos[$i]["precio"].'",
 			      "'.$botones.'"

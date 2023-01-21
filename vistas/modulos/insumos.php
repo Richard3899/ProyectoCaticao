@@ -46,8 +46,8 @@
          <th>Código</th>
          <th>Nombre</th>
          <th>Descripción</th>
-         <th>Marca</th>
          <th>Unidad de Medida</th>
+         <th>Marca</th>
          <th>Cantidad</th>
          <th>Precio</th>
          <th>Acciones</th>

@@ -19,9 +19,9 @@ $("#tablaCostoTotalPorMes").DataTable({
 			columns: ':visible'
 		},
 		customize: function (doc) {
-			doc.styles.tableHeader.fontSize = 11;
+			doc.styles.tableHeader.fontSize = 10;
 			doc.defaultStyle.alignment = 'center';
-			doc.content[1].table.widths = [ '*', '*'];
+			doc.content[1].table.widths = "*";
 		}
 	
 	    },
@@ -51,10 +51,6 @@ $("#tablaCostoTotalPorMes").DataTable({
 		customize: function (win) {
 			$(win.document.body).find('h1').css('text-align','center');
 		}
-	    },
-		{
-		extend: 'colvis',
-		text: "Columnas Visibles"
 	    }],
     "deferRender": true,
 	"ordering": false,
