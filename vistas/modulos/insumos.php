@@ -109,6 +109,7 @@ MODAL AGREGAR INSUMO
 
             <!-- ENTRADA PARA EL CÓDIGO -->
             <div class="form-group col-sm">
+            <label for="codigo">Código</label>
             <div class="input-group ">
                 <div class="input-group-prepend">
                 <span class="input-group-text"><i class="fas fa-hashtag"></i></span>
@@ -120,6 +121,7 @@ MODAL AGREGAR INSUMO
 
             <!-- ENTRADA PARA EL NOMBRE -->
             <div class="form-group col-sm">
+            <label for="nombre">Nombre</label>
             <div class="input-group">
                 <div class="input-group-prepend">
                 <span class="input-group-text"><i class="fas fa-file-signature"></i></span>
@@ -134,6 +136,7 @@ MODAL AGREGAR INSUMO
           <!-- ENTRADA PARA EL DESCRIPCIÓN -->
 
            <div class="form-group">
+           <label for="descripcion">Descripción</label>
             <div class="input-group">
                 <div class="input-group-prepend">
                 <span class="input-group-text"><i class="fas fa-bars"></i></span>
@@ -149,7 +152,7 @@ MODAL AGREGAR INSUMO
           <!-- ENTRADA PARA SELECCIONAR SU UNIDAD DE MEDIDA -->
 
           <div class="form-group col-sm">
-            
+          <label for="unidadMedida">Unidad de Medida</label>
           <div class="input-group">
             
             <div class="input-group-prepend">
@@ -182,7 +185,7 @@ MODAL AGREGAR INSUMO
           <!-- ENTRADA PARA SELECCIONAR SU MARCA -->
 
           <div class="form-group col-sm">
-            
+          <label for="marca">Marca</label>
             <div class="input-group">
             
                 <div class="input-group-prepend">
@@ -219,7 +222,7 @@ MODAL AGREGAR INSUMO
             <!-- ENTRADA PARA EL CANTIDAD -->
 
             <div class="form-group col-sm">
-            
+            <label for="cantidad">Cantidad</label>
             <div class="input-group">
                 <div class="input-group-prepend">
                 <span class="input-group-text"><i class="fas fa-layer-group"></i></span>
@@ -233,7 +236,7 @@ MODAL AGREGAR INSUMO
             <!-- ENTRADA PARA EL PRECIO -->
 
             <div class="form-group col-sm">
-            
+            <label for="precio">Precio</label>
             <div class="input-group">
                 <div class="input-group-prepend">
                 <span class="input-group-text"><i class="fas fa-dollar-sign"></i></span>

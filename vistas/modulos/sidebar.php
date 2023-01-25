@@ -217,7 +217,7 @@ if($value["modoDark"] == 1){
               <li class="nav-item">
                 <a href="costorecetasgastoadmin" class="nav-link <?php if(in_array($url, array('costorecetasgastoadmin','gastoadminpormes','costototalpormes'))){ echo "active"; }?>">
                 <i class="nav-icon fas fa-angle-double-right"></i>
-                  <p>Costo R. y Gst Admin</p>
+                  <p>C. Receta y G. Admin</p>
                 </a>
               </li>
             </ul>

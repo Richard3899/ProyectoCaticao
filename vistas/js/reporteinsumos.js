@@ -62,7 +62,7 @@ table = $("#tablaReporteInsumos").DataTable({
 			text: "Registros"
 			}],
     "deferRender": true,
-	"ordering": false,
+	
 	"columnDefs": [
 		{"className": "dt-center", "targets": "_all"},
 		//Tipo de dato (Número)
@@ -96,7 +96,7 @@ table = $("#tablaReporteInsumos").DataTable({
 
 
     /*===================================================================*/
-    // EVENTOS PARA CRITERIOS DE BUSQUEDA (CODIGO, CATEGORIA Y PRODUCTO)
+    // EVENTOS PARA CRITERIOS DE BUSQUEDA
     /*===================================================================*/
     $("#codigo").keyup(function(){
         table.column($(this).data('index')).search(this.value).draw();
@@ -117,23 +117,23 @@ table = $("#tablaReporteInsumos").DataTable({
         table.column($(this).data('index')).search(this.value).draw();
     })
 
-    $("#iptPrecioVentaDesde, #iptPrecioVentaHasta").keyup(function(){
+    $("#stockDesde, #stockHasta").keyup(function(){
         table.draw();
     })
-    // $.fn.dataTable.ext.search.push(
-    //     function(settings, data, dataIndex){
-    //         var precioDesde = parseFloat($("#iptPrecioVentaDesde").val());
-    //         var precioHasta = parseFloat($("#iptPrecioVentaHasta").val());
-    //         var col_venta = parseFloat(data[7]);
-    //         if((isNaN(precioDesde) && isNaN(precioHasta)) ||
-    //             (isNaN(precioDesde) && col_venta <=  precioHasta) ||
-    //             (precioDesde <= col_venta && isNaN(precioHasta)) ||
-    //             (precioDesde <= col_venta && col_venta <= precioHasta)){
-    //                 return true;
-    //         }
-    //         return false;
-    //     }
-    // )
+    $.fn.dataTable.ext.search.push(
+        function(settings, data, dataIndex){
+            var stockDesde = parseFloat($("#stockDesde").val());
+            var stockHasta = parseFloat($("#stockHasta").val());
+            var col_stock = parseFloat(data[7]);
+            if((isNaN(stockDesde) && isNaN(stockHasta)) ||
+                (isNaN(stockDesde) && col_stock <=  stockHasta) ||
+                (stockDesde <= col_stock && isNaN(stockHasta)) ||
+                (stockDesde <= col_stock && col_stock <= stockHasta)){
+                    return true;
+            }
+            return false;
+        }
+    )
 
     $("#btnLimpiarBusqueda").on('click',function(){
         $("#codigo").val('')
@@ -142,7 +142,8 @@ table = $("#tablaReporteInsumos").DataTable({
 		$("#unidadMedida").val('')
 		$("#marca").val('')
 		$("#precioUnitario").val('')
-        $("#iptPrecioVentaDesde").val('')
-        $("#iptPrecioVentaHasta").val('')
+        $("#stockDesde").val('')
+        $("#stockHasta").val('')
+		
         table.search('').columns().search('').draw();
     })

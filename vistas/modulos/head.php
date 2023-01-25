@@ -17,6 +17,7 @@
   <link rel="stylesheet" href="vistas/plugins/fontawesome-free/css/all.css">
   <!-- daterange picker -->
   <link rel="stylesheet" href="vistas/plugins/daterangepicker/daterangepicker.css">
+  <link rel="stylesheet" href="vistas/plugins/daterangepicker/dateTime.css">
   <!-- SweetAlert2 -->
   <link rel="stylesheet" href="vistas/plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css">
   <!-- Toastr -->
@@ -27,7 +28,9 @@
   <link rel="stylesheet" href="vistas/plugins/select2/css/select2.min.css">
 
   <link rel="stylesheet" href="vistas/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
-
+  
+  <link rel="stylesheet" href="vistas/dist/css/floating.css">
+  
   
   <!-- Ionicons -->
   <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
@@ -49,7 +52,7 @@
   <!-- DataTables -->
   <link rel="stylesheet" href="vistas/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
   <link rel="stylesheet" href="vistas/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
-  <link rel="stylesheet" href="vistas/plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
+  <link rel="stylesheet" href="vistas/plugins/datatables-buttons/css/buttons.bootstrap4.css">
   
   <!--=====================================
   PLUGINS DE JAVASCRIPT
@@ -58,17 +61,21 @@
   <script src="vistas/plugins/jquery/jquery.min.js"></script>
   <!-- Bootstrap 4 -->
   <script src="vistas/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <!-- Select2 -->
+  <script src="vistas/plugins/select2/js/select2.full.min.js"></script>
+  <!-- InputMask -->
+  <script src="vistas/plugins/moment/moment.min.js"></script>
+  <script src="vistas/plugins/moment/locale/es-mx.js"></script>
+  <script src="vistas/plugins/inputmask/jquery.inputmask.min.js"></script>
+  <!-- date-range-picker -->
+  <script src="vistas/plugins/daterangepicker/daterangepicker.js"></script>
+  <script src="vistas/plugins/daterangepicker/dateTime.js"></script>
   <!-- SweetAlert2 -->
   <script src="vistas/plugins/sweetalert2/sweetalert2.min.js"></script>
   <!-- By default SweetAlert2 doesn't support IE. To enable IE 11 support, include Promise polyfill:-->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/core-js/2.4.1/core.js"></script>
   <!-- Toastr -->
   <script src="vistas/plugins/toastr/toastr.min.js"></script>
-  <!-- date-range-picker -->
-  <script src="vistas/plugins/daterangepicker/daterangepicker.js"></script>
-  <!-- InputMask -->
-  <script src="vistas/plugins/moment/moment.min.js"></script>
-  <script src="vistas/plugins/inputmask/jquery.inputmask.min.js"></script>
   <!-- Tempusdominus Bootstrap 4 -->
   <script src="vistas/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
   <!-- dropzonejs -->
@@ -76,9 +83,11 @@
   <!-- AdminLTE App -->
   <script src="vistas/dist/js/adminlte.min.js"></script>
 
+ 
   <!-- DataTables  & Plugins -->
   <script src="vistas/plugins/datatables/jquery.dataTables.min.js"></script>
   <script src="vistas/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+  <script src="vistas/plugins/datatables/fnFilterClear.js"></script>
   <script src="vistas/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
   <script src="vistas/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
   <script src="vistas/plugins/datatables-rowgroup/js/dataTables.rowGroup.js"></script>
@@ -91,9 +100,7 @@
   <script src="vistas/plugins/datatables-buttons/js/buttons.print.min.js"></script>
   <script src="vistas/plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
 
-  <!-- Select2 -->
-  <script src="vistas/plugins/select2/js/select2.full.min.js"></script>
-
+  
   <!-- jQuery Number -->
   <script src="vistas/plugins/jqueryNumber/jquerynumber.min.js"></script>
 

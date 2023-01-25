@@ -3440,7 +3440,7 @@ input[type="button"].btn-block {
 .dropdown-item.active, .dropdown-item:active {
   color: #fff;
   text-decoration: none;
-  background-color: #007bff;
+  background-color: #5a6268;
 }
 
 .dropdown-item.disabled, .dropdown-item:disabled {
@@ -11904,7 +11904,7 @@ body:not(.layout-fixed) .main-sidebar .sidebar {
 
 .dark-mode {
   background-color: #454d55 !important;
-  color: #fff;
+  color: #000;
 }
 
 .layout-navbar-fixed .dark-mode .wrapper .sidebar-dark-primary .brand-link:not([class*="navbar"]) {
@@ -24095,7 +24095,7 @@ body.text-sm .input-group-text {
 .dark-mode select:-webkit-autofill,
 .dark-mode select:-webkit-autofill:hover,
 .dark-mode select:-webkit-autofill:focus {
-  -webkit-text-fill-color: #fff;
+  -webkit-text-fill-color: #000;
 }
 
 .dark-mode .custom-range::-webkit-slider-runnable-track {
