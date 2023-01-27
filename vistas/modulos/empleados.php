@@ -31,7 +31,6 @@
 
       </button>
         
-        
       </div>
       <div class="card-body">
 
@@ -97,6 +96,7 @@ MODAL AGREGAR EMPLEADO
       <div class="modal-header" style="background:gray; color:white">
 
       <h4 class="modal-title">Agregar Empleado</h4>
+
       <button type="button" class="close" data-dismiss="modal">&times;</button>
 
       </div>
@@ -113,6 +113,7 @@ MODAL AGREGAR EMPLEADO
 
             <!-- ENTRADA PARA EL NOMBRE -->
             <div class="form-group col-sm">
+            <label for="nombre">Nombre</label>
             <div class="input-group">
                 <div class="input-group-prepend">
                 <span class="input-group-text"><i class="fas fa-file-signature"></i></span>
@@ -124,6 +125,7 @@ MODAL AGREGAR EMPLEADO
 
             <!-- ENTRADA PARA EL APELLIDO -->
             <div class="form-group col-sm">
+            <label for="apellido">Apellido</label>
             <div class="input-group">
                 <div class="input-group-prepend">
                 <span class="input-group-text"><i class="fas fa-file-signature"></i></span>
@@ -135,13 +137,11 @@ MODAL AGREGAR EMPLEADO
 
           </div>
 
-
           <div class="row">
 
           <!-- ENTRADA PARA SELECCIONAR SU USUARIO -->
-
           <div class="form-group col-sm">
-            
+          <label for="usuario">Usuario</label>
             <div class="input-group">
             
                 <div class="input-group-prepend">
@@ -172,6 +172,7 @@ MODAL AGREGAR EMPLEADO
 
           <!-- ENTRADA PARA EL CORREO -->
           <div class="form-group col-sm">
+          <label for="correo">Correo</label>
           <div class="input-group">
               <div class="input-group-prepend">
               <span class="input-group-text"><i class="fas fa-envelope"></i></span>
@@ -183,13 +184,11 @@ MODAL AGREGAR EMPLEADO
 
           </div>
 
-
           <div class="row">
 
           <!-- ENTRADA PARA SELECCIONAR SU TIPO DOCUMENTO -->
-
           <div class="form-group col-sm">
-            
+          <label for="tipoDocumento">Tipo de Documento</label>
             <div class="input-group">
             
                 <div class="input-group-prepend">
@@ -220,6 +219,7 @@ MODAL AGREGAR EMPLEADO
 
           <!-- ENTRADA PARA EL NÚMERO DE DOCUMENTO -->
           <div class="form-group col-sm">
+          <label for="numeroDocumento">Número de Documento</label>
           <div class="input-group">
               <div class="input-group-prepend">
               <span class="input-group-text"><i class="fas fa-hashtag"></i></span>
@@ -233,6 +233,7 @@ MODAL AGREGAR EMPLEADO
 
           <!-- ENTRADA PARA EL DIRECCIÓN -->
           <div class="form-group">
+          <label for="direccion">Dirección</label>
           <div class="input-group">
               <div class="input-group-prepend">
               <span class="input-group-text"><i class="fas fa-map"></i></span>
@@ -247,6 +248,7 @@ MODAL AGREGAR EMPLEADO
 
           <!-- ENTRADA PARA EL TELÉFONO -->
           <div class="form-group col-sm">
+          <label for="telefono">Teléfono</label>
           <div class="input-group">
               <div class="input-group-prepend">
               <span class="input-group-text"><i class="fas fa-phone"></i></span>
@@ -258,6 +260,7 @@ MODAL AGREGAR EMPLEADO
 
           <!-- ENTRADA PARA EL FECHA NACIMIENTO -->
           <div class="form-group col-sm">
+          <label for="fechaNacimiento">Fecha de Nacimiento</label>
           <div class="input-group">
               <div class="input-group-prepend">
               <span class="input-group-text"><i class="fas fa-calendar-alt"></i></span>
@@ -269,11 +272,11 @@ MODAL AGREGAR EMPLEADO
 
           </div>
 
-
           <div class="row">
 
             <!-- ENTRADA PARA EL CARGO -->
             <div class="form-group col-sm">
+            <label for="cargo">Cargo</label>
             <div class="input-group">
                 <div class="input-group-prepend">
                 <span class="input-group-text"><i class="fas fa-users"></i></span>
@@ -284,7 +287,8 @@ MODAL AGREGAR EMPLEADO
             </div>
 
              <!-- ENTRADA PARA EL HORARIO TRABAJO -->
-             <div class="form-group col-sm">
+            <div class="form-group col-sm">
+            <label for="horarioTrabajo">Horario de Trabajo</label>
             <div class="input-group">
                 <div class="input-group-prepend">
                 <span class="input-group-text"><i class="fas fa-stopwatch"></i></span>
@@ -296,11 +300,11 @@ MODAL AGREGAR EMPLEADO
 
           </div>
 
-
           <div class="row">
 
           <!-- ENTRADA PARA HORAS POR DÍA -->
           <div class="form-group col-sm">
+          <label for="horasPorDia">Horas de Trabajo por día</label>
           <div class="input-group">
               <div class="input-group-prepend">
               <span class="input-group-text"><i class="fas fa-clock"></i></span>
@@ -312,6 +316,7 @@ MODAL AGREGAR EMPLEADO
 
           <!-- ENTRADA PARA EL SUELO POR DÍA -->
           <div class="form-group col-sm">
+          <label for="sueldoPorDia">Sueldo por día</label>
           <div class="input-group">
               <div class="input-group-prepend">
               <span class="input-group-text"><i class="fas fa-dollar-sign"></i></span>
@@ -323,11 +328,11 @@ MODAL AGREGAR EMPLEADO
 
           </div>
 
-          
           <div class="row">
 
             <!-- ENTRADA PARA EL SUELO POR MES -->
             <div class="form-group col-sm">
+            <label for="sueldoPorMes">Sueldo por mes</label>
             <div class="input-group">
                 <div class="input-group-prepend">
                 <span class="input-group-text"><i class="fas fa-money-bill"></i></span>
@@ -338,9 +343,8 @@ MODAL AGREGAR EMPLEADO
             </div>
 
           <!-- ENTRADA PARA SELECCIONAR SU TIPO DE SUELDO -->
-
           <div class="form-group col-sm">
-            
+          <label for="tipoSueldo">Tipo de Sueldo</label>
             <div class="input-group">
             
                 <div class="input-group-prepend">
@@ -423,6 +427,7 @@ MODAL EDITAR EMPLEADO
         <div class="modal-header" style="background:gray; color:white">
 
         <h4 class="modal-title">Editar Empleado</h4>
+
         <button type="button" class="close" data-dismiss="modal">&times;</button>
 
         </div>
@@ -439,6 +444,7 @@ MODAL EDITAR EMPLEADO
 
             <!-- ENTRADA PARA EL NOMBRE -->
             <div class="form-group col-sm">
+            <label for="nombre">Nombre</label>
             <div class="input-group">
                 <div class="input-group-prepend">
                 <span class="input-group-text"><i class="fas fa-file-signature"></i></span>
@@ -451,6 +457,7 @@ MODAL EDITAR EMPLEADO
 
             <!-- ENTRADA PARA EL APELLIDO -->
             <div class="form-group col-sm">
+            <label for="apellido">Apellido</label>
             <div class="input-group">
                 <div class="input-group-prepend">
                 <span class="input-group-text"><i class="fas fa-file-signature"></i></span>
@@ -462,13 +469,11 @@ MODAL EDITAR EMPLEADO
 
           </div>
 
-
           <div class="row">
 
           <!-- ENTRADA PARA SELECCIONAR SU USUARIO -->
-
           <div class="form-group col-sm">
-            
+          <label for="usuario">Usuario</label>
             <div class="input-group">
             
                 <div class="input-group-prepend">
@@ -499,6 +504,7 @@ MODAL EDITAR EMPLEADO
 
           <!-- ENTRADA PARA EL CORREO -->
           <div class="form-group col-sm">
+          <label for="correo">Correo</label>
           <div class="input-group">
               <div class="input-group-prepend">
               <span class="input-group-text"><i class="fas fa-envelope"></i></span>
@@ -514,9 +520,8 @@ MODAL EDITAR EMPLEADO
           <div class="row">
 
           <!-- ENTRADA PARA SELECCIONAR SU TIPO DOCUMENTO -->
-
           <div class="form-group col-sm">
-            
+          <label for="tipoDocumento">Tipo de Documento</label>
             <div class="input-group">
             
                 <div class="input-group-prepend">
@@ -547,6 +552,7 @@ MODAL EDITAR EMPLEADO
 
           <!-- ENTRADA PARA EL NÚMERO DE DOCUMENTO -->
           <div class="form-group col-sm">
+          <label for="numeroDocumento">Número de Documento</label>
           <div class="input-group">
               <div class="input-group-prepend">
               <span class="input-group-text"><i class="fas fa-hashtag"></i></span>
@@ -560,6 +566,7 @@ MODAL EDITAR EMPLEADO
 
           <!-- ENTRADA PARA EL DIRECCIÓN -->
           <div class="form-group">
+          <label for="direccion">Dirección</label>
           <div class="input-group">
               <div class="input-group-prepend">
               <span class="input-group-text"><i class="fas fa-map"></i></span>
@@ -574,6 +581,7 @@ MODAL EDITAR EMPLEADO
 
           <!-- ENTRADA PARA EL TELÉFONO -->
           <div class="form-group col-sm">
+          <label for="telefono">Teléfono</label>
           <div class="input-group">
               <div class="input-group-prepend">
               <span class="input-group-text"><i class="fas fa-phone"></i></span>
@@ -585,6 +593,7 @@ MODAL EDITAR EMPLEADO
 
           <!-- ENTRADA PARA EL FECHA NACIMIENTO -->
           <div class="form-group col-sm">
+          <label for="fechaNacimiento">Fecha de Nacimiento</label>
           <div class="input-group">
               <div class="input-group-prepend">
               <span class="input-group-text"><i class="fas fa-calendar-alt"></i></span>
@@ -601,6 +610,7 @@ MODAL EDITAR EMPLEADO
 
             <!-- ENTRADA PARA EL CARGO -->
             <div class="form-group col-sm">
+            <label for="cargo">Cargo</label>
             <div class="input-group">
                 <div class="input-group-prepend">
                 <span class="input-group-text"><i class="fas fa-users"></i></span>
@@ -610,8 +620,9 @@ MODAL EDITAR EMPLEADO
             </div>
             </div>
 
-             <!-- ENTRADA PARA EL HORARIO TRABAJO -->
-             <div class="form-group col-sm">
+            <!-- ENTRADA PARA EL HORARIO TRABAJO -->
+            <div class="form-group col-sm">
+            <label for="horarioTrabajo">Horario de Trabajo</label>
             <div class="input-group">
                 <div class="input-group-prepend">
                 <span class="input-group-text"><i class="fas fa-stopwatch"></i></span>
@@ -623,11 +634,11 @@ MODAL EDITAR EMPLEADO
 
           </div>
 
-
           <div class="row">
 
           <!-- ENTRADA PARA HORAS POR DÍA -->
           <div class="form-group col-sm">
+          <label for="horasPorDia">Horas de Trabajo por día</label>
           <div class="input-group">
               <div class="input-group-prepend">
               <span class="input-group-text"><i class="fas fa-clock"></i></span>
@@ -639,6 +650,7 @@ MODAL EDITAR EMPLEADO
 
           <!-- ENTRADA PARA EL SUELO POR DÍA -->
           <div class="form-group col-sm">
+          <label for="sueldoPorDia">Sueldo por día</label>
           <div class="input-group">
               <div class="input-group-prepend">
               <span class="input-group-text"><i class="fas fa-dollar-sign"></i></span>
@@ -650,11 +662,11 @@ MODAL EDITAR EMPLEADO
 
           </div>
 
-          
           <div class="row">
 
             <!-- ENTRADA PARA EL SUELO POR MES -->
             <div class="form-group col-sm">
+            <label for="sueldoPorMes">Sueldo por mes</label>
             <div class="input-group">
                 <div class="input-group-prepend">
                 <span class="input-group-text"><i class="fas fa-money-bill"></i></span>
@@ -665,9 +677,8 @@ MODAL EDITAR EMPLEADO
             </div>
 
           <!-- ENTRADA PARA SELECCIONAR SU TIPO DE SUELDO -->
-
           <div class="form-group col-sm">
-            
+          <label for="tipoSueldo">Tipo de Sueldo</label>
             <div class="input-group">
             
                 <div class="input-group-prepend">

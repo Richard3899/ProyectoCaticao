@@ -76,7 +76,7 @@ $(".tablaRecetaManodeObra").on("draw.dt", function() {
 		
 		for (var i=0; i<respuesta.length; i++) { 
 
-			idArrayRecetaManodeObra.push(respuesta[i]["idEmpleado"]);
+			idArrayRecetaManodeObra.push(respuesta[i]["idMaquina"]);
 		
 		}
 		
@@ -84,9 +84,7 @@ $(".tablaRecetaManodeObra").on("draw.dt", function() {
 
 	})
 })
-
-
-
+console.log(idArrayRecetaManodeObra)
 /*=============================================
 SELECCIONAR EMPLEADO DE LA RECETA
 =============================================*/
@@ -118,20 +116,20 @@ $(".formularioRecetaManodeObra").on("change", "select.seleccionarNombreEmpleado"
 					
 				}else{
 						
-					for(i=0;i<idArrayRecetaManodeObra.length;i++){
+					// for(i=0;i<idArrayRecetaManodeObra.length;i++){
 		
-						if(idArrayRecetaManodeObra[i]==idEmpleado){
+					// 	if(idArrayRecetaManodeObra[i]==idEmpleado){
 				
-							Swal.fire({
-								icon: "error",
-								title: "El empleado ya está en la receta",
-								showConfirmButton: false,
-							    timer: 2000
-							  })
+					// 		Swal.fire({
+					// 			icon: "error",
+					// 			title: "El empleado ya está en la receta",
+					// 			showConfirmButton: false,
+					// 		    timer: 2000
+					// 		  })
 
-							$('#seleccionarNombreEmpleado').val(null).trigger('change');
+					// 		$('#seleccionarNombreEmpleado').val(null).trigger('change');
 
-						}else{
+					// 	}else{
 
 							$("#idEmpleado").val(respuesta["idEmpleado"]);
 							$("#nombreEmpleado").val(respuesta["nombre"]+" "+respuesta["apellido"]);
@@ -140,8 +138,8 @@ $(".formularioRecetaManodeObra").on("change", "select.seleccionarNombreEmpleado"
 							$(".precioManodeObra").val(0);
 							$(".precioManodeObra").attr("precioReal",respuesta["precioUnitario"]);
 							
-						}
-					 }
+						// }
+					//  }
 
 				}
 
@@ -164,11 +162,11 @@ SELECCIONAR MAQUINA DE LA RECETA
 
 $(".formularioRecetaManodeObra").on("change", "select.seleccionarNombreMaquina", function(){
 	
-	var idEmpleado = $(this).val();
+	var idMaquina = $(this).val();
 
 	var datos = new FormData();
 
-	datos.append("idMaquina", idEmpleado);
+	datos.append("idMaquina", idMaquina);
     
 	  $.ajax({
 
@@ -181,10 +179,36 @@ $(".formularioRecetaManodeObra").on("change", "select.seleccionarNombreMaquina",
       	dataType:"json",
       	success:function(respuesta){
 
-				$("#idMaquina").val(respuesta["idMaquina"]);
-				$("#nombreMaquina").val(respuesta["nombre"]);
+					if($(".seleccionarNombreMaquina").val() == ""){
 
-      	}
+						$("#idMaquina").val("");
+						$("#nombreMaquina").val("");
+							
+					}else{
+
+					for(i=0;i<idArrayRecetaManodeObra.length;i++){
+		
+						if(idArrayRecetaManodeObra[i]==idMaquina){
+				
+							Swal.fire({
+								icon: "error",
+								title: "La maquina ya está en la receta",
+								showConfirmButton: false,
+							    timer: 2000
+							  })
+
+							$('#seleccionarNombreMaquina').val(null).trigger('change');
+
+						}else{
+
+							$("#idMaquina").val(respuesta["idMaquina"]);
+							$("#nombreMaquina").val(respuesta["nombre"]);
+
+						}
+					 }    
+
+      	            }
+	}
 
 
 	})

@@ -58,7 +58,7 @@ INSERT INTO `materia` (`idMateria`, `codigo`, `nombre`, `descripcion`, `precio`,
 	(3, 'AG12', 'AGUA', 'EVAPORADA', 12.00, 12.00, 1.00, '', 2, 3, 1),
 	(4, 'VN001', 'VAINILLA', 'DULCE', 7.00, 12.00, 0.58, '', 2, 1, 1),
 	(5, 'CC001', 'CACAO', 'NATURAL', 6.00, 56.00, 0.11, '', 1, 3, 1),
-    (6, 'EMP001', 'EMPAQUES', 'GRANDES', 30.000, 100.000, 0.300, '', 3, 3, 2);
+    (6, 'EMP001', 'EMPAQUES', 'GRANDES', 30.00, 100.00, 0.30, '', 3, 3, 2);
 
     
 INSERT INTO `inventariomateria` (`idInventarioMateria`, `stock`, `idMateria`) VALUES

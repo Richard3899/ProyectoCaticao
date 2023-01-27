@@ -32,7 +32,6 @@
 
       </button>
         
-        
       </div>
       <div class="card-body">
 
@@ -54,8 +53,6 @@
       </thead>
 
      </table>
-
-        
 
       </div>
       <!-- /.card-body -->
@@ -87,6 +84,7 @@ MODAL AGREGAR COSTOS DE VENTAS
       <div class="modal-header" style="background:gray; color:white">
 
       <h4 class="modal-title">Agregar Costo de Marketing</h4>
+
       <button type="button" class="close" data-dismiss="modal">&times;</button>
 
       </div>
@@ -102,8 +100,8 @@ MODAL AGREGAR COSTOS DE VENTAS
           <div class="row">
 
           <!-- ENTRADA PARA EL DESCRIPCIÓN -->
-
           <div class="form-group col-sm">
+          <label for="descripcion">Descripción</label>
             <div class="input-group">
                 <div class="input-group-prepend">
                 <span class="input-group-text"><i class="fas fa-bars"></i></span>
@@ -114,9 +112,8 @@ MODAL AGREGAR COSTOS DE VENTAS
           </div>
  
           <!-- ENTRADA PARA SELECCIONAR SU UNIDAD DE MEDIDA -->
-
           <div class="form-group col-sm">
-            
+          <label for="unidadMedida">Unidad de Medida</label>
             <div class="input-group">
             
                 <div class="input-group-prepend">
@@ -150,9 +147,8 @@ MODAL AGREGAR COSTOS DE VENTAS
           <div class="row">
 
           <!-- ENTRADA PARA EL PRECIO -->
-
             <div class="form-group col-sm">
-            
+            <label for="precio">Precio</label>
             <div class="input-group">
                 <div class="input-group-prepend">
                 <span class="input-group-text"><i class="fas fa-dollar-sign"></i></span>
@@ -164,9 +160,8 @@ MODAL AGREGAR COSTOS DE VENTAS
             </div>
 
           <!-- ENTRADA PARA SELECCIONAR SU TIPO DE COSTO -->
-
           <div class="form-group col-sm">
-            
+          <label for="tipoCosto">Tipo de Costo</label>
             <div class="input-group">
             
                 <div class="input-group-prepend">
@@ -252,6 +247,7 @@ MODAL EDITAR COSTOS DE VENTAS
       <div class="modal-header" style="background:gray; color:white">
 
       <h4 class="modal-title">Editar Costo de Marketing</h4>
+
       <button type="button" class="close" data-dismiss="modal">&times;</button>
 
       </div>
@@ -267,8 +263,8 @@ MODAL EDITAR COSTOS DE VENTAS
         <div class="row">
 
         <!-- ENTRADA PARA EL DESCRIPCIÓN -->
-
         <div class="form-group col-sm">
+        <label for="descripcion">Descripción</label>
           <div class="input-group">
               <div class="input-group-prepend">
               <span class="input-group-text"><i class="fas fa-bars"></i></span>
@@ -280,9 +276,8 @@ MODAL EDITAR COSTOS DE VENTAS
         </div>
 
         <!-- ENTRADA PARA SELECCIONAR SU UNIDAD DE MEDIDA -->
-
         <div class="form-group col-sm">
-          
+        <label for="unidadMedida">Unidad de Medida</label>
           <div class="input-group">
           
               <div class="input-group-prepend">
@@ -316,9 +311,8 @@ MODAL EDITAR COSTOS DE VENTAS
         <div class="row">
 
           <!-- ENTRADA PARA EL PRECIO -->
-
           <div class="form-group col-sm">
-          
+          <label for="precio">Precio</label>
           <div class="input-group">
               <div class="input-group-prepend">
               <span class="input-group-text"><i class="fas fa-dollar-sign"></i></span>
@@ -330,9 +324,8 @@ MODAL EDITAR COSTOS DE VENTAS
           </div>
 
         <!-- ENTRADA PARA SELECCIONAR SU TIPO DE COSTO -->
-
         <div class="form-group col-sm">
-          
+        <label for="tipoCosto">Tipo de Costo</label>
           <div class="input-group">
           
               <div class="input-group-prepend">

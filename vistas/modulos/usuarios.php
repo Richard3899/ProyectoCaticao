@@ -30,7 +30,6 @@
 
       </button>
         
-        
       </div>
       <div class="card-body">
 
@@ -120,7 +119,6 @@
       </tbody>
 
      </table>
-        
 
       </div>
       <!-- /.card-body -->
@@ -131,10 +129,6 @@
   </div>
 </div>
 <!-- /.content-wrapper -->
-
-
-
-
 
 <!--=====================================
 MODAL AGREGAR USUARIO
@@ -168,10 +162,8 @@ MODAL AGREGAR USUARIO
         <div class="box-body">
 
           <!-- ENTRADA PARA EL NOMBRE -->
-          
-
           <div class="form-group">
-            
+          <label for="nombre">Nombre</label>
             <div class="input-group">
                 <div class="input-group-prepend">
                 <span class="input-group-text"><i class="fas fa-user"></i></span>
@@ -183,9 +175,8 @@ MODAL AGREGAR USUARIO
           </div>
 
           <!-- ENTRADA PARA EL USUARIO -->
-
           <div class="form-group">
-            
+          <label for="usuario">Usuario</label>
             <div class="input-group">
                 <div class="input-group-prepend">
                 <span class="input-group-text"><i class="fas fa-key"></i></span>
@@ -197,9 +188,8 @@ MODAL AGREGAR USUARIO
           </div>
 
           <!-- ENTRADA PARA LA CONTRASEÑA -->
-
            <div class="form-group">
-            
+           <label for="contraseña">Contraseña</label>
             <div class="input-group">
             
                 <div class="input-group-prepend">
@@ -214,9 +204,8 @@ MODAL AGREGAR USUARIO
           </div>
 
           <!-- ENTRADA PARA SELECCIONAR SU PERFIL -->
-
           <div class="form-group">
-            
+          <label for="perfil">Perfil</label>
             <div class="input-group">
             
                 <div class="input-group-prepend">
@@ -277,7 +266,6 @@ MODAL AGREGAR USUARIO
 
       ?>
 
-
     </form>
 
   </div>
@@ -285,7 +273,6 @@ MODAL AGREGAR USUARIO
 </div>
 
 </div>
-
 
 <!--=====================================
 MODAL EDITAR USUARIO
@@ -318,12 +305,9 @@ MODAL EDITAR USUARIO
 
           <div class="box-body">
 
-
-            <!-- ENTRADA PARA EL NOMBRE -->
-                      
-
+            <!-- ENTRADA PARA EL NOMBRE -->                   
             <div class="form-group">
-            
+            <label for="nombre">Nombre</label>
             <div class="input-group">
                 <div class="input-group-prepend">
                 <span class="input-group-text"><i class="fas fa-user"></i></span>
@@ -335,9 +319,8 @@ MODAL EDITAR USUARIO
           </div>
 
           <!-- ENTRADA PARA EL USUARIO -->
-
            <div class="form-group">
-            
+           <label for="usuario">Usuario</label>
             <div class="input-group">
                 <div class="input-group-prepend">
                 <span class="input-group-text"><i class="fas fa-key"></i></span>
@@ -348,11 +331,9 @@ MODAL EDITAR USUARIO
 
           </div>
 
-
           <!-- ENTRADA PARA LA CONTRASEÑA -->
-
             <div class="form-group">
-            
+            <label for="contraseña">Contraseña</label>
             <div class="input-group">
             
                 <div class="input-group-prepend">
@@ -368,9 +349,8 @@ MODAL EDITAR USUARIO
             </div>
 
           <!-- ENTRADA PARA SELECCIONAR SU PERFIL -->
-
           <div class="form-group">
-            
+          <label for="perfil">Perfil</label>
             <div class="input-group">
             
                 <div class="input-group-prepend">

@@ -54,7 +54,6 @@
          <a type="button" class="btn btn-secondary my-1 col-12 col-sm-4 col-md-3 col-lg-3 col-xl-3" href="recetas">Volver</a>
         </div>
         
-
       </div>
 
       </div>
@@ -77,9 +76,7 @@
 
       </thead>
 
-     </table>
-
-        
+     </table>   
 
       </div>
       <!-- /.card-body -->
@@ -132,9 +129,8 @@ MODAL RECETA COSTO OPERATIVO
         <div class="row">
 
             <!-- ENTRADA PARA SELECCIONAR COSTO OPERATIVO -->
-
             <div class="form-group col-sm">
-            
+            <label for="costoOperativo">Costo Operativo</label>
             <div class="input-group">
 
                 <input type="hidden" name="idCostoOperativo" id="idCostoOperativo">
@@ -160,7 +156,6 @@ MODAL RECETA COSTO OPERATIVO
 
               </select>
               
-
             </div>
 
           </div>
@@ -170,9 +165,8 @@ MODAL RECETA COSTO OPERATIVO
           <div class="row">
 
             <!-- ENTRADA PARA LA CANTIDAD -->
-
             <div class="form-group col-sm">
-            
+            <label for="cantidad">Cantidad</label>
             <div class="input-group">
                 <div class="input-group-prepend">
                 <span class="input-group-text"><i class="fas fa-layer-group"></i></span>
@@ -184,9 +178,8 @@ MODAL RECETA COSTO OPERATIVO
             </div>
 
             <!-- ENTRADA PARA EL PRECIO -->
-
             <div class="form-group col-sm">
-            
+            <label for="precio">Precio</label>
             <div class="input-group">
                 <div class="input-group-prepend">
                 <span class="input-group-text"><i class="fas fa-dollar-sign"></i></span>
@@ -199,9 +192,7 @@ MODAL RECETA COSTO OPERATIVO
 
             </div>
 
-
           </div>
-
 
         </div>
 
@@ -226,7 +217,6 @@ MODAL RECETA COSTO OPERATIVO
 
       ?>
 
-
     </form>
 
   </div>
@@ -234,9 +224,6 @@ MODAL RECETA COSTO OPERATIVO
 </div>
 
 </div>
-
-
-
 
 <!--=====================================
 MODAL EDITAR RECETA COSTO OPERATIVO
@@ -279,10 +266,9 @@ MODAL EDITAR RECETA COSTO OPERATIVO
 
           <div class="row">
 
-            <!-- ENTRADA PARA SELECCIONAR LA MAQUINA -->
-
+            <!-- ENTRADA PARA SELECCIONAR EL COSTO OPERATIVO -->
             <div class="form-group col-sm">
-
+            <label for="costoOperativo">Costo Operativo</label>
                 <input type="hidden" name="editaridRecetaCostoOperativo" id="editaridRecetaCostoOperativo">
             
             <div class="input-group">
@@ -298,9 +284,8 @@ MODAL EDITAR RECETA COSTO OPERATIVO
           <div class="row">
 
             <!-- ENTRADA PARA LA CANTIDAD-->
-
             <div class="form-group col-sm">
-            
+            <label for="cantidad">Cantidad</label>
             <div class="input-group">
                 <div class="input-group-prepend">
                 <span class="input-group-text"><i class="fas fa-layer-group"></i></span>
@@ -312,9 +297,8 @@ MODAL EDITAR RECETA COSTO OPERATIVO
             </div>
 
             <!-- ENTRADA PARA EL PRECIO -->
-
             <div class="form-group col-sm">
-            
+            <label for="precio">Precio</label>
             <div class="input-group">
                 <div class="input-group-prepend">
                 <span class="input-group-text"><i class="fas fa-dollar-sign"></i></span>
@@ -326,9 +310,7 @@ MODAL EDITAR RECETA COSTO OPERATIVO
 
             </div>
 
-
           </div>
-
 
         </div>
 
@@ -353,7 +335,6 @@ MODAL EDITAR RECETA COSTO OPERATIVO
 
       ?>
 
-
     </form>
 
   </div>
@@ -361,7 +342,6 @@ MODAL EDITAR RECETA COSTO OPERATIVO
 </div>
 
 </div>
-
 
 <?php
 

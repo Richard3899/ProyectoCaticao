@@ -53,7 +53,6 @@
          </button>
          <a type="button" class="btn btn-secondary my-1 col-12 col-sm-4 col-md-3 col-lg-4 col-xl-3" href="recetas">Volver</a>
         </div>
-        
 
       </div>
 
@@ -78,8 +77,6 @@
       </thead>
 
      </table>
-
-        
 
       </div>
       <!-- /.card-body -->
@@ -132,9 +129,8 @@ MODAL RECETA MATERIAL
           <div class="row">
 
           <!-- ENTRADA PARA SELECCIONAR MATERIAL -->
-
           <div class="form-group col-sm">
-            
+          <label for="Material">Material</label>
             <div class="input-group">
 
                 <input type="hidden" name="idMaterial" id="idMaterial">
@@ -171,6 +167,7 @@ MODAL RECETA MATERIAL
 
             <!-- ENTRADA PARA EL STOCK -->
             <div class="form-group col-sm">
+            <label for="stock">Stock</label>
             <div class="input-group">
                 <div class="input-group-prepend">
                 <span class="input-group-text"><i class="fas fa-box"></i></span>
@@ -184,9 +181,8 @@ MODAL RECETA MATERIAL
           <div class="row">
 
             <!-- ENTRADA PARA EL CANTIDAD -->
-
             <div class="form-group col-sm">
-            
+            <label for="cantidad">Cantidad</label>
             <div class="input-group">
                 <div class="input-group-prepend">
                 <span class="input-group-text"><i class="fas fa-layer-group"></i></span>
@@ -198,9 +194,8 @@ MODAL RECETA MATERIAL
             </div>
 
             <!-- ENTRADA PARA EL PRECIO -->
-
             <div class="form-group col-sm">
-            
+            <label for="precio">Precio</label>
             <div class="input-group">
                 <div class="input-group-prepend">
                 <span class="input-group-text"><i class="fas fa-dollar-sign"></i></span>
@@ -213,9 +208,7 @@ MODAL RECETA MATERIAL
 
             </div>
 
-
           </div>
-
 
         </div>
 
@@ -248,9 +241,6 @@ MODAL RECETA MATERIAL
 </div>
 
 </div>
-
-
-
 
 <!--=====================================
 MODAL EDITAR RECETA MATERIAL
@@ -294,9 +284,8 @@ MODAL EDITAR RECETA MATERIAL
           <div class="row">
 
           <!-- ENTRADA PARA SELECCIONAR MATERIAL -->
-
           <div class="form-group col-sm">
-
+          <label for="material">Material</label>
                 <input type="hidden" name="editaridRecetaMaterial" id="editaridRecetaMaterial">
 
                 <input type="hidden" name="editaridMaterial" id="editaridMaterial">
@@ -313,6 +302,7 @@ MODAL EDITAR RECETA MATERIAL
 
             <!-- ENTRADA PARA EL STOCK -->
             <div class="form-group col-sm">
+            <label for="stock">Stock</label>
             <div class="input-group">
                 <div class="input-group-prepend">
                 <span class="input-group-text"><i class="fas fa-box"></i></span>
@@ -326,9 +316,8 @@ MODAL EDITAR RECETA MATERIAL
           <div class="row">
 
             <!-- ENTRADA PARA EL CANTIDAD -->
-
             <div class="form-group col-sm">
-            
+            <label for="cantidad">Cantidad</label>
             <div class="input-group">
                 <div class="input-group-prepend">
                 <span class="input-group-text"><i class="fas fa-layer-group"></i></span>
@@ -342,9 +331,8 @@ MODAL EDITAR RECETA MATERIAL
             </div>
 
             <!-- ENTRADA PARA EL PRECIO -->
-
             <div class="form-group col-sm">
-            
+            <label for="precio">Precio</label>
             <div class="input-group">
                 <div class="input-group-prepend">
                 <span class="input-group-text"><i class="fas fa-dollar-sign"></i></span>
@@ -357,9 +345,7 @@ MODAL EDITAR RECETA MATERIAL
 
             </div>
 
-
           </div>
-
 
         </div>
 
@@ -383,7 +369,6 @@ MODAL EDITAR RECETA MATERIAL
           $editarRecetaMateriales -> ctrEditarRecetaMaterial();
 
       ?>
-
 
     </form>
 

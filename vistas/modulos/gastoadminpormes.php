@@ -45,7 +45,6 @@
          <a type="button" class="btn btn-secondary my-1 col-12 col-sm-4 col-md-3 col-lg-3 col-xl-3" href="costorecetasgastoadmin">Volver</a>
         </div>
         
-
       </div>
 
       </div>
@@ -69,9 +68,7 @@
       </thead>
 
      </table>
-
         
-
       </div>
       <!-- /.card-body -->
     </div>
@@ -121,9 +118,8 @@ MODAL GASTO ADMINISTRATIVO POR MES
         <div class="row">
 
             <!-- ENTRADA PARA SELECCIONAR GASTO ADMINISTRATIVO -->
-
             <div class="form-group col-sm">
-            
+            <label for="gastoAdministrativo">Gasto Administrativo</label>
             <div class="input-group">
 
                 <input type="hidden" name="idGastoAdmin" id="idGastoAdmin">
@@ -149,7 +145,6 @@ MODAL GASTO ADMINISTRATIVO POR MES
 
               </select>
               
-
             </div>
 
           </div>
@@ -159,9 +154,8 @@ MODAL GASTO ADMINISTRATIVO POR MES
           <div class="row">
 
             <!-- ENTRADA PARA LA CANTIDAD -->
-
             <div class="form-group col-sm">
-            
+            <label for="cantidad">Cantidad</label>
             <div class="input-group">
                 <div class="input-group-prepend">
                 <span class="input-group-text"><i class="fas fa-layer-group"></i></span>
@@ -173,9 +167,8 @@ MODAL GASTO ADMINISTRATIVO POR MES
             </div>
 
             <!-- ENTRADA PARA EL PRECIO -->
-
             <div class="form-group col-sm">
-            
+            <label for="precio">Precio</label>
             <div class="input-group">
                 <div class="input-group-prepend">
                 <span class="input-group-text"><i class="fas fa-dollar-sign"></i></span>
@@ -188,9 +181,7 @@ MODAL GASTO ADMINISTRATIVO POR MES
 
             </div>
 
-
           </div>
-
 
         </div>
 
@@ -215,7 +206,6 @@ MODAL GASTO ADMINISTRATIVO POR MES
 
       ?>
 
-
     </form>
 
   </div>
@@ -223,9 +213,6 @@ MODAL GASTO ADMINISTRATIVO POR MES
 </div>
 
 </div>
-
-
-
 
 <!--=====================================
 MODAL EDITAR GASTO ADMINISTRATIVO POR MES
@@ -265,10 +252,10 @@ MODAL EDITAR GASTO ADMINISTRATIVO POR MES
 
           <div class="row">
 
-            <!-- ENTRADA PARA SELECCIONAR LA MAQUINA -->
+            <!-- ENTRADA PARA SELECCIONAR EL GASTO ADMINISTRATIVO -->
 
             <div class="form-group col-sm">
-
+            <label for="gastoAdministrativo">Gasto Administrativo</label>
                 <input type="hidden" name="editaridGastoAdminPorMes" id="editaridGastoAdminPorMes">
             
             <div class="input-group">
@@ -284,9 +271,8 @@ MODAL EDITAR GASTO ADMINISTRATIVO POR MES
           <div class="row">
 
             <!-- ENTRADA PARA LA CANTIDAD-->
-
             <div class="form-group col-sm">
-            
+            <label for="cantidad">Cantidad</label>
             <div class="input-group">
                 <div class="input-group-prepend">
                 <span class="input-group-text"><i class="fas fa-layer-group"></i></span>
@@ -298,9 +284,8 @@ MODAL EDITAR GASTO ADMINISTRATIVO POR MES
             </div>
 
             <!-- ENTRADA PARA EL PRECIO -->
-
             <div class="form-group col-sm">
-            
+            <label for="precio">Precio</label>
             <div class="input-group">
                 <div class="input-group-prepend">
                 <span class="input-group-text"><i class="fas fa-dollar-sign"></i></span>
@@ -312,9 +297,7 @@ MODAL EDITAR GASTO ADMINISTRATIVO POR MES
 
             </div>
 
-
           </div>
-
 
         </div>
 
@@ -339,7 +322,6 @@ MODAL EDITAR GASTO ADMINISTRATIVO POR MES
 
       ?>
 
-
     </form>
 
   </div>
@@ -347,7 +329,6 @@ MODAL EDITAR GASTO ADMINISTRATIVO POR MES
 </div>
 
 </div>
-
 
 <?php
 

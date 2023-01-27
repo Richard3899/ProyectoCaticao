@@ -89,6 +89,7 @@ MODAL AGREGAR PRODUCTO
       <div class="modal-header" style="background:gray; color:white">
 
       <h4 class="modal-title">Agregar Producto</h4>
+
       <button type="button" class="close" data-dismiss="modal">&times;</button>
 
       </div>
@@ -105,6 +106,7 @@ MODAL AGREGAR PRODUCTO
 
             <!-- ENTRADA PARA EL CÓDIGO -->
             <div class="form-group col-sm">
+            <label for="codigo">Código</label>  
             <div class="input-group ">
                 <div class="input-group-prepend">
                 <span class="input-group-text"><i class="fas fa-hashtag"></i></span>
@@ -116,6 +118,7 @@ MODAL AGREGAR PRODUCTO
 
             <!-- ENTRADA PARA EL NOMBRE -->
             <div class="form-group col-sm">
+            <label for="nombre">Nombre</label>
             <div class="input-group">
                 <div class="input-group-prepend">
                 <span class="input-group-text"><i class="fas fa-file-signature"></i></span>
@@ -131,6 +134,7 @@ MODAL AGREGAR PRODUCTO
           <!-- ENTRADA PARA EL DESCRIPCIÓN -->
 
            <div class="form-group">
+            <label for="descripcion">Descripción</label>
             <div class="input-group">
                 <div class="input-group-prepend">
                 <span class="input-group-text"><i class="fas fa-bars"></i></span>
@@ -146,7 +150,7 @@ MODAL AGREGAR PRODUCTO
           <!-- ENTRADA PARA SELECCIONAR SU UNIDAD DE MEDIDA -->
 
           <div class="form-group col-sm">
-            
+          <label for="unidadMedida">Unidad de Medida</label>
             <div class="input-group">
             
                 <div class="input-group-prepend">
@@ -179,7 +183,7 @@ MODAL AGREGAR PRODUCTO
           <!-- ENTRADA PARA SELECCIONAR SU TIPO DE PRODUCTO -->
 
           <div class="form-group col-sm">
-            
+          <label for="tipoProducto">Tipo de Producto</label>
             <div class="input-group">
             
                 <div class="input-group-prepend">
@@ -208,11 +212,7 @@ MODAL AGREGAR PRODUCTO
 
           </div>
 
-
           </div>
-
-
-
 
           <!-- ENTRADA PARA SUBIR FOTO -->
 
@@ -281,6 +281,7 @@ MODAL EDITAR PRODUCTO
         <div class="modal-header" style="background:gray; color:white">
 
         <h4 class="modal-title">Editar Producto</h4>
+
         <button type="button" class="close" data-dismiss="modal">&times;</button>
 
         </div>
@@ -297,6 +298,7 @@ MODAL EDITAR PRODUCTO
 
             <!-- ENTRADA PARA EL CÓDIGO -->
             <div class="form-group col-sm">
+            <label for="codigo">Código</label>
             <div class="input-group ">
                 <div class="input-group-prepend">
                 <span class="input-group-text"><i class="fas fa-hashtag"></i></span>
@@ -309,6 +311,7 @@ MODAL EDITAR PRODUCTO
 
             <!-- ENTRADA PARA EL NOMBRE -->
             <div class="form-group col-sm">
+            <label for="nombre">Nombre</label>
             <div class="input-group">
                 <div class="input-group-prepend">
                 <span class="input-group-text"><i class="fas fa-file-signature"></i></span>
@@ -320,10 +323,10 @@ MODAL EDITAR PRODUCTO
 
           </div>
 
-
             <!-- ENTRADA PARA EL DESCRIPCIÓN -->
 
             <div class="form-group">
+            <label for="descripcion">Descripción</label>
             <div class="input-group">
                 <div class="input-group-prepend">
                 <span class="input-group-text"><i class="fas fa-bars"></i></span>
@@ -339,7 +342,7 @@ MODAL EDITAR PRODUCTO
           <!-- ENTRADA PARA SELECCIONAR SU UNIDAD DE MEDIDA -->
 
           <div class="form-group col-sm">
-            
+          <label for="unidadMedida">Unidad de Medida</label>
             <div class="input-group">
             
                 <div class="input-group-prepend">
@@ -371,7 +374,7 @@ MODAL EDITAR PRODUCTO
           <!-- ENTRADA PARA SELECCIONAR SU TIPO DE PRODUCTO -->
 
           <div class="form-group col-sm">
-            
+          <label for="tipoProducto">Tipo de Producto</label>
             <div class="input-group">
             
                 <div class="input-group-prepend">
@@ -400,10 +403,7 @@ MODAL EDITAR PRODUCTO
 
           </div>
 
-
           </div>
-
-
 
           <!-- ENTRADA PARA SUBIR FOTO -->
 

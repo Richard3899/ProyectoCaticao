@@ -53,7 +53,6 @@
          </button>
          <a type="button" class="btn btn-secondary my-1 col-12 col-sm-4 col-md-3 col-lg-3 col-xl-3" href="recetas">Volver</a>
         </div>
-        
 
       </div>
 
@@ -79,8 +78,6 @@
       </thead>
 
      </table>
-
-        
 
       </div>
       <!-- /.card-body -->
@@ -132,10 +129,9 @@ MODAL RECETA MANO DE OBRA
 
         <div class="row">
 
-          <!-- ENTRADA PARA SELECCIONAR MANO DE OBRA -->
-
+          <!-- ENTRADA PARA SELECCIONAR EMPLEADO -->
           <div class="form-group col-sm">
-            
+          <label for="empleado">Empleado</label>
             <div class="input-group">
 
                 <input type="hidden" name="idEmpleado" id="idEmpleado">
@@ -161,15 +157,13 @@ MODAL RECETA MANO DE OBRA
 
               </select>
               
-
             </div>
 
           </div>
 
             <!-- ENTRADA PARA SELECCIONAR LA MAQUINA -->
-
             <div class="form-group col-sm">
-            
+            <label for="Maquina">Maquina</label>
             <div class="input-group">
 
                 <input type="hidden" name="idMaquina" id="idMaquina">
@@ -195,7 +189,6 @@ MODAL RECETA MANO DE OBRA
 
               </select>
               
-
             </div>
 
           </div>
@@ -205,9 +198,8 @@ MODAL RECETA MANO DE OBRA
           <div class="row">
 
             <!-- ENTRADA PARA EL TIEMPO HORAS -->
-
             <div class="form-group col-sm">
-            
+            <label for="tiempoHoras">Tiempo (Horas)</label>
             <div class="input-group">
                 <div class="input-group-prepend">
                 <span class="input-group-text"><i class="fas fa-layer-group"></i></span>
@@ -219,9 +211,8 @@ MODAL RECETA MANO DE OBRA
             </div>
 
             <!-- ENTRADA PARA EL PRECIO -->
-
             <div class="form-group col-sm">
-            
+            <label for="precio">Precio</label>
             <div class="input-group">
                 <div class="input-group-prepend">
                 <span class="input-group-text"><i class="fas fa-dollar-sign"></i></span>
@@ -234,9 +225,7 @@ MODAL RECETA MANO DE OBRA
 
             </div>
 
-
           </div>
-
 
         </div>
 
@@ -261,7 +250,6 @@ MODAL RECETA MANO DE OBRA
 
       ?>
 
-
     </form>
 
   </div>
@@ -269,9 +257,6 @@ MODAL RECETA MANO DE OBRA
 </div>
 
 </div>
-
-
-
 
 <!--=====================================
 MODAL EDITAR RECETA MANO DE OBRA
@@ -314,10 +299,9 @@ MODAL EDITAR RECETA MANO DE OBRA
 
           <div class="row">
 
-          <!-- ENTRADA PARA SELECCIONAR MANO DE OBRA -->
-
+          <!-- ENTRADA PARA SELECCIONAR EMPLEADO -->
           <div class="form-group col-sm">
-
+          <label for="empleado">Empleado</label>
                 <input type="hidden" name="editaridRecetaManodeObra" id="editaridRecetaManodeObra">
 
             <div class="input-group">
@@ -329,9 +313,8 @@ MODAL EDITAR RECETA MANO DE OBRA
           </div>
 
             <!-- ENTRADA PARA SELECCIONAR LA MAQUINA -->
-
             <div class="form-group col-sm">
-            
+            <label for="maquina">Maquina</label>
             <div class="input-group">
 
                 <input type="text" class="form-control input-lg" name="editarNombreMaquina" id="editarNombreMaquina">
@@ -345,9 +328,8 @@ MODAL EDITAR RECETA MANO DE OBRA
           <div class="row">
 
             <!-- ENTRADA PARA EL TIEMPO HORAS -->
-
             <div class="form-group col-sm">
-            
+            <label for="tiempoHoras">Tiempo (Horas)</label>
             <div class="input-group">
                 <div class="input-group-prepend">
                 <span class="input-group-text"><i class="fas fa-layer-group"></i></span>
@@ -359,9 +341,8 @@ MODAL EDITAR RECETA MANO DE OBRA
             </div>
 
             <!-- ENTRADA PARA EL PRECIO -->
-
             <div class="form-group col-sm">
-            
+            <label for="precio">Precio</label>
             <div class="input-group">
                 <div class="input-group-prepend">
                 <span class="input-group-text"><i class="fas fa-dollar-sign"></i></span>
@@ -373,9 +354,7 @@ MODAL EDITAR RECETA MANO DE OBRA
 
             </div>
 
-
           </div>
-
 
         </div>
 
@@ -399,7 +378,6 @@ MODAL EDITAR RECETA MANO DE OBRA
           $editarRecetaManodeObra -> ctrEditarRecetaManodeObra();
 
       ?>
-
 
     </form>
 

@@ -87,8 +87,6 @@
 
      </table>
 
-        
-
       </div>
       <!-- /.card-body -->
     </div>
@@ -229,9 +227,8 @@ MODAL RECETA CONSUMO DE ENERGÍA
         <div class="row">
 
             <!-- ENTRADA PARA SELECCIONAR LA MAQUINA -->
-
             <div class="form-group col-sm">
-            
+            <label for="maquina">Maquina</label>
             <div class="input-group">
 
                 <input type="hidden" name="idMaquina" id="idMaquina">
@@ -267,9 +264,8 @@ MODAL RECETA CONSUMO DE ENERGÍA
           <div class="row">
 
             <!-- ENTRADA PARA EL TIEMPO HORAS -->
-
             <div class="form-group col-sm">
-            
+            <label for="tiempoHoras">Tiempo (Horas)</label>
             <div class="input-group">
                 <input type="hidden" id="potenciaKw" name="potenciaKw">
                 <input type="hidden" id="consumoKwh" name="consumoKwh">
@@ -283,9 +279,8 @@ MODAL RECETA CONSUMO DE ENERGÍA
             </div>
 
             <!-- ENTRADA PARA EL PRECIO -->
-
             <div class="form-group col-sm">
-            
+            <label for="precio">Precio</label>
             <div class="input-group">
                 <div class="input-group-prepend">
                 <span class="input-group-text"><i class="fas fa-dollar-sign"></i></span>
@@ -298,9 +293,7 @@ MODAL RECETA CONSUMO DE ENERGÍA
 
             </div>
 
-
           </div>
-
 
         </div>
 
@@ -325,7 +318,6 @@ MODAL RECETA CONSUMO DE ENERGÍA
 
       ?>
 
-
     </form>
 
   </div>
@@ -333,7 +325,6 @@ MODAL RECETA CONSUMO DE ENERGÍA
 </div>
 
 </div>
-
 
 <!--=====================================
 MODAL EDITAR RECETA CONSUMO DE ENERGÍA
@@ -377,9 +368,8 @@ MODAL EDITAR RECETA CONSUMO DE ENERGÍA
           <div class="row">
 
             <!-- ENTRADA PARA SELECCIONAR LA MAQUINA -->
-
             <div class="form-group col-sm">
-
+            <label for="maquina">Maquina</label>
                 <input type="hidden" name="editaridRecetaConsumoEnergia" id="editaridRecetaConsumoEnergia">
             
             <div class="input-group">
@@ -395,9 +385,8 @@ MODAL EDITAR RECETA CONSUMO DE ENERGÍA
           <div class="row">
 
             <!-- ENTRADA PARA EL TIEMPO HORAS -->
-
             <div class="form-group col-sm">
-            
+            <label for="tiempoHoras">Tiempo (Horas)</label>
             <div class="input-group">
                 <input type="hidden" id="editarPotenciaKw" name="editarPotenciaKw">
                 <input type="hidden" id="editarConsumoKwh" name="editarConsumoKwh">
@@ -411,9 +400,8 @@ MODAL EDITAR RECETA CONSUMO DE ENERGÍA
             </div>
 
             <!-- ENTRADA PARA EL PRECIO -->
-
             <div class="form-group col-sm">
-            
+            <label for="precio">Precio</label>
             <div class="input-group">
                 <div class="input-group-prepend">
                 <span class="input-group-text"><i class="fas fa-dollar-sign"></i></span>
@@ -426,9 +414,7 @@ MODAL EDITAR RECETA CONSUMO DE ENERGÍA
 
             </div>
 
-
           </div>
-
 
         </div>
 
@@ -452,7 +438,6 @@ MODAL EDITAR RECETA CONSUMO DE ENERGÍA
           $editarRecetaConsumoEnergia -> ctrEditarRecetaConsumoEnergia();
 
       ?>
-
 
     </form>
 

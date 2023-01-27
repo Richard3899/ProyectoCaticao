@@ -111,6 +111,7 @@ MODAL AGREGAR MAQUINA
 
             <!-- ENTRADA PARA EL CÓDIGO -->
             <div class="form-group col-sm">
+            <label for="codigo">Código</label>
             <div class="input-group ">
                 <div class="input-group-prepend">
                 <span class="input-group-text"><i class="fas fa-hashtag"></i></span>
@@ -123,6 +124,7 @@ MODAL AGREGAR MAQUINA
 
             <!-- ENTRADA PARA EL NOMBRE -->
             <div class="form-group col-sm">
+            <label for="nombre">Nombre</label>
             <div class="input-group">
                 <div class="input-group-prepend">
                 <span class="input-group-text"><i class="fas fa-file-signature"></i></span>
@@ -135,8 +137,8 @@ MODAL AGREGAR MAQUINA
           </div>
 
           <!-- ENTRADA PARA EL DESCRIPCIÓN -->
-
            <div class="form-group">
+           <label for="descripcion">Descripción</label>
             <div class="input-group">
                 <div class="input-group-prepend">
                 <span class="input-group-text"><i class="fas fa-bars"></i></span>
@@ -150,6 +152,7 @@ MODAL AGREGAR MAQUINA
 
             <!-- ENTRADA PARA LA SERIE -->
             <div class="form-group col-sm">
+            <label for="serie">Serie</label>
             <div class="input-group ">
                 <div class="input-group-prepend">
                 <span class="input-group-text"><i class="fas fa-hashtag"></i></span>
@@ -161,6 +164,7 @@ MODAL AGREGAR MAQUINA
 
             <!-- ENTRADA PARA EL MODELO -->
             <div class="form-group col-sm">
+            <label for="modelo">Modelo</label>
             <div class="input-group ">
                 <div class="input-group-prepend">
                 <span class="input-group-text"><i class="fas fa-cube"></i></span>
@@ -176,6 +180,7 @@ MODAL AGREGAR MAQUINA
 
             <!-- ENTRADA PARA LA MARCA -->
             <div class="form-group col-sm">
+            <label for="marca">Marca</label>
             <div class="input-group">
                 <div class="input-group-prepend">
                 <span class="input-group-text"><i class="fas fa-file-signature"></i>  </span>
@@ -186,9 +191,8 @@ MODAL AGREGAR MAQUINA
             </div>
 
             <!-- ENTRADA PARA EL PRECIO -->
-
             <div class="form-group col-sm">
-            
+            <label for="precio">Precio</label>
             <div class="input-group">
                 <div class="input-group-prepend">
                 <span class="input-group-text"><i class="fas fa-dollar-sign"></i></span>
@@ -201,11 +205,11 @@ MODAL AGREGAR MAQUINA
 
             </div>
 
-
             <div class="row">
 
             <!-- ENTRADA PARA EL AÑO DE COMPRA -->
             <div class="form-group col-sm">
+            <label for="añoCompra">Año de Compra</label>
             <div class="input-group">
                 <div class="input-group-prepend">
                 <span class="input-group-text"><i class="fas fa-calendar-alt"></i></span>
@@ -217,9 +221,8 @@ MODAL AGREGAR MAQUINA
             </div>
 
             <!-- ENTRADA PARA LA CAPACIDAD -->
-
             <div class="form-group col-sm">
-
+            <label for="Capacidad">Capacidad (Kg)</label>
             <div class="input-group">
                 <div class="input-group-prepend">
                 <span class="input-group-text"><i class="fas fa-battery-three-quarters"></i></span>
@@ -235,9 +238,8 @@ MODAL AGREGAR MAQUINA
             <div class="row">
             
             <!-- ENTRADA PARA LA POTENCIA HP -->
-
             <div class="form-group col-sm">
-
+            <label for="potenciaHP">Potencia HP</label>
             <div class="input-group">
                 <div class="input-group-prepend">
                 <span class="input-group-text"><i class="fas fa-bolt"></i></span>
@@ -250,15 +252,15 @@ MODAL AGREGAR MAQUINA
 
             <!-- ENTRADA PARA VIDA UTIL -->
             <div class="form-group col-sm">
+            <label for="vidaUtil">Vida Util (Años)</label>
             <div class="input-group">
                 <div class="input-group-prepend">
                 <span class="input-group-text"><i class="fas fa-hourglass-half"></i></span>
                 </div>
                 <input type="number" class="form-control input-lg" name="nuevaVidaUtil"  id="nuevaVidaUtil" 
-                 placeholder="Ingresar vida util (Años)" min="0"  max="99" required>
+                 placeholder="Ingresar vida util" min="0"  max="99" required>
             </div>
             </div>
-
 
             </div>
 
@@ -314,6 +316,7 @@ MODAL EDITAR MAQUINA
         <div class="modal-header" style="background:gray; color:white">
 
         <h4 class="modal-title">Editar Maquina</h4>
+
         <button type="button" class="close" data-dismiss="modal">&times;</button>
 
         </div>
@@ -330,6 +333,7 @@ MODAL EDITAR MAQUINA
 
             <!-- ENTRADA PARA EL CÓDIGO -->
             <div class="form-group col-sm">
+            <label for="codigo">Código</label>
             <div class="input-group ">
                 <div class="input-group-prepend">
                 <span class="input-group-text"><i class="fas fa-hashtag"></i></span>
@@ -343,6 +347,7 @@ MODAL EDITAR MAQUINA
 
             <!-- ENTRADA PARA EL NOMBRE -->
             <div class="form-group col-sm">
+            <label for="nombre">Nombre</label>
             <div class="input-group">
                 <div class="input-group-prepend">
                 <span class="input-group-text"><i class="fas fa-file-signature"></i></span>
@@ -354,10 +359,9 @@ MODAL EDITAR MAQUINA
 
           </div>
 
-
             <!-- ENTRADA PARA EL DESCRIPCIÓN -->
-
             <div class="form-group">
+            <label for="descripcion">Descripción</label>
             <div class="input-group">
                 <div class="input-group-prepend">
                 <span class="input-group-text"><i class="fas fa-bars"></i></span>
@@ -367,12 +371,11 @@ MODAL EDITAR MAQUINA
             </div>
             </div>
 
-
-
             <div class="row">
 
             <!-- ENTRADA PARA LA SERIE -->
             <div class="form-group col-sm">
+            <label for="serie">Serie</label>
             <div class="input-group ">
                 <div class="input-group-prepend">
                 <span class="input-group-text"><i class="fas fa-hashtag"></i></span>
@@ -384,6 +387,7 @@ MODAL EDITAR MAQUINA
 
             <!-- ENTRADA PARA EL MODELO -->
             <div class="form-group col-sm">
+            <label for="modelo">Modelo</label>
             <div class="input-group ">
                 <div class="input-group-prepend">
                 <span class="input-group-text"><i class="fas fa-cube"></i></span>
@@ -399,6 +403,7 @@ MODAL EDITAR MAQUINA
 
             <!-- ENTRADA PARA LA MARCA -->
             <div class="form-group col-sm">
+            <label for="marca">Marca</label>
             <div class="input-group">
                 <div class="input-group-prepend">
                 <span class="input-group-text"><i class="fas fa-file-signature"></i>  </span>
@@ -409,9 +414,8 @@ MODAL EDITAR MAQUINA
             </div>
 
             <!-- ENTRADA PARA EL PRECIO -->
-
             <div class="form-group col-sm">
-
+            <label for="precio">Precio</label>
             <div class="input-group">
                 <div class="input-group-prepend">
                 <span class="input-group-text"><i class="fas fa-dollar-sign"></i></span>
@@ -424,11 +428,11 @@ MODAL EDITAR MAQUINA
 
             </div>
 
-
             <div class="row">
 
             <!-- ENTRADA PARA EL AÑO DE COMPRA -->
             <div class="form-group col-sm">
+            <label for="añoCompra">Año de Compra</label>
             <div class="input-group">
                 <div class="input-group-prepend">
                 <span class="input-group-text"><i class="fas fa-calendar-alt"></i></span>
@@ -439,9 +443,8 @@ MODAL EDITAR MAQUINA
             </div>
 
             <!-- ENTRADA PARA LA CAPACIDAD -->
-
             <div class="form-group col-sm">
-
+            <label for="capacidad">Capacidad (Kg)</label>
             <div class="input-group">
                 <div class="input-group-prepend">
                 <span class="input-group-text"><i class="fas fa-battery-three-quarters"></i></span>
@@ -457,9 +460,8 @@ MODAL EDITAR MAQUINA
             <div class="row">
 
             <!-- ENTRADA PARA LA POTENCIA HP -->
-
             <div class="form-group col-sm">
-
+            <label for="potenciaHP">Potencia HP</label>
             <div class="input-group">
                 <div class="input-group-prepend">
                 <span class="input-group-text"><i class="fas fa-bolt"></i></span>
@@ -472,15 +474,15 @@ MODAL EDITAR MAQUINA
 
             <!-- ENTRADA PARA VIDA UTIL -->
             <div class="form-group col-sm">
+            <label for="vidaUtil">Vida Util (Años)</label>
             <div class="input-group">
                 <div class="input-group-prepend">
                 <span class="input-group-text"><i class="fas fa-hourglass-half"></i></span>
                 </div>
                 <input type="number" class="form-control input-lg" name="editarVidaUtil"  id="editarVidaUtil" 
-                 placeholder="Ingresar vida util (Años)" min="0" max="99" required>
+                 placeholder="Ingresar vida util" min="0" max="99" required>
             </div>
             </div>
-
 
             </div>
 

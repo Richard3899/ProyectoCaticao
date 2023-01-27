@@ -54,7 +54,6 @@
          <a type="button" class="btn btn-secondary my-1 col-12 col-sm-4 col-md-3 col-lg-4 col-xl-3" href="recetas">Volver</a>
         </div>
         
-
       </div>
 
       </div>
@@ -78,8 +77,6 @@
       </thead>
 
      </table>
-
-        
 
       </div>
       <!-- /.card-body -->
@@ -132,9 +129,8 @@ MODAL RECETA DEPRECIACIÓN
         <div class="row">
 
             <!-- ENTRADA PARA SELECCIONAR LA MAQUINA -->
-
             <div class="form-group col-sm">
-            
+            <label for="Maquina">Maquina</label>
             <div class="input-group">
 
                 <input type="hidden" name="idMaquina" id="idMaquina">
@@ -160,7 +156,6 @@ MODAL RECETA DEPRECIACIÓN
 
               </select>
               
-
             </div>
 
           </div>
@@ -170,9 +165,8 @@ MODAL RECETA DEPRECIACIÓN
           <div class="row">
 
             <!-- ENTRADA PARA EL TIEMPO HORAS -->
-
             <div class="form-group col-sm">
-            
+            <label for="tiempoHoras">Tiempo (Horas)</label>
             <div class="input-group">
                 <div class="input-group-prepend">
                 <span class="input-group-text"><i class="fas fa-layer-group"></i></span>
@@ -184,9 +178,8 @@ MODAL RECETA DEPRECIACIÓN
             </div>
 
             <!-- ENTRADA PARA EL PRECIO -->
-
             <div class="form-group col-sm">
-            
+            <label for="precio">Precio</label>
             <div class="input-group">
                 <div class="input-group-prepend">
                 <span class="input-group-text"><i class="fas fa-dollar-sign"></i></span>
@@ -199,9 +192,7 @@ MODAL RECETA DEPRECIACIÓN
 
             </div>
 
-
           </div>
-
 
         </div>
 
@@ -226,7 +217,6 @@ MODAL RECETA DEPRECIACIÓN
 
       ?>
 
-
     </form>
 
   </div>
@@ -234,9 +224,6 @@ MODAL RECETA DEPRECIACIÓN
 </div>
 
 </div>
-
-
-
 
 <!--=====================================
 MODAL EDITAR RECETA DEPRECIACIÓN
@@ -280,9 +267,8 @@ MODAL EDITAR RECETA DEPRECIACIÓN
           <div class="row">
 
             <!-- ENTRADA PARA SELECCIONAR LA MAQUINA -->
-
             <div class="form-group col-sm">
-
+            <label for="Maquina">Maquina</label>
                 <input type="hidden" name="editaridRecetaDepreciacion" id="editaridRecetaDepreciacion">
             
             <div class="input-group">
@@ -298,9 +284,8 @@ MODAL EDITAR RECETA DEPRECIACIÓN
           <div class="row">
 
             <!-- ENTRADA PARA EL TIEMPO HORAS -->
-
             <div class="form-group col-sm">
-            
+            <label for="tiempoHoras">Tiempo (Horas)</label>
             <div class="input-group">
                 <div class="input-group-prepend">
                 <span class="input-group-text"><i class="fas fa-layer-group"></i></span>
@@ -312,9 +297,8 @@ MODAL EDITAR RECETA DEPRECIACIÓN
             </div>
 
             <!-- ENTRADA PARA EL PRECIO -->
-
             <div class="form-group col-sm">
-            
+            <label for="precio">Precio</label>
             <div class="input-group">
                 <div class="input-group-prepend">
                 <span class="input-group-text"><i class="fas fa-dollar-sign"></i></span>
@@ -326,9 +310,7 @@ MODAL EDITAR RECETA DEPRECIACIÓN
 
             </div>
 
-
           </div>
-
 
         </div>
 
@@ -352,7 +334,6 @@ MODAL EDITAR RECETA DEPRECIACIÓN
           $editarRecetaDepreciacion -> ctrEditarRecetaDepreciacion();
 
       ?>
-
 
     </form>
 

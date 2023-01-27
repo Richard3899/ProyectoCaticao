@@ -44,7 +44,6 @@
 
                 </div>
                 
-              
                 <a type="button" class="btn btn-info col-12 col-sm-4 col-md-3 col-lg-3 col-xl-2 my-1" href="kardexproductos" >
                     
                   Kardex de Producto
@@ -54,7 +53,6 @@
         
             </div>
 
-        
       </div>
       <div class="card-body">
 
@@ -74,8 +72,6 @@
 
      </table>
 
-        
-
       </div>
       <!-- /.card-body -->
     </div>
@@ -85,10 +81,6 @@
   </div>
 </div>
 <!-- /.content-wrapper -->
-
-
-
-
 
 <!--=====================================
 MODAL INGRESO DE PRODUCTO
@@ -109,6 +101,7 @@ MODAL INGRESO DE PRODUCTO
       <div class="modal-header" style="background:gray; color:white">
 
       <h4 class="modal-title">Ingreso de Producto</h4>
+
       <button type="button" class="close" data-dismiss="modal">&times;</button>
 
       </div>
@@ -124,9 +117,8 @@ MODAL INGRESO DE PRODUCTO
           <div class="row">
 
           <!-- ENTRADA PARA SELECCIONAR PRODUCTO -->
-
           <div class="form-group col-sm">
-            
+            <label for="producto">Producto</label>
             <div class="input-group">
 
                 <select class="form-control select input-lg" style="width: 100%;" id="nuevoProductoI" name="nuevoProductoI" required>
@@ -153,11 +145,9 @@ MODAL INGRESO DE PRODUCTO
 
           </div>
 
-
             <!-- ENTRADA PARA EL CANTIDAD -->
-
             <div class="form-group col-sm">
-            
+            <label for="cantidad">Cantidad</label>
             <div class="input-group">
                 <div class="input-group-prepend">
                 <span class="input-group-text"><i class="fas fa-layer-group"></i></span>
@@ -170,12 +160,11 @@ MODAL INGRESO DE PRODUCTO
 
           </div>
 
-
           <div class="row">
 
           <!-- ENTRADA PARA LA OBSERVACIÓN -->
-
           <div class="form-group col-sm">
+          <label for="observacion">Observación</label>
             <div class="input-group">
                 <div class="input-group-prepend">
                 <span class="input-group-text"><i class="fas fa-bars"></i></span>
@@ -188,6 +177,7 @@ MODAL INGRESO DE PRODUCTO
 
           <!-- ENTRADA PARA LA FECHA -->
           <div class="form-group col-sm">
+          <label for="fechaEmision">Fecha Emisión</label>
           <div class="input-group">
               <div class="input-group-prepend">
               <span class="input-group-text"><i class="fas fa-calendar-alt"></i></span>
@@ -231,9 +221,6 @@ MODAL INGRESO DE PRODUCTO
 
 </div>
 
-
-
-
 <!--=====================================
 MODAL SALIDA DE PRODUCTO
 ======================================-->
@@ -253,6 +240,7 @@ MODAL SALIDA DE PRODUCTO
       <div class="modal-header" style="background:gray; color:white">
 
       <h4 class="modal-title">Salida de Producto</h4>
+
       <button type="button" class="close" data-dismiss="modal">&times;</button>
 
       </div>
@@ -268,9 +256,8 @@ MODAL SALIDA DE PRODUCTO
           <div class="row">
 
             <!-- ENTRADA PARA SELECCIONAR PRODUCTO -->
-
             <div class="form-group col-sm">
-            
+            <label for="producto">Producto</label>
             <div class="input-group">
 
                 <select class="form-control select2 input-lg" style="width: 100%;" id="nuevoProductoS" name="nuevoProductoS" required>
@@ -297,11 +284,9 @@ MODAL SALIDA DE PRODUCTO
 
           </div>
 
-
             <!-- ENTRADA PARA EL CANTIDAD -->
-
             <div class="form-group col-sm">
-            
+            <label for="cantidad">Cantidad</label>
             <div class="input-group">
                 <div class="input-group-prepend">
                 <span class="input-group-text"><i class="fas fa-layer-group"></i></span>
@@ -314,12 +299,11 @@ MODAL SALIDA DE PRODUCTO
 
           </div>
 
-
           <div class="row">
 
           <!-- ENTRADA PARA LA OBSERVACIÓN -->
-
           <div class="form-group col-sm">
+          <label for="observacion">Observación</label>
             <div class="input-group">
                 <div class="input-group-prepend">
                 <span class="input-group-text"><i class="fas fa-bars"></i></span>
@@ -332,6 +316,7 @@ MODAL SALIDA DE PRODUCTO
 
           <!-- ENTRADA PARA LA FECHA -->
           <div class="form-group col-sm">
+          <label for="fechaEmision">Fecha de Emisión</label>
           <div class="input-group">
               <div class="input-group-prepend">
               <span class="input-group-text"><i class="fas fa-calendar-alt"></i></span>
@@ -365,7 +350,6 @@ MODAL SALIDA DE PRODUCTO
           $crearSalidaProducto -> ctrCrearSalidaProducto();
 
       ?>
-
 
     </form>
 

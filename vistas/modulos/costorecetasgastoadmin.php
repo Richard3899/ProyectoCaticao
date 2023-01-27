@@ -97,10 +97,9 @@ MODAL COSTO DE RECETAS Y GASTO ADMINISTRATIVO
 
         <div class="row">
 
-
           <!-- ENTRADA PARA LA DESCRIPCIÓN -->
-
            <div class="form-group col-sm">
+           <label for="descripcion">Descripción</label>
             <div class="input-group">
                 <div class="input-group-prepend">
                 <span class="input-group-text"><i class="fas fa-bars"></i></span>
@@ -112,6 +111,7 @@ MODAL COSTO DE RECETAS Y GASTO ADMINISTRATIVO
 
           <!-- ENTRADA PARA EL MES -->
            <div class="form-group col-sm">
+           <label for="mes">Mes</label>
             <div class="input-group">
                 <div class="input-group-prepend">
                 <span class="input-group-text"><i class="fas fa-calendar-alt"></i></span>

@@ -32,7 +32,6 @@
 
       </button>
         
-        
       </div>
       <div class="card-body">
 
@@ -75,7 +74,6 @@
 </div>
 <!-- /.content-wrapper -->
 
-
 <!--=====================================
 MODAL AGREGAR RECETA
 ======================================-->
@@ -95,6 +93,7 @@ MODAL AGREGAR RECETA
       <div class="modal-header" style="background:gray; color:white">
 
       <h4 class="modal-title">Agregar Receta</h4>
+
       <button type="button" class="close" data-dismiss="modal">&times;</button>
 
       </div>
@@ -111,6 +110,7 @@ MODAL AGREGAR RECETA
 
             <!-- ENTRADA PARA EL CÓDIGO -->
             <div class="form-group col-sm">
+            <label for="codigo">Código</label>
             <div class="input-group ">
                 <div class="input-group-prepend">
                 <span class="input-group-text"><i class="fas fa-hashtag"></i></span>
@@ -122,6 +122,7 @@ MODAL AGREGAR RECETA
 
             <!-- ENTRADA PARA EL NOMBRE -->
             <div class="form-group col-sm">
+            <label for="nombre">Nombre</label>
             <div class="input-group">
                 <div class="input-group-prepend">
                 <span class="input-group-text"><i class="fas fa-file-signature"></i></span>
@@ -136,9 +137,8 @@ MODAL AGREGAR RECETA
           <div class="row">
  
             <!-- ENTRADA PARA SELECCIONAR PRODUCTO -->
-
             <div class="form-group col-sm">
-            
+            <label for="producto">Producto</label>
             <div class="input-group">
 
                 <select class="form-control select2 input-lg" style="width: 100%;" id="nuevoidProducto" name="nuevoidProducto" required>
@@ -170,9 +170,8 @@ MODAL AGREGAR RECETA
           <div class="row">
 
             <!-- ENTRADA PARA EL BATCH -->
-            
             <div class="form-group col-sm">
-            
+            <label for="batch">Batch (Kg)</label>
             <div class="input-group">
                 <div class="input-group-prepend">
                 <span class="input-group-text"><i class="fas fa-layer-group"></i></span>
@@ -184,9 +183,8 @@ MODAL AGREGAR RECETA
             </div>
 
           <!-- ENTRADA PARA SELECCIONAR ESTADO -->
-
           <div class="form-group col-sm">
-            
+          <label for="estado">Estado</label>
             <div class="input-group">
             
                 <div class="input-group-prepend">
@@ -217,11 +215,11 @@ MODAL AGREGAR RECETA
 
           </div>
 
-
           <div class="row">
 
           <!-- ENTRADA PARA LA FECHA DE INICIO -->
           <div class="form-group col-sm">
+          <label for="fechaInicio">Fecha de Inicio</label>
           <div class="input-group">
               <div class="input-group-prepend">
               <span class="input-group-text"><i class="fas fa-calendar-alt"></i></span>
@@ -234,6 +232,7 @@ MODAL AGREGAR RECETA
 
           <!-- ENTRADA PARA LA FECHA DE FIN -->
           <div class="form-group col-sm">
+          <label for="fechaFin">Fecha de Fin</label>
           <div class="input-group">
               <div class="input-group-prepend">
               <span class="input-group-text"><i class="fas fa-calendar-alt"></i></span>
@@ -245,11 +244,11 @@ MODAL AGREGAR RECETA
 
           </div>
 
-
           <div class="row">
           
           <!-- ENTRADA PARA EL LOTE -->
           <div class="form-group col-sm">
+          <label for="lote">Lote</label>
            <div class="input-group ">
                 <div class="input-group-prepend">
                 <span class="input-group-text"><i class="fas fa-vote-yea"></i></span>
@@ -261,6 +260,7 @@ MODAL AGREGAR RECETA
 
           <!-- ENTRADA PARA LA FECHA DE VENCIMIENTO -->
           <div class="form-group col-sm">
+          <label for="fechaVencimiento">Fecha de Vencimiento</label>
           <div class="input-group">
               <div class="input-group-prepend">
               <span class="input-group-text"><i class="fas fa-calendar-alt"></i></span>
@@ -275,9 +275,8 @@ MODAL AGREGAR RECETA
           <div class="row">
 
             <!-- ENTRADA PARA PESO POR TABLETA -->
-            
             <div class="form-group col-sm">
-            
+            <label for="pesoPorTableta">Peso por tableta (Kg)</label>
             <div class="input-group">
                 <div class="input-group-prepend">
                 <span class="input-group-text"><i class="fas fa-layer-group"></i></span>
@@ -289,9 +288,8 @@ MODAL AGREGAR RECETA
             </div>
 
             <!-- ENTRADA PARA PESO EN TABLETA -->
-            
             <div class="form-group col-sm">
-            
+            <label for="pesoEnTableta">Peso en tableta (Kg)</label>
             <div class="input-group">
                 <div class="input-group-prepend">
                 <span class="input-group-text"><i class="fas fa-layer-group"></i></span>
@@ -304,13 +302,11 @@ MODAL AGREGAR RECETA
 
           </div>
 
-
           <div class="row">
 
             <!-- ENTRADA PARA MERMA -->
-            
             <div class="form-group col-sm">
-            
+            <label for="merma">Merma (Kg)</label>
             <div class="input-group">
                 <div class="input-group-prepend">
                 <span class="input-group-text"><i class="fas fa-layer-group"></i></span>
@@ -322,9 +318,8 @@ MODAL AGREGAR RECETA
             </div>
 
             <!-- ENTRADA PARA REPROCESO -->
-            
             <div class="form-group col-sm">
-            
+            <label for="reproceso">Reproceso (Kg)</label>
             <div class="input-group">
                 <div class="input-group-prepend">
                 <span class="input-group-text"><i class="fas fa-layer-group"></i></span>
@@ -360,7 +355,6 @@ MODAL AGREGAR RECETA
 
       ?>
 
-
     </form>
 
   </div>
@@ -389,6 +383,7 @@ MODAL EDITAR RECETA
         <div class="modal-header" style="background:gray; color:white">
 
         <h4 class="modal-title">Editar Receta</h4>
+
         <button type="button" class="close" data-dismiss="modal">&times;</button>
 
         </div>
@@ -405,6 +400,7 @@ MODAL EDITAR RECETA
 
             <!-- ENTRADA PARA EL CÓDIGO -->
             <div class="form-group col-sm">
+            <label for="codigo">Código</label>
             <div class="input-group ">
                 <div class="input-group-prepend">
                 <span class="input-group-text"><i class="fas fa-hashtag"></i></span>
@@ -417,6 +413,7 @@ MODAL EDITAR RECETA
 
             <!-- ENTRADA PARA EL NOMBRE -->
             <div class="form-group col-sm">
+            <label for="nombre">Nombre</label>
             <div class="input-group">
                 <div class="input-group-prepend">
                 <span class="input-group-text"><i class="fas fa-file-signature"></i></span>
@@ -431,9 +428,8 @@ MODAL EDITAR RECETA
           <div class="row">
 
             <!-- ENTRADA PARA SELECCIONAR PRODUCTO -->
-
             <div class="form-group col-sm">
-            
+            <label for="producto">Producto</label>
             <div class="input-group">
 
                 <select class="form-control select2 input-lg" style="width: 100%;" id="editaridProducto" name="editaridProducto" required>
@@ -464,9 +460,8 @@ MODAL EDITAR RECETA
           <div class="row">
 
           <!-- ENTRADA PARA EL BATCH -->
-            
           <div class="form-group col-sm">
-            
+          <label for="batch">Batch (Kg)</label>
             <div class="input-group">
                 <div class="input-group-prepend">
                 <span class="input-group-text"><i class="fas fa-layer-group"></i></span>
@@ -478,9 +473,8 @@ MODAL EDITAR RECETA
           </div>
 
             <!-- ENTRADA PARA SELECCIONAR ESTADO -->
-
             <div class="form-group col-sm">
-             
+            <label for="estado">Estado</label>
             <div class="input-group">
             
                 <div class="input-group-prepend">
@@ -509,14 +503,13 @@ MODAL EDITAR RECETA
 
           </div>
 
-
           </div>
-
 
           <div class="row">
 
           <!-- ENTRADA PARA LA FECHA DE INICIO -->
           <div class="form-group col-sm">
+          <label for="fechaInicio">Fecha de Inicio</label>
           <div class="input-group">
               <div class="input-group-prepend">
               <span class="input-group-text"><i class="fas fa-calendar-alt"></i></span>
@@ -529,6 +522,7 @@ MODAL EDITAR RECETA
 
           <!-- ENTRADA PARA LA FECHA DE FIN -->
           <div class="form-group col-sm">
+          <label for="FechaFin">Fecha de Fin</label>
           <div class="input-group">
               <div class="input-group-prepend">
               <span class="input-group-text"><i class="fas fa-calendar-alt"></i></span>
@@ -545,6 +539,7 @@ MODAL EDITAR RECETA
 
             <!-- ENTRADA PARA EL LOTE -->
             <div class="form-group col-sm">
+            <label for="lote">Lote</label>
             <div class="input-group ">
                 <div class="input-group-prepend">
                 <span class="input-group-text"><i class="fas fa-vote-yea"></i></span>
@@ -557,6 +552,7 @@ MODAL EDITAR RECETA
 
           <!-- ENTRADA PARA LA FECHA DE VENCIMIENTO -->
           <div class="form-group col-sm">
+          <label for="fechaVencimiento">Fecha de Vencimiento</label>
           <div class="input-group">
               <div class="input-group-prepend">
               <span class="input-group-text"><i class="fas fa-calendar-alt"></i></span>
@@ -571,9 +567,8 @@ MODAL EDITAR RECETA
           <div class="row">
 
             <!-- ENTRADA PARA PESO POR TABLETA -->
-            
             <div class="form-group col-sm">
-            
+            <label for="pesoPorTableta">Peso por tableta (Kg)</label>
             <div class="input-group">
                 <div class="input-group-prepend">
                 <span class="input-group-text"><i class="fas fa-layer-group"></i></span>
@@ -585,9 +580,8 @@ MODAL EDITAR RECETA
             </div>
 
             <!-- ENTRADA PARA PESO EN TABLETA -->
-            
             <div class="form-group col-sm">
-            
+            <label for="pesoEnTableta">Peso en tableta (Kg)</label>
             <div class="input-group">
                 <div class="input-group-prepend">
                 <span class="input-group-text"><i class="fas fa-layer-group"></i></span>
@@ -600,13 +594,11 @@ MODAL EDITAR RECETA
 
           </div>
 
-
           <div class="row">
 
             <!-- ENTRADA PARA MERMA -->
-            
             <div class="form-group col-sm">
-            
+            <label for="merma">Merma (Kg)</label>
             <div class="input-group">
                 <div class="input-group-prepend">
                 <span class="input-group-text"><i class="fas fa-layer-group"></i></span>
@@ -618,9 +610,8 @@ MODAL EDITAR RECETA
             </div>
 
             <!-- ENTRADA PARA REPROCESO -->
-            
             <div class="form-group col-sm">
-            
+            <label for="reproceso">Reproceso (Kg)</label>
             <div class="input-group">
                 <div class="input-group-prepend">
                 <span class="input-group-text"><i class="fas fa-layer-group"></i></span>
@@ -702,7 +693,7 @@ MODAL EDITAR RECETA
 
             <!-- ENTRADA PARA EL CÓDIGO DUPLICAR RECETA -->
             <div class="form-group col-sm">
-
+            <label for="codigo">Código</label>
             <input type="hidden" id="duplicarIdReceta" name="duplicarIdReceta">
             <input type="hidden" id="codigoLote" name="codigoLote">
             <input type="hidden" id="nuevoIdReceta" name="nuevoIdReceta">

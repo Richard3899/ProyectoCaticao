@@ -236,7 +236,7 @@ CREATE PROCEDURE `insertar_material` (  in codigoI VARCHAR(20),
                                         in descripcionI VARCHAR(100),
                                         in idUnidadMedidaI INT,
                                         in idMarcaI INT,
-                                        in cantidadI DECIMAL(10,3),
+                                        in cantidadI DECIMAL(10,2),
                                         in precioI DECIMAL(10,2),
                                         in imagenI VARCHAR(50))
 BEGIN
@@ -1142,13 +1142,13 @@ DELIMITER ;
 DROP procedure IF EXISTS `insertar_recetainsumo`;
 DELIMITER $$
 USE `caticao`$$
-CREATE PROCEDURE `insertar_recetainsumo` (     in idRecetaI INT,
-																in codigoRecetaI VARCHAR(20),
+CREATE PROCEDURE `insertar_recetainsumo` (      in idRecetaI INT,
+											    in codigoRecetaI VARCHAR(20),
                                                 in idMateriaI INT,
                                                 in nombreI VARCHAR(50),
                                                 in cantidadI DECIMAL(10,3),
-                                                in precioUnitarioI DECIMAL(10,3),
-												            in totalI DECIMAL(10,3) )
+                                                in precioUnitarioI DECIMAL(10,2),
+												in totalI DECIMAL(10,2) )
 BEGIN
     UPDATE inventariomateria SET stock = stock - cantidadI
 						         WHERE idMateria=idMateriaI;
@@ -1166,16 +1166,16 @@ DELIMITER ;
 DROP procedure IF EXISTS `editar_recetainsumo`;
 DELIMITER $$
 USE `caticao`$$
-CREATE PROCEDURE `editar_recetainsumo` (       in idRecetaMateriaE INT,
-																in idRecetaE INT,
-																in codigoRecetaE VARCHAR(20),
+CREATE PROCEDURE `editar_recetainsumo` (        in idRecetaMateriaE INT,
+												in idRecetaE INT,
+												in codigoRecetaE VARCHAR(20),
                                                 in idMateriaE INT,
                                                 in nombreE VARCHAR(50),
                                                 in cantidadAntE DECIMAL(10,3),
                                                 in difcantidadE DECIMAL(10,3),
                                                 in cantidadE DECIMAL(10,3),
-                                                in precioUnitarioE DECIMAL(10,3),
-												            in totalE DECIMAL(10,3))
+                                                in precioUnitarioE DECIMAL(10,2),
+												in totalE DECIMAL(10,2))
 BEGIN
 
 	DELETE from recetamateria WHERE idRecetaMateria=idRecetaMateriaE;
@@ -1206,7 +1206,7 @@ DROP procedure IF EXISTS `eliminar_recetainsumo`;
 DELIMITER $$
 USE `caticao`$$
 CREATE PROCEDURE `eliminar_recetainsumo` (in idRecetaMateriaE INT,
-														 in codigoRecetaE VARCHAR(20),
+										in codigoRecetaE VARCHAR(20),
 										             in idMateriaE int,
                                            in cantidadE DECIMAL(10,3))
 BEGIN
@@ -1304,9 +1304,9 @@ CREATE PROCEDURE `insertar_recetamaterial` (    in idRecetaI INT,
 																in codigoRecetaI VARCHAR(20),
                                                 in idMateriaI INT,
                                                 in nombreI VARCHAR(50),
-                                                in cantidadI DECIMAL(10,3),
-                                                in precioUnitarioI DECIMAL(10,3),
-												            in totalI DECIMAL(10,3) )
+                                                in cantidadI DECIMAL(10,2),
+                                                in precioUnitarioI DECIMAL(10,2),
+												            in totalI DECIMAL(10,2) )
 BEGIN
 
 
@@ -1332,11 +1332,11 @@ CREATE PROCEDURE `editar_recetamaterial` (      in idRecetaMateriaE INT,
 																in codigoRecetaE VARCHAR(20),
                                                 in idMateriaE INT,
                                                 in nombreE VARCHAR(50),
-                                                in cantidadAntE DECIMAL(10,3),
-                                                in difcantidadE DECIMAL(10,3),
-                                                in cantidadE DECIMAL(10,3),
-                                                in precioUnitarioE DECIMAL(10,3),
-												            in totalE DECIMAL(10,3))
+                                                in cantidadAntE DECIMAL(10,2),
+                                                in difcantidadE DECIMAL(10,2),
+                                                in cantidadE DECIMAL(10,2),
+                                                in precioUnitarioE DECIMAL(10,2),
+												            in totalE DECIMAL(10,2))
 BEGIN
  	   
    DELETE from recetamateria WHERE idRecetaMateria=idRecetaMateriaE;
@@ -1369,7 +1369,7 @@ USE `caticao`$$
 CREATE PROCEDURE `eliminar_recetamaterial` (in idRecetaMateriaE INT,
 														 in codigoRecetaE VARCHAR(20),
 										             in idMateriaE INT,
-                                           in cantidadE DECIMAL(10,3))
+                                           in cantidadE DECIMAL(10,2))
 BEGIN
 
    DELETE from recetamateria WHERE idRecetaMateria=idRecetaMateriaE;
@@ -1422,7 +1422,7 @@ DELIMITER $$
 USE `caticao`$$
 CREATE PROCEDURE `mostrar_recetamanodeobra2` (in idRecetaC INT)
 BEGIN
-	 select rm.idRecetaManodeObra,rm.idReceta,rm.idEmpleado,rm.nombreEmpleado, rm.nombreMaquina, rm.tiempoHoras,rm.precioUnitario,rm.total from recetamanodeobra rm
+	 select rm.idRecetaManodeObra,rm.idReceta,rm.idEmpleado,rm.nombreEmpleado,rm.idMaquina,rm.nombreMaquina, rm.tiempoHoras,rm.precioUnitario,rm.total from recetamanodeobra rm
     inner join empleado e on e.idEmpleado=rm.idEmpleado
     inner join maquina m ON m.idMaquina=rm.idMaquina
     where rm.idReceta=idRecetaC;
@@ -1438,9 +1438,9 @@ CREATE PROCEDURE `insertar_recetamanodeobra` (  in idRecetaI INT,
                                                 in idMaquinaI INT,
                                                 in nombreEmpleadoI VARCHAR(50),
                                                 in nombreMaquinaI VARCHAR(50),
-                                                in tiempoHorasI DECIMAL(10,3),
-                                                in precioUnitarioI DECIMAL(10,3),
-												            in totalI DECIMAL(10,3) )
+                                                in tiempoHorasI DECIMAL(10,2),
+                                                in precioUnitarioI DECIMAL(10,2),
+												            in totalI DECIMAL(10,2) )
 BEGIN
 
 	 INSERT INTO recetamanodeobra(idReceta,idEmpleado,idMaquina,nombreEmpleado,nombreMaquina,tiempoHoras,precioUnitario,total)
@@ -1455,8 +1455,8 @@ DROP procedure IF EXISTS `editar_recetamanodeobra`;
 DELIMITER $$
 USE `caticao`$$
 CREATE PROCEDURE `editar_recetamanodeobra` (    in idRecetaManodeObraE INT,
-                                                in tiempoHorasE DECIMAL(10,3),
-												            in totalE DECIMAL(10,3))
+                                                in tiempoHorasE DECIMAL(10,2),
+												            in totalE DECIMAL(10,2))
 BEGIN
 
    UPDATE recetamanodeobra SET tiempoHoras = tiempoHorasE,
@@ -1525,9 +1525,9 @@ USE `caticao`$$
 CREATE PROCEDURE `insertar_recetadepreciacion` (   in idRecetaI INT,
 	                                                in idMaquinaI INT,
 	                                                in nombreMaquinaI VARCHAR(50),
-	                                                in tiempoHorasI DECIMAL(10,3),
-	                                                in depreciacionHoraI DECIMAL(10,3),
-													            in depreciacionPorBatchI DECIMAL(10,3) )
+	                                                in tiempoHorasI DECIMAL(10,2),
+	                                                in depreciacionHoraI DECIMAL(10,2),
+													            in depreciacionPorBatchI DECIMAL(10,2) )
 BEGIN
 
 	 INSERT INTO recetadepreciacion(idReceta,idMaquina,nombreMaquina,tiempoHoras,depreciacionHora,depreciacionPorBatch)
@@ -1542,8 +1542,8 @@ DROP procedure IF EXISTS `editar_recetadepreciacion`;
 DELIMITER $$
 USE `caticao`$$
 CREATE PROCEDURE `editar_recetadepreciacion` (  in idRecetaDepreciacionE INT,
-                                                in tiempoHorasE DECIMAL(10,3),
-												            in depreciacionPorBatchE DECIMAL(10,3))
+                                                in tiempoHorasE DECIMAL(10,2),
+												            in depreciacionPorBatchE DECIMAL(10,2))
 BEGIN
 
    UPDATE recetadepreciacion SET tiempoHoras = tiempoHorasE,
@@ -1635,11 +1635,11 @@ USE `caticao`$$
 CREATE PROCEDURE `insertar_recetaconsumoenergia` (    in idRecetaI INT,
 		                                                in idMaquinaI INT,
 		                                                in nombreMaquinaI VARCHAR(50),
-		                                                in potenciaKwI DECIMAL(10,3),
-		                                                in horasTrabajoBatchI DECIMAL(10,3),
-		                                                in consumoKwhI DECIMAL(10,3),
-		                                                in tarifaKwhI DECIMAL(10,3),
-		                                                in pagoPorBatchI DECIMAL(10,3))
+		                                                in potenciaKwI DECIMAL(10,2),
+		                                                in horasTrabajoBatchI DECIMAL(10,2),
+		                                                in consumoKwhI DECIMAL(10,2),
+		                                                in tarifaKwhI DECIMAL(10,2),
+		                                                in pagoPorBatchI DECIMAL(10,2))
 BEGIN
 
 	 INSERT INTO recetaconsumoenergia(idReceta,idMaquina,nombreMaquina,potenciaKw,horasTrabajoBatch,consumoKwh,idTarifaEnergia,tarifaKwh,pagoPorBatch)
@@ -1654,9 +1654,9 @@ DROP procedure IF EXISTS `editar_recetaconsumoenergia`;
 DELIMITER $$
 USE `caticao`$$
 CREATE PROCEDURE `editar_recetaconsumoenergia` (  in idRecetaConsumoEnergiaE INT,
-																  in horasTrabajoBatchE DECIMAL(10,3),	
-                                                  in consumoKwhE DECIMAL(10,3),
-												              in pagoPorBatchE DECIMAL(10,3))
+																  in horasTrabajoBatchE DECIMAL(10,2),	
+                                                  in consumoKwhE DECIMAL(10,2),
+												              in pagoPorBatchE DECIMAL(10,2))
 BEGIN
 
    UPDATE recetaconsumoenergia SET horasTrabajoBatch = horasTrabajoBatchE,
@@ -1814,9 +1814,9 @@ USE `caticao`$$
 CREATE PROCEDURE `insertar_recetacostoventa` (     in idRecetaI INT,
 	                                                in idCostoVentaI INT,
 	                                                in nombreCostoVentaI VARCHAR(50),
-	                                                in cantidadI DECIMAL(10,3),
-	                                                in precioI DECIMAL(10,3),
-													            in totalI DECIMAL(10,3) )
+	                                                in cantidadI DECIMAL(10,2),
+	                                                in precioI DECIMAL(10,2),
+													            in totalI DECIMAL(10,2) )
 BEGIN
 
 	 INSERT INTO recetacostoventa(idReceta,idGastoAdmin,nombreCostoVenta,cantidad,precio,total)
@@ -1831,8 +1831,8 @@ DROP procedure IF EXISTS `editar_recetacostoventa`;
 DELIMITER $$
 USE `caticao`$$
 CREATE PROCEDURE `editar_recetacostoventa` (    in idRecetaCostoVentaE INT,
-                                                in cantidadE DECIMAL(10,3),
-												            in totalE DECIMAL(10,3))
+                                                in cantidadE DECIMAL(10,2),
+												            in totalE DECIMAL(10,2))
 BEGIN
 
    UPDATE recetacostoventa SET cantidad = cantidadE,
@@ -1901,9 +1901,9 @@ USE `caticao`$$
 CREATE PROCEDURE `insertar_recetacostomarketing` ( in idRecetaI INT,
 	                                                in idCostoMarketingI INT,
 	                                                in nombreCostoMarketingI VARCHAR(50),
-	                                                in cantidadI DECIMAL(10,3),
-	                                                in precioI DECIMAL(10,3),
-													            in totalI DECIMAL(10,3) )
+	                                                in cantidadI DECIMAL(10,2),
+	                                                in precioI DECIMAL(10,2),
+													            in totalI DECIMAL(10,2) )
 BEGIN
 
 	 INSERT INTO recetacostomarketing(idReceta,idGastoAdmin,nombreCostoMarketing,cantidad,precio,total)
@@ -1918,8 +1918,8 @@ DROP procedure IF EXISTS `editar_recetacostomarketing`;
 DELIMITER $$
 USE `caticao`$$
 CREATE PROCEDURE `editar_recetacostomarketing` (    in idRecetaCostoMarketingE INT,
-                                                    in cantidadE DECIMAL(10,3),
-												                in totalE DECIMAL(10,3))
+                                                    in cantidadE DECIMAL(10,2),
+												                in totalE DECIMAL(10,2))
 BEGIN
 
    UPDATE recetacostomarketing SET cantidad = cantidadE,
@@ -1987,9 +1987,9 @@ USE `caticao`$$
 CREATE PROCEDURE `insertar_recetacostooperativo` ( in idRecetaI INT,
 	                                                in idCostoOperativoI INT,
 	                                                in nombreCostoOperativoI VARCHAR(50),
-	                                                in cantidadI DECIMAL(10,3),
-	                                                in precioI DECIMAL(10,3),
-													            in totalI DECIMAL(10,3) )
+	                                                in cantidadI DECIMAL(10,2),
+	                                                in precioI DECIMAL(10,2),
+													            in totalI DECIMAL(10,2) )
 BEGIN
 
 	 INSERT INTO recetacostooperativo(idReceta,idGastoAdmin,nombreCostoOperativo,cantidad,precio,total)
@@ -2004,8 +2004,8 @@ DROP procedure IF EXISTS `editar_recetacostooperativo`;
 DELIMITER $$
 USE `caticao`$$
 CREATE PROCEDURE `editar_recetacostooperativo` (    in idRecetaCostoOperativoE INT,
-                                                in cantidadE DECIMAL(10,3),
-												            in totalE DECIMAL(10,3))
+                                                in cantidadE DECIMAL(10,2),
+												            in totalE DECIMAL(10,2))
 BEGIN
 
    UPDATE recetacostooperativo SET cantidad = cantidadE,
@@ -2201,9 +2201,9 @@ USE `caticao`$$
 CREATE PROCEDURE `insertar_gastoadminpormes` (     in idCostoRecetasGastoAdminI INT,
 	                                                in idGastoAdminI INT,
 	                                                in nombreGastoAdminI VARCHAR(50),
-	                                                in cantidadI DECIMAL(10,3),
-	                                                in precioI DECIMAL(10,3),
-													            in totalI DECIMAL(10,3) )
+	                                                in cantidadI DECIMAL(10,2),
+	                                                in precioI DECIMAL(10,2),
+													            in totalI DECIMAL(10,2) )
 BEGIN
 
 	 INSERT INTO gastoadminpormes(idCostoRecetasGastoAdmin,idGastoAdmin,nombreGastoAdmin,cantidad,precio,total)
@@ -2217,8 +2217,8 @@ DROP procedure IF EXISTS `editar_gastoadminpormes`;
 DELIMITER $$
 USE `caticao`$$
 CREATE PROCEDURE `editar_gastoadminpormes` (    in idGastoAdminPorMesE INT,
-                                                in cantidadE DECIMAL(10,3),
-												            in totalE DECIMAL(10,3))
+                                                in cantidadE DECIMAL(10,2),
+												            in totalE DECIMAL(10,2))
 BEGIN
 
    UPDATE gastoadminpormes SET cantidad = cantidadE,

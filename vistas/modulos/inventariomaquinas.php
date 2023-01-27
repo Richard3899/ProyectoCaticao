@@ -44,7 +44,6 @@
 
                 </div>
                 
-              
                 <a type="button" class="btn btn-info col-12 col-sm-4 col-md-3 col-lg-3 col-xl-2 my-1" href="kardexmaquinas" >
                     
                   Kardex de Maquina
@@ -53,7 +52,6 @@
           
         
             </div>
-
         
       </div>
       <div class="card-body">
@@ -74,8 +72,6 @@
 
      </table>
 
-        
-
       </div>
       <!-- /.card-body -->
     </div>
@@ -85,10 +81,6 @@
   </div>
 </div>
 <!-- /.content-wrapper -->
-
-
-
-
 
 <!--=====================================
 MODAL INGRESO DE MAQUINA
@@ -109,6 +101,7 @@ MODAL INGRESO DE MAQUINA
       <div class="modal-header" style="background:gray; color:white">
 
       <h4 class="modal-title">Ingreso de Maquina</h4>
+
       <button type="button" class="close" data-dismiss="modal">&times;</button>
 
       </div>
@@ -124,9 +117,8 @@ MODAL INGRESO DE MAQUINA
           <div class="row">
 
           <!-- ENTRADA PARA SELECCIONAR MAQUINA -->
-
           <div class="form-group col-sm">
-            
+            <label for="maquina">Maquina</label>
             <div class="input-group">
 
                 <select class="form-control select2 input-lg" style="width: 100%;" id="nuevoMaquinaI" name="nuevoMaquinaI" required>
@@ -153,11 +145,9 @@ MODAL INGRESO DE MAQUINA
 
           </div>
 
-
             <!-- ENTRADA PARA EL CANTIDAD -->
-
             <div class="form-group col-sm">
-            
+            <label for="cantidad">Cantidad</label>
             <div class="input-group">
                 <div class="input-group-prepend">
                 <span class="input-group-text"><i class="fas fa-layer-group"></i></span>
@@ -170,12 +160,11 @@ MODAL INGRESO DE MAQUINA
 
           </div>
 
-
           <div class="row">
 
           <!-- ENTRADA PARA LA OBSERVACIÓN -->
-
           <div class="form-group col-sm">
+          <label for="observacion">Observación</label>
             <div class="input-group">
                 <div class="input-group-prepend">
                 <span class="input-group-text"><i class="fas fa-bars"></i></span>
@@ -188,6 +177,7 @@ MODAL INGRESO DE MAQUINA
 
           <!-- ENTRADA PARA LA FECHA -->
           <div class="form-group col-sm">
+          <label for="fechaEmision">Fecha de Emisión</label>
           <div class="input-group">
               <div class="input-group-prepend">
               <span class="input-group-text"><i class="fas fa-calendar-alt"></i></span>
@@ -221,7 +211,6 @@ MODAL INGRESO DE MAQUINA
 
       ?>
 
-
     </form>
 
   </div>
@@ -229,9 +218,6 @@ MODAL INGRESO DE MAQUINA
 </div>
 
 </div>
-
-
-
 
 <!--=====================================
 MODAL SALIDA DE MAQUINA
@@ -252,6 +238,7 @@ MODAL SALIDA DE MAQUINA
       <div class="modal-header" style="background:gray; color:white">
 
       <h4 class="modal-title">Salida de Maquina</h4>
+
       <button type="button" class="close" data-dismiss="modal">&times;</button>
 
       </div>
@@ -267,9 +254,8 @@ MODAL SALIDA DE MAQUINA
           <div class="row">
 
             <!-- ENTRADA PARA SELECCIONAR MAQUINA -->
-
             <div class="form-group col-sm">
-            
+            <label for="maquina">Maquina</label>
             <div class="input-group">
 
                 <select class="form-control select2 input-lg" style="width: 100%;" id="nuevoMaquinaS" name="nuevoMaquinaS" required>
@@ -296,11 +282,9 @@ MODAL SALIDA DE MAQUINA
 
           </div>
 
-
             <!-- ENTRADA PARA EL CANTIDAD -->
-
             <div class="form-group col-sm">
-            
+            <label for="cantidad">Cantidad</label>
             <div class="input-group">
                 <div class="input-group-prepend">
                 <span class="input-group-text"><i class="fas fa-layer-group"></i></span>
@@ -313,12 +297,11 @@ MODAL SALIDA DE MAQUINA
 
           </div>
 
-
           <div class="row">
 
           <!-- ENTRADA PARA LA OBSERVACIÓN -->
-
           <div class="form-group col-sm">
+          <label for="observacion">Observación</label>
             <div class="input-group">
                 <div class="input-group-prepend">
                 <span class="input-group-text"><i class="fas fa-bars"></i></span>
@@ -331,6 +314,7 @@ MODAL SALIDA DE MAQUINA
 
           <!-- ENTRADA PARA LA FECHA -->
           <div class="form-group col-sm">
+          <label for="fechaEmision">Fecha de Emisión</label>
           <div class="input-group">
               <div class="input-group-prepend">
               <span class="input-group-text"><i class="fas fa-calendar-alt"></i></span>
@@ -364,7 +348,6 @@ MODAL SALIDA DE MAQUINA
           $crearSalidaMaquina -> ctrCrearSalidaMaquina();
 
       ?>
-
 
     </form>
 

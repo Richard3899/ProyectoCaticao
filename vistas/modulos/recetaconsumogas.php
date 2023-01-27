@@ -54,7 +54,6 @@
          <a type="button" class="btn btn-secondary my-1 col-12 col-sm-4 col-md-3 col-lg-3 col-xl-3" href="recetas">Volver</a>
         </div>
         
-
       </div>
 
       </div>
@@ -79,8 +78,6 @@
       </thead>
 
      </table>
-
-        
 
       </div>
       <!-- /.card-body -->
@@ -133,9 +130,8 @@ MODAL RECETA CONSUMO DE GAS
         <div class="row">
 
             <!-- ENTRADA PARA SELECCIONAR LA MAQUINA -->
-
             <div class="form-group col-sm">
-            
+            <label for="maquina">Maquina</label>
             <div class="input-group">
 
                 <input type="hidden" name="idMaquina" id="idMaquina">
@@ -161,15 +157,13 @@ MODAL RECETA CONSUMO DE GAS
 
               </select>
               
-
             </div>
 
             </div>
 
               <!-- ENTRADA PARA EL TRABAJO POR BATCH (HORAS) -->
-
               <div class="form-group col-sm">
-              
+              <label for="trabajoPorBatch">Trabajo por batch (Horas)</label>
               <div class="input-group">
                   <div class="input-group-prepend">
                   <span class="input-group-text"><i class="fas fa-clock"></i></span>
@@ -184,30 +178,28 @@ MODAL RECETA CONSUMO DE GAS
 
           <div class="row">
 
-            <!-- ENTRADA PARA EL PRECIO -->
-
-            <div class="form-group col-sm">
-            
-            <div class="input-group">
-                <div class="input-group-prepend">
-                <span class="input-group-text"><i class="fas fa-dollar-sign"></i></span>
-                </div>
-                <input type="number" class="form-control input-lg nuevaTarifaGas" name="nuevaTarifaGas" id="nuevaTarifaGas"
-                 placeholder="Ingresar tarifa de gas por Kg" min="0.1" step="0.1" required>
-            </div>
-
-            </div>
-
             <!-- ENTRADA PARA EL PESO DE BALON DE GAS -->
-
             <div class="form-group col-sm">
-            
+            <label for="pesoBalonGas">Peso del balón de gas</label>
             <div class="input-group">
                 <div class="input-group-prepend">
                 <span class="input-group-text"><i class="fas fa-layer-group"></i></span>
                 </div>
                 <input type="number" class="form-control input-lg nuevoPesoBalonGas" id="nuevoPesoBalonGas" name="nuevoPesoBalonGas" 
                  placeholder="Ingresar peso del balon de gas" min="0.1" step="0.1" required>
+            </div>
+
+            </div>
+
+            <!-- ENTRADA PARA EL PRECIO -->
+            <div class="form-group col-sm">
+            <label for="tarifaGas">Tarifa de gas por Kg</label>
+            <div class="input-group">
+                <div class="input-group-prepend">
+                <span class="input-group-text"><i class="fas fa-dollar-sign"></i></span>
+                </div>
+                <input type="number" class="form-control input-lg nuevaTarifaGas" name="nuevaTarifaGas" id="nuevaTarifaGas"
+                 placeholder="Ingresar tarifa de gas por Kg" min="0.1" step="0.1" required>
             </div>
 
             </div>
@@ -245,9 +237,6 @@ MODAL RECETA CONSUMO DE GAS
 </div>
 
 </div>
-
-
-
 
 <!--=====================================
 MODAL EDITAR RECETA CONSUMO DE GAS
@@ -291,9 +280,8 @@ MODAL EDITAR RECETA CONSUMO DE GAS
           <div class="row">
 
             <!-- ENTRADA PARA SELECCIONAR LA MAQUINA -->
-
             <div class="form-group col-sm">
-
+            <label for="maquina">Maquina</label>
                 <input type="hidden" name="editaridRecetaConsumoGas" id="editaridRecetaConsumoGas">
             
             <div class="input-group">
@@ -305,9 +293,8 @@ MODAL EDITAR RECETA CONSUMO DE GAS
             </div>
 
               <!-- ENTRADA PARA EL TRABAJO POR BATCH (HORAS) -->
-
               <div class="form-group col-sm">
-              
+              <label for="trabajoPorBatch">Trabajo por batch (Horas)</label>
               <div class="input-group">
                   <div class="input-group-prepend">
                   <span class="input-group-text"><i class="fas fa-clock"></i></span>
@@ -322,30 +309,28 @@ MODAL EDITAR RECETA CONSUMO DE GAS
 
           <div class="row">
 
-            <!-- ENTRADA PARA EL PRECIO -->
-
-            <div class="form-group col-sm">
-            
-            <div class="input-group">
-                <div class="input-group-prepend">
-                <span class="input-group-text"><i class="fas fa-dollar-sign"></i></span>
-                </div>
-                <input type="number" class="form-control input-lg editarTarifaGas" name="editarTarifaGas" id="editarTarifaGas"
-                placeholder="Ingresar tarifa de gas por Kg" min="0.1" step="0.1" required>
-            </div>
-
-            </div>
-
             <!-- ENTRADA PARA EL PESO DE BALON DE GAS -->
-
             <div class="form-group col-sm">
-            
+            <label for="pesoBalonGas">Peso del balón gas</label>
             <div class="input-group">
                 <div class="input-group-prepend">
                 <span class="input-group-text"><i class="fas fa-layer-group"></i></span>
                 </div>
                 <input type="number" class="form-control input-lg editarPesoBalonGas" id="editarPesoBalonGas" name="editarPesoBalonGas" 
                  placeholder="Ingresar peso del balon de gas" min="0.1" step="0.1" required>
+            </div>
+
+            </div>
+
+            <!-- ENTRADA PARA EL PRECIO -->
+            <div class="form-group col-sm">
+            <label for="precio">Tarifa de gas por Kg</label>
+            <div class="input-group">
+                <div class="input-group-prepend">
+                <span class="input-group-text"><i class="fas fa-dollar-sign"></i></span>
+                </div>
+                <input type="number" class="form-control input-lg editarTarifaGas" name="editarTarifaGas" id="editarTarifaGas"
+                placeholder="Ingresar tarifa de gas por Kg" min="0.1" step="0.1" required>
             </div>
 
             </div>
@@ -375,7 +360,6 @@ MODAL EDITAR RECETA CONSUMO DE GAS
 
       ?>
 
-
     </form>
 
   </div>
@@ -383,7 +367,6 @@ MODAL EDITAR RECETA CONSUMO DE GAS
 </div>
 
 </div>
-
 
 <?php
 

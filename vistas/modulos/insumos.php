@@ -58,8 +58,6 @@
 
      </table>
 
-        
-
       </div>
       <!-- /.card-body -->
     </div>
@@ -244,10 +242,7 @@ MODAL AGREGAR INSUMO
                 <input type="number" class="form-control input-lg" name="nuevoPrecio" id="nuevoPrecio"
                 placeholder="Ingresar precio" min="0" max="9999999" step="0.01" required>
             </div>
-
             </div>
-
-
           </div>
 
 
@@ -320,6 +315,7 @@ MODAL EDITAR INSUMO
       <div class="modal-header" style="background:gray; color:white">
 
       <h4 class="modal-title">Editar Insumo</h4>
+
       <button type="button" class="close" data-dismiss="modal">&times;</button>
 
       </div>
@@ -336,6 +332,7 @@ MODAL EDITAR INSUMO
 
             <!-- ENTRADA PARA EL CÓDIGO -->
             <div class="form-group col-sm">
+            <label for="codigo">Código</label>
             <div class="input-group ">
                 <div class="input-group-prepend">
                 <span class="input-group-text"><i class="fas fa-hashtag"></i></span>
@@ -348,6 +345,7 @@ MODAL EDITAR INSUMO
 
             <!-- ENTRADA PARA EL NOMBRE -->
             <div class="form-group col-sm">
+            <label for="nombre">Nombre</label>
             <div class="input-group">
                 <div class="input-group-prepend">
                 <span class="input-group-text"><i class="fas fa-file-signature"></i></span>
@@ -362,6 +360,7 @@ MODAL EDITAR INSUMO
           <!-- ENTRADA PARA EL DESCRIPCIÓN -->
 
            <div class="form-group">
+            <label for="descripcion">Descripción</label>
             <div class="input-group">
                 <div class="input-group-prepend">
                 <span class="input-group-text"><i class="fas fa-bars"></i></span>
@@ -371,13 +370,12 @@ MODAL EDITAR INSUMO
             </div>
            </div>
 
-
           <div class="row">
  
           <!-- ENTRADA PARA SELECCIONAR SU UNIDAD DE MEDIDA -->
 
           <div class="form-group col-sm">
-            
+            <label for="unidadMedida">Unidad de Medida</label>
             <div class="input-group">
             
                 <div class="input-group-prepend">
@@ -410,7 +408,7 @@ MODAL EDITAR INSUMO
           <!-- ENTRADA PARA SELECCIONAR SU MARCA -->
 
           <div class="form-group col-sm">
-            
+            <label for="marca">Marca</label>
             <div class="input-group">
             
                 <div class="input-group-prepend">
@@ -447,7 +445,7 @@ MODAL EDITAR INSUMO
             <!-- ENTRADA PARA EL CANTIDAD -->
 
             <div class="form-group col-sm">
-            
+            <label for="cantidad">Cantidad</label>
             <div class="input-group">
                 <div class="input-group-prepend">
                 <span class="input-group-text"><i class="fas fa-layer-group"></i></span>
@@ -461,7 +459,7 @@ MODAL EDITAR INSUMO
             <!-- ENTRADA PARA EL PRECIO -->
 
             <div class="form-group col-sm">
-            
+            <label for="precio">Precio</label>
             <div class="input-group">
                 <div class="input-group-prepend">
                 <span class="input-group-text"><i class="fas fa-dollar-sign"></i></span>
