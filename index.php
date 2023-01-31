@@ -44,6 +44,7 @@ require_once "controladores/costototalpormes.controlador.php";
 require_once "controladores/reporteinsumos.controlador.php";
 require_once "controladores/reportemateriales.controlador.php";
 require_once "controladores/reporteproductos.controlador.php";
+require_once "controladores/dashboard.controlador.php";
 
 require_once "modelos/usuarios.modelo.php";
 require_once "modelos/configuracion.modelo.php";
@@ -87,6 +88,7 @@ require_once "modelos/costototalpormes.modelo.php";
 require_once "modelos/reporteinsumos.modelo.php";
 require_once "modelos/reportemateriales.modelo.php";
 require_once "modelos/reporteproductos.modelo.php";
+require_once "modelos/dashboard.modelo.php";
 
 $plantilla = new ControladorPlantilla();
 $plantilla -> ctrPlantilla();

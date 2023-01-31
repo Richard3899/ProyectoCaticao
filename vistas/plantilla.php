@@ -171,6 +171,7 @@ foreach ($configuracion as $key => $value){
 <script src="vistas/js/reporteinsumos.js"></script>
 <script src="vistas/js/reportemateriales.js"></script>
 <script src="vistas/js/reporteproductos.js"></script>
+<script src="vistas/js/dashboard.js"></script>
 
 </body>
 
