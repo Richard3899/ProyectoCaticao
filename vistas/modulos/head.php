@@ -26,6 +26,8 @@
   <link rel="stylesheet" href="vistas/plugins/dropzone/min/dropzone.min.css">
   <!-- Select2 -->
   <link rel="stylesheet" href="vistas/plugins/select2/css/select2.min.css">
+  <!-- Chats -->
+  <link rel="stylesheet" href="vistas/plugins/chart.js/Chart.css">
 
   <link rel="stylesheet" href="vistas/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
   
@@ -70,6 +72,11 @@
   <!-- date-range-picker -->
   <script src="vistas/plugins/daterangepicker/daterangepicker.js"></script>
   <script src="vistas/plugins/daterangepicker/dateTime.js"></script>
+  <!-- Chats -->
+  <script src="vistas/plugins/chart.js/Chart.js"></script>
+  <script src="vistas/plugins/chart.js/Chart.bundle.js"></script>
+  <script src="vvistas/plugins/apexcharts/apexcharts.min.js"></script>
+  <script src="vistas/plugins/echarts/echarts.min.js"></script>
   <!-- SweetAlert2 -->
   <script src="vistas/plugins/sweetalert2/sweetalert2.min.js"></script>
   <!-- By default SweetAlert2 doesn't support IE. To enable IE 11 support, include Promise polyfill:-->

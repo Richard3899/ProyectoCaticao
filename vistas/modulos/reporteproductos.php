@@ -6,13 +6,13 @@
     <div class="container-fluid">
       <div class="row mb-2">
         <div class="col-sm-6">
-          <h1>Reporte de Insumos</h1>
+          <h1>Reporte de Productos</h1>
         </div>
         <div class="col-sm-6">
           <ol class="breadcrumb float-sm-right">
             <li class="breadcrumb-item"><a href="inicio">Inicio</a></li>
             <li class="breadcrumb-item active">Reportes</li>
-            <li class="breadcrumb-item active">Reporte de Insumos</li>
+            <li class="breadcrumb-item active">Reporte de Productos</li>
           </ol>
         </div>
       </div>
@@ -32,19 +32,14 @@
                              <button type="button" class="btn btn-sm btn-warning" data-card-widget="collapse">
                                  Mostrar
                              </button>
-                             <button type="button" class="btn btn-sm btn-success" id="btnLimpiarBusquedaInsumos">
+                             <button type="button" class="btn btn-sm btn-success" id="btnLimpiarBusquedaProductos">
                                  Limpiar
                              </button>
                          </div> <!-- ./ end card-tools -->
                      </div> <!-- ./ end card-header -->
                      <div class="card-body">
                          <div class="row">
-
-                         <!-- <div class="form-label-group col-sm-6 col-md-3 col-lg">
-                            <input type="emai" id="inputEmail4" class="form-control" placeholder="Email" required="" autofocus="">
-                            <label for="inputEmail4">Email Address</label>
-                         </div> -->
-                        
+                          <input type="hidden" id="url" value="<?php echo $url ?>">
                           <!-- ENTRADA PARA EL CÓDIGO -->
                           <div class="form-group col-sm-6 col-md-3 col-lg">
                           <div class="input-group ">
@@ -73,31 +68,17 @@
                           </div>
                           </div>
 
-                          <!-- ENTRADA PARA EL MARCA -->
-                          <div class="form-group col-sm-6 col-md-3 col-lg">
-                          <div class="input-group ">
-                              <input type="text" id="marca" class="form-control" placeholder="Marca"  data-index="5">   
-                          </div>
-                          </div>
-
-                          <!-- ENTRADA PARA EL PRECIO UNITARIO -->
-                          <div class="form-group col-sm-6 col-md-3 col-lg">
-                          <div class="input-group ">
-                              <input type="text" id="precioUnitario" class="form-control" placeholder="Precio Unitario"  data-index="6">   
-                          </div>
-                          </div>
-
                           <!-- ENTRADA PARA EL STOCK DESDE -->
                           <div class="form-group col-sm-6 col-md-3 col-lg">
                           <div class="input-group ">
-                              <input type="text" id="stockDesde" class="form-control" placeholder="Stock Desde"  data-index="7">   
+                              <input type="text" id="stockDesde" class="form-control" placeholder="Stock Desde"  data-index="5">   
                           </div>
                           </div>
 
                           <!-- ENTRADA PARA EL STOCK HASTA -->
                           <div class="form-group col-sm-6 col-md-3 col-lg">
                           <div class="input-group ">
-                              <input type="text" id="stockHasta" class="form-control" placeholder="Stock Hasta" data-index="7">   
+                              <input type="text" id="stockHasta" class="form-control" placeholder="Stock Hasta" data-index="5">   
                           </div>
                           </div>
 
@@ -112,7 +93,7 @@
 
       <div class="card-body">
 
-      <table id="tablaReporteInsumos" class="table table-bordered table-striped dt-responsive tablaReporteInsumos" width="100%">
+      <table id="tablaReporteProductos" class="table table-bordered table-striped dt-responsive tablaReporteProductos" width="100%">
        
       <thead>
        
@@ -122,8 +103,6 @@
          <th>Nombre</th>
          <th>Descripción</th>
          <th>Unidad de Medida</th>
-         <th>Marca</th>
-         <th>Precio Unitario</th>
          <th>Stock</th>
 
        </tr> 

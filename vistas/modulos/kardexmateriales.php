@@ -72,10 +72,66 @@
 
         </div>
 
+             <!-- row para criterios de busqueda -->
+
+             <div class="card card-primary collapsed-card">
+                     <div class="card-header">
+                         <h3 class="card-title">Filtros de búsqueda</h3>
+                         <div class="card-tools">
+                             <button type="button" class="btn btn-sm btn-warning" data-card-widget="collapse">
+                                 Mostrar
+                             </button>
+                             <button type="button" class="btn btn-sm btn-success" id="btnLimpiarBusqueda">
+                                 Limpiar
+                             </button>
+                         </div> <!-- ./ end card-tools -->
+                     </div> <!-- ./ end card-header -->
+                     <div class="card-body">
+                         <div class="row">
+                        
+                          <!-- ENTRADA PARA EL TRANSACCIÓN -->
+                          <div class="form-group col-sm-6 col-md-3 col-lg">
+                          <div class="input-group">
+                              <input type="text" id="transaccion" class="form-control" placeholder="Transacción"  data-index="2">    
+                          </div>
+                          </div>
+                          
+                          <!-- ENTRADA PARA EL DESCRIPCIÓN -->
+                          <div class="form-group col-sm-6 col-md-3 col-lg">
+                          <div class="input-group">
+                              <input type="text" id="descripcion" class="form-control" placeholder="Descripción" data-index="3">   
+                          </div>
+                          </div>
+
+                          <!-- ENTRADA PARA EL CÓDIGO RECETA -->
+                          <div class="form-group col-sm-6 col-md-3 col-lg">
+                          <div class="input-group">
+                              <input type="text" id="codigoReceta" class="form-control" placeholder="Código de Receta"  data-index="4">   
+                          </div>
+                          </div>
+
+                          <!-- ENTRADA PARA LA FECHA DE EMISIÓN -->
+                          <div class="form-group col-sm-6 col-md-3 col-lg">
+                          <div class="input-group">
+                              <input type="text" id="min"  class="form-control" placeholder="Fecha de Emisión"  data-index="5">   
+                          </div>
+                          </div>
+
+                          <!-- ENTRADA PARA LA FECHA DE EMISIÓN -->
+                          <div class="form-group col-sm-6 col-md-3 col-lg">
+                          <div class="input-group">
+                              <input type="text" id="max"  class="form-control" placeholder="Fecha de Emisión"  data-index="5">   
+                          </div>
+                          </div>
+   
+                         </div>
+                     </div> <!-- ./ end card-body -->
+                 </div>
+
 
       <div  class="card-body">
 
-      <table class="table table-bordered table-striped dt-responsive tablaKardexMateriales" width="100%">
+      <table id="tablaKardexMateriales" class="table table-bordered table-striped dt-responsive tablaKardexMateriales" width="100%">
        
        <thead>
         

@@ -6,13 +6,13 @@
     <div class="container-fluid">
       <div class="row mb-2">
         <div class="col-sm-6">
-          <h1>Reporte de Insumos</h1>
+          <h1>Reporte de Materiales</h1>
         </div>
         <div class="col-sm-6">
           <ol class="breadcrumb float-sm-right">
             <li class="breadcrumb-item"><a href="inicio">Inicio</a></li>
             <li class="breadcrumb-item active">Reportes</li>
-            <li class="breadcrumb-item active">Reporte de Insumos</li>
+            <li class="breadcrumb-item active">Reporte de Materiales</li>
           </ol>
         </div>
       </div>
@@ -32,18 +32,13 @@
                              <button type="button" class="btn btn-sm btn-warning" data-card-widget="collapse">
                                  Mostrar
                              </button>
-                             <button type="button" class="btn btn-sm btn-success" id="btnLimpiarBusquedaInsumos">
+                             <button type="button" class="btn btn-sm btn-success" id="btnLimpiarBusquedaMateriales">
                                  Limpiar
                              </button>
                          </div> <!-- ./ end card-tools -->
                      </div> <!-- ./ end card-header -->
                      <div class="card-body">
                          <div class="row">
-
-                         <!-- <div class="form-label-group col-sm-6 col-md-3 col-lg">
-                            <input type="emai" id="inputEmail4" class="form-control" placeholder="Email" required="" autofocus="">
-                            <label for="inputEmail4">Email Address</label>
-                         </div> -->
                         
                           <!-- ENTRADA PARA EL CÓDIGO -->
                           <div class="form-group col-sm-6 col-md-3 col-lg">
@@ -112,7 +107,7 @@
 
       <div class="card-body">
 
-      <table id="tablaReporteInsumos" class="table table-bordered table-striped dt-responsive tablaReporteInsumos" width="100%">
+      <table id="tablaReporteMateriales" class="table table-bordered table-striped dt-responsive tablaReporteMateriales" width="100%">
        
       <thead>
        

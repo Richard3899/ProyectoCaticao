@@ -130,10 +130,9 @@
                      </div> <!-- ./ end card-body -->
                  </div>
 
-      
       <div  class="card-body">
 
-      <table class="table table-bordered table-striped dt-responsive tablaKardexInsumos" width="100%">
+      <table id="tablaKardexInsumos" class="table table-bordered table-striped dt-responsive tablaKardexInsumos" width="100%">
        
        <thead>
         

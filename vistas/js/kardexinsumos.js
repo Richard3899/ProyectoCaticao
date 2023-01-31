@@ -1,5 +1,3 @@
-window.onload = function(){ 
-
 	$('.tablaKardexInsumos').dataTable( {
 		"searching": false,
 		"language": {
@@ -32,75 +30,91 @@ window.onload = function(){
 	
 	
 	$(document).on('click','#KardexInsumos',function() {
-		KardexInsumos()
 
-		$.fn.dataTable.ext.search.push(
-			function(oSettings, aData, iDataIndex) {
-		
-				var dateIni = $('#min').val();
-				var dateFin = $('#max').val();
-		
-				var indexCol = 5;
-		
-				dateIni = dateIni?.replace(/-/g, "");
-				dateFin= dateFin?.replace(/-/g, "");
-		
-				var dateCol = aData[indexCol]?.replace(/-/g, "");
-		
-				if (dateIni === "" && dateFin === "")
-				{
-					return true;
-				}
-		
-				if(dateIni === "")
-				{
-					return dateCol <= dateFin;
-				}
-		
-				if(dateFin === "")
-				{
-					return dateCol >= dateIni;
-				}
-		
-				return dateCol >= dateIni && dateCol <= dateFin;
-			}
-		);
+		if($("#InsumoK").val()==0){
+			Swal.fire({
+				icon: "error",
+				title: "Seleccionar Insumo",
+				showConfirmButton: false,
+				timer: 2000
+			  })
+		}else{
 
-	/*===================================================================*/
-    // EVENTOS PARA CRITERIOS DE BUSQUEDA
-    /*===================================================================*/
-    $("#transaccion").keyup(function(){
-        table.column($(this).data('index')).search(this.value).draw();
-    })
-    $("#descripcion").keyup(function(){
-        table.column($(this).data('index')).search(this.value).draw();
-    })
-    $("#codigoReceta").keyup(function(){
-        table.column($(this).data('index')).search(this.value).draw();
-    })
+			KardexInsumos()
+
+			$.fn.dataTable.ext.search.push(
+				function(settings, aData, iDataIndex) {
+					if ( settings.nTable.id !== 'tablaKardexInsumos' ) {
+							return true;
+							}
+					var dateIni = $('#min').val();
+					var dateFin = $('#max').val();
+			
+					var indexCol = 5;
+			
+					dateIni = dateIni?.replace(/-/g, "");
+					dateFin= dateFin?.replace(/-/g, "");
+			
+					var dateCol = aData[indexCol]?.replace(/-/g, "");
+			
+					if (dateIni === "" && dateFin === "")
+					{
+						return true;
+					}
+			
+					if(dateIni === "")
+					{
+						return dateCol <= dateFin;
+					}
+			
+					if(dateFin === "")
+					{
+						return dateCol >= dateIni;
+					}
+			
+					return dateCol >= dateIni && dateCol <= dateFin;
+				}
+			);
 	
-	$(document).ready(function() {
-		// Create date inputs
-		minDate = new DateTime($('#min'));
-		maxDate = new DateTime($('#max'));
-		// Refilter the table
-		$('#min, #max').on('change', function () {
-			table.draw();			
-		});
-	});
-
-
-	$("#btnLimpiarBusqueda").on('click',function(){
-
-		$("#transaccion").val('')
-		$("#descripcion").val('')
-		$("#codigoReceta").val('')
-		$("#min").val('')
-		$("#max").val('')
-
-		table.search('').columns().search('').draw();
+		/*===================================================================*/
+		// EVENTOS PARA CRITERIOS DE BUSQUEDA
+		/*===================================================================*/
+		$("#transaccion").keyup(function(){
+			table.column($(this).data('index')).search(this.value).draw();
+		})
+		$("#descripcion").keyup(function(){
+			table.column($(this).data('index')).search(this.value).draw();
+		})
+		$("#codigoReceta").keyup(function(){
+			table.column($(this).data('index')).search(this.value).draw();
+		})
 		
-	})
+		$(document).ready(function() {
+			// Create date inputs
+			minDate = new DateTime($('#min'));
+			maxDate = new DateTime($('#max'));
+			// Refilter the table
+			$('#min, #max').on('change', function () {
+				table.draw();			
+			});
+		});
+	
+	
+		$("#btnLimpiarBusqueda").on('click',function(){
+	
+			$("#transaccion").val('')
+			$("#descripcion").val('')
+			$("#codigoReceta").val('')
+			$("#min").val('')
+			$("#max").val('')
+	
+			table.search('').columns().search('').draw();
+			
+		})
+			
+		}
+
+		
 	});    
 	
 	function KardexInsumos() {
@@ -156,5 +170,5 @@ window.onload = function(){
 	
 	  }
 
-};
+
 

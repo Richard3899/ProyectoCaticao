@@ -1,16 +1,16 @@
 /*=============================================
-TABLA REPORTE INSUMOS
+TABLA REPORTE MATERIALES
 =============================================*/
-var tableReporteInsumos;
+var tableReporteMateriales;
 
-tableReporteInsumos = $("#tablaReporteInsumos").DataTable({
-	"ajax": "ajax/datatable-reporteinsumos.ajax.php",
+tableReporteMateriales = $("#tablaReporteMateriales").DataTable({
+	"ajax": "ajax/datatable-reportemateriales.ajax.php",
 	"dom": 'Brti',
     "buttons": [{
 		extend: 'pdf',
 		text: "PDF",
-		title:'Reporte Insumos',
-		filename: 'Reporte Insumos',
+		title:'Reporte Materiales',
+		filename: 'Reporte Materiales',
 		exportOptions: {
 			columns: ':visible'
 		},
@@ -24,8 +24,8 @@ tableReporteInsumos = $("#tablaReporteInsumos").DataTable({
 		{
 		extend: 'excel',
 		text: "Excel",
-		title:'Reporte Insumos',
-		filename: 'Reporte Insumos',
+		title:'Reporte Materiales',
+		filename: 'Reporte Materiales',
 		customize: function( xlsx ) {
                 var sheet = xlsx.xl.worksheets['sheet1.xml'];
 				//Centrar al exportar en Excel
@@ -46,7 +46,7 @@ tableReporteInsumos = $("#tablaReporteInsumos").DataTable({
 		{
 		extend: 'print',
 		text: "Imprimir",
-		title:'Reporte Insumos',
+		title:'Reporte Materiales',
 		exportOptions: {
 			columns: ':visible'
 		},
@@ -98,30 +98,30 @@ tableReporteInsumos = $("#tablaReporteInsumos").DataTable({
     // EVENTOS PARA CRITERIOS DE BUSQUEDA
     /*===================================================================*/
     $("#codigo").keyup(function(){
-        tableReporteInsumos.column($(this).data('index')).search(this.value).draw();
+        tableReporteMateriales.column($(this).data('index')).search(this.value).draw();
     })
     $("#nombre").keyup(function(){
-        tableReporteInsumos.column($(this).data('index')).search(this.value).draw();
+        tableReporteMateriales.column($(this).data('index')).search(this.value).draw();
     })
     $("#descripcion").keyup(function(){
-        tableReporteInsumos.column($(this).data('index')).search(this.value).draw();
+        tableReporteMateriales.column($(this).data('index')).search(this.value).draw();
     })
 	$("#unidadMedida").keyup(function(){
-        tableReporteInsumos.column($(this).data('index')).search(this.value).draw();
+        tableReporteMateriales.column($(this).data('index')).search(this.value).draw();
     })
 	$("#marca").keyup(function(){
-        tableReporteInsumos.column($(this).data('index')).search(this.value).draw();
+        tableReporteMateriales.column($(this).data('index')).search(this.value).draw();
     })
 	$("#precioUnitario").keyup(function(){
-        tableReporteInsumos.column($(this).data('index')).search(this.value).draw();
+        tableReporteMateriales.column($(this).data('index')).search(this.value).draw();
     })
-
     $("#stockDesde, #stockHasta").keyup(function(){
-        tableReporteInsumos.draw();
+        tableReporteMateriales.draw();
     })
+	
     $.fn.dataTable.ext.search.push(
         function(settings, data, dataIndex){
-			if ( settings.nTable.id !== 'tablaReporteInsumos' ) {
+			if ( settings.nTable.id !== 'tablaReporteMateriales' ) {
 				return true;
 				}
             var stockDesde = parseFloat($("#stockDesde").val());
@@ -134,10 +134,11 @@ tableReporteInsumos = $("#tablaReporteInsumos").DataTable({
                     return true;
             }
             return false;
-		}
+        
+	}
     )
 
-    $("#btnLimpiarBusquedaInsumos").on('click',function(){
+    $("#btnLimpiarBusquedaMateriales").on('click',function(){
         $("#codigo").val('')
         $("#nombre").val('')
         $("#descripcion").val('')
@@ -147,5 +148,5 @@ tableReporteInsumos = $("#tablaReporteInsumos").DataTable({
         $("#stockDesde").val('')
         $("#stockHasta").val('')
 		
-        tableReporteInsumos.search('').columns().search('').draw();
+        tableReporteMateriales.search('').columns().search('').draw();
     })

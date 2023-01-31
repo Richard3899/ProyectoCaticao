@@ -84,7 +84,7 @@ $(".tablaRecetaManodeObra").on("draw.dt", function() {
 
 	})
 })
-console.log(idArrayRecetaManodeObra)
+
 /*=============================================
 SELECCIONAR EMPLEADO DE LA RECETA
 =============================================*/
