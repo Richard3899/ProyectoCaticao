@@ -983,8 +983,8 @@ BEGIN
     insert into lote (codigoLote,fechaVencimiento,idProducto)
 			   values (codigoLoteI,fechaVencimientoI,idProductoI);
                 
-	insert into receta (codigo,nombre,batch,idEstado,fechaInicio,fechaFin,pesoPorTableta,pesoEnTableta,merma,reproceso,codigoLote)
-			      values (codigoI,nombreI,batchI,idEstadoI,fechaInicioI,fechaFinI,pesoPorTabletaI,pesoEnTabletaI,mermaI,reprocesoI,codigoLoteI);
+	insert into receta (codigo,nombre,batch,idEstado,fechaInicio,fechaFin,pesoPorTableta,pesoEnTableta,merma,reproceso,codigoLote,cerrado)
+			      values (codigoI,nombreI,batchI,idEstadoI,fechaInicioI,fechaFinI,pesoPorTabletaI,pesoEnTabletaI,mermaI,reprocesoI,codigoLoteI,0);
 	
 END$$
 DELIMITER ;
@@ -1082,9 +1082,20 @@ BEGIN
 END$$
 DELIMITER ;
 
+DROP procedure IF EXISTS `cerrar_receta`;
+DELIMITER $$
+USE `caticao`$$
+CREATE PROCEDURE `cerrar_receta` (in idRecetaE INT)
+BEGIN
+
+   UPDATE receta set cerrado=1
+                        
+	WHERE idReceta=idRecetaE;
+     
+END$$
+DELIMITER ;
 
 -- Procedimientos almacenados de Receta Insumos --
-
 DROP procedure IF EXISTS `mostrar_detalleinsumos1`;
 DELIMITER $$
 USE `caticao`$$
@@ -2060,8 +2071,8 @@ BEGIN
 				  WHERE  codigoLote = codigoLoteD;
 				  
 	-- INSERTA LA RECETA DUPLICADA --
-	INSERT INTO receta (idReceta,codigo,nombre,batch,idEstado,fechaInicio,fechaFin,pesoPorTableta,pesoEnTableta,merma,reproceso,codigoLote)
-	             SELECT nuevoIdRecetaD,codigoRecetaD AS codigo,CONCAT(nombre,'-','Duplicado')AS nombre, batch,idEstado,fechaInicio,fechaFin,pesoPorTableta,pesoEnTableta,merma,reproceso,rc AS codigoLote
+	INSERT INTO receta (idReceta,codigo,nombre,batch,idEstado,fechaInicio,fechaFin,pesoPorTableta,pesoEnTableta,merma,reproceso,codigoLote,cerrado)
+	             SELECT nuevoIdRecetaD,codigoRecetaD AS codigo,CONCAT(nombre,'-','Duplicado')AS nombre, batch,idEstado,fechaInicio,fechaFin,pesoPorTableta,pesoEnTableta,merma,reproceso,rc AS codigoLote,0
 				    FROM receta
 				    WHERE idReceta = idRecetaD;
 				    

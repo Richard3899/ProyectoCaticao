@@ -147,6 +147,33 @@ class ModeloRecetas{
 	}
 
 	/*=============================================
+	CERRAR RECETA
+	=============================================*/
+
+	static public function mdlCerrarReceta($datos){
+
+		$stmt = Conexion::conectar()->prepare("call cerrar_receta(?)");
+
+		$stmt->bindParam(1, $datos["idReceta"], PDO::PARAM_INT);
+
+		if($stmt -> execute()){
+
+			return "ok";
+		
+		}else{
+
+			return "error";	
+
+		}
+
+		#$stmt -> close();
+
+		$stmt = null;
+
+
+	}
+
+	/*=============================================
 	DUPLICAR RECETA
 	=============================================*/
 

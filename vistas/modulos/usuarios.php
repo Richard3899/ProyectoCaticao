@@ -367,7 +367,7 @@ MODAL EDITAR USUARIO
 
                 <option value="Vendedor">Vendedor</option>
 
-              </select>
+                </select>
 
             </div>
 

@@ -382,6 +382,7 @@ CREATE TABLE Receta (
   merma DECIMAL(10,2) ,
   reproceso DECIMAL(10,2),
   codigoLote VARCHAR(20),
+  cerrado INT,
   idEstado INT REFERENCES Estado (idEstado)
 );
 

@@ -159,6 +159,37 @@ $(".tablaRecetas tbody").on("click", "button.btnEliminarReceta", function(){
 })
 
 /*=============================================
+CERRAR RECETA
+=============================================*/
+
+$(".tablaRecetas tbody").on("click", "button.btnCerrarReceta", function(){
+
+	var idReceta = $(this).attr("idReceta");
+
+	Swal.fire({
+
+		title: '¿Está seguro de cerrar el receta?',
+		text: "¡Si no lo está puede cancelar la acción!",
+		icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        cancelButtonText: 'Cancelar',
+        confirmButtonText: 'Si, cerrar receta!'
+        }).then(function(result){
+        if (result.value) {
+
+			window.location = "index.php?ruta=recetas&idReceta="+idReceta;
+
+
+        }
+
+
+	})
+
+})
+
+/*=============================================
 DUPLICAR RECETA
 =============================================*/
 

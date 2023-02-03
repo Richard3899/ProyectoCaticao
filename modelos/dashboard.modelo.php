@@ -8,18 +8,35 @@ class ModeloDashboard{
 	MOSTRAR TOP PRODUCTOS CON STOCK
 	=============================================*/
 
-	static public function mdlMostrarProductosTop(){
+	static public function mdlMostrarItemsTop($valor){
 
-		$stmt = Conexion::conectar()->prepare("call mostrar_productostop");
+		if($valor == 1){ 
 
-		$stmt -> execute();
+			$stmt = Conexion::conectar()->prepare("call mostrar_productostop");
+	
+			$stmt -> execute();
+		
+			return $stmt -> fetchAll();
 
-		return $stmt -> fetchAll();
+		} elseif($valor == 2){
+
+			$stmt = Conexion::conectar()->prepare("call mostrar_insumostop");
+	
+			$stmt -> execute();
+		
+			return $stmt -> fetchAll();
+		}else{
+
+			$stmt = Conexion::conectar()->prepare("call mostrar_materialestop");
+	
+			$stmt -> execute();
+		
+			return $stmt -> fetchAll();
+		}
 
 		#$stmt -> close();
 
 		$stmt = null;
-
 	}
 
 	/*=============================================

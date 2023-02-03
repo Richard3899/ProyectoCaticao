@@ -8,10 +8,13 @@ class AjaxDashboard{
 	/*=============================================
 	TRAER TOP PRODUCTOS
 	=============================================*/	
+	public $valorItem;
 
 	public function ajaxTopProductos(){
 
-		$respuesta = ControladorDashboard::ctrMostrarProductosTop();
+		$valorItem = $this->valorItem;
+		
+		$respuesta = ControladorDashboard::ctrMostrarProductosTop($valorItem);
 
 		echo json_encode($respuesta);
 
@@ -37,6 +40,7 @@ TRAER TOP PRODUCTOS CON STOCK
 if(isset($_POST["topProductos"])){
 
 	$editar = new AjaxDashboard();
+	$editar -> valorItem = $_POST["topProductos"];
 	$editar -> ajaxTopProductos();
 
 }

@@ -21,6 +21,10 @@ if($value["modoDark"] == 1){
       C-A-T-I-CA-O
       </span>
     </a>
+
+    <?php 
+    $prueba = 1;
+?> 
 <!-- Sidebar -->
 <div class="sidebar">  
       <!-- Sidebar Menu -->
@@ -223,16 +227,16 @@ if($value["modoDark"] == 1){
             </ul>
             
           </li>
-
-          <li class="nav-item">
-            <a href="usuarios" class="nav-link <?php if($url=='usuarios'){ echo "active"; }?>">
-              <i class="nav-icon fas fa-user"></i>
+          <?php if($prueba=0){ 
+                echo "<li class='nav-item'>
+            <a href='usuarios' class='nav-link "; if($url=='usuarios'){ echo 'active'; }; echo "'>
+              <i class='nav-icon fas fa-user'></i>
               <p>
                 Usuarios
               </p>
             </a>
-          </li>
-
+          </li>"; }
+          ?>
           <li class="nav-item <?php if (in_array($url, array('reporteinsumos','reportemateriales','reporteproductos'))){echo "menu-open";}?>">
           <a href="#" class="nav-link <?php if(in_array($url, array('reporteinsumos','reportemateriales','reporteproductos'))){ echo "active"; }?>">
               <i class="nav-icon fas fa-chart-line"></i>

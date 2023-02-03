@@ -73,16 +73,7 @@ class TablaRecetas{
 			}else{
 				$estado =  "<button class='btn btn-danger'>".$estados["descripcion"]."</button>";
 			}
-		  	/*=============================================
- 	 		TRAEMOS LAS ACCIONES
-  			=============================================*/
-			$botones =  "<div class='btn-group'><button class='btn btn-warning btnEditarReceta' idReceta='".$recetas[$i]["idReceta"]."' codigoLote='".$recetas[$i]["codigoLote"]."' data-toggle='modal' data-target='#modalEditarReceta'><i class='fa fa-pen'></i></button><button class='btn btn-danger btnEliminarReceta' idReceta='".$recetas[$i]["idReceta"]."' codigoReceta='".$recetas[$i]["codigo"]."' codigoLote='".$recetas[$i]["codigoLote"]."'><i class='fa fa-times'></i></button></div>";				
-			
-			/*=============================================
- 	 		TRAEMOS LAS OPCIONES
-  			=============================================*/
-			$opciones = "<div class='btn-group dropleft'><button type='button' class='btn btn-secondary dropdown-toggle' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'><i lass='fas fa-ellipsis-v'></i></button><div class='dropdown-menu' aria-labelledby='dropdownMenuButton'><a class='dropdown-item' href='index.php?ruta=recetainsumos&codigo=".$recetas[$i]["codigo"]."&nombre=".$recetas[$i]["nombre"]."&idReceta=".$recetas[$i]["idReceta"]."';>Agregar Insumo</a><a class='dropdown-item' href='index.php?ruta=recetamateriales&codigo=".$recetas[$i]["codigo"]."&nombre=".$recetas[$i]["nombre"]."&idReceta=".$recetas[$i]["idReceta"]."';>Agregar Material</a><a class='dropdown-item' href='index.php?ruta=recetamanodeobra&codigo=".$recetas[$i]["codigo"]."&nombre=".$recetas[$i]["nombre"]."&idReceta=".$recetas[$i]["idReceta"]."';>Agregar Mano de Obra</a><a class='dropdown-item' href='index.php?ruta=recetadepreciacion&codigo=".$recetas[$i]["codigo"]."&nombre=".$recetas[$i]["nombre"]."&idReceta=".$recetas[$i]["idReceta"]."';>Agregar Depreciación</a><a class='dropdown-item' href='index.php?ruta=recetaconsumoenergia&codigo=".$recetas[$i]["codigo"]."&nombre=".$recetas[$i]["nombre"]."&idReceta=".$recetas[$i]["idReceta"]."';>Agregar Consumo de Energía</a><a class='dropdown-item' href='index.php?ruta=recetaconsumogas&codigo=".$recetas[$i]["codigo"]."&nombre=".$recetas[$i]["nombre"]."&idReceta=".$recetas[$i]["idReceta"]."';>Agregar Consumo de Gas</a><a class='dropdown-item' href='index.php?ruta=recetacostoventa&codigo=".$recetas[$i]["codigo"]."&nombre=".$recetas[$i]["nombre"]."&idReceta=".$recetas[$i]["idReceta"]."';>Agregar Costo de Venta</a><a class='dropdown-item' href='index.php?ruta=recetacostomarketing&codigo=".$recetas[$i]["codigo"]."&nombre=".$recetas[$i]["nombre"]."&idReceta=".$recetas[$i]["idReceta"]."';>Agregar Costo de Marketing</a><a class='dropdown-item' href='index.php?ruta=recetacostooperativo&codigo=".$recetas[$i]["codigo"]."&nombre=".$recetas[$i]["nombre"]."&idReceta=".$recetas[$i]["idReceta"]."';>Agregar Costo Operativo</a></div></div>";
-			
+
 			/*=============================================
  	 		DESIGNAR ID A RECETA DUPLICADA
   			=============================================*/
@@ -94,6 +85,23 @@ class TablaRecetas{
   			=============================================*/
 			$duplicar =  "<div class='btn-group'><button class='btn btn-success btnDuplicarReceta' idReceta='".$recetas[$i]["idReceta"]."' codigoReceta='".$recetas[$i]["codigo"]."' codigoLote='".$recetas[$i]["codigoLote"]."' nuevoIdReceta='".$NuevoId."'  data-toggle='modal' data-target='#modalDuplicarReceta' ><i class='fa fa-clone'></i></button></div>";
 		  	
+			/*=============================================
+ 	 		TRAEMOS LAS ACCIONES
+  			=============================================*/
+			if($recetas[$i]["cerrado"]==1){
+				$botones = "<button class='btn btn-danger'><i class='fa fa-lock'></i></button>";
+				$opciones ="<button class='btn btn-secondary'><i class='fas fa-caret-left'></i></button>";
+			}else{
+				$botones =  "<div class='btn-group'><button class='btn btn-warning btnEditarReceta' idReceta='".$recetas[$i]["idReceta"]."' codigoLote='".$recetas[$i]["codigoLote"]."' data-toggle='modal' data-target='#modalEditarReceta'><i class='fa fa-pen'></i></button><button class='btn btn-danger btnEliminarReceta' idReceta='".$recetas[$i]["idReceta"]."' codigoReceta='".$recetas[$i]["codigo"]."' codigoLote='".$recetas[$i]["codigoLote"]."'><i class='fa fa-times'></i></button><button class='btn btn-success btnCerrarReceta' idReceta='".$recetas[$i]["idReceta"]."'><i class='fa fa-lock'></i></button></div>";
+				$opciones = "<div class='btn-group dropleft'><button type='button' class='btn btn-secondary dropdown-toggle' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'><i lass='fas fa-ellipsis-v'></i></button><div class='dropdown-menu' aria-labelledby='dropdownMenuButton'><a class='dropdown-item' href='index.php?ruta=recetainsumos&codigo=".$recetas[$i]["codigo"]."&nombre=".$recetas[$i]["nombre"]."&idReceta=".$recetas[$i]["idReceta"]."';>Agregar Insumo</a><a class='dropdown-item' href='index.php?ruta=recetamateriales&codigo=".$recetas[$i]["codigo"]."&nombre=".$recetas[$i]["nombre"]."&idReceta=".$recetas[$i]["idReceta"]."';>Agregar Material</a><a class='dropdown-item' href='index.php?ruta=recetamanodeobra&codigo=".$recetas[$i]["codigo"]."&nombre=".$recetas[$i]["nombre"]."&idReceta=".$recetas[$i]["idReceta"]."';>Agregar Mano de Obra</a><a class='dropdown-item' href='index.php?ruta=recetadepreciacion&codigo=".$recetas[$i]["codigo"]."&nombre=".$recetas[$i]["nombre"]."&idReceta=".$recetas[$i]["idReceta"]."';>Agregar Depreciación</a><a class='dropdown-item' href='index.php?ruta=recetaconsumoenergia&codigo=".$recetas[$i]["codigo"]."&nombre=".$recetas[$i]["nombre"]."&idReceta=".$recetas[$i]["idReceta"]."';>Agregar Consumo de Energía</a><a class='dropdown-item' href='index.php?ruta=recetaconsumogas&codigo=".$recetas[$i]["codigo"]."&nombre=".$recetas[$i]["nombre"]."&idReceta=".$recetas[$i]["idReceta"]."';>Agregar Consumo de Gas</a><a class='dropdown-item' href='index.php?ruta=recetacostoventa&codigo=".$recetas[$i]["codigo"]."&nombre=".$recetas[$i]["nombre"]."&idReceta=".$recetas[$i]["idReceta"]."';>Agregar Costo de Venta</a><a class='dropdown-item' href='index.php?ruta=recetacostomarketing&codigo=".$recetas[$i]["codigo"]."&nombre=".$recetas[$i]["nombre"]."&idReceta=".$recetas[$i]["idReceta"]."';>Agregar Costo de Marketing</a><a class='dropdown-item' href='index.php?ruta=recetacostooperativo&codigo=".$recetas[$i]["codigo"]."&nombre=".$recetas[$i]["nombre"]."&idReceta=".$recetas[$i]["idReceta"]."';>Agregar Costo Operativo</a></div></div>";
+			}
+					
+			/*=============================================
+ 	 		TRAEMOS LAS OPCIONES
+  			=============================================*/
+
+			
+		
 			$datosJson .='[
 			      "'.($i+1).'",
 			      "'.$recetas[$i]["codigo"].'",
@@ -101,10 +109,10 @@ class TablaRecetas{
 				  "'.$productos["nombre"].'",
 				  "'.$recetas[$i]["batch"].'",
 				  "'.$estado.'",
-				  "'.$lotes["codigoLote"].'",
-				  "'.$botones.'",
+				  "empty",
 				  "'.$duplicar.'",
-			      "'.$opciones.'"
+			      "'.$opciones.'",
+				  "'.$botones.'"
 			    ],';
 			}
 		  

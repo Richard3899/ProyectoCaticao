@@ -6,9 +6,9 @@ class ControladorDashboard{
 	MOSTRAR TOP PRODUCTOS CON STOCK
 	=============================================*/
 
-	static public function ctrMostrarProductosTop(){
+	static public function ctrMostrarProductosTop($valor){
 
-		$respuesta = ModeloDashboard::mdlMostrarProductosTop();
+		$respuesta = ModeloDashboard::mdlMostrarItemsTop($valor);
 
 		return $respuesta;
 	}

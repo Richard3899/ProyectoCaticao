@@ -95,8 +95,8 @@ INSERT INTO `gastoadmin` (`idGastoAdmin`, `descripcion`, `precio`, `idUnidadMedi
 	(3, 'Costo de Marketing 1', 10.00, 3, 2, 3),
 	(4, 'Costo Operativo 1', 12.00, 3, 1, 4);
 
-INSERT INTO `receta` (`idReceta`, `codigo`, `nombre`, `batch`, `fechaInicio`, `fechaFin`, `pesoPorTableta`, `pesoEnTableta`, `merma`, `reproceso`, `codigoLote`, `idEstado`) VALUES
-	(1, 'RC001', 'Receta 1', 60.00, '2022-12-10', '2022-12-10', 1.00, 1.00, 1.00, 1.00, '123456', 1);
+INSERT INTO `receta` (`idReceta`, `codigo`, `nombre`, `batch`, `fechaInicio`, `fechaFin`, `pesoPorTableta`, `pesoEnTableta`, `merma`, `reproceso`, `codigoLote`, `idEstado`,`cerrado`) VALUES
+	(1, 'RC001', 'Receta 1', 60.00, '2022-12-10', '2022-12-10', 1.00, 1.00, 1.00, 1.00, '123456', 1, 0);
 
 INSERT INTO `lote` (`idLote`, `codigoLote`, `fechaVencimiento`, `idProducto`) VALUES
 	(1, '123456', '2022-12-11', 1);

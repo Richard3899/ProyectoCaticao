@@ -3,8 +3,14 @@ if($("#url").val()=='inicio'){
 /*=============================================
 TRAER TOP PRODUCTOS
 =============================================*/
+$(document).ready(function() {
+
+function selectInventario(id){
+  
+  id=$("#dashboardInventario").val();
+
   var datos1 = new FormData();
-  datos1.append("topProductos", 1);
+  datos1.append("topProductos", id);
 
    $.ajax({
 
@@ -17,19 +23,21 @@ TRAER TOP PRODUCTOS
     success:function(respuesta){
 
       var data = JSON.parse(respuesta);
-      var productos = [];
+      var items = [];
       var stock = [];
 
       for (let index = 0; index < data.length; index++) {
-          productos.push(data[index][0]);
+          items.push(data[index][0]);
           stock.push(data[index][1]);
           
       }
 
-    new Chart(document.querySelector('#barChart'), {
+    if(window.myChart2 != undefined)
+    window.myChart2.destroy();
+    window.myChart2 = new Chart(document.querySelector('#barChart'), {
     type: 'bar',
     data: {
-      labels: productos,
+      labels: items,
       datasets: [{
         label: 'Stock',
         data: stock,
@@ -60,11 +68,15 @@ TRAER TOP PRODUCTOS
       }
   }
   });
-
-    }
+}
 
 })
+}
 
+$('#dashboardInventario').on('change', selectInventario);
+selectInventario($("#dashboardInventario").val());
+
+})
 /*=============================================
 TRAER CANTIDAD DE RECETAS POR ESTADO
 =============================================*/
@@ -125,7 +137,6 @@ datos2.append("cantidadRecetasEstados", 1);
   }
 
 })
-
 
 
 

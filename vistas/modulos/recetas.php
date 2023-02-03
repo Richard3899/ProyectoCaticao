@@ -47,9 +47,9 @@
          <th>Producto</th>
          <th>Batch</th>
          <th>Estado</th>
-         <th>Lote</th>
          <th>Más detalle</th>
          <th>Duplicar</th>
+         <th>Agregar</th>
          <th>Acciones</th>
 
        </tr> 
@@ -749,6 +749,9 @@ MODAL EDITAR RECETA
 
   $borrarReceta = new ControladorRecetas();
   $borrarReceta -> ctrEliminarReceta();
+
+  $cerrarReceta = new ControladorRecetas();
+  $cerrarReceta -> ctrCerrarReceta();
 
 ?> 
 

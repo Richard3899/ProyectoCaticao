@@ -20,16 +20,16 @@
 
     <!-- Main content -->
     <section class="section">
-      <input type="hidden" id="url" value='<?php echo $url ?>'>
+      <input type="hidden" id="url" value='<?php $url='inicio'; echo $url ?>'>
       <div class="row">
 
         <div class="col-lg-6">
-          <div class="card">
+          <div class="card" style="height: 95%">
             <div class="card-body">
               <h5 class="card-title">Recetas</h5>
-
-              <canvas id="stakedBarChart" style="max-height: 400px;"></canvas>
-
+              <br><br>
+              <canvas id="stakedBarChart"></canvas>
+              
             </div>
           </div>
         </div>
@@ -37,10 +37,20 @@
         <div class="col-lg-6">
           <div class="card">
             <div class="card-body">
-              <h5 class="card-title">Top Inventario Productos</h5>
-
+              <h5 class="card-title">Top Inventario</h5>
+                  <br><br>
               <!-- Bar Chart -->
-              <canvas id="barChart" style="max-height: 400px;"></canvas>
+                  <select class="form-control input-lg" id="dashboardInventario">
+  
+                  <option value="1">Productos</option>
+  
+                  <option value="2">Insumos</option>
+  
+                  <option value="3">Materiales</option>
+  
+                  </select>
+                  
+              <canvas id="barChart"></canvas>
 
             </div>
           </div>

@@ -159,15 +159,31 @@ class ControladorRecetas{
 				
 				</script>';
 
-			}else{
+			}		
+		}
+
+
+	}
+
+	/*=============================================
+	CERRAR RECETA
+	=============================================*/
+	static public function ctrCerrarReceta(){
+
+		if(isset($_GET["idReceta"])){
+
+			$datos = array("idReceta" => $_GET["idReceta"]);
+
+			$respuesta = ModeloRecetas::mdlCerrarReceta($datos);
+        
+			if($respuesta == "ok"){
 
 				echo '<script>
 
 				Swal.fire({
 				
-					icon: "error",
-					title: "¡No se puede eliminar la receta!",
-					text: "Tiene que eliminar todos los items de la receta",
+					icon: "success",
+					title: "¡La receta ha sido cerrada correctamente!",
 					showConfirmButton: false,
 					timer: 1500
 				
@@ -177,15 +193,14 @@ class ControladorRecetas{
 				
 				});
 				
-				
 				</script>';
 
-			}		
+			}
+	
 		}
 
 
 	}
-
 
 	/*=============================================
 	DUPLICAR RECETA
