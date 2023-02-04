@@ -227,7 +227,7 @@ if($value["modoDark"] == 1){
             </ul>
             
           </li>
-          <?php if($prueba=0){ 
+          <?php if($prueba=1){ 
                 echo "<li class='nav-item'>
             <a href='usuarios' class='nav-link "; if($url=='usuarios'){ echo 'active'; }; echo "'>
               <i class='nav-icon fas fa-user'></i>

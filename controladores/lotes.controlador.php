@@ -70,8 +70,6 @@ class ControladorLotes{
 							   "descripcion" => $_POST["editarDescripcionLote"]
 							);
 							   
-				
-
 				$respuesta = ModeloLotes::mdlEditarLote($datos);
 
 				if($respuesta == "ok"){

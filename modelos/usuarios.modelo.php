@@ -10,7 +10,7 @@ class ModeloUsuarios{
 
 	static public function mdlMostrarUsuarios($tabla, $item, $valor){
 
-		if($item != null){
+		if($valor > 0){
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 

@@ -32,8 +32,7 @@
   <link rel="stylesheet" href="vistas/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
   
   <link rel="stylesheet" href="vistas/dist/css/floating.css">
-  
-  
+
   <!-- Ionicons -->
   <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
   <!-- Tempusdominus Bootstrap 4 -->
@@ -63,6 +62,7 @@
   <script src="vistas/plugins/jquery/jquery.min.js"></script>
   <!-- Bootstrap 4 -->
   <script src="vistas/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="vistas/plugins/bootstrap/js/bootstrap-treeview.js"></script>
   <!-- Select2 -->
   <script src="vistas/plugins/select2/js/select2.full.min.js"></script>
   <!-- InputMask -->
@@ -90,7 +90,6 @@
   <!-- AdminLTE App -->
   <script src="vistas/dist/js/adminlte.min.js"></script>
 
- 
   <!-- DataTables  & Plugins -->
   <script src="vistas/plugins/datatables/jquery.dataTables.min.js"></script>
   <script src="vistas/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
@@ -107,7 +106,6 @@
   <script src="vistas/plugins/datatables-buttons/js/buttons.print.min.js"></script>
   <script src="vistas/plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
 
-  
   <!-- jQuery Number -->
   <script src="vistas/plugins/jqueryNumber/jquerynumber.min.js"></script>
 

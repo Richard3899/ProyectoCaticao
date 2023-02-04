@@ -1,3 +1,75 @@
+$('.tablaUsuarios').DataTable( {
+    "ajax": "ajax/datatable-usuarios.ajax.php",
+    "deferRender": true,
+	"columnDefs": [
+		{"className": "dt-center", "targets": "_all"}
+	  ],
+	"retrieve": true,
+	"processing": true,
+	"language": {
+
+		"sProcessing":     "Procesando...",
+		"sLengthMenu":     "Mostrar _MENU_ registros",
+		"sZeroRecords":    "No se encontraron resultados",
+		"sEmptyTable":     "Ningún dato disponible en esta tabla",
+		"sInfo":           "Mostrando registros del _START_ al _END_ de un total de _TOTAL_",
+		"sInfoEmpty":      "Mostrando registros del 0 al 0 de un total de 0",
+		"sInfoFiltered":   "(filtrado de un total de _MAX_ registros)",
+		"sInfoPostFix":    "",
+		"sSearch":         "Buscar:",
+		"sUrl":            "",
+		"sInfoThousands":  ",",
+		"sLoadingRecords": "Cargando...",
+		"oPaginate": {
+		"sFirst":    "Primero",
+		"sLast":     "Último",
+		"sNext":     "Siguiente",
+		"sPrevious": "Anterior"
+		},
+		"oAria": {
+			"sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
+			"sSortDescending": ": Activar para ordenar la columna de manera descendente"
+		}
+
+}
+
+} );
+
+/*=============================================
+CONSULTA DE RECETA INSUMO
+=============================================*/
+
+
+$(".tablaUsuarios").on("draw.dt", function() {
+
+	const arrayidUsuarios=[0];
+
+	var idUsuario = 0;
+
+	var datos = new FormData();
+
+	datos.append("idUsuario", idUsuario);
+
+	  $.ajax({
+
+     	url:"ajax/usuarios.ajax.php",
+      	method: "POST",
+      	data: datos,
+      	cache: false,
+      	contentType: false,
+      	processData: false,
+      	dataType:"json",
+      	success:function(respuesta){
+
+		arrayidUsuarios.push(respuesta["idUsuario"]);
+ 
+		console.log(arrayidUsuarios);
+		
+      	}
+
+	})
+})
+
 /*=============================================
 SUBIENDO LA FOTO DEL USUARIO
 =============================================*/
@@ -252,6 +324,20 @@ $(document).on("click", ".btnCerrarSesion", function(){
   
   })
   
+    $("#navDatos").click(function(){
+		$("#panelPermisos").removeClass("show");
+		$("#panelDatos").addClass("show");
+		$("#navDatos").addClass("active");
+		$("#navPermisos").removeClass("active");
+	});
+	$("#navPermisos").click(function(){
+		$("#panelDatos").removeClass("show");
+		$("#panelPermisos").addClass("show");
+		$("#navPermisos").addClass("active");
+		$("#navDatos").removeClass("active");
+	});
+
+
 
 
 

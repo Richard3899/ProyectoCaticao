@@ -33,7 +33,7 @@
       </div>
       <div class="card-body">
 
-      <table class="table table-bordered table-striped dt-responsive tablas" width="100%">
+      <table class="table table-bordered table-striped dt-responsive tablaUsuarios" width="100%">
        
       <thead>
        
@@ -51,72 +51,6 @@
        </tr> 
 
       </thead>
-
-      <tbody>
-        
-      <?php
-
-      $item = null;
-      $valor = null;
-
-      $usuarios = ControladorUsuarios::ctrMostrarUsuarios($item, $valor);
-
-      foreach ($usuarios as $key => $value){
-      
-        echo ' <tr>
-                <td>'.$value["idUsuario"].'</td>
-                <td>'.$value["nombre"].'</td>
-                <td>'.$value["usuario"].'</td>';
-
-                if($value["foto"] != ""){
-
-                  echo '<td><img src="'.$value["foto"].'" class="img-thumbnail" width="40px"></td>';
-
-                }else{
-
-                  echo '<td><img src="vistas/img/usuarios/default/usuario.png" class="img-thumbnail" width="40px"></td>';
-
-                }
-
-                echo '<td>'.$value["perfil"].'</td>';
-
-                if($value["estado"] != 0){
-
-                  echo '<td><button class="btn btn-success btn-xs btnActivar" idUsuario="'.$value["idUsuario"].'" estadoUsuario="0">Activado</button></td>';
-
-                }else{
-
-                  echo '<td><button class="btn btn-danger btn-xs btnActivar" idUsuario="'.$value["idUsuario"].'" estadoUsuario="1">Desactivado</button></td>';
-
-                }
-                if($value["ultimo_login"] != ""){   
-                  echo '<td>'.$value["ultimo_login"].'</td>';
-                }else{
-
-                  echo '<td>Aun no inicia sesión</td>';
-
-                }
-
-                
-                echo '<td>
-
-                  <div class="btn-group">
-                      
-                    <button class="btn btn-warning btnEditarUsuario" idUsuario="'.$value["idUsuario"].'" data-toggle="modal" data-target="#modalEditarUsuario"><i class="fa fa-pen"></i></button>
-
-                    <button class="btn btn-danger btnEliminarUsuario" idUsuario="'.$value["idUsuario"].'" fotoUsuario="'.$value["foto"].'" usuario="'.$value["usuario"].'"><i class="fa fa-times"></i></button>
-
-                  </div>  
-
-                </td>
-
-              </tr>';
-      }
-
-
-      ?>
-
-      </tbody>
 
      </table>
 
@@ -149,6 +83,7 @@ MODAL AGREGAR USUARIO
       <div class="modal-header" style="background:gray; color:white">
 
       <h4 class="modal-title">Agregar usuario</h4>
+
       <button type="button" class="close" data-dismiss="modal">&times;</button>
 
       </div>
@@ -161,6 +96,16 @@ MODAL AGREGAR USUARIO
 
         <div class="box-body">
 
+        <ul class="nav nav-tabs">
+            <li class="nav-item">
+              <a class="nav-link active" id="navDatos" type="button">Datos</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" id="navPermisos" type="button">Permisos</a>
+            </li>
+        </ul>
+        <div class="collapse show" id="panelDatos">
+          
           <!-- ENTRADA PARA EL NOMBRE -->
           <div class="form-group">
           <label for="nombre">Nombre</label>
@@ -242,6 +187,88 @@ MODAL AGREGAR USUARIO
             <img src="vistas/img/usuarios/default/usuario.png" class="img-thumbnail previsualizar" width="100px">
 
           </div>
+          
+        </div>
+        <div class="collapse" id="panelPermisos">
+
+        <div class="card">
+
+        <button class="btn btn-outline-primary collapsed my-1 text-left" data-toggle="collapse" data-target="#pInicio">
+        <i class="fas fa-users"></i> DashBoard
+        </button>
+        <div id="pInicio" class="collapse">
+            <div class="card-body">
+              <div class="icheck-primary">
+                  <input type="checkbox" id="cInicio" value="1" name="checkListPermisos[]">
+                  <label for="cInicio"> Dashboard</label>
+              </div>
+            </div>
+        </div>
+          
+        <button class="btn btn-outline-primary collapsed my-1 text-left" data-toggle="collapse" data-target="#pRegistro">
+        <i class="fas fa-users"></i> Registro
+        </button>
+          
+        <div id="pRegistro" class="collapse">
+            <div class="card-body">
+             
+              <div class="icheck-primary">
+                  <input type="checkbox" id="cInsumos" value="2" name="checkListPermisos[]">
+                  <label for="cInsumos">Insumos</label>
+              </div>
+              
+              <div class="icheck-primary">
+                  <input type="checkbox" id="cMateriales" value="3" name="checkListPermisos[]">
+                  <label for="cMateriales">Materiales</label>
+              </div>
+
+              <div class="icheck-primary">
+                  <input type="checkbox" id="cMarcas" value="4" name="checkListPermisos[]">
+                  <label for="cMarcas">Marcas</label>
+              </div>
+
+              <div class="icheck-primary">
+                  <input type="checkbox" id="cProductos" value="5" name="checkListPermisos[]">
+                  <label for="cProductos">Productos</label>
+              </div>
+              
+              <div class="icheck-primary">
+                  <input type="checkbox" id="cMaquinas" value="6" name="checkListPermisos[]">
+                  <label for="cMaquinas">Maquinas</label>
+              </div>
+
+              <div class="icheck-primary">
+                  <input type="checkbox" id="cEmpleados" value="7" name="checkListPermisos[]">
+                  <label for="cEmpleados">Empleados</label>
+              </div>
+
+              <div class="icheck-primary">
+                  <input type="checkbox" id="cGastoAdmin" value="8" name="checkListPermisos[]">
+                  <label for="cGastoAdmin">Gasto Administrativo</label>
+              </div>
+
+              <div class="icheck-primary">
+                  <input type="checkbox" id="cCostoVenta" value="9" name="checkListPermisos[]">
+                  <label for="cCostoVenta">Costo de Venta</label>
+              </div>
+
+              <div class="icheck-primary">
+                  <input type="checkbox" id="cCostoMarketing" value="10" name="checkListPermisos[]">
+                  <label for="cCostoMarketing">Costo de Marketing</label>
+              </div>
+
+              <div class="icheck-primary">
+                  <input type="checkbox" id="cCostoOperativo" value="11" name="checkListPermisos[]">
+                  <label for="cCostoOperativo">Costo Operativo</label>
+              </div>
+
+            </div>
+        </div>
+        </div>
+
+
+        </div>
+
 
         </div>
 
@@ -293,6 +320,7 @@ MODAL EDITAR USUARIO
         <div class="modal-header" style="background:gray; color:white">
 
         <h4 class="modal-title">Editar usuario</h4>
+
         <button type="button" class="close" data-dismiss="modal">&times;</button>
 
         </div>

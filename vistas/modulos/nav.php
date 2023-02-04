@@ -59,7 +59,7 @@
               ?>
               
           </button>
-          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+          <div class="dropdown-menu dropdown-menu-right">
             <button class="dropdown-item btnCerrarSesion" type="button">Salir</button>
           </div>
         </div>
