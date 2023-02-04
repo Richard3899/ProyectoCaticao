@@ -2278,32 +2278,33 @@ BEGIN
 	DECLARE totalcostomarketing DECIMAL(10,2);
 	DECLARE totalcostooperativo DECIMAL(10,2);
 	DECLARE totalreceta DECIMAL(10,2);
+	
   -- Calculamos los totales-
-	SELECT SUM(total) FROM recetamateria rm INNER JOIN receta r ON r.idReceta=rm.idReceta
+	SELECT if(SUM(total) IS NULL, 0, SUM(total)) FROM recetamateria rm INNER JOIN receta r ON r.idReceta=rm.idReceta
 		            WHERE MONTH(fechaFin) = MONTH(mes) AND YEAR(fechaFin) = YEAR(mes) INTO totalinsumos;
 		                     
-	SELECT SUM(total) FROM recetamanodeobra rmo INNER JOIN receta r ON r.idReceta=rmo.idReceta
+	SELECT if(SUM(total) IS NULL, 0, SUM(total)) FROM recetamanodeobra rmo INNER JOIN receta r ON r.idReceta=rmo.idReceta
 		            WHERE MONTH(fechaFin) = MONTH(mes) AND YEAR(fechaFin) = YEAR(mes) INTO totalmanodeobra;
 		            
-   SELECT SUM(depreciacionPorBatch) FROM recetadepreciacion rd INNER JOIN receta r ON r.idReceta=rd.idReceta
+   SELECT if(SUM(depreciacionPorBatch) IS NULL, 0, SUM(depreciacionPorBatch)) FROM recetadepreciacion rd INNER JOIN receta r ON r.idReceta=rd.idReceta
 		            WHERE MONTH(fechaFin) = MONTH(mes) AND YEAR(fechaFin) = YEAR(mes) INTO totaldepreciacion;
 		            
-	SELECT SUM(pagoPorBatch) FROM recetaconsumoenergia rce INNER JOIN receta r ON r.idReceta=rce.idReceta
+	SELECT if(SUM(pagoPorBatch) IS NULL, 0, SUM(pagoPorBatch))  FROM recetaconsumoenergia rce INNER JOIN receta r ON r.idReceta=rce.idReceta
 		            WHERE MONTH(fechaFin) = MONTH(mes) AND YEAR(fechaFin) = YEAR(mes) INTO totalconsumoenergia;
 		            
-	SELECT SUM(pagoPorBatch) FROM recetaconsumogas rcg INNER JOIN receta r ON r.idReceta=rcg.idReceta
+	SELECT if(SUM(pagoPorBatch) IS NULL, 0, SUM(pagoPorBatch))  FROM recetaconsumogas rcg INNER JOIN receta r ON r.idReceta=rcg.idReceta
 		            WHERE MONTH(fechaFin) = MONTH(mes) AND YEAR(fechaFin) = YEAR(mes) INTO totalconsumogas;
 		                     
-	SELECT SUM(total) FROM recetacostoventa rcv INNER JOIN receta r ON r.idReceta=rcv.idReceta
+	SELECT if(SUM(total) IS NULL, 0, SUM(total)) FROM recetacostoventa rcv INNER JOIN receta r ON r.idReceta=rcv.idReceta
 		            WHERE MONTH(fechaFin) = MONTH(mes) AND YEAR(fechaFin) = YEAR(mes) INTO totalcostoventa;
 		            
-   SELECT SUM(total) FROM recetacostomarketing rcm INNER JOIN receta r ON r.idReceta=rcm.idReceta
+   SELECT if(SUM(total) IS NULL, 0, SUM(total)) FROM recetacostomarketing rcm INNER JOIN receta r ON r.idReceta=rcm.idReceta
 		            WHERE MONTH(fechaFin) = MONTH(mes) AND YEAR(fechaFin) = YEAR(mes) INTO totalcostomarketing;
 		            
-	SELECT SUM(total) FROM recetacostooperativo rco INNER JOIN receta r ON r.idReceta=rco.idReceta
-		            WHERE MONTH(fechaFin) = MONTH(mes) AND YEAR(fechaFin) = YEAR(mes) INTO totalcostooperativo;									            
-	
-	SET totalreceta = totalinsumos+totalmanodeobra+totaldepreciacion+totalconsumoenergia+totalconsumogas+totalcostoventa+totalcostomarketing+totalcostooperativo;
+	SELECT if(SUM(total) IS NULL, 0, SUM(total)) FROM recetacostooperativo rco INNER JOIN receta r ON r.idReceta=rco.idReceta
+		            WHERE MONTH(fechaFin) = MONTH(mes) AND YEAR(fechaFin) = YEAR(mes) INTO totalcostooperativo;
+						
+	SET totalreceta = totalinsumos + totalmanodeobra + totaldepreciacion + totalconsumoenergia + totalconsumogas + totalcostoventa + totalcostomarketing + totalcostooperativo;
 	-- sumamos los totales-
 	SELECT totalreceta,totalinsumos,totalmanodeobra,totaldepreciacion,totalconsumoenergia,totalconsumogas,totalcostoventa,totalcostomarketing,totalcostooperativo;
 		                     

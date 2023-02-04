@@ -16,24 +16,24 @@ class ControladorUsuarios{
 				$encriptar = crypt($_POST["ingPassword"], '$2a$07$asxx54ahjppf45sd87a5a4dDDGsystemdev$');
 
 				$tabla = "usuario";
-
+				
 				$item = "usuario";
+
 				$valor = $_POST["ingUsuario"];
 
 				$respuesta = ModeloUsuarios::MdlMostrarUsuarios($tabla, $item, $valor);
-
-				if(is_array($respuesta)){
-					if($respuesta["usuario"] == $_POST["ingUsuario"] && 
-					    $respuesta["password"] == $encriptar){
+				
+					if($respuesta[0][2] == $_POST["ingUsuario"] && 
+					   $respuesta[0][3] == $encriptar){
  
-						if($respuesta["estado"] == 1){
+						if($respuesta[0][6] == 1){
 
 						$_SESSION["iniciarSesion"] = "ok";
-						$_SESSION["idUsuario"] = $respuesta["idUsuario"];
-						$_SESSION["nombre"] = $respuesta["nombre"];
-						$_SESSION["usuario"] = $respuesta["usuario"];
-						$_SESSION["foto"] = $respuesta["foto"];
-						$_SESSION["perfil"] = $respuesta["perfil"];
+						$_SESSION["idUsuario"] = $respuesta[0][0];
+						$_SESSION["nombre"] = $respuesta[0][1];
+						$_SESSION["usuario"] = $respuesta[0][2];
+						$_SESSION["foto"] = $respuesta[0][5];
+						$_SESSION["perfil"] = $respuesta[0][4];
 
 						/*=============================================
 						REGISTRAR FECHA PARA SABER EL ÚLTIMO LOGIN
@@ -50,7 +50,7 @@ class ControladorUsuarios{
 						$valor1 = $fechaActual;
 
 						$item2 = "idUsuario";
-						$valor2 = $respuesta["idUsuario"];
+						$valor2 = $respuesta[0][0];
 
 						$ultimoLogin = ModeloUsuarios::mdlActualizarUsuario($tabla, $item1, $valor1, $item2, $valor2);
 
@@ -88,9 +88,7 @@ class ControladorUsuarios{
 					 echo '<br><div class="alert alert-danger">Error al ingresar, vuelve a intentarlo</div>';
  
 				 }
-				}else{
-					 echo '<br><div class="alert alert-danger">Error al ingresar, vuelve a intentarlo</div>';
-				}
+				
 				
 
 			}else{

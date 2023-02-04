@@ -40,35 +40,35 @@ CONSULTA DE RECETA INSUMO
 =============================================*/
 
 
-$(".tablaUsuarios").on("draw.dt", function() {
+// $(".tablaUsuarios").on("draw.dt", function() {
 
-	const arrayidUsuarios=[0];
+// 	const arrayidUsuarios=[0];
 
-	var idUsuario = 0;
+// 	var idUsuario = 0;
 
-	var datos = new FormData();
+// 	var datos = new FormData();
 
-	datos.append("idUsuario", idUsuario);
+// 	datos.append("idUsuario", idUsuario);
 
-	  $.ajax({
+// 	  $.ajax({
 
-     	url:"ajax/usuarios.ajax.php",
-      	method: "POST",
-      	data: datos,
-      	cache: false,
-      	contentType: false,
-      	processData: false,
-      	dataType:"json",
-      	success:function(respuesta){
+//      	url:"ajax/usuarios.ajax.php",
+//       	method: "POST",
+//       	data: datos,
+//       	cache: false,
+//       	contentType: false,
+//       	processData: false,
+//       	dataType:"json",
+//       	success:function(respuesta){
 
-		arrayidUsuarios.push(respuesta["idUsuario"]);
+// 		arrayidUsuarios.push(respuesta["idUsuario"]);
  
-		console.log(arrayidUsuarios);
+// 		console.log(arrayidUsuarios);
 		
-      	}
+//       	}
 
-	})
-})
+// 	})
+// })
 
 /*=============================================
 SUBIENDO LA FOTO DEL USUARIO
