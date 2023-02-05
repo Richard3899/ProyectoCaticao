@@ -16,14 +16,28 @@ DELIMITER ;
 DROP procedure IF EXISTS `insertar_usuario`;
 DELIMITER $$
 USE `caticao`$$
-CREATE PROCEDURE `insertar_usuario` (   in nombreI VARCHAR(45),
+CREATE PROCEDURE `insertar_usuario` (   in idUsuarioI INT,
+													 in nombreI VARCHAR(45),
                                         in usuarioI VARCHAR(45),
                                         in passwordI VARCHAR(100),
                                         in perfilI VARCHAR(45),
                                         in fotoI VARCHAR(100))
 BEGIN
-	insert into usuario (nombre,usuario,password,perfil,foto,estado)
-				  values (nombreI,usuarioI,passwordI,perfilI,fotoI,1);
+	insert into usuario (idUsuario,nombre,usuario,password,perfil,foto,estado)
+				  values (idUsuarioI,nombreI,usuarioI,passwordI,perfilI,fotoI,1);
+END$$
+DELIMITER ;
+
+
+DROP procedure IF EXISTS `insertar_usuariosmodulos`;
+DELIMITER $$
+USE `caticao`$$
+CREATE PROCEDURE `insertar_usuariosmodulos` (   in idUsuarioI INT,
+                                                in idModuloI INT)
+                                    
+BEGIN
+	insert into usuariomodulo (idUsuario,idModulo)
+				  values (idUsuarioI,idModuloI);
 END$$
 DELIMITER ;
 

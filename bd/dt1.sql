@@ -14,13 +14,15 @@
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
--- Volcando datos para la tabla caticao.movimientomateria: ~5 rows (aproximadamente)
-INSERT INTO `movimientomateria` (`idMovimientoMateria`, `ingreso`, `salida`, `observacion`, `fecha`, `hora`, `idMateria`, `idMovimiento`) VALUES
-	(1, 250.00, 0.00, 'Produccion', '2022-12-17', '2022-12-11 10:23:25', 1, 1),
-	(2, 150.00, 0.00, 'Produccion', '2022-12-31', '2022-12-11 10:23:37', 4, 1),
-	(3, 100.00, 0.00, 'Produccion', '2022-12-10', '2022-12-11 10:23:50', 3, 1),
-	(4, 500.00, 0.00, 'Produccion', '2022-12-10', '2022-12-11 10:24:03', 3, 1),
-	(5, 500.00, 0.00, 'Produccion', '2022-12-17', '2022-12-11 10:24:33', 5, 1);
+-- Volcando datos para la tabla caticao.modulo: ~7 rows (aproximadamente)
+INSERT INTO `modulo` (`idModulo`, `descripcion`) VALUES
+	(1, 'inicio'),
+	(2, 'insumos'),
+	(3, 'materiales'),
+	(4, 'marcas'),
+	(5, 'productos'),
+	(6, 'maquinas'),
+	(7, 'empleados');
 
 /*!40103 SET TIME_ZONE=IFNULL(@OLD_TIME_ZONE, 'system') */;
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;

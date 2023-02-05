@@ -22,18 +22,33 @@ class ControladorUsuarios{
 				$valor = $_POST["ingUsuario"];
 
 				$respuesta = ModeloUsuarios::MdlMostrarUsuarios($tabla, $item, $valor);
-				
-					if($respuesta[0][2] == $_POST["ingUsuario"] && 
-					   $respuesta[0][3] == $encriptar){
+
+
+				if(is_array($respuesta)){
+
+					if($respuesta["usuario"] == $_POST["ingUsuario"] && 
+					   $respuesta["password"] == $encriptar){
  
-						if($respuesta[0][6] == 1){
+						if($respuesta["estado"] == 1){
+
+
+					$modulos = ModeloUsuariosModulos::mdlMostrarUsuariosModulos("usuariomodulo", "idUsuario", $respuesta["idUsuario"]);
+					
+					$arrayModulos = array();
+
+					foreach($modulos as $value){ 
+
+						array_push($arrayModulos, $value["idModulo"]);
+					}
+
+				        $_SESSION["modulos"] = $arrayModulos;
 
 						$_SESSION["iniciarSesion"] = "ok";
-						$_SESSION["idUsuario"] = $respuesta[0][0];
-						$_SESSION["nombre"] = $respuesta[0][1];
-						$_SESSION["usuario"] = $respuesta[0][2];
-						$_SESSION["foto"] = $respuesta[0][5];
-						$_SESSION["perfil"] = $respuesta[0][4];
+						$_SESSION["idUsuario"] = $respuesta["idUsuario"];
+						$_SESSION["nombre"] = $respuesta["nombre"];
+						$_SESSION["usuario"] = $respuesta["usuario"];
+						$_SESSION["foto"] = $respuesta["foto"];
+						$_SESSION["perfil"] = $respuesta["perfil"];
 
 						/*=============================================
 						REGISTRAR FECHA PARA SABER EL ÚLTIMO LOGIN
@@ -50,7 +65,7 @@ class ControladorUsuarios{
 						$valor1 = $fechaActual;
 
 						$item2 = "idUsuario";
-						$valor2 = $respuesta[0][0];
+						$valor2 = $respuesta["idUsuario"];
 
 						$ultimoLogin = ModeloUsuarios::mdlActualizarUsuario($tabla, $item1, $valor1, $item2, $valor2);
 
@@ -85,14 +100,18 @@ class ControladorUsuarios{
  
 				 }else{
  
-					 echo '<br><div class="alert alert-danger">Error al ingresar, vuelve a intentarlo</div>';
+					 echo '<br><div class="alert alert-danger">Usuario o Contraseña incorrecta.</div>';
  
 				 }
-				
-				
+				}else{
+ 
+					echo '<br><div class="alert alert-danger">Usuario o Contraseña incorrecta.</div>';
 
+				}
+				
+				
 			}else{
-				     echo '<br><div class="alert alert-danger">Error al ingresar, vuelve a intentarlo</div>';
+				     echo '<br><div class="alert alert-danger">Usuario o Contraseña incorrecta.</div>';
 			}
 
 		}
@@ -107,10 +126,6 @@ class ControladorUsuarios{
 	static public function ctrCrearUsuario(){
 
 		if(isset($_POST["nuevoUsuario"])){
-
-			if(preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/', $_POST["nuevoNombre"]) &&
-			   preg_match('/^[a-zA-Z0-9]+$/', $_POST["nuevoUsuario"]) &&
-			   preg_match('/^[a-zA-Z0-9]+$/', $_POST["nuevoPassword"])){
 
 			   	/*=============================================
 				VALIDAR IMAGEN
@@ -179,68 +194,53 @@ class ControladorUsuarios{
 
 				}
 
-
 				$encriptar = crypt($_POST["nuevoPassword"], '$2a$07$asxx54ahjppf45sd87a5a4dDDGsystemdev$');
+                
+				$idUsuario=$_POST["idUsuario"];
 
-				$datos = array("nombre" => $_POST["nuevoNombre"],
-					           "usuario" => $_POST["nuevoUsuario"],
-					           "password" => $encriptar,
-					           "perfil" => $_POST["nuevoPerfil"],
-					           "foto"=>$ruta);
+				$datos1 = array("idUsuario" => $idUsuario,
+				"nombre" => $_POST["nuevoNombre"],
+				"usuario" => $_POST["nuevoUsuario"],
+				"password" => $encriptar,
+				"perfil" => $_POST["nuevoPerfil"],
+				"foto"=>$ruta);
 
-				$respuesta = ModeloUsuarios::mdlIngresarUsuario($datos);
-			
+				$respuesta = ModeloUsuarios::mdlIngresarUsuario($datos1);
+
+				if(!empty($_POST['checkListPermisos'])){
+
+					foreach($_POST['checkListPermisos'] as $value){
+					$datos2 = array("idUsuario" => $idUsuario,
+					                  "idModulo" => $value);
+				    ModeloUsuariosModulos::mdlIngresarUsuariosModulos($datos2);
+   
+					}
+
+				}
+
 				if($respuesta == "ok"){
 
-					echo '<script>
-
-					Swal.fire({
-					
-						icon: "success",
-						title: "¡El usuario ha sido guardado correctamente!",
-						showConfirmButton: false,
-						timer: 1500
-					
-					}).then(function(result){
-					
-							window.location = "usuarios";
-					
-					});
-					
-					
-					</script>';
-
-
-				}	
-
-
-			}else{
-
-				echo '<script>
-
-					Swal.fire({
-
-						icon: "error",
-						title: "¡El usuario no puede llevar caracteres especiales!",
-						showConfirmButton: true,
-						confirmButtonText: "Cerrar"
-
-					}).then(function(result){
-
-						if(result.value){
+						echo '<script>
+	
+						Swal.fire({
 						
-							window.location = "usuarios";
-
-						}
-
-					});
-				
-
-				</script>';
-
-			}
-
-
+							icon: "success",
+							title: "¡El usuario ha sido guardado correctamente!",
+							showConfirmButton: false,
+							timer: 1500
+						
+						}).then(function(result){
+						
+								window.location = "usuarios";
+						
+						});
+						
+						
+						</script>';
+	
+	
+					}	
+			
 		}
 
 

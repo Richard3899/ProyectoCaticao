@@ -49,6 +49,15 @@ INSERT INTO `producto` (`idProducto`, `codigo`, `nombre`, `descripcion`, `imagen
 INSERT INTO `usuario` (`idUsuario`, `nombre`, `usuario`, `password`, `perfil`, `foto`, `estado`, `ultimo_login`, `fecha`) VALUES
 	(1, 'Administrador', 'admin', '$2a$07$asxx54ahjppf45sd87a5aunxs9bkpyGmGE/.vekdjFg83yRec789S', 'Administrador', 'vistas/img/usuarios/admin/211.png', 1, NULL, '2022-10-18 16:42:18');
 
+INSERT INTO `modulo` (`idModulo`, `descripcion`) VALUES
+	(1, 'inicio'),
+	(2, 'insumos'),
+	(3, 'materiales'),
+	(4, 'marcas'),
+	(5, 'productos'),
+	(6, 'maquinas'),
+	(7, 'empleados');
+	
 INSERT INTO `empleado` (`idEmpleado`, `nombre`, `apellido`, `direccion`, `telefono`, `correo`, `numeroDocumento`, `fechaNacimiento`, `cargo`, `horarioTrabajo`, `horasPorDia`, `sueldoPorDia`,`precioUnitario`, `sueldoPorMes`, `idTipoDocumento`, `idUsuario`, `idTipoCosto`) VALUES
 	(1, 'Julio', 'Gonzales', 'Av. Alfonso Ugarte Lt.12', 987654321, 'julio@gmail.com', 432187654, '2022-11-03', 'Empaquetador', '8am - 6pm', 8, 80.00,10, 1000.00, 1, NULL, 1);
 

@@ -39,36 +39,94 @@ $('.tablaUsuarios').DataTable( {
 CONSULTA DE RECETA INSUMO
 =============================================*/
 
+$(".tablaUsuarios").on("draw.dt", function() {
 
-// $(".tablaUsuarios").on("draw.dt", function() {
+	var idUsuario = "ABC";
 
-// 	const arrayidUsuarios=[0];
+	var datos = new FormData();
 
-// 	var idUsuario = 0;
+	datos.append("idUsuario", idUsuario);
 
-// 	var datos = new FormData();
+	  $.ajax({
 
-// 	datos.append("idUsuario", idUsuario);
+     	url:"ajax/usuarios.ajax.php",
+      	method: "POST",
+      	data: datos,
+      	cache: false,
+      	contentType: false,
+      	processData: false,
+      	dataType:"json",
+      	success:function(respuesta){
 
-// 	  $.ajax({
-
-//      	url:"ajax/usuarios.ajax.php",
-//       	method: "POST",
-//       	data: datos,
-//       	cache: false,
-//       	contentType: false,
-//       	processData: false,
-//       	dataType:"json",
-//       	success:function(respuesta){
-
-// 		arrayidUsuarios.push(respuesta["idUsuario"]);
- 
-// 		console.log(arrayidUsuarios);
+			$("#idUsuario").val((respuesta.length)+1);
 		
-//       	}
+      	}
 
-// 	})
-// })
+	})
+})
+
+
+function validarModulos(){
+
+    if($('#nuevoNombre').val()=="" || $('#nuevoUsuario').val()=="" || $('#nuevoPassword').val()=="" || $('#nuevoPerfil').val()==""){
+
+		Swal.fire({
+			title: "Completar datos del usuario.",
+			icon: "error",
+			showConfirmButton: false,
+			timer: 1500
+		  })
+
+		return false;
+		
+	}else if ($('.checkModulos:checked').val()==null) {
+
+		Swal.fire({
+			title: "Debe seleccionar al menos un modulo.",
+			icon: "error",
+			showConfirmButton: false,
+			timer: 1500
+		  })
+
+		return false;
+		   
+	}else{
+
+		return true;
+	}
+	
+}
+
+//  $(".guardarUsuario").on("click", function(){
+	 	
+// 	arrayModu=[];
+// 	arrayModu=$('.checkModulos:checked').val();
+// 	console.log(arrayModu);
+
+//  })
+
+$("#navDatos").click(function(){
+	$("#nuevoNombre").attr("required", true);
+	$('#nuevoUsuario').attr("required", true); 
+	$('#nuevoPassword').attr("required", true);
+	$('#nuevoPerfil').attr("required", true);
+	$("#panelPermisos").removeClass("show");
+	$("#panelDatos").addClass("show");
+	$("#navDatos").addClass("active");
+	$("#navPermisos").removeClass("active");
+
+});
+$("#navPermisos").click(function(){
+	$('#nuevoNombre').removeAttr('required');
+	$('#nuevoUsuario').removeAttr('required'); 
+	$('#nuevoPassword').removeAttr('required'); 
+	$('#nuevoPerfil').removeAttr('required'); 
+	$("#panelDatos").removeClass("show");
+	$("#panelPermisos").addClass("show");
+	$("#navPermisos").addClass("active");
+	$("#navDatos").removeClass("active");
+});
+
 
 /*=============================================
 SUBIENDO LA FOTO DEL USUARIO
@@ -154,8 +212,10 @@ $(document).on("click", ".btnEditarUsuario", function(){
 
 				$(".previsualizar").attr("src", respuesta["foto"]);
 				
-
 			}
+
+				
+	        $("#cInsumos:checkbox").prop('checked', true);
 
 		}
 
@@ -324,18 +384,6 @@ $(document).on("click", ".btnCerrarSesion", function(){
   
   })
   
-    $("#navDatos").click(function(){
-		$("#panelPermisos").removeClass("show");
-		$("#panelDatos").addClass("show");
-		$("#navDatos").addClass("active");
-		$("#navPermisos").removeClass("active");
-	});
-	$("#navPermisos").click(function(){
-		$("#panelDatos").removeClass("show");
-		$("#panelPermisos").addClass("show");
-		$("#navPermisos").addClass("active");
-		$("#navDatos").removeClass("active");
-	});
 
 
 

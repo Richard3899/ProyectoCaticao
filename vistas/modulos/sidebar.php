@@ -32,14 +32,17 @@ if($value["modoDark"] == 1){
         <ul class="nav nav-pills nav-sidebar flex-column nav-child-indent" data-widget="treeview" role="menu" data-accordion="false">
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
-          <li class="nav-item">
-            <a href="inicio" class="nav-link <?php if($url=='inicio'){ echo "active"; }?>">
-              <i class="nav-icon fas fa-tachometer-alt"></i>
+
+          <?php if (in_array(1, $_SESSION["modulos"])){ 
+          echo "<li class='nav-item'>
+            <a href='inicio' class='nav-link "; if($url=='inicio'){ echo "active"; } echo "'>
+              <i class='nav-icon fas fa-tachometer-alt'></i>
               <p>
                 Dashboard
               </p>
             </a>
-          </li>
+          </li>";}
+          ?>
 
           <li class="nav-item <?php if(in_array($url, array('insumos', 'materiales','marcas','productos','maquinas','empleados','gastoadmin', 'costoventa','costomarketing','costooperativo'))){ echo "menu-open"; }?>">
             <a href="#" class="nav-link <?php if(in_array($url, array('insumos', 'materiales','marcas','productos','maquinas','empleados','gastoadmin', 'costoventa','costomarketing','costooperativo'))){ echo "active"; }?>">
@@ -227,8 +230,9 @@ if($value["modoDark"] == 1){
             </ul>
             
           </li>
+
           <?php if($prueba=1){ 
-                echo "<li class='nav-item'>
+            echo "<li class='nav-item'>
             <a href='usuarios' class='nav-link "; if($url=='usuarios'){ echo 'active'; }; echo "'>
               <i class='nav-icon fas fa-user'></i>
               <p>
@@ -237,6 +241,7 @@ if($value["modoDark"] == 1){
             </a>
           </li>"; }
           ?>
+
           <li class="nav-item <?php if (in_array($url, array('reporteinsumos','reportemateriales','reporteproductos'))){echo "menu-open";}?>">
           <a href="#" class="nav-link <?php if(in_array($url, array('reporteinsumos','reportemateriales','reporteproductos'))){ echo "active"; }?>">
               <i class="nav-icon fas fa-chart-line"></i>

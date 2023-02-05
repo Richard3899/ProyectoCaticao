@@ -70,11 +70,11 @@ MODAL AGREGAR USUARIO
 
 <div id="modalAgregarUsuario" class="modal fade" role="dialog">
 
-<div class="modal-dialog">
+<div class="modal-dialog modal-lg">
 
   <div class="modal-content">
 
-    <form role="form" method="post" enctype="multipart/form-data">
+    <form role="form" method="post" enctype="multipart/form-data" onsubmit="return validarModulos();">
 
       <!--=====================================
       CABEZA DEL MODAL
@@ -105,35 +105,38 @@ MODAL AGREGAR USUARIO
             </li>
         </ul>
         <div class="collapse show" id="panelDatos">
-          
+
+          <input type="hidden" id="idUsuario" name="idUsuario">
+          <div class="row">
           <!-- ENTRADA PARA EL NOMBRE -->
-          <div class="form-group">
+          <div class="form-group col-sm">
           <label for="nombre">Nombre</label>
             <div class="input-group">
                 <div class="input-group-prepend">
                 <span class="input-group-text"><i class="fas fa-user"></i></span>
                 </div>
-                <input type="text" class="form-control input-lg" name="nuevoNombre" placeholder="Ingresar nombre"
+                <input type="text" class="form-control input-lg" id="nuevoNombre" name="nuevoNombre" placeholder="Ingresar nombre"
                  maxlength="50"  pattern="[A-Za-zñÑáéíóúÁÉÍÓÚ ]+" title="Solo se aceptan letras" required>
             </div>
-
           </div>
 
           <!-- ENTRADA PARA EL USUARIO -->
-          <div class="form-group">
+          <div class="form-group col-sm">
           <label for="usuario">Usuario</label>
             <div class="input-group">
                 <div class="input-group-prepend">
                 <span class="input-group-text"><i class="fas fa-key"></i></span>
                 </div>
-                <input type="text" class="form-control input-lg" name="nuevoUsuario" placeholder="Ingresar usuario" 
+                <input type="text" class="form-control input-lg" id="nuevoUsuario" name="nuevoUsuario" placeholder="Ingresar usuario" 
                  maxlength="50" pattern="[a-z0-9ñáéíóú ]+" title="Solo letras minúsculas y números sin espacios" id="nuevoUsuario" required>
             </div>
 
           </div>
+          </div>
 
+          <div class="row">
           <!-- ENTRADA PARA LA CONTRASEÑA -->
-           <div class="form-group">
+           <div class="form-group col-sm">
            <label for="contraseña">Contraseña</label>
             <div class="input-group">
             
@@ -141,15 +144,15 @@ MODAL AGREGAR USUARIO
                 <span class="input-group-text"><i class="fas fa-lock"></i></span>
                 </div>
 
-              <input type="password" class="form-control input-lg" name="nuevoPassword" placeholder="Ingresar contraseña" 
+              <input type="password" class="form-control input-lg" id="nuevoPassword"  name="nuevoPassword" placeholder="Ingresar contraseña" 
                maxlength="50" required>
 
             </div>
 
-          </div>
+           </div>
 
           <!-- ENTRADA PARA SELECCIONAR SU PERFIL -->
-          <div class="form-group">
+          <div class="form-group col-sm">
           <label for="perfil">Perfil</label>
             <div class="input-group">
             
@@ -157,7 +160,7 @@ MODAL AGREGAR USUARIO
                 <span class="input-group-text"><i class="fas fa-users"></i></span>
                 </div>
 
-                <select class="form-control input-lg" name="nuevoPerfil" required>
+                <select class="form-control input-lg" id="nuevoPerfil" name="nuevoPerfil" required>
                 
                 <option value="">Selecionar perfil</option>
 
@@ -171,8 +174,8 @@ MODAL AGREGAR USUARIO
 
             </div>
 
+           </div>
           </div>
-
           <!-- ENTRADA PARA SUBIR FOTO -->
 
            <div class="form-group">
@@ -193,72 +196,72 @@ MODAL AGREGAR USUARIO
 
         <div class="card">
 
-        <button class="btn btn-outline-primary collapsed my-1 text-left" data-toggle="collapse" data-target="#pInicio">
+        <a class="btn btn-outline-primary collapsed my-1 text-left" data-toggle="collapse" data-target="#pInicio">
         <i class="fas fa-users"></i> DashBoard
-        </button>
+        </a>
         <div id="pInicio" class="collapse">
             <div class="card-body">
               <div class="icheck-primary">
-                  <input type="checkbox" id="cInicio" value="1" name="checkListPermisos[]">
+                  <input class="checkModulos" type="checkbox" id="cInicio" value="1" name="checkListPermisos[]">
                   <label for="cInicio"> Dashboard</label>
               </div>
             </div>
         </div>
           
-        <button class="btn btn-outline-primary collapsed my-1 text-left" data-toggle="collapse" data-target="#pRegistro">
+        <a class="btn btn-outline-primary collapsed my-1 text-left" data-toggle="collapse" data-target="#pRegistro">
         <i class="fas fa-users"></i> Registro
-        </button>
+        </a>
           
         <div id="pRegistro" class="collapse">
             <div class="card-body">
              
               <div class="icheck-primary">
-                  <input type="checkbox" id="cInsumos" value="2" name="checkListPermisos[]">
+                  <input class="checkModulos" type="checkbox" id="cInsumos" value="2" name="checkListPermisos[]">
                   <label for="cInsumos">Insumos</label>
               </div>
               
               <div class="icheck-primary">
-                  <input type="checkbox" id="cMateriales" value="3" name="checkListPermisos[]">
+                  <input class="checkModulos" type="checkbox" id="cMateriales" value="3" name="checkListPermisos[]">
                   <label for="cMateriales">Materiales</label>
               </div>
 
               <div class="icheck-primary">
-                  <input type="checkbox" id="cMarcas" value="4" name="checkListPermisos[]">
+                  <input class="checkModulos" type="checkbox" id="cMarcas" value="4" name="checkListPermisos[]">
                   <label for="cMarcas">Marcas</label>
               </div>
 
               <div class="icheck-primary">
-                  <input type="checkbox" id="cProductos" value="5" name="checkListPermisos[]">
+                  <input class="checkModulos" type="checkbox" id="cProductos" value="5" name="checkListPermisos[]">
                   <label for="cProductos">Productos</label>
               </div>
               
               <div class="icheck-primary">
-                  <input type="checkbox" id="cMaquinas" value="6" name="checkListPermisos[]">
+                  <input class="checkModulos" type="checkbox" id="cMaquinas" value="6" name="checkListPermisos[]">
                   <label for="cMaquinas">Maquinas</label>
               </div>
 
               <div class="icheck-primary">
-                  <input type="checkbox" id="cEmpleados" value="7" name="checkListPermisos[]">
+                  <input class="checkModulos" type="checkbox" id="cEmpleados" value="7" name="checkListPermisos[]">
                   <label for="cEmpleados">Empleados</label>
               </div>
 
               <div class="icheck-primary">
-                  <input type="checkbox" id="cGastoAdmin" value="8" name="checkListPermisos[]">
+                  <input class="checkModulos" type="checkbox" id="cGastoAdmin" value="8" name="checkListPermisos[]">
                   <label for="cGastoAdmin">Gasto Administrativo</label>
               </div>
 
               <div class="icheck-primary">
-                  <input type="checkbox" id="cCostoVenta" value="9" name="checkListPermisos[]">
+                  <input class="checkModulos" type="checkbox" id="cCostoVenta" value="9" name="checkListPermisos[]">
                   <label for="cCostoVenta">Costo de Venta</label>
               </div>
 
               <div class="icheck-primary">
-                  <input type="checkbox" id="cCostoMarketing" value="10" name="checkListPermisos[]">
+                  <input class="checkModulos" type="checkbox" id="cCostoMarketing" value="10" name="checkListPermisos[]">
                   <label for="cCostoMarketing">Costo de Marketing</label>
               </div>
 
               <div class="icheck-primary">
-                  <input type="checkbox" id="cCostoOperativo" value="11" name="checkListPermisos[]">
+                  <input class="checkModulos" type="checkbox" id="cCostoOperativo" value="11" name="checkListPermisos[]">
                   <label for="cCostoOperativo">Costo Operativo</label>
               </div>
 
@@ -282,7 +285,7 @@ MODAL AGREGAR USUARIO
 
         <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Salir</button>
 
-        <button type="submit" class="btn btn-primary">Guardar usuario</button>
+        <button type="submit" class="btn btn-primary guardarUsuario">Guardar usuario</button>
 
       </div>
 
@@ -307,7 +310,7 @@ MODAL EDITAR USUARIO
 
 <div id="modalEditarUsuario" class="modal fade" role="dialog">
   
-  <div class="modal-dialog">
+  <div class="modal-dialog modal-lg">
 
     <div class="modal-content">
 
