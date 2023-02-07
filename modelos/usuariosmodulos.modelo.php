@@ -9,20 +9,18 @@ class ModeloUsuariosModulos{
 	MOSTRAR USUARIOS MODULOS
 	=============================================*/
 
-	static public function mdlMostrarUsuariosModulos($tabla, $item, $valor){
+	static public function mdlMostrarUsuariosModulos($valor){
 
-		if($item != null){
 
-			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
+		$stmt = Conexion::conectar()->prepare("call mostrar_usuariosmodulos(?)");
 
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+		$stmt->bindParam(1, $valor, PDO::PARAM_INT);
 
-			$stmt -> execute();
+		$stmt -> execute();
 
-			return $stmt -> fetchAll();
+		return $stmt -> fetchAll();
 
-		}
-
+		
 		#$stmt -> close();
 
 		$stmt = null;
@@ -56,15 +54,14 @@ class ModeloUsuariosModulos{
 	}
 
 	/*=============================================
-	EDITAR USUARIOS Y MODULOS
+	ELIMINAR USUARIOS Y MODULOS
 	=============================================*/
 
-	static public function mdlEditarUsuariosModulos($datos){
+	static public function mdlEliminarUsuariosModulos($datos){
 	
-		$stmt = Conexion::conectar()->prepare("call editar_usuariosmodulos(?,?)");
+		$stmt = Conexion::conectar()->prepare("call eliminar_usuariosmodulos(?)");
 		
-		$stmt->bindParam(1, $datos["idUsuario"], PDO::PARAM_INT);
-		$stmt->bindParam(2, $datos["idModulo"], PDO::PARAM_INT);
+		$stmt->bindParam(1, $datos, PDO::PARAM_INT);
 
 		if($stmt -> execute()){
 

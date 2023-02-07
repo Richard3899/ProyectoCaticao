@@ -31,17 +31,19 @@ class ControladorUsuarios{
  
 						if($respuesta["estado"] == 1){
 
+						$modulos = ModeloUsuariosModulos::mdlMostrarUsuariosModulos($respuesta["idUsuario"]);
+						
+						$arrayidModulos = array();
+						$arrayDescripcionModulos = array();
 
-					$modulos = ModeloUsuariosModulos::mdlMostrarUsuariosModulos("usuariomodulo", "idUsuario", $respuesta["idUsuario"]);
-					
-					$arrayModulos = array();
+						foreach($modulos as $value){ 
 
-					foreach($modulos as $value){ 
+							array_push($arrayidModulos, $value["idModulo"]);
+							array_push($arrayDescripcionModulos, $value["descripcion"]);
+						}
 
-						array_push($arrayModulos, $value["idModulo"]);
-					}
-
-				        $_SESSION["modulos"] = $arrayModulos;
+				        $_SESSION["idModulos"] = $arrayidModulos;
+						$_SESSION["descripcionModulos"] = $arrayDescripcionModulos;
 
 						$_SESSION["iniciarSesion"] = "ok";
 						$_SESSION["idUsuario"] = $respuesta["idUsuario"];
@@ -207,15 +209,12 @@ class ControladorUsuarios{
 
 				$respuesta = ModeloUsuarios::mdlIngresarUsuario($datos1);
 
-				if(!empty($_POST['checkListPermisos'])){
+				foreach($_POST['checkListPermisos'] as $value){
 
-					foreach($_POST['checkListPermisos'] as $value){
-					$datos2 = array("idUsuario" => $idUsuario,
-					                  "idModulo" => $value);
-				    ModeloUsuariosModulos::mdlIngresarUsuariosModulos($datos2);
+				$datos2 = array("idUsuario" => $idUsuario,"idModulo" => $value);
+
+				ModeloUsuariosModulos::mdlIngresarUsuariosModulos($datos2);
    
-					}
-
 				}
 
 				if($respuesta == "ok"){
@@ -271,8 +270,6 @@ class ControladorUsuarios{
 	static public function ctrEditarUsuario(){
 
 		if(isset($_POST["editarUsuario"])){
-
-			if(preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/', $_POST["editarNombre"])){
 
 				/*=============================================
 				VALIDAR IMAGEN
@@ -353,33 +350,9 @@ class ControladorUsuarios{
 
 				}
 
-
 				if($_POST["editarPassword"] != ""){
 
-					if(preg_match('/^[a-zA-Z0-9]+$/', $_POST["editarPassword"])){
-
-						$encriptar = crypt($_POST["editarPassword"], '$2a$07$asxx54ahjppf45sd87a5a4dDDGsystemdev$');
-
-					}else{
-
-						echo'<script>
-
-								Swal.fire({
-									  icon: "error",
-									  title: "¡La contraseña no puede ir vacía o llevar caracteres especiales!",
-									  showConfirmButton: true,
-									  confirmButtonText: "Cerrar"
-									  }).then(function(result){
-										if (result.value) {
-
-										window.location = "usuarios";
-
-										}
-									})
-
-						  	</script>';
-
-					}
+					$encriptar = crypt($_POST["editarPassword"], '$2a$07$asxx54ahjppf45sd87a5a4dDDGsystemdev$');
 
 				}else{
 
@@ -395,6 +368,20 @@ class ControladorUsuarios{
 
 				$respuesta = ModeloUsuarios::mdlEditarUsuario($datos);
 
+				$idUsuario=$_POST["editaridUsuario"];
+
+				if($idUsuario != 1){
+
+					ModeloUsuariosModulos::mdlEliminarUsuariosModulos($idUsuario);
+
+					foreach($_POST['editarCheckListPermisos'] as $value){
+
+						$datos2 = array("idUsuario" => $idUsuario,"idModulo" => $value);
+		
+						ModeloUsuariosModulos::mdlIngresarUsuariosModulos($datos2);
+					}
+				}
+
 				if($respuesta == "ok"){
 
 					echo'<script>
@@ -405,36 +392,12 @@ class ControladorUsuarios{
 						  showConfirmButton: false,
 						  timer: 1500
 						  }).then(function(result){
-									
 
 									window.location = "usuarios";
 
-									
 								})
 
 					</script>';
-
-				}
-
-
-			}else{
-
-				echo'<script>
-
-					Swal.fire({
-						  icon: "error",
-						  title: "¡El nombre no puede ir vacío o llevar caracteres especiales!",
-						  showConfirmButton: true,
-						  confirmButtonText: "Cerrar"
-						  }).then(function(result){
-							if (result.value) {
-
-							window.location = "usuarios";
-
-							}
-						})
-
-			  	</script>';
 
 			}
 

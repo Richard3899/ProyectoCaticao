@@ -24,7 +24,7 @@ if($value["modoDark"] == 1){
 
     <?php 
     $prueba = 1;
-?> 
+    ?> 
 <!-- Sidebar -->
 <div class="sidebar">  
       <!-- Sidebar Menu -->
@@ -33,7 +33,7 @@ if($value["modoDark"] == 1){
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
 
-          <?php if (in_array(1, $_SESSION["modulos"])){ 
+          <?php if (in_array(1, $_SESSION["idModulos"])){ 
           echo "<li class='nav-item'>
             <a href='inicio' class='nav-link "; if($url=='inicio'){ echo "active"; } echo "'>
               <i class='nav-icon fas fa-tachometer-alt'></i>
@@ -231,7 +231,7 @@ if($value["modoDark"] == 1){
             
           </li>
 
-          <?php if($prueba=1){ 
+          <?php if(in_array(1, $_SESSION["idModulos"])){ 
             echo "<li class='nav-item'>
             <a href='usuarios' class='nav-link "; if($url=='usuarios'){ echo 'active'; }; echo "'>
               <i class='nav-icon fas fa-user'></i>
@@ -239,7 +239,7 @@ if($value["modoDark"] == 1){
                 Usuarios
               </p>
             </a>
-          </li>"; }
+          </li>";}
           ?>
 
           <li class="nav-item <?php if (in_array($url, array('reporteinsumos','reportemateriales','reporteproductos'))){echo "menu-open";}?>">

@@ -13,6 +13,19 @@ END$$
 DELIMITER ;
 
 
+DROP procedure IF EXISTS `mostrar_usuariosmodulos`;
+DELIMITER $$
+USE `caticao`$$
+CREATE PROCEDURE `mostrar_usuariosmodulos` ( in idUsuarioM INT)
+BEGIN
+	SELECT um.idUsuarioModulo,um.idUsuario,um.idModulo,m.descripcion from usuariomodulo um 
+	              INNER JOIN modulo m on um.idModulo=m.idModulo
+					  WHERE idUsuario=idUsuarioM;
+END$$
+DELIMITER ;
+
+call
+
 DROP procedure IF EXISTS `insertar_usuario`;
 DELIMITER $$
 USE `caticao`$$
@@ -71,6 +84,17 @@ BEGIN
     where idUsuario=idUsuarioE;
 END$$
 DELIMITER ;
+
+DROP procedure IF EXISTS `eliminar_usuariosmodulos`;
+DELIMITER $$
+USE `caticao`$$
+CREATE PROCEDURE `eliminar_usuariosmodulos` (in idUsuarioE int)
+BEGIN
+	 delete from usuariomodulo
+    where idUsuario=idUsuarioE;
+END$$
+DELIMITER ;
+
 
 -- Procedimientos almacenados de Tipo Producto --
 

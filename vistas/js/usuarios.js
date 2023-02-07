@@ -68,14 +68,16 @@ $(".tablaUsuarios").on("draw.dt", function() {
 
 function validarModulos(){
 
-    if($('#nuevoNombre').val()=="" || $('#nuevoUsuario').val()=="" || $('#nuevoPassword').val()=="" || $('#nuevoPerfil').val()==""){
+    if($("#nuevoNombre").val()=="" || $("#nuevoUsuario").val()=="" || $("#nuevoPassword").val()=="" || $("#nuevoPerfil").val()==""){
 
 		Swal.fire({
-			title: "Completar datos del usuario.",
+			title: "Completar datos del usuario correctamente.",
 			icon: "error",
 			showConfirmButton: false,
 			timer: 1500
-		  })
+		  });
+
+		  panelDatos();
 
 		return false;
 		
@@ -86,46 +88,113 @@ function validarModulos(){
 			icon: "error",
 			showConfirmButton: false,
 			timer: 1500
-		  })
+		  });
+
+		  panelPermisos();
 
 		return false;
 		   
 	}else{
-
+		
 		return true;
 	}
 	
 }
 
-//  $(".guardarUsuario").on("click", function(){
-	 	
-// 	arrayModu=[];
-// 	arrayModu=$('.checkModulos:checked').val();
-// 	console.log(arrayModu);
+function editarValidarModulos(){
 
-//  })
+    if($("#editarNombre").val()=="" || $("#editarPassword").val()=="" || $("#editarPerfil").val()==""){
 
-$("#navDatos").click(function(){
-	$("#nuevoNombre").attr("required", true);
-	$('#nuevoUsuario').attr("required", true); 
-	$('#nuevoPassword').attr("required", true);
-	$('#nuevoPerfil').attr("required", true);
+		Swal.fire({
+			title: "Completar datos del usuario correctamente.",
+			icon: "error",
+			showConfirmButton: false,
+			timer: 1500
+		  });
+
+		editarPanelDatos();
+
+		return false;
+		
+	}else if ($('.editarCheckModulos:checked').val()==null && $('#editaridUsuario').val()!=1) {
+
+		Swal.fire({
+			title: "Debe seleccionar al menos un modulo.",
+			icon: "error",
+			showConfirmButton: false,
+			timer: 1500
+		  });
+
+		editarPanelPermisos();
+
+		return false;
+		   
+	}else{
+		
+		return true;
+	}
+	
+}
+
+function panelDatos(){
+
 	$("#panelPermisos").removeClass("show");
 	$("#panelDatos").addClass("show");
 	$("#navDatos").addClass("active");
 	$("#navPermisos").removeClass("active");
-
+	 
+}
+$("#navDatos").click(function(){
+ panelDatos();
 });
-$("#navPermisos").click(function(){
-	$('#nuevoNombre').removeAttr('required');
-	$('#nuevoUsuario').removeAttr('required'); 
-	$('#nuevoPassword').removeAttr('required'); 
-	$('#nuevoPerfil').removeAttr('required'); 
+
+function panelPermisos(){
+
 	$("#panelDatos").removeClass("show");
 	$("#panelPermisos").addClass("show");
 	$("#navPermisos").addClass("active");
 	$("#navDatos").removeClass("active");
+
+}
+$("#navPermisos").click(function(){
+  panelPermisos();
 });
+
+
+function editarPanelDatos(){
+	$("#editarPanelPermisos").removeClass("show");
+	$("#editarPanelDatos").addClass("show");
+	$("#navDatosEditar").addClass("active");
+	$("#navPermisosEditar").removeClass("active"); 
+}
+
+$("#navDatosEditar").click(function(){
+ editarPanelDatos();
+});
+
+function editarPanelPermisos(){
+	$("#editarPanelDatos").removeClass("show");
+	$("#editarPanelPermisos").addClass("show");
+	$("#navPermisosEditar").addClass("active");
+	$("#navDatosEditar").removeClass("active");
+}
+
+$("#navPermisosEditar").click(function(){
+  editarPanelPermisos();
+});
+
+
+
+//   $(".guardarUsuario").on("click", function(){
+
+
+// // 	arrayModu=[];
+// // 	arrayModu=$('.checkModulos:checked').val();
+// // 	console.log(arrayModu);
+
+// // 	elem.getAttribute("pattern");
+
+//   })
 
 
 /*=============================================
@@ -187,6 +256,7 @@ $(document).on("click", ".btnEditarUsuario", function(){
 	var idUsuario = $(this).attr("idUsuario");
 	
 	var datos = new FormData();
+
 	datos.append("idUsuario", idUsuario);
 
 	$.ajax({
@@ -199,7 +269,8 @@ $(document).on("click", ".btnEditarUsuario", function(){
 		processData: false,
 		dataType: "json",
 		success: function(respuesta){
-
+			
+			$("#editaridUsuario").val(respuesta["idUsuario"]);
 			$("#editarNombre").val(respuesta["nombre"]);
 			$("#editarUsuario").val(respuesta["usuario"]);
 			$("#editarPerfil").html(respuesta["perfil"]);
@@ -214,8 +285,26 @@ $(document).on("click", ".btnEditarUsuario", function(){
 				
 			}
 
-				
-	        $("#cInsumos:checkbox").prop('checked', true);
+		}
+
+	});
+
+	$.ajax({
+
+		url:"ajax/usuariosmodulos.ajax.php",
+		method: "POST",
+		data: datos,
+		cache: false,
+		contentType: false,
+		processData: false,
+		dataType: "json",
+		success: function(respuesta){
+
+			for (var i=0; i<respuesta.length; i++) { 
+
+				$("#"+respuesta[i]["descripcion"]+":checkbox").prop('checked', true);
+
+			}
 
 		}
 
