@@ -53,11 +53,11 @@ class ModeloUsuarios{
 
 		$stmt = Conexion::conectar()->prepare("call insertar_usuario(?,?,?,?,?,?)");
 
-		$stmt->bindParam(1, $datos["idUsuario"], PDO::PARAM_STR);
-		$stmt->bindParam(2, $datos["nombre"], PDO::PARAM_STR);
-		$stmt->bindParam(3, $datos["usuario"], PDO::PARAM_STR);
-		$stmt->bindParam(4, $datos["password"], PDO::PARAM_STR);
-		$stmt->bindParam(5, $datos["perfil"], PDO::PARAM_STR);
+		$stmt->bindParam(1, $datos["idUsuario"], PDO::PARAM_INT);
+		$stmt->bindParam(2, $datos["idPerfil"], PDO::PARAM_INT);
+		$stmt->bindParam(3, $datos["nombre"], PDO::PARAM_STR);
+		$stmt->bindParam(4, $datos["usuario"], PDO::PARAM_STR);
+		$stmt->bindParam(5, $datos["password"], PDO::PARAM_STR);
 		$stmt->bindParam(6, $datos["foto"], PDO::PARAM_STR);
 
 		if($stmt->execute()){
@@ -84,10 +84,10 @@ class ModeloUsuarios{
 	
 		$stmt = Conexion::conectar()->prepare("call editar_usuario(?,?,?,?,?)");
 		
-		$stmt -> bindParam(1, $datos["nombre"], PDO::PARAM_STR);
-		$stmt -> bindParam(2, $datos["usuario"], PDO::PARAM_STR);
-		$stmt -> bindParam(3, $datos["password"], PDO::PARAM_STR);
-		$stmt -> bindParam(4, $datos["perfil"], PDO::PARAM_STR);
+		$stmt -> bindParam(1, $datos["idPerfil"], PDO::PARAM_INT);
+		$stmt -> bindParam(2, $datos["nombre"], PDO::PARAM_STR);
+		$stmt -> bindParam(3, $datos["usuario"], PDO::PARAM_STR);
+		$stmt -> bindParam(4, $datos["password"], PDO::PARAM_STR);
 		$stmt -> bindParam(5, $datos["foto"], PDO::PARAM_STR);
 		
 		if($stmt -> execute()){

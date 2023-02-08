@@ -3,6 +3,7 @@
 require_once "controladores/plantilla.controlador.php";
 
 require_once "controladores/usuarios.controlador.php";
+require_once "controladores/perfiles.controlador.php";
 require_once "controladores/configuracion.controlador.php";
 require_once "controladores/marcas.controlador.php";
 require_once "controladores/unidadmedida.controlador.php";
@@ -48,8 +49,9 @@ require_once "controladores/dashboard.controlador.php";
 
 
 require_once "modelos/dashboard.modelo.php";
-require_once "modelos/usuariosmodulos.modelo.php";
 require_once "modelos/usuarios.modelo.php";
+require_once "modelos/usuariosmodulos.modelo.php";
+require_once "modelos/perfiles.modelo.php";
 require_once "modelos/configuracion.modelo.php";
 require_once "modelos/marcas.modelo.php";
 require_once "modelos/unidadmedida.modelo.php";

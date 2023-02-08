@@ -144,7 +144,7 @@ MODAL AGREGAR USUARIO
                 <span class="input-group-text"><i class="fas fa-lock"></i></span>
                 </div>
 
-              <input type="password" class="form-control input-lg" id="nuevoPassword"  name="nuevoPassword" placeholder="Ingresar contraseña" 
+              <input type="text" class="form-control input-lg" id="nuevoPassword"  name="nuevoPassword" placeholder="Ingresar contraseña" 
                maxlength="50" required>
 
             </div>
@@ -154,27 +154,35 @@ MODAL AGREGAR USUARIO
           <!-- ENTRADA PARA SELECCIONAR SU PERFIL -->
           <div class="form-group col-sm">
           <label for="perfil">Perfil</label>
-            <div class="input-group">
+          <div class="input-group">
             
-                <div class="input-group-prepend">
-                <span class="input-group-text"><i class="fas fa-users"></i></span>
-                </div>
-
-                <select class="form-control input-lg" id="nuevoPerfil" name="nuevoPerfil" required>
-                
-                <option value="">Selecionar perfil</option>
-
-                <option value="Administrador">Administrador</option>
-
-                <option value="Especial">Especial</option>
-
-                <option value="Vendedor">Vendedor</option>
-
-              </select>
-
+            <div class="input-group-prepend">
+            <span class="input-group-text"><i class="fas fa-ruler"></i></span>
             </div>
 
-           </div>
+            <select class="form-control input-lg" id="nuevoidPerfil" name="nuevoidPerfil" required>
+            
+            <option value="">Seleccionar Perfil</option>
+
+            <?php
+
+            $item = null;
+            $valor = null;
+
+            $perfil = ControladorPerfiles::ctrMostrarPerfiles($item,$valor);
+
+            foreach($perfil as $key=> $value){ 
+              echo '<option value="'.$value["idPerfil"].'">'.$value["descripcion"].'</option>';
+            }
+
+            ?>
+
+          </select>
+
+          </div>
+
+          </div>
+
           </div>
           <!-- ENTRADA PARA SUBIR FOTO -->
 
@@ -182,7 +190,7 @@ MODAL AGREGAR USUARIO
             <div class="card">
               <ul class="list-group list-group-flush">
                 <li class="list-group-item">Subir Foto</li>
-                <li class="list-group-item"><input type="file" class=" btn btn-primary nuevaFoto" name="nuevaFoto"></li>
+                <li class="list-group-item"><input type="file" class="btn btn-primary nuevaFoto" name="nuevaFoto"></li>
                 <li class="list-group-item"> Peso máximo de la foto 2MB</li>
               </ul>
             </div>
@@ -282,7 +290,7 @@ MODAL AGREGAR USUARIO
 
         <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Salir</button>
 
-        <button type="submit" class="btn btn-primary">Guardar usuario</button>
+        <button type="submit" class="btn btn-primary" id="guardarUsuario">Guardar usuario</button>
 
       </div>
 
@@ -335,10 +343,10 @@ MODAL EDITAR USUARIO
 
           <ul class="nav nav-tabs">
               <li class="nav-item">
-                <a class="nav-link active" id="navDatosEditar" type="button">Datos</a>
+                <a class="nav-link active" id="navDatosEditar" type="button">Datos del Usuario</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" id="navPermisosEditar" type="button">Permisos</a>
+                <a class="nav-link" id="navPermisosEditar" type="button">Modulos y Permisos</a>
               </li>
           </ul>
 
@@ -393,23 +401,28 @@ MODAL EDITAR USUARIO
           <label for="perfil">Perfil</label>
             <div class="input-group">
             
-                <div class="input-group-prepend">
-                <span class="input-group-text"><i class="fas fa-users"></i></span>
-                </div>
-
-                <select class="form-control input-lg" name="editarPerfil">
-                  
-                <option value="" id="editarPerfil">Seleccionar Perfil</option>
-
-                <option value="Administrador">Administrador</option>
-
-                <option value="Especial">Especial</option>
-
-                <option value="Vendedor">Vendedor</option>
-
-                </select>
-
+            <div class="input-group-prepend">
+            <span class="input-group-text"><i class="fas fa-ruler"></i></span>
             </div>
+
+            <select class="form-control input-lg" id="editaridPerfil" name="editaridPerfil" required>
+            
+            <option value="">Seleccionar Perfil</option>
+
+            <?php 
+            $item = null;
+            $valor = null;
+            $perfil = ControladorPerfiles::ctrMostrarPerfiles($item,$valor);
+
+            foreach($perfil as $key=> $value){
+              echo '<option value="'.$value["idPerfil"].'">'.$value["descripcion"].'</option>';
+            }
+
+            ?>
+
+          </select>
+
+          </div>
           </div>
           </div>
           <!-- ENTRADA PARA SUBIR FOTO -->
@@ -418,7 +431,7 @@ MODAL EDITAR USUARIO
             <div class="card">
               <ul class="list-group list-group-flush">
                 <li class="list-group-item">Subir Foto</li>
-                <li class="list-group-item"><input type="file" class="nuevaFoto" name="editarFoto"></li>
+                <li class="list-group-item"><input type="file" class="btn btn-primary nuevaFoto" name="editarFoto"></li>
                 <li class="list-group-item"> Peso máximo de la foto 2MB</li>
               </ul>
             </div>
@@ -434,7 +447,7 @@ MODAL EDITAR USUARIO
             <div class="card">
 
             <a class="btn btn-outline-primary collapsed my-1 text-left" data-toggle="collapse" data-target="#editarpInicio">
-            <i class="fas fa-users"></i> DashBoard
+            <i class="fas fa-tachometer-alt px-2"></i> DashBoard
             </a>
             <div id="editarpInicio" class="collapse">
                 <div class="card-body">
@@ -446,7 +459,7 @@ MODAL EDITAR USUARIO
             </div>
               
             <a class="btn btn-outline-primary collapsed my-1 text-left" data-toggle="collapse" data-target="#editarpRegistro">
-            <i class="fas fa-users"></i> Registro
+            <i class="fas fa-pen px-2"></i> Registro
             </a>
               
             <div id="editarpRegistro" class="collapse">
@@ -504,13 +517,49 @@ MODAL EDITAR USUARIO
 
                 </div>
               </div>
+
+            <a class="btn btn-outline-primary collapsed my-1 text-left" data-toggle="collapse" data-target="#editarpInventario">
+            <i class="fas fa-box px-2"></i> Inventario
+            </a>
+            <div id="editarpInventario" class="collapse">
+                <div class="card-body">
+                  <div class="icheck-primary">
+                      <input class="editarCheckModulos" type="checkbox" id="inventarioinsumos" value="12" name="editarCheckListPermisos[]">
+                      <label for="inventarioinsumos">Inventario Insumos</label>
+                  </div>
+                  <div class="icheck-primary">
+                      <input class="editarCheckModulos" type="checkbox" id="inventariomateriales" value="13" name="editarCheckListPermisos[]">
+                      <label for="inventariomateriales">Inventario Materiales</label>
+                  </div>
+                  <div class="icheck-primary">
+                      <input class="editarCheckModulos" type="checkbox" id="inventarioproductos" value="14" name="editarCheckListPermisos[]">
+                      <label for="inventarioproductos">Inventario Productos</label>
+                  </div>
+                  <div class="icheck-primary">
+                      <input class="editarCheckModulos" type="checkbox" id="inventariomaquinas" value="15" name="editarCheckListPermisos[]">
+                      <label for="inventariomaquinas">Inventario Maquinas</label>
+                  </div>                 
+                </div>
+            </div>
+
+            <a class="btn btn-outline-primary collapsed my-1 text-left" data-toggle="collapse" data-target="#editarpOperaciones">
+            <i class="fas fa-receipt px-2"></i> Operaciones
+            </a>
+            <div id="editarpOperaciones" class="collapse">
+                <div class="card-body">
+                  <div class="icheck-primary">
+                      <input class="editarCheckModulos" type="checkbox" id="recetas" value="16" name="editarCheckListPermisos[]">
+                      <label for="recetas">Receta</label>
+                  </div>                
+                </div>
+            </div>
+
              </div>
             </div>
 
         </div>
 
       </div>
-
 
         <!--=====================================
         PIE DEL MODAL
@@ -520,7 +569,7 @@ MODAL EDITAR USUARIO
 
           <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Salir</button>
 
-          <button type="submit" class="btn btn-primary">Editar usuario</button>
+          <button type="submit" class="btn btn-primary" id="modificarUsuario">Editar usuario</button>
 
         </div>
 

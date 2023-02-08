@@ -32,9 +32,13 @@
           <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           <?php
 
-              if($_SESSION["foto"] != ""){
+            $item = "idUsuario";
+            $valor = $_SESSION["idUsuario"];
+            $usuario = ControladorUsuarios::ctrMostrarUsuarios($item,$valor);
 
-                echo '<img src="'.$_SESSION["foto"].'" width="30px" class="user-image">';
+              if($usuario["foto"] != ""){
+
+                echo '<img src="'.$usuario["foto"].'" width="30px" class="user-image">';
 
               }else{
 

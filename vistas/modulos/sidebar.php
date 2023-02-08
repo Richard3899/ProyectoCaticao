@@ -18,13 +18,10 @@ if($value["modoDark"] == 1){
     <a href="inicio" class="brand-link">
       <img src="vistas/img/plantilla/logo-mini.png" alt="Logo" class="brand-image ml-3 img-circle" >
       <span class="brand-text p-2 ml-4 badge badge-dark">
-      C-A-T-I-CA-O
+      C A T I C A O
       </span>
     </a>
 
-    <?php 
-    $prueba = 1;
-    ?> 
 <!-- Sidebar -->
 <div class="sidebar">  
       <!-- Sidebar Menu -->
@@ -33,7 +30,7 @@ if($value["modoDark"] == 1){
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
 
-          <?php if (in_array(1, $_SESSION["idModulos"])){ 
+          <?php if (in_array(1, $_SESSION["idModulos"])){
           echo "<li class='nav-item'>
             <a href='inicio' class='nav-link "; if($url=='inicio'){ echo "active"; } echo "'>
               <i class='nav-icon fas fa-tachometer-alt'></i>
@@ -184,25 +181,27 @@ if($value["modoDark"] == 1){
             
           </li>
 
-          <li class="nav-item <?php if($url=='recetas'){ echo "menu-open"; }?>">
-            <a href="#" class="nav-link <?php if($url=='recetas'){ echo "active"; }?>">
-              <i class="nav-icon fas fa-receipt"></i>
+          <?php if (in_array(16, $_SESSION["idModulos"])){
+          echo "<li class='nav-item "; if($url=='recetas'){ echo "menu-open"; } echo "'>
+            <a href='#' class='nav-link "; if($url=='recetas'){ echo "active"; } echo "'>
+              <i class='nav-icon fas fa-receipt'></i>
               <p>
                 Operaciones
-                <i class="right fas fa-angle-left"></i>
+                <i class='right fas fa-angle-left'></i>
               </p>
-            </a>
-
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="recetas" class="nav-link <?php if($url=='recetas'){ echo "active"; }?>">
-                <i class="nav-icon fas fa-angle-double-right"></i>
+            </a>";
+          if (in_array(16, $_SESSION["idModulos"])){
+            echo "<ul class='nav nav-treeview'>
+              <li class='nav-item'>
+                <a href='recetas' class='nav-link "; if($url=='recetas'){ echo "active"; } echo "'>
+                <i class='nav-icon fas fa-angle-double-right'></i>
                   <p>Receta</p>
                 </a>
               </li>
             </ul>
-            
-          </li>
+          </li>";}
+          }
+          ?>
 
           <li class="nav-item <?php if (in_array($url, array('costoreceta','costototal','costorecetasgastoadmin','gastoadminpormes','costototalpormes'))){echo "menu-open";}?>">
           <a href="#" class="nav-link <?php if(in_array($url, array('costoreceta','costototal','costorecetasgastoadmin','gastoadminpormes','costototalpormes'))){ echo "active"; }?>">
@@ -231,7 +230,7 @@ if($value["modoDark"] == 1){
             
           </li>
 
-          <?php if(in_array(1, $_SESSION["idModulos"])){ 
+          <?php if(1==1){ 
             echo "<li class='nav-item'>
             <a href='usuarios' class='nav-link "; if($url=='usuarios'){ echo 'active'; }; echo "'>
               <i class='nav-icon fas fa-user'></i>
@@ -249,7 +248,7 @@ if($value["modoDark"] == 1){
                 Reportes
                 <i class="right fas fa-angle-left"></i>
               </p>
-            </a>
+          </a>
 
             <ul class="nav nav-treeview">
               <li class="nav-item">
@@ -273,16 +272,16 @@ if($value["modoDark"] == 1){
             </ul>
             
           </li>
-
-          <li class="nav-item">
-            <a href="configuracion" class="nav-link <?php if($url=='configuracion'){ echo "active"; }?>">
-              <i class="nav-icon fas fa-gear"></i>
+          <?php if (in_array(1, $_SESSION["idModulos"])){
+          echo "<li class='nav-item'>
+            <a href='configuracion' class='nav-link ";if($url=='configuracion'){ echo 'active'; } echo"'>
+              <i class='nav-icon fas fa-gear'></i>
               <p>
                 Configuración
               </p>            
             </a>           
-          </li>
-
+          </li>";
+          }?>
       
         </ul>
       </nav>

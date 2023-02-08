@@ -68,10 +68,6 @@
 </div>
 <!-- /.content-wrapper -->
 
-
-
-
-
 <!--=====================================
 MODAL AGREGAR INSUMO
 ======================================-->
@@ -132,7 +128,6 @@ MODAL AGREGAR INSUMO
           </div>
 
           <!-- ENTRADA PARA EL DESCRIPCIÓN -->
-
            <div class="form-group">
            <label for="descripcion">Descripción</label>
             <div class="input-group">
@@ -148,7 +143,6 @@ MODAL AGREGAR INSUMO
           <div class="row">
  
           <!-- ENTRADA PARA SELECCIONAR SU UNIDAD DE MEDIDA -->
-
           <div class="form-group col-sm">
           <label for="unidadMedida">Unidad de Medida</label>
           <div class="input-group">
@@ -175,13 +169,12 @@ MODAL AGREGAR INSUMO
 
           </select>
 
-        </div>
+          </div>
 
           </div>
 
 
           <!-- ENTRADA PARA SELECCIONAR SU MARCA -->
-
           <div class="form-group col-sm">
           <label for="marca">Marca</label>
             <div class="input-group">
@@ -218,7 +211,6 @@ MODAL AGREGAR INSUMO
           <div class="row">
 
             <!-- ENTRADA PARA EL CANTIDAD -->
-
             <div class="form-group col-sm">
             <label for="cantidad">Cantidad</label>
             <div class="input-group">
@@ -232,7 +224,6 @@ MODAL AGREGAR INSUMO
             </div>
 
             <!-- ENTRADA PARA EL PRECIO -->
-
             <div class="form-group col-sm">
             <label for="precio">Precio</label>
             <div class="input-group">
@@ -247,7 +238,6 @@ MODAL AGREGAR INSUMO
 
 
           <!-- ENTRADA PARA SUBIR FOTO -->
-
            <div class="form-group">
             <div class="card">
               <ul class="list-group list-group-flush">
@@ -358,7 +348,6 @@ MODAL EDITAR INSUMO
           </div>
 
           <!-- ENTRADA PARA EL DESCRIPCIÓN -->
-
            <div class="form-group">
             <label for="descripcion">Descripción</label>
             <div class="input-group">
@@ -373,7 +362,6 @@ MODAL EDITAR INSUMO
           <div class="row">
  
           <!-- ENTRADA PARA SELECCIONAR SU UNIDAD DE MEDIDA -->
-
           <div class="form-group col-sm">
             <label for="unidadMedida">Unidad de Medida</label>
             <div class="input-group">
@@ -406,7 +394,6 @@ MODAL EDITAR INSUMO
 
 
           <!-- ENTRADA PARA SELECCIONAR SU MARCA -->
-
           <div class="form-group col-sm">
             <label for="marca">Marca</label>
             <div class="input-group">
@@ -443,7 +430,6 @@ MODAL EDITAR INSUMO
           <div class="row">
 
             <!-- ENTRADA PARA EL CANTIDAD -->
-
             <div class="form-group col-sm">
             <label for="cantidad">Cantidad</label>
             <div class="input-group">
@@ -457,7 +443,6 @@ MODAL EDITAR INSUMO
             </div>
 
             <!-- ENTRADA PARA EL PRECIO -->
-
             <div class="form-group col-sm">
             <label for="precio">Precio</label>
             <div class="input-group">
@@ -475,7 +460,6 @@ MODAL EDITAR INSUMO
 
 
           <!-- ENTRADA PARA SUBIR FOTO -->
-
            <div class="form-group">
             <div class="card">
               <ul class="list-group list-group-flush">

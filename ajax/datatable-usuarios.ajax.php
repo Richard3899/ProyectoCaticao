@@ -2,6 +2,9 @@
 require_once "../controladores/usuarios.controlador.php";
 require_once "../modelos/usuarios.modelo.php";
 
+require_once "../controladores/perfiles.controlador.php";
+require_once "../modelos/perfiles.modelo.php";
+
 class TablaUsuarios{
 
  	/*=============================================
@@ -27,7 +30,6 @@ class TablaUsuarios{
 
 		  for($i = 0; $i < count($usuarios); $i++){
 
-
 			if($usuarios[$i]["foto"] != ""){
   
 				$foto="<img src='".$usuarios[$i]["foto"]."' class='img-thumbnail' width='40px'>";
@@ -38,15 +40,29 @@ class TablaUsuarios{
 
 			  }
 
-			if($usuarios[$i]["estado"] != 0){
+			/*=============================================
+ 	 		TRAEMOS LA MARCA
+  			=============================================*/ 
+
+		  	$item = "idPerfil";
+		  	$valor = $usuarios[$i]["idPerfil"];
+
+		  	$perfiles = ControladorPerfiles::ctrMostrarPerfiles($item, $valor);
+
+			if($usuarios[$i]["idUsuario"]!=1){
+				if($usuarios[$i]["estado"] != 0){
   
-				$estado="<button class='btn btn-success btnActivar' idUsuario='".$usuarios[$i]["idUsuario"]."' estadoUsuario='0'>Activado</button>";
-
-			  }else{
-
-				$estado="<button class='btn btn-danger btnActivar' idUsuario='".$usuarios[$i]["idUsuario"]."' estadoUsuario='1'>Desactivado</button>";
-
+					$estado="<button class='btn btn-success btnActivar' idUsuario='".$usuarios[$i]["idUsuario"]."' estadoUsuario='0'>Activado</button>";
+	
+				}else{
+	
+					$estado="<button class='btn btn-danger btnActivar' idUsuario='".$usuarios[$i]["idUsuario"]."' estadoUsuario='1'>Desactivado</button>";
+	
+				}
+			}else{
+				    $estado="<button class='btn btn-success'>Activado</button>";
 			}
+
 
 			if($usuarios[$i]["ultimo_login"] != ""){  
 
@@ -59,6 +75,7 @@ class TablaUsuarios{
 			}
 
 			/*==Botón Editar y Eliminar=*/
+
 			if($usuarios[$i]["idUsuario"] == 1){
 
 				$botones = "<div class='btn-group'><button class='btn btn-warning btnEditarUsuario' idUsuario='".$usuarios[$i]["idUsuario"]."' data-toggle='modal' data-target='#modalEditarUsuario'><i class='fa fa-pen'></i></button></div>";  
@@ -73,7 +90,7 @@ class TablaUsuarios{
 			      "'.$usuarios[$i]["nombre"].'",
 				  "'.$usuarios[$i]["usuario"].'",
 				  "'.$foto.'",
-				  "'.$usuarios[$i]["perfil"].'",
+				  "'.$perfiles["descripcion"].'",
 				  "'.$estado.'",
 				  "'.$ultimoLogin.'",
 			      "'.$botones.'"

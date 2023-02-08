@@ -23,7 +23,7 @@ INSERT INTO `tipocosto` (`idTipoCosto`, `descripcion`) VALUES
 INSERT INTO `tipodocumento` (`idTipoDocumento`, `descripcion`) VALUES
 	(1, 'DNI'),
 	(2, 'RUC'),
-   (3, 'Pasaporte');
+    (3, 'Pasaporte');
 
 INSERT INTO `desembolso` (`idDesembolso`, `descripcion`) VALUES
 	(1, 'Gastos Administrativos'),
@@ -46,8 +46,13 @@ INSERT INTO `estado` (`idEstado`, `descripcion`) VALUES
 INSERT INTO `producto` (`idProducto`, `codigo`, `nombre`, `descripcion`, `imagen`, `idUnidadMedida`, `idTipoProducto`) VALUES
 	(1, '123456', 'Chocolate con pasa', '50% cacao', NULL, 3, 2);
 
-INSERT INTO `usuario` (`idUsuario`, `nombre`, `usuario`, `password`, `perfil`, `foto`, `estado`, `ultimo_login`, `fecha`) VALUES
-	(1, 'Administrador', 'admin', '$2a$07$asxx54ahjppf45sd87a5aunxs9bkpyGmGE/.vekdjFg83yRec789S', 'Administrador', 'vistas/img/usuarios/admin/211.png', 1, NULL, '2022-10-18 16:42:18');
+INSERT INTO `perfil` (`idPerfil`, `descripcion`) VALUES
+	(1, 'Administrador'),
+	(2, 'Vendedor'),
+	(3, 'Otro');
+
+INSERT INTO `usuario` (`idUsuario`,`idPerfil`, `nombre`, `usuario`, `password`, `foto`, `estado`, `ultimo_login`, `fecha`) VALUES
+	(1, 1, 'Administrador', 'admin', '$2a$07$asxx54ahjppf45sd87a5aunxs9bkpyGmGE/.vekdjFg83yRec789S', 'vistas/img/usuarios/admin/211.png', 1, NULL, '2022-10-18 16:42:18');
 
 INSERT INTO `modulo` (`idModulo`, `descripcion`) VALUES
 	(1, 'inicio'),
@@ -56,8 +61,51 @@ INSERT INTO `modulo` (`idModulo`, `descripcion`) VALUES
 	(4, 'marcas'),
 	(5, 'productos'),
 	(6, 'maquinas'),
-	(7, 'empleados');
-	
+	(7, 'empleados'),
+	(8, 'gastoadmin'),
+	(9, 'costoventa'),
+	(10, 'costomarketing'),
+	(11, 'costooperativo'),
+	(12, 'inventarioinsumos'),
+	(13, 'inventariomateriales'),
+	(14, 'inventarioproductos'),
+	(15, 'inventariomaquinas'),
+	(16, 'recetas'),
+	(17, 'costoreceta'),
+	(18, 'costorecetasgastoadmin'),
+	(19, 'usuarios'),
+	(20, 'reporteinsumos'),
+	(21, 'reportemateriales'),
+	(22, 'reporteproductos'),
+	(23, 'configuracion'),
+	(30, 'salir');
+
+INSERT INTO `usuariomodulo` (`idUsuarioModulo`, `idUsuario`, `idModulo`) VALUES
+	(1, 1, 1),
+	(2, 1, 2),
+	(3, 1, 3),
+	(4, 1, 4),
+	(5, 1, 5),
+	(6, 1, 6),	
+	(7, 1, 7),
+	(8, 1, 8),
+	(9, 1, 9),
+	(10, 1, 10),
+	(11, 1, 11),
+	(12, 1, 12),
+	(13, 1, 13),
+	(14, 1, 14),
+	(15, 1, 15),
+	(16, 1, 16),
+	(17, 1, 17),
+	(18, 1, 18),
+	(19, 1, 19),
+	(20, 1, 20),
+	(21, 1, 21),
+	(22, 1, 22),
+	(23, 1, 23),
+	(30, 1, 30);
+
 INSERT INTO `empleado` (`idEmpleado`, `nombre`, `apellido`, `direccion`, `telefono`, `correo`, `numeroDocumento`, `fechaNacimiento`, `cargo`, `horarioTrabajo`, `horasPorDia`, `sueldoPorDia`,`precioUnitario`, `sueldoPorMes`, `idTipoDocumento`, `idUsuario`, `idTipoCosto`) VALUES
 	(1, 'Julio', 'Gonzales', 'Av. Alfonso Ugarte Lt.12', 987654321, 'julio@gmail.com', 432187654, '2022-11-03', 'Empaquetador', '8am - 6pm', 8, 80.00,10, 1000.00, 1, NULL, 1);
 

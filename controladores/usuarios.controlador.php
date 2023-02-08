@@ -50,7 +50,6 @@ class ControladorUsuarios{
 						$_SESSION["nombre"] = $respuesta["nombre"];
 						$_SESSION["usuario"] = $respuesta["usuario"];
 						$_SESSION["foto"] = $respuesta["foto"];
-						$_SESSION["perfil"] = $respuesta["perfil"];
 
 						/*=============================================
 						REGISTRAR FECHA PARA SABER EL ÚLTIMO LOGIN
@@ -80,7 +79,7 @@ class ControladorUsuarios{
 							icon: "success",
 							title: "Bienvenido al sistema",
 							showConfirmButton: false,
-							timer: 1000
+							timer: 1500
 
 							}).then(function(result){
 
@@ -201,10 +200,10 @@ class ControladorUsuarios{
 				$idUsuario=$_POST["idUsuario"];
 
 				$datos1 = array("idUsuario" => $idUsuario,
+				"idPerfil" => $_POST["nuevoidPerfil"],
 				"nombre" => $_POST["nuevoNombre"],
 				"usuario" => $_POST["nuevoUsuario"],
 				"password" => $encriptar,
-				"perfil" => $_POST["nuevoPerfil"],
 				"foto"=>$ruta);
 
 				$respuesta = ModeloUsuarios::mdlIngresarUsuario($datos1);
@@ -216,6 +215,7 @@ class ControladorUsuarios{
 				ModeloUsuariosModulos::mdlIngresarUsuariosModulos($datos2);
    
 				}
+				ModeloUsuariosModulos::mdlIngresarUsuariosModulos(array("idUsuario" => $idUsuario,"idModulo" =>30));
 
 				if($respuesta == "ok"){
 
@@ -274,8 +274,6 @@ class ControladorUsuarios{
 				/*=============================================
 				VALIDAR IMAGEN
 				=============================================*/
-
-				$ruta = $_POST["fotoActual"];
 
 				if(isset($_FILES["editarFoto"]["tmp_name"]) && !empty($_FILES["editarFoto"]["tmp_name"])){
 
@@ -348,6 +346,8 @@ class ControladorUsuarios{
 
 					}
 
+				}else{
+					    $ruta =$_POST["fotoActual"];
 				}
 
 				if($_POST["editarPassword"] != ""){
@@ -360,10 +360,10 @@ class ControladorUsuarios{
 
 				}
 
-				$datos = array("nombre" => $_POST["editarNombre"],
+				$datos = array("idPerfil" => $_POST["editaridPerfil"],
+				               "nombre" => $_POST["editarNombre"],
 							   "usuario" => $_POST["editarUsuario"],
-							   "password" => $encriptar,
-							   "perfil" => $_POST["editarPerfil"],
+							   "password" => $encriptar,							   
 							   "foto" => $ruta);
 
 				$respuesta = ModeloUsuarios::mdlEditarUsuario($datos);
@@ -380,6 +380,7 @@ class ControladorUsuarios{
 		
 						ModeloUsuariosModulos::mdlIngresarUsuariosModulos($datos2);
 					}
+					    ModeloUsuariosModulos::mdlIngresarUsuariosModulos(array("idUsuario" => $idUsuario,"idModulo" =>30));
 				}
 
 				if($respuesta == "ok"){
@@ -413,37 +414,44 @@ class ControladorUsuarios{
 
 		if(isset($_GET["idUsuario"])){
 
+			
 			$datos = $_GET["idUsuario"];
 
-			if($_GET["fotoUsuario"] != ""){
+			if($datos!=1){
 
-				unlink($_GET["fotoUsuario"]);
-				rmdir('vistas/img/usuarios/'.$_GET["usuario"]);
+				if($_GET["fotoUsuario"] != ""){
+
+					unlink($_GET["fotoUsuario"]);
+					rmdir('vistas/img/usuarios/'.$_GET["usuario"]);
+	
+				}
+	
+				$respuesta = ModeloUsuarios::mdlBorrarUsuario($datos);
+	
+				if($respuesta == "ok"){
+	
+					echo'<script>
+	
+					Swal.fire({
+						  icon: "success",
+						  title: "El usuario ha sido borrado correctamente",
+						  showConfirmButton: false,
+						timer: 1500
+						  }).then(function(result){
+									
+	
+									window.location = "usuarios";
+	
+									
+								})
+	
+					</script>';
+	
+				}	
+
 
 			}
-
-			$respuesta = ModeloUsuarios::mdlBorrarUsuario($datos);
-
-			if($respuesta == "ok"){
-
-				echo'<script>
-
-				Swal.fire({
-					  icon: "success",
-					  title: "El usuario ha sido borrado correctamente",
-					  showConfirmButton: false,
-					timer: 1500
-					  }).then(function(result){
-								
-
-								window.location = "usuarios";
-
-								
-							})
-
-				</script>';
-
-			}		
+	
 
 		}
 

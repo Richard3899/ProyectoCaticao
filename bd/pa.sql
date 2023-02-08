@@ -1,17 +1,15 @@
 use caticao;
-
--- Procedimientos almacenados de Usuarios --
-
-DROP procedure IF EXISTS `mostrar_usuarios`;
+-- Procedimientos almacenados de Usuarios Modulos --
+DROP procedure IF EXISTS `mostrar_perfiles`;
 DELIMITER $$
 USE `caticao`$$
-CREATE PROCEDURE `mostrar_usuarios` ()
+CREATE PROCEDURE `mostrar_perfiles` ()
 BEGIN
-	select * from usuario;
+	SELECT * FROM perfil;
 END$$
-
 DELIMITER ;
 
+-- Procedimientos almacenados de Usuarios Modulos --
 
 DROP procedure IF EXISTS `mostrar_usuariosmodulos`;
 DELIMITER $$
@@ -21,23 +19,6 @@ BEGIN
 	SELECT um.idUsuarioModulo,um.idUsuario,um.idModulo,m.descripcion from usuariomodulo um 
 	              INNER JOIN modulo m on um.idModulo=m.idModulo
 					  WHERE idUsuario=idUsuarioM;
-END$$
-DELIMITER ;
-
-call
-
-DROP procedure IF EXISTS `insertar_usuario`;
-DELIMITER $$
-USE `caticao`$$
-CREATE PROCEDURE `insertar_usuario` (   in idUsuarioI INT,
-													 in nombreI VARCHAR(45),
-                                        in usuarioI VARCHAR(45),
-                                        in passwordI VARCHAR(100),
-                                        in perfilI VARCHAR(45),
-                                        in fotoI VARCHAR(100))
-BEGIN
-	insert into usuario (idUsuario,nombre,usuario,password,perfil,foto,estado)
-				  values (idUsuarioI,nombreI,usuarioI,passwordI,perfilI,fotoI,1);
 END$$
 DELIMITER ;
 
@@ -55,20 +36,59 @@ END$$
 DELIMITER ;
 
 
+DROP procedure IF EXISTS `eliminar_usuariosmodulos`;
+DELIMITER $$
+USE `caticao`$$
+CREATE PROCEDURE `eliminar_usuariosmodulos` (in idUsuarioE int)
+BEGIN
+	 delete from usuariomodulo
+    where idUsuario=idUsuarioE;
+END$$
+DELIMITER ;
+
+-- Procedimientos almacenados de Usuarios --
+
+DROP procedure IF EXISTS `mostrar_usuarios`;
+DELIMITER $$
+USE `caticao`$$
+CREATE PROCEDURE `mostrar_usuarios` ()
+BEGIN
+	select * from usuario;
+END$$
+
+DELIMITER ;
+
+
+DROP procedure IF EXISTS `insertar_usuario`;
+DELIMITER $$
+USE `caticao`$$
+CREATE PROCEDURE `insertar_usuario` (   in idUsuarioI INT,
+													 in idPerfilI INT,
+													 in nombreI VARCHAR(45),
+                                        in usuarioI VARCHAR(45),
+                                        in passwordI VARCHAR(100),
+                                        in fotoI VARCHAR(100))
+BEGIN
+	insert into usuario (idUsuario,idPerfil,nombre,usuario,password,foto,estado)
+				  values (idUsuarioI,idPerfilI,nombreI,usuarioI,passwordI,fotoI,1);		  
+	
+END$$
+DELIMITER ;
+
 
 DROP procedure IF EXISTS `editar_usuario`;
 DELIMITER $$
 USE `caticao`$$
-CREATE PROCEDURE `editar_usuario` (     in nombreE VARCHAR(45),
+CREATE PROCEDURE `editar_usuario` (     in idPerfilE INT,
+                                        in nombreE VARCHAR(45),
                                         in usuarioE VARCHAR(45),
                                         in passwordE VARCHAR(100),
-                                        in perfilE VARCHAR(45),
                                         in fotoE VARCHAR(100))
 BEGIN
-	update usuario set nombre=nombreE,
+	update usuario SET   idPerfil=idPerfilE,
+	                     nombre=nombreE,
                         usuario=usuarioE,
                         password=passwordE,
-                        perfil=perfilE,
                         foto=fotoE
 				where usuario=usuarioE;
 END$$
@@ -80,21 +100,13 @@ DELIMITER $$
 USE `caticao`$$
 CREATE PROCEDURE `eliminar_usuario` (in idUsuarioE int)
 BEGIN
-	delete from usuario
-    where idUsuario=idUsuarioE;
+
+   CALL eliminar_usuariosmodulos(idUsuarioE);
+	DELETE FROM usuario
+   WHERE idUsuario=idUsuarioE;
+   
 END$$
 DELIMITER ;
-
-DROP procedure IF EXISTS `eliminar_usuariosmodulos`;
-DELIMITER $$
-USE `caticao`$$
-CREATE PROCEDURE `eliminar_usuariosmodulos` (in idUsuarioE int)
-BEGIN
-	 delete from usuariomodulo
-    where idUsuario=idUsuarioE;
-END$$
-DELIMITER ;
-
 
 -- Procedimientos almacenados de Tipo Producto --
 

@@ -68,26 +68,13 @@ $(".tablaUsuarios").on("draw.dt", function() {
 
 function validarModulos(){
 
-    if($("#nuevoNombre").val()=="" || $("#nuevoUsuario").val()=="" || $("#nuevoPassword").val()=="" || $("#nuevoPerfil").val()==""){
-
-		Swal.fire({
-			title: "Completar datos del usuario correctamente.",
-			icon: "error",
-			showConfirmButton: false,
-			timer: 1500
-		  });
-
-		  panelDatos();
-
-		return false;
-		
-	}else if ($('.checkModulos:checked').val()==null) {
+    if ($('.checkModulos:checked').val()==null) {
 
 		Swal.fire({
 			title: "Debe seleccionar al menos un modulo.",
 			icon: "error",
 			showConfirmButton: false,
-			timer: 1500
+			timer: 2000
 		  });
 
 		  panelPermisos();
@@ -103,26 +90,13 @@ function validarModulos(){
 
 function editarValidarModulos(){
 
-    if($("#editarNombre").val()=="" || $("#editarPassword").val()=="" || $("#editarPerfil").val()==""){
-
-		Swal.fire({
-			title: "Completar datos del usuario correctamente.",
-			icon: "error",
-			showConfirmButton: false,
-			timer: 1500
-		  });
-
-		editarPanelDatos();
-
-		return false;
-		
-	}else if ($('.editarCheckModulos:checked').val()==null && $('#editaridUsuario').val()!=1) {
+    if ($('.editarCheckModulos:checked').val()==null && $('#editaridUsuario').val()!=1) {
 
 		Swal.fire({
 			title: "Debe seleccionar al menos un modulo.",
 			icon: "error",
 			showConfirmButton: false,
-			timer: 1500
+			timer: 2000
 		  });
 
 		editarPanelPermisos();
@@ -157,7 +131,22 @@ function panelPermisos(){
 
 }
 $("#navPermisos").click(function(){
-  panelPermisos();
+
+	var nombre = document.getElementById("nuevoNombre");
+	var usuario = document.getElementById("nuevoUsuario");
+	var password = document.getElementById("nuevoPassword");
+	var perfil = document.getElementById("nuevoidPerfil");
+
+	if (!nombre.checkValidity() || !usuario.checkValidity() || !password.checkValidity() || !perfil.checkValidity()) {
+	  
+	  $("#navPermisos").removeClass("active");
+
+	  document.getElementById("guardarUsuario").click();
+	}else{
+	
+		panelPermisos();
+	}
+  
 });
 
 
@@ -180,22 +169,21 @@ function editarPanelPermisos(){
 }
 
 $("#navPermisosEditar").click(function(){
-  editarPanelPermisos();
+
+	var nombre = document.getElementById("editarNombre");
+	var perfil = document.getElementById("editaridPerfil");
+
+	if (!nombre.checkValidity() || !perfil.checkValidity()) {
+	  
+	  $("#navPermisosEditar").removeClass("active");
+
+	  document.getElementById("modificarUsuario").click();
+	}else{
+	
+		editarPanelPermisos();
+	}
+   
 });
-
-
-
-//   $(".guardarUsuario").on("click", function(){
-
-
-// // 	arrayModu=[];
-// // 	arrayModu=$('.checkModulos:checked').val();
-// // 	console.log(arrayModu);
-
-// // 	elem.getAttribute("pattern");
-
-//   })
-
 
 /*=============================================
 SUBIENDO LA FOTO DEL USUARIO
@@ -273,13 +261,11 @@ $(document).on("click", ".btnEditarUsuario", function(){
 			$("#editaridUsuario").val(respuesta["idUsuario"]);
 			$("#editarNombre").val(respuesta["nombre"]);
 			$("#editarUsuario").val(respuesta["usuario"]);
-			$("#editarPerfil").html(respuesta["perfil"]);
-			$("#editarPerfil").val(respuesta["perfil"]);
+			$("#editaridPerfil").val(respuesta["idPerfil"]);
 			$("#passwordActual").val(respuesta["password"]);
+			$("#fotoActual").val(respuesta["foto"]);
 
 			if(respuesta["foto"] != ""){
-
-				$("#fotoActual").val(respuesta["foto"]);
 
 				$(".previsualizar").attr("src", respuesta["foto"]);
 				
@@ -464,9 +450,20 @@ $(document).on("click", ".btnCerrarSesion", function(){
 	}).then(function(result){
   
 	  if(result.value){
+		
+	Swal.fire({
 
-		window.location = 'salir';
-  
+		icon: "success",
+		title: "Sesión cerrada",
+		showConfirmButton: false,
+		timer: 1000
+
+	}).then(function(result){
+
+		window.location = "salir";
+
+	});
+
 	  }
   
 	})

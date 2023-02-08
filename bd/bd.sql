@@ -450,6 +450,14 @@ CREATE TABLE GastoAdminPorMes (
 );
 
 
+-- -----------------------------------------------------
+-- Table perfil
+-- -----------------------------------------------------
+
+CREATE TABLE perfil (
+  idPerfil INT  AUTO_INCREMENT primary key,
+  descripcion VARCHAR(50)
+);
 
 -- -----------------------------------------------------
 -- Table usuario
@@ -457,14 +465,14 @@ CREATE TABLE GastoAdminPorMes (
 
 CREATE TABLE usuario (
   idUsuario INT  AUTO_INCREMENT primary key,
-  nombre VARCHAR(50) NOT NULL COLLATE 'utf8_spanish_ci',
-  usuario VARCHAR(50) NOT NULL COLLATE 'utf8_spanish_ci',
-	password VARCHAR(100) NOT NULL COLLATE 'utf8_spanish_ci',
-	perfil VARCHAR(50) NOT NULL COLLATE 'utf8_spanish_ci',
-	foto VARCHAR(100) NULL DEFAULT NULL COLLATE 'utf8_spanish_ci',
-	estado INT(11) NULL DEFAULT NULL,
-	ultimo_login DATETIME NULL DEFAULT NULL,
-	fecha TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP
+  nombre VARCHAR(50),
+  usuario VARCHAR(50),
+	password VARCHAR(100),
+	foto VARCHAR(100),
+	estado INT,
+	ultimo_login DATETIME,
+	fecha TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
+  idPerfil INT REFERENCES perfil (idPerfil)
 );
 
 -- -----------------------------------------------------
@@ -561,6 +569,7 @@ CREATE TABLE Configuracion (
 
   alter Table UsuarioModulo add foreign key (idUsuario) REFERENCES usuario (idUsuario);
   alter Table UsuarioModulo add foreign key (idModulo) REFERENCES Modulo (idModulo);
+  alter Table Usuario add foreign key (idPerfil) REFERENCES perfil (idPerfil);
 
   alter table MovimientoMaquina add foreign key (idMaquina) REFERENCES Maquina (idMaquina);
   alter table MovimientoMaquina add foreign key (idMovimiento) REFERENCES Movimiento (idMovimiento);

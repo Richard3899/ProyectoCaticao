@@ -6,13 +6,13 @@ session_start();
 <html lang="es">
 
 <?php 
-
   if(isset($_GET["ruta"])){
+
     $url=$_GET["ruta"];
+
   }; 
 
   include "modulos/head.php";
- 
 ?> 
 
 <?php
@@ -65,58 +65,19 @@ foreach ($configuracion as $key => $value){
 
     if(isset($_GET["ruta"])){
 
-      if($_GET["ruta"] == "inicio" ||
-         $_GET["ruta"] == "usuarios" ||
-         $_GET["ruta"] == "configuracion" ||
-         $_GET["ruta"] == "productos" ||
-         $_GET["ruta"] == "insumos" ||
-         $_GET["ruta"] == "marcas" ||
-         $_GET["ruta"] == "materiales" ||
-         $_GET["ruta"] == "maquinas" ||
-         $_GET["ruta"] == "empleados" ||
-         $_GET["ruta"] == "gastoadmin" ||
-         $_GET["ruta"] == "costoventa" ||
-         $_GET["ruta"] == "costomarketing" ||
-         $_GET["ruta"] == "costooperativo" ||
-         $_GET["ruta"] == "inventarioinsumos" ||
-         $_GET["ruta"] == "kardexinsumos" ||
-         $_GET["ruta"] == "inventariomateriales" ||
-         $_GET["ruta"] == "kardexmateriales" ||
-         $_GET["ruta"] == "inventarioproductos" ||
-         $_GET["ruta"] == "kardexproductos" ||
-         $_GET["ruta"] == "inventariomaquinas" ||
-         $_GET["ruta"] == "kardexmaquinas" ||
-         $_GET["ruta"] == "recetas" ||
-         $_GET["ruta"] == "recetainsumos" ||
-         $_GET["ruta"] == "recetamateriales" ||
-         $_GET["ruta"] == "recetamanodeobra" ||
-         $_GET["ruta"] == "recetadepreciacion" ||
-         $_GET["ruta"] == "recetaconsumoenergia" ||
-         $_GET["ruta"] == "recetaconsumogas" ||
-         $_GET["ruta"] == "recetacostoventa" ||
-         $_GET["ruta"] == "recetacostomarketing" ||
-         $_GET["ruta"] == "recetacostooperativo" ||
-         $_GET["ruta"] == "costoreceta" ||
-         $_GET["ruta"] == "costototal" ||
-         $_GET["ruta"] == "costorecetasgastoadmin" ||
-         $_GET["ruta"] == "gastoadminpormes" ||
-         $_GET["ruta"] == "costototalpormes" ||
-         $_GET["ruta"] == "reporteinsumos" ||
-         $_GET["ruta"] == "reportemateriales" ||
-         $_GET["ruta"] == "reporteproductos" ||
-         $_GET["ruta"] == "salir"){
+      if(in_array($_GET["ruta"], $_SESSION["descripcionModulos"])){
 
-        include "modulos/".$_GET["ruta"].".php";
-
+          include "modulos/".$_GET["ruta"].".php";
+          
       }else{
 
-        include "modulos/404.php";
+          include "modulos/bienvenida.php";
 
       }
 
     }else{
 
-      include "modulos/inicio.php";
+         include "modulos/bienvenida.php";
 
     }
 
