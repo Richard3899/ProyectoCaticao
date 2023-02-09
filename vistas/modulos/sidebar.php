@@ -32,7 +32,7 @@ if($value["modoDark"] == 1){
 
           <?php if (in_array(1, $_SESSION["idModulos"])){
           echo "<li class='nav-item'>
-            <a href='inicio' class='nav-link "; if($url=='inicio'){ echo "active"; } echo "'>
+            <a href='inicio' class='nav-link "; if($url=='inicio'){ echo "active"; } echo"'>
               <i class='nav-icon fas fa-tachometer-alt'></i>
               <p>
                 Dashboard
@@ -41,147 +41,193 @@ if($value["modoDark"] == 1){
           </li>";}
           ?>
 
-          <li class="nav-item <?php if(in_array($url, array('insumos', 'materiales','marcas','productos','maquinas','empleados','gastoadmin', 'costoventa','costomarketing','costooperativo'))){ echo "menu-open"; }?>">
-            <a href="#" class="nav-link <?php if(in_array($url, array('insumos', 'materiales','marcas','productos','maquinas','empleados','gastoadmin', 'costoventa','costomarketing','costooperativo'))){ echo "active"; }?>">
-              <i class="nav-icon fas fa-pen"></i>
+          <?php 
+          $idModulosRegistro=array(2,3,4,5,6,7,8,9,10,11);
+          $descripcionModulosRegistro=array('insumos', 'materiales','marcas','productos','maquinas','empleados','gastoadmin', 'costoventa','costomarketing','costooperativo');
+          ?>
+
+          <?php if (array_intersect($idModulosRegistro,$_SESSION["idModulos"])){
+            echo "<li class='nav-item "; if(in_array($url,$descripcionModulosRegistro) && in_array($url,$_SESSION["descripcionModulos"])){ echo "menu-open"; } echo"'>
+            <a href='#' class='nav-link "; if(in_array($url,$descripcionModulosRegistro) && in_array($url,$_SESSION["descripcionModulos"])){ echo "active"; } echo"'>
+              <i class='nav-icon fas fa-pen'></i>
               <p>
                 Registros
-                <i class="right fas fa-angle-left"></i>
+                <i class='right fas fa-angle-left'></i>
               </p>
             </a>
 
-            <ul class="nav nav-treeview">
-              <li class="nav-item <?php if(in_array($url, array('insumos', 'materiales','marcas'))){ echo "menu-open"; }?>">
-                <a href="#" class="nav-link <?php if(in_array($url, array('insumos', 'materiales','marcas'))){ echo "active"; }?>">
-                  <i class="nav-icon fas fa-angle-double-right"></i>
+            <ul class='nav nav-treeview'>";
+
+            $descripcionModulosIMM=array('insumos', 'materiales','marcas');
+
+            if (array_intersect(array(2,3,4),$_SESSION["idModulos"])){
+              echo "<li class='nav-item "; if(in_array($url,$descripcionModulosIMM) && in_array($url,$_SESSION["descripcionModulos"])){ echo "menu-open"; } echo"'>
+                <a href='#' class='nav-link "; if(in_array($url,$descripcionModulosIMM) && in_array($url,$_SESSION["descripcionModulos"])){ echo "active"; } echo"'>
+                  <i class='nav-icon fas fa-angle-double-right'></i>
                   <p>Insumos y Materiales
-                  <i class="right fas fa-angle-left"></i>
+                  <i class='right fas fa-angle-left'></i>
                   </p>
                 </a>
-                <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="insumos" class="nav-link <?php if($url=='insumos'){ echo "active"; }?>">
-                  <i class="nav-icon fas fa-angle-right"></i>
+              <ul class='nav nav-treeview'>";
+
+              if (in_array(2, $_SESSION["idModulos"])){
+              echo "<li class='nav-item'>
+                <a href='insumos' class='nav-link "; if($url=='insumos'){ echo "active"; } echo"'>
+                  <i class='nav-icon fas fa-angle-right'></i>
                   <p>Insumos</p>
                 </a>
-              </li>
-              <li class="nav-item">
-                <a href="materiales" class="nav-link <?php if($url=='materiales'){ echo "active"; }?>">
-                <i class="nav-icon fas fa-angle-right"></i>
+              </li>";}
+
+              if (in_array(3, $_SESSION["idModulos"])){
+              echo "<li class='nav-item'>
+                <a href='materiales' class='nav-link "; if($url=='materiales'){ echo "active"; } echo"'>
+                <i class='nav-icon fas fa-angle-right'></i>
                   <p>Materiales</p>
                 </a>
-              </li>
-              <li class="nav-item">
-                <a href="marcas" class="nav-link <?php if($url=='marcas'){ echo "active"; }?>">
-                <i class="nav-icon fas fa-angle-right"></i>
+              </li>";}
+
+              if (in_array(4, $_SESSION["idModulos"])){
+              echo "<li class='nav-item'>
+                <a href='marcas' class='nav-link "; if($url=='marcas'){ echo "active"; } echo"'>
+                <i class='nav-icon fas fa-angle-right'></i>
                   <p>Marcas</p>
                 </a>
-              </li>
-               </ul>
-              </li>
+              </li>";}
 
-              <li class="nav-item">
-                <a href="productos" class="nav-link <?php if($url=='productos'){ echo "active"; }?>">
-                <i class="nav-icon fas fa-angle-double-right"></i>
+              echo "</ul>
+              </li>";}
+
+              if (in_array(5, $_SESSION["idModulos"])){
+              echo "<li class='nav-item'>
+                <a href='productos' class='nav-link "; if($url=='productos'){ echo "active"; } echo"'>
+                <i class='nav-icon fas fa-angle-double-right'></i>
                   <p>Productos</p>
                 </a>
-              </li>
+              </li>";}
 
-              <li class="nav-item">
-                <a href="maquinas" class="nav-link <?php if($url=='maquinas'){ echo "active"; }?>">
-                <i class="nav-icon fas fa-angle-double-right"></i>
+              if (in_array(6, $_SESSION["idModulos"])){
+              echo "<li class='nav-item'>
+                <a href='maquinas' class='nav-link "; if($url=='maquinas'){ echo "active"; } echo"'>
+                <i class='nav-icon fas fa-angle-double-right'></i>
                   <p>Maquinas</p>
                 </a>
-              </li>
+              </li>";}
 
-              <li class="nav-item">
-                <a href="empleados" class="nav-link <?php if($url=='empleados'){ echo "active"; }?>">
-                <i class="nav-icon fas fa-angle-double-right"></i>
+              if (in_array(7, $_SESSION["idModulos"])){
+              echo "<li class='nav-item'>
+                <a href='empleados' class='nav-link "; if($url=='empleados'){ echo "active"; } echo"'>
+                <i class='nav-icon fas fa-angle-double-right'></i>
                   <p>Empleados</p>
                 </a>
-              </li>
+              </li>";}
 
+              $descripcionModulosGCCC=array('gastoadmin', 'costoventa','costomarketing','costooperativo');
 
-              <li class="nav-item <?php if(in_array($url, array('gastoadmin', 'costoventa','costomarketing','costooperativo'))){ echo "menu-open"; }?>">
-                <a href="#" class="nav-link <?php if(in_array($url, array('gastoadmin', 'costoventa','costomarketing','costooperativo'))){ echo "active"; }?>">
-                  <i class="nav-icon fas fa-angle-double-right"></i>
+              if (array_intersect(array(8,9,10,11),$_SESSION["idModulos"])){
+              echo "<li class='nav-item "; if(in_array($url,$descripcionModulosGCCC) && in_array($url,$_SESSION["descripcionModulos"])){ echo "menu-open"; } echo"'>
+                <a href='#' class='nav-link "; if(in_array($url,$descripcionModulosGCCC) && in_array($url,$_SESSION["descripcionModulos"])){ echo "active"; } echo"'>
+                  <i class='nav-icon fas fa-angle-double-right'></i>
                   <p>Gastos y Costos
-                  <i class="right fas fa-angle-left"></i>
+                  <i class='right fas fa-angle-left'></i>
                   </p>
                 </a>
                 
-                <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="gastoadmin" class="nav-link <?php if($url=='gastoadmin'){ echo "active"; }?>">
-                  <i class="nav-icon fas fa-angle-right"></i>
+              <ul class='nav nav-treeview'>";
+
+              if (in_array(8, $_SESSION["idModulos"])){
+              echo "<li class='nav-item'>
+                <a href='gastoadmin' class='nav-link "; if($url=='gastoadmin'){ echo "active"; } echo"'>
+                  <i class='nav-icon fas fa-angle-right'></i>
                   <p>Gastos Admin</p>
                 </a>
-              </li>
-              <li class="nav-item">
-                <a href="costoventa" class="nav-link <?php if($url=='costoventa'){ echo "active"; }?>">
-                <i class="nav-icon fas fa-angle-right"></i>
+              </li>";}
+
+              if (in_array(9, $_SESSION["idModulos"])){
+              echo "<li class='nav-item'>
+                <a href='costoventa' class='nav-link "; if($url=='costoventa'){ echo "active"; } echo"'>
+                <i class='nav-icon fas fa-angle-right'></i>
                   <p>Costos de Ventas</p>
                 </a>
-              </li>
-              <li class="nav-item">
-                <a href="costomarketing" class="nav-link <?php if($url=='costomarketing'){ echo "active"; }?>">
-                <i class="nav-icon fas fa-angle-right"></i>
+              </li>";}
+
+              if (in_array(10, $_SESSION["idModulos"])){
+              echo "<li class='nav-item'>
+                <a href='costomarketing' class='nav-link "; if($url=='costomarketing'){ echo "active"; } echo"'>
+                <i class='nav-icon fas fa-angle-right'></i>
                   <p>Costos de Marketing</p>
                 </a>
-              </li>
-              <li class="nav-item">
-                <a href="costooperativo" class="nav-link <?php if($url=='costooperativo'){ echo "active"; }?>">
-                <i class="nav-icon fas fa-angle-right"></i>
+              </li>";}
+
+              if (in_array(11, $_SESSION["idModulos"])){
+              echo "<li class='nav-item'>
+                <a href='costooperativo' class='nav-link "; if($url=='costooperativo'){ echo "active"; } echo"'>
+                <i class='nav-icon fas fa-angle-right'></i>
                   <p>Costos Operativos</p>
                 </a>
-              </li>
-            </ul>
-              </li>
-            </ul>
-            
-          </li>
+              </li>";}
 
-          <li class="nav-item <?php if (in_array($url, array('inventariomateriales', 'inventarioinsumos','inventarioproductos','inventariomaquinas','kardexinsumos','kardexmateriales','kardexproductos','kardexmaquinas'))){echo "menu-open";}?>">
-            <a href="#" class="nav-link <?php if(in_array($url, array('inventariomateriales', 'inventarioinsumos','inventarioproductos','inventariomaquinas','kardexinsumos','kardexmateriales','kardexproductos','kardexmaquinas'))){ echo "active"; }?>">
-              <i class="nav-icon fas fa-box"></i>
+            echo "</ul>
+            </li>";}
+
+            echo "</ul>
+            
+          </li>";}?>
+
+          <?php 
+          $idModulosInventario=array(12,13,14,15);
+          $descripcionModulosInventario=array('inventariomateriales', 'inventarioinsumos','inventarioproductos','inventariomaquinas','kardexinsumos','kardexmateriales','kardexproductos','kardexmaquinas');
+          ?>
+          
+          <?php if (array_intersect($idModulosInventario,$_SESSION["idModulos"])){
+          echo "<li class='nav-item "; if (in_array($url,$descripcionModulosInventario) && in_array($url,$_SESSION["descripcionModulos"])){echo "menu-open";} echo"'>
+            <a href='#' class='nav-link "; if(in_array($url,$descripcionModulosInventario) && in_array($url,$_SESSION["descripcionModulos"])){ echo "active"; } echo"'>
+              <i class='nav-icon fas fa-box'></i>
               <p>
                 Inventario
-                <i class="right fas fa-angle-left"></i>
+                <i class='right fas fa-angle-left'></i>
               </p>
             </a>
 
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="inventarioinsumos" class="nav-link <?php if(in_array($url, array('inventarioinsumos','kardexinsumos'))){ echo "active"; }?>">
-                <i class="nav-icon fas fa-angle-double-right"></i>
+            <ul class='nav nav-treeview'>";
+
+              if (in_array(12, $_SESSION["idModulos"])){
+              echo "<li class='nav-item'>
+                <a href='inventarioinsumos' class='nav-link "; if(in_array($url, array('inventarioinsumos','kardexinsumos'))){ echo "active"; } echo"'>
+                <i class='nav-icon fas fa-angle-double-right'></i>
                   <p>Inventario Insumos</p>
                 </a>
-              </li>
-
-              <li class="nav-item">
-                <a href="inventariomateriales" class="nav-link <?php if(in_array($url, array('inventariomateriales','kardexmateriales'))){ echo "active"; }?>">
-                <i class="nav-icon fas fa-angle-double-right"></i>
+              </li>";}
+              
+              if (in_array(13, $_SESSION["idModulos"])){
+              echo "<li class='nav-item'>
+                <a href='inventariomateriales' class='nav-link "; if(in_array($url, array('inventariomateriales','kardexmateriales'))){ echo "active"; } echo"'>
+                <i class='nav-icon fas fa-angle-double-right'></i>
                   <p>Inventario Materiales</p>
                 </a>
-              </li>
+              </li>";}
 
-              <li class="nav-item">
-                <a href="inventarioproductos" class="nav-link <?php if(in_array($url, array('inventarioproductos','kardexproductos'))){ echo "active"; }?>">
-                <i class="nav-icon fas fa-angle-double-right"></i>
+              if (in_array(14, $_SESSION["idModulos"])){
+              echo "<li class='nav-item'>
+                <a href='inventarioproductos' class='nav-link "; if(in_array($url, array('inventarioproductos','kardexproductos'))){ echo "active"; } echo"'>
+                <i class='nav-icon fas fa-angle-double-right'></i>
                   <p>Inventario Productos</p>
                 </a>
-              </li>
-              <li class="nav-item">
-                <a href="inventariomaquinas" class="nav-link <?php if(in_array($url, array('inventariomaquinas','kardexmaquinas'))){ echo "active"; }?>">
-                <i class="nav-icon fas fa-angle-double-right"></i>
+              </li>";}
+
+              if (in_array(15, $_SESSION["idModulos"])){
+              echo "<li class='nav-item'>
+                <a href='inventariomaquinas' class='nav-link "; if(in_array($url, array('inventariomaquinas','kardexmaquinas'))){ echo "active"; }echo"'>
+                <i class='nav-icon fas fa-angle-double-right'></i>
                   <p>Inventario Maquinas</p>
                 </a>
-              </li>
-            </ul>
-            
-          </li>
+              </li>";}
 
-          <?php if (in_array(16, $_SESSION["idModulos"])){
+          echo"</ul>
+            
+          </li>";}
+          ?>
+
+          <?php if ((array_intersect(array(16),$_SESSION["idModulos"]))){
           echo "<li class='nav-item "; if($url=='recetas'){ echo "menu-open"; } echo "'>
             <a href='#' class='nav-link "; if($url=='recetas'){ echo "active"; } echo "'>
               <i class='nav-icon fas fa-receipt'></i>
@@ -189,48 +235,60 @@ if($value["modoDark"] == 1){
                 Operaciones
                 <i class='right fas fa-angle-left'></i>
               </p>
-            </a>";
+            </a>
+          <ul class='nav nav-treeview'>";
+
           if (in_array(16, $_SESSION["idModulos"])){
-            echo "<ul class='nav nav-treeview'>
-              <li class='nav-item'>
+          echo "<li class='nav-item'>
                 <a href='recetas' class='nav-link "; if($url=='recetas'){ echo "active"; } echo "'>
                 <i class='nav-icon fas fa-angle-double-right'></i>
                   <p>Receta</p>
                 </a>
-              </li>
-            </ul>
+                </li>";}
+
+          echo "</ul>
           </li>";}
-          }
           ?>
 
-          <li class="nav-item <?php if (in_array($url, array('costoreceta','costototal','costorecetasgastoadmin','gastoadminpormes','costototalpormes'))){echo "menu-open";}?>">
-          <a href="#" class="nav-link <?php if(in_array($url, array('costoreceta','costototal','costorecetasgastoadmin','gastoadminpormes','costototalpormes'))){ echo "active"; }?>">
-              <i class="nav-icon fas fa-money-bill"></i>
+          <?php 
+          $idModulosCostos=array(17,18);
+          $descripcionModulosCostos=array('costoreceta','costototal','costorecetasgastoadmin','gastoadminpormes','costototalpormes');
+          ?>
+
+          <?php if((array_intersect($idModulosCostos,$_SESSION["idModulos"]))){ 
+          echo "<li class='nav-item "; if (in_array($url,$descripcionModulosCostos) && in_array($url,$_SESSION["descripcionModulos"])){echo "menu-open";} echo"'>
+          <a href='#' class='nav-link "; if(in_array($url,$descripcionModulosCostos) && in_array($url,$_SESSION["descripcionModulos"])){ echo "active"; } echo"'>
+              <i class='nav-icon fas fa-money-bill'></i>
               <p>
                 Costos
-                <i class="right fas fa-angle-left"></i>
+                <i class='right fas fa-angle-left'></i>
               </p>
             </a>
 
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="costoreceta" class="nav-link <?php if(in_array($url, array('costoreceta','costototal'))){ echo "active"; }?>">
-                <i class="nav-icon fas fa-angle-double-right"></i>
+            <ul class='nav nav-treeview'>";
+
+            if(in_array(17, $_SESSION["idModulos"])){ 
+              echo "<li class='nav-item'>
+                <a href='costoreceta' class='nav-link "; if(in_array($url, array('costoreceta','costototal'))){ echo "active"; } echo"'>
+                <i class='nav-icon fas fa-angle-double-right'></i>
                   <p>Costo de Receta</p>
                 </a>
-              </li>
-
-              <li class="nav-item">
-                <a href="costorecetasgastoadmin" class="nav-link <?php if(in_array($url, array('costorecetasgastoadmin','gastoadminpormes','costototalpormes'))){ echo "active"; }?>">
-                <i class="nav-icon fas fa-angle-double-right"></i>
+              </li>";}
+            
+            if(in_array(18, $_SESSION["idModulos"])){ 
+              echo "<li class='nav-item'>
+                <a href='costorecetasgastoadmin' class='nav-link "; if(in_array($url, array('costorecetasgastoadmin','gastoadminpormes','costototalpormes'))){ echo "active"; } echo"'>
+                <i class='nav-icon fas fa-angle-double-right'></i>
                   <p>C. Receta y G. Admin</p>
                 </a>
-              </li>
-            </ul>
-            
-          </li>
+              </li>";}
 
-          <?php if(1==1){ 
+           echo "</ul>
+            
+          </li>";}
+          ?>
+
+          <?php if(in_array(19, $_SESSION["idModulos"])){ 
             echo "<li class='nav-item'>
             <a href='usuarios' class='nav-link "; if($url=='usuarios'){ echo 'active'; }; echo "'>
               <i class='nav-icon fas fa-user'></i>
@@ -241,38 +299,56 @@ if($value["modoDark"] == 1){
           </li>";}
           ?>
 
-          <li class="nav-item <?php if (in_array($url, array('reporteinsumos','reportemateriales','reporteproductos'))){echo "menu-open";}?>">
-          <a href="#" class="nav-link <?php if(in_array($url, array('reporteinsumos','reportemateriales','reporteproductos'))){ echo "active"; }?>">
-              <i class="nav-icon fas fa-chart-line"></i>
+          <?php 
+          $idModulosReportes=array(20,21,22);
+          $descripcionModulosReportes=array('reporteinsumos','reportemateriales','reporteproductos');
+          ?>
+
+          <?php if ((array_intersect($idModulosReportes,$_SESSION["idModulos"]))){
+          echo"<li class='nav-item "; if (in_array($url,$descripcionModulosReportes) && in_array($url,$_SESSION["descripcionModulos"])){echo "menu-open";} echo"'>
+          <a href='#' class='nav-link "; if(in_array($url,$descripcionModulosReportes) && in_array($url,$_SESSION["descripcionModulos"])){ echo "active"; } echo"'>
+              <i class='nav-icon fas fa-chart-line'></i>
               <p>
                 Reportes
-                <i class="right fas fa-angle-left"></i>
+                <i class='right fas fa-angle-left'></i>
               </p>
           </a>
 
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="reporteinsumos" class="nav-link <?php if(in_array($url, array('reporteinsumos'))){ echo "active"; }?>">
-                <i class="nav-icon fas fa-angle-double-right"></i>
+            <ul class='nav nav-treeview'>";
+              
+            if (in_array(20, $_SESSION["idModulos"])){
+              echo "<li class='nav-item'>
+                <a href='reporteinsumos' class='nav-link "; if($url=='reporteinsumos'){ echo "active"; }echo"'>
+                <i class='nav-icon fas fa-angle-double-right'></i>
                   <p>Reporte Insumos</p>
                 </a>
-              </li>
-              <li class="nav-item">
-                <a href="reportemateriales" class="nav-link <?php if(in_array($url, array('reportemateriales'))){ echo "active"; }?>">
-                <i class="nav-icon fas fa-angle-double-right"></i>
+              </li>";
+            }
+
+            if (in_array(21, $_SESSION["idModulos"])){
+              echo "<li class='nav-item'>
+                <a href='reportemateriales' class='nav-link "; if($url=='reportemateriales'){ echo "active"; } echo"'>
+                <i class='nav-icon fas fa-angle-double-right'></i>
                   <p>Reporte Materiales</p>
                 </a>
-              </li>
-              <li class="nav-item">
-                <a href="reporteproductos" class="nav-link <?php if(in_array($url, array('reporteproductos'))){ echo "active"; }?>">
-                <i class="nav-icon fas fa-angle-double-right"></i>
+              </li>";
+            }
+
+            if (in_array(22, $_SESSION["idModulos"])){
+              echo "<li class='nav-item'>
+                <a href='reporteproductos' class='nav-link ";if($url=='reporteproductos'){ echo "active"; } echo"'>
+                <i class='nav-icon fas fa-angle-double-right'></i>
                   <p>Reporte Productos</p>
                 </a>
-              </li>
-            </ul>
+              </li>";
+            }
+
+          echo"</ul>
             
-          </li>
-          <?php if (in_array(1, $_SESSION["idModulos"])){
+          </li>";
+          }?>
+
+          <?php if (in_array(23, $_SESSION["idModulos"])){
           echo "<li class='nav-item'>
             <a href='configuracion' class='nav-link ";if($url=='configuracion'){ echo 'active'; } echo"'>
               <i class='nav-icon fas fa-gear'></i>

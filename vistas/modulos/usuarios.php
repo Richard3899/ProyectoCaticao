@@ -210,7 +210,7 @@ MODAL AGREGAR USUARIO
         <div id="pInicio" class="collapse">
             <div class="card-body">
               <div class="icheck-primary">
-                  <input class="checkModulos" type="checkbox" value="1" id="cbInicio" name="checkListPermisos[]">
+                  <input class="checkModulos" type="checkbox" id="cbInicio" value="1" name="checkListPermisos[]">
                   <label for="cbInicio"> Dashboard</label>
               </div>
             </div>
@@ -275,6 +275,103 @@ MODAL AGREGAR USUARIO
 
             </div>
           </div>
+
+          <a class="btn btn-outline-primary collapsed my-1 text-left" data-toggle="collapse" data-target="#pInventario">
+            <i class="fas fa-box px-2"></i> Inventario
+            </a>
+            <div id="pInventario" class="collapse">
+                <div class="card-body">
+                  <div class="icheck-primary">
+                      <input class="checkModulos" type="checkbox" id="cbInventarioInsumos" value="12" name="checkListPermisos[]">
+                      <label for="cbInventarioInsumos">Inventario Insumos</label>
+                  </div>
+                  <div class="icheck-primary">
+                      <input class="checkModulos" type="checkbox" id="cbInventarioMateriales" value="13" name="checkListPermisos[]">
+                      <label for="cbInventarioMateriales">Inventario Materiales</label>
+                  </div>
+                  <div class="icheck-primary">
+                      <input class="checkModulos" type="checkbox" id="cbInventarioProductos" value="14" name="checkListPermisos[]">
+                      <label for="cbInventarioProductos">Inventario Productos</label>
+                  </div>
+                  <div class="icheck-primary">
+                      <input class="checkModulos" type="checkbox" id="cbInventarioMaquinas" value="15" name="checkListPermisos[]">
+                      <label for="cbInventarioMaquinas">Inventario Maquinas</label>
+                  </div>                 
+                </div>
+            </div>
+
+            <a class="btn btn-outline-primary collapsed my-1 text-left" data-toggle="collapse" data-target="#pOperaciones">
+            <i class="fas fa-receipt px-2"></i> Operaciones
+            </a>
+            <div id="pOperaciones" class="collapse">
+                <div class="card-body">
+                  <div class="icheck-primary">
+                      <input class="checkModulos" type="checkbox" id="cbRecetas" value="16" name="checkListPermisos[]">
+                      <label for="cbRecetas">Receta</label>
+                  </div>                
+                </div>
+            </div>
+
+            <a class="btn btn-outline-primary collapsed my-1 text-left" data-toggle="collapse" data-target="#pCostos">
+            <i class="fas fa-money-bill px-2"></i> Costos
+            </a>
+            <div id="pCostos" class="collapse">
+                <div class="card-body">
+                  <div class="icheck-primary">
+                      <input class="checkModulos" type="checkbox" id="cbCostoReceta" value="17" name="checkListPermisos[]">
+                      <label for="cbCostoReceta">Costo de Receta</label>
+                  </div>   
+                  <div class="icheck-primary">
+                      <input class="checkModulos" type="checkbox" id="cbCostoRecetasGastoAdmin" value="18" name="checkListPermisos[]">
+                      <label for="cbCostoRecetasGastoAdmin">C. Receta y G. Admin</label>
+                  </div>              
+                </div>
+            </div>
+
+            <a class="btn btn-outline-primary collapsed my-1 text-left" data-toggle="collapse" data-target="#pUsuarios">
+            <i class="fas fa-user px-2"></i> Usuarios
+            </a>
+            <div id="pUsuarios" class="collapse">
+                <div class="card-body">
+                  <div class="icheck-primary">
+                      <input class="checkModulos" type="checkbox" id="cbUsuarios" value="19" name="checkListPermisos[]">
+                      <label for="cbUsuarios">Usuarios</label>
+                  </div>            
+                </div>
+            </div> 
+
+            <a class="btn btn-outline-primary collapsed my-1 text-left" data-toggle="collapse" data-target="#pReportes">
+            <i class="fas fa-chart-line px-2"></i> Reportes
+            </a>
+            <div id="pReportes" class="collapse">
+                <div class="card-body">
+                  <div class="icheck-primary">
+                      <input class="checkModulos" type="checkbox" id="cbReporteInsumos" value="20" name="checkListPermisos[]">
+                      <label for="cbReporteInsumos">Reporte de Insumos</label>
+                  </div>    
+                  <div class="icheck-primary">
+                      <input class="checkModulos" type="checkbox" id="cbReportemateriales" value="21" name="checkListPermisos[]">
+                      <label for="cbReportemateriales">Reporte de Materiales</label>
+                  </div> 
+                  <div class="icheck-primary">
+                      <input class="checkModulos" type="checkbox" id="cbReporteProductos" value="22" name="checkListPermisos[]">
+                      <label for="cbReporteProductos">Reporte de Productos</label>
+                  </div>           
+                </div>
+            </div> 
+            
+            <a class="btn btn-outline-primary collapsed my-1 text-left" data-toggle="collapse" data-target="#pConfiguracion">
+            <i class="fas fa-gear px-2"></i> Configuración
+            </a>
+            <div id="pConfiguracion" class="collapse">
+                <div class="card-body">
+                  <div class="icheck-primary">
+                      <input class="checkModulos" type="checkbox" id="cbConfiguracion" value="23" name="checkListPermisos[]">
+                      <label for="cbConfiguracion">Configuración</label>
+                  </div>            
+                </div>
+            </div>  
+
          </div>
         </div>
 
@@ -553,6 +650,66 @@ MODAL EDITAR USUARIO
                   </div>                
                 </div>
             </div>
+
+            <a class="btn btn-outline-primary collapsed my-1 text-left" data-toggle="collapse" data-target="#editarpCostos">
+            <i class="fas fa-money-bill px-2"></i> Costos
+            </a>
+            <div id="editarpCostos" class="collapse">
+                <div class="card-body">
+                  <div class="icheck-primary">
+                      <input class="editarCheckModulos" type="checkbox" id="costoreceta" value="17" name="editarCheckListPermisos[]">
+                      <label for="costoreceta">Costo de Receta</label>
+                  </div>   
+                  <div class="icheck-primary">
+                      <input class="editarCheckModulos" type="checkbox" id="costorecetasgastoadmin" value="18" name="editarCheckListPermisos[]">
+                      <label for="costorecetasgastoadmin">C. Receta y G. Admin</label>
+                  </div>              
+                </div>
+            </div>
+
+            <a class="btn btn-outline-primary collapsed my-1 text-left" data-toggle="collapse" data-target="#editarpUsuarios">
+            <i class="fas fa-user px-2"></i> Usuarios
+            </a>
+            <div id="editarpUsuarios" class="collapse">
+                <div class="card-body">
+                  <div class="icheck-primary">
+                      <input class="editarCheckModulos" type="checkbox" id="usuarios" value="19" name="editarCheckListPermisos[]">
+                      <label for="usuarios">Usuarios</label>
+                  </div>            
+                </div>
+            </div> 
+
+            <a class="btn btn-outline-primary collapsed my-1 text-left" data-toggle="collapse" data-target="#editarpReportes">
+            <i class="fas fa-chart-line px-2"></i> Reportes
+            </a>
+            <div id="editarpReportes" class="collapse">
+                <div class="card-body">
+                  <div class="icheck-primary">
+                      <input class="editarCheckModulos" type="checkbox" id="reporteinsumos" value="20" name="editarCheckListPermisos[]">
+                      <label for="reporteinsumos">Reporte de Insumos</label>
+                  </div>    
+                  <div class="icheck-primary">
+                      <input class="editarCheckModulos" type="checkbox" id="reportemateriales" value="21" name="editarCheckListPermisos[]">
+                      <label for="reportemateriales">Reporte de Materiales</label>
+                  </div> 
+                  <div class="icheck-primary">
+                      <input class="editarCheckModulos" type="checkbox" id="reporteproductos" value="22" name="editarCheckListPermisos[]">
+                      <label for="reporteproductos">Reporte de Productos</label>
+                  </div>           
+                </div>
+            </div> 
+            
+            <a class="btn btn-outline-primary collapsed my-1 text-left" data-toggle="collapse" data-target="#editarpConfiguracion">
+            <i class="fas fa-gear px-2"></i> Configuración
+            </a>
+            <div id="editarpConfiguracion" class="collapse">
+                <div class="card-body">
+                  <div class="icheck-primary">
+                      <input class="editarCheckModulos" type="checkbox" id="configuracion" value="23" name="editarCheckListPermisos[]">
+                      <label for="configuracion">Configuración</label>
+                  </div>            
+                </div>
+            </div>  
 
              </div>
             </div>

@@ -77,7 +77,7 @@ class ControladorUsuarios{
 							Swal.fire({
 
 							icon: "success",
-							title: "Bienvenido al sistema",
+							title: "Bienvenido(a) al sistema",
 							showConfirmButton: false,
 							timer: 1500
 

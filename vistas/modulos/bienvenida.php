@@ -11,7 +11,8 @@
           <div class="col-sm-6 border border-white" style="text-align:center;">
             <br>
             <br>
-            <h1 >Bienvenido(a) al sistema : </h1>
+            <!-- <h1>Bienvenido(a) al sistema : </h1> -->
+            <h1>Hola</h1>
             <br>
             <br>
             <?php echo "<h1>".$_SESSION['nombre']."</h1>" ?>
