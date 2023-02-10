@@ -34983,19 +34983,6 @@ a.close.disabled, a.disabled.mailbox-attachment-close {
   justify-content: center;
 }
 
-.login-page #back{
-  position: absolute;
-  top:0;
-  left:0;
-  width:100%;
-  height:100vh;
-  background: url(../../img/plantilla/pordefinir.png);
-  background-size:cover;
-  overflow:hidden;
-  z-index:-1;
-
-}
-
 .login-box,
 .register-box {
   width: 360px;

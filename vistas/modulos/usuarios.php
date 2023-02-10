@@ -101,7 +101,7 @@ MODAL AGREGAR USUARIO
               <a class="nav-link active" id="navDatos" type="button">Datos</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" id="navPermisos" type="button">Permisos</a>
+              <a class="nav-link" id="navPermisos" type="button">Modulos y Permisos</a>
             </li>
         </ul>
         <div class="collapse show" id="panelDatos">
@@ -210,7 +210,7 @@ MODAL AGREGAR USUARIO
         <div id="pInicio" class="collapse">
             <div class="card-body">
               <div class="icheck-primary">
-                  <input class="checkModulos" type="checkbox" id="cbInicio" value="1" name="checkListPermisos[]">
+                  <input class="checkModulos" type="checkbox" id="cbInicio" value="1" name="checkListModulos[]">
                   <label for="cbInicio"> Dashboard</label>
               </div>
             </div>
@@ -224,52 +224,52 @@ MODAL AGREGAR USUARIO
             <div class="card-body">
              
               <div class="icheck-primary">
-                  <input class="checkModulos" type="checkbox" id="cbInsumos" value="2" name="checkListPermisos[]">
+                  <input class="checkModulos" type="checkbox" id="cbInsumos" value="2" name="checkListModulos[]">
                   <label for="cbInsumos">Insumos</label>
               </div>
               
               <div class="icheck-primary">
-                  <input class="checkModulos" type="checkbox" id="cbMateriales" value="3" name="checkListPermisos[]">
+                  <input class="checkModulos" type="checkbox" id="cbMateriales" value="3" name="checkListModulos[]">
                   <label for="cbMateriales">Materiales</label>
               </div>
 
               <div class="icheck-primary">
-                  <input class="checkModulos" type="checkbox" id="cbMarcas" value="4" name="checkListPermisos[]">
+                  <input class="checkModulos" type="checkbox" id="cbMarcas" value="4" name="checkListModulos[]">
                   <label for="cbMarcas">Marcas</label>
               </div>
 
               <div class="icheck-primary">
-                  <input class="checkModulos" type="checkbox" id="cbProductos" value="5" name="checkListPermisos[]">
+                  <input class="checkModulos" type="checkbox" id="cbProductos" value="5" name="checkListModulos[]">
                   <label for="cbProductos">Productos</label>
               </div>
               
               <div class="icheck-primary">
-                  <input class="checkModulos" type="checkbox" id="cbMaquinas" value="6" name="checkListPermisos[]">
+                  <input class="checkModulos" type="checkbox" id="cbMaquinas" value="6" name="checkListModulos[]">
                   <label for="cbMaquinas">Maquinas</label>
               </div>
 
               <div class="icheck-primary">
-                  <input class="checkModulos" type="checkbox" id="cbEmpleados" value="7" name="checkListPermisos[]">
+                  <input class="checkModulos" type="checkbox" id="cbEmpleados" value="7" name="checkListModulos[]">
                   <label for="cbEmpleados">Empleados</label>
               </div>
 
               <div class="icheck-primary">
-                  <input class="checkModulos" type="checkbox" id="cbGastoAdmin" value="8" name="checkListPermisos[]">
+                  <input class="checkModulos" type="checkbox" id="cbGastoAdmin" value="8" name="checkListModulos[]">
                   <label for="cbGastoAdmin">Gasto Administrativo</label>
               </div>
 
               <div class="icheck-primary">
-                  <input class="checkModulos" type="checkbox" id="cbCostoVenta" value="9" name="checkListPermisos[]">
+                  <input class="checkModulos" type="checkbox" id="cbCostoVenta" value="9" name="checkListModulos[]">
                   <label for="cbCostoVenta">Costo de Venta</label>
               </div>
 
               <div class="icheck-primary">
-                  <input class="checkModulos" type="checkbox" id="cbCostoMarketing" value="10" name="checkListPermisos[]">
+                  <input class="checkModulos" type="checkbox" id="cbCostoMarketing" value="10" name="checkListModulos[]">
                   <label for="cbCostoMarketing">Costo de Marketing</label>
               </div>
 
               <div class="icheck-primary">
-                  <input class="checkModulos" type="checkbox" id="cbCostoOperativo" value="11" name="checkListPermisos[]">
+                  <input class="checkModulos" type="checkbox" id="cbCostoOperativo" value="11" name="checkListModulos[]">
                   <label for="cbCostoOperativo">Costo Operativo</label>
               </div>
 
@@ -282,19 +282,19 @@ MODAL AGREGAR USUARIO
             <div id="pInventario" class="collapse">
                 <div class="card-body">
                   <div class="icheck-primary">
-                      <input class="checkModulos" type="checkbox" id="cbInventarioInsumos" value="12" name="checkListPermisos[]">
+                      <input class="checkModulos" type="checkbox" id="cbInventarioInsumos" value="12" name="checkListModulos[]">
                       <label for="cbInventarioInsumos">Inventario Insumos</label>
                   </div>
                   <div class="icheck-primary">
-                      <input class="checkModulos" type="checkbox" id="cbInventarioMateriales" value="13" name="checkListPermisos[]">
+                      <input class="checkModulos" type="checkbox" id="cbInventarioMateriales" value="13" name="checkListModulos[]">
                       <label for="cbInventarioMateriales">Inventario Materiales</label>
                   </div>
                   <div class="icheck-primary">
-                      <input class="checkModulos" type="checkbox" id="cbInventarioProductos" value="14" name="checkListPermisos[]">
+                      <input class="checkModulos" type="checkbox" id="cbInventarioProductos" value="14" name="checkListModulos[]">
                       <label for="cbInventarioProductos">Inventario Productos</label>
                   </div>
                   <div class="icheck-primary">
-                      <input class="checkModulos" type="checkbox" id="cbInventarioMaquinas" value="15" name="checkListPermisos[]">
+                      <input class="checkModulos" type="checkbox" id="cbInventarioMaquinas" value="15" name="checkListModulos[]">
                       <label for="cbInventarioMaquinas">Inventario Maquinas</label>
                   </div>                 
                 </div>
@@ -306,7 +306,7 @@ MODAL AGREGAR USUARIO
             <div id="pOperaciones" class="collapse">
                 <div class="card-body">
                   <div class="icheck-primary">
-                      <input class="checkModulos" type="checkbox" id="cbRecetas" value="16" name="checkListPermisos[]">
+                      <input class="checkModulos" type="checkbox" id="cbRecetas" value="16" name="checkListModulos[]">
                       <label for="cbRecetas">Receta</label>
                   </div>                
                 </div>
@@ -318,11 +318,11 @@ MODAL AGREGAR USUARIO
             <div id="pCostos" class="collapse">
                 <div class="card-body">
                   <div class="icheck-primary">
-                      <input class="checkModulos" type="checkbox" id="cbCostoReceta" value="17" name="checkListPermisos[]">
+                      <input class="checkModulos" type="checkbox" id="cbCostoReceta" value="17" name="checkListModulos[]">
                       <label for="cbCostoReceta">Costo de Receta</label>
                   </div>   
                   <div class="icheck-primary">
-                      <input class="checkModulos" type="checkbox" id="cbCostoRecetasGastoAdmin" value="18" name="checkListPermisos[]">
+                      <input class="checkModulos" type="checkbox" id="cbCostoRecetasGastoAdmin" value="18" name="checkListModulos[]">
                       <label for="cbCostoRecetasGastoAdmin">C. Receta y G. Admin</label>
                   </div>              
                 </div>
@@ -334,7 +334,7 @@ MODAL AGREGAR USUARIO
             <div id="pUsuarios" class="collapse">
                 <div class="card-body">
                   <div class="icheck-primary">
-                      <input class="checkModulos" type="checkbox" id="cbUsuarios" value="19" name="checkListPermisos[]">
+                      <input class="checkModulos" type="checkbox" id="cbUsuarios" value="19" name="checkListModulos[]">
                       <label for="cbUsuarios">Usuarios</label>
                   </div>            
                 </div>
@@ -346,15 +346,15 @@ MODAL AGREGAR USUARIO
             <div id="pReportes" class="collapse">
                 <div class="card-body">
                   <div class="icheck-primary">
-                      <input class="checkModulos" type="checkbox" id="cbReporteInsumos" value="20" name="checkListPermisos[]">
+                      <input class="checkModulos" type="checkbox" id="cbReporteInsumos" value="20" name="checkListModulos[]">
                       <label for="cbReporteInsumos">Reporte de Insumos</label>
                   </div>    
                   <div class="icheck-primary">
-                      <input class="checkModulos" type="checkbox" id="cbReportemateriales" value="21" name="checkListPermisos[]">
+                      <input class="checkModulos" type="checkbox" id="cbReportemateriales" value="21" name="checkListModulos[]">
                       <label for="cbReportemateriales">Reporte de Materiales</label>
                   </div> 
                   <div class="icheck-primary">
-                      <input class="checkModulos" type="checkbox" id="cbReporteProductos" value="22" name="checkListPermisos[]">
+                      <input class="checkModulos" type="checkbox" id="cbReporteProductos" value="22" name="checkListModulos[]">
                       <label for="cbReporteProductos">Reporte de Productos</label>
                   </div>           
                 </div>
@@ -366,11 +366,29 @@ MODAL AGREGAR USUARIO
             <div id="pConfiguracion" class="collapse">
                 <div class="card-body">
                   <div class="icheck-primary">
-                      <input class="checkModulos" type="checkbox" id="cbConfiguracion" value="23" name="checkListPermisos[]">
+                      <input class="checkModulos" type="checkbox" id="cbConfiguracion" value="23" name="checkListModulos[]">
                       <label for="cbConfiguracion">Configuración</label>
                   </div>            
                 </div>
-            </div>  
+            </div> 
+
+            <div class="card-body border border-info rounded">
+              <div class="row">
+                  <div class="icheck-warning ml-2">
+                      <input type="checkbox" id="cbPermisoInsertar" value="1" name="cbPermisoInsertar">
+                      <label for="cbPermisoInsertar">Insertar</label>
+                  </div>
+                  <div class="icheck-warning ml-2">
+                      <input type="checkbox" id="cbPermisoEditar" value="1" name="cbPermisoEditar">
+                      <label for="cbPermisoEditar">Editar</label>
+                  </div>  
+                  <div class="icheck-warning ml-2">
+                      <input type="checkbox" id="cbPermisoEliminar" value="1" name="cbPermisoEliminar">
+                      <label for="cbPermisoEliminar">Eliminar</label>
+                  </div>    
+                  
+              </div>
+            </div>
 
          </div>
         </div>
@@ -440,7 +458,7 @@ MODAL EDITAR USUARIO
 
           <ul class="nav nav-tabs">
               <li class="nav-item">
-                <a class="nav-link active" id="navDatosEditar" type="button">Datos del Usuario</a>
+                <a class="nav-link active" id="navDatosEditar" type="button">Datos</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" id="navPermisosEditar" type="button">Modulos y Permisos</a>
@@ -549,7 +567,7 @@ MODAL EDITAR USUARIO
             <div id="editarpInicio" class="collapse">
                 <div class="card-body">
                   <div class="icheck-primary">
-                      <input class="editarCheckModulos" type="checkbox" id="inicio" value="1" name="editarCheckListPermisos[]">
+                      <input class="editarCheckModulos" type="checkbox" id="inicio" value="1" name="editarCheckListModulos[]">
                       <label for="inicio"> Dashboard</label>
                   </div>
                 </div>
@@ -563,52 +581,52 @@ MODAL EDITAR USUARIO
                 <div class="card-body">
                 
                   <div class="icheck-primary">
-                      <input class="editarCheckModulos" type="checkbox" id="insumos" value="2" name="editarCheckListPermisos[]">
+                      <input class="editarCheckModulos" type="checkbox" id="insumos" value="2" name="editarCheckListModulos[]">
                       <label for="insumos">Insumos</label>
                   </div>
                   
                   <div class="icheck-primary">
-                      <input class="editarCheckModulos" type="checkbox" id="materiales" value="3" name="editarCheckListPermisos[]">
+                      <input class="editarCheckModulos" type="checkbox" id="materiales" value="3" name="editarCheckListModulos[]">
                       <label for="materiales">Materiales</label>
                   </div>
 
                   <div class="icheck-primary">
-                      <input class="editarCheckModulos" type="checkbox" id="marcas" value="4" name="editarCheckListPermisos[]">
+                      <input class="editarCheckModulos" type="checkbox" id="marcas" value="4" name="editarCheckListModulos[]">
                       <label for="marcas">Marcas</label>
                   </div>
 
                   <div class="icheck-primary">
-                      <input class="editarCheckModulos" type="checkbox" id="productos" value="5" name="editarCheckListPermisos[]">
+                      <input class="editarCheckModulos" type="checkbox" id="productos" value="5" name="editarCheckListModulos[]">
                       <label for="productos">Productos</label>
                   </div>
                   
                   <div class="icheck-primary">
-                      <input class="editarCheckModulos" type="checkbox" id="maquinas" value="6" name="editarCheckListPermisos[]">
+                      <input class="editarCheckModulos" type="checkbox" id="maquinas" value="6" name="editarCheckListModulos[]">
                       <label for="maquinas">Maquinas</label>
                   </div>
 
                   <div class="icheck-primary">
-                      <input class="editarCheckModulos" type="checkbox" id="empleados" value="7" name="editarCheckListPermisos[]">
+                      <input class="editarCheckModulos" type="checkbox" id="empleados" value="7" name="editarCheckListModulos[]">
                       <label for="empleados">Empleados</label>
                   </div>
 
                   <div class="icheck-primary">
-                      <input class="editarCheckModulos" type="checkbox" id="gastoadmin" value="8" name="editarCheckListPermisos[]">
+                      <input class="editarCheckModulos" type="checkbox" id="gastoadmin" value="8" name="editarCheckListModulos[]">
                       <label for="gastoadmin">Gasto Administrativo</label>
                   </div>
 
                   <div class="icheck-primary">
-                      <input class="editarCheckModulos" type="checkbox" id="costoventa" value="9" name="editarCheckListPermisos[]">
+                      <input class="editarCheckModulos" type="checkbox" id="costoventa" value="9" name="editarCheckListModulos[]">
                       <label for="costoventa">Costo de Venta</label>
                   </div>
 
                   <div class="icheck-primary">
-                      <input class="editarCheckModulos" type="checkbox" id="costomarketing" value="10" name="editarCheckListPermisos[]">
+                      <input class="editarCheckModulos" type="checkbox" id="costomarketing" value="10" name="editarCheckListModulos[]">
                       <label for="costomarketing">Costo de Marketing</label>
                   </div>
 
                   <div class="icheck-primary">
-                      <input class="editarCheckModulos" type="checkbox" id="costooperativo" value="11" name="editarCheckListPermisos[]">
+                      <input class="editarCheckModulos" type="checkbox" id="costooperativo" value="11" name="editarCheckListModulos[]">
                       <label for="costooperativo">Costo Operativo</label>
                   </div>
 
@@ -621,19 +639,19 @@ MODAL EDITAR USUARIO
             <div id="editarpInventario" class="collapse">
                 <div class="card-body">
                   <div class="icheck-primary">
-                      <input class="editarCheckModulos" type="checkbox" id="inventarioinsumos" value="12" name="editarCheckListPermisos[]">
+                      <input class="editarCheckModulos" type="checkbox" id="inventarioinsumos" value="12" name="editarCheckListModulos[]">
                       <label for="inventarioinsumos">Inventario Insumos</label>
                   </div>
                   <div class="icheck-primary">
-                      <input class="editarCheckModulos" type="checkbox" id="inventariomateriales" value="13" name="editarCheckListPermisos[]">
+                      <input class="editarCheckModulos" type="checkbox" id="inventariomateriales" value="13" name="editarCheckListModulos[]">
                       <label for="inventariomateriales">Inventario Materiales</label>
                   </div>
                   <div class="icheck-primary">
-                      <input class="editarCheckModulos" type="checkbox" id="inventarioproductos" value="14" name="editarCheckListPermisos[]">
+                      <input class="editarCheckModulos" type="checkbox" id="inventarioproductos" value="14" name="editarCheckListModulos[]">
                       <label for="inventarioproductos">Inventario Productos</label>
                   </div>
                   <div class="icheck-primary">
-                      <input class="editarCheckModulos" type="checkbox" id="inventariomaquinas" value="15" name="editarCheckListPermisos[]">
+                      <input class="editarCheckModulos" type="checkbox" id="inventariomaquinas" value="15" name="editarCheckListModulos[]">
                       <label for="inventariomaquinas">Inventario Maquinas</label>
                   </div>                 
                 </div>
@@ -645,7 +663,7 @@ MODAL EDITAR USUARIO
             <div id="editarpOperaciones" class="collapse">
                 <div class="card-body">
                   <div class="icheck-primary">
-                      <input class="editarCheckModulos" type="checkbox" id="recetas" value="16" name="editarCheckListPermisos[]">
+                      <input class="editarCheckModulos" type="checkbox" id="recetas" value="16" name="editarCheckListModulos[]">
                       <label for="recetas">Receta</label>
                   </div>                
                 </div>
@@ -657,11 +675,11 @@ MODAL EDITAR USUARIO
             <div id="editarpCostos" class="collapse">
                 <div class="card-body">
                   <div class="icheck-primary">
-                      <input class="editarCheckModulos" type="checkbox" id="costoreceta" value="17" name="editarCheckListPermisos[]">
+                      <input class="editarCheckModulos" type="checkbox" id="costoreceta" value="17" name="editarCheckListModulos[]">
                       <label for="costoreceta">Costo de Receta</label>
                   </div>   
                   <div class="icheck-primary">
-                      <input class="editarCheckModulos" type="checkbox" id="costorecetasgastoadmin" value="18" name="editarCheckListPermisos[]">
+                      <input class="editarCheckModulos" type="checkbox" id="costorecetasgastoadmin" value="18" name="editarCheckListModulos[]">
                       <label for="costorecetasgastoadmin">C. Receta y G. Admin</label>
                   </div>              
                 </div>
@@ -673,7 +691,7 @@ MODAL EDITAR USUARIO
             <div id="editarpUsuarios" class="collapse">
                 <div class="card-body">
                   <div class="icheck-primary">
-                      <input class="editarCheckModulos" type="checkbox" id="usuarios" value="19" name="editarCheckListPermisos[]">
+                      <input class="editarCheckModulos" type="checkbox" id="usuarios" value="19" name="editarCheckListModulos[]">
                       <label for="usuarios">Usuarios</label>
                   </div>            
                 </div>
@@ -685,15 +703,15 @@ MODAL EDITAR USUARIO
             <div id="editarpReportes" class="collapse">
                 <div class="card-body">
                   <div class="icheck-primary">
-                      <input class="editarCheckModulos" type="checkbox" id="reporteinsumos" value="20" name="editarCheckListPermisos[]">
+                      <input class="editarCheckModulos" type="checkbox" id="reporteinsumos" value="20" name="editarCheckListModulos[]">
                       <label for="reporteinsumos">Reporte de Insumos</label>
                   </div>    
                   <div class="icheck-primary">
-                      <input class="editarCheckModulos" type="checkbox" id="reportemateriales" value="21" name="editarCheckListPermisos[]">
+                      <input class="editarCheckModulos" type="checkbox" id="reportemateriales" value="21" name="editarCheckListModulos[]">
                       <label for="reportemateriales">Reporte de Materiales</label>
                   </div> 
                   <div class="icheck-primary">
-                      <input class="editarCheckModulos" type="checkbox" id="reporteproductos" value="22" name="editarCheckListPermisos[]">
+                      <input class="editarCheckModulos" type="checkbox" id="reporteproductos" value="22" name="editarCheckListModulos[]">
                       <label for="reporteproductos">Reporte de Productos</label>
                   </div>           
                 </div>
@@ -705,11 +723,29 @@ MODAL EDITAR USUARIO
             <div id="editarpConfiguracion" class="collapse">
                 <div class="card-body">
                   <div class="icheck-primary">
-                      <input class="editarCheckModulos" type="checkbox" id="configuracion" value="23" name="editarCheckListPermisos[]">
+                      <input class="editarCheckModulos" type="checkbox" id="configuracion" value="23" name="editarCheckListModulos[]">
                       <label for="configuracion">Configuración</label>
                   </div>            
                 </div>
-            </div>  
+            </div> 
+            
+            <div class="card-body border border-info rounded">
+              <div class="row">
+                  <div class="icheck-warning ml-2">
+                      <input type="checkbox" id="editarPermisoInsertar" value="1" name="editarPermisoInsertar">
+                      <label for="editarPermisoInsertar">Insertar</label>
+                  </div>
+                  <div class="icheck-warning ml-2">
+                      <input type="checkbox" id="editarPermisoEditar" value="1" name="editarPermisoEditar">
+                      <label for="editarPermisoEditar">Editar</label>
+                  </div>  
+                  <div class="icheck-warning ml-2">
+                      <input type="checkbox" id="editarPermisoEliminar" value="1" name="editarPermisoEliminar">
+                      <label for="editarPermisoEliminar">Eliminar</label>
+                  </div>    
+                  
+              </div>
+            </div>
 
              </div>
             </div>

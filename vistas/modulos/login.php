@@ -1,10 +1,9 @@
-<div id="back"></div>
 <div class="login-page">
 <div class="login-box">
   <!-- /.login-logo -->
   <div class="card card-outline card-primary">
     <div class="card-header text-center">
-      <img src="vistas/img/plantilla/logo.jpg" class="img-responsive" >
+      <img src="vistas/img/plantilla/logo.jpg">
     </div>
     <div class="card-body">
       <p class="login-box-msg font-weight-bold">Inicie Sesión</p>

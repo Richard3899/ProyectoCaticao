@@ -51,6 +51,7 @@ require_once "controladores/dashboard.controlador.php";
 require_once "modelos/dashboard.modelo.php";
 require_once "modelos/usuarios.modelo.php";
 require_once "modelos/usuariosmodulos.modelo.php";
+require_once "modelos/usuariospermisos.modelo.php";
 require_once "modelos/perfiles.modelo.php";
 require_once "modelos/configuracion.modelo.php";
 require_once "modelos/marcas.modelo.php";

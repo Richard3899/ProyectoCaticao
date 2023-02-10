@@ -463,7 +463,7 @@ CREATE TABLE perfil (
 -- Table usuario
 -- -----------------------------------------------------
 
-CREATE TABLE usuario (
+CREATE TABLE usuario(
   idUsuario INT  AUTO_INCREMENT primary key,
   nombre VARCHAR(50),
   usuario VARCHAR(50),
@@ -492,6 +492,18 @@ CREATE TABLE UsuarioModulo (
   idUsuarioModulo INT  AUTO_INCREMENT primary key,
   idUsuario INT REFERENCES usuario (idUsuario),
   idModulo INT REFERENCES Modulo (idModulo)
+);
+
+-- -----------------------------------------------------
+-- Table Usuario_Permisos
+-- -----------------------------------------------------
+
+CREATE TABLE UsuarioPermiso (
+  idUsuarioPermiso INT  AUTO_INCREMENT primary key,
+  insertar INT,
+  editar INT,
+  eliminar INT,
+  idUsuario INT REFERENCES usuario (idUsuario)
 );
 
 -- -----------------------------------------------------
@@ -569,6 +581,7 @@ CREATE TABLE Configuracion (
 
   alter Table UsuarioModulo add foreign key (idUsuario) REFERENCES usuario (idUsuario);
   alter Table UsuarioModulo add foreign key (idModulo) REFERENCES Modulo (idModulo);
+  alter Table UsuarioPermiso add foreign key (idUsuario) REFERENCES usuario (idUsuario);
   alter Table Usuario add foreign key (idPerfil) REFERENCES perfil (idPerfil);
 
   alter table MovimientoMaquina add foreign key (idMaquina) REFERENCES Maquina (idMaquina);

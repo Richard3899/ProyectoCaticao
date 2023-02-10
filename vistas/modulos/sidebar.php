@@ -227,9 +227,14 @@ if($value["modoDark"] == 1){
           </li>";}
           ?>
 
-          <?php if ((array_intersect(array(16),$_SESSION["idModulos"]))){
-          echo "<li class='nav-item "; if($url=='recetas'){ echo "menu-open"; } echo "'>
-            <a href='#' class='nav-link "; if($url=='recetas'){ echo "active"; } echo "'>
+          <?php 
+          $idModulosOperaciones=array(16);
+          $descripcionModulosOperaciones=array('recetas','recetainsumos','recetamateriales','recetamanodeobra','recetadepreciacion','recetaconsumoenergia','recetaconsumogas','recetacostoventa','recetacostomarketing','recetacostooperativo');
+          ?>
+
+          <?php if ((array_intersect($idModulosOperaciones,$_SESSION["idModulos"]))){
+          echo "<li class='nav-item "; if(in_array($url,$descripcionModulosOperaciones) && in_array($url,$_SESSION["descripcionModulos"])){ echo "menu-open"; } echo "'>
+            <a href='#' class='nav-link "; if(in_array($url,$descripcionModulosOperaciones) && in_array($url,$_SESSION["descripcionModulos"])){ echo "active"; } echo "'>
               <i class='nav-icon fas fa-receipt'></i>
               <p>
                 Operaciones
@@ -240,7 +245,7 @@ if($value["modoDark"] == 1){
 
           if (in_array(16, $_SESSION["idModulos"])){
           echo "<li class='nav-item'>
-                <a href='recetas' class='nav-link "; if($url=='recetas'){ echo "active"; } echo "'>
+                <a href='recetas' class='nav-link "; if(in_array($url,$descripcionModulosOperaciones)){ echo "active"; } echo "'>
                 <i class='nav-icon fas fa-angle-double-right'></i>
                   <p>Receta</p>
                 </a>

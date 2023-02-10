@@ -296,6 +296,31 @@ $(document).on("click", ".btnEditarUsuario", function(){
 
 	});
 
+	$.ajax({
+
+		url:"ajax/usuariospermisos.ajax.php",
+		method: "POST",
+		data: datos,
+		cache: false,
+		contentType: false,
+		processData: false,
+		dataType: "json",
+		success: function(respuesta){
+
+		if(respuesta["insertar"]==1){
+			$("#editarPermisoInsertar:checkbox").prop('checked', true);
+		}
+		if(respuesta["editar"]==1){
+			$("#editarPermisoEditar:checkbox").prop('checked', true);
+		}
+		if(respuesta["eliminar"]==1){
+			$("#editarPermisoEliminar:checkbox").prop('checked', true);
+		}
+
+		}
+
+	});
+
 })
 
 /*=============================================

@@ -208,14 +208,36 @@ class ControladorUsuarios{
 
 				$respuesta = ModeloUsuarios::mdlIngresarUsuario($datos1);
 
-				foreach($_POST['checkListPermisos'] as $value){
+                $idModulos = $_POST['checkListModulos'];
+
+				array_push($idModulos,29);
+				if(in_array(12, $idModulos)){array_push($idModulos,30);}
+				if(in_array(13, $idModulos)){array_push($idModulos,31);}
+				if(in_array(14, $idModulos)){array_push($idModulos,32);}
+				if(in_array(15, $idModulos)){array_push($idModulos,33);}
+				if(in_array(16, $idModulos)){array_push($idModulos,34,35,36,37,38,39,40,41,42);}
+				if(in_array(17, $idModulos)){array_push($idModulos,43);}
+				if(in_array(18, $idModulos)){array_push($idModulos,44,45);}
+
+				//Modulos para el usuario
+				foreach($idModulos as $value){
 
 				$datos2 = array("idUsuario" => $idUsuario,"idModulo" => $value);
 
 				ModeloUsuariosModulos::mdlIngresarUsuariosModulos($datos2);
    
 				}
-				ModeloUsuariosModulos::mdlIngresarUsuariosModulos(array("idUsuario" => $idUsuario,"idModulo" =>30));
+
+				$cbInsertar = !isset($_POST["cbPermisoInsertar"])? '0' : $_POST["cbPermisoInsertar"];
+				$cbEditar = !isset($_POST["cbPermisoEditar"])? '0' : $_POST["cbPermisoEditar"];
+				$cbEliminar = !isset($_POST["cbPermisoEliminar"])? '0' : $_POST["cbPermisoEliminar"];
+
+				$datos3 = array("idUsuario" => $idUsuario,
+								"insertar" => $cbInsertar,
+								"editar" => $cbEditar,
+								"eliminar" => $cbEliminar);
+
+				ModeloUsuariosPermisos::mdlIngresarUsuariosPermisos($datos3);
 
 				if($respuesta == "ok"){
 
@@ -369,18 +391,44 @@ class ControladorUsuarios{
 				$respuesta = ModeloUsuarios::mdlEditarUsuario($datos);
 
 				$idUsuario=$_POST["editaridUsuario"];
-
+				
+				// Elimina y agrega de nuevo los modulos
 				if($idUsuario != 1){
 
-					ModeloUsuariosModulos::mdlEliminarUsuariosModulos($idUsuario);
+				//Modulos para el usuario
+				ModeloUsuariosModulos::mdlEliminarUsuariosModulos($idUsuario);
 
-					foreach($_POST['editarCheckListPermisos'] as $value){
+				$editaridModulos = $_POST['editarCheckListModulos'];
 
-						$datos2 = array("idUsuario" => $idUsuario,"idModulo" => $value);
+				array_push($editaridModulos,29);
+				if(in_array(12, $editaridModulos)){array_push($editaridModulos,30);}
+				if(in_array(13, $editaridModulos)){array_push($editaridModulos,31);}
+				if(in_array(14, $editaridModulos)){array_push($editaridModulos,32);}
+				if(in_array(15, $editaridModulos)){array_push($editaridModulos,33);}
+				if(in_array(16, $editaridModulos)){array_push($editaridModulos,34,35,36,37,38,39,40,41,42);}
+				if(in_array(17, $editaridModulos)){array_push($editaridModulos,43);}
+				if(in_array(18, $editaridModulos)){array_push($editaridModulos,44,45);}
+
+				//Modulos para el usuario
+				foreach($editaridModulos as $value){
+
+				$datos2 = array("idUsuario" => $idUsuario,"idModulo" => $value);
 		
-						ModeloUsuariosModulos::mdlIngresarUsuariosModulos($datos2);
-					}
-					    ModeloUsuariosModulos::mdlIngresarUsuariosModulos(array("idUsuario" => $idUsuario,"idModulo" =>30));
+				ModeloUsuariosModulos::mdlIngresarUsuariosModulos($datos2);
+
+				}
+
+				$editarInsertar = !isset($_POST["editarPermisoInsertar"])? '0' : $_POST["editarPermisoInsertar"];
+				$editarEditar = !isset($_POST["editarPermisoEditar"])? '0' : $_POST["editarPermisoEditar"];
+				$editarEliminar = !isset($_POST["editarPermisoEliminar"])? '0' : $_POST["editarPermisoEliminar"];
+
+				$datos3 = array("idUsuario" => $idUsuario,
+								"insertar" => $editarInsertar,
+								"editar" => $editarEditar,
+								"eliminar" => $editarEliminar);
+
+				ModeloUsuariosPermisos::mdlEditarUsuariosPermisos($datos3);
+
 				}
 
 				if($respuesta == "ok"){
@@ -414,10 +462,13 @@ class ControladorUsuarios{
 
 		if(isset($_GET["idUsuario"])){
 
-			
-			$datos = $_GET["idUsuario"];
+			    $datos = $_GET["idUsuario"];
 
-			if($datos!=1){
+				if($datos!=$_SESSION["idUsuario"]){
+                    $link="usuarios";
+				}else{
+					$link="salir";
+				}
 
 				if($_GET["fotoUsuario"] != ""){
 
@@ -425,9 +476,12 @@ class ControladorUsuarios{
 					rmdir('vistas/img/usuarios/'.$_GET["usuario"]);
 	
 				}
-	
+
+				ModeloUsuariosModulos::mdlEliminarUsuariosModulos($datos);
+				ModeloUsuariosPermisos::mdlEliminarUsuariosPermisos($datos);
+
 				$respuesta = ModeloUsuarios::mdlBorrarUsuario($datos);
-	
+							 
 				if($respuesta == "ok"){
 	
 					echo'<script>
@@ -439,18 +493,16 @@ class ControladorUsuarios{
 						timer: 1500
 						  }).then(function(result){
 									
-	
-									window.location = "usuarios";
-	
+						  window.location = "'.$link.'";
 									
-								})
+						  })
 	
 					</script>';
 	
 				}	
 
 
-			}
+			
 	
 
 		}

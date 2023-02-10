@@ -9,7 +9,7 @@ BEGIN
 END$$
 DELIMITER ;
 
--- Procedimientos almacenados de Usuarios Modulos --
+-- Procedimientos almacenados de Usuarios y Modulos --
 
 DROP procedure IF EXISTS `mostrar_usuariosmodulos`;
 DELIMITER $$
@@ -43,6 +43,62 @@ CREATE PROCEDURE `eliminar_usuariosmodulos` (in idUsuarioE int)
 BEGIN
 	 delete from usuariomodulo
     where idUsuario=idUsuarioE;
+END$$
+DELIMITER ;
+
+
+-- Procedimientos almacenados de Usuarios y Permisos --
+
+DROP procedure IF EXISTS `mostrar_usuariospermisos`;
+DELIMITER $$
+USE `caticao`$$
+CREATE PROCEDURE `mostrar_usuariospermisos` ( in idUsuarioM INT)
+BEGIN
+	SELECT * FROM usuariopermiso WHERE idUsuario=idUsuarioM;
+END$$
+DELIMITER ;
+
+
+DROP procedure IF EXISTS `insertar_usuariospermisos`;
+DELIMITER $$
+USE `caticao`$$
+CREATE PROCEDURE `insertar_usuariospermisos` (  in idUsuarioI INT,
+                                                in insertarI INT,
+																in editarI INT,
+                                                in eliminarI INT)
+                                    
+BEGIN
+	insert into usuariopermiso (idUsuario,insertar,editar,eliminar)
+				  			  values (idUsuarioI,insertarI,editarI,eliminarI);
+END$$
+DELIMITER ;
+
+
+DROP procedure IF EXISTS `editar_usuariospermisos`;
+DELIMITER $$
+USE `caticao`$$
+CREATE PROCEDURE `editar_usuariospermisos` (    in idUsuarioI INT,
+                                                in insertarI INT,
+																in editarI INT,
+                                                in eliminarI INT)
+BEGIN
+	UPDATE usuariopermiso SET   insertar=insertarI,
+			                      editar=editarI,
+		                         eliminar=eliminarI
+					       	 WHERE idUsuario=idUsuarioI;
+END$$
+DELIMITER ;
+
+
+DROP procedure IF EXISTS `eliminar_usuariospermisos`;
+DELIMITER $$
+USE `caticao`$$
+CREATE PROCEDURE `eliminar_usuariospermisos` (in idUsuarioI INT)
+BEGIN
+
+	DELETE FROM usuariopermiso 
+	WHERE idUsuario=idUsuarioI;
+	
 END$$
 DELIMITER ;
 
@@ -101,7 +157,6 @@ USE `caticao`$$
 CREATE PROCEDURE `eliminar_usuario` (in idUsuarioE int)
 BEGIN
 
-   CALL eliminar_usuariosmodulos(idUsuarioE);
 	DELETE FROM usuario
    WHERE idUsuario=idUsuarioE;
    

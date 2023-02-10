@@ -78,7 +78,23 @@ INSERT INTO `modulo` (`idModulo`, `descripcion`) VALUES
 	(21, 'reportemateriales'),
 	(22, 'reporteproductos'),
 	(23, 'configuracion'),
-	(30, 'salir');
+	(29, 'salir'),
+	(30, 'kardexinsumos'),
+	(31, 'kardexmateriales'),
+	(32, 'kardexproductos'),
+	(33, 'kardexmaquinas'),
+	(34, 'recetainsumos'),
+	(35, 'recetamateriales'),
+	(36, 'recetamanodeobra'),
+	(37, 'recetadepreciacion'),
+	(38, 'recetaconsumoenergia'),
+	(39, 'recetaconsumogas'),
+	(40, 'recetacostoventa'),
+	(41, 'recetacostomarketing'),
+	(42, 'recetacostooperativo'),
+	(43, 'costototal'),
+	(44, 'gastoadminpormes'),
+	(45, 'costototalpormes');
 
 INSERT INTO `usuariomodulo` (`idUsuarioModulo`, `idUsuario`, `idModulo`) VALUES
 	(1, 1, 1),
@@ -104,7 +120,26 @@ INSERT INTO `usuariomodulo` (`idUsuarioModulo`, `idUsuario`, `idModulo`) VALUES
 	(21, 1, 21),
 	(22, 1, 22),
 	(23, 1, 23),
-	(30, 1, 30);
+	(24, 1, 29),
+	(25, 1, 30),
+	(26, 1, 31),
+	(27, 1, 32),
+	(28, 1, 33),
+	(29, 1, 34),
+	(30, 1, 35),
+	(31, 1, 36),
+	(32, 1, 37),
+	(33, 1, 38),
+	(34, 1, 39),
+	(35, 1, 40),
+	(36, 1, 41),
+	(37, 1, 42),
+	(38, 1, 43),
+	(39, 1, 44),
+	(40, 1, 45);
+	
+INSERT INTO `usuariopermiso` (`idUsuarioPermiso`, `insertar`, `editar`, `eliminar`, `idUsuario`) VALUES
+	(1, 1, 1, 1, 1);
 
 INSERT INTO `empleado` (`idEmpleado`, `nombre`, `apellido`, `direccion`, `telefono`, `correo`, `numeroDocumento`, `fechaNacimiento`, `cargo`, `horarioTrabajo`, `horasPorDia`, `sueldoPorDia`,`precioUnitario`, `sueldoPorMes`, `idTipoDocumento`, `idUsuario`, `idTipoCosto`) VALUES
 	(1, 'Julio', 'Gonzales', 'Av. Alfonso Ugarte Lt.12', 987654321, 'julio@gmail.com', 432187654, '2022-11-03', 'Empaquetador', '8am - 6pm', 8, 80.00,10, 1000.00, 1, NULL, 1);

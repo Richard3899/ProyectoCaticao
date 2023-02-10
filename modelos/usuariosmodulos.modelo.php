@@ -11,7 +11,6 @@ class ModeloUsuariosModulos{
 
 	static public function mdlMostrarUsuariosModulos($valor){
 
-
 		$stmt = Conexion::conectar()->prepare("call mostrar_usuariosmodulos(?)");
 
 		$stmt->bindParam(1, $valor, PDO::PARAM_INT);

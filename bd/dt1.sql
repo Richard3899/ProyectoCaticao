@@ -14,11 +14,10 @@
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
--- Volcando datos para la tabla caticao.usuariomodulo: ~2 rows (aproximadamente)
-DELETE FROM `usuariomodulo`;
-INSERT INTO `usuariomodulo` (`idUsuarioModulo`, `idUsuario`, `idModulo`) VALUES
-	(1, 1, 1),
-	(2, 1, 2);
+-- Volcando datos para la tabla caticao.usuariopermiso: ~1 rows (aproximadamente)
+DELETE FROM `usuariopermiso`;
+INSERT INTO `usuariopermiso` (`idUsuarioPermiso`, `insertar`, `editar`, `eliminar`, `idUsuario`) VALUES
+	(1, 1, 1, 1, 1);
 
 /*!40103 SET TIME_ZONE=IFNULL(@OLD_TIME_ZONE, 'system') */;
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
