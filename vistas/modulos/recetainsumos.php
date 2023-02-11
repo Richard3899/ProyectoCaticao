@@ -48,9 +48,22 @@
        </div>
        
         <div class="form-group row  col-12 col-lg-4 justify-content-sm-end">
-          <button class="btn btn-primary my-1 col-12 col-sm-4 col-md-3 mr-2 col-lg-7 col-xl-6" id="btnRecetaInsumo" data-toggle="modal" data-target="#modalRecetaInsumo">
-           Agregar Insumo
-         </button>
+          
+          <?php 
+          if($permisoInsertar==1){
+
+          echo  "<button class='btn btn-primary my-1 col-12 col-sm-4 col-md-3 mr-2 col-lg-7 col-xl-6' id='btnRecetaInsumo' data-toggle='modal' data-target='#modalRecetaInsumo'>
+                Agregar Insumo
+                </button>";
+          }else{
+
+          echo  "<button class='btn btn-primary my-1 col-12 col-sm-4 col-md-3 mr-2 col-lg-7 col-xl-6' id='btnRecetaInsumo'>
+                Agregar Insumo
+                </button>";
+
+          }
+          ?>
+
          <a type="button" class="btn btn-secondary my-1 col-12 col-sm-4 col-md-3 col-lg-4 col-xl-3" href="recetas">Volver</a>
         </div>
 

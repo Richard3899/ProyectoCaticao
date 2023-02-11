@@ -1,6 +1,6 @@
 
 $('.tablaMaquinas').DataTable( {
-    "ajax": "ajax/datatable-maquinas.ajax.php",
+    "ajax": "ajax/datatable-maquinas.ajax.php?permisoEditar="+permisoEditar+"&permisoEliminar="+permisoEliminar,
     "deferRender": true,
 	"columnDefs": [
 		{"className": "dt-center", "targets": "_all"}

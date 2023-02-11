@@ -67,8 +67,24 @@ class TablaMateriales{
 		  	$unidadmedida = ControladorUnidadMedida::ctrMostrarUnidadMedida($items, $valors);
 
 			/*==Botón Editar y Eliminar=*/
+
+            if($_GET["permisoEditar"]==1 && $_GET["permisoEliminar"]==0){
+				
+			$botones =  "<div class='btn-group'><button class='btn btn-warning btnEditarMaterial' idMaterial='".$materiales[$i]["idMateria"]."' data-toggle='modal' data-target='#modalEditarMaterial'><i class='fa fa-pen'></i></button></div>";				
+
+			}else if($_GET["permisoEditar"]==0 && $_GET["permisoEliminar"]==1){
+
+			$botones =  "<div class='btn-group'><button class='btn btn-danger btnEliminarMaterial' idMaterial='".$materiales[$i]["idMateria"]."' codigo='".$materiales[$i]["codigo"]."' imagen='".$materiales[$i]["imagen"]."'><i class='fa fa-times'></i></button></div>";				
+
+			}else if($_GET["permisoEditar"]==0 && $_GET["permisoEliminar"]==0){
+
+			$botones = "<button class='btn btn-danger'><i class='fa fa-lock'></i></button>";
+				
+		    }else{
+
 			$botones =  "<div class='btn-group'><button class='btn btn-warning btnEditarMaterial' idMaterial='".$materiales[$i]["idMateria"]."' data-toggle='modal' data-target='#modalEditarMaterial'><i class='fa fa-pen'></i></button><button class='btn btn-danger btnEliminarMaterial' idMaterial='".$materiales[$i]["idMateria"]."' codigo='".$materiales[$i]["codigo"]."' imagen='".$materiales[$i]["imagen"]."'><i class='fa fa-times'></i></button></div>";				
-			
+
+			}
 
 		  	$datosJson .='[
 			      "'.($i+1).'",

@@ -142,8 +142,6 @@ class ControladorMateriales{
 				VALIDAR IMAGEN
 				=============================================*/
 
-			   	$ruta = $_POST["ImagenMaterialActual"];
-
 			   	if(isset($_FILES["editarImagenMaterial"]["tmp_name"]) && !empty($_FILES["editarImagenMaterial"]["tmp_name"])){
 
 					list($ancho, $alto) = getimagesize($_FILES["editarImagenMaterial"]["tmp_name"]);
@@ -215,6 +213,8 @@ class ControladorMateriales{
 
 					}
 
+				}else{
+					$ruta = $_POST["ImagenMaterialActual"];
 				}
 
 

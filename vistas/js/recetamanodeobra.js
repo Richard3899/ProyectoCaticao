@@ -4,7 +4,7 @@ TABLA RECETA MANO DE OBRA
 var idRecetaC = $("#idReceta").val();
 
 $('.tablaRecetaManodeObra').DataTable( {
-	"ajax": "ajax/datatable-recetamanodeobra.ajax.php?idRecetaC="+idRecetaC,
+	"ajax": "ajax/datatable-recetamanodeobra.ajax.php?idRecetaC="+idRecetaC+"&permisoEditar="+permisoEditar+"&permisoEliminar="+permisoEliminar,
     "deferRender": true,
 	"columnDefs": [
 		{"className": "dt-center", "targets": "_all",

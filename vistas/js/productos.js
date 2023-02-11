@@ -1,6 +1,6 @@
 
 $('.tablaProductos').DataTable( {
-    "ajax": "ajax/datatable-productos.ajax.php",
+    "ajax": "ajax/datatable-productos.ajax.php?permisoEditar="+permisoEditar+"&permisoEliminar="+permisoEliminar,
     "deferRender": true,
 	"columnDefs": [
 		{"className": "dt-center", "targets": "_all"}
@@ -122,9 +122,9 @@ $(".tablaProductos tbody").on("click", "button.btnEditarProducto", function(){
 
            $("#editarTipoProducto").val(respuesta["idTipoProducto"]);
 
-           if(respuesta["imagen"] != ""){
+		   $("#ImagenProductoActual").val(respuesta["imagen"]);
 
-           	$("#ImagenProductoActual").val(respuesta["imagen"]);
+           if(respuesta["imagen"] != ""){
 
            	$(".previsualizar").attr("src",respuesta["imagen"]);
 

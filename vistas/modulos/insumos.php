@@ -25,12 +25,20 @@
     <!-- Default box -->
     <div class="card">
       <div class="card-header">
-      
-      <button class="btn btn-primary" data-toggle="modal" data-target="#modalAgregarInsumo">
-        
-        Agregar Insumo
 
-      </button>
+      <?php 
+       if($permisoInsertar==1){
+
+       echo "<button class='btn btn-primary' data-toggle='modal' data-target='#modalAgregarInsumo'>
+            Agregar Insumo
+            </button>";
+
+       }else{
+
+       echo "<button class='btn btn-primary'>Agregar Insumo</button>";
+
+       }
+      ?>
         
       </div>
       <div class="card-body">

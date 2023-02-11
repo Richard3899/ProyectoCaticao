@@ -25,11 +25,19 @@
     <div class="card">
       <div class="card-header">
 
-      <button class="btn btn-primary" data-toggle="modal" data-target="#modalCostoRecetasGastoAdmin">
-        
-        Agregar Mes
+      <?php 
+       if($permisoInsertar==1){
 
-      </button>
+       echo "<button class='btn btn-primary' data-toggle='modal' data-target='#modalCostoRecetasGastoAdmin'>
+            Agregar Mes
+            </button>";
+
+       }else{
+
+       echo "<button class='btn btn-primary'>Agregar Mes</button>";
+
+       }
+      ?>
 
       </div>
 

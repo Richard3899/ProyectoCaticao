@@ -1,6 +1,6 @@
 
 $('.tablaMateriales').DataTable( {
-    "ajax": "ajax/datatable-materiales.ajax.php",
+    "ajax": "ajax/datatable-materiales.ajax.php?permisoEditar="+permisoEditar+"&permisoEliminar="+permisoEliminar,
     "deferRender": true,
 	"columnDefs": [
 		{"className": "dt-center", "targets": "_all"}
@@ -125,9 +125,9 @@ $(".tablaMateriales tbody").on("click", "button.btnEditarMaterial", function(){
 
            $("#editarPrecio").val(respuesta["precio"]);
 
-           if(respuesta["imagen"] != ""){
+		   $("#ImagenMaterialActual").val(respuesta["imagen"]);
 
-           	$("#ImagenMaterialActual").val(respuesta["imagen"]);
+           if(respuesta["imagen"] != ""){
 
            	$(".previsualizar").attr("src",respuesta["imagen"]);
 

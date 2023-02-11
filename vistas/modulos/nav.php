@@ -26,6 +26,20 @@
       </li>
     </ul>
 
+    <?php
+
+    $permisos = ModeloUsuariosPermisos::mdlMostrarUsuariosPermisos($_SESSION["idUsuario"]);
+                        
+    $permisoInsertar = $permisos["insertar"];
+    $permisoEditar = $permisos["editar"];
+    $permisoEliminar = $permisos["eliminar"];
+    $idUsuarioSession = $_SESSION["idUsuario"];
+    
+    ?>
+    <input type="hidden" id="idUsuarioSession" name="idUsuarioSession" value="<?php echo $idUsuarioSession?>">
+    <input type="hidden" id="permisoEditar" name="permisoEditar" value="<?php echo $permisoEditar?>">
+    <input type="hidden" id="permisoEliminar" name="permisoEliminar" value="<?php echo $permisoEliminar?>">
+
     <div class="navbar-custom-menu ml-auto">
         <ul class="nav navbar-nav">
           <div class="dropdown">
@@ -35,7 +49,7 @@
             $item = "idUsuario";
             $valor = $_SESSION["idUsuario"];
             $usuario = ControladorUsuarios::ctrMostrarUsuarios($item,$valor);
-
+          
               if($usuario["foto"] != ""){
 
                 echo '<img src="'.$usuario["foto"].'" width="30px" class="user-image">';
@@ -60,7 +74,7 @@
                 };
           }
 
-              ?>
+        ?>
               
           </button>
           <div class="dropdown-menu dropdown-menu-right">

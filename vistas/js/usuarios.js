@@ -1,5 +1,5 @@
 $('.tablaUsuarios').DataTable( {
-    "ajax": "ajax/datatable-usuarios.ajax.php",
+    "ajax": "ajax/datatable-usuarios.ajax.php?permisoEditar="+permisoEditar+"&permisoEliminar="+permisoEliminar+"&idUsuarioSession="+idUsuarioSession,
     "deferRender": true,
 	"columnDefs": [
 		{"className": "dt-center", "targets": "_all"}
@@ -47,6 +47,7 @@ $(".tablaUsuarios").on("draw.dt", function() {
 
 	datos.append("idUsuario", idUsuario);
 
+	const arrayIdUsuarios = [];
 	  $.ajax({
 
      	url:"ajax/usuarios.ajax.php",
@@ -58,9 +59,24 @@ $(".tablaUsuarios").on("draw.dt", function() {
       	dataType:"json",
       	success:function(respuesta){
 
-			$("#idUsuario").val((respuesta.length)+1);
-		
-      	}
+		if(respuesta.length!=0){
+			
+			for (var i=0; i<respuesta.length; i++) { 
+
+				arrayIdUsuarios.push(respuesta[i]["idUsuario"]);
+	
+			}
+			const ultimoIdUsuario = $(arrayIdUsuarios).get(-1);
+	
+			$("#idUsuario").val(parseInt(ultimoIdUsuario)+1);
+			
+		}else{
+
+			$("#idUsuario").val(1)
+
+		}
+      	
+	    }
 
 	})
 })

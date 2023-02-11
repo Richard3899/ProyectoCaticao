@@ -4,7 +4,7 @@ TABLA COSTO DE MARKETING
 var idRecetaC = $("#idReceta").val();
 
 $('.tablaRecetaCostoMarketing').DataTable( {
-	"ajax": "ajax/datatable-recetacostomarketing.ajax.php?idRecetaC="+idRecetaC,
+	"ajax": "ajax/datatable-recetacostomarketing.ajax.php?idRecetaC="+idRecetaC+"&permisoEditar="+permisoEditar+"&permisoEliminar="+permisoEliminar,
     "deferRender": true,
 	"columnDefs": [
 		{"className": "dt-center", "targets": "_all",

@@ -1,5 +1,5 @@
 $('.tablaCostoRecetasGastoAdmin').DataTable( {
-    "ajax": "ajax/datatable-costorecetasgastoadmin.ajax.php",
+    "ajax": "ajax/datatable-costorecetasgastoadmin.ajax.php?permisoEditar="+permisoEditar+"&permisoEliminar="+permisoEliminar,
     "deferRender": true,
 	"columnDefs": [
 		{"className": "dt-center", "targets": "_all"}

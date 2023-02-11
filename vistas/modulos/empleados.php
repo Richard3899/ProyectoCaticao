@@ -24,12 +24,20 @@
     <!-- Default box -->
     <div class="card">
       <div class="card-header">
-      
-      <button class="btn btn-primary" data-toggle="modal" data-target="#modalAgregarEmpleado">
-        
-        Agregar Empleado
 
-      </button>
+      <?php 
+       if($permisoInsertar==1){
+
+       echo "<button class='btn btn-primary' data-toggle='modal' data-target='#modalAgregarEmpleado'>
+            Agregar Empleado
+            </button>";
+
+       }else{
+
+       echo "<button class='btn btn-primary'>Agregar Empleado</button>";
+
+       }
+      ?>
         
       </div>
       <div class="card-body">

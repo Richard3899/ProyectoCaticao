@@ -71,16 +71,32 @@ class TablaProductos{
 
 		  	$tipoproducto = ControladorTipoProducto::ctrMostrarTipoProducto($item, $valor);
 
-			/*==Botón Editar y Eliminar=*/
-			$botones =  "<div class='btn-group'><button class='btn btn-warning btnEditarProducto' idProducto='".$productos[$i]["idProducto"]."' data-toggle='modal' data-target='#modalEditarProducto'><i class='fa fa-pen'></i></button><button class='btn btn-danger btnEliminarProducto' idProducto='".$productos[$i]["idProducto"]."' codigo='".$productos[$i]["codigo"]."' imagen='".$productos[$i]["imagen"]."'><i class='fa fa-times'></i></button></div>";				
-			
-
 			if($productos[$i]["idTipoProducto"]==1){
 				
 				$tp =  "<button class='btn btn-info'>".$tipoproducto["descripcion"]."</button>";	
 							
 			}else{
 				$tp =  "<button class='btn btn-success'>".$tipoproducto["descripcion"]."</button>";
+			}
+
+			/*==Botón Editar y Eliminar=*/
+
+            if($_GET["permisoEditar"]==1 && $_GET["permisoEliminar"]==0){
+				
+			$botones =  "<div class='btn-group'><button class='btn btn-warning btnEditarProducto' idProducto='".$productos[$i]["idProducto"]."' data-toggle='modal' data-target='#modalEditarProducto'><i class='fa fa-pen'></i></button></div>";				
+
+			}else if($_GET["permisoEditar"]==0 && $_GET["permisoEliminar"]==1){
+
+			$botones =  "<div class='btn-group'><button class='btn btn-danger btnEliminarProducto' idProducto='".$productos[$i]["idProducto"]."' codigo='".$productos[$i]["codigo"]."' imagen='".$productos[$i]["imagen"]."'><i class='fa fa-times'></i></button></div>";				
+
+			}else if($_GET["permisoEditar"]==0 && $_GET["permisoEliminar"]==0){
+
+			$botones = "<button class='btn btn-danger'><i class='fa fa-lock'></i></button>";
+				
+		    }else{
+
+			$botones =  "<div class='btn-group'><button class='btn btn-warning btnEditarProducto' idProducto='".$productos[$i]["idProducto"]."' data-toggle='modal' data-target='#modalEditarProducto'><i class='fa fa-pen'></i></button><button class='btn btn-danger btnEliminarProducto' idProducto='".$productos[$i]["idProducto"]."' codigo='".$productos[$i]["codigo"]."' imagen='".$productos[$i]["imagen"]."'><i class='fa fa-times'></i></button></div>";				
+
 			}
 
 		  	$datosJson .='[

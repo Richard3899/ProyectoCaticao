@@ -48,9 +48,22 @@
        </div>
        
         <div class="form-group row  col-12 col-lg-4 justify-content-sm-end">
-          <button class="btn btn-primary my-1 col-12 col-sm-5 col-md-4 mr-2 col-lg-8 col-xl-7" id="btnRecetaConsumoGas" data-toggle="modal" data-target="#modalRecetaConsumoGas">
-           Agregar Consumo de Gas
-         </button>
+          
+          <?php 
+          if($permisoInsertar==1){
+
+          echo  "<button class='btn btn-primary my-1 col-12 col-sm-5 col-md-4 mr-2 col-lg-8 col-xl-7' id='btnRecetaConsumoGas' data-toggle='modal' data-target='#modalRecetaConsumoGas'>
+                Agregar Consumo de Gas
+                </button>";
+          }else{
+
+          echo  "<button class='btn btn-primary my-1 col-12 col-sm-5 col-md-4 mr-2 col-lg-8 col-xl-7' id='btnRecetaConsumoGas'>
+                Agregar Consumo de Gas
+                </button>";
+
+          }
+          ?>
+
          <a type="button" class="btn btn-secondary my-1 col-12 col-sm-4 col-md-3 col-lg-3 col-xl-3" href="recetas">Volver</a>
         </div>
         

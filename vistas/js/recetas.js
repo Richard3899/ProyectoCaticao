@@ -1,6 +1,6 @@
 
 $('.tablaRecetas').DataTable( {
-    "ajax": "ajax/datatable-recetas.ajax.php",
+    "ajax": "ajax/datatable-recetas.ajax.php?permisoEditar="+permisoEditar+"&permisoEliminar="+permisoEliminar,
     "deferRender": true,
 	"columnDefs": [
 		{"className": "dt-center", "targets": "_all"}

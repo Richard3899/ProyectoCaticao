@@ -1,6 +1,6 @@
 
 $('.tablaCostoOperativo').DataTable( {
-    "ajax": "ajax/datatable-costooperativo.ajax.php",
+    "ajax": "ajax/datatable-costooperativo.ajax.php?permisoEditar="+permisoEditar+"&permisoEliminar="+permisoEliminar,
     "deferRender": true,
 	"columnDefs": [
 		{"className": "dt-center", "targets": "_all"}

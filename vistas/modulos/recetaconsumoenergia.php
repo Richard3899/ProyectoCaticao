@@ -48,16 +48,41 @@
       </div>
        
       <div class="form-group row col-12 col-lg-5 justify-content-sm-center justify-content-md-end">
-          <button class="btn btn-primary my-1 col-12 col-sm-6 col-md-4 mr-2 col-lg-8 col-xl-8" id="btnRecetaConsumoEnergia" data-toggle="modal" data-target="#modalRecetaConsumoEnergia">
-           Agregar Consumo de Energía
-         </button>
+          
+          <?php 
+          if($permisoInsertar==1){
+
+          echo  "<button class='btn btn-primary my-1 col-12 col-sm-6 col-md-4 mr-2 col-lg-8 col-xl-8' id='btnRecetaConsumoEnergia' data-toggle='modal' data-target='#modalRecetaConsumoEnergia'>
+                Agregar Consumo de Energía
+                </button>";
+          }else{
+
+          echo  "<button class='btn btn-primary my-1 col-12 col-sm-6 col-md-4 mr-2 col-lg-8 col-xl-8' id='btnRecetaConsumoEnergia'>
+                Agregar Consumo de Energía
+                </button>";
+
+          }
+          ?>
+
          <a type="button" class="btn btn-secondary my-1 col-12 col-sm-5 col-md-3 col-lg-3 col-xl-3" href="recetas">Volver</a>
       </div>
 
       <div class="form-group row col-12">
-        <button class="btn btn-success ml-sm-2 col-12 col-sm-3 col-md-2 col-lg-2 col-xl-2" id="btnEditarTarifaKwh" data-toggle="modal" data-target="#modalEditarTarifaKwh">
-            Tarifa Kwh
-        </button>
+
+          <?php 
+          if($permisoInsertar==1){
+
+          echo  "<button class='btn btn-success ml-sm-2 col-12 col-sm-3 col-md-2 col-lg-2 col-xl-2' id='btnEditarTarifaKwh' data-toggle='modal' data-target='#modalEditarTarifaKwh'>
+                Tarifa Kwh
+                </button>";
+          }else{
+
+          echo  "<button class='btn btn-success ml-sm-2 col-12 col-sm-3 col-md-2 col-lg-2 col-xl-2' id='btnEditarTarifaKwh'>
+                Tarifa Kwh
+                </button>";
+
+          }
+          ?>
       
       </div>
         

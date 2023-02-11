@@ -13,84 +13,109 @@ session_start();
   }; 
 
   include "modulos/head.php";
-?> 
 
-<?php
 
-$item = null;
-$valor = null;
+  $item = null;
+  $valor = null;
 
-$configuracion = ControladorConfiguracion::ctrMostrarConfiguracion($item, $valor);
+  $configuracion = ControladorConfiguracion::ctrMostrarConfiguracion($item, $valor);
 
-foreach ($configuracion as $key => $value){
+  foreach ($configuracion as $key => $value){
 
-  if($value["modoDark"] == 1 && $value["contraerBarraLateral"]==1 && $value["ocultarBarraLateral"]==1 ){
-  
-    echo '<body class="hold-transition skin-blue dark-mode sidebar-collapse">';
-  
-  }else if($value["modoDark"] == 0 && $value["contraerBarraLateral"]==1 && $value["ocultarBarraLateral"]==1 ){
-  
-    echo '<body class="hold-transition skin-blue sidebar-collapse">';
-  
-  }else if($value["modoDark"] == 0 && $value["contraerBarraLateral"]==0 && $value["ocultarBarraLateral"]==1 ){
-  
-    echo '<body class="hold-transition skin-blue">';
-  
-  }else if($value["modoDark"] == 1 && $value["contraerBarraLateral"]==1 && $value["ocultarBarraLateral"]==0){
-  
-  echo '<body class="hold-transition skin-blue sidebar-mini-xs dark-mode sidebar-collapse">';
-  
-  }else if($value["modoDark"] == 1 && $value["contraerBarraLateral"]==0 && $value["ocultarBarraLateral"]==0){
-  
-  echo '<body class="hold-transition skin-blue sidebar-mini-xs dark-mode">';
-  
-  }else if($value["modoDark"] == 0 && $value["contraerBarraLateral"]==1 && $value["ocultarBarraLateral"]==0){
-  
-    echo '<body class="hold-transition skin-blue sidebar-mini-xs sidebar-collapse">';
+    if($value["modoDark"] == 1 && $value["contraerBarraLateral"]==1 && $value["ocultarBarraLateral"]==1 ){
+    
+      echo '<body class="hold-transition skin-blue dark-mode sidebar-collapse">';
+    
+    }else if($value["modoDark"] == 0 && $value["contraerBarraLateral"]==1 && $value["ocultarBarraLateral"]==1 ){
+    
+      echo '<body class="hold-transition skin-blue sidebar-collapse">';
+    
+    }else if($value["modoDark"] == 0 && $value["contraerBarraLateral"]==0 && $value["ocultarBarraLateral"]==1 ){
+    
+      echo '<body class="hold-transition skin-blue">';
+    
+    }else if($value["modoDark"] == 1 && $value["contraerBarraLateral"]==1 && $value["ocultarBarraLateral"]==0){
+    
+    echo '<body class="hold-transition skin-blue sidebar-mini-xs dark-mode sidebar-collapse">';
+    
+    }else if($value["modoDark"] == 1 && $value["contraerBarraLateral"]==0 && $value["ocultarBarraLateral"]==0){
+    
+    echo '<body class="hold-transition skin-blue sidebar-mini-xs dark-mode">';
+    
+    }else if($value["modoDark"] == 0 && $value["contraerBarraLateral"]==1 && $value["ocultarBarraLateral"]==0){
+    
+      echo '<body class="hold-transition skin-blue sidebar-mini-xs sidebar-collapse">';
 
-  }else if($value["modoDark"] == 1 && $value["contraerBarraLateral"]==0 && $value["ocultarBarraLateral"]==1){
-  
-    echo '<body class="hold-transition skin-blue dark-mode">';
-  };
-} 
+    }else if($value["modoDark"] == 1 && $value["contraerBarraLateral"]==0 && $value["ocultarBarraLateral"]==1){
+    
+      echo '<body class="hold-transition skin-blue dark-mode">';
+    };
+  } 
   
 
-  if(isset($_SESSION["iniciarSesion"]) && $_SESSION["iniciarSesion"] == "ok"){
+    if(isset($_SESSION["iniciarSesion"]) && $_SESSION["iniciarSesion"] == "ok"){
 
-   echo '<div class="wrapper">';
 
-    include "modulos/nav.php";
- 
-    include "modulos/sidebar.php";
-
-    if(isset($_GET["ruta"])){
-
-      if(in_array($_GET["ruta"], $_SESSION["descripcionModulos"])){
-
-          include "modulos/".$_GET["ruta"].".php";
+      $arrayidModulos = array();
+      $arrayDescripcionModulos = array();
+    
+      $modulos = ModeloUsuariosModulos::mdlMostrarUsuariosModulos($_SESSION["idUsuario"]);
           
-      }else{
-
-          include "modulos/bienvenida.php";
-
+      foreach($modulos as $value){ 
+    
+      array_push($arrayidModulos, $value["idModulo"]);
+      array_push($arrayDescripcionModulos, $value["descripcion"]);
+          
       }
 
-    }else{
+      echo '<div class="wrapper">';
+   
+       include "modulos/nav.php";
+    
+       include "modulos/sidebar.php";
+   
+       if(isset($_GET["ruta"])){
 
-         include "modulos/bienvenida.php";
+        if(count($arrayidModulos)!=0){
 
-    }
+         if(in_array($_GET["ruta"], $arrayDescripcionModulos)){
+   
+             include "modulos/".$_GET["ruta"].".php";
+             
+         }else{
+   
+             include "modulos/bienvenida.php";
+   
+         }
+        }else{
 
-    include "modulos/footer.php";
+          include "modulos/salir.php";
+      
+          echo'<script>
+       
+          window.location = "salir";
+          
+          </script>';
+      
+        }
+   
+       }else{
+   
+            include "modulos/bienvenida.php";
+   
+       }
+   
+       include "modulos/footer.php";
+   
+       echo '</div>';
+   
+     }else{
+   
+       include "modulos/login.php";
+   
+     }
 
-    echo '</div>';
-
-  }else{
-
-    include "modulos/login.php";
-
-  }
-
+ 
   ?>
 
 <script src="vistas/js/plantilla.js"></script>

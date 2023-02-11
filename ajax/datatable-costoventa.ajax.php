@@ -53,12 +53,25 @@ class TablaCostoVenta{
 
 		  	$unidadmedida = ControladorUnidadMedida::ctrMostrarUnidadMedida($items, $valors);
 
+			/*==Botón Editar y Eliminar=*/
 
-		  	/*=============================================
- 	 		TRAEMOS LAS ACCIONES
-  			=============================================*/ 
+            if($_GET["permisoEditar"]==1 && $_GET["permisoEliminar"]==0){
+				
+			$botones =  "<div class='btn-group'><button class='btn btn-warning btnEditarCostoVenta' idCostoVenta='".$costoventa[$i]["idGastoAdmin"]."' data-toggle='modal' data-target='#modalEditarCostoVenta'><i class='fa fa-pen'></i></button></div>"; 
 
-		  	$botones =  "<div class='btn-group'><button class='btn btn-warning btnEditarCostoVenta' idCostoVenta='".$costoventa[$i]["idGastoAdmin"]."' data-toggle='modal' data-target='#modalEditarCostoVenta'><i class='fa fa-pen'></i></button><button class='btn btn-danger btnEliminarCostoVenta' idCostoVenta='".$costoventa[$i]["idGastoAdmin"]."'><i class='fa fa-times'></i></button></div>"; 
+			}else if($_GET["permisoEditar"]==0 && $_GET["permisoEliminar"]==1){
+
+			$botones =  "<div class='btn-group'><button class='btn btn-danger btnEliminarCostoVenta' idCostoVenta='".$costoventa[$i]["idGastoAdmin"]."'><i class='fa fa-times'></i></button></div>"; 
+
+			}else if($_GET["permisoEditar"]==0 && $_GET["permisoEliminar"]==0){
+
+			$botones = "<button class='btn btn-danger'><i class='fa fa-lock'></i></button>";
+				
+		    }else{
+
+			$botones =  "<div class='btn-group'><button class='btn btn-warning btnEditarCostoVenta' idCostoVenta='".$costoventa[$i]["idGastoAdmin"]."' data-toggle='modal' data-target='#modalEditarCostoVenta'><i class='fa fa-pen'></i></button><button class='btn btn-danger btnEliminarCostoVenta' idCostoVenta='".$costoventa[$i]["idGastoAdmin"]."'><i class='fa fa-times'></i></button></div>"; 
+
+			}
 
 		  	$datosJson .='[
 			      "'.($i+1).'",

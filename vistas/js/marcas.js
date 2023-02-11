@@ -1,6 +1,6 @@
 
 $('.tablaMarcas').DataTable( {
-    "ajax": "ajax/datatable-marcas.ajax.php",
+    "ajax": "ajax/datatable-marcas.ajax.php?permisoEditar="+permisoEditar+"&permisoEliminar="+permisoEliminar,
     "deferRender": true,
 	"columnDefs": [
 		{"className": "dt-center", "targets": "_all"}

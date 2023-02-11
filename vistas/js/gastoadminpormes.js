@@ -4,7 +4,7 @@ TABLA GASTO ADMIN POR MES
 var idCostoRecetasGastoAdminC = $("#idCostoRecetasGastoAdmin").val();
 
 $('.tablaGastoAdminPorMes').DataTable( {
-	"ajax": "ajax/datatable-gastoadminpormes.ajax.php?idCostoRecetasGastoAdminC="+idCostoRecetasGastoAdminC,
+	"ajax": "ajax/datatable-gastoadminpormes.ajax.php?idCostoRecetasGastoAdminC="+idCostoRecetasGastoAdminC+"&permisoEditar="+permisoEditar+"&permisoEliminar="+permisoEliminar,
     "deferRender": true,
 	"columnDefs": [
 		{"className": "dt-center", "targets": "_all",

@@ -49,21 +49,6 @@ class TablaUsuarios{
 
 		  	$perfiles = ControladorPerfiles::ctrMostrarPerfiles($item, $valor);
 
-			if($usuarios[$i]["idUsuario"]!=1){
-				if($usuarios[$i]["estado"] != 0){
-  
-					$estado="<button class='btn btn-success btnActivar' idUsuario='".$usuarios[$i]["idUsuario"]."' estadoUsuario='0'>Activado</button>";
-	
-				}else{
-	
-					$estado="<button class='btn btn-danger btnActivar' idUsuario='".$usuarios[$i]["idUsuario"]."' estadoUsuario='1'>Desactivado</button>";
-	
-				}
-			}else{
-				    $estado="<button class='btn btn-success'>Activado</button>";
-			}
-
-
 			if($usuarios[$i]["ultimo_login"] != ""){  
 
 				$ultimoLogin= $usuarios[$i]["ultimo_login"];
@@ -74,14 +59,116 @@ class TablaUsuarios{
 
 			}
 
-			/*==Botón Editar y Eliminar=*/
+		    /*==Botón Editar y Eliminar=*/
 
-			if($usuarios[$i]["idUsuario"] == 1){
+            if($_GET["permisoEditar"]==1 && $_GET["permisoEliminar"]==0){
+				
+			if($usuarios[$i]["idUsuario"] == 1 && $_GET["idUsuarioSession"]!=1){
 
-				$botones = "<div class='btn-group'><button class='btn btn-warning btnEditarUsuario' idUsuario='".$usuarios[$i]["idUsuario"]."' data-toggle='modal' data-target='#modalEditarUsuario'><i class='fa fa-pen'></i></button></div>";  
+			$botones = "<button class='btn btn-danger'><i class='fa fa-lock'></i></button>";
+			$estado="<button class='btn btn-success'>Activado</button>";
+		    
+		    }else if($usuarios[$i]["idUsuario"] == 1 && $_GET["idUsuarioSession"]==1){
+
+			$botones = "<div class='btn-group'><button class='btn btn-warning btnEditarUsuario' idUsuario='".$usuarios[$i]["idUsuario"]."' data-toggle='modal' data-target='#modalEditarUsuario'><i class='fa fa-pen'></i></button></div>";  
+			$estado="<button class='btn btn-success'>Activado</button>";
+
 			}else{
 
-				$botones = "<div class='btn-group'><button class='btn btn-warning btnEditarUsuario' idUsuario='".$usuarios[$i]["idUsuario"]."' data-toggle='modal' data-target='#modalEditarUsuario'><i class='fa fa-pen'></i></button><button class='btn btn-danger btnEliminarUsuario' idUsuario='".$usuarios[$i]["idUsuario"]."' fotoUsuario='".$usuarios[$i]["foto"]."' usuario='".$usuarios[$i]["usuario"]."'><i class='fa fa-times'></i></button></div>";  
+			if($usuarios[$i]["estado"] != 0){
+  
+			$estado="<button class='btn btn-success btnActivar' idUsuario='".$usuarios[$i]["idUsuario"]."' estadoUsuario='0'>Activado</button>";
+	
+			}else{
+	
+			$estado="<button class='btn btn-danger btnActivar' idUsuario='".$usuarios[$i]["idUsuario"]."' estadoUsuario='1'>Desactivado</button>";
+	
+			}
+			$botones = "<div class='btn-group'><button class='btn btn-warning btnEditarUsuario' idUsuario='".$usuarios[$i]["idUsuario"]."' data-toggle='modal' data-target='#modalEditarUsuario'><i class='fa fa-pen'></i></button></div>";  
+	
+			}
+
+			}else if($_GET["permisoEditar"]==0 && $_GET["permisoEliminar"]==1){
+
+			if($usuarios[$i]["idUsuario"] == 1 && $_GET["idUsuarioSession"]!=1){
+
+			$botones = "<button class='btn btn-danger'><i class='fa fa-lock'></i></button>";
+			$estado="<button class='btn btn-success'>Activado</button>";
+		    
+		    }else if($usuarios[$i]["idUsuario"] == 1 && $_GET["idUsuarioSession"]==1){
+
+			$botones = "<div class='btn-group'><button class='btn btn-warning btnEditarUsuario' idUsuario='".$usuarios[$i]["idUsuario"]."' data-toggle='modal' data-target='#modalEditarUsuario'><i class='fa fa-pen'></i></button></div>";  
+			$estado="<button class='btn btn-success'>Activado</button>";
+
+			}else{
+
+			if($usuarios[$i]["estado"] != 0){
+  
+			$estado="<button class='btn btn-success' idUsuario='".$usuarios[$i]["idUsuario"]."' estadoUsuario='0'>Activado</button>";
+	
+			}else{
+	
+			$estado="<button class='btn btn-danger' idUsuario='".$usuarios[$i]["idUsuario"]."' estadoUsuario='1'>Desactivado</button>";
+	
+			}
+			$botones = "<div class='btn-group'><button class='btn btn-danger btnEliminarUsuario' idUsuario='".$usuarios[$i]["idUsuario"]."' fotoUsuario='".$usuarios[$i]["foto"]."' usuario='".$usuarios[$i]["usuario"]."'><i class='fa fa-times'></i></button></div>";  
+	
+			}
+
+			}else if($_GET["permisoEditar"]==0 && $_GET["permisoEliminar"]==0){
+
+		    if($usuarios[$i]["idUsuario"] == 1 && $_GET["idUsuarioSession"]!=1){
+
+			$botones = "<button class='btn btn-danger'><i class='fa fa-lock'></i></button>";
+			$estado="<button class='btn btn-success'>Activado</button>";
+		    
+		    }else if($usuarios[$i]["idUsuario"] == 1 && $_GET["idUsuarioSession"]==1){
+
+			$botones = "<div class='btn-group'><button class='btn btn-warning btnEditarUsuario' idUsuario='".$usuarios[$i]["idUsuario"]."' data-toggle='modal' data-target='#modalEditarUsuario'><i class='fa fa-pen'></i></button></div>";  
+			$estado="<button class='btn btn-success'>Activado</button>";
+	
+			}else{
+
+			if($usuarios[$i]["estado"] != 0){
+  
+			$estado="<button class='btn btn-success' idUsuario='".$usuarios[$i]["idUsuario"]."' estadoUsuario='0'>Activado</button>";
+	
+			}else{
+	
+			$estado="<button class='btn btn-danger' idUsuario='".$usuarios[$i]["idUsuario"]."' estadoUsuario='1'>Desactivado</button>";
+	
+			}
+
+			$botones = "<button class='btn btn-danger'><i class='fa fa-lock'></i></button>";
+	
+			}	
+				
+		    }else{
+
+			if($usuarios[$i]["idUsuario"] == 1 && $_GET["idUsuarioSession"]!=1){
+
+			$botones = "<button class='btn btn-danger'><i class='fa fa-lock'></i></button>";
+			$estado="<button class='btn btn-success'>Activado</button>";
+		    
+		    }else if($usuarios[$i]["idUsuario"] == 1 && $_GET["idUsuarioSession"]==1){
+
+			$botones = "<div class='btn-group'><button class='btn btn-warning btnEditarUsuario' idUsuario='".$usuarios[$i]["idUsuario"]."' data-toggle='modal' data-target='#modalEditarUsuario'><i class='fa fa-pen'></i></button></div>";  
+			$estado="<button class='btn btn-success'>Activado</button>";
+
+			}else{
+
+			if($usuarios[$i]["estado"] != 0){
+  
+			$estado="<button class='btn btn-success btnActivar' idUsuario='".$usuarios[$i]["idUsuario"]."' estadoUsuario='0'>Activado</button>";
+	
+			}else{
+	
+			$estado="<button class='btn btn-danger btnActivar' idUsuario='".$usuarios[$i]["idUsuario"]."' estadoUsuario='1'>Desactivado</button>";
+	
+			}
+			$botones = "<div class='btn-group'><button class='btn btn-warning btnEditarUsuario' idUsuario='".$usuarios[$i]["idUsuario"]."' data-toggle='modal' data-target='#modalEditarUsuario'><i class='fa fa-pen'></i></button><button class='btn btn-danger btnEliminarUsuario' idUsuario='".$usuarios[$i]["idUsuario"]."' fotoUsuario='".$usuarios[$i]["foto"]."' usuario='".$usuarios[$i]["usuario"]."'><i class='fa fa-times'></i></button></div>";  
+	
+			}
 
 			}
 

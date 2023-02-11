@@ -1,6 +1,4 @@
 <?php
-
-
 require_once "../controladores/insumos.controlador.php";
 require_once "../modelos/insumos.modelo.php";
 
@@ -66,11 +64,26 @@ class TablaInsumos{
 		  	$valors = $insumos[$i]["idUnidadMedida"];
 
 		  	$unidadmedida = ControladorUnidadMedida::ctrMostrarUnidadMedida($items, $valors);
-
-
-			/*==Botón Editar y Eliminar=*/
-			$botones =  "<div class='btn-group'><button class='btn btn-warning btnEditarInsumo' idInsumo='".$insumos[$i]["idMateria"]."' data-toggle='modal' data-target='#modalEditarInsumo'><i class='fa fa-pen'></i></button><button class='btn btn-danger btnEliminarInsumo' idInsumo='".$insumos[$i]["idMateria"]."' codigo='".$insumos[$i]["codigo"]."' imagen='".$insumos[$i]["imagen"]."'><i class='fa fa-times'></i></button></div>";				
 			
+			/*==Botón Editar y Eliminar=*/
+
+            if($_GET["permisoEditar"]==1 && $_GET["permisoEliminar"]==0){
+				
+			$botones =  "<div class='btn-group'><button class='btn btn-warning btnEditarInsumo' idInsumo='".$insumos[$i]["idMateria"]."' data-toggle='modal' data-target='#modalEditarInsumo'><i class='fa fa-pen'></i></button></div>";				
+
+			}else if($_GET["permisoEditar"]==0 && $_GET["permisoEliminar"]==1){
+
+			$botones =  "<div class='btn-group'><button class='btn btn-danger btnEliminarInsumo' idInsumo='".$insumos[$i]["idMateria"]."' codigo='".$insumos[$i]["codigo"]."' imagen='".$insumos[$i]["imagen"]."'><i class='fa fa-times'></i></button></div>";				
+
+			}else if($_GET["permisoEditar"]==0 && $_GET["permisoEliminar"]==0){
+
+			$botones = "<button class='btn btn-danger'><i class='fa fa-lock'></i></button>";
+				
+		    }else{
+
+			$botones =  "<div class='btn-group'><button class='btn btn-warning btnEditarInsumo' idInsumo='".$insumos[$i]["idMateria"]."' data-toggle='modal' data-target='#modalEditarInsumo'><i class='fa fa-pen'></i></button><button class='btn btn-danger btnEliminarInsumo' idInsumo='".$insumos[$i]["idMateria"]."' codigo='".$insumos[$i]["codigo"]."' imagen='".$insumos[$i]["imagen"]."'><i class='fa fa-times'></i></button></div>";				
+
+			}
 
 		  	$datosJson .='[
 			      "'.($i+1).'",

@@ -4,7 +4,7 @@ TABLA DEPRECIACIÓN
 var idRecetaC = $("#idReceta").val();
 
 $('.tablaRecetaDepreciacion').DataTable( {
-	"ajax": "ajax/datatable-recetadepreciacion.ajax.php?idRecetaC="+idRecetaC,
+	"ajax": "ajax/datatable-recetadepreciacion.ajax.php?idRecetaC="+idRecetaC+"&permisoEditar="+permisoEditar+"&permisoEliminar="+permisoEliminar,
     "deferRender": true,
 	"columnDefs": [
 		{"className": "dt-center", "targets": "_all",

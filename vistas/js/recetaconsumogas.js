@@ -4,7 +4,7 @@ TABLA CONSUMO DE GAS
 var idRecetaC = $("#idReceta").val();
 
 $('.tablaRecetaConsumoGas').DataTable( {
-	"ajax": "ajax/datatable-recetaconsumogas.ajax.php?idRecetaC="+idRecetaC,
+	"ajax": "ajax/datatable-recetaconsumogas.ajax.php?idRecetaC="+idRecetaC+"&permisoEditar="+permisoEditar+"&permisoEliminar="+permisoEliminar,
     "deferRender": true,
 	"columnDefs": [
 		{"className": "dt-center", "targets": "_all",

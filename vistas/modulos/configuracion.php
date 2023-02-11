@@ -40,7 +40,7 @@
                     $configuracion = ControladorConfiguracion::ctrMostrarConfiguracion($item, $valor);
 
                     foreach ($configuracion as $key => $value){
-
+                      if($permisoEditar==1){ 
                           if($value["modoDark"] == 1){
 
                             echo '<td><button class="btn btn-danger btnActivarModoDark col" idConfiguracion="'.$value["idConfiguracion"].'" mododark="0">Desactivar</button></td>';
@@ -50,8 +50,19 @@
                             echo '<td><button class="btn btn-success btnActivarModoDark col" idConfiguracion="'.$value["idConfiguracion"].'" mododark="1">Activar</button></td>';
 
                           };
-                    }
+                      }else{
+                          if($value["modoDark"] == 1){
 
+                            echo '<td><button class="btn btn-danger col" idConfiguracion="'.$value["idConfiguracion"].'" mododark="0">Desactivar</button></td>';
+                          
+                          }else{
+
+                            echo '<td><button class="btn btn-success col" idConfiguracion="'.$value["idConfiguracion"].'" mododark="1">Activar</button></td>';
+
+                          };
+                      }
+
+                    }
 
                     ?>
 
@@ -78,16 +89,29 @@
                   $configuracion = ControladorConfiguracion::ctrMostrarConfiguracion($item, $valor);
 
                   foreach ($configuracion as $key => $value){
+                    
+                      if($permisoEditar==1){
+                          if($value["ocultarBarraLateral"] == 1){
 
-                        if($value["ocultarBarraLateral"] == 1){
+                            echo '<td><button class="btn btn-danger btnActivarOcultarBarraLateral col" idConfiguracion="'.$value["idConfiguracion"].'" ocultarbarralateral="0">Desactivar</button></td>';
 
-                              echo '<td><button class="btn btn-danger btnActivarOcultarBarraLateral col" idConfiguracion="'.$value["idConfiguracion"].'" ocultarbarralateral="0">Desactivar</button></td>';
+                          }else{
 
-                        }else{
+                            echo '<td><button class="btn btn-success btnActivarOcultarBarraLateral col" idConfiguracion="'.$value["idConfiguracion"].'" ocultarbarralateral="1">Activar</button></td>';
 
-                              echo '<td><button class="btn btn-success btnActivarOcultarBarraLateral col" idConfiguracion="'.$value["idConfiguracion"].'" ocultarbarralateral="1">Activar</button></td>';
+                          };
+                      }else{
+                          if($value["ocultarBarraLateral"] == 1){
 
-                        };
+                            echo '<td><button class="btn btn-danger col" idConfiguracion="'.$value["idConfiguracion"].'" ocultarbarralateral="0">Desactivar</button></td>';
+
+                          }else{
+
+                            echo '<td><button class="btn btn-success col" idConfiguracion="'.$value["idConfiguracion"].'" ocultarbarralateral="1">Activar</button></td>';
+
+                          };
+                      }
+
                   }
 
 

@@ -120,8 +120,8 @@ DELIMITER $$
 USE `caticao`$$
 CREATE PROCEDURE `insertar_usuario` (   in idUsuarioI INT,
 													 in idPerfilI INT,
-													 in nombreI VARCHAR(45),
-                                        in usuarioI VARCHAR(45),
+													 in nombreI VARCHAR(50),
+                                        in usuarioI VARCHAR(50),
                                         in passwordI VARCHAR(100),
                                         in fotoI VARCHAR(100))
 BEGIN

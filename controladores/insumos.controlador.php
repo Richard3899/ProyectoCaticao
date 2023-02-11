@@ -142,8 +142,6 @@ class ControladorInsumos{
 				VALIDAR IMAGEN
 				=============================================*/
 
-			   	$ruta = $_POST["ImagenInsumoActual"];
-
 			   	if(isset($_FILES["editarImagenInsumo"]["tmp_name"]) && !empty($_FILES["editarImagenInsumo"]["tmp_name"])){
 
 					list($ancho, $alto) = getimagesize($_FILES["editarImagenInsumo"]["tmp_name"]);
@@ -215,6 +213,8 @@ class ControladorInsumos{
 
 					}
 
+				}else{
+					$ruta = $_POST["ImagenInsumoActual"];
 				}
 
 

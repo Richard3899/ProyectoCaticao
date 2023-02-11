@@ -140,8 +140,6 @@ class ControladorProductos{
 				VALIDAR IMAGEN
 				=============================================*/
 
-			   	$ruta = $_POST["ImagenProductoActual"];
-
 			   	if(isset($_FILES["editarImagenProducto"]["tmp_name"]) && !empty($_FILES["editarImagenProducto"]["tmp_name"])){
 
 					list($ancho, $alto) = getimagesize($_FILES["editarImagenProducto"]["tmp_name"]);
@@ -213,6 +211,8 @@ class ControladorProductos{
 
 					}
 
+				}else{
+					    $ruta = $_POST["ImagenProductoActual"];
 				}
 
 
@@ -223,7 +223,6 @@ class ControladorProductos{
 							   "idTipoProducto" => $_POST["editarTipoProducto"],
 							   "imagen" => $ruta);
 							   
-				
 
 				$respuesta = ModeloProductos::mdlEditarProducto($datos);
 

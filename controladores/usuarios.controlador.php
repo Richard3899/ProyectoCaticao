@@ -23,7 +23,6 @@ class ControladorUsuarios{
 
 				$respuesta = ModeloUsuarios::MdlMostrarUsuarios($tabla, $item, $valor);
 
-
 				if(is_array($respuesta)){
 
 					if($respuesta["usuario"] == $_POST["ingUsuario"] && 
@@ -31,25 +30,9 @@ class ControladorUsuarios{
  
 						if($respuesta["estado"] == 1){
 
-						$modulos = ModeloUsuariosModulos::mdlMostrarUsuariosModulos($respuesta["idUsuario"]);
-						
-						$arrayidModulos = array();
-						$arrayDescripcionModulos = array();
-
-						foreach($modulos as $value){ 
-
-							array_push($arrayidModulos, $value["idModulo"]);
-							array_push($arrayDescripcionModulos, $value["descripcion"]);
-						}
-
-				        $_SESSION["idModulos"] = $arrayidModulos;
-						$_SESSION["descripcionModulos"] = $arrayDescripcionModulos;
-
 						$_SESSION["iniciarSesion"] = "ok";
 						$_SESSION["idUsuario"] = $respuesta["idUsuario"];
 						$_SESSION["nombre"] = $respuesta["nombre"];
-						$_SESSION["usuario"] = $respuesta["usuario"];
-						$_SESSION["foto"] = $respuesta["foto"];
 
 						/*=============================================
 						REGISTRAR FECHA PARA SABER EL ÚLTIMO LOGIN

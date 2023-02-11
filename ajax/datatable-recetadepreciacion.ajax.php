@@ -36,12 +36,27 @@ class TablaRecetaDepreciacion{
 		  "data": [';
 
 		  for($i = 0; $i < count($recetadepreciacion); $i++){
-			
-			/*============================================
- 	 		TRAEMOS LAS ACCIONES
-  			=============================================*/
-			$botones =  "<div class='btn-group'><button class='btn btn-warning btnEditarDepreciacionReceta' idRecetaDepreciacion='".$recetadepreciacion[$i]["idRecetaDepreciacion"]."' data-toggle='modal' data-target='#modalEditarDepreciacion'><i class='fa fa-pen'></i></button><button class='btn btn-danger btnEliminarDepreciacionReceta' idRecetaDepreciacion='".$recetadepreciacion[$i]["idRecetaDepreciacion"]."'><i class='fa fa-times'></i></button></div>";				
+
+			/*==Botón Editar y Eliminar=*/
+
+            if($_GET["permisoEditar"]==1 && $_GET["permisoEliminar"]==0){
 				
+			$botones =  "<div class='btn-group'><button class='btn btn-warning btnEditarDepreciacionReceta' idRecetaDepreciacion='".$recetadepreciacion[$i]["idRecetaDepreciacion"]."' data-toggle='modal' data-target='#modalEditarDepreciacion'><i class='fa fa-pen'></i></button></div>";				
+
+			}else if($_GET["permisoEditar"]==0 && $_GET["permisoEliminar"]==1){
+				
+			$botones =  "<div class='btn-group'><button class='btn btn-danger btnEliminarDepreciacionReceta' idRecetaDepreciacion='".$recetadepreciacion[$i]["idRecetaDepreciacion"]."'><i class='fa fa-times'></i></button></div>";				
+
+			}else if($_GET["permisoEditar"]==0 && $_GET["permisoEliminar"]==0){
+
+			$botones = "<button class='btn btn-danger'><i class='fa fa-lock'></i></button>";
+				
+		    }else{
+
+			$botones =  "<div class='btn-group'><button class='btn btn-warning btnEditarDepreciacionReceta' idRecetaDepreciacion='".$recetadepreciacion[$i]["idRecetaDepreciacion"]."' data-toggle='modal' data-target='#modalEditarDepreciacion'><i class='fa fa-pen'></i></button><button class='btn btn-danger btnEliminarDepreciacionReceta' idRecetaDepreciacion='".$recetadepreciacion[$i]["idRecetaDepreciacion"]."'><i class='fa fa-times'></i></button></div>";				
+
+			}
+
 		  	$datosJson .='[
 			      "'.($i+1).'",
 				  "'.$recetadepreciacion[$i]["nombreMaquina"].'",

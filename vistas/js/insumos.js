@@ -1,5 +1,5 @@
 $('.tablaInsumos').DataTable( {
-    "ajax": "ajax/datatable-insumos.ajax.php",
+    "ajax": "ajax/datatable-insumos.ajax.php?permisoEditar="+permisoEditar+"&permisoEliminar="+permisoEliminar,
     "deferRender": true,
 	"columnDefs": [
 		{"className": "dt-center", "targets": "_all"}
@@ -125,9 +125,9 @@ $(".tablaInsumos tbody").on("click", "button.btnEditarInsumo", function(){
 
            $("#editarPrecio").val(respuesta["precio"]);
 
-           if(respuesta["imagen"] != ""){
+		   $("#ImagenInsumoActual").val(respuesta["imagen"]);
 
-           	$("#ImagenInsumoActual").val(respuesta["imagen"]);
+           if(respuesta["imagen"] != ""){
 
            	$(".previsualizar").attr("src",respuesta["imagen"]);
 

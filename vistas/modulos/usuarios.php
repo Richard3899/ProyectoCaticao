@@ -23,12 +23,20 @@
     <!-- Default box -->
     <div class="card">
       <div class="card-header">
-      
-      <button class="btn btn-primary" data-toggle="modal" data-target="#modalAgregarUsuario">
-        
-        Agregar Usuario
 
-      </button>
+      <?php 
+       if($permisoInsertar==1){
+
+       echo "<button class='btn btn-primary' data-toggle='modal' data-target='#modalAgregarUsuario'>
+            Agregar Usuario
+            </button>";
+
+       }else{
+
+       echo "<button class='btn btn-primary'>Agregar Usuario</button>";
+
+       }
+      ?>
         
       </div>
       <div class="card-body">
@@ -98,7 +106,7 @@ MODAL AGREGAR USUARIO
 
         <ul class="nav nav-tabs">
             <li class="nav-item">
-              <a class="nav-link active" id="navDatos" type="button">Datos</a>
+              <a class="nav-link active" id="navDatos" type="button">Datos del Usuario</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" id="navPermisos" type="button">Modulos y Permisos</a>
@@ -458,7 +466,7 @@ MODAL EDITAR USUARIO
 
           <ul class="nav nav-tabs">
               <li class="nav-item">
-                <a class="nav-link active" id="navDatosEditar" type="button">Datos</a>
+                <a class="nav-link active" id="navDatosEditar" type="button">Datos del Usuario</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" id="navPermisosEditar" type="button">Modulos y Permisos</a>
@@ -558,7 +566,7 @@ MODAL EDITAR USUARIO
           </div>
 
           <div class="collapse" id="editarPanelPermisos">
-            <input type="hidden" id="editarCheckBox" name="editarCheckBox" value="<?php $_SESSION["idModulos"] ?>">
+            <input type="hidden" id="editarCheckBox" name="editarCheckBox" value="<?php $arrayidModulos ?>">
             <div class="card">
 
             <a class="btn btn-outline-primary collapsed my-1 text-left" data-toggle="collapse" data-target="#editarpInicio">

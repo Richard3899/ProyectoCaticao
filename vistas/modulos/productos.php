@@ -25,14 +25,21 @@
     <!-- Default box -->
     <div class="card">
       <div class="card-header">
-      
-      <button class="btn btn-primary" data-toggle="modal" data-target="#modalAgregarProducto">
-        
-        Agregar Producto
 
-      </button>
-        
-        
+      <?php 
+       if($permisoInsertar==1){
+
+       echo "<button class='btn btn-primary' data-toggle='modal' data-target='#modalAgregarProducto'>
+            Agregar Producto
+            </button>";
+
+       }else{
+
+       echo "<button class='btn btn-primary'>Agregar Producto</button>";
+
+       }
+      ?>
+               
       </div>
       <div class="card-body">
 

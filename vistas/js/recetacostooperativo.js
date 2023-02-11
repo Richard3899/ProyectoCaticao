@@ -4,7 +4,7 @@ TABLA COSTO OPERATIVO
 var idRecetaC = $("#idReceta").val();
 
 $('.tablaRecetaCostoOperativo').DataTable( {
-	"ajax": "ajax/datatable-recetacostooperativo.ajax.php?idRecetaC="+idRecetaC,
+	"ajax": "ajax/datatable-recetacostooperativo.ajax.php?idRecetaC="+idRecetaC+"&permisoEditar="+permisoEditar+"&permisoEliminar="+permisoEliminar,
     "deferRender": true,
 	"columnDefs": [
 		{"className": "dt-center", "targets": "_all",

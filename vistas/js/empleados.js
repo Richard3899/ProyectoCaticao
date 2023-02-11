@@ -1,6 +1,6 @@
 
 $('.tablaEmpleados').DataTable( {
-    "ajax": "ajax/datatable-empleados.ajax.php",
+    "ajax": "ajax/datatable-empleados.ajax.php?permisoEditar="+permisoEditar+"&permisoEliminar="+permisoEliminar,
     "deferRender": true,
 	"columnDefs": [
 		{"className": "dt-center", "targets": "_all"}

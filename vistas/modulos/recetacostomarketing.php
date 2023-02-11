@@ -48,9 +48,22 @@
        </div>
        
         <div class="form-group row  col-12 col-lg-5 justify-content-sm-end">
-          <button class="btn btn-primary my-1 col-12 col-sm-6 col-md-4 mr-2 col-lg-8 col-xl-6" id="btnRecetaCostoMarketing" data-toggle="modal" data-target="#modalRecetaCostoMarketing">
-           Agregar Costo de Marketing
-         </button>
+          
+          <?php 
+          if($permisoInsertar==1){
+
+          echo  "<button class='btn btn-primary my-1 col-12 col-sm-6 col-md-4 mr-2 col-lg-8 col-xl-6' id='btnRecetaCostoMarketing' data-toggle='modal' data-target='#modalRecetaCostoMarketing'>
+                Agregar Costo de Marketing
+                </button>";
+          }else{
+
+          echo  "<button class='btn btn-primary my-1 col-12 col-sm-6 col-md-4 mr-2 col-lg-8 col-xl-6' id='btnRecetaCostoMarketing'>
+                Agregar Costo de Marketing
+                </button>";
+
+          }
+          ?>
+
          <a type="button" class="btn btn-secondary my-1 col-12 col-sm-4 col-md-3 col-lg-3 col-xl-3" href="recetas">Volver</a>
         </div>
         

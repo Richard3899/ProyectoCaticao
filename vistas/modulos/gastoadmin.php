@@ -25,13 +25,20 @@
     <!-- Default box -->
     <div class="card">
       <div class="card-header">
-      
-      <button class="btn btn-primary" data-toggle="modal" data-target="#modalAgregarGastoAdmin">
-        
-        Agregar Gasto Administrativo
 
-      </button>
-        
+      <?php 
+       if($permisoInsertar==1){
+
+       echo "<button class='btn btn-primary' data-toggle='modal' data-target='#modalAgregarGastoAdmin'>
+            Agregar Gasto Administrativo
+            </button>";
+
+       }else{
+
+       echo "<button class='btn btn-primary'>Agregar Gasto Administrativo</button>";
+
+       }
+      ?>       
         
       </div>
       <div class="card-body">

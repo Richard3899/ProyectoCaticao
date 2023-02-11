@@ -30,17 +30,29 @@
 
                 <div class="btn-group col-12 col-sm-8 col-md-6 col-lg-5 col-xl-4 my-1">
 
-                <button type="button" class="btn btn-success col-6 col-sm" data-toggle="modal" data-target="#modalIngresoInsumo">
-                    
-                    Ingreso Insumo
+                <?php 
+                if($permisoInsertar==1){
 
-                </button>
+                echo  "<button type='button' class='btn btn-success col-6 col-sm' data-toggle='modal' data-target='#modalIngresoInsumo'>
+                      Ingreso Insumo
+                      </button>
+                       
+                      <button type='button' class='btn btn-primary col-6 col-sm' data-toggle='modal' data-target='#modalSalidaInsumo'>
+                      Salida Insumo
+                      </button>";
 
-                <button type="button" class="btn btn-primary col-6 col-sm" data-toggle="modal" data-target="#modalSalidaInsumo">
-                    
-                    Salida Insumo
+                }else{
 
-                </button>
+                echo  "<button type='button' class='btn btn-success col-6 col-sm'>
+                      Ingreso Insumo
+                      </button>
+                   
+                      <button type='button' class='btn btn-primary col-6 col-sm'>
+                      Salida Insumo
+                      </button>";
+
+                }
+                ?>
 
                 </div>
                 

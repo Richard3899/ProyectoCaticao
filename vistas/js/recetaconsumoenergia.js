@@ -4,7 +4,7 @@ TABLA CONSUMO DE ENERGÍA
 var idRecetaC = $("#idReceta").val();
 
 $('.tablaRecetaConsumoEnergia').DataTable( {
-	"ajax": "ajax/datatable-recetaconsumoenergia.ajax.php?idRecetaC="+idRecetaC,
+	"ajax": "ajax/datatable-recetaconsumoenergia.ajax.php?idRecetaC="+idRecetaC+"&permisoEditar="+permisoEditar+"&permisoEliminar="+permisoEliminar,
     "deferRender": true,
 	"columnDefs": [
 		{"className": "dt-center", "targets": "_all",
