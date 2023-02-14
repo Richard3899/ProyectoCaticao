@@ -1,8 +1,8 @@
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
-    <!-- Content Header (Page header) -->
-    <section class="content-header">
-      <div  class="container-fluid">
+    <!-- Main content -->
+    <section class="content">
+    <div  class="container-fluid">
             <br>
             <br>
         <div class="row">
@@ -27,12 +27,6 @@
           </div>
         </div>
       </div><!-- /.container-fluid -->
-    </section>
-
-    <!-- Main content -->
-    <section class="content">
-
-
 
     </section>
     <!-- /.content -->

@@ -3,6 +3,14 @@ CREATE DATABASE IF NOT EXISTS caticao;
 USE caticao;
 
 -- -----------------------------------------------------
+-- Tables
+-- -----------------------------------------------------
+CREATE TABLE ordertable(
+  idOrderTable int AUTO_INCREMENT primary key,
+  descripcion VARCHAR(50)
+  
+);
+-- -----------------------------------------------------
 -- Table DESEMBOLSO
 -- -----------------------------------------------------
 CREATE TABLE desembolso(
@@ -10,7 +18,6 @@ CREATE TABLE desembolso(
   descripcion VARCHAR(50)
   
 );
-
 -- -----------------------------------------------------
 -- Table maquina
 -- -----------------------------------------------------

@@ -363,6 +363,17 @@ if($value["modoDark"] == 1){
             </a>           
           </li>";
           }?>
+
+          <?php if (in_array(28, $arrayidModulos)){
+          echo "<li class='nav-item'>
+            <a href='backup' class='nav-link "; if($url=='backup'){ echo "active"; } echo"'>
+              <i class='nav-icon fas fa-shield-alt'></i>
+              <p>
+                Backup
+              </p>
+            </a>
+          </li>";}
+          ?>
       
         </ul>
       </nav>

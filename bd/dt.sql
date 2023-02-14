@@ -1,5 +1,48 @@
 use caticao;
 
+INSERT INTO `orderTable` (`idOrderTable`, `descripcion`) VALUES
+(1,'ordertable'),
+(2,'configuracion'),
+(3,'marca'),
+(4,'tipoproducto'),
+(5,'tipounidad'),
+(6,'unidadmedida'),
+(7,'tipomateria'),
+(8,'tipocosto'),
+(9,'tipodocumento'),
+(10,'desembolso'),
+(11,'movimiento'),
+(12,'estado'),
+(13,'perfil'),
+(14,'usuario'),
+(15,'modulo'),
+(16,'usuariomodulo'),
+(17,'usuariopermiso'),
+(18,'empleado'),
+(19,'materia'),
+(20,'producto'),
+(21,'maquina'),
+(22,'gastoadmin'),
+(23,'inventariomateria'),
+(24,'inventarioproducto'),
+(25,'inventariomaquina'),
+(26,'movimientomateria'),
+(27,'movimientoproducto'),
+(28,'movimientomaquina'),
+(29,'lote'),
+(30,'receta'),
+(31,'recetamateria'),
+(32,'recetamanodeobra'),
+(33,'recetadepreciacion'),
+(34,'tarifaenergia'),
+(35,'recetaconsumoenergia'),
+(36,'recetaconsumogas'),
+(37,'recetacostoventa'),
+(38,'recetacostomarketing'),
+(39,'recetacostooperativo'),
+(40,'costorecetasgastoadmin'),
+(41,'gastoadminpormes');
+
 INSERT INTO `marca` (`idMarca`, `descripcion`) VALUES
 	(1, 'GLORIA'),(2, 'DULFINA'),(3, 'SAFE');
 
@@ -43,9 +86,6 @@ INSERT INTO `estado` (`idEstado`, `descripcion`) VALUES
    (2, "Proceso"),
    (3, "Terminado");
 
-INSERT INTO `producto` (`idProducto`, `codigo`, `nombre`, `descripcion`, `imagen`, `idUnidadMedida`, `idTipoProducto`) VALUES
-	(1, '123456', 'Chocolate con pasa', '50% cacao', NULL, 3, 2);
-
 INSERT INTO `perfil` (`idPerfil`, `descripcion`) VALUES
 	(1, 'Administrador'),
 	(2, 'Vendedor'),
@@ -78,6 +118,7 @@ INSERT INTO `modulo` (`idModulo`, `descripcion`) VALUES
 	(21, 'reportemateriales'),
 	(22, 'reporteproductos'),
 	(23, 'configuracion'),
+	(28, 'backup'),
 	(29, 'salir'),
 	(30, 'kardexinsumos'),
 	(31, 'kardexmateriales'),
@@ -120,23 +161,24 @@ INSERT INTO `usuariomodulo` (`idUsuarioModulo`, `idUsuario`, `idModulo`) VALUES
 	(21, 1, 21),
 	(22, 1, 22),
 	(23, 1, 23),
-	(24, 1, 29),
-	(25, 1, 30),
-	(26, 1, 31),
-	(27, 1, 32),
-	(28, 1, 33),
-	(29, 1, 34),
-	(30, 1, 35),
-	(31, 1, 36),
-	(32, 1, 37),
-	(33, 1, 38),
-	(34, 1, 39),
-	(35, 1, 40),
-	(36, 1, 41),
-	(37, 1, 42),
-	(38, 1, 43),
-	(39, 1, 44),
-	(40, 1, 45);
+	(28, 1, 28),
+	(29, 1, 29),
+	(30, 1, 30),
+	(31, 1, 31),
+	(32, 1, 32),
+	(33, 1, 33),
+	(34, 1, 34),
+	(35, 1, 35),
+	(36, 1, 36),
+	(37, 1, 37),
+	(38, 1, 38),
+	(39, 1, 39),
+	(40, 1, 40),
+	(41, 1, 41),
+	(42, 1, 42),
+	(43, 1, 43),
+	(44, 1, 44),
+	(45, 1, 45);
 	
 INSERT INTO `usuariopermiso` (`idUsuarioPermiso`, `insertar`, `editar`, `eliminar`, `idUsuario`) VALUES
 	(1, 1, 1, 1, 1);
@@ -169,17 +211,19 @@ INSERT INTO `movimientomateria` (`idMovimientoMateria`, `ingreso`, `salida`, `ob
     (5, 200.000, 0.000, 'Produccion','S-C', '2023-01-26', '2023-01-08 02:08:42', 2, 1),
     (6, 2000.000, 0.000, 'Produccion','S-C', '2023-01-10',  '2023-01-08 02:08:52', 6, 1);
 
+INSERT INTO `producto` (`idProducto`, `codigo`, `nombre`, `descripcion`, `imagen`, `idUnidadMedida`, `idTipoProducto`) VALUES
+	(1, '123456', 'Chocolate con pasa', '50% cacao', NULL, 3, 2);
 
 INSERT INTO `inventarioproducto` (`idInventarioProducto`,`stock`) VALUES
 	(1,0);
-    
-INSERT INTO `inventariomaquina` (`idInventarioMaquina`,`stock`) VALUES
-	(1,0),
-	(2,0);
 
 INSERT INTO `maquina` (`idMaquina`, `codigo`, `nombre`, `serie`, `modelo`, `descripcion`, `marca`, `precio`, `añoCompra`, `capacidad`, `potenciaHP`, `potenciaWatts`, `potenciaKw`, `depreciacionAnual`, `depreciacionMensual`, `depreciacionHora`, `vidaUtil`) VALUES 
 	(1, 'SL-0002', 'Seleccionadora', 'SL9212', 'MD-2022', 'Selecciona y limpia la materia prima', 'KAT', 8000.00, 2022, 60.00, 1.00, 745.70, 0.75, 1600.00, 133.33, 0.22, 5),
 	(2, 'SLDR001', 'Selladora', '12313123', 'MD-2022', 'Sella los empaques', 'KAT', 2100.00, 2022, 20.00, 0.75, 559.28, 0.56, 2100.00, 175.00, 0.29, 1);
+
+INSERT INTO `inventariomaquina` (`idInventarioMaquina`,`stock`) VALUES
+	(1,0),
+	(2,0);
 
 INSERT INTO `gastoadmin` (`idGastoAdmin`, `descripcion`, `precio`, `idUnidadMedida`, `idTipoCosto`, `idDesembolso`) VALUES
 	(1, 'Gasto Administrativo 1', 70.00, 1, 1, 1),

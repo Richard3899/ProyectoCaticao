@@ -160,4 +160,18 @@ class ModeloUsuarios{
 
 	}
 
+	static public function mdlMostrarOrderTable(){
+
+		$stmt = Conexion::conectar()->prepare("call mostrar_ordertable");
+
+		$stmt -> execute();
+
+		return $stmt -> fetchAll();
+
+		#$stmt -> close();
+
+		$stmt = null;
+
+	}
+
 }

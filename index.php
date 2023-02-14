@@ -46,7 +46,7 @@ require_once "controladores/reporteinsumos.controlador.php";
 require_once "controladores/reportemateriales.controlador.php";
 require_once "controladores/reporteproductos.controlador.php";
 require_once "controladores/dashboard.controlador.php";
-
+require_once "controladores/backup.controlador.php";
 
 require_once "modelos/dashboard.modelo.php";
 require_once "modelos/usuarios.modelo.php";

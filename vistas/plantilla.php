@@ -91,17 +91,11 @@ session_start();
 
           include "modulos/salir.php";
       
-          echo'<script>
-       
-          window.location = "salir";
-          
-          </script>';
-      
         }
    
        }else{
    
-            include "modulos/bienvenida.php";
+          include "modulos/bienvenida.php";
    
        }
    
@@ -158,6 +152,7 @@ session_start();
 <script src="vistas/js/reportemateriales.js"></script>
 <script src="vistas/js/reporteproductos.js"></script>
 <script src="vistas/js/dashboard.js"></script>
+<script src="vistas/js/backup.js"></script>
 
 </body>
 
