@@ -133,7 +133,9 @@ INSERT INTO perfil VALUES
 
 
 INSERT INTO usuario VALUES
-('1','Administrador','admin','$2a$07$asxx54ahjppf45sd87a5aunxs9bkpyGmGE/.vekdjFg83yRec789S','vistas/img/usuarios/admin/211.png','1','2023-02-14 15:27:56','2022-10-18 01:42:18','1');
+('1','Administrador','admin','$2a$07$asxx54ahjppf45sd87a5aunxs9bkpyGmGE/.vekdjFg83yRec789S','vistas/img/usuarios/admin/211.png','1','2023-02-15 21:36:38','2022-10-18 01:42:18','1'),
+('2','sara','sara','$2a$07$asxx54ahjppf45sd87a5aunxs9bkpyGmGE/.vekdjFg83yRec789S',NULL,'1','2023-02-15 21:43:01','2023-02-15 21:42:50','2'),
+('3','jose','jose','$2a$07$asxx54ahjppf45sd87a5aunxs9bkpyGmGE/.vekdjFg83yRec789S',NULL,'1','2023-02-15 22:22:59','2023-02-15 22:21:11','1');
 
 
 
@@ -223,12 +225,21 @@ INSERT INTO usuariomodulo VALUES
 ('42','1','42'),
 ('43','1','43'),
 ('44','1','44'),
-('45','1','45');
+('45','1','45'),
+('61','2','2'),
+('62','2','3'),
+('63','2','4'),
+('64','2','28'),
+('65','2','29'),
+('72','3','28'),
+('73','3','29');
 
 
 
 INSERT INTO usuariopermiso VALUES
-('1','1','1','1','1');
+('1','1','1','1','1'),
+('2','1','0','0','2'),
+('3','1','0','1','3');
 
 
 

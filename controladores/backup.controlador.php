@@ -294,7 +294,7 @@ class ControladorBackup{
 				$bck = new MySqlBackupLite($arrayDbConf);
 				$bck->backUp();
 				$bck->setFileDir('backups/');
-				$bck->setFileName('CPM-Caticao-'.$fechaActual.'.sql');
+				$bck->setFileName('CPM_Caticao_'.$fechaActual.'.sql');
 				$bck->saveToFile();
 			   
 			}

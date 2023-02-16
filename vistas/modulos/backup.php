@@ -23,8 +23,18 @@
       <div class="card-header">
       <form method="POST">
       <input type="hidden" name="backup">
-      <button class="btn btn-primary" type="submit" >Crear copia de seguridad</button>
+      <?php 
+       if($permisoInsertar==1){
 
+       echo "<button class='btn btn-primary' type='submit'>Crear copia de seguridad</button>";
+
+       }else{
+
+       echo "<a class='btn btn-primary'>Crear copia de seguridad</a>";
+
+       }
+      ?>
+      
         <?php 
         $crearBackup= new ControladorBackup();
         $crearBackup -> ctrCrearBackup();
@@ -61,8 +71,18 @@
 
                 echo "<tr><td value='".$archivo."'>".($key-1)."</td>
                       <td>".$archivo."</td>
-                      <td><button class='btn btn-danger btnEliminarBackup' nombreBackup='".$archivo."'><i class='fa fa-times'></i></button> 
-                      </td></tr>";
+                      <td>";
+                      if($permisoEliminar==1){
+
+                        echo "<button class='btn btn-danger btnEliminarBackup' nombreBackup='".$archivo."'><i class='fa fa-times'></i></button>";
+                 
+                        }else{
+                 
+                        echo "<button class='btn btn-danger'><i class='fa fa-times'></i></button>";
+                 
+                        }
+
+                      echo "</td></tr>";
               }
                 
             } 

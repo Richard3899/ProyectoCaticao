@@ -380,6 +380,18 @@ MODAL AGREGAR USUARIO
                 </div>
             </div> 
 
+            <a class="btn btn-outline-primary collapsed my-1 text-left" data-toggle="collapse" data-target="#pBackup">
+            <i class="fas fa-shield-alt px-2"></i> Backup
+            </a>
+            <div id="pBackup" class="collapse">
+                <div class="card-body">
+                  <div class="icheck-primary">
+                      <input class="checkModulos" type="checkbox" id="cbBackup" value="28" name="checkListModulos[]">
+                      <label for="cbBackup">Backup</label>
+                  </div>            
+                </div>
+            </div>  
+
             <div class="card-body border border-info rounded">
               <div class="row">
                   <div class="icheck-warning ml-2">
@@ -733,6 +745,18 @@ MODAL EDITAR USUARIO
                   <div class="icheck-primary">
                       <input class="editarCheckModulos" type="checkbox" id="configuracion" value="23" name="editarCheckListModulos[]">
                       <label for="configuracion">Configuración</label>
+                  </div>            
+                </div>
+            </div> 
+
+            <a class="btn btn-outline-primary collapsed my-1 text-left" data-toggle="collapse" data-target="#editarpBackup">
+            <i class="fas fa-shield-alt px-2"></i> Backup
+            </a>
+            <div id="editarpBackup" class="collapse">
+                <div class="card-body">
+                  <div class="icheck-primary">
+                      <input class="editarCheckModulos" type="checkbox" id="backup" value="28" name="editarCheckListModulos[]">
+                      <label for="backup">Backup</label>
                   </div>            
                 </div>
             </div> 
