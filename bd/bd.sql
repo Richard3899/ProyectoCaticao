@@ -163,6 +163,7 @@ CREATE TABLE lote(
   idLote INT AUTO_INCREMENT primary key,
   codigoLote VARCHAR(20),
   fechaVencimiento DATE,
+  cantidad DECIMAL(10,2),
   idProducto INT REFERENCES producto (idProducto)
 );
 

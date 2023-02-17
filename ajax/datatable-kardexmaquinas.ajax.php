@@ -21,7 +21,7 @@ class TablaKardexMaquinas{
 
 		$idMaquina=$_GET["MaquinaK"];
 
-  		$kardexmaquinas = ControladorKardexMaquinas::ctrMostrarKardexMaquinas2($idMaquina);	
+  		$kardexmaquinas = ControladorKardexMaquinas::ctrMostrarKardexMaquinas($idMaquina);	
 		
 		if($idMaquina == 0){
 

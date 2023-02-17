@@ -214,16 +214,16 @@ INSERT INTO `movimientomateria` (`idMovimientoMateria`, `ingreso`, `salida`, `ob
 INSERT INTO `producto` (`idProducto`, `codigo`, `nombre`, `descripcion`, `imagen`, `idUnidadMedida`, `idTipoProducto`) VALUES
 	(1, '123456', 'Chocolate con pasa', '50% cacao', NULL, 3, 2);
 
-INSERT INTO `inventarioproducto` (`idInventarioProducto`,`stock`) VALUES
-	(1,0);
+INSERT INTO `inventarioproducto` (`idInventarioProducto`,`idProducto`,`stock`) VALUES
+	(1,1,0);
 
 INSERT INTO `maquina` (`idMaquina`, `codigo`, `nombre`, `serie`, `modelo`, `descripcion`, `marca`, `precio`, `añoCompra`, `capacidad`, `potenciaHP`, `potenciaWatts`, `potenciaKw`, `depreciacionAnual`, `depreciacionMensual`, `depreciacionHora`, `vidaUtil`) VALUES 
 	(1, 'SL-0002', 'Seleccionadora', 'SL9212', 'MD-2022', 'Selecciona y limpia la materia prima', 'KAT', 8000.00, 2022, 60.00, 1.00, 745.70, 0.75, 1600.00, 133.33, 0.22, 5),
 	(2, 'SLDR001', 'Selladora', '12313123', 'MD-2022', 'Sella los empaques', 'KAT', 2100.00, 2022, 20.00, 0.75, 559.28, 0.56, 2100.00, 175.00, 0.29, 1);
 
-INSERT INTO `inventariomaquina` (`idInventarioMaquina`,`stock`) VALUES
-	(1,0),
-	(2,0);
+INSERT INTO `inventariomaquina` (`idInventarioMaquina`,`idMaquina`,`stock`) VALUES
+	(1,1,0),
+	(2,2,0);
 
 INSERT INTO `gastoadmin` (`idGastoAdmin`, `descripcion`, `precio`, `idUnidadMedida`, `idTipoCosto`, `idDesembolso`) VALUES
 	(1, 'Gasto Administrativo 1', 70.00, 1, 1, 1),

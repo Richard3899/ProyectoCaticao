@@ -174,19 +174,6 @@ MODAL INGRESO DE MAQUINA
 
           <div class="row">
 
-          <!-- ENTRADA PARA LA OBSERVACIÓN -->
-          <div class="form-group col-sm">
-          <label for="observacion">Observación</label>
-            <div class="input-group">
-                <div class="input-group-prepend">
-                <span class="input-group-text"><i class="fas fa-bars"></i></span>
-                </div>
-                <input type="text" class="form-control input-lg" id="nuevaObservacionI" name="nuevaObservacionI" 
-                 placeholder="Ingresar observación" maxlength="100" pattern="[A-Za-z0-9ñÑáéíóúÁÉÍÓÚ ]+" 
-                 title="Solo se acepta letras y números" required>
-            </div>
-           </div>
-
           <!-- ENTRADA PARA LA FECHA -->
           <div class="form-group col-sm">
           <label for="fechaEmision">Fecha de Emisión</label>
@@ -198,6 +185,20 @@ MODAL INGRESO DE MAQUINA
                placeholder="Ingresar fecha de emisión" onfocus="(this.type='date')" onblur="(this.type='date')" id="date" required>
           </div>
           </div>
+
+          <!-- ENTRADA PARA LA OBSERVACIÓN -->
+          <div class="form-group col-sm">
+          <label for="observacion">Observación</label>
+            <div class="input-group">
+                <div class="input-group-prepend">
+                <span class="input-group-text"><i class="fas fa-bars"></i></span>
+                </div>
+                <input type="text" class="form-control input-lg" id="nuevaObservacionI" name="nuevaObservacionI" 
+                 placeholder="Ingresar observación" maxlength="100" pattern="[A-Za-z0-9ñÑáéíóúÁÉÍÓÚ ]+" 
+                 title="Solo se acepta letras y números" required>
+            </div>
+          </div>
+
           </div>
 
         </div>
@@ -311,6 +312,18 @@ MODAL SALIDA DE MAQUINA
 
           <div class="row">
 
+          <!-- ENTRADA PARA LA FECHA -->
+          <div class="form-group col-sm">
+          <label for="fechaEmision">Fecha de Emisión</label>
+          <div class="input-group">
+              <div class="input-group-prepend">
+              <span class="input-group-text"><i class="fas fa-calendar-alt"></i></span>
+              </div>
+               <input type="text" class="textbox-n form-control"  name="nuevaFechaS" id="nuevaFechaS"
+               placeholder="Ingresar fecha de emisión" onfocus="(this.type='date')" onblur="(this.type='date')" id="date" required>
+          </div>
+          </div>
+
           <!-- ENTRADA PARA LA OBSERVACIÓN -->
           <div class="form-group col-sm">
           <label for="observacion">Observación</label>
@@ -323,18 +336,6 @@ MODAL SALIDA DE MAQUINA
                  title="Solo se acepta letras y números" required>
             </div>
            </div>
-
-          <!-- ENTRADA PARA LA FECHA -->
-          <div class="form-group col-sm">
-          <label for="fechaEmision">Fecha de Emisión</label>
-          <div class="input-group">
-              <div class="input-group-prepend">
-              <span class="input-group-text"><i class="fas fa-calendar-alt"></i></span>
-              </div>
-               <input type="text" class="textbox-n form-control"  name="nuevaFechaS" id="nuevaFechaS"
-               placeholder="Ingresar fecha de emisión" onfocus="(this.type='date')" onblur="(this.type='date')" id="date" required>
-          </div>
-          </div>
 
           </div>
 

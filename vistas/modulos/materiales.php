@@ -113,6 +113,8 @@ MODAL AGREGAR MATERIAL
 
         <div class="box-body">
 
+          <input type="hidden" id="idMaterial" name="idMaterial">
+
           <div class="row">
 
             <!-- ENTRADA PARA EL CÓDIGO -->
@@ -353,7 +355,7 @@ MODAL EDITAR MATERIAL
                 </div>
                 <input type="text" class="form-control input-lg" name="editarCodigo" id="editarCodigo" 
                  maxlength="20" pattern="[A-Za-z0-9-]+" title="Solo se aceptan letras,números y guiones sin espacios" readonly required>
-                <input type="hidden" id="idMaterial" name="idMaterial">
+                <input type="hidden" id="editaridMaterial" name="editaridMaterial">
             </div>
             </div>
 

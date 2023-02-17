@@ -16,8 +16,12 @@ class AjaxProductos{
 		$item = "idProducto";
 		$valor = $this->idProducto;
 
-		$respuesta = ControladorProductos::ctrMostrarProductos($item, $valor);
-
+        if($valor==NULL){
+			$respuesta = ControladorProductos::ctrMostrarProductos(NULL, NULL);
+		}else{
+			$respuesta = ControladorProductos::ctrMostrarProductos($item, $valor);
+		}
+		
 		echo json_encode($respuesta);
 
 	}

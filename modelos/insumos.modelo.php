@@ -10,7 +10,15 @@ class ModeloInsumos{
 
 	static public function mdlMostrarInsumos($tabla, $item, $valor){
 
-		if($item != null){
+        if($item != null && $valor==null){
+
+			$stmt = Conexion::conectar()->prepare("select * from materia");
+
+			$stmt -> execute();
+
+			return $stmt -> fetchAll();
+
+		}else if($item != null){
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item && idTipoMateria=1");
 
@@ -44,16 +52,17 @@ class ModeloInsumos{
 
 	static public function mdlIngresarInsumo($datos){
 
-		$stmt = Conexion::conectar()->prepare("call insertar_insumo(?,?,?,?,?,?,?,?)");
-
-		$stmt->bindParam(1, $datos["codigo"], PDO::PARAM_STR);
-		$stmt->bindParam(2, $datos["nombre"], PDO::PARAM_STR);
-		$stmt->bindParam(3, $datos["descripcion"], PDO::PARAM_STR);
-		$stmt->bindParam(4, $datos["idUnidadMedida"], PDO::PARAM_INT);
-		$stmt->bindParam(5, $datos["idMarca"], PDO::PARAM_INT);
-		$stmt->bindParam(6, $datos["cantidad"], PDO::PARAM_STR);
-		$stmt->bindParam(7, $datos["precio"], PDO::PARAM_STR);
-		$stmt->bindParam(8, $datos["imagen"], PDO::PARAM_STR);
+		$stmt = Conexion::conectar()->prepare("call insertar_insumo(?,?,?,?,?,?,?,?,?)");
+		
+		$stmt->bindParam(1, $datos["idMateria"], PDO::PARAM_INT);
+		$stmt->bindParam(2, $datos["codigo"], PDO::PARAM_STR);
+		$stmt->bindParam(3, $datos["nombre"], PDO::PARAM_STR);
+		$stmt->bindParam(4, $datos["descripcion"], PDO::PARAM_STR);
+		$stmt->bindParam(5, $datos["idUnidadMedida"], PDO::PARAM_INT);
+		$stmt->bindParam(6, $datos["idMarca"], PDO::PARAM_INT);
+		$stmt->bindParam(7, $datos["cantidad"], PDO::PARAM_STR);
+		$stmt->bindParam(8, $datos["precio"], PDO::PARAM_STR);
+		$stmt->bindParam(9, $datos["imagen"], PDO::PARAM_STR);
 
 		if($stmt->execute()){
 

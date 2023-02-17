@@ -24,7 +24,7 @@ class TablaKardexMateriales{
 
 		$idMaterial=$_GET["MaterialK"];
 
-  		$kardexmateriales = ControladorKardexMateriales::ctrMostrarKardexMateriales2($idMaterial);	
+  		$kardexmateriales = ControladorKardexMateriales::ctrMostrarKardexMateriales($idMaterial);	
 		
 		if($idMaterial == 0){
 

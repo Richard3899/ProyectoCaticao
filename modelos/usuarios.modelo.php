@@ -10,15 +10,7 @@ class ModeloUsuarios{
 
 	static public function mdlMostrarUsuarios($tabla, $item, $valor){
 
-		if( $item =="idUsuario" && $valor=="ABC"){
-
-			$stmt = Conexion::conectar()->prepare("call mostrar_usuarios");
-
-			$stmt -> execute();
-
-			return $stmt -> fetchAll();
-
-		}elseif($item != null){
+        if($item != null){
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
@@ -38,7 +30,6 @@ class ModeloUsuarios{
 
 		}
 		
-
 		#$stmt -> close();
 
 		$stmt = null;

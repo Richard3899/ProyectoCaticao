@@ -36,12 +36,12 @@ $('.tablaUsuarios').DataTable( {
 } );
 
 /*=============================================
-CONSULTA DE RECETA INSUMO
+CREAR ID PARA USUARIO
 =============================================*/
 
 $(".tablaUsuarios").on("draw.dt", function() {
 
-	var idUsuario = "ABC";
+	var idUsuario = "";
 
 	var datos = new FormData();
 
@@ -66,6 +66,8 @@ $(".tablaUsuarios").on("draw.dt", function() {
 				arrayIdUsuarios.push(respuesta[i]["idUsuario"]);
 	
 			}
+			arrayIdUsuarios.sort(function(a, b){return a - b});
+
 			const ultimoIdUsuario = $(arrayIdUsuarios).get(-1);
 	
 			$("#idUsuario").val(parseInt(ultimoIdUsuario)+1);

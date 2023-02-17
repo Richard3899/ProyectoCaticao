@@ -36,6 +36,58 @@ $('.tablaMateriales').DataTable( {
 
 } );
 
+
+/*=============================================
+CREAR ID PARA MATERIALES
+=============================================*/
+
+$(".tablaMateriales").on("draw.dt", function() {
+
+	var idMaterial = "";
+
+	var datos = new FormData();
+
+	datos.append("idMaterial", idMaterial);
+
+	const arrayIdMateriales = [];
+
+	  $.ajax({
+
+     	url:"ajax/materiales.ajax.php",
+      	method: "POST",
+      	data: datos,
+      	cache: false,
+      	contentType: false,
+      	processData: false,
+      	dataType:"json",
+      	success:function(respuesta){
+
+		if(respuesta.length!=0){
+			
+		for (var i=0; i<respuesta.length; i++) { 
+
+		arrayIdMateriales.push(respuesta[i]["idMateria"]);
+	
+		}
+
+		arrayIdMateriales.sort(function(a, b){return a - b});
+
+		const ultimoIdMaterial = $(arrayIdMateriales).get(-1);
+	
+		$("#idMaterial").val(parseInt(ultimoIdMaterial)+1);
+			
+		}else{
+
+		$("#idMaterial").val(1)
+
+		}
+
+	    }
+		
+
+	})
+})
+
 /*=============================================
 SUBIENDO LA FOTO DEL INSUMO
 =============================================*/
@@ -109,7 +161,7 @@ $(".tablaMateriales tbody").on("click", "button.btnEditarMaterial", function(){
       dataType:"json",
       success:function(respuesta){
 
-		   $("#idMaterial").val(respuesta["idMateria"]);
+		   $("#editaridMaterial").val(respuesta["idMateria"]);
 
            $("#editarCodigo").val(respuesta["codigo"]);
 

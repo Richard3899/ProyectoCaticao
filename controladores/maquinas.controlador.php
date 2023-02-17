@@ -24,7 +24,8 @@ class ControladorMaquinas{
 
 		if(isset($_POST["nuevaDescripcion"])){
 
-				$datos = array("codigo" => $_POST["nuevoCodigoMaquina"],
+				$datos = array("idMaquina" => $_POST["idMaquina"],
+							   "codigo" => $_POST["nuevoCodigoMaquina"],
 							   "nombre" => $_POST["nuevoNombre"],
 							   "descripcion" => $_POST["nuevaDescripcion"],
 							   "serie" => $_POST["nuevaSerie"],
@@ -74,7 +75,7 @@ class ControladorMaquinas{
 
 		if(isset($_POST["editarDescripcion"])){
 
-				$datos = array("idMaquina" => $_POST["idMaquina"],
+				$datos = array("idMaquina" => $_POST["editaridMaquina"],
 							   "nombre" => $_POST["editarNombre"],
 							   "descripcion" => $_POST["editarDescripcion"],
 							   "serie" => $_POST["editarSerie"],
@@ -126,31 +127,56 @@ class ControladorMaquinas{
 
 			$datos = $_GET["idMaquina"];
 
-			$respuesta = ModeloMaquinas::mdlEliminarMaquina($datos);
+			$movimientosMaquinas = ModeloKardexMaquinas::mdlMostrarKardexMaquinas($_GET["idMaquina"]);
 
-			if($respuesta == "ok"){
+			if(count($movimientosMaquinas)==0){
 
-				echo '<script>
+				$respuesta = ModeloMaquinas::mdlEliminarMaquina($datos);
 
-				Swal.fire({
-				
-					icon: "success",
-					title: "¡El maquina ha sido eliminada correctamente!",
-					showConfirmButton: false,
-					timer: 1500
-				
-				}).then(function(result){
-				
-						window.location = "maquinas";
-				
-				});
-				
-				
-				</script>';
-
+				if($respuesta == "ok"){
+	
+					echo '<script>
+	
+					Swal.fire({
+					
+						icon: "success",
+						title: "¡El maquina ha sido eliminada correctamente!",
+						showConfirmButton: false,
+						timer: 1500
+					
+					}).then(function(result){
+					
+							window.location = "maquinas";
+					
+					});
+					
+					
+					</script>';
+	
+				}else{
+					
+					echo '<script>
+	
+					Swal.fire({
+					
+						icon: "error",
+						title: "¡La maquina está en uso!",
+						showConfirmButton: false,
+						timer: 1500
+					
+					}).then(function(result){
+					
+							window.location = "maquinas";
+					
+					});
+					
+					
+					</script>';
+				}
 			}else{
-				echo '<script>
 
+				echo '<script>
+	
 				Swal.fire({
 				
 					icon: "error",
@@ -166,7 +192,9 @@ class ControladorMaquinas{
 				
 				
 				</script>';
-			}		
+
+			}
+		
 		}
 
 

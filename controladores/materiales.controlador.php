@@ -91,7 +91,8 @@ class ControladorMateriales{
 
 				}
 
-				$datos = array("codigo" => $_POST["nuevoCodigoMaterial"],
+				$datos = array("idMateria" => $_POST["idMaterial"],
+							   "codigo" => $_POST["nuevoCodigoMaterial"],
 							   "nombre" => $_POST["nuevoNombre"],
 							   "descripcion" => $_POST["nuevaDescripcion"],
 							   "idUnidadMedida" => $_POST["nuevaUnidadMedida"],
@@ -100,7 +101,6 @@ class ControladorMateriales{
 							   "precio" => $_POST["nuevoPrecio"],
 							   "imagen" => $ruta);
 							 
-
 				$respuesta = ModeloMateriales::mdlIngresarMaterial($datos);
 
 				if($respuesta == "ok"){
@@ -124,7 +124,6 @@ class ControladorMateriales{
 					</script>';
 
 				}
-
 
 		}
 
@@ -276,47 +275,73 @@ class ControladorMateriales{
 
 			}
 
-			$respuesta = ModeloMateriales::mdlEliminarMaterial($datos);
+			$movimientosMateriales = ModeloKardexMateriales::mdlMostrarKardexMateriales($_GET["idMaterial"]);
 
-			if($respuesta == "ok"){
+			if(count($movimientosMateriales)==0){
 
-				echo '<script>
+				$respuesta = ModeloMateriales::mdlEliminarMaterial($datos);
 
-				Swal.fire({
-				
-					icon: "success",
-					title: "¡El material ha sido eliminado correctamente!",
-					showConfirmButton: false,
-					timer: 1500
-				
-				}).then(function(result){
-				
-						window.location = "materiales";
-				
-				});
-				
-				
-				</script>';
-
+				if($respuesta == "ok"){
+	
+					echo '<script>
+	
+					Swal.fire({
+					
+						icon: "success",
+						title: "¡El material ha sido eliminado correctamente!",
+						showConfirmButton: false,
+						timer: 1500
+					
+					}).then(function(result){
+					
+							window.location = "materiales";
+					
+					});
+					
+					
+					</script>';
+	
+				}else{
+					echo '<script>
+	
+					Swal.fire({
+					
+						icon: "error",
+						title: "¡El material está en uso!",
+						showConfirmButton: false,
+						timer: 1500
+					
+					}).then(function(result){
+					
+							window.location = "materiales";
+					
+					});
+					
+					
+					</script>';
+				}	
 			}else{
-				echo '<script>
 
-				Swal.fire({
-				
-					icon: "error",
-					title: "¡El material está en uso!",
-					showConfirmButton: false,
-					timer: 1500
-				
-				}).then(function(result){
-				
-						window.location = "materiales";
-				
-				});
-				
-				
-				</script>';
-			}		
+					echo '<script>
+	
+					Swal.fire({
+					
+						icon: "error",
+						title: "¡El material está en uso!",
+						showConfirmButton: false,
+						timer: 1500
+					
+					}).then(function(result){
+					
+							window.location = "materiales";
+					
+					});
+					
+					</script>';
+
+			}
+
+	
 		}
 
 

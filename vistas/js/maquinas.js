@@ -36,7 +36,55 @@ $('.tablaMaquinas').DataTable( {
 
 } );
 
+/*=============================================
+CREAR ID PARA MAQUINA
+=============================================*/
 
+$(".tablaMaquinas").on("draw.dt", function() {
+
+	var idMaquina = "";
+
+	var datos = new FormData();
+
+	datos.append("idMaquina", idMaquina);
+
+	const arrayIdMaquinas = [];
+
+	  $.ajax({
+
+     	url:"ajax/maquinas.ajax.php",
+      	method: "POST",
+      	data: datos,
+      	cache: false,
+      	contentType: false,
+      	processData: false,
+      	dataType:"json",
+      	success:function(respuesta){
+
+		if(respuesta.length!=0){
+			
+		for (var i=0; i<respuesta.length; i++) { 
+
+		arrayIdMaquinas.push(respuesta[i]["idMaquina"]);
+	
+		}
+
+		arrayIdMaquinas.sort(function(a, b){return a - b});
+
+		const ultimoIdMaquina = $(arrayIdMaquinas).get(-1);
+	
+		$("#idMaquina").val(parseInt(ultimoIdMaquina)+1);
+			
+		}else{
+
+		$("#idMaquina").val(1)
+
+		}
+
+	    }
+		
+	})
+})
 
 /*=============================================
 EDITAR MAQUINA
@@ -60,7 +108,7 @@ $(".tablaMaquinas tbody").on("click", "button.btnEditarMaquina", function(){
       dataType:"json",
       success:function(respuesta){
 
-		   $("#idMaquina").val(respuesta["idMaquina"]);
+		   $("#editaridMaquina").val(respuesta["idMaquina"]);
 
            $("#editarCodigo").val(respuesta["codigo"]);
 

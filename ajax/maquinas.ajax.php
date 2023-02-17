@@ -16,12 +16,15 @@ class AjaxMaquinas{
 		$item = "idMaquina";
 		$valor = $this->idMaquina;
 
-		$respuesta = ControladorMaquinas::ctrMostrarMaquinas($item, $valor);
+        if($valor==NULL){
+			$respuesta = ControladorMaquinas::ctrMostrarMaquinas(NULL,NULL);
+		}else{
+			$respuesta = ControladorMaquinas::ctrMostrarMaquinas($item, $valor);
+		}
 
 		echo json_encode($respuesta);
 
 	}
-
 
 	/*=============================================
 	VALIDAR NO REPETIR MAQUINA

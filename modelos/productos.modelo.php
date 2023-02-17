@@ -43,14 +43,15 @@ class ModeloProductos{
 
 	static public function mdlIngresarProducto($datos){
 
-		$stmt = Conexion::conectar()->prepare("call insertar_producto(?,?,?,?,?,?)");
+		$stmt = Conexion::conectar()->prepare("call insertar_producto(?,?,?,?,?,?,?)");
 
-		$stmt->bindParam(1, $datos["codigo"], PDO::PARAM_STR);
-		$stmt->bindParam(2, $datos["nombre"], PDO::PARAM_STR);
-		$stmt->bindParam(3, $datos["descripcion"], PDO::PARAM_STR);
-		$stmt->bindParam(4, $datos["idUnidadMedida"], PDO::PARAM_INT);
-		$stmt->bindParam(5, $datos["idTipoProducto"], PDO::PARAM_INT);
-		$stmt->bindParam(6, $datos["imagen"], PDO::PARAM_STR);
+		$stmt->bindParam(1, $datos["idProducto"], PDO::PARAM_INT);
+		$stmt->bindParam(2, $datos["codigo"], PDO::PARAM_STR);
+		$stmt->bindParam(3, $datos["nombre"], PDO::PARAM_STR);
+		$stmt->bindParam(4, $datos["descripcion"], PDO::PARAM_STR);
+		$stmt->bindParam(5, $datos["idUnidadMedida"], PDO::PARAM_INT);
+		$stmt->bindParam(6, $datos["idTipoProducto"], PDO::PARAM_INT);
+		$stmt->bindParam(7, $datos["imagen"], PDO::PARAM_STR);
 
 		if($stmt->execute()){
 

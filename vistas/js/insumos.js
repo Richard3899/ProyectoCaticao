@@ -35,7 +35,56 @@ $('.tablaInsumos').DataTable( {
 
 } );
 
+/*=============================================
+CREAR ID PARA INSUMO
+=============================================*/
 
+$(".tablaInsumos").on("draw.dt", function() {
+
+	var idInsumo = "";
+
+	var datos = new FormData();
+
+	datos.append("idInsumo", idInsumo);
+
+	const arrayIdInsumos = [];
+
+	  $.ajax({
+
+     	url:"ajax/insumos.ajax.php",
+      	method: "POST",
+      	data: datos,
+      	cache: false,
+      	contentType: false,
+      	processData: false,
+      	dataType:"json",
+      	success:function(respuesta){
+
+		if(respuesta.length!=0){
+			
+		for (var i=0; i<respuesta.length; i++) { 
+
+		arrayIdInsumos.push(respuesta[i]["idMateria"]);
+	
+		}
+
+		arrayIdInsumos.sort(function(a, b){return a - b});
+
+		const ultimoIdInsumo = $(arrayIdInsumos).get(-1);
+	
+		$("#idInsumo").val(parseInt(ultimoIdInsumo)+1);
+			
+		}else{
+
+		$("#idInsumo").val(1)
+
+		}
+
+	    }
+		
+
+	})
+})
 /*=============================================
 SUBIENDO LA FOTO DEL INSUMO
 =============================================*/
@@ -109,7 +158,7 @@ $(".tablaInsumos tbody").on("click", "button.btnEditarInsumo", function(){
       dataType:"json",
       success:function(respuesta){
 
-		   $("#idInsumo").val(respuesta["idMateria"]);
+		   $("#editaridInsumo").val(respuesta["idMateria"]);
 
            $("#editarCodigo").val(respuesta["codigo"]);
 

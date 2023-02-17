@@ -6,18 +6,9 @@ class ControladorKardexProductos{
 	MOSTRAR PRODUCTOS
 	=============================================*/
 
-	static public function ctrMostrarKardexProductos($item, $valor){
+	static public function ctrMostrarKardexProductos($valor){
 
-		$tabla = "movimientoproducto";
-
-		$respuesta = ModeloKardexProductos::MdlMostrarKardexProductos($tabla, $item, $valor);
-
-		return $respuesta;
-	}
-
-	static public function ctrMostrarKardexProductos2($valor){
-
-		$respuesta = ModeloKardexProductos::MdlMostrarKardexProductos2($valor);
+		$respuesta = ModeloKardexProductos::MdlMostrarKardexProductos($valor);
 
 		return $respuesta;
 	}

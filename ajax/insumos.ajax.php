@@ -15,11 +15,15 @@ class AjaxInsumos{
 
 			$item = "idMateria";
 			$valor = $this->idInsumo;
-	
-			$respuesta = ControladorInsumos::ctrMostrarInsumos($item, $valor);
+
+	        if($valor==NULL){
+				$respuesta = ControladorInsumos::ctrMostrarInsumos($item,NULL);
+			}else{
+				$respuesta = ControladorInsumos::ctrMostrarInsumos($item, $valor);
+			}
 	
 			echo json_encode($respuesta);
-		}
+	}
 
 	/*=============================================
 	VALIDAR NO REPETIR INSUMO

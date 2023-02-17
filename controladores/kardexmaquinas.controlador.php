@@ -6,18 +6,9 @@ class ControladorKardexMaquinas{
 	MOSTRAR MAQUINAS
 	=============================================*/
 
-	static public function ctrMostrarKardexMaquinas($item, $valor){
+	static public function ctrMostrarKardexMaquinas($valor){
 
-		$tabla = "movimientomaquina";
-
-		$respuesta = ModeloKardexMaquinas::MdlMostrarKardexMaquinas($tabla, $item, $valor);
-
-		return $respuesta;
-	}
-
-	static public function ctrMostrarKardexMaquinas2($valor){
-
-		$respuesta = ModeloKardexMaquinas::MdlMostrarKardexMaquinas2($valor);
+		$respuesta = ModeloKardexMaquinas::MdlMostrarKardexMaquinas($valor);
 
 		return $respuesta;
 	}

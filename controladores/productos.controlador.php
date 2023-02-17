@@ -15,7 +15,6 @@ class ControladorProductos{
 		return $respuesta;
 	}
 
-
 	/*=============================================
 	CREAR PRODUCTO
 	=============================================*/
@@ -91,7 +90,8 @@ class ControladorProductos{
 
 				}
 
-				$datos = array("codigo" => $_POST["nuevoCodigoProducto"],
+				$datos = array("idProducto" =>$_POST["idProducto"],
+				               "codigo" => $_POST["nuevoCodigoProducto"],
 							   "nombre" => $_POST["nuevoNombre"],
 							   "descripcion" => $_POST["nuevaDescripcion"],
 							   "idUnidadMedida" => $_POST["nuevaUnidadMedida"],
@@ -216,7 +216,7 @@ class ControladorProductos{
 				}
 
 
-				$datos = array("idProducto" =>$_POST["idProducto"],
+				$datos = array("idProducto" =>$_POST["editaridProducto"],
 							   "nombre" => $_POST["editarNombre"],
 							   "descripcion" => $_POST["editarDescripcion"],
 							   "idUnidadMedida" => $_POST["editarUnidadMedida"],
@@ -271,31 +271,55 @@ class ControladorProductos{
 
 			}
 
-			$respuesta = ModeloProductos::mdlEliminarProducto($datos);
+			$movimientosProductos = ModeloKardexProductos::mdlMostrarKardexProductos($_GET["idProducto"]);
 
-			if($respuesta == "ok"){
+			if(count($movimientosProductos)==0){
 
-				echo '<script>
+				$respuesta = ModeloProductos::mdlEliminarProducto($datos);
 
-				Swal.fire({
-				
-					icon: "success",
-					title: "¡El producto ha sido eliminado correctamente!",
-					showConfirmButton: false,
-					timer: 1500
-				
-				}).then(function(result){
-				
-						window.location = "productos";
-				
-				});
-				
-				
-				</script>';
-
+				if($respuesta == "ok" ){
+	
+					echo '<script>
+	
+					Swal.fire({
+					
+						icon: "success",
+						title: "¡El producto ha sido eliminado correctamente!",
+						showConfirmButton: false,
+						timer: 1500
+					
+					}).then(function(result){
+					
+							window.location = "productos";
+					
+					});
+					
+					
+					</script>';
+	
+				}else{
+					echo '<script>
+	
+					Swal.fire({
+					
+						icon: "error",
+						title: "¡El producto está en uso!",
+						showConfirmButton: false,
+						timer: 1500
+					
+					}).then(function(result){
+					
+							window.location = "productos";
+					
+					});
+					
+					
+					</script>';
+				}
 			}else{
-				echo '<script>
 
+				echo '<script>
+	
 				Swal.fire({
 				
 					icon: "error",
@@ -311,7 +335,10 @@ class ControladorProductos{
 				
 				
 				</script>';
-			}	
+
+			}
+
+	
 		}
 
 

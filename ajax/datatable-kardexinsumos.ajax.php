@@ -24,7 +24,7 @@ class TablaKardexInsumos{
 
 		$idInsumo=$_GET["InsumoK"];
 
-  		$kardexinsumos = ControladorKardexInsumos::ctrMostrarKardexInsumos2($idInsumo);	
+  		$kardexinsumos = ControladorKardexInsumos::ctrMostrarKardexInsumos($idInsumo);	
 		
 		if($idInsumo == 0){
 

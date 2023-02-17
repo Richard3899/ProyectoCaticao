@@ -109,6 +109,8 @@ MODAL AGREGAR PRODUCTO
 
         <div class="box-body">
 
+          <input type="hidden" id="idProducto" name="idProducto">
+
           <div class="row">
 
             <!-- ENTRADA PARA EL CÓDIGO -->
@@ -312,7 +314,7 @@ MODAL EDITAR PRODUCTO
                 </div>
                 <input type="text" class="form-control input-lg" name="editarCodigo" id="editarCodigo" 
                  maxlength="20" pattern="[A-Za-z0-9-]+" title="Solo se aceptan letras,números y guiones sin espacios" readonly required>
-                <input type="hidden" id="idProducto" name="idProducto">
+                <input type="hidden" id="editaridProducto" name="editaridProducto">
             </div>
             </div>
 

@@ -38,6 +38,56 @@ $('.tablaProductos').DataTable( {
 
 
 /*=============================================
+CREAR ID PARA PRODUCTO
+=============================================*/
+
+$(".tablaProductos").on("draw.dt", function() {
+
+	var idProducto = "";
+
+	var datos = new FormData();
+
+	datos.append("idProducto", idProducto);
+
+	const arrayIdProductos = [];
+
+	  $.ajax({
+
+     	url:"ajax/productos.ajax.php",
+      	method: "POST",
+      	data: datos,
+      	cache: false,
+      	contentType: false,
+      	processData: false,
+      	dataType:"json",
+      	success:function(respuesta){
+
+		if(respuesta.length!=0){
+			
+		for (var i=0; i<respuesta.length; i++) { 
+
+		arrayIdProductos.push(respuesta[i]["idProducto"]);
+	
+		}
+		arrayIdProductos.sort(function(a, b){return a - b});
+
+		const ultimoIdProducto = $(arrayIdProductos).get(-1);
+	
+		$("#idProducto").val(parseInt(ultimoIdProducto)+1);
+			
+		}else{
+
+		$("#idProducto").val(1)
+
+		}
+		
+	    }
+		
+
+	})
+})
+
+/*=============================================
 SUBIENDO LA FOTO DEL PRODUCTO
 =============================================*/
 
@@ -110,7 +160,7 @@ $(".tablaProductos tbody").on("click", "button.btnEditarProducto", function(){
       dataType:"json",
       success:function(respuesta){
 
-		   $("#idProducto").val(respuesta["idProducto"]);
+		   $("#editaridProducto").val(respuesta["idProducto"]);
 
            $("#editarCodigo").val(respuesta["codigo"]);
 

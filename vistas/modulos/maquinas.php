@@ -102,6 +102,7 @@ MODAL AGREGAR MAQUINA
       <div class="modal-header" style="background:gray; color:white">
 
       <h4 class="modal-title">Agregar Maquina</h4>
+      
       <button type="button" class="close" data-dismiss="modal">&times;</button>
 
       </div>
@@ -113,6 +114,8 @@ MODAL AGREGAR MAQUINA
       <div class="modal-body">
 
         <div class="box-body">
+
+          <input type="hidden" id="idMaquina" name="idMaquina">
 
           <div class="row">
 
@@ -347,7 +350,7 @@ MODAL EDITAR MAQUINA
                 </div>
                 <input type="text" class="form-control input-lg" name="editarCodigo" id="editarCodigo" 
                  maxlength="20" pattern="[A-Za-z0-9-]+" title="Solo se aceptan letras,números y guiones sin espacios" readonly required>
-                 <input type="hidden" id="idMaquina" name="idMaquina">
+                 <input type="hidden" id="editaridMaquina" name="editaridMaquina">
 
             </div>
             </div>

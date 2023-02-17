@@ -21,7 +21,7 @@ class TablaKardexProductos{
 
 		$idProducto=$_GET["ProductoK"];
 
-  		$kardexproductos = ControladorKardexProductos::ctrMostrarKardexProductos2($idProducto);	
+  		$kardexproductos = ControladorKardexProductos::ctrMostrarKardexProductos($idProducto);	
 		
 		if($idProducto == 0){
 

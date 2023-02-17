@@ -91,7 +91,8 @@ class ControladorInsumos{
 
 				}
 
-				$datos = array("codigo" => $_POST["nuevoCodigo"],
+				$datos = array("idMateria" => $_POST["idInsumo"],
+							   "codigo" => $_POST["nuevoCodigo"],
 							   "nombre" => $_POST["nuevoNombre"],
 							   "descripcion" => $_POST["nuevaDescripcion"],
 							   "idUnidadMedida" => $_POST["nuevaUnidadMedida"],
@@ -218,7 +219,7 @@ class ControladorInsumos{
 				}
 
 
-				$datos = array("idMateria" =>$_POST["idInsumo"],
+				$datos = array("idMateria" =>$_POST["editaridInsumo"],
 							   "nombre" => $_POST["editarNombre"],
 							   "descripcion" => $_POST["editarDescripcion"],
 							   "idMarca" => $_POST["editarMarca"],
@@ -226,8 +227,6 @@ class ControladorInsumos{
 							   "cantidad" => $_POST["editarCantidad"],
 							   "precio" => $_POST["editarPrecio"],
 							   "imagen" => $ruta);
-							   
-				
 
 				$respuesta = ModeloInsumos::mdlEditarInsumo($datos);
 
@@ -276,47 +275,73 @@ class ControladorInsumos{
 
 			}
 
-			$respuesta = ModeloInsumos::mdlEliminarInsumo($datos);
+			$movimientosInsumos = ModeloKardexInsumos::mdlMostrarKardexInsumos($_GET["idInsumo"]);
 
-			if($respuesta == "ok"){
+			if(count($movimientosInsumos)==0){
 
-				echo '<script>
+				$respuesta = ModeloInsumos::mdlEliminarInsumo($datos);
 
-				Swal.fire({
-				
-					icon: "success",
-					title: "¡El insumo ha sido eliminado correctamente!",
-					showConfirmButton: false,
-					timer: 1500
-				
-				}).then(function(result){
-				
-						window.location = "insumos";
-				
-				});
-				
-				
-				</script>';
+				if($respuesta == "ok"){
+	
+					echo '<script>
+	
+					Swal.fire({
+					
+						icon: "success",
+						title: "¡El insumo ha sido eliminado correctamente!",
+						showConfirmButton: false,
+						timer: 1500
+					
+					}).then(function(result){
+					
+							window.location = "insumos";
+					
+					});
+					
+					
+					</script>';
+	
+				}else{
+					echo '<script>
+	
+					Swal.fire({
+					
+						icon: "error",
+						title: "¡El insumo está en uso!",
+						showConfirmButton: false,
+						timer: 1500
+					
+					}).then(function(result){
+					
+							window.location = "insumos";
+					
+					});
+					
+					
+					</script>';
+				}
 
 			}else{
-				echo '<script>
+					echo '<script>
+	
+					Swal.fire({
+					
+						icon: "error",
+						title: "¡El insumo está en uso!",
+						showConfirmButton: false,
+						timer: 1500
+					
+					}).then(function(result){
+					
+							window.location = "insumos";
+					
+					});
+					
+					
+					</script>';
+			}
 
-				Swal.fire({
-				
-					icon: "error",
-					title: "¡El insumo está en uso!",
-					showConfirmButton: false,
-					timer: 1500
-				
-				}).then(function(result){
-				
-						window.location = "insumos";
-				
-				});
-				
-				
-				</script>';
-			}		
+		
 		}
 
 

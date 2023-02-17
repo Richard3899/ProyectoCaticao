@@ -8,36 +8,13 @@ class ModeloKardexProductos{
 	MOSTRAR PRODUCTOS
 	=============================================*/
 
-	static public function mdlMostrarKardexProductos($tabla,$item,$valor){
+	static public function mdlMostrarKardexProductos($valor){
 
+		$stmt = Conexion::conectar()->prepare("call mostrar_kardexproductos($valor)");
 
-		if($item != null){
+		$stmt -> execute();
 
-			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
-
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
-
-			$stmt -> execute();
-
-			return $stmt -> fetch();
-
-		}
-
-		#$stmt -> close();
-
-		$stmt = null;
-
-	}
-
-	static public function mdlMostrarKardexProductos2($valor){
-
-
-			$stmt = Conexion::conectar()->prepare("call mostrar_kardexproductos($valor)");
-
-			$stmt -> execute();
-
-			return $stmt -> fetchAll();
-
+		return $stmt -> fetchAll();
 
 		#$stmt -> close();
 

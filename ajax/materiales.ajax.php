@@ -16,7 +16,11 @@ class AjaxMateriales{
 		$item = "idMateria";
 		$valor = $this->idMaterial;
 
-		$respuesta = ControladorMateriales::ctrMostrarMateriales($item, $valor);
+		if($valor==NULL){
+			$respuesta = ControladorMateriales::ctrMostrarMateriales($item,NULL);
+		}else{
+			$respuesta = ControladorMateriales::ctrMostrarMateriales($item, $valor);
+		}
 
 		echo json_encode($respuesta);
 
