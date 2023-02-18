@@ -133,8 +133,7 @@ MODAL INGRESO DE PRODUCTO
             <label for="producto">Producto</label>
             <div class="input-group">
 
-                <select class="form-control select input-lg" style="width: 100%;" id="nuevoProductoI" name="nuevoProductoI" required>
-                
+                <select class="form-control select2 input-lg" id="nuevoProductoI" name="nuevoProductoI" style="width: 100%;" required>
                 <option value="">Seleccionar Producto</option>
 
                 <?php 
@@ -165,7 +164,7 @@ MODAL INGRESO DE PRODUCTO
                 <span class="input-group-text"><i class="fas fa-layer-group"></i></span>
                 </div>
                 <input type="number" class="form-control input-lg" name="nuevaCantidadI" placeholder="Ingresar cantidad" 
-                 min="0" max="9999999" step="0.001" required>
+                 min="0" max="9999999" step="0.01" required>
             </div>
 
             </div>
@@ -173,19 +172,6 @@ MODAL INGRESO DE PRODUCTO
           </div>
 
           <div class="row">
-          
-          <!-- ENTRADA PARA LA FECHA -->
-          <div class="form-group col-sm">
-          <label for="fechaEmision">Fecha Emisión</label>
-          <div class="input-group">
-              <div class="input-group-prepend">
-              <span class="input-group-text"><i class="fas fa-calendar-alt"></i></span>
-              </div>
-              <input type="text" class="textbox-n form-control"  name="nuevaFechaI" id="nuevaFechaI"
-              placeholder="Ingresar fecha de emisión" onfocus="(this.type='date')" onblur="(this.type='date')" id="date" required>
-               
-          </div>
-          </div>   
 
           <!-- ENTRADA PARA EL LOTE -->
           <div class="form-group col-sm">
@@ -198,10 +184,35 @@ MODAL INGRESO DE PRODUCTO
                 maxlength="20" pattern="[A-Za-z0-9-]+" title="Solo se aceptan letras,números y guiones sin espacios" required>
           </div>
           </div>
+
+          <!-- ENTRADA PARA LA FECHA DE VENCIMIENTO -->
+          <div class="form-group col-sm">
+          <label for="fechaVencimiento">Fecha de Vencimiento</label>
+          <div class="input-group">
+              <div class="input-group-prepend">
+              <span class="input-group-text"><i class="fas fa-calendar-alt"></i></span>
+              </div>
+              <input type="text" class="textbox-n form-control"  name="nuevaFechaVencimientoI" id="nuevaFechaVencimientoI"
+               placeholder="Ingresar fecha de vencimiento" onfocus="(this.type='date')" onblur="(this.type='date')" id="date" required>
+          </div>
+          </div>
                
           </div>
 
           <div class="row">
+
+          <!-- ENTRADA PARA LA FECHA -->
+          <div class="form-group col-sm">
+          <label for="fechaEmision">Fecha Emisión</label>
+          <div class="input-group">
+              <div class="input-group-prepend">
+              <span class="input-group-text"><i class="fas fa-calendar-alt"></i></span>
+              </div>
+              <input type="text" class="textbox-n form-control"  name="nuevaFechaI" id="nuevaFechaI"
+              placeholder="Ingresar fecha de emisión" onfocus="(this.type='date')" onblur="(this.type='date')" id="date" required>
+               
+          </div>
+          </div>  
 
           <!-- ENTRADA PARA LA OBSERVACIÓN -->
           <div class="form-group col-sm">
@@ -288,7 +299,7 @@ MODAL SALIDA DE PRODUCTO
             <label for="producto">Producto</label>
             <div class="input-group">
 
-                <select class="form-control select2 input-lg" style="width: 100%;" id="nuevoProductoS" name="nuevoProductoS" required>
+                <select class="form-control select2 input-lg nuevoProductoS" style="width: 100%;" id="nuevoProductoS" name="nuevoProductoS" required>
                 
                 <option value="">Seleccionar Producto</option>
 
@@ -312,6 +323,24 @@ MODAL SALIDA DE PRODUCTO
 
           </div>
 
+          <!-- ENTRADA PARA SELECCIONAR LOTE -->
+          <div class="form-group col-sm">
+          <label for="estado">Lote</label>
+            <div class="input-group">
+
+                <select class="form-control select2 input-lg nuevoCodigoLoteS" id="nuevoCodigoLoteS" name="nuevoCodigoLoteS" style="width: 100%;" required disabled>
+
+                <option value="">Seleccionar Lote</option>
+
+              </select>
+
+            </div>
+          </div>
+
+          </div>
+
+          <div class="row">
+
             <!-- ENTRADA PARA EL CANTIDAD -->
             <div class="form-group col-sm">
             <label for="cantidad">Cantidad</label>
@@ -319,8 +348,20 @@ MODAL SALIDA DE PRODUCTO
                 <div class="input-group-prepend">
                 <span class="input-group-text"><i class="fas fa-layer-group"></i></span>
                 </div>
-                <input type="number" class="form-control input-lg" name="nuevaCantidadS" placeholder="Ingresar cantidad" 
-                 min="0" max="9999999" step="0.001" required>
+                <input type="number" class="form-control input-lg nuevaCantidadS" id="nuevaCantidadS" name="nuevaCantidadS" placeholder="Ingresar cantidad" 
+                 min="0" max="9999999" step="0.01" required disabled>
+            </div>
+
+            </div>
+
+          <!-- ENTRADA PARA EL STOCK -->
+            <div class="form-group col-sm">
+            <label for="cantidad">Stock</label>
+            <div class="input-group">
+                <div class="input-group-prepend">
+                <span class="input-group-text"><i class="fas fa-layer-group"></i></span>
+                </div>
+                <input type="number" class="form-control input-lg" id="nuevoStockS" name="nuevoStockS" placeholder="0" disabled>
             </div>
 
             </div>
@@ -339,23 +380,8 @@ MODAL SALIDA DE PRODUCTO
                <input type="text" class="textbox-n form-control"  name="nuevaFechaS" id="nuevaFechaS"
                placeholder="Ingresar fecha de emisión" onfocus="(this.type='date')" onblur="(this.type='date')" id="date" required>
           </div>
-          </div>
+          </div> 
 
-          <!-- ENTRADA PARA EL LOTE -->
-          <div class="form-group col-sm">
-          <label for="lote">Lote</label>
-           <div class="input-group ">
-                <div class="input-group-prepend">
-                <span class="input-group-text"><i class="fas fa-vote-yea"></i></span>
-                </div>
-                <input type="text" class="form-control input-lg" name="nuevoCodigoLote" id="nuevoCodigoLote" placeholder="Ingresar lote" 
-                maxlength="20" pattern="[A-Za-z0-9-]+" title="Solo se aceptan letras,números y guiones sin espacios" required>
-          </div>
-          </div>
-
-          </div>
-
-          <div class="row">
           <!-- ENTRADA PARA LA OBSERVACIÓN -->
           <div class="form-group col-sm">
           <label for="observacion">Observación</label>
@@ -368,6 +394,7 @@ MODAL SALIDA DE PRODUCTO
                  title="Solo se acepta letras y números" required>
             </div>
           </div>
+
           </div>
           
         </div>

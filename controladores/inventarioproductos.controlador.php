@@ -27,8 +27,10 @@ class ControladorInventarioProductos{
 
 				$datos = array("idProducto" => $_POST["nuevoProductoI"],
 							   "cantidad" => $_POST["nuevaCantidadI"],
-							   "observacion" => $_POST["nuevaObservacionI"],
-							   "fecha" => $_POST["nuevaFechaI"]);
+							   "codigoLote" => $_POST["nuevoCodigoLoteI"],
+							   "fechaVencimiento" => $_POST["nuevaFechaVencimientoI"],
+							   "fecha" => $_POST["nuevaFechaI"],
+							   "observacion" => $_POST["nuevaObservacionI"]);
 							 
 				
 				$respuesta = ModeloInventarioProductos::mdlIngresoProducto($datos);
@@ -62,7 +64,7 @@ class ControladorInventarioProductos{
 
 
 	/*=============================================
-	CREAR INGRESO PRODUCTO
+	CREAR SALIDA PRODUCTO
 	=============================================*/
 
 	static public function ctrCrearSalidaProducto(){
@@ -73,6 +75,7 @@ class ControladorInventarioProductos{
 				$datos = array("idProducto" => $_POST["nuevoProductoS"],
 							   "cantidad" => $_POST["nuevaCantidadS"],
 							   "observacion" => $_POST["nuevaObservacionS"],
+							   "codigoLote" => $_POST["nuevoCodigoLoteS"],
 							   "fecha" => $_POST["nuevaFechaS"]);
 							 
 

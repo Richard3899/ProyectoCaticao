@@ -928,13 +928,29 @@ DELIMITER $$
 USE `caticao`$$
 CREATE PROCEDURE `insertar_ingresoproducto` (   in idProductoI INT,
                                                 in ingresoI double(10,2),
-                                                in observacionI varchar(50),
-                                                in fechaI date)
+                                                in codigoLoteI varchar(50),
+                                                in fechaVencimientoI DATE,
+                                                in fechaI DATE,
+                                                in observacionI varchar(50))
 BEGIN
-
-    UPDATE inventarioproducto SET stock = stock + ingresoI
-						   WHERE idProducto=idProductoI;
-                           
+	 
+	 DECLARE validacionLote VARCHAR(20);
+    
+    SELECT COUNT(codigoLote) FROM lote where codigoLote = codigoLoteI INTO validacionLote;
+    
+    if validacionLote=0 then
+   
+    INSERT INTO lote(codigoLote,cantidad,idProducto)
+             VALUES (codigoLoteI,0,idProductoI);
+    end if; 
+    		   
+    UPDATE lote SET cantidad = cantidad+ingresoI,
+                    fechaVencimiento=fechaVencimientoI
+					WHERE codigoLote=codigoLoteI;   
+					
+	 UPDATE inventarioproducto SET stock = stock + ingresoI
+						           WHERE idProducto=idProductoI;              
+                     
     insert into movimientoproducto (idProducto,ingreso,salida,observacion,fecha,idMovimiento)
 				           values (idProductoI,ingresoI,0,observacionI,fechaI,1);
 
@@ -948,13 +964,17 @@ USE `caticao`$$
 CREATE PROCEDURE `insertar_salidaproducto` (    in idProductoI INT,
                                                 in salidaI double(10,2),
                                                 in observacionI varchar(50),
+                                                in codigoLoteI VARCHAR(20),
                                                 in fechaI date)
 BEGIN
      UPDATE inventarioproducto SET stock = stock - salidaI
 						   WHERE idProducto=idProductoI;
-                           
-	insert into movimientoproducto (idProducto,ingreso,salida,observacion,fecha,idMovimiento)
-				           values (idProductoI,0,salidaI,observacionI,fechaI,2);
+						   
+     UPDATE lote SET cantidad = cantidad-salidaI
+					WHERE codigoLote=codigoLoteI; 
+					                     
+	  insert into movimientoproducto (idProducto,ingreso,salida,observacion,fecha,idMovimiento)
+				                 values (idProductoI,0,salidaI,observacionI,fechaI,2);
 						
 END$$
 DELIMITER ;
@@ -1068,6 +1088,14 @@ BEGIN
 END$$
 DELIMITER ;
 
+DROP procedure IF EXISTS `mostrar_lotes2`;
+DELIMITER $$
+USE `caticao`$$
+CREATE PROCEDURE `mostrar_lotes2` (in idProductoM INT)
+BEGIN
+	select * from lote WHERE idProducto=idProductoM;
+END$$
+DELIMITER ;
 
 -- Procedimientos almacenados de Recetas --
 

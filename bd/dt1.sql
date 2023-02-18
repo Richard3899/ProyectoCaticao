@@ -14,10 +14,9 @@
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
--- Volcando datos para la tabla caticao.usuariopermiso: ~1 rows (aproximadamente)
-DELETE FROM `usuariopermiso`;
-INSERT INTO `usuariopermiso` (`idUsuarioPermiso`, `insertar`, `editar`, `eliminar`, `idUsuario`) VALUES
-	(1, 1, 1, 1, 1);
+-- Volcando datos para la tabla caticao.lote: ~1 rows (aproximadamente)
+INSERT IGNORE INTO `lote` (`idLote`, `codigoLote`, `fechaVencimiento`, `cantidad`, `idProducto`) VALUES
+	(1, '123456', '2022-12-11', NULL, 1);
 
 /*!40103 SET TIME_ZONE=IFNULL(@OLD_TIME_ZONE, 'system') */;
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;

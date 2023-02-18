@@ -38,85 +38,22 @@ class ModeloLotes{
 	}
 
 	/*=============================================
-	REGISTRO DE LOTE
-	
+	MOSTRAR LOTES POR ID PRODUCTO
 	=============================================*/
 
-	static public function mdlIngresarLote($datos){
+	static public function mdlMostrarLotes2($valor){
 
-		$stmt = Conexion::conectar()->prepare("call insertar_lote(?)");
+		$stmt = Conexion::conectar()->prepare("call mostrar_lotes2(?)");
 
-		$stmt->bindParam(1, $datos["descripcion"], PDO::PARAM_STR);
+		$stmt->bindParam(1, $valor, PDO::PARAM_INT);
 
-		if($stmt->execute()){
+		$stmt -> execute();
 
-			return "ok";	
-
-		}else{
-
-			return "error";
-		
-		}
-
-		#$stmt->close();
-		
-		$stmt = null;
-
-	}
-
-	/*=============================================
-	EDITAR LOTE
-	=============================================*/
-
-	static public function mdlEditarLote($datos){
-	
-		$stmt = Conexion::conectar()->prepare("call editar_lote(?,?)");
-		
-		$stmt->bindParam(1, $datos["idLote"], PDO::PARAM_INT);
-		$stmt->bindParam(2, $datos["descripcion"], PDO::PARAM_STR);
-	
-
-		if($stmt -> execute()){
-
-			return "ok";
-		
-		}else{
-
-			return "error";	
-
-		}
+		return $stmt -> fetchAll();
 
 		#$stmt -> close();
 
 		$stmt = null;
-
-	}
-
-
-	/*=============================================
-	BORRAR LOTE
-	=============================================*/
-
-	static public function mdlEliminarLote($datos){
-
-		$stmt = Conexion::conectar()->prepare("call eliminar_lote(?)");
-
-		$stmt -> bindParam(1, $datos, PDO::PARAM_INT);
-
-		if($stmt -> execute()){
-
-			return "ok";
-		
-		}else{
-
-			return "error";	
-
-		}
-
-		#$stmt -> close();
-
-		$stmt = null;
-
 
 	}
 

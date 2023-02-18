@@ -15,130 +15,16 @@ class ControladorLotes{
 		return $respuesta;
 	}
 
-
 	/*=============================================
-	CREAR LOTES
+	MOSTRAR LOTES POR ID PRODUCTO
 	=============================================*/
 
-	static public function ctrCrearLote(){
+	static public function ctrMostrarLotes2($valor){
 
-		if(isset($_POST["nuevaDescripcionLote"])){
+		$respuesta = ModeloLotes::MdlMostrarLotes2($valor);
 
-		   		
-				$datos = array("descripcion" => $_POST["nuevaDescripcionLote"]
-			     );
-							   
-				$respuesta = ModeloLotes::mdlIngresarLote($datos);
-
-				if($respuesta == "ok"){
-
-					echo '<script>
-
-					Swal.fire({
-					
-						icon: "success",
-						title: "¡La lote ha sido guardada correctamente!",
-						showConfirmButton: false,
-						timer: 1500
-					
-					}).then(function(result){
-					
-							window.location = "lotes";
-					
-					});
-					
-					
-					</script>';
-
-				}
-
-
-		}
-
+		return $respuesta;
 	}
-
-	/*=============================================
-	EDITAR LOTES
-	=============================================*/
-
-	static public function ctrEditarLote(){
-
-		if(isset($_POST["editarDescripcionLote"])){
-
-
-				$datos = array("idLote" =>$_POST["idLote"],
-							   "descripcion" => $_POST["editarDescripcionLote"]
-							);
-							   
-				$respuesta = ModeloLotes::mdlEditarLote($datos);
-
-				if($respuesta == "ok"){
-
-					echo '<script>
-
-					Swal.fire({
-					
-						icon: "success",
-						title: "¡La lote ha sido editada correctamente!",
-						showConfirmButton: false,
-						timer: 1500
-					
-					}).then(function(result){
-					
-							window.location = "lotes";
-					
-					});
-					
-					
-					</script>';
-
-					
-
-				}
-
-
-		}
-
-	}
-
-	/*=============================================
-	ELIMINAR LOTES
-	=============================================*/
-	static public function ctrEliminarLote(){
-
-		if(isset($_GET["idLote"])){
-
-			$datos = $_GET["idLote"];
-
-
-			$respuesta = ModeloLotes::mdlEliminarLote($datos);
-
-			if($respuesta == "ok"){
-
-				echo '<script>
-
-				Swal.fire({
-				
-					icon: "success",
-					title: "¡La lote ha sido eliminada correctamente!",
-					showConfirmButton: false,
-					timer: 1500
-				
-				}).then(function(result){
-				
-						window.location = "lotes";
-				
-				});
-				
-				
-				</script>';
-
-			}		
-		}
-
-
-	}
-
 }
 
 
