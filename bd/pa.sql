@@ -928,6 +928,7 @@ DELIMITER $$
 USE `caticao`$$
 CREATE PROCEDURE `insertar_ingresoproducto` (   in idProductoI INT,
                                                 in ingresoI double(10,2),
+                                                in idLoteI INT,
                                                 in codigoLoteI varchar(50),
                                                 in fechaVencimientoI DATE,
                                                 in fechaI DATE,
@@ -935,13 +936,20 @@ CREATE PROCEDURE `insertar_ingresoproducto` (   in idProductoI INT,
 BEGIN
 	 
 	 DECLARE validacionLote VARCHAR(20);
+    DECLARE idDeLote INT;
     
     SELECT COUNT(codigoLote) FROM lote where codigoLote = codigoLoteI INTO validacionLote;
+    SELECT idLote FROM lote where codigoLote = codigoLoteI INTO idDeLote;
     
     if validacionLote=0 then
    
-    INSERT INTO lote(codigoLote,cantidad,idProducto)
-             VALUES (codigoLoteI,0,idProductoI);
+    INSERT INTO lote(idLote,codigoLote,cantidad,idProducto)
+             VALUES (idLoteI,codigoLoteI,0,idProductoI);
+    
+    else
+    
+    SET idLoteI=idDeLote;
+    
     end if; 
     		   
     UPDATE lote SET cantidad = cantidad+ingresoI,
@@ -951,8 +959,8 @@ BEGIN
 	 UPDATE inventarioproducto SET stock = stock + ingresoI
 						           WHERE idProducto=idProductoI;              
                      
-    insert into movimientoproducto (idProducto,ingreso,salida,observacion,fecha,idMovimiento)
-				           values (idProductoI,ingresoI,0,observacionI,fechaI,1);
+    insert into movimientoproducto (idLote,ingreso,salida,observacion,fecha,idMovimiento)
+				                values (idLoteI,ingresoI,0,observacionI,fechaI,1);
 
 END$$
 DELIMITER ;
@@ -962,19 +970,19 @@ DROP procedure IF EXISTS `insertar_salidaproducto`;
 DELIMITER $$
 USE `caticao`$$
 CREATE PROCEDURE `insertar_salidaproducto` (    in idProductoI INT,
+																in idLoteI INT,
                                                 in salidaI double(10,2),
                                                 in observacionI varchar(50),
-                                                in codigoLoteI VARCHAR(20),
                                                 in fechaI date)
 BEGIN
      UPDATE inventarioproducto SET stock = stock - salidaI
 						   WHERE idProducto=idProductoI;
 						   
      UPDATE lote SET cantidad = cantidad-salidaI
-					WHERE codigoLote=codigoLoteI; 
+					WHERE idLote=idLoteI; 
 					                     
-	  insert into movimientoproducto (idProducto,ingreso,salida,observacion,fecha,idMovimiento)
-				                 values (idProductoI,0,salidaI,observacionI,fechaI,2);
+	  insert into movimientoproducto (idLote,ingreso,salida,observacion,fecha,idMovimiento)
+				                 values (idLoteI,0,salidaI,observacionI,fechaI,2);
 						
 END$$
 DELIMITER ;
@@ -985,13 +993,14 @@ DELIMITER $$
 USE `caticao`$$
 CREATE PROCEDURE `mostrar_kardexproductos` (in idProductoK int)
 BEGIN
-		Select mp.idProducto,p.nombre,mp.idMovimiento,mv.descripcion,mp.observacion,mp.fecha,mp.hora,
+		Select p.idProducto,p.nombre,lt.codigoLote,mv.idMovimiento,mv.descripcion,mp.observacion,mp.fecha,mp.hora,
 				mp.ingreso,mp.salida ,SUM(+ingreso-salida) 
 				OVER(ORDER BY mp.hora ASC ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW)
-				AS saldo from movimientoproducto mp 
-				inner join producto p on p.idProducto=mp.idProducto
+				AS saldo from movimientoproducto mp
+				INNER JOIN lote lt ON lt.idLote=mp.idLote
+				inner join producto p on p.idProducto=lt.idProducto
 				inner join movimiento mv on mv.idMovimiento=mp.idMovimiento
-				where mp.idProducto=idProductoK;
+				where p.idProducto=idProductoK;
 END$$
 DELIMITER ;
 
@@ -1093,7 +1102,7 @@ DELIMITER $$
 USE `caticao`$$
 CREATE PROCEDURE `mostrar_lotes2` (in idProductoM INT)
 BEGIN
-	select * from lote WHERE idProducto=idProductoM;
+	select * from lote WHERE idProducto=idProductoM and cantidad > 0;
 END$$
 DELIMITER ;
 

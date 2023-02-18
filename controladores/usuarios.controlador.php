@@ -196,7 +196,7 @@ class ControladorUsuarios{
 				array_push($idModulos,29);
 				if(in_array(12, $idModulos)){array_push($idModulos,30);}
 				if(in_array(13, $idModulos)){array_push($idModulos,31);}
-				if(in_array(14, $idModulos)){array_push($idModulos,32);}
+				if(in_array(14, $idModulos)){array_push($idModulos,32,24);}
 				if(in_array(15, $idModulos)){array_push($idModulos,33);}
 				if(in_array(16, $idModulos)){array_push($idModulos,34,35,36,37,38,39,40,41,42);}
 				if(in_array(17, $idModulos)){array_push($idModulos,43);}
@@ -386,7 +386,7 @@ class ControladorUsuarios{
 				array_push($editaridModulos,29);
 				if(in_array(12, $editaridModulos)){array_push($editaridModulos,30);}
 				if(in_array(13, $editaridModulos)){array_push($editaridModulos,31);}
-				if(in_array(14, $editaridModulos)){array_push($editaridModulos,32);}
+				if(in_array(14, $editaridModulos)){array_push($editaridModulos,32,24);}
 				if(in_array(15, $editaridModulos)){array_push($editaridModulos,33);}
 				if(in_array(16, $editaridModulos)){array_push($editaridModulos,34,35,36,37,38,39,40,41,42);}
 				if(in_array(17, $editaridModulos)){array_push($editaridModulos,43);}

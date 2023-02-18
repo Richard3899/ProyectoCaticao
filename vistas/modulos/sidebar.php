@@ -174,8 +174,8 @@ if($value["modoDark"] == 1){
           </li>";}?>
 
           <?php 
-          $idModulosInventario=array(12,13,14,15);
-          $descripcionModulosInventario=array('inventariomateriales', 'inventarioinsumos','inventarioproductos','inventariomaquinas','kardexinsumos','kardexmateriales','kardexproductos','kardexmaquinas');
+          $idModulosInventario=array(12,13,14,15,24);
+          $descripcionModulosInventario=array('inventariomateriales', 'inventarioinsumos','inventarioproductos','inventariomaquinas','kardexinsumos','kardexmateriales','kardexproductos','kardexmaquinas','loteproductos');
           ?>
           
           <?php if (array_intersect($idModulosInventario,$arrayidModulos)){
@@ -208,7 +208,7 @@ if($value["modoDark"] == 1){
 
               if (in_array(14, $arrayidModulos)){
               echo "<li class='nav-item'>
-                <a href='inventarioproductos' class='nav-link "; if(in_array($url, array('inventarioproductos','kardexproductos'))){ echo "active"; } echo"'>
+                <a href='inventarioproductos' class='nav-link "; if(in_array($url, array('inventarioproductos','kardexproductos','loteproductos'))){ echo "active"; } echo"'>
                 <i class='nav-icon fas fa-angle-double-right'></i>
                   <p>Inventario Productos</p>
                 </a>

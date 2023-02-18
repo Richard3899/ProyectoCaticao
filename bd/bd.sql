@@ -331,7 +331,7 @@ CREATE TABLE MovimientoProducto (
   observacion VARCHAR(100) ,
   fecha DATE ,
   hora TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP ,
-  idProducto INT REFERENCES Producto (idProducto),
+  idLote INT REFERENCES Lote (idLote),
   idMovimiento INT REFERENCES Movimiento (idMovimiento)
 );
 
@@ -560,7 +560,7 @@ CREATE TABLE Configuracion (
 
   alter Table unidadmedida add foreign key (idTipoUnidad) REFERENCES  tipounidad  (idTipoUnidad);
 
-  alter Table movimientoproducto add foreign key (idProducto) REFERENCES producto (idProducto);
+  alter Table movimientoproducto add foreign key (idLote) REFERENCES lote (idLote);
   alter Table MovimientoProducto add foreign key (idMovimiento) REFERENCES Movimiento (idMovimiento);
 
   alter Table Empleado add foreign key (idTipoCosto) REFERENCES TipoCosto (idTipoCosto);

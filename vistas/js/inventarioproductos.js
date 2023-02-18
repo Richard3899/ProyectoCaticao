@@ -36,6 +36,55 @@ $('.tablaInventarioProductos').DataTable( {
 
 } );
 
+/*=============================================
+CREAR ID PARA LOTE
+=============================================*/
+
+$(".tablaInventarioProductos").on("draw.dt", function() {
+
+	var idLote = "";
+
+	var datos = new FormData();
+
+	datos.append("idLote", idLote);
+
+	const arrayIdLotes = [];
+
+	  $.ajax({
+
+     	url:"ajax/lotes.ajax.php",
+      	method: "POST",
+      	data: datos,
+      	cache: false,
+      	contentType: false,
+      	processData: false,
+      	dataType:"json",
+      	success:function(respuesta){
+
+		if(respuesta.length!=0){
+			
+		for (var i=0; i<respuesta.length; i++) { 
+
+		arrayIdLotes.push(respuesta[i]["idLote"]);
+	
+		}
+		arrayIdLotes.sort(function(a, b){return a - b});
+
+		const ultimoIdLote = $(arrayIdLotes).get(-1);
+	
+		$("#idLote").val(parseInt(ultimoIdLote)+1);
+			
+		}else{
+
+		$("#idLote").val(1)
+
+		}
+		
+	    }
+		
+
+	})
+})
 
 /*=============================================
 MOSTRAR LOTES POR ID PRODUCTO
@@ -51,18 +100,18 @@ $(".nuevoProductoS").on("change", function() {
 
     if($(this).val()!=''){
 
-	$("#nuevoCodigoLoteS").prop("disabled", false);
+	$("#idLoteS").prop("disabled", false);
 
 	}else{
 
 	$("#nuevaCantidadS").val("");
 	$("#nuevaCantidadS").prop("disabled", true);
 	$("#nuevoStockS").val("");
-	$("#nuevoCodigoLoteS").prop("disabled", true);
+	$("#idLoteS").prop("disabled", true);
 
 	}
 
-	$("#nuevoCodigoLoteS").empty();
+	$("#idLoteS").empty();
 
 	  $.ajax({
 
@@ -75,11 +124,11 @@ $(".nuevoProductoS").on("change", function() {
       	dataType:"json",
       	success:function(respuesta){
 
-		$(".nuevoCodigoLoteS").append("<option value =''>Seleccionar Lote</option>");
+		$(".idLoteS").append("<option value =''>Seleccionar Lote</option>");
 		
 		for (var i=0; i<respuesta.length; i++) { 
 
-		$(".nuevoCodigoLoteS").append("<option stock='"+respuesta[i]["cantidad"]+"' value ='"+respuesta[i]["codigoLote"]+"'>"+respuesta[i]["codigoLote"]+"</option>");
+		$(".idLoteS").append("<option stock='"+respuesta[i]["cantidad"]+"' value ='"+respuesta[i]["idLote"]+"'>"+respuesta[i]["codigoLote"]+"</option>");
 		
 	    }
 
@@ -91,11 +140,11 @@ $(".nuevoProductoS").on("change", function() {
 })
 
 
-$(".nuevoCodigoLoteS").on("change", function() {
+$(".idLoteS").on("change", function() {
 
     if($(this).val()!=''){
 
-	var stockActual=$(".nuevoCodigoLoteS option:selected").attr("stock");
+	var stockActual=$(".idLoteS option:selected").attr("stock");
 	$("#nuevoStockS").val(stockActual);
 	$("#nuevaCantidadS").val("");
 	$("#nuevaCantidadS").prop("disabled", false);
@@ -112,7 +161,7 @@ $(".nuevoCodigoLoteS").on("change", function() {
 
 $(".nuevaCantidadS").on("change", function(){
 
-	var stockActual=$(".nuevoCodigoLoteS option:selected").attr("stock");
+	var stockActual=$(".idLoteS option:selected").attr("stock");
 
 	var stockFinal = (stockActual - $(this).val()).toFixed(2);
 

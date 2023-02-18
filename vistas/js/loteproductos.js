@@ -1,4 +1,4 @@
-$('.tablaKardexProductos').dataTable( {
+$('.tablaLoteProductos').dataTable( {
 	"searching": false,
 	"language": {
 	
@@ -28,9 +28,9 @@ $('.tablaKardexProductos').dataTable( {
 }
   } );
 
-$(document).on('click','#KardexProductos',function() {
+$(document).on('click','#LoteProductos',function() {
 
-	if($("#ProductoK").val()==0){
+	if($("#ProductoL").val()==0){
 		Swal.fire({
 			icon: "error",
 			title: "Seleccionar Producto",
@@ -39,72 +39,29 @@ $(document).on('click','#KardexProductos',function() {
 		  })
 	}else{
 
-		KardexProductos()
-
-		$.fn.dataTable.ext.search.push(
-			function(settings, aData, iDataIndex) {
-				if ( settings.nTable.id !== 'tablaKardexProductos' ) {
-						return true;
-						}
-				var dateIni = $('#min').val();
-				var dateFin = $('#max').val();
-		
-				var indexCol = 4;
-		
-				dateIni = dateIni?.replace(/-/g, "");
-				dateFin= dateFin?.replace(/-/g, "");
-		
-				var dateCol = aData[indexCol]?.replace(/-/g, "");
-		
-				if (dateIni === "" && dateFin === "")
-				{
-					return true;
-				}
-		
-				if(dateIni === "")
-				{
-					return dateCol <= dateFin;
-				}
-		
-				if(dateFin === "")
-				{
-					return dateCol >= dateIni;
-				}
-		
-				return dateCol >= dateIni && dateCol <= dateFin;
-			}
-		);
+	LoteProductos()
 
 	/*===================================================================*/
 	// EVENTOS PARA CRITERIOS DE BUSQUEDA
 	/*===================================================================*/
-	$("#transaccion").keyup(function(){
-		table.column($(this).data('index')).search(this.value).draw();
-	})
-	$("#descripcion").keyup(function(){
-		table.column($(this).data('index')).search(this.value).draw();
-	})
+
 	$("#lote").keyup(function(){
 		table.column($(this).data('index')).search(this.value).draw();
 	})
 	
 	$(document).ready(function() {
 		// Create date inputs
-		minDate = new DateTime($('#min'));
-		maxDate = new DateTime($('#max'));
-		// Refilter the table
-		$('#min, #max').on('change', function () {
-			table.draw();			
-		});
+		minDate = new DateTime($('#fechaVencimiento'));
 	});
+
+	$("#fechaVencimiento").on('change',function(){
+		table.column($(this).data('index')).search(this.value).draw();
+	})
 
 	$("#btnLimpiarBusqueda").on('click',function(){
 
-		$("#transaccion").val('')
-		$("#descripcion").val('')
 		$("#lote").val('')
-		$("#min").val('')
-		$("#max").val('')
+		$("#fechaVencimiento").val('')
 
 		table.search('').columns().search('').draw();
 		
@@ -114,14 +71,14 @@ $(document).on('click','#KardexProductos',function() {
 
 });    
 
-function KardexProductos() {
+function LoteProductos() {
 
-	$(".tablaKardexProductos").dataTable().fnDestroy();
-	$(".tablaKardexProductos > tbody").empty();
-	var ProductoK = $("#ProductoK").val();
+	$(".tablaLoteProductos").dataTable().fnDestroy();
+	$(".tablaLoteProductos > tbody").empty();
+	var ProductoL = $("#ProductoL").val();
 
-	table =$('.tablaKardexProductos').DataTable( {
-		"ajax": "ajax/datatable-kardexproductos.ajax.php?ProductoK="+ProductoK,
+	table =$('.tablaLoteProductos').DataTable( {
+		"ajax": "ajax/datatable-loteproductos.ajax.php?ProductoL="+ProductoL,
 		"deferRender": true,
 		"columnDefs": [
 			{"className": "dt-center", "targets": "_all",

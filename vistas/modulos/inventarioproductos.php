@@ -28,7 +28,7 @@
 
             <div class="btn-toolbar justify-content-between m-2">
 
-                <div class="btn-group col-12 col-sm-8 col-md-6 col-lg-5 col-xl-4 my-1">
+                <div class="btn-group col-12 col-sm-12 col-md-6 col-lg-5 col-xl-4 my-1">
 
                 <?php 
                 if($permisoInsertar==1){
@@ -43,11 +43,11 @@
 
                 }else{
 
-                echo  "<button type='button' class='btn btn-success col-6 col-sm'>
+                echo  "<button type='button' class='btn btn-success col-6 col-sm-6 col-md-6'>
                       Ingreso Producto
                       </button>
                    
-                      <button type='button' class='btn btn-primary col-6 col-sm'>
+                      <button type='button' class='btn btn-primary col-6 col-sm-6 col-md-6'>
                       Salida Producto
                       </button>";
 
@@ -55,13 +55,15 @@
                 ?>
 
                 </div>
-                
-                <a type="button" class="btn btn-info col-12 col-sm-4 col-md-3 col-lg-3 col-xl-2 my-1" href="kardexproductos" >
-                    
+                <div class="btn-group col-12 col-sm-12 col-md-6 col-lg-5 col-xl-4 my-1">
+                <a type="button" class="btn btn-info col-12 col-sm-6 col-md-7 col-lg-7" href="kardexproductos">
                   Kardex de Producto
-
+                </a>                
+                
+                <a type="button" class="btn btn-warning col-12 col-sm-6 col-md-5 col-lg-5" href="loteproductos">
+                  Lotes
                 </a>
-          
+                </div>
         
             </div>
 
@@ -172,6 +174,8 @@ MODAL INGRESO DE PRODUCTO
           </div>
 
           <div class="row">
+
+          <input type="hidden" id="idLote" name="idLote">
 
           <!-- ENTRADA PARA EL LOTE -->
           <div class="form-group col-sm">
@@ -328,7 +332,7 @@ MODAL SALIDA DE PRODUCTO
           <label for="estado">Lote</label>
             <div class="input-group">
 
-                <select class="form-control select2 input-lg nuevoCodigoLoteS" id="nuevoCodigoLoteS" name="nuevoCodigoLoteS" style="width: 100%;" required disabled>
+                <select class="form-control select2 input-lg idLoteS" id="idLoteS" name="idLoteS" style="width: 100%;" required disabled>
 
                 <option value="">Seleccionar Lote</option>
 

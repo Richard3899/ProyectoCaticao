@@ -41,7 +41,8 @@ INSERT INTO `orderTable` (`idOrderTable`, `descripcion`) VALUES
 (38,'recetacostomarketing'),
 (39,'recetacostooperativo'),
 (40,'costorecetasgastoadmin'),
-(41,'gastoadminpormes');
+(41,'gastoadminpormes'),
+(42,'loteproductos');
 
 INSERT INTO `marca` (`idMarca`, `descripcion`) VALUES
 	(1, 'GLORIA'),(2, 'DULFINA'),(3, 'SAFE');
@@ -118,6 +119,7 @@ INSERT INTO `modulo` (`idModulo`, `descripcion`) VALUES
 	(21, 'reportemateriales'),
 	(22, 'reporteproductos'),
 	(23, 'configuracion'),
+	(24, 'loteproductos'),
 	(28, 'backup'),
 	(29, 'salir'),
 	(30, 'kardexinsumos'),
@@ -161,6 +163,7 @@ INSERT INTO `usuariomodulo` (`idUsuarioModulo`, `idUsuario`, `idModulo`) VALUES
 	(21, 1, 21),
 	(22, 1, 22),
 	(23, 1, 23),
+	(24, 1, 24),
 	(28, 1, 28),
 	(29, 1, 29),
 	(30, 1, 30),
@@ -234,8 +237,8 @@ INSERT INTO `gastoadmin` (`idGastoAdmin`, `descripcion`, `precio`, `idUnidadMedi
 INSERT INTO `receta` (`idReceta`, `codigo`, `nombre`, `batch`, `fechaInicio`, `fechaFin`, `pesoPorTableta`, `pesoEnTableta`, `merma`, `reproceso`, `codigoLote`, `idEstado`,`cerrado`) VALUES
 	(1, 'RC001', 'Receta 1', 60.00, '2022-12-10', '2022-12-10', 1.00, 1.00, 1.00, 1.00, '123456', 1, 0);
 
-INSERT INTO `lote` (`idLote`, `codigoLote`, `fechaVencimiento`, `idProducto`) VALUES
-	(1, '123456', '2022-12-11', 1);
+INSERT INTO `lote` (`idLote`, `codigoLote`, `cantidad`, `fechaVencimiento`, `idProducto`) VALUES
+	(1, '123456',0, '2022-12-11', 1);
 
 INSERT INTO `tarifaenergia` (`idTarifaEnergia`, `tarifakwh`) VALUES 
 	(1, 0.72);

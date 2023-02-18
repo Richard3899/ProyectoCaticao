@@ -15,7 +15,6 @@ class ControladorInventarioProductos{
 		return $respuesta;
 	}
 
-
 	/*=============================================
 	CREAR INGRESO PRODUCTO
 	=============================================*/
@@ -24,15 +23,14 @@ class ControladorInventarioProductos{
 
 		if(isset($_POST["nuevoProductoI"])){
 
-
 				$datos = array("idProducto" => $_POST["nuevoProductoI"],
 							   "cantidad" => $_POST["nuevaCantidadI"],
+							   "idLote" => $_POST["idLote"],
 							   "codigoLote" => $_POST["nuevoCodigoLoteI"],
 							   "fechaVencimiento" => $_POST["nuevaFechaVencimientoI"],
 							   "fecha" => $_POST["nuevaFechaI"],
 							   "observacion" => $_POST["nuevaObservacionI"]);
-							 
-				
+							 			
 				$respuesta = ModeloInventarioProductos::mdlIngresoProducto($datos);
 
 				if($respuesta == "ok"){
@@ -71,14 +69,12 @@ class ControladorInventarioProductos{
 
 		if(isset($_POST["nuevoProductoS"])){
 
-
 				$datos = array("idProducto" => $_POST["nuevoProductoS"],
+							   "idLote" => $_POST["idLoteS"],
 							   "cantidad" => $_POST["nuevaCantidadS"],
 							   "observacion" => $_POST["nuevaObservacionS"],
-							   "codigoLote" => $_POST["nuevoCodigoLoteS"],
 							   "fecha" => $_POST["nuevaFechaS"]);
 							 
-
 				$respuesta = ModeloInventarioProductos::mdlSalidaProducto($datos);
 
 				if($respuesta == "ok"){
@@ -97,12 +93,10 @@ class ControladorInventarioProductos{
 							window.location = "inventarioproductos";
 					
 					});
-					
-					
+										
 					</script>';
 
 				}
-
 
 		}
 

@@ -16,13 +16,17 @@ class AjaxLotes{
 		$item = "idLote";
 		$valor = $this->idLote;
 
-		$respuesta = ControladorLotes::ctrMostrarLotes($item, $valor);
+        if($valor==NULL){
+			$respuesta = ControladorLotes::ctrMostrarLotes(NULL,NULL);
+		}else{
+			$respuesta = ControladorLotes::ctrMostrarLotes($item, $valor);
+		}
 		
 		echo json_encode($respuesta);
 
 	}
 
-		/*=============================================
+	/*=============================================
 	EDITAR LOTE
 	=============================================*/	
 

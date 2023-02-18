@@ -153,6 +153,7 @@ session_start();
 <script src="vistas/js/reporteproductos.js"></script>
 <script src="vistas/js/dashboard.js"></script>
 <script src="vistas/js/backup.js"></script>
+<script src="vistas/js/loteproductos.js"></script>
 
 </body>
 

@@ -11,6 +11,9 @@ require_once "../modelos/productos.modelo.php";
 require_once "../controladores/unidadmedida.controlador.php";
 require_once "../modelos/unidadmedida.modelo.php";
 
+require_once "../controladores/lotes.controlador.php";
+require_once "../modelos/lotes.modelo.php";
+
 class TablaKardexProductos{
 
  	/*=============================================
@@ -42,7 +45,6 @@ class TablaKardexProductos{
 
 		  for($i = 0; $i < count($kardexproductos); $i++){
 
-
 			/*=============================================
  	 		TRAEMOS AL PRODUCTO
   			=============================================*/ 
@@ -51,7 +53,6 @@ class TablaKardexProductos{
 		  	$valor1 = $kardexproductos[$i]["idProducto"];
 
 		  	$productos = ControladorProductos::ctrMostrarProductos($item1, $valor1);
-
 
 			/*=============================================
  	 		TRAEMOS LA UNIDAD DE MEDIDA
@@ -99,14 +100,13 @@ class TablaKardexProductos{
 			}
 
 
-
-
 		  	$datosJson .='[
 			      "'.($i+1).'",
 				  "'.$kardexproductos[$i]["hora"].'",
 				  "'.$movimientos.'",
 			      "'.$kardexproductos[$i]["observacion"].'",
 				  "'.$kardexproductos[$i]["fecha"].'",
+				  "'.$kardexproductos[$i]["codigoLote"].'",
 				  "'.$ingreso.'",
 				  "'.$salida.'",
 				  "'.$saldo.'"
