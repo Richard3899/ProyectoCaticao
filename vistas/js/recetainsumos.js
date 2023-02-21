@@ -316,7 +316,6 @@ $(".tablaRecetaInsumos tbody").on("click", "button.btnEditarInsumoReceta", funct
 		   $(".editarCantidadInsumo").attr("edStock",(Number(respuesta["stock"])+Number(respuesta["cantidad"])));
 		   $("#editarCantidad").val(respuesta["cantidad"]);
 		   $("#editarStock").val(Number(respuesta["stock"]).toFixed(3)+" "+respuesta["unidadMedida"]);
-		   $("#cantidadAnterior").val(respuesta["cantidad"]);
 
 		   $("#editarprecioUnitario").val(respuesta["precioUnitario"]);
 		   $(".editarPrecioInsumo").val(respuesta["total"]);
@@ -346,12 +345,8 @@ $(".formularioEditarRecetaInsumo").on("change", "input.editarCantidadInsumo", fu
 
     $(this).attr("editarStock", editarStock);
 
-	var diferenciaCantidad= Number($("#cantidadAnterior").val()) - $(this).val();
-
 	$("#editarStock").val(editarStock);
-	
-	$("#diferenciaCantidad").val(diferenciaCantidad);
-    
+
 		if(Number($(this).val()) > Number($(this).attr("edStock"))){
 
 
@@ -452,13 +447,12 @@ ELIMINAR INSUMO DE LA RECETA
 =============================================*/
 
 $(".tablaRecetaInsumos tbody").on("click", "button.btnEliminarInsumoReceta", function(){
-
-	var codigoReceta = $("#codigoReceta").val();
-	var idReceta = $("#idReceta").val();
-	var nombreReceta = $("#nombreReceta").val();
+	
 	var idRecetaInsumo = $(this).attr("idRecetaInsumo");
+	var idReceta = $("#idReceta").val();
+	var codigoReceta = $("#codigoReceta").val();
+	var nombreReceta = $("#nombreReceta").val();
 	var idInsumo = $(this).attr("idInsumo");
-	var cantidadInsumo = $(this).attr("cantidadInsumo");
 	
 	Swal.fire({
 
@@ -473,8 +467,7 @@ $(".tablaRecetaInsumos tbody").on("click", "button.btnEliminarInsumoReceta", fun
         }).then(function(result){
         if (result.value) {
 
-        window.location = "index.php?ruta=recetainsumos&idRecetaInsumo="+idRecetaInsumo+"&idInsumo="+idInsumo+"&cantidadInsumo="+
-			               cantidadInsumo+"&codigoReceta="+codigoReceta+"&nombreReceta="+nombreReceta+"&idReceta="+idReceta;
+        window.location = "index.php?ruta=recetainsumos&idRecetaInsumo="+idRecetaInsumo+"&idReceta="+idReceta+"&idInsumo="+idInsumo+"&codigoReceta="+codigoReceta+"&nombreReceta="+nombreReceta;
 
         }
 

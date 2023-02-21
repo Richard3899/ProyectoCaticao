@@ -76,12 +76,13 @@ class ModeloRecetaConsumoGas{
 
 	static public function mdlEditarRecetaConsumoGas($datos){
 
-		$stmt = Conexion::conectar()->prepare("call editar_recetaconsumogas(?,?,?,?)");
+		$stmt = Conexion::conectar()->prepare("call editar_recetaconsumogas(?,?,?,?,?)");
 
 		$stmt->bindParam(1, $datos["idRecetaConsumoGas"], PDO::PARAM_INT);
-		$stmt->bindParam(2, $datos["trabajoPorBatch"], PDO::PARAM_STR);
-		$stmt->bindParam(3, $datos["pesoBalonGas"], PDO::PARAM_STR);
-		$stmt->bindParam(4, $datos["tarifaGas"], PDO::PARAM_STR);
+		$stmt->bindParam(2, $datos["idReceta"], PDO::PARAM_INT);
+		$stmt->bindParam(3, $datos["trabajoPorBatch"], PDO::PARAM_STR);
+		$stmt->bindParam(4, $datos["pesoBalonGas"], PDO::PARAM_STR);
+		$stmt->bindParam(5, $datos["tarifaGas"], PDO::PARAM_STR);
 
 		if($stmt->execute()){
 
@@ -104,9 +105,10 @@ class ModeloRecetaConsumoGas{
 
 	static public function mdlEliminarRecetaConsumoGas($datos){
 
-		$stmt = Conexion::conectar()->prepare("call eliminar_recetaconsumogas(?)");
+		$stmt = Conexion::conectar()->prepare("call eliminar_recetaconsumogas(?,?)");
 
 		$stmt->bindParam(1, $datos["idRecetaConsumoGas"], PDO::PARAM_INT);
+		$stmt->bindParam(2, $datos["idReceta"], PDO::PARAM_INT);
 
 		if($stmt->execute()){
 

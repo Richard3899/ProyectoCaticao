@@ -336,8 +336,6 @@ MODAL EDITAR RECETA INSUMO
                 <div class="input-group-prepend">
                 <span class="input-group-text"><i class="fas fa-layer-group"></i></span>
                 </div>
-                <input type="hidden" id="cantidadAnterior" name="cantidadAnterior">
-                <input type="hidden" id="diferenciaCantidad" name="diferenciaCantidad">
                 <input type="number" class="form-control input-lg editarCantidadInsumo" edStock id="editarCantidad" name="editarCantidad" 
                 min="0.1" step="0.001" required>
             </div>

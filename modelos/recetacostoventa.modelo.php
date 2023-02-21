@@ -76,11 +76,12 @@ class ModeloRecetaCostoVenta{
 
 	static public function mdlEditarRecetaCostoVenta($datos){
 
-		$stmt = Conexion::conectar()->prepare("call editar_recetacostoventa(?,?,?)");
+		$stmt = Conexion::conectar()->prepare("call editar_recetacostoventa(?,?,?,?)");
 
 		$stmt->bindParam(1, $datos["idRecetaCostoVenta"], PDO::PARAM_INT);
-		$stmt->bindParam(2, $datos["cantidad"], PDO::PARAM_STR);
-		$stmt->bindParam(3, $datos["total"], PDO::PARAM_STR);
+		$stmt->bindParam(2, $datos["idReceta"], PDO::PARAM_INT);
+		$stmt->bindParam(3, $datos["cantidad"], PDO::PARAM_STR);
+		$stmt->bindParam(4, $datos["total"], PDO::PARAM_STR);
 
 		if($stmt->execute()){
 
@@ -103,9 +104,10 @@ class ModeloRecetaCostoVenta{
 
 	static public function mdlEliminarRecetaCostoVenta($datos){
 
-		$stmt = Conexion::conectar()->prepare("call eliminar_recetacostoventa(?)");
+		$stmt = Conexion::conectar()->prepare("call eliminar_recetacostoventa(?,?)");
 
 		$stmt->bindParam(1, $datos["idRecetaCostoVenta"], PDO::PARAM_INT);
+		$stmt->bindParam(2, $datos["idReceta"], PDO::PARAM_INT);
 
 		if($stmt->execute()){
 

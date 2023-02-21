@@ -1310,12 +1310,12 @@ DROP procedure IF EXISTS `insertar_recetainsumo`;
 DELIMITER $$
 USE `caticao`$$
 CREATE PROCEDURE `insertar_recetainsumo` (      in idRecetaI INT,
-											    in codigoRecetaI VARCHAR(20),
+											    				in codigoRecetaI VARCHAR(20),
                                                 in idMateriaI INT,
                                                 in nombreI VARCHAR(50),
                                                 in cantidadI DECIMAL(10,3),
                                                 in precioUnitarioI DECIMAL(10,2),
-												in totalI DECIMAL(10,2) )
+																in totalI DECIMAL(10,2) )
 BEGIN
     UPDATE inventariomateria SET stock = stock - cantidadI
 						         WHERE idMateria=idMateriaI;
@@ -1325,7 +1325,8 @@ BEGIN
 
 	 INSERT INTO recetamateria (idMateria,idReceta,nombre,cantidad,precioUnitario,total)
 			              VALUES (idMateriaI,idRecetaI,nombreI,cantidadI,precioUnitarioI,totalI);
-	
+	 		              
+	 CALL sumatotal_costoporreceta(idRecetaI);
 END$$
 DELIMITER ;
 
@@ -1334,15 +1335,13 @@ DROP procedure IF EXISTS `editar_recetainsumo`;
 DELIMITER $$
 USE `caticao`$$
 CREATE PROCEDURE `editar_recetainsumo` (        in idRecetaMateriaE INT,
-												in idRecetaE INT,
-												in codigoRecetaE VARCHAR(20),
+																in idRecetaE INT,
+																in codigoRecetaE VARCHAR(20),
                                                 in idMateriaE INT,
                                                 in nombreE VARCHAR(50),
-                                                in cantidadAntE DECIMAL(10,3),
-                                                in difcantidadE DECIMAL(10,3),
                                                 in cantidadE DECIMAL(10,3),
                                                 in precioUnitarioE DECIMAL(10,2),
-												in totalE DECIMAL(10,2))
+																in totalE DECIMAL(10,2))
 BEGIN
 
 	DELETE from recetamateria WHERE idRecetaMateria=idRecetaMateriaE;
@@ -1364,7 +1363,8 @@ BEGIN
 	                       SELECT mm.idMateria AS idInventarioMateria,SUM(mm.ingreso) - SUM(mm.salida) AS stock,mm.idMateria FROM movimientomateria mm
                           INNER JOIN materia m ON m.idMateria=mm.idMateria
                           GROUP BY mm.idMateria;
-
+                          
+	CALL sumatotal_costoporreceta(idRecetaE);
 END$$
 DELIMITER ;
 
@@ -1372,10 +1372,10 @@ DELIMITER ;
 DROP procedure IF EXISTS `eliminar_recetainsumo`;
 DELIMITER $$
 USE `caticao`$$
-CREATE PROCEDURE `eliminar_recetainsumo` (in idRecetaMateriaE INT,
-										in codigoRecetaE VARCHAR(20),
-										             in idMateriaE int,
-                                           in cantidadE DECIMAL(10,3))
+CREATE PROCEDURE `eliminar_recetainsumo` ( in idRecetaMateriaE INT,
+														 in idRecetaE INT,
+														 in codigoRecetaE VARCHAR(20),
+										             in idMateriaE int)
 BEGIN
     	   
    DELETE from recetamateria WHERE idRecetaMateria=idRecetaMateriaE;
@@ -1393,7 +1393,9 @@ BEGIN
 	                       SELECT mm.idMateria AS idInventarioMateria,SUM(mm.ingreso) - SUM(mm.salida) AS stock,mm.idMateria FROM movimientomateria mm
                           INNER JOIN materia m ON m.idMateria=mm.idMateria
                           GROUP BY mm.idMateria;
-						
+                          
+	CALL sumatotal_costoporreceta(idRecetaE);
+					
 END$$
 DELIMITER ;
 
@@ -1486,7 +1488,7 @@ BEGIN
 	 INSERT INTO recetamateria (idMateria,idReceta,nombre,cantidad,precioUnitario,total)
 			              VALUES (idMateriaI,idRecetaI,nombreI,cantidadI,precioUnitarioI,totalI);
 
-	
+	CALL sumatotal_costoporreceta(idRecetaI);	
 END$$
 DELIMITER ;
 
@@ -1499,8 +1501,6 @@ CREATE PROCEDURE `editar_recetamaterial` (      in idRecetaMateriaE INT,
 																in codigoRecetaE VARCHAR(20),
                                                 in idMateriaE INT,
                                                 in nombreE VARCHAR(50),
-                                                in cantidadAntE DECIMAL(10,2),
-                                                in difcantidadE DECIMAL(10,2),
                                                 in cantidadE DECIMAL(10,2),
                                                 in precioUnitarioE DECIMAL(10,2),
 												            in totalE DECIMAL(10,2))
@@ -1524,8 +1524,9 @@ BEGIN
 	INSERT INTO inventariomateria (idInventarioMateria,stock,idMateria)		
 	                       SELECT mm.idMateria AS idInventarioMateria,SUM(mm.ingreso) - SUM(mm.salida) AS stock,mm.idMateria FROM movimientomateria mm
                           INNER JOIN materia m ON m.idMateria=mm.idMateria
-                          GROUP BY mm.idMateria;			             	             
-			             
+                          GROUP BY mm.idMateria;
+								  			             	             
+	CALL sumatotal_costoporreceta(idRecetaE);			             
 END$$
 DELIMITER ;
 
@@ -1534,9 +1535,9 @@ DROP procedure IF EXISTS `eliminar_recetamaterial`;
 DELIMITER $$
 USE `caticao`$$
 CREATE PROCEDURE `eliminar_recetamaterial` (in idRecetaMateriaE INT,
-														 in codigoRecetaE VARCHAR(20),
-										             in idMateriaE INT,
-                                           in cantidadE DECIMAL(10,2))
+														  in idRecetaE INT,
+														  in codigoRecetaE VARCHAR(20),
+										              in idMateriaE INT)
 BEGIN
 
    DELETE from recetamateria WHERE idRecetaMateria=idRecetaMateriaE;
@@ -1554,6 +1555,8 @@ BEGIN
 	                       SELECT mm.idMateria AS idInventarioMateria,SUM(mm.ingreso) - SUM(mm.salida) AS stock,mm.idMateria FROM movimientomateria mm
                           INNER JOIN materia m ON m.idMateria=mm.idMateria
                           GROUP BY mm.idMateria;
+
+   CALL sumatotal_costoporreceta(idRecetaE);
 						
 END$$
 DELIMITER ;
@@ -1612,7 +1615,8 @@ BEGIN
 
 	 INSERT INTO recetamanodeobra(idReceta,idEmpleado,idMaquina,nombreEmpleado,nombreMaquina,tiempoHoras,precioUnitario,total)
 			              VALUES (idRecetaI,idEmpleadoI,idMaquinaI,nombreEmpleadoI,nombreMaquinaI,tiempoHorasI,precioUnitarioI,totalI);
-	
+	 
+	 CALL sumatotal_costoporreceta(idRecetaI);
 END$$
 DELIMITER ;
 
@@ -1622,6 +1626,7 @@ DROP procedure IF EXISTS `editar_recetamanodeobra`;
 DELIMITER $$
 USE `caticao`$$
 CREATE PROCEDURE `editar_recetamanodeobra` (    in idRecetaManodeObraE INT,
+																in idRecetaE INT,
                                                 in tiempoHorasE DECIMAL(10,2),
 												            in totalE DECIMAL(10,2))
 BEGIN
@@ -1629,7 +1634,8 @@ BEGIN
    UPDATE recetamanodeobra SET tiempoHoras = tiempoHorasE,
                                total=totalE
 						         WHERE idRecetaManodeObra=idRecetaManodeObraE;
-                            
+   
+	CALL sumatotal_costoporreceta(idRecetaE);                         
 END$$
 DELIMITER ;
 
@@ -1638,11 +1644,13 @@ DELIMITER ;
 DROP procedure IF EXISTS `eliminar_recetamanodeobra`;
 DELIMITER $$
 USE `caticao`$$
-CREATE PROCEDURE `eliminar_recetamanodeobra` (in idRecetaManodeObraE INT)
+CREATE PROCEDURE `eliminar_recetamanodeobra` (in idRecetaManodeObraE INT,
+															 in idRecetaE INT)
 BEGIN
     	   
    DELETE from recetamanodeobra WHERE idRecetaManodeObra=idRecetaManodeObraE;
-						
+	
+	CALL sumatotal_costoporreceta(idRecetaE);					
 END$$
 DELIMITER ;
 
@@ -1699,7 +1707,8 @@ BEGIN
 
 	 INSERT INTO recetadepreciacion(idReceta,idMaquina,nombreMaquina,tiempoHoras,depreciacionHora,depreciacionPorBatch)
 			                 VALUES (idRecetaI,idMaquinaI,nombreMaquinaI,tiempoHorasI,depreciacionHoraI,depreciacionPorBatchI);
-	
+			                 
+	CALL sumatotal_costoporreceta(idRecetaI);
 END$$
 DELIMITER ;
 
@@ -1709,6 +1718,7 @@ DROP procedure IF EXISTS `editar_recetadepreciacion`;
 DELIMITER $$
 USE `caticao`$$
 CREATE PROCEDURE `editar_recetadepreciacion` (  in idRecetaDepreciacionE INT,
+																in idRecetaE INT,
                                                 in tiempoHorasE DECIMAL(10,2),
 												            in depreciacionPorBatchE DECIMAL(10,2))
 BEGIN
@@ -1716,7 +1726,8 @@ BEGIN
    UPDATE recetadepreciacion SET tiempoHoras = tiempoHorasE,
                                depreciacionPorBatch=depreciacionPorBatchE
 						         WHERE idRecetaDepreciacion=idRecetaDepreciacionE;
-                            
+						         
+	CALL sumatotal_costoporreceta(idRecetaE);                            
 END$$
 DELIMITER ;
 
@@ -1724,11 +1735,12 @@ DELIMITER ;
 DROP procedure IF EXISTS `eliminar_recetadepreciacion`;
 DELIMITER $$
 USE `caticao`$$
-CREATE PROCEDURE `eliminar_recetadepreciacion` (in idRecetaDepreciacionE INT)
+CREATE PROCEDURE `eliminar_recetadepreciacion` (in idRecetaDepreciacionE INT,in idRecetaE INT)
 BEGIN
     	   
    DELETE from recetadepreciacion WHERE idRecetaDepreciacion=idRecetaDepreciacionE;
-						
+   
+	CALL sumatotal_costoporreceta(idRecetaE); 					
 END$$
 DELIMITER ;
 
@@ -1811,7 +1823,8 @@ BEGIN
 
 	 INSERT INTO recetaconsumoenergia(idReceta,idMaquina,nombreMaquina,potenciaKw,horasTrabajoBatch,consumoKwh,idTarifaEnergia,tarifaKwh,pagoPorBatch)
 			                 VALUES (idRecetaI,idMaquinaI,nombreMaquinaI,potenciaKwI,horasTrabajoBatchI,consumoKwhI,1,tarifaKwhI,pagoPorBatchI);
-	
+			                 
+	 CALL sumatotal_costoporreceta(idRecetaI);
 END$$
 DELIMITER ;
 
@@ -1821,6 +1834,7 @@ DROP procedure IF EXISTS `editar_recetaconsumoenergia`;
 DELIMITER $$
 USE `caticao`$$
 CREATE PROCEDURE `editar_recetaconsumoenergia` (  in idRecetaConsumoEnergiaE INT,
+																  in idRecetaE INT,
 																  in horasTrabajoBatchE DECIMAL(10,2),	
                                                   in consumoKwhE DECIMAL(10,2),
 												              in pagoPorBatchE DECIMAL(10,2))
@@ -1830,7 +1844,8 @@ BEGIN
                                    consumoKwh=consumoKwhE,
                                    pagoPorBatch = pagoPorBatchE
 						         WHERE idRecetaConsumoEnergia=idRecetaConsumoEnergiaE;
-                            
+						         
+   CALL sumatotal_costoporreceta(idRecetaE);                         
 END$$
 DELIMITER ;
 
@@ -1839,11 +1854,12 @@ DELIMITER ;
 DROP procedure IF EXISTS `eliminar_recetaconsumoenergia`;
 DELIMITER $$
 USE `caticao`$$
-CREATE PROCEDURE `eliminar_recetaconsumoenergia` (in idRecetaConsumoEnergiaE INT)
+CREATE PROCEDURE `eliminar_recetaconsumoenergia` (in idRecetaConsumoEnergiaE INT,in idRecetaE INT)
 BEGIN
     	   
    DELETE from recetaconsumoenergia WHERE idRecetaConsumoEnergia=idRecetaConsumoEnergiaE;
-						
+   
+	CALL sumatotal_costoporreceta(idRecetaE);  		
 END$$
 DELIMITER ;
 
@@ -1899,16 +1915,17 @@ BEGIN
 
 	 INSERT INTO recetaconsumogas(idReceta,idMaquina,nombreMaquina,trabajoPorBatch,pesoBalonGas,tarifaGas,pagoPorBatch)
 			                 VALUES (idRecetaI,idMaquinaI,nombreMaquinaI,trabajoPorBatchI,pesoBalonGasI,tarifaGasI,pesoBalonGasI*tarifaGasI);
-	
+			                 
+	 CALL sumatotal_costoporreceta(idRecetaI);
 END$$
 DELIMITER ;
-
 
 
 DROP procedure IF EXISTS `editar_recetaconsumogas`;
 DELIMITER $$
 USE `caticao`$$
 CREATE PROCEDURE `editar_recetaconsumogas` (  in idRecetaConsumoGasE INT,
+															 in idRecetaE INT,
                                               in trabajoPorBatchE DECIMAL(10,2),
 	                                           in pesoBalonGasE DECIMAL(10,2),
 													       in tarifaGasE DECIMAL(10,2))
@@ -1919,20 +1936,21 @@ BEGIN
                                tarifaGas=tarifaGasE,
                                pagoPorBatch=pesoBalonGasE*tarifaGasE
 						         WHERE idRecetaConsumoGas=idRecetaConsumoGasE;
-                            
+						         
+   CALL sumatotal_costoporreceta(idRecetaE);                        
 END$$
 DELIMITER ;
-
 
 
 DROP procedure IF EXISTS `eliminar_recetaconsumogas`;
 DELIMITER $$
 USE `caticao`$$
-CREATE PROCEDURE `eliminar_recetaconsumogas` (in idRecetaConsumoGasE INT)
+CREATE PROCEDURE `eliminar_recetaconsumogas` (in idRecetaConsumoGasE INT,in idRecetaE INT)
 BEGIN
     	   
    DELETE from recetaconsumogas WHERE idRecetaConsumoGas=idRecetaConsumoGasE;
-						
+   
+	CALL sumatotal_costoporreceta(idRecetaE); 						
 END$$
 DELIMITER ;
 
@@ -1988,7 +2006,8 @@ BEGIN
 
 	 INSERT INTO recetacostoventa(idReceta,idGastoAdmin,nombreCostoVenta,cantidad,precio,total)
 			                 VALUES (idRecetaI,idCostoVentaI,nombreCostoVentaI,cantidadI,precioI,totalI);
-	
+			                 
+	 CALL sumatotal_costoporreceta(idRecetaI);
 END$$
 DELIMITER ;
 
@@ -1998,6 +2017,7 @@ DROP procedure IF EXISTS `editar_recetacostoventa`;
 DELIMITER $$
 USE `caticao`$$
 CREATE PROCEDURE `editar_recetacostoventa` (    in idRecetaCostoVentaE INT,
+															   in idRecetaE INT,
                                                 in cantidadE DECIMAL(10,2),
 												            in totalE DECIMAL(10,2))
 BEGIN
@@ -2005,7 +2025,8 @@ BEGIN
    UPDATE recetacostoventa SET cantidad = cantidadE,
                                total=totalE
 						         WHERE idRecetaCostoVenta=idRecetaCostoVentaE;
-                            
+						         
+   CALL sumatotal_costoporreceta(idRecetaE);                         
 END$$
 DELIMITER ;
 
@@ -2014,11 +2035,12 @@ DELIMITER ;
 DROP procedure IF EXISTS `eliminar_recetacostoventa`;
 DELIMITER $$
 USE `caticao`$$
-CREATE PROCEDURE `eliminar_recetacostoventa` (in idRecetaCostoVentaE INT)
+CREATE PROCEDURE `eliminar_recetacostoventa` (in idRecetaCostoVentaE INT,in idRecetaE INT)
 BEGIN
     	   
    DELETE from recetacostoventa WHERE idRecetaCostoVenta=idRecetaCostoVentaE;
-						
+   
+	CALL sumatotal_costoporreceta(idRecetaE);    					
 END$$
 DELIMITER ;
 
@@ -2075,7 +2097,8 @@ BEGIN
 
 	 INSERT INTO recetacostomarketing(idReceta,idGastoAdmin,nombreCostoMarketing,cantidad,precio,total)
 			                 VALUES (idRecetaI,idCostoMarketingI,nombreCostoMarketingI,cantidadI,precioI,totalI);
-	
+			                 
+	 CALL sumatotal_costoporreceta(idRecetaI);
 END$$
 DELIMITER ;
 
@@ -2085,6 +2108,7 @@ DROP procedure IF EXISTS `editar_recetacostomarketing`;
 DELIMITER $$
 USE `caticao`$$
 CREATE PROCEDURE `editar_recetacostomarketing` (    in idRecetaCostoMarketingE INT,
+																    in idRecetaE INT,
                                                     in cantidadE DECIMAL(10,2),
 												                in totalE DECIMAL(10,2))
 BEGIN
@@ -2092,7 +2116,8 @@ BEGIN
    UPDATE recetacostomarketing SET cantidad = cantidadE,
                                total=totalE
 						         WHERE idRecetaCostoMarketing=idRecetaCostoMarketingE;
-                            
+						         
+   CALL sumatotal_costoporreceta(idRecetaE);                        
 END$$
 DELIMITER ;
 
@@ -2101,11 +2126,12 @@ DELIMITER ;
 DROP procedure IF EXISTS `eliminar_recetacostomarketing`;
 DELIMITER $$
 USE `caticao`$$
-CREATE PROCEDURE `eliminar_recetacostomarketing` (in idRecetaCostoMarketingE INT)
+CREATE PROCEDURE `eliminar_recetacostomarketing` (in idRecetaCostoMarketingE INT,in idRecetaE INT)
 BEGIN
     	   
    DELETE from recetacostomarketing WHERE idRecetaCostoMarketing=idRecetaCostoMarketingE;
-						
+   
+	CALL sumatotal_costoporreceta(idRecetaE); 				
 END$$
 DELIMITER ;
 
@@ -2161,7 +2187,8 @@ BEGIN
 
 	 INSERT INTO recetacostooperativo(idReceta,idGastoAdmin,nombreCostoOperativo,cantidad,precio,total)
 			                 VALUES (idRecetaI,idCostoOperativoI,nombreCostoOperativoI,cantidadI,precioI,totalI);
-	
+			                 
+	 CALL sumatotal_costoporreceta(idRecetaI);
 END$$
 DELIMITER ;
 
@@ -2171,14 +2198,16 @@ DROP procedure IF EXISTS `editar_recetacostooperativo`;
 DELIMITER $$
 USE `caticao`$$
 CREATE PROCEDURE `editar_recetacostooperativo` (    in idRecetaCostoOperativoE INT,
-                                                in cantidadE DECIMAL(10,2),
-												            in totalE DECIMAL(10,2))
+																	 in idRecetaE INT,
+                                                    in cantidadE DECIMAL(10,2),
+												                in totalE DECIMAL(10,2))
 BEGIN
 
    UPDATE recetacostooperativo SET cantidad = cantidadE,
                                total=totalE
 						         WHERE idRecetaCostoOperativo=idRecetaCostoOperativoE;
-                            
+						         
+   CALL sumatotal_costoporreceta(idRecetaE);                         
 END$$
 DELIMITER ;
 
@@ -2187,11 +2216,12 @@ DELIMITER ;
 DROP procedure IF EXISTS `eliminar_recetacostooperativo`;
 DELIMITER $$
 USE `caticao`$$
-CREATE PROCEDURE `eliminar_recetacostooperativo` (in idRecetaCostoOperativoE INT)
+CREATE PROCEDURE `eliminar_recetacostooperativo` (in idRecetaCostoOperativoE INT,in idRecetaE INT)
 BEGIN
     	   
    DELETE from recetacostooperativo WHERE idRecetaCostoOperativo=idRecetaCostoOperativoE;
-						
+   
+	CALL sumatotal_costoporreceta(idRecetaE); 					
 END$$
 DELIMITER ;
 
@@ -2222,8 +2252,8 @@ BEGIN
 	SET rc=ROUND(((RAND() * (99999 - 11111)) + 11111));
 	
 	-- INSERTA EL LOTE DE LA RECETA DUPLICADA --
-	INSERT INTO lote (idLote,codigoLote,fechaVencimiento,idProducto)
-				  SELECT nuevoIdRecetaD,rc,fechaVencimiento,idProducto FROM lote
+	INSERT INTO lote (codigoLote,fechaVencimiento,idProducto)
+				  SELECT rc,fechaVencimiento,idProducto FROM lote
 				  WHERE  codigoLote = codigoLoteD;
 				  
 	-- INSERTA LA RECETA DUPLICADA --
@@ -2298,6 +2328,7 @@ BEGIN
 	
 END$$
 DELIMITER ;
+
 
 -- Procedimientos almacenados Costo de Recetas y Gasto Administrativo --
 
@@ -2466,7 +2497,6 @@ BEGIN
 		                     
 END$$
 DELIMITER ;
-
 
 -- Procedimientos almacenados de Reportes --
 DROP procedure IF EXISTS `mostrar_reporteinsumos`;

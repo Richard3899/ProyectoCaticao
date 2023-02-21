@@ -91,8 +91,6 @@ class ControladorRecetaMateriales{
 							"codigoReceta"=>$_POST["editarcodigoReceta"],
 							"idMateria"=>$_POST["editaridMaterial"],
 							"nombre"=>$_POST["editarNombreMaterial"],
-							"cantidadAnterior"=>$_POST["cantidadAnterior"],
-							"diferenciaCantidad"=>$_POST["diferenciaCantidad"],
 							"cantidad"=>$_POST["editarCantidad"],
 							"precioUnitario"=>$_POST["editarprecioUnitario"],
 							"total"=>$_POST["editarprecioTotal"]);
@@ -134,9 +132,9 @@ class ControladorRecetaMateriales{
 		if(isset($_GET["idRecetaMaterial"])){
             
 			$datos = array("idRecetaMaterial"=>$_GET["idRecetaMaterial"],
+						   "idReceta"=>$_GET["idReceta"],
 						   "codigoReceta"=>$_GET["codigoReceta"],
-			               "idMateria"=>$_GET["idMaterial"],
-						   "cantidad"=>$_GET["cantidadMaterial"]);
+			               "idMateria"=>$_GET["idMaterial"]);
 			
 			$respuesta = ModeloRecetaMateriales::mdlEliminarRecetaMaterial($datos);
 			

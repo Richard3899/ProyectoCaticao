@@ -116,30 +116,12 @@ $(".formularioRecetaManodeObra").on("change", "select.seleccionarNombreEmpleado"
 					
 				}else{
 						
-					// for(i=0;i<idArrayRecetaManodeObra.length;i++){
-		
-					// 	if(idArrayRecetaManodeObra[i]==idEmpleado){
-				
-					// 		Swal.fire({
-					// 			icon: "error",
-					// 			title: "El empleado ya está en la receta",
-					// 			showConfirmButton: false,
-					// 		    timer: 2000
-					// 		  })
-
-					// 		$('#seleccionarNombreEmpleado').val(null).trigger('change');
-
-					// 	}else{
-
-							$("#idEmpleado").val(respuesta["idEmpleado"]);
-							$("#nombreEmpleado").val(respuesta["nombre"]+" "+respuesta["apellido"]);
-							$("#nuevoTiempoHoras").val(0);
-							$("#precioUnitario").val(respuesta["precioUnitario"]);
-							$(".precioManodeObra").val(0);
-							$(".precioManodeObra").attr("precioReal",respuesta["precioUnitario"]);
-							
-						// }
-					//  }
+					 $("#idEmpleado").val(respuesta["idEmpleado"]);
+					 $("#nombreEmpleado").val(respuesta["nombre"]+" "+respuesta["apellido"]);
+					 $("#nuevoTiempoHoras").val(0);
+					 $("#precioUnitario").val(respuesta["precioUnitario"]);
+					 $(".precioManodeObra").val(0);
+					 $(".precioManodeObra").attr("precioReal",respuesta["precioUnitario"]);
 
 				}
 

@@ -78,6 +78,7 @@ class ControladorRecetaCostoVenta{
 		if(isset($_POST["editaridRecetaCostoVenta"])){
 
 			$datos = array( "idRecetaCostoVenta"=>$_POST["editaridRecetaCostoVenta"],
+						    "idReceta"=>$_POST["editaridReceta"],
 							"cantidad"=>$_POST["editarCantidad"],
 							"total"=>$_POST["editarPrecioTotal"]);
 							   
@@ -117,7 +118,8 @@ class ControladorRecetaCostoVenta{
 
 		if(isset($_GET["idRecetaCostoVenta"])){
             
-			$datos = array("idRecetaCostoVenta"=>$_GET["idRecetaCostoVenta"]);
+			$datos = array("idRecetaCostoVenta"=>$_GET["idRecetaCostoVenta"],
+						   "idReceta"=>$_GET["idReceta"]);
 			
 			$respuesta = ModeloRecetaCostoVenta::mdlEliminarRecetaCostoVenta($datos);
 			

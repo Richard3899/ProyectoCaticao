@@ -78,6 +78,7 @@ class ControladorRecetaCostoOperativo{
 		if(isset($_POST["editaridRecetaCostoOperativo"])){
 
 			$datos = array( "idRecetaCostoOperativo"=>$_POST["editaridRecetaCostoOperativo"],
+						    "idReceta"=>$_POST["editaridReceta"],
 							"cantidad"=>$_POST["editarCantidad"],
 							"total"=>$_POST["editarPrecioTotal"]);
 							   
@@ -117,7 +118,8 @@ class ControladorRecetaCostoOperativo{
 
 		if(isset($_GET["idRecetaCostoOperativo"])){
             
-			$datos = array("idRecetaCostoOperativo"=>$_GET["idRecetaCostoOperativo"]);
+			$datos = array("idRecetaCostoOperativo"=>$_GET["idRecetaCostoOperativo"],
+						   "idReceta"=>$_GET["idReceta"]);
 			
 			$respuesta = ModeloRecetaCostoOperativo::mdlEliminarRecetaCostoOperativo($datos);
 			

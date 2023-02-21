@@ -76,11 +76,12 @@ class ModeloRecetaDepreciacion{
 
 	static public function mdlEditarRecetaDepreciacion($datos){
 
-		$stmt = Conexion::conectar()->prepare("call editar_recetadepreciacion(?,?,?)");
+		$stmt = Conexion::conectar()->prepare("call editar_recetadepreciacion(?,?,?,?)");
 
 		$stmt->bindParam(1, $datos["idRecetaDepreciacion"], PDO::PARAM_INT);
-		$stmt->bindParam(2, $datos["tiempoHoras"], PDO::PARAM_STR);
-		$stmt->bindParam(3, $datos["total"], PDO::PARAM_STR);
+		$stmt->bindParam(2, $datos["idReceta"], PDO::PARAM_INT);
+		$stmt->bindParam(3, $datos["tiempoHoras"], PDO::PARAM_STR);
+		$stmt->bindParam(4, $datos["total"], PDO::PARAM_STR);
 
 		if($stmt->execute()){
 
@@ -103,9 +104,10 @@ class ModeloRecetaDepreciacion{
 
 	static public function mdlEliminarRecetaDepreciacion($datos){
 
-		$stmt = Conexion::conectar()->prepare("call eliminar_recetadepreciacion(?)");
+		$stmt = Conexion::conectar()->prepare("call eliminar_recetadepreciacion(?,?)");
 
 		$stmt->bindParam(1, $datos["idRecetaDepreciacion"], PDO::PARAM_INT);
+		$stmt->bindParam(2, $datos["idReceta"], PDO::PARAM_INT);
 
 		if($stmt->execute()){
 

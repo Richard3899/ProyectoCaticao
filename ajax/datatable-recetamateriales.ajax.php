@@ -45,7 +45,7 @@ class TablaRecetaMateriales{
 
 			}else if($_GET["permisoEditar"]==0 && $_GET["permisoEliminar"]==1){
 				
-			$botones =  "<div class='btn-group'><button class='btn btn-danger btnEliminarMaterialReceta' idRecetaMaterial='".$materialesreceta[$i]["idRecetaMateria"]."' idMaterial='".$materialesreceta[$i]["idMateria"]."' cantidadMaterial='".$materialesreceta[$i]["cantidad"]."' ><i class='fa fa-times'></i></button></div>";				
+			$botones =  "<div class='btn-group'><button class='btn btn-danger btnEliminarMaterialReceta' idRecetaMaterial='".$materialesreceta[$i]["idRecetaMateria"]."' idMaterial='".$materialesreceta[$i]["idMateria"]."'><i class='fa fa-times'></i></button></div>";				
 
 			}else if($_GET["permisoEditar"]==0 && $_GET["permisoEliminar"]==0){
 
@@ -53,7 +53,7 @@ class TablaRecetaMateriales{
 				
 		    }else{
 
-			$botones =  "<div class='btn-group'><button class='btn btn-warning btnEditarMaterialReceta' idRecetaMaterial='".$materialesreceta[$i]["idRecetaMateria"]."' data-toggle='modal' data-target='#modalEditarMaterial'><i class='fa fa-pen'></i></button><button class='btn btn-danger btnEliminarMaterialReceta' idRecetaMaterial='".$materialesreceta[$i]["idRecetaMateria"]."' idMaterial='".$materialesreceta[$i]["idMateria"]."' cantidadMaterial='".$materialesreceta[$i]["cantidad"]."' ><i class='fa fa-times'></i></button></div>";				
+			$botones =  "<div class='btn-group'><button class='btn btn-warning btnEditarMaterialReceta' idRecetaMaterial='".$materialesreceta[$i]["idRecetaMateria"]."' data-toggle='modal' data-target='#modalEditarMaterial'><i class='fa fa-pen'></i></button><button class='btn btn-danger btnEliminarMaterialReceta' idRecetaMaterial='".$materialesreceta[$i]["idRecetaMateria"]."' idMaterial='".$materialesreceta[$i]["idMateria"]."'><i class='fa fa-times'></i></button></div>";				
 
 			}
 

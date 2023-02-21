@@ -315,7 +315,6 @@ $(".tablaRecetaMateriales tbody").on("click", "button.btnEditarMaterialReceta", 
 		   $(".editarCantidadMaterial").attr("edStock",(Number(respuesta["stock"])+Number(respuesta["cantidad"])));
 		   $("#editarCantidad").val(respuesta["cantidad"]);
 		   $("#editarStock").val(Number(respuesta["stock"]).toFixed(2)+" "+respuesta["unidadMedida"]);
-		   $("#cantidadAnterior").val(respuesta["cantidad"]);
 
 		   $("#editarprecioUnitario").val(respuesta["precioUnitario"]);
 		   $(".editarPrecioMaterial").val(respuesta["total"]);
@@ -345,11 +344,7 @@ $(".formularioEditarRecetaMaterial").on("change", "input.editarCantidadMaterial"
 
     $(this).attr("editarStock", editarStock);
 
-	var diferenciaCantidad= Number($("#cantidadAnterior").val()) - $(this).val();
-
 	$("#editarStock").val(editarStock);
-	
-	$("#diferenciaCantidad").val(diferenciaCantidad);
     
 		if(Number($(this).val()) > Number($(this).attr("edStock"))){
 
@@ -457,7 +452,6 @@ $(".tablaRecetaMateriales tbody").on("click", "button.btnEliminarMaterialReceta"
 	var nombreReceta = $("#nombreReceta").val();
 	var idRecetaMaterial = $(this).attr("idRecetaMaterial");
 	var idMaterial = $(this).attr("idMaterial");
-	var cantidadMaterial = $(this).attr("cantidadMaterial");
 	
 	Swal.fire({
 
@@ -472,8 +466,7 @@ $(".tablaRecetaMateriales tbody").on("click", "button.btnEliminarMaterialReceta"
         }).then(function(result){
         if (result.value) {
 
-        window.location = "index.php?ruta=recetamateriales&idRecetaMaterial="+idRecetaMaterial+"&idMaterial="+idMaterial+"&cantidadMaterial="+
-			               cantidadMaterial+"&codigoReceta="+codigoReceta+"&nombreReceta="+nombreReceta+"&idReceta="+idReceta;
+        window.location = "index.php?ruta=recetamateriales&idRecetaMaterial="+idRecetaMaterial+"&idMaterial="+idMaterial+"&codigoReceta="+codigoReceta+"&nombreReceta="+nombreReceta+"&idReceta="+idReceta;
 
         }
 

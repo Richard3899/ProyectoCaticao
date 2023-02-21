@@ -78,6 +78,7 @@ class ControladorRecetaConsumoGas{
 		if(isset($_POST["editaridRecetaConsumoGas"])){
 
 			$datos = array( "idRecetaConsumoGas"=>$_POST["editaridRecetaConsumoGas"],
+						    "idReceta"=>$_POST["editaridReceta"],
 							"trabajoPorBatch"=>$_POST["editarTrabajoPorBatch"],
 							"pesoBalonGas"=>$_POST["editarPesoBalonGas"],
 							"tarifaGas"=>$_POST["editarTarifaGas"]);
@@ -118,7 +119,8 @@ class ControladorRecetaConsumoGas{
 
 		if(isset($_GET["idRecetaConsumoGas"])){
             
-			$datos = array("idRecetaConsumoGas"=>$_GET["idRecetaConsumoGas"]);
+			$datos = array("idRecetaConsumoGas"=>$_GET["idRecetaConsumoGas"],
+						   "idReceta"=>$_GET["idReceta"]);
 			
 			$respuesta = ModeloRecetaConsumoGas::mdlEliminarRecetaConsumoGas($datos);
 			

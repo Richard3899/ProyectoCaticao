@@ -391,6 +391,9 @@ CREATE TABLE Receta (
   reproceso DECIMAL(10,2),
   codigoLote VARCHAR(20),
   cerrado INT,
+  tableta INT,
+  costoTotal DECIMAL(10,2),
+  costoPorTableta DECIMAL(10,2),
   idEstado INT REFERENCES Estado (idEstado)
 );
 

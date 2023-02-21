@@ -76,11 +76,12 @@ class ModeloRecetaCostoOperativo{
 
 	static public function mdlEditarRecetaCostoOperativo($datos){
 
-		$stmt = Conexion::conectar()->prepare("call editar_recetacostooperativo(?,?,?)");
+		$stmt = Conexion::conectar()->prepare("call editar_recetacostooperativo(?,?,?,?)");
 
 		$stmt->bindParam(1, $datos["idRecetaCostoOperativo"], PDO::PARAM_INT);
-		$stmt->bindParam(2, $datos["cantidad"], PDO::PARAM_STR);
-		$stmt->bindParam(3, $datos["total"], PDO::PARAM_STR);
+		$stmt->bindParam(2, $datos["idReceta"], PDO::PARAM_INT);
+		$stmt->bindParam(3, $datos["cantidad"], PDO::PARAM_STR);
+		$stmt->bindParam(4, $datos["total"], PDO::PARAM_STR);
 
 		if($stmt->execute()){
 
@@ -103,9 +104,10 @@ class ModeloRecetaCostoOperativo{
 
 	static public function mdlEliminarRecetaCostoOperativo($datos){
 
-		$stmt = Conexion::conectar()->prepare("call eliminar_recetacostooperativo(?)");
+		$stmt = Conexion::conectar()->prepare("call eliminar_recetacostooperativo(?,?)");
 
 		$stmt->bindParam(1, $datos["idRecetaCostoOperativo"], PDO::PARAM_INT);
+		$stmt->bindParam(2, $datos["idReceta"], PDO::PARAM_INT);
 
 		if($stmt->execute()){
 

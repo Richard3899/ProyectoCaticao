@@ -45,7 +45,7 @@ class TablaRecetaInsumos{
 
 			}else if($_GET["permisoEditar"]==0 && $_GET["permisoEliminar"]==1){
 				
-			$botones =  "<div class='btn-group'><button class='btn btn-danger btnEliminarInsumoReceta' idRecetaInsumo='".$insumosreceta[$i]["idRecetaMateria"]."' idInsumo='".$insumosreceta[$i]["idMateria"]."' cantidadInsumo='".$insumosreceta[$i]["cantidad"]."' ><i class='fa fa-times'></i></button></div>";				
+			$botones =  "<div class='btn-group'><button class='btn btn-danger btnEliminarInsumoReceta' idRecetaInsumo='".$insumosreceta[$i]["idRecetaMateria"]."' idInsumo='".$insumosreceta[$i]["idMateria"]."'><i class='fa fa-times'></i></button></div>";				
 
 			}else if($_GET["permisoEditar"]==0 && $_GET["permisoEliminar"]==0){
 
@@ -53,7 +53,7 @@ class TablaRecetaInsumos{
 				
 		    }else{
 
-			$botones =  "<div class='btn-group'><button class='btn btn-warning btnEditarInsumoReceta' idRecetaInsumo='".$insumosreceta[$i]["idRecetaMateria"]."' data-toggle='modal' data-target='#modalEditarInsumo'><i class='fa fa-pen'></i></button><button class='btn btn-danger btnEliminarInsumoReceta' idRecetaInsumo='".$insumosreceta[$i]["idRecetaMateria"]."' idInsumo='".$insumosreceta[$i]["idMateria"]."' cantidadInsumo='".$insumosreceta[$i]["cantidad"]."' ><i class='fa fa-times'></i></button></div>";				
+			$botones =  "<div class='btn-group'><button class='btn btn-warning btnEditarInsumoReceta' idRecetaInsumo='".$insumosreceta[$i]["idRecetaMateria"]."' data-toggle='modal' data-target='#modalEditarInsumo'><i class='fa fa-pen'></i></button><button class='btn btn-danger btnEliminarInsumoReceta' idRecetaInsumo='".$insumosreceta[$i]["idRecetaMateria"]."' idInsumo='".$insumosreceta[$i]["idMateria"]."'><i class='fa fa-times'></i></button></div>";				
 
 			}
 

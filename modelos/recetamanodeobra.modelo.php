@@ -78,11 +78,12 @@ class ModeloRecetaManodeObra{
 
 	static public function mdlEditarRecetaManodeObra($datos){
 
-		$stmt = Conexion::conectar()->prepare("call editar_recetamanodeobra(?,?,?)");
+		$stmt = Conexion::conectar()->prepare("call editar_recetamanodeobra(?,?,?,?)");
 
 		$stmt->bindParam(1, $datos["idRecetaManodeObra"], PDO::PARAM_INT);
-		$stmt->bindParam(2, $datos["tiempoHoras"], PDO::PARAM_STR);
-		$stmt->bindParam(3, $datos["total"], PDO::PARAM_STR);
+		$stmt->bindParam(2, $datos["idReceta"], PDO::PARAM_INT);
+		$stmt->bindParam(3, $datos["tiempoHoras"], PDO::PARAM_STR);
+		$stmt->bindParam(4, $datos["total"], PDO::PARAM_STR);
 
 		if($stmt->execute()){
 
@@ -105,9 +106,10 @@ class ModeloRecetaManodeObra{
 
 	static public function mdlEliminarRecetaManodeObra($datos){
 
-		$stmt = Conexion::conectar()->prepare("call eliminar_recetamanodeobra(?)");
+		$stmt = Conexion::conectar()->prepare("call eliminar_recetamanodeobra(?,?)");
 
 		$stmt->bindParam(1, $datos["idRecetaManodeObra"], PDO::PARAM_INT);
+		$stmt->bindParam(2, $datos["idReceta"], PDO::PARAM_INT);
 
 		if($stmt->execute()){
 
