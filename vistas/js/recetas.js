@@ -58,27 +58,18 @@ $(".tablaRecetas tbody").on("click", "button.btnEditarReceta", function(){
 	  processData: false,
 	  dataType:"json",
 	  success:function(respuesta){
+
+		$("#idLote").val(respuesta["idLote"]);
   
-		$idLote=respuesta["idLote"];
-  
-		$codigoLote=respuesta["codigoLote"];
+		$("#editarCodigoLote").val(respuesta["codigoLote"]);
 
-		$fechaVencimiento=respuesta["fechaVencimiento"];
+		$("#editarFechaVencimiento").val(respuesta["fechaVencimiento"]);
 
-		$idProducto=respuesta["idProducto"];
-
-		$("#idLote").val($idLote);
-  
-		$("#editarCodigoLote").val($codigoLote);
-
-		$("#editarFechaVencimiento").val($fechaVencimiento);
-
-		$("#editaridProducto").val($idProducto);
+		$("#editaridProducto").val(respuesta["idProducto"]);
   
 	  }
   
-  })
-	
+     })
 	
 	var idReceta = $(this).attr("idReceta");
 	
@@ -117,6 +108,8 @@ $(".tablaRecetas tbody").on("click", "button.btnEditarReceta", function(){
 		   $("#editarMerma").val(respuesta["merma"]);
 
 		   $("#editarReproceso").val(respuesta["reproceso"]);
+
+		   $("#editarCantidadTabletas").val(respuesta["cantidadTabletas"]);
 
       }
 
@@ -165,6 +158,9 @@ CERRAR RECETA
 $(".tablaRecetas tbody").on("click", "button.btnCerrarReceta", function(){
 
 	var idReceta = $(this).attr("idReceta");
+	var codigoLote = $(this).attr("codigoLote");
+	var cantidadTabletas = $(this).attr("cantidadTabletas");
+	var idEstado = $(this).attr("idEstado");
 
 	Swal.fire({
 
@@ -179,11 +175,9 @@ $(".tablaRecetas tbody").on("click", "button.btnCerrarReceta", function(){
         }).then(function(result){
         if (result.value) {
 
-			window.location = "index.php?ruta=recetas&idReceta="+idReceta;
-
+			window.location = "index.php?ruta=recetas&idReceta="+idReceta+"&codigoLote="+codigoLote+"&cantidadTabletas="+cantidadTabletas+"&idEstado="+idEstado;
 
         }
-
 
 	})
 

@@ -36,7 +36,8 @@ class ControladorRecetas{
 							   "pesoPorTableta" => $_POST["nuevoPesoPorTableta"],
 							   "pesoEnTableta" => $_POST["nuevoPesoEnTableta"],
 							   "merma" => $_POST["nuevaMerma"],
-							   "reproceso" => $_POST["nuevoReproceso"]);
+							   "reproceso" => $_POST["nuevoReproceso"],
+							   "cantidadTabletas" => $_POST["nuevaCantidadTabletas"]);
 							 
 
 				$respuesta = ModeloRecetas::mdlIngresarReceta($datos);
@@ -91,9 +92,8 @@ class ControladorRecetas{
 							"pesoPorTableta" => $_POST["editarPesoPorTableta"],
 							"pesoEnTableta" => $_POST["editarPesoEnTableta"],
 							"merma" => $_POST["editarMerma"],
-							"reproceso" => $_POST["editarReproceso"]);
-							   
-				
+							"reproceso" => $_POST["editarReproceso"],
+							"cantidadTabletas" => $_POST["editarCantidadTabletas"]);						   
 
 				$respuesta = ModeloRecetas::mdlEditarReceta($datos);
 
@@ -170,20 +170,16 @@ class ControladorRecetas{
 	=============================================*/
 	static public function ctrCerrarReceta(){
 
-		if(isset($_GET["idReceta"])){
+		if(isset($_GET["idReceta"]) && isset($_GET["idEstado"]) && $_GET["cantidadTabletas"]){
 
-			$datos = array("idReceta" => $_GET["idReceta"]);
-
-			$respuesta = ModeloRecetas::mdlCerrarReceta($datos);
-        
-			if($respuesta == "ok"){
+			if($_GET["idEstado"]!=3){
 
 				echo '<script>
 
 				Swal.fire({
 				
-					icon: "success",
-					title: "¡La receta ha sido cerrada correctamente!",
+					icon: "error",
+					title: "¡El estado de la receta debe estar Terminado!",
 					showConfirmButton: false,
 					timer: 1500
 				
@@ -194,8 +190,40 @@ class ControladorRecetas{
 				});
 				
 				</script>';
+				
+			}else{
+
+				$datos = array( "idReceta" => $_GET["idReceta"],
+				"codigoLote" => $_GET["codigoLote"],
+				"cantidadTabletas" => $_GET["cantidadTabletas"],
+				"idEstado" => $_GET["idEstado"]);
+
+				$respuesta = ModeloRecetas::mdlCerrarReceta($datos);
+        
+				if($respuesta == "ok"){
+	
+					echo '<script>
+	
+					Swal.fire({
+					
+						icon: "success",
+						title: "¡La receta ha sido cerrada correctamente!",
+						showConfirmButton: false,
+						timer: 1500
+					
+					}).then(function(result){
+					
+							window.location = "recetas";
+					
+					});
+					
+					</script>';
+	
+				}
 
 			}
+
+
 	
 		}
 

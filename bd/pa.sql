@@ -1133,14 +1133,15 @@ CREATE PROCEDURE `insertar_receta` (    in codigoI VARCHAR(20),
                                         in pesoPorTabletaI DECIMAL(10,2),
                                         in pesoEnTabletaI DECIMAL(10,2),
                                         in mermaI DECIMAL(10,2),
-                                        in reprocesoI DECIMAL(10,2))
+                                        in reprocesoI DECIMAL(10,2),
+													 in cantidadTabletasI INT)
 BEGIN
 
-    insert into lote (codigoLote,fechaVencimiento,idProducto)
-			   values (codigoLoteI,fechaVencimientoI,idProductoI);
+    insert into lote (codigoLote,fechaVencimiento,cantidad,idProducto)
+			   values (codigoLoteI,fechaVencimientoI,0,idProductoI);
                 
-	insert into receta (codigo,nombre,batch,idEstado,fechaInicio,fechaFin,pesoPorTableta,pesoEnTableta,merma,reproceso,codigoLote,cerrado)
-			      values (codigoI,nombreI,batchI,idEstadoI,fechaInicioI,fechaFinI,pesoPorTabletaI,pesoEnTabletaI,mermaI,reprocesoI,codigoLoteI,0);
+	insert into receta (codigo,nombre,batch,idEstado,fechaInicio,fechaFin,pesoPorTableta,pesoEnTableta,merma,reproceso,codigoLote,cerrado,cantidadTabletas,costoTotal,costoPorTableta)
+			      values (codigoI,nombreI,batchI,idEstadoI,fechaInicioI,fechaFinI,pesoPorTabletaI,pesoEnTabletaI,mermaI,reprocesoI,codigoLoteI,0,cantidadTabletasI,0,0);
 	
 END$$
 DELIMITER ;
@@ -1150,7 +1151,7 @@ DROP procedure IF EXISTS `editar_receta`;
 DELIMITER $$
 USE `caticao`$$
 CREATE PROCEDURE `editar_receta` (      in idRecetaE INT,
-									    in idLoteE INT,
+									    			 in idLoteE INT,
                                         in codigoE VARCHAR(20),
                                         in nombreE VARCHAR(50),
                                         in idProductoE INT,
@@ -1163,12 +1164,13 @@ CREATE PROCEDURE `editar_receta` (      in idRecetaE INT,
                                         in pesoPorTabletaE DECIMAL(10,2),
                                         in pesoEnTabletaE DECIMAL(10,2),
                                         in mermaE DECIMAL(10,2),
-                                        in reprocesoE DECIMAL(10,2))
+                                        in reprocesoE DECIMAL(10,2),
+													 in cantidadTabletasE INT)
 BEGIN
-	update lote  set    codigoLote=codigoLoteE,
+	update lote  SET     codigoLote=codigoLoteE,
                         fechaVencimiento=fechaVencimientoE,
                         idProducto=idProductoE
-			   where    idLote=idLoteE;
+			   WHERE       idLote=idLoteE;
 
 	update receta set   codigo=codigoE,
                         nombre=nombreE,
@@ -1180,7 +1182,8 @@ BEGIN
                         pesoPorTableta=pesoPorTabletaE,
                         pesoEnTableta=pesoEnTabletaE,
                         merma=mermaE,
-                        reproceso=reprocesoE
+                        reproceso=reprocesoE,
+                        cantidadTabletas=cantidadTabletasE
 				where idReceta=idRecetaE;
 END$$
 DELIMITER ;
@@ -1241,15 +1244,44 @@ DELIMITER ;
 DROP procedure IF EXISTS `cerrar_receta`;
 DELIMITER $$
 USE `caticao`$$
-CREATE PROCEDURE `cerrar_receta` (in idRecetaE INT)
+CREATE PROCEDURE `cerrar_receta` (in idRecetaE INT,
+											 in codigoLoteE VARCHAR(20),
+											 in cantidadTabletasE DECIMAL(10,2),
+											 in idEstadoE INT)
 BEGIN
 
-   UPDATE receta set cerrado=1
-                        
+   DECLARE idProductoC INT;
+   DECLARE idLoteC INT;
+   DECLARE codigoRecetaC VARCHAR(20);
+   DECLARE fechaFinalizado DATE;
+   
+   SELECT idProducto FROM lote
+	WHERE codigoLote=codigoLoteE INTO idProductoC;
+	
+	SELECT idLote FROM lote
+	WHERE codigoLote=codigoLoteE INTO idLoteC;
+	
+	SELECT codigo FROM receta
+	WHERE idReceta=idRecetaE INTO codigoRecetaC;
+	
+	SELECT fechaFin FROM receta
+	WHERE idReceta=idRecetaE INTO fechaFinalizado;
+		            
+   UPDATE receta set cerrado=1                
 	WHERE idReceta=idRecetaE;
+	
+	UPDATE lote SET cantidad = cantidad + cantidadTabletasE
+					WHERE codigoLote=codigoLoteE;   
+					
+	UPDATE inventarioproducto SET stock = stock + cantidadTabletasE
+						           WHERE idProducto=idProductoC;              
+                     
+   insert into movimientoproducto (idLote,ingreso,salida,observacion,fecha,idMovimiento)
+				                values (idLoteC,cantidadTabletasE,0,CONCAT("Productos terminados : ",+codigoRecetaC),fechaFinalizado,1);
      
 END$$
 DELIMITER ;
+
 
 -- Procedimientos almacenados de Receta Insumos --
 DROP procedure IF EXISTS `mostrar_detalleinsumos1`;
@@ -1405,10 +1437,11 @@ DELIMITER $$
 USE `caticao`$$
 CREATE PROCEDURE `sumatotal_recetainsumo` (in idRecetaC INT)
 BEGIN
-      SELECT SUM(total) FROM recetamateria rm INNER JOIN materia m ON m.idMateria=rm.idMateria
+      SELECT if(SUM(total) IS NULL, 0, SUM(total)) FROM recetamateria rm INNER JOIN materia m ON m.idMateria=rm.idMateria
 		                                        WHERE rm.idReceta=idRecetaC AND m.idTipoMateria=1;
 END$$
 DELIMITER ;
+
 
 -- Procedimientos almacenados de Receta Materiales --
 
@@ -1567,11 +1600,10 @@ DELIMITER $$
 USE `caticao`$$
 CREATE PROCEDURE `sumatotal_recetamaterial` (in idRecetaC INT)
 BEGIN
-			SELECT SUM(total) FROM recetamateria rm INNER JOIN materia m ON m.idMateria=rm.idMateria
+			SELECT if(SUM(total) IS NULL, 0, SUM(total)) FROM recetamateria rm INNER JOIN materia m ON m.idMateria=rm.idMateria
 		                                           WHERE rm.idReceta=idRecetaC AND m.idTipoMateria=2;
 END$$
 DELIMITER ;
-
 
 -- Procedimientos almacenados de Receta Mano de Obra --
 
@@ -1661,7 +1693,7 @@ DELIMITER $$
 USE `caticao`$$
 CREATE PROCEDURE `sumatotal_recetamanodeobra` (in idRecetaC INT)
 BEGIN
-			SELECT SUM(total) FROM recetamanodeobra rm 
+			SELECT if(SUM(total) IS NULL, 0, SUM(total)) FROM recetamanodeobra rm 
 		                     WHERE rm.idReceta=idRecetaC;
 END$$
 DELIMITER ;
@@ -1750,8 +1782,8 @@ DELIMITER $$
 USE `caticao`$$
 CREATE PROCEDURE `sumatotal_recetadepreciacion` (in idRecetaC INT)
 BEGIN
-			SELECT SUM(rd.depreciacionPorBatch) FROM recetadepreciacion rd 
-		                     WHERE rd.idReceta=idRecetaC;
+			SELECT if(SUM(depreciacionPorBatch) IS NULL, 0, SUM(depreciacionPorBatch)) FROM recetadepreciacion
+		                     WHERE idReceta=idRecetaC;
 END$$
 DELIMITER ;
 
@@ -1869,7 +1901,7 @@ DELIMITER $$
 USE `caticao`$$
 CREATE PROCEDURE `sumatotal_recetaconsumoenergia` (in idRecetaC INT)
 BEGIN
-			SELECT SUM(pagoPorBatch) FROM recetaconsumoenergia 
+			SELECT if(SUM(pagoPorBatch) IS NULL, 0, SUM(pagoPorBatch)) FROM recetaconsumoenergia 
 		                     WHERE idReceta=idRecetaC;
 END$$
 DELIMITER ;
@@ -1960,7 +1992,7 @@ DELIMITER $$
 USE `caticao`$$
 CREATE PROCEDURE `sumatotal_recetaconsumogas` (in idRecetaC INT)
 BEGIN
-			SELECT SUM(pagoPorBatch) FROM recetaconsumogas
+			SELECT if(SUM(pagoPorBatch) IS NULL, 0, SUM(pagoPorBatch)) FROM recetaconsumogas
 		                     WHERE idReceta=idRecetaC;
 END$$
 DELIMITER ;
@@ -2050,7 +2082,7 @@ DELIMITER $$
 USE `caticao`$$
 CREATE PROCEDURE `sumatotal_recetacostoventa` (in idRecetaC INT)
 BEGIN
-			SELECT SUM(total) FROM recetacostoventa
+			SELECT if(SUM(total) IS NULL, 0, SUM(total)) FROM recetacostoventa
 		                     WHERE idReceta=idRecetaC;
 END$$
 DELIMITER ;
@@ -2141,7 +2173,7 @@ DELIMITER $$
 USE `caticao`$$
 CREATE PROCEDURE `sumatotal_recetacostomarketing` (in idRecetaC INT)
 BEGIN
-			SELECT SUM(total) FROM recetacostomarketing
+			SELECT if(SUM(total) IS NULL, 0, SUM(total))  FROM recetacostomarketing
 		                     WHERE idReceta=idRecetaC;
 END$$
 DELIMITER ;
@@ -2231,7 +2263,7 @@ DELIMITER $$
 USE `caticao`$$
 CREATE PROCEDURE `sumatotal_recetacostooperativo` (in idRecetaC INT)
 BEGIN
-			SELECT SUM(total) FROM recetacostooperativo
+			SELECT if(SUM(total) IS NULL, 0, SUM(total)) FROM recetacostooperativo
 		                     WHERE idReceta=idRecetaC;
 END$$
 DELIMITER ;
@@ -2252,13 +2284,13 @@ BEGIN
 	SET rc=ROUND(((RAND() * (99999 - 11111)) + 11111));
 	
 	-- INSERTA EL LOTE DE LA RECETA DUPLICADA --
-	INSERT INTO lote (codigoLote,fechaVencimiento,idProducto)
-				  SELECT rc,fechaVencimiento,idProducto FROM lote
+	INSERT INTO lote (codigoLote,fechaVencimiento,cantidad,idProducto)
+				  SELECT rc,fechaVencimiento,0,idProducto FROM lote
 				  WHERE  codigoLote = codigoLoteD;
 				  
 	-- INSERTA LA RECETA DUPLICADA --
-	INSERT INTO receta (idReceta,codigo,nombre,batch,idEstado,fechaInicio,fechaFin,pesoPorTableta,pesoEnTableta,merma,reproceso,codigoLote,cerrado)
-	             SELECT nuevoIdRecetaD,codigoRecetaD AS codigo,CONCAT(nombre,'-','Duplicado')AS nombre, batch,idEstado,fechaInicio,fechaFin,pesoPorTableta,pesoEnTableta,merma,reproceso,rc AS codigoLote,0
+	INSERT INTO receta (idReceta,codigo,nombre,batch,idEstado,fechaInicio,fechaFin,pesoPorTableta,pesoEnTableta,merma,reproceso,codigoLote,cerrado,cantidadTabletas,costoTotal,costoPorTableta)
+	             SELECT nuevoIdRecetaD,codigoRecetaD AS codigo,CONCAT(nombre,'-','Duplicado')AS nombre, batch,1,fechaInicio,fechaFin,pesoPorTableta,pesoEnTableta,merma,reproceso,rc AS codigoLote,0,cantidadTabletas,costoTotal,costoPorTableta
 				    FROM receta
 				    WHERE idReceta = idRecetaD;
 				    
@@ -2434,7 +2466,7 @@ CREATE PROCEDURE `eliminar_gastoadminpormes` (in idGastoAdminPorMesE INT)
 BEGIN
     	   
    DELETE from gastoadminpormes WHERE idGastoAdminPorMes=idGastoAdminPorMesE;
-						
+					
 END$$
 DELIMITER ;
 
@@ -2444,16 +2476,16 @@ DELIMITER $$
 USE `caticao`$$
 CREATE PROCEDURE `sumatotal_gastoadminpormes` (in idCostoRecetasGastoAdminC INT)
 BEGIN
-			SELECT SUM(total) FROM gastoadminpormes
+			SELECT if(SUM(total) IS NULL, 0, SUM(total)) FROM gastoadminpormes
 		                     WHERE idCostoRecetasGastoAdmin=idCostoRecetasGastoAdminC;
 END$$
 DELIMITER ;
 
--- Procedimientos almacenados Costo total de las recetas por mes-
-DROP procedure IF EXISTS `sumatotal_costototalpormes`;
+-- Procedimientos almacenados Costo total por receta-
+DROP procedure IF EXISTS `sumatotal_costoporreceta`;
 DELIMITER $$
 USE `caticao`$$
-CREATE PROCEDURE `sumatotal_costototalpormes` (IN mes DATE)
+CREATE PROCEDURE `sumatotal_costoporreceta` (IN idRecetaT INT)
 BEGIN
 	-- Declaramos las variables-
 	DECLARE totalinsumos DECIMAL(10,2);
@@ -2465,38 +2497,70 @@ BEGIN
 	DECLARE totalcostomarketing DECIMAL(10,2);
 	DECLARE totalcostooperativo DECIMAL(10,2);
 	DECLARE totalreceta DECIMAL(10,2);
+	DECLARE cantidadTableta INT;
+	DECLARE totalportableta DECIMAL(10,2);
 	
   -- Calculamos los totales-
-	SELECT if(SUM(total) IS NULL, 0, SUM(total)) FROM recetamateria rm INNER JOIN receta r ON r.idReceta=rm.idReceta
-		            WHERE MONTH(fechaFin) = MONTH(mes) AND YEAR(fechaFin) = YEAR(mes) INTO totalinsumos;
+	SELECT if(SUM(total) IS NULL, 0, SUM(total)) FROM recetamateria
+		            WHERE idReceta=idRecetaT INTO totalinsumos;
 		                     
-	SELECT if(SUM(total) IS NULL, 0, SUM(total)) FROM recetamanodeobra rmo INNER JOIN receta r ON r.idReceta=rmo.idReceta
-		            WHERE MONTH(fechaFin) = MONTH(mes) AND YEAR(fechaFin) = YEAR(mes) INTO totalmanodeobra;
+	SELECT if(SUM(total) IS NULL, 0, SUM(total)) FROM recetamanodeobra
+		            WHERE idReceta=idRecetaT  INTO totalmanodeobra;
 		            
-   SELECT if(SUM(depreciacionPorBatch) IS NULL, 0, SUM(depreciacionPorBatch)) FROM recetadepreciacion rd INNER JOIN receta r ON r.idReceta=rd.idReceta
-		            WHERE MONTH(fechaFin) = MONTH(mes) AND YEAR(fechaFin) = YEAR(mes) INTO totaldepreciacion;
+   SELECT if(SUM(depreciacionPorBatch) IS NULL, 0, SUM(depreciacionPorBatch)) FROM recetadepreciacion
+		            WHERE idReceta=idRecetaT  INTO totaldepreciacion;
 		            
-	SELECT if(SUM(pagoPorBatch) IS NULL, 0, SUM(pagoPorBatch))  FROM recetaconsumoenergia rce INNER JOIN receta r ON r.idReceta=rce.idReceta
-		            WHERE MONTH(fechaFin) = MONTH(mes) AND YEAR(fechaFin) = YEAR(mes) INTO totalconsumoenergia;
+	SELECT if(SUM(pagoPorBatch) IS NULL, 0, SUM(pagoPorBatch))  FROM recetaconsumoenergia
+		            WHERE idReceta=idRecetaT  INTO totalconsumoenergia;
 		            
-	SELECT if(SUM(pagoPorBatch) IS NULL, 0, SUM(pagoPorBatch))  FROM recetaconsumogas rcg INNER JOIN receta r ON r.idReceta=rcg.idReceta
-		            WHERE MONTH(fechaFin) = MONTH(mes) AND YEAR(fechaFin) = YEAR(mes) INTO totalconsumogas;
+	SELECT if(SUM(pagoPorBatch) IS NULL, 0, SUM(pagoPorBatch))  FROM recetaconsumogas
+		            WHERE idReceta=idRecetaT  INTO totalconsumogas;
 		                     
-	SELECT if(SUM(total) IS NULL, 0, SUM(total)) FROM recetacostoventa rcv INNER JOIN receta r ON r.idReceta=rcv.idReceta
-		            WHERE MONTH(fechaFin) = MONTH(mes) AND YEAR(fechaFin) = YEAR(mes) INTO totalcostoventa;
+	SELECT if(SUM(total) IS NULL, 0, SUM(total)) FROM recetacostoventa
+		            WHERE idReceta=idRecetaT INTO totalcostoventa;
 		            
-   SELECT if(SUM(total) IS NULL, 0, SUM(total)) FROM recetacostomarketing rcm INNER JOIN receta r ON r.idReceta=rcm.idReceta
-		            WHERE MONTH(fechaFin) = MONTH(mes) AND YEAR(fechaFin) = YEAR(mes) INTO totalcostomarketing;
+   SELECT if(SUM(total) IS NULL, 0, SUM(total)) FROM recetacostomarketing
+		            WHERE idReceta=idRecetaT  INTO totalcostomarketing;
 		            
-	SELECT if(SUM(total) IS NULL, 0, SUM(total)) FROM recetacostooperativo rco INNER JOIN receta r ON r.idReceta=rco.idReceta
-		            WHERE MONTH(fechaFin) = MONTH(mes) AND YEAR(fechaFin) = YEAR(mes) INTO totalcostooperativo;
-						
+	SELECT if(SUM(total) IS NULL, 0, SUM(total)) FROM recetacostooperativo
+		            WHERE idReceta=idRecetaT  INTO totalcostooperativo;
+	
+	SELECT cantidadTabletas FROM receta WHERE idReceta=1 INTO cantidadTableta;
+	SELECT cantidadTableta;					
 	SET totalreceta = totalinsumos + totalmanodeobra + totaldepreciacion + totalconsumoenergia + totalconsumogas + totalcostoventa + totalcostomarketing + totalcostooperativo;
-	-- sumamos los totales-
-	SELECT totalreceta,totalinsumos,totalmanodeobra,totaldepreciacion,totalconsumoenergia,totalconsumogas,totalcostoventa,totalcostomarketing,totalcostooperativo;
+   
+	SET totalportableta = totalreceta / cantidadTableta;
+
+   UPDATE receta SET costototal = totalreceta,
+                     costoPorTableta=totalportableta
+						WHERE idReceta=idRecetaT;
 		                     
 END$$
 DELIMITER ;
+
+-- Procedimientos almacenados Costo total de las recetas por mes-
+DROP procedure IF EXISTS `sumatotal_costototalpormes`;
+DELIMITER $$
+USE `caticao`$$
+CREATE PROCEDURE `sumatotal_costototalpormes` (IN mes DATE)
+BEGIN
+	-- Declaramos las variables-
+	DECLARE totalreceta DECIMAL(10,2);
+	DECLARE cantidadTableta DECIMAL(10,2);
+	
+  -- Calculamos los totales-
+	SELECT if(SUM(costoTotal) IS NULL, 0, SUM(costoTotal)) FROM receta 
+	WHERE MONTH(fechaFin) = MONTH(mes) AND YEAR(fechaFin) = YEAR(mes) INTO totalreceta;
+	
+	SELECT if(SUM(cantidadTabletas) IS NULL, 0, SUM(cantidadTabletas)) FROM receta 
+	WHERE MONTH(fechaFin) = MONTH(mes) AND YEAR(fechaFin) = YEAR(mes) INTO cantidadTableta;
+
+	-- sumamos los totales-
+	SELECT totalreceta,cantidadTableta;
+		                     
+END$$
+DELIMITER ;
+
 
 -- Procedimientos almacenados de Reportes --
 DROP procedure IF EXISTS `mostrar_reporteinsumos`;

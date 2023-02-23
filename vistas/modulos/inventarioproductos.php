@@ -78,6 +78,7 @@
          
          <th style="width:10px">#</th>
          <th>Nombre</th>
+         <th>Tipo de Producto</th>
          <th>Stock</th>
 
        </tr> 

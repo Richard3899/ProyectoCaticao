@@ -35,24 +35,21 @@ class TablaCostoTotal{
 		$sumacostototalpormes = ControladorCostoTotalPorMes::ctrSumaTotalCostoTotalPorMes($mes);	
 
 		$costototalpormes = $sumacostototalpormes[0];
-
-	    /*============================================
- 	 	VALIDAR SI TIENEN VALOR LOS TOTALES
-  		=============================================*/
-
-		if($totalgastosadmin==""){ $totalgastosadmin=0; }
-		if($costototalpormes==""){ $costototalpormes=0; }
+		$cantidadTabletas = $sumacostototalpormes[1];
 
 		/*============================================
  	 	SUMA TOTAL
   		=============================================*/
 
 		$costototal=$costototalpormes+$totalgastosadmin;
+		$costoPorTableta=$costototal/$cantidadTabletas;
 
 		$datosJson = '{
-			"data": [["Costo Total de las Recetas","'.$costototalpormes.'"],';				  
+			"data": [["Costo total de las recetas","'.$costototalpormes.'"],';				  
 			
-			$datosJson .='["Gastos Administrativos","'.$totalgastosadmin.'"],["",""],["Costo Total","'.$costototal.'"]]}';
+			$datosJson .='["Gastos administrativos","'.$totalgastosadmin.'"],
+			          ["",""],["Costo total de producción  del mes : ","'.$costototal.'"],
+					  ["Costo total por tableta : ","'.$costoPorTableta.'"]]}';
 
 		    echo $datosJson;
 

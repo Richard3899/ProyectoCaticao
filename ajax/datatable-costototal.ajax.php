@@ -1,4 +1,7 @@
 <?php
+require_once "../controladores/recetas.controlador.php";
+require_once "../modelos/recetas.modelo.php";
+
 require_once "../controladores/recetainsumos.controlador.php";
 require_once "../modelos/recetainsumos.modelo.php";
 
@@ -34,13 +37,15 @@ class TablaCostoTotal{
 
 	public function mostrarTablaCostoTotal(){
 
-    	/*=============================================
- 	 	TRAEMOS INSUMOS
-  		=============================================*/
-
 		$idRecetaC=$_GET["idRecetaC"];
 
 		$item = "Receta";
+
+		$receta = ControladorRecetas::ctrMostrarRecetas("idReceta",$idRecetaC);
+
+    	/*=============================================
+ 	 	TRAEMOS INSUMOS
+  		=============================================*/
 
   		$recetainsumos = ControladorRecetaInsumos::ctrMostrarRecetaInsumos($item,$idRecetaC);	
 
@@ -173,26 +178,12 @@ class TablaCostoTotal{
 			return;
 		}
 
-	    /*============================================
- 	 	VALIDAR SI TIENEN VALOR LOS TOTALES
-  		=============================================*/
-
-		  if($totalinsumos==""){ $totalinsumos=0; }
-		  if($totalmateriales==""){ $totalmateriales=0; }
-		  if($totalmanodeobra==""){ $totalmanodeobra=0; }
-		  if($totaldepreciacion==""){ $totaldepreciacion=0; }
-		  if($totalconsumoenergia==""){ $totalconsumoenergia=0; }
-		  if($totalconsumogas==""){ $totalconsumogas=0; }
-		  if($totalcostoventa==""){ $totalcostoventa=0; }
-		  if($totalcostomarketing==""){ $totalcostomarketing=0; }
-		  if($totalcostooperativo==""){ $totalcostooperativo=0; }
-
 		/*============================================
  	 	SUMA TOTAL DE RECETA
   		=============================================*/
 
-		$totalreceta = $totalinsumos+$totalmateriales+$totalmanodeobra+$totaldepreciacion+$totalconsumoenergia+$totalconsumogas+
-					   $totalcostoventa+$totalcostomarketing+$totalcostooperativo;
+		$totalreceta = $receta[13];
+		$totalPorTableta=$receta[14];
 
 		$datosJson = '{
 			"data": [["INSUMOS","","",""],';
@@ -322,7 +313,8 @@ class TablaCostoTotal{
 			  
 			$datosJson .='["TOTAL","","","'.$totalcostooperativo.'"],["","","",""]'; 						  
 			
-			$datosJson .=',["Costo Total de Producción: ","","","'.$totalreceta.'"]]}';
+			$datosJson .=',["Costo Total de Producción: ","","","'.$totalreceta.'"]
+			              ,["Costo Por Tableta: ","","","'.$totalPorTableta.'"]]}';
 
 		    echo $datosJson;
 

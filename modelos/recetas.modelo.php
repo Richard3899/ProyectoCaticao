@@ -43,7 +43,7 @@ class ModeloRecetas{
 
 	static public function mdlIngresarReceta($datos){
 
-		$stmt = Conexion::conectar()->prepare("call insertar_receta(?,?,?,?,?,?,?,?,?,?,?,?,?)");
+		$stmt = Conexion::conectar()->prepare("call insertar_receta(?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
 
 		$stmt->bindParam(1, $datos["codigo"], PDO::PARAM_STR);
 		$stmt->bindParam(2, $datos["nombre"], PDO::PARAM_STR);
@@ -58,6 +58,7 @@ class ModeloRecetas{
 		$stmt->bindParam(11, $datos["pesoEnTableta"], PDO::PARAM_STR);
 		$stmt->bindParam(12, $datos["merma"], PDO::PARAM_STR);
 		$stmt->bindParam(13, $datos["reproceso"], PDO::PARAM_STR);
+		$stmt->bindParam(14, $datos["cantidadTabletas"], PDO::PARAM_INT);
 
 		if($stmt->execute()){
 
@@ -81,7 +82,7 @@ class ModeloRecetas{
 
 	static public function mdlEditarReceta($datos){
 	
-		$stmt = Conexion::conectar()->prepare("call editar_receta(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+		$stmt = Conexion::conectar()->prepare("call editar_receta(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
 		
 		$stmt->bindParam(1, $datos["idReceta"], PDO::PARAM_INT);
 		$stmt->bindParam(2, $datos["idLote"], PDO::PARAM_INT);		
@@ -98,7 +99,7 @@ class ModeloRecetas{
 		$stmt->bindParam(13, $datos["pesoEnTableta"], PDO::PARAM_STR);
 		$stmt->bindParam(14, $datos["merma"], PDO::PARAM_STR);
 		$stmt->bindParam(15, $datos["reproceso"], PDO::PARAM_STR);
-		
+		$stmt->bindParam(16, $datos["cantidadTabletas"], PDO::PARAM_INT);
 
 		if($stmt -> execute()){
 
@@ -152,9 +153,12 @@ class ModeloRecetas{
 
 	static public function mdlCerrarReceta($datos){
 
-		$stmt = Conexion::conectar()->prepare("call cerrar_receta(?)");
+		$stmt = Conexion::conectar()->prepare("call cerrar_receta(?,?,?,?)");
 
 		$stmt->bindParam(1, $datos["idReceta"], PDO::PARAM_INT);
+		$stmt->bindParam(2, $datos["codigoLote"], PDO::PARAM_STR);
+		$stmt->bindParam(3, $datos["cantidadTabletas"], PDO::PARAM_INT);
+		$stmt->bindParam(4, $datos["idEstado"], PDO::PARAM_INT);
 
 		if($stmt -> execute()){
 

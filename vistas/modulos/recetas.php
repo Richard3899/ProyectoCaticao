@@ -340,6 +340,22 @@ MODAL AGREGAR RECETA
 
           </div>
 
+          <div class="row">
+
+            <!-- ENTRADA CANTIDAD DE TABLETAS -->
+            <div class="form-group col-sm">
+            <label for="reproceso">Tabletas</label>
+            <div class="input-group">
+                <div class="input-group-prepend">
+                <span class="input-group-text"><i class="fas fa-layer-group"></i></span>
+                </div>
+                <input type="number" class="form-control input-lg" name="nuevaCantidadTabletas"  id="nuevaCantidadTabletas" 
+                placeholder="Ingresar cantidad de tabletas" min="0" max="9999999" required>
+            </div>
+            </div>
+
+          </div>
+
         </div>
 
       </div>
@@ -542,7 +558,6 @@ MODAL EDITAR RECETA
 
           </div>
 
-
           <div class="row">
 
             <!-- ENTRADA PARA EL LOTE -->
@@ -627,7 +642,22 @@ MODAL EDITAR RECETA
                 <input type="number" class="form-control input-lg" name="editarReproceso"  id="editarReproceso" 
                 placeholder="Ingresar reproceso (Kg)" min="0" step="0.001" max="9999999" required>
             </div>
+            </div>
 
+          </div>
+
+          <div class="row">
+
+            <!-- ENTRADA CANTIDAD DE TABLETAS -->
+            <div class="form-group col-sm">
+            <label for="reproceso">Tabletas</label>
+            <div class="input-group">
+                <div class="input-group-prepend">
+                <span class="input-group-text"><i class="fas fa-layer-group"></i></span>
+                </div>
+                <input type="number" class="form-control input-lg" name="editarCantidadTabletas"  id="editarCantidadTabletas" 
+                placeholder="Ingresar cantidad de tabletas" min="0" max="9999999" required>
+            </div>
             </div>
 
           </div>

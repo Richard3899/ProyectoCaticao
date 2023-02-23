@@ -8,6 +8,9 @@ require_once "../modelos/productos.modelo.php";
 require_once "../controladores/unidadmedida.controlador.php";
 require_once "../modelos/unidadmedida.modelo.php";
 
+require_once "../controladores/tipoproducto.controlador.php";
+require_once "../modelos/tipoproducto.modelo.php";
+
 class TablaInventarioProductos{
 
  	/*=============================================
@@ -53,7 +56,25 @@ class TablaInventarioProductos{
 
 		  	$unidadmedida = ControladorUnidadMedida::ctrMostrarUnidadMedida($item3, $valor3);
 
-			$stock=$inventarioproductos[$i]["stock"] ?? 0;
+			/*=============================================
+ 	 		TRAEMOS TIPO PRODUCTO
+  			=============================================*/ 
+
+		  	$item = "idTipoProducto";
+		  	$valor = $productos["idTipoProducto"];
+
+		  	$tipoproducto = ControladorTipoProducto::ctrMostrarTipoProducto($item, $valor);
+
+			if($productos["idTipoProducto"]==1){
+				
+				$tp =  "<button class='btn btn-info'>".$tipoproducto["descripcion"]."</button>";	
+							
+			}else{
+				$tp =  "<button class='btn btn-success'>".$tipoproducto["descripcion"]."</button>";
+			}
+
+
+			$stock=$inventarioproductos[$i]["stock"];
 
 
 			if($stock<10){
@@ -67,6 +88,7 @@ class TablaInventarioProductos{
 		  	$datosJson .='[
 			      "'.($i+1).'",
 				  "'.$productos["nombre"].'",
+				  "'.$tp.'",
 			      "'.$stock.'"
 			    ],';
 

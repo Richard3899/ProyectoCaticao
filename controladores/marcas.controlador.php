@@ -112,7 +112,6 @@ class ControladorMarcas{
 
 			$datos = $_GET["idMarca"];
 
-
 			$respuesta = ModeloMarcas::mdlEliminarMarca($datos);
 
 			if($respuesta == "ok"){
