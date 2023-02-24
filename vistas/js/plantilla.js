@@ -15,3 +15,4 @@ var permisoEditar = $("#permisoEditar").val();
 var permisoEliminar = $("#permisoEliminar").val();
 var idUsuarioSession = $("#idUsuarioSession").val();
 
+$.fn.dataTable.Buttons.defaults.dom.button.className = 'btn';

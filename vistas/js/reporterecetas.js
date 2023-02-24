@@ -1,24 +1,39 @@
 /*=============================================
-TABLA REPORTE PRODUCTOS
+TABLA REPORTE RECETAS
 =============================================*/
-var tableReporteProductos;
+var tableReporteRecetas;
 
-tableReporteProductos = $("#tablaReporteProductos").DataTable({
-	"ajax": "ajax/datatable-reporteproductos.ajax.php",
+tableReporteRecetas = $("#tablaReporteRecetas").DataTable({
+	"ajax": "ajax/datatable-reporterecetas.ajax.php",
 	"dom": 'Brti',
     "buttons": [{
 		extend: 'pdf',
 		className: 'btn-danger',
 		text: "PDF",
-		title:'Reporte Productos',
-		filename: 'Reporte Productos',
+		title:'Reporte Recetas',
+		filename: 'Reporte Recetas',
 		exportOptions: {
 			columns: ':visible'
 		},
 		customize: function (doc) {
 			doc.styles.tableHeader.fontSize = 10;
+			// doc.defaultStyle.fontSize = 8;
 			doc.defaultStyle.alignment = 'center';
-			doc.content[1].table.widths = "*";
+			doc.content[1].table.widths ="*";
+
+			var tableNode;
+			for (i = 0; i < doc.content.length; ++i) {
+			  if(doc.content[i].table !== undefined){
+				tableNode = doc.content[i];
+				break;
+			  }
+			}
+
+			var rowIndex = 0;
+			var tableColumnCount = tableNode.table.body[rowIndex].length;
+			if(tableColumnCount > 5){
+			  doc.pageOrientation = 'landscape';
+			}
 		}
 	
 	    },
@@ -26,8 +41,8 @@ tableReporteProductos = $("#tablaReporteProductos").DataTable({
 		extend: 'excel',
 		className: 'btn-success',
 		text: "Excel",
-		title:'Reporte Productos',
-		filename: 'Reporte Productos',
+		title:'Reporte Recetas',
+		filename: 'Reporte Recetas',
 		customize: function( xlsx ) {
                 var sheet = xlsx.xl.worksheets['sheet1.xml'];
 				//Centrar al exportar en Excel
@@ -37,8 +52,9 @@ tableReporteProductos = $("#tablaReporteProductos").DataTable({
 				$('row c[r^="D"]', sheet).attr( 's', '51' );
 				$('row c[r^="E"]', sheet).attr( 's', '51' );
                 $('row c[r^="F"]', sheet).attr( 's', '51' );
-
-	
+				$('row c[r^="G"]', sheet).attr( 's', '51' );
+				$('row c[r^="H"]', sheet).attr( 's', '51' );
+				$('row c[r^="I"]', sheet).attr( 's', '51' );
             },
 		exportOptions: {
 			columns: ':visible'
@@ -48,7 +64,7 @@ tableReporteProductos = $("#tablaReporteProductos").DataTable({
 		extend: 'print',
 		className: 'btn-info',
 		text: "Imprimir",
-		title:'Reporte Productos',
+		title:'Reporte Recetas',
 		exportOptions: {
 			columns: ':visible'
 		},
@@ -95,54 +111,30 @@ tableReporteProductos = $("#tablaReporteProductos").DataTable({
 			"sSortDescending": ": Activar para ordenar la columna de manera descendente"
 		}}
   });
-
 	
 		/*===================================================================*/
 		// EVENTOS PARA CRITERIOS DE BUSQUEDA
 		/*===================================================================*/
 		$("#codigo").keyup(function(){
-			tableReporteProductos.column($(this).data('index')).search(this.value).draw();
+			tableReporteRecetas.column($(this).data('index')).search(this.value).draw();
 		})
 		$("#nombre").keyup(function(){
-			tableReporteProductos.column($(this).data('index')).search(this.value).draw();
+			tableReporteRecetas.column($(this).data('index')).search(this.value).draw();
 		})
-		$("#descripcion").keyup(function(){
-			tableReporteProductos.column($(this).data('index')).search(this.value).draw();
+		$("#producto").keyup(function(){
+			tableReporteRecetas.column($(this).data('index')).search(this.value).draw();
 		})
-		$("#unidadMedida").keyup(function(){
-			tableReporteProductos.column($(this).data('index')).search(this.value).draw();
+		$("#lote").keyup(function(){
+			tableReporteRecetas.column($(this).data('index')).search(this.value).draw();
 		})
-		$("#stockDesde, #stockHasta").keyup(function(){
-			tableReporteProductos.draw();
-		})
-		$.fn.dataTable.ext.search.push(
-			function(settings, data, dataIndex){
-				if ( settings.nTable.id !== 'tablaReporteProductos' ) {
-					return true;
-					}
-				var stockDesde = parseFloat($("#stockDesde").val());
-				var stockHasta = parseFloat($("#stockHasta").val());
-				var col_stock = parseFloat(data[5]);
-				if((isNaN(stockDesde) && isNaN(stockHasta)) ||
-					(isNaN(stockDesde) && col_stock <=  stockHasta) ||
-					(stockDesde <= col_stock && isNaN(stockHasta)) ||
-					(stockDesde <= col_stock && col_stock <= stockHasta)){
-					return true;
-				}
-				return false;
-
-		} 
-		)
 	
-		$("#btnLimpiarBusquedaProductos").on('click',function(){
+		$("#btnLimpiarBusquedaRecetas").on('click',function(){
 			$("#codigo").val('')
 			$("#nombre").val('')
-			$("#descripcion").val('')
-			$("#unidadMedida").val('')
-			$("#stockDesde").val('')
-			$("#stockHasta").val('')
-			
-			tableReporteProductos.search('').columns().search('').draw();
+			$("#producto").val('')
+			$("#lote").val('')
+
+			tableReporteRecetas.search('').columns().search('').draw();
 		})
 
 	

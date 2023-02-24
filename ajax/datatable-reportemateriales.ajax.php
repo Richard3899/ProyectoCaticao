@@ -11,10 +11,7 @@ class TablaReporteMateriales{
 
 	public function mostrarTablaReporteMateriales(){
 
-		$item = null;
-    	$valor = null;
-
-  		$materiales = ControladorReporteMateriales::ctrMostrarReporteMateriales($item, $valor);
+  		$materiales = ControladorReporteMateriales::ctrMostrarReporteMateriales();
 		
 		if(count($materiales) == 0){
 

@@ -28,19 +28,13 @@ class TablaReporteProductos{
 
 		  for($i = 0; $i < count($productos); $i++){
 
-			if($productos[$i]["stock"]==""){
-				$stock=0.00;
-			}else{
-				$stock=$productos[$i]["stock"];
-			}
-
 		  	$datosJson .='[
 			      "'.($i+1).'",
 			      "'.$productos[$i]["codigo"].'",
 				  "'.$productos[$i]["nombre"].'",
 			      "'.$productos[$i]["descripcion"].'",
 				  "'.$productos[$i]["unidadMedida"].'",
-				  "'.$stock.'"
+				  "'.$productos[$i]["stock"].'"
 			    ],';
 
 		  }

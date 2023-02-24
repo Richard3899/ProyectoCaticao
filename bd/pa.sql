@@ -1172,7 +1172,7 @@ BEGIN
                         idProducto=idProductoE
 			   WHERE       idLote=idLoteE;
 
-	update receta set   codigo=codigoE,
+	update receta SET    codigo=codigoE,
                         nombre=nombreE,
                         batch=batchE,
                         idEstado=idEstadoE,
@@ -1185,6 +1185,8 @@ BEGIN
                         reproceso=reprocesoE,
                         cantidadTabletas=cantidadTabletasE
 				where idReceta=idRecetaE;
+				
+	CALL sumatotal_costoporreceta(idRecetaE);  			
 END$$
 DELIMITER ;
 
@@ -2280,6 +2282,9 @@ CREATE PROCEDURE `duplicar_receta` (in idRecetaD INT,
 BEGIN
    -- CREAR CÓDIGO ALEATORIO PARA LA RECETA DUPLICADA --
 	DECLARE rc VARCHAR(20);
+	DECLARE codigoRecetaA VARCHAR(20);
+	
+	SELECT codigo FROM receta WHERE idReceta=idRecetaD INTO codigoRecetaA;
 	 
 	SET rc=ROUND(((RAND() * (99999 - 11111)) + 11111));
 	
@@ -2304,7 +2309,7 @@ BEGIN
 	INSERT INTO movimientomateria (idMateria,ingreso,salida,observacion,codigoReceta,fecha,idMovimiento)
 				            SELECT  mm.idMateria,mm.ingreso,mm.salida,mm.observacion,codigoRecetaD AS codigoReceta,CURRENT_DATE() AS fecha,mm.idMovimiento 
 								FROM movimientomateria mm INNER JOIN receta r ON r.codigo=mm.codigoReceta
-							   WHERE mm.codigoReceta=r.codigo;
+							   WHERE mm.codigoReceta=codigoRecetaA;
 
 	-- INSERTA LA MANO DE OBRA DE LA RECETA DUPLICADA --
 	INSERT INTO recetamanodeobra ( idReceta,idEmpleado,idMaquina,nombreEmpleado,nombreMaquina,tiempoHoras,precioUnitario,total)
@@ -2526,7 +2531,7 @@ BEGIN
 		            WHERE idReceta=idRecetaT  INTO totalcostooperativo;
 	
 	SELECT cantidadTabletas FROM receta WHERE idReceta=1 INTO cantidadTableta;
-	SELECT cantidadTableta;					
+			
 	SET totalreceta = totalinsumos + totalmanodeobra + totaldepreciacion + totalconsumoenergia + totalconsumogas + totalcostoventa + totalcostomarketing + totalcostooperativo;
    
 	SET totalportableta = totalreceta / cantidadTableta;
@@ -2534,9 +2539,10 @@ BEGIN
    UPDATE receta SET costototal = totalreceta,
                      costoPorTableta=totalportableta
 						WHERE idReceta=idRecetaT;
-		                     
+             
 END$$
 DELIMITER ;
+
 
 -- Procedimientos almacenados Costo total de las recetas por mes-
 DROP procedure IF EXISTS `sumatotal_costototalpormes`;
@@ -2607,6 +2613,19 @@ BEGIN
 END$$
 DELIMITER ;
 
+DROP procedure IF EXISTS `mostrar_reporterecetas`;
+DELIMITER $$
+USE `caticao`$$
+CREATE PROCEDURE `mostrar_reporterecetas` ()
+BEGIN
+	 SELECT r.codigo,r.nombre,p.nombre AS nombreProducto,r.cantidadTabletas,l.codigoLote,l.fechaVencimiento,r.costoTotal,r.costoPorTableta 
+	                                   FROM receta r INNER JOIN lote l on l.codigoLote=r.codigoLote
+	                                         			 INNER JOIN producto p ON p.idProducto=l.idProducto
+	                                         			 WHERE r.idEstado=3
+									 								 ORDER BY r.codigo ASC;
+	 
+END$$
+DELIMITER ;
 
 -- Procedimientos almacenados del Dashboard --
 DROP procedure IF EXISTS `mostrar_insumostop`;

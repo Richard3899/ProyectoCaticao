@@ -11,6 +11,7 @@ $("#tablaCostoTotal").DataTable({
 	"paging": false,
     "buttons": [{
 		extend: 'pdf',
+		className: 'btn-danger',
 		text: "PDF",
 		title:'Costo total de la Receta - '+codigo,
 		filename: "Costo total de la Receta - "+codigo,
@@ -31,6 +32,7 @@ $("#tablaCostoTotal").DataTable({
 	    },
 		{
 		extend: 'excel',
+		className: 'btn-success',
 		text: "Excel",
 		title:'Costo total de la Receta - '+codigo,
 		filename: "Costo total de la Receta - "+codigo,
@@ -49,6 +51,7 @@ $("#tablaCostoTotal").DataTable({
 	    },
 		{
 		extend: 'print',
+		className: 'btn-info',
 		text: "Imprimir",
 		title:'Costo total de la Receta - '+codigo,
 		exportOptions: {
@@ -60,6 +63,7 @@ $("#tablaCostoTotal").DataTable({
 	    },
 		{
 		extend: 'colvis',
+		className: 'btn-secondary',
 		text: "Columnas Visibles"
 	    }],
     "deferRender": true,

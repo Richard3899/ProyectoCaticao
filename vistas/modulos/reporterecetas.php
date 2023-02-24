@@ -6,13 +6,13 @@
     <div class="container-fluid">
       <div class="row mb-2">
         <div class="col-sm-6">
-          <h1>Reporte de Productos</h1>
+          <h1>Reporte de Recetas</h1>
         </div>
         <div class="col-sm-6">
           <ol class="breadcrumb float-sm-right">
             <li class="breadcrumb-item"><a href="inicio">Inicio</a></li>
             <li class="breadcrumb-item active">Reportes</li>
-            <li class="breadcrumb-item active">Reporte de Productos</li>
+            <li class="breadcrumb-item active">Reporte de Recetas</li>
           </ol>
         </div>
       </div>
@@ -32,7 +32,7 @@
                              <button type="button" class="btn btn-sm btn-warning" data-card-widget="collapse">
                                  Mostrar
                              </button>
-                             <button type="button" class="btn btn-sm btn-success" id="btnLimpiarBusquedaProductos">
+                             <button type="button" class="btn btn-sm btn-success" id="btnLimpiarBusquedaRecetas">
                                  Limpiar
                              </button>
                          </div> <!-- ./ end card-tools -->
@@ -40,45 +40,32 @@
                      <div class="card-body">
                          <div class="row">
                           <input type="hidden" id="url" value="<?php echo $url ?>">
-                          <!-- ENTRADA PARA EL CÓDIGO -->
-                          <div class="form-group col-sm-6 col-md-4 col-lg">
+                          
+                           <!-- ENTRADA PARA EL CÓDIGO -->
+                          <div class="form-group col-sm-6 col-md-3 col-lg">
                           <div class="input-group ">
                               <input type="text" id="codigo" class="form-control" placeholder="Código"  data-index="1">    
                           </div>
                           </div>
-                          
+
                           <!-- ENTRADA PARA EL NOMBRE -->
-                          <div class="form-group col-sm-6 col-md-4 col-lg">
+                          <div class="form-group col-sm-6 col-md-3 col-lg">
                           <div class="input-group ">
                               <input type="text" autocomplete="off" id="nombre" class="form-control" placeholder="Nombre" data-index="2">   
                           </div>
                           </div>
 
-                          <!-- ENTRADA PARA EL DESCRIPCIÓN -->
-                          <div class="form-group col-sm-6 col-md-4 col-lg">
+                          <!-- ENTRADA PARA EL PRODUCTO-->
+                          <div class="form-group col-sm-6 col-md-3 col-lg">
                           <div class="input-group ">
-                              <input type="text" id="descripcion" class="form-control" placeholder="Descripción"  data-index="3">   
+                              <input type="text" id="producto" class="form-control" placeholder="Producto"  data-index="3">   
                           </div>
                           </div>
 
-                          <!-- ENTRADA PARA EL UNIDAD DE MEDIDA -->
-                          <div class="form-group col-sm-6 col-md-4 col-lg">
+                          <!-- ENTRADA PARA EL LOTE -->
+                          <div class="form-group col-sm-6 col-md-3 col-lg">
                           <div class="input-group ">
-                              <input type="text" id="unidadMedida" class="form-control" placeholder="Unidad de Medida"  data-index="4">   
-                          </div>
-                          </div>
-
-                          <!-- ENTRADA PARA EL STOCK DESDE -->
-                          <div class="form-group col-sm-6 col-md-4 col-lg">
-                          <div class="input-group ">
-                              <input type="text" id="stockDesde" class="form-control" placeholder="Stock Desde"  data-index="5">   
-                          </div>
-                          </div>
-
-                          <!-- ENTRADA PARA EL STOCK HASTA -->
-                          <div class="form-group col-sm-6 col-md-4 col-lg">
-                          <div class="input-group ">
-                              <input type="text" id="stockHasta" class="form-control" placeholder="Stock Hasta" data-index="5">   
+                              <input type="text" id="lote" class="form-control" placeholder="Lote" data-index="5">   
                           </div>
                           </div>
 
@@ -93,7 +80,7 @@
 
       <div class="card-body">
 
-      <table id="tablaReporteProductos" class="table table-bordered table-striped dt-responsive tablaReporteProductos" width="100%">
+      <table id="tablaReporteRecetas" class="table table-bordered table-striped dt-responsive tablaReporteRecetas" width="100%">
        
       <thead>
        
@@ -101,10 +88,12 @@
          <th style="width:10px">#</th>
          <th>Código</th>
          <th>Nombre</th>
-         <th>Descripción</th>
-         <th>Unidad de Medida</th>
-         <th>Stock</th>
-
+         <th>Producto</th>
+         <th>Tabletas</th>
+         <th>Lote</th>
+         <th>Fecha de Vencimiento</th>
+         <th>Costo Total</th>
+         <th>Costo por Tableta</th>
        </tr> 
 
       </thead>

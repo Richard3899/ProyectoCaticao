@@ -8,6 +8,7 @@ tableReporteInsumos = $("#tablaReporteInsumos").DataTable({
 	"dom": 'Brti',
     "buttons": [{
 		extend: 'pdf',
+		className: 'btn-danger',
 		text: "PDF",
 		title:'Reporte Insumos',
 		filename: 'Reporte Insumos',
@@ -23,6 +24,7 @@ tableReporteInsumos = $("#tablaReporteInsumos").DataTable({
 	    },
 		{
 		extend: 'excel',
+		className: 'btn-success',
 		text: "Excel",
 		title:'Reporte Insumos',
 		filename: 'Reporte Insumos',
@@ -45,6 +47,7 @@ tableReporteInsumos = $("#tablaReporteInsumos").DataTable({
 	    },
 		{
 		extend: 'print',
+		className: 'btn-info',
 		text: "Imprimir",
 		title:'Reporte Insumos',
 		exportOptions: {
@@ -56,11 +59,13 @@ tableReporteInsumos = $("#tablaReporteInsumos").DataTable({
 	    },
 		{
 		extend: 'colvis',
+		className: 'btn-secondary',
 		text: "Columnas Visibles"
 	    },{
-			extend: 'pageLength',
-			text: "Registros"
-			}],
+		extend: 'pageLength',
+		className: 'btn-secondary',
+		text: "Registros"
+		}],
     "deferRender": true,
 	
 	"columnDefs": [

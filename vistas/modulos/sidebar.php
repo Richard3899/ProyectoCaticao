@@ -305,8 +305,8 @@ if($value["modoDark"] == 1){
           ?>
 
           <?php 
-          $idModulosReportes=array(20,21,22);
-          $descripcionModulosReportes=array('reporteinsumos','reportemateriales','reporteproductos');
+          $idModulosReportes=array(20,21,22,25);
+          $descripcionModulosReportes=array('reporteinsumos','reportemateriales','reporteproductos','reporterecetas');
           ?>
 
           <?php if ((array_intersect($idModulosReportes,$arrayidModulos))){
@@ -344,6 +344,14 @@ if($value["modoDark"] == 1){
                 <a href='reporteproductos' class='nav-link ";if($url=='reporteproductos'){ echo "active"; } echo"'>
                 <i class='nav-icon fas fa-angle-double-right'></i>
                   <p>Reporte Productos</p>
+                </a>
+              </li>";
+            }
+            if (in_array(25, $arrayidModulos)){
+              echo "<li class='nav-item'>
+                <a href='reporterecetas' class='nav-link ";if($url=='reporterecetas'){ echo "active"; } echo"'>
+                <i class='nav-icon fas fa-angle-double-right'></i>
+                  <p>Reporte Recetas</p>
                 </a>
               </li>";
             }

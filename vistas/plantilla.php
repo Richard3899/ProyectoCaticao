@@ -24,31 +24,31 @@ session_start();
 
     if($value["modoDark"] == 1 && $value["contraerBarraLateral"]==1 && $value["ocultarBarraLateral"]==1 ){
     
-      echo '<body class="hold-transition skin-blue dark-mode sidebar-collapse">';
+      echo '<body class="hold-transition skin-blue dark-mode sidebar-collapse layout-fixed">';
     
     }else if($value["modoDark"] == 0 && $value["contraerBarraLateral"]==1 && $value["ocultarBarraLateral"]==1 ){
     
-      echo '<body class="hold-transition skin-blue sidebar-collapse">';
+      echo '<body class="hold-transition skin-blue sidebar-collapse layout-fixed">';
     
     }else if($value["modoDark"] == 0 && $value["contraerBarraLateral"]==0 && $value["ocultarBarraLateral"]==1 ){
     
-      echo '<body class="hold-transition skin-blue">';
+      echo '<body class="hold-transition skin-blue layout-fixed">';
     
     }else if($value["modoDark"] == 1 && $value["contraerBarraLateral"]==1 && $value["ocultarBarraLateral"]==0){
     
-    echo '<body class="hold-transition skin-blue sidebar-mini-xs dark-mode sidebar-collapse">';
+      echo '<body class="hold-transition skin-blue sidebar-mini-xs dark-mode sidebar-collapse layout-fixed">';
     
     }else if($value["modoDark"] == 1 && $value["contraerBarraLateral"]==0 && $value["ocultarBarraLateral"]==0){
     
-    echo '<body class="hold-transition skin-blue sidebar-mini-xs dark-mode">';
+      echo '<body class="hold-transition skin-blue sidebar-mini-xs dark-mode layout-fixed">';
     
     }else if($value["modoDark"] == 0 && $value["contraerBarraLateral"]==1 && $value["ocultarBarraLateral"]==0){
     
-      echo '<body class="hold-transition skin-blue sidebar-mini-xs sidebar-collapse">';
+      echo '<body class="hold-transition skin-blue sidebar-mini-xs sidebar-collapse layout-fixed">';
 
     }else if($value["modoDark"] == 1 && $value["contraerBarraLateral"]==0 && $value["ocultarBarraLateral"]==1){
     
-      echo '<body class="hold-transition skin-blue dark-mode">';
+      echo '<body class="hold-transition skin-blue dark-mode layout-fixed">';
     };
   } 
   
@@ -131,6 +131,7 @@ session_start();
 <script src="vistas/js/kardexmateriales.js"></script>
 <script src="vistas/js/inventarioproductos.js"></script>
 <script src="vistas/js/kardexproductos.js"></script>
+<script src="vistas/js/loteproductos.js"></script>
 <script src="vistas/js/inventariomaquinas.js"></script>
 <script src="vistas/js/kardexmaquinas.js"></script>
 <script src="vistas/js/recetas.js"></script>
@@ -151,9 +152,10 @@ session_start();
 <script src="vistas/js/reporteinsumos.js"></script>
 <script src="vistas/js/reportemateriales.js"></script>
 <script src="vistas/js/reporteproductos.js"></script>
+<script src="vistas/js/reporterecetas.js"></script>
 <script src="vistas/js/dashboard.js"></script>
 <script src="vistas/js/backup.js"></script>
-<script src="vistas/js/loteproductos.js"></script>
+
 
 </body>
 

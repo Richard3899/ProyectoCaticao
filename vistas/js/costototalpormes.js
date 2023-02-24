@@ -12,6 +12,7 @@ $("#tablaCostoTotalPorMes").DataTable({
 	"paging": false,
     "buttons": [{
 		extend: 'pdf',
+		className: 'btn-danger',
 		text: "PDF",
 		title:'Costo total de : '+descripcion,
 		filename: 'Costo total de '+descripcion,
@@ -27,6 +28,7 @@ $("#tablaCostoTotalPorMes").DataTable({
 	    },
 		{
 		extend: 'excel',
+		className: 'btn-success',
 		text: "Excel",
 		title:'Costo total de : '+descripcion,
 		filename: "Costo total de "+descripcion,
@@ -43,6 +45,7 @@ $("#tablaCostoTotalPorMes").DataTable({
 	    },
 		{
 		extend: 'print',
+		className: 'btn-info',
 		text: "Imprimir",
 		title:'Costo total de : '+descripcion,
 		exportOptions: {

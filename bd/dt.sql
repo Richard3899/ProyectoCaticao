@@ -120,6 +120,7 @@ INSERT INTO `modulo` (`idModulo`, `descripcion`) VALUES
 	(22, 'reporteproductos'),
 	(23, 'configuracion'),
 	(24, 'loteproductos'),
+	(25, 'reporterecetas'),
 	(28, 'backup'),
 	(29, 'salir'),
 	(30, 'kardexinsumos'),
@@ -164,6 +165,7 @@ INSERT INTO `usuariomodulo` (`idUsuarioModulo`, `idUsuario`, `idModulo`) VALUES
 	(22, 1, 22),
 	(23, 1, 23),
 	(24, 1, 24),
+	(25, 1, 25),
 	(28, 1, 28),
 	(29, 1, 29),
 	(30, 1, 30),
@@ -235,7 +237,7 @@ INSERT INTO `gastoadmin` (`idGastoAdmin`, `descripcion`, `precio`, `idUnidadMedi
 	(4, 'Costo Operativo 1', 12.00, 3, 1, 4);
 
 INSERT INTO `receta` (`idReceta`, `codigo`, `nombre`, `batch`, `fechaInicio`, `fechaFin`, `pesoPorTableta`, `pesoEnTableta`, `merma`, `reproceso`, `codigoLote`, `idEstado`,`cerrado`,`cantidadTabletas`,`costoTotal`,`costoPorTableta`) VALUES
-	(1, 'RC001', 'Receta 1', 60.00, '2022-12-10', '2022-12-10', 1.00, 1.00, 1.00, 1.00, '123456', 1, 0, 0, 0, 0);
+	(1, 'RC001', 'Receta 1', 60.00, '2022-12-10', '2022-12-10', 1.00, 1.00, 1.00, 1.00, '123456', 1, 0, 5, 0, 0);
 
 INSERT INTO `lote` (`idLote`, `codigoLote`, `cantidad`, `fechaVencimiento`, `idProducto`) VALUES
 	(1, '123456',0, '2022-12-11', 1);

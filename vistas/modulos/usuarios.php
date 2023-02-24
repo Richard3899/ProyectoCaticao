@@ -364,7 +364,11 @@ MODAL AGREGAR USUARIO
                   <div class="icheck-primary">
                       <input class="checkModulos" type="checkbox" id="cbReporteProductos" value="22" name="checkListModulos[]">
                       <label for="cbReporteProductos">Reporte de Productos</label>
-                  </div>           
+                  </div>  
+                  <div class="icheck-primary">
+                      <input class="checkModulos" type="checkbox" id="cbReporteRecetas" value="25" name="checkListModulos[]">
+                      <label for="cbReporteRecetas">Reporte de Recetas</label>
+                  </div>             
                 </div>
             </div> 
             
@@ -733,7 +737,11 @@ MODAL EDITAR USUARIO
                   <div class="icheck-primary">
                       <input class="editarCheckModulos" type="checkbox" id="reporteproductos" value="22" name="editarCheckListModulos[]">
                       <label for="reporteproductos">Reporte de Productos</label>
-                  </div>           
+                  </div>    
+                  <div class="icheck-primary">
+                      <input class="editarCheckModulos" type="checkbox" id="reporterecetas" value="25" name="editarCheckListModulos[]">
+                      <label for="reporterecetas">Reporte de Recetas</label>
+                  </div>        
                 </div>
             </div> 
             

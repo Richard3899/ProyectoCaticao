@@ -45,6 +45,7 @@ require_once "controladores/costototalpormes.controlador.php";
 require_once "controladores/reporteinsumos.controlador.php";
 require_once "controladores/reportemateriales.controlador.php";
 require_once "controladores/reporteproductos.controlador.php";
+require_once "controladores/reporterecetas.controlador.php";
 require_once "controladores/dashboard.controlador.php";
 require_once "controladores/backup.controlador.php";
 
@@ -94,6 +95,7 @@ require_once "modelos/costototalpormes.modelo.php";
 require_once "modelos/reporteinsumos.modelo.php";
 require_once "modelos/reportemateriales.modelo.php";
 require_once "modelos/reporteproductos.modelo.php";
+require_once "modelos/reporterecetas.modelo.php";
 require_once "modelos/dashboard.modelo.php";
 
 

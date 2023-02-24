@@ -11,10 +11,7 @@ class TablaReporteInsumos{
 
 	public function mostrarTablaReporteInsumos(){
 
-		$item = null;
-    	$valor = null;
-
-  		$insumos = ControladorReporteInsumos::ctrMostrarReporteInsumos($item, $valor);
+  		$insumos = ControladorReporteInsumos::ctrMostrarReporteInsumos();
 		
 		if(count($insumos) == 0){
 
