@@ -217,7 +217,7 @@ class ControladorMateriales{
 				}
 
 
-				$datos = array("idMateria" =>$_POST["idMaterial"],
+				$datos = array("idMateria" =>$_POST["editaridMaterial"],
 							   "nombre" => $_POST["editarNombre"],
 							   "descripcion" => $_POST["editarDescripcion"],
 							   "idMarca" => $_POST["editarMarca"],
@@ -226,7 +226,7 @@ class ControladorMateriales{
 							   "precio" => $_POST["editarPrecio"],
 							   "imagen" => $ruta);
 							   
-				
+				echo var_dump($datos );
 
 				$respuesta = ModeloMateriales::mdlEditarMaterial($datos);
 

@@ -1,5 +1,6 @@
 	$('.tablaKardexInsumos').dataTable( {
 		"searching": false,
+		"paging": false,
 		"language": {
 		
 			"sProcessing":     "Procesando...",
@@ -122,10 +123,12 @@
 		$(".tablaKardexInsumos").dataTable().fnDestroy();
 		$(".tablaKardexInsumos > tbody").empty();
 		var InsumoK = $("#InsumoK").val();
-	
+		var nombreInsumo= $("select option:selected").attr("nombreInsumo");
+
 		table =$('.tablaKardexInsumos').DataTable( {
 			"ajax": "ajax/datatable-kardexinsumos.ajax.php?InsumoK="+InsumoK,
-			"deferRender": true,
+			"dom": 'Brtip',
+			"processing": true,
 			"columnDefs": [
 				{"className": "dt-center", "targets": "_all",
 				"targets": '_all',
@@ -135,10 +138,78 @@
 					
 				}}
 			  ],
-			"deferLoading": 0,        
-			"retrieve": true,
-			"searching": true,
-			"processing": true,
+			  "buttons": [{
+				extend: 'pdf',
+				className: 'btn-danger',
+				text: "PDF",
+				title:'Kardex de ' + nombreInsumo,
+				filename:'Kardex de ' + nombreInsumo,
+				exportOptions: {
+					columns: ':visible'
+				},
+				customize: function (doc) {
+					doc.styles.tableHeader.fontSize = 10;
+					// doc.defaultStyle.fontSize = 8;
+					doc.defaultStyle.alignment = 'center';
+					doc.content[1].table.widths ="*";
+		
+					var tableNode;
+					for (i = 0; i < doc.content.length; ++i) {
+					  if(doc.content[i].table !== undefined){
+						tableNode = doc.content[i];
+						break;
+					  }
+					}
+		
+					var rowIndex = 0;
+					var tableColumnCount = tableNode.table.body[rowIndex].length;
+					if(tableColumnCount > 5){
+					  doc.pageOrientation = 'landscape';
+					}
+				}
+			
+				},
+				{
+				extend: 'excel',
+				className: 'btn-success',
+				text: "Excel",
+				title:'Kardex de ' + nombreInsumo,
+				filename: 'Kardex de ' + nombreInsumo,
+				customize: function( xlsx ) {
+						var sheet = xlsx.xl.worksheets['sheet1.xml'];
+						//Centrar al exportar en Excel
+						 $('row c[r^="A"]', sheet).attr( 's', '51' );
+						 $('row c[r^="B"]', sheet).attr( 's', '51' );
+						 $('row c[r^="C"]', sheet).attr( 's', '51' );
+						 $('row c[r^="D"]', sheet).attr( 's', '51' );
+						 $('row c[r^="E"]', sheet).attr( 's', '51' );
+						 $('row c[r^="F"]', sheet).attr( 's', '67' );
+						 $('row c[r^="G"]', sheet).attr( 's', '51' );
+						 $('row c[r^="H"]', sheet).attr( 's', '51' );
+						 $('row c[r^="I"]', sheet).attr( 's', '51' );
+			
+					},
+				exportOptions: {
+					columns: ':visible'
+				}
+				},
+				{
+				extend: 'print',
+				className: 'btn-info',
+				text: "Imprimir",
+				title:'Kardex de ' + nombreInsumo,
+				exportOptions: {
+					columns: ':visible'
+				},
+				customize: function (win) {
+					$(win.document.body).find('h1').css('text-align','center');
+				}
+				},
+				{
+				extend: 'colvis',
+				className: 'btn-secondary',
+				text: "Columnas Visibles"
+				}],      
 			"language": {
 		
 				"sProcessing":     "Procesando...",

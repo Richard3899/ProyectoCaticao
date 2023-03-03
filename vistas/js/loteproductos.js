@@ -1,5 +1,6 @@
 $('.tablaLoteProductos').dataTable( {
 	"searching": false,
+	"paging": false,
 	"language": {
 	
 		"sProcessing":     "Procesando...",
@@ -76,10 +77,12 @@ function LoteProductos() {
 	$(".tablaLoteProductos").dataTable().fnDestroy();
 	$(".tablaLoteProductos > tbody").empty();
 	var ProductoL = $("#ProductoL").val();
+	var nombreProducto= $("select option:selected").attr("nombreProducto");
 
 	table =$('.tablaLoteProductos').DataTable( {
 		"ajax": "ajax/datatable-loteproductos.ajax.php?ProductoL="+ProductoL,
-		"deferRender": true,
+		"dom": 'Brtip',
+		"processing": true,
 		"columnDefs": [
 			{"className": "dt-center", "targets": "_all",
 			"targets": '_all',
@@ -89,10 +92,57 @@ function LoteProductos() {
 				
 			}}
 		  ],
-		"deferLoading": 0,        
-		"retrieve": true,
-		"searching": true,
-		"processing": true,
+		  "buttons": [{
+			extend: 'pdf',
+			className: 'btn-danger',
+			text: "PDF",
+			title:'Lote de '+ nombreProducto,
+			filename: 'Lote de '+ nombreProducto,
+			exportOptions: {
+				columns: ':visible'
+			},
+			customize: function (doc) {
+				doc.styles.tableHeader.fontSize = 10;
+				doc.defaultStyle.alignment = 'center';
+				doc.content[1].table.widths ="*";
+			}
+		
+			},
+			{
+			extend: 'excel',
+			className: 'btn-success',
+			text: "Excel",
+			title:'Lote de '+ nombreProducto,
+			filename: 'Lote de '+ nombreProducto,
+			customize: function( xlsx ) {
+					var sheet = xlsx.xl.worksheets['sheet1.xml'];
+					//Centrar al exportar en Excel
+					 $('row c[r^="A"]', sheet).attr( 's', '51' );
+					 $('row c[r^="B"]', sheet).attr( 's', '51' );
+					 $('row c[r^="C"]', sheet).attr( 's', '67' );
+					 $('row c[r^="D"]', sheet).attr( 's', '51' );
+				},
+			exportOptions: {
+				columns: ':visible'
+			}
+			},
+			{
+			extend: 'print',
+			className: 'btn-info',
+			text: "Imprimir",
+			title:'Lote de '+ nombreProducto,
+			exportOptions: {
+				columns: ':visible'
+			},
+			customize: function (win) {
+				$(win.document.body).find('h1').css('text-align','center');
+			}
+			},
+			{
+			extend: 'colvis',
+			className: 'btn-secondary',
+			text: "Columnas Visibles"
+			}],  
 		"language": {
 	
 			"sProcessing":     "Procesando...",

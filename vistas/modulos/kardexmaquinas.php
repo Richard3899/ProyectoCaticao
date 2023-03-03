@@ -42,7 +42,7 @@
                   foreach($maquinas as $key=> $value){ 
 
 
-                    echo '<option value="'.$value["idMaquina"].'">'.$value["nombre"].'</option>';
+                    echo '<option value="'.$value["idMaquina"].'" nombreMaquina="'.$value["nombre"].'">'.$value["nombre"].'</option>';
                   }
 
                   ?>

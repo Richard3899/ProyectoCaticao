@@ -78,7 +78,6 @@ ELIMINAR MARCA
 $(".tablaMarcas tbody").on("click", "button.btnEliminarMarca", function(){
 
 	var idMarca = $(this).attr("idMarca");
-	var descripcion = $(this).attr("descripcion");
 	
 	Swal.fire({
 
@@ -93,7 +92,7 @@ $(".tablaMarcas tbody").on("click", "button.btnEliminarMarca", function(){
         }).then(function(result){
         if (result.value) {
 
-        	window.location = "index.php?ruta=marcas&idMarca="+idMarca+"&descripcion="+descripcion;
+        	window.location = "index.php?ruta=marcas&idMarca="+idMarca;
 
         }
 

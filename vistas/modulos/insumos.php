@@ -29,13 +29,17 @@
       <?php 
        if($permisoInsertar==1){
 
-       echo "<button class='btn btn-primary' data-toggle='modal' data-target='#modalAgregarInsumo'>
+       echo "<button class='btn btn-primary m-1 col-12 col-sm-4 col-md-3 col-lg-2' data-toggle='modal' data-target='#modalAgregarInsumo'>
             Agregar Insumo
+            </button>
+            <button class='btn btn-info m-1 col-12 col-sm-4 col-md-3 col-lg-2' data-toggle='modal' data-target='#modalAgregarMarca'>
+            Agregar Marca
             </button>";
 
        }else{
 
-       echo "<button class='btn btn-primary'>Agregar Insumo</button>";
+       echo "<button class='btn btn-primary m-1 col-12 col-sm-4 col-md-3 col-lg-2'>Agregar Insumo</button>
+             <button class='btn btn-info  m-1 col-12 col-sm-4 col-md-3 col-lg-2'>Agregar Marca</button>";
 
        }
       ?>
@@ -189,13 +193,8 @@ MODAL AGREGAR INSUMO
           <div class="form-group col-sm">
           <label for="marca">Marca</label>
             <div class="input-group">
-            
-                <div class="input-group-prepend">
-                <span class="input-group-text"><i class="fas fa-cookie"></i></span>
-                </div>
 
-                <select class="form-control input-lg" id="nuevaMarca" name="nuevaMarca" required>
-                
+                <select class="form-control select2 input-lg" id="nuevaMarca" name="nuevaMarca" style="width: 100%;" required>
                 <option value="">Seleccionar Marca</option>
 
                 <?php 
@@ -294,7 +293,85 @@ MODAL AGREGAR INSUMO
 
 </div>
 
+<!--=====================================
+MODAL AGREGAR MARCA
+======================================-->
 
+<div id="modalAgregarMarca" class="modal fade" role="dialog">
+
+<div class="modal-dialog modal-lg">
+
+  <div class="modal-content">
+
+    <form role="form" method="post" enctype="multipart/form-data">
+
+      <!--=====================================
+      CABEZA DEL MODAL
+      ======================================-->
+
+      <div class="modal-header" style="background:gray; color:white">
+
+      <h4 class="modal-title">Agregar Marca</h4>
+
+      <button type="button" class="close" data-dismiss="modal">&times;</button>
+
+      </div>
+
+      <!--=====================================
+      CUERPO DEL MODAL
+      ======================================-->
+
+      <div class="modal-body">
+
+        <div class="box-body">
+
+          <div class="row">
+
+            <!-- ENTRADA PARA EL CÓDIGO -->
+            <div class="form-group col-sm">
+            <div class="input-group ">
+                <div class="input-group-prepend">
+                <span class="input-group-text"><i class="fas fa-hashtag"></i></span>
+                </div>
+                <input type="text" class="form-control input-lg" name="nuevaDescripcionMarca" id="nuevaDescripcionMarca" placeholder="Ingresar Marca" 
+                 maxlength="45" pattern="[A-Za-z0-9ñÑáéíóúÁÉÍÓÚ ]+" title="Solo se acepta letras y números" required>
+            </div>
+            </div>
+
+           
+          </div>
+
+        </div>
+
+      </div>
+
+      <!--=====================================
+      PIE DEL MODAL
+      ======================================-->
+
+      <div class="modal-footer">
+
+        <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Salir</button>
+
+        <button type="submit" class="btn btn-primary">Guardar Marca</button>
+
+      </div>
+
+      <?php
+
+          $crearMarca= new ControladorMarcas();
+          $crearMarca -> ctrCrearMarcaInsumos();
+
+      ?>
+
+
+    </form>
+
+  </div>
+
+</div>
+
+</div>
 
 
 <!--=====================================
@@ -408,12 +485,8 @@ MODAL EDITAR INSUMO
           <div class="form-group col-sm">
             <label for="marca">Marca</label>
             <div class="input-group">
-            
-                <div class="input-group-prepend">
-                <span class="input-group-text"><i class="fas fa-cookie"></i></span>
-                </div>
 
-                <select class="form-control input-lg" id="editarMarca" name="editarMarca" required>
+                <select class="form-control select2 input-lg" id="editarMarca" name="editarMarca" style="width: 100%;" required>
                 
                 <option value="">Seleccionar Marca</option>
 

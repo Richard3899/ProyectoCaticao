@@ -458,12 +458,14 @@ MODAL EDITAR RECETA
 
                 <select class="form-control select2 input-lg" style="width: 100%;" id="editaridProducto" name="editaridProducto" required>
                 
+                <option value="">Seleccionar Producto</option>
+
                 <?php 
                   $item = null;
                   $valor = null;
 
                   $productos = ControladorProductos::ctrMostrarProductos($item,$valor);
-
+                 
                   foreach($productos as $key=> $value){ 
 
 

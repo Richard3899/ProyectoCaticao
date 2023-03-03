@@ -5,7 +5,7 @@ var tableReporteInsumos;
 
 tableReporteInsumos = $("#tablaReporteInsumos").DataTable({
 	"ajax": "ajax/datatable-reporteinsumos.ajax.php",
-	"dom": 'Brti',
+	"dom": 'Brtip',
     "buttons": [{
 		extend: 'pdf',
 		className: 'btn-danger',
@@ -18,7 +18,21 @@ tableReporteInsumos = $("#tablaReporteInsumos").DataTable({
 		customize: function (doc) {
 			doc.styles.tableHeader.fontSize = 10;
 			doc.defaultStyle.alignment = 'center';
-			doc.content[1].table.widths = "*";
+			doc.content[1].table.widths ="*";
+
+			var tableNode;
+			for (i = 0; i < doc.content.length; ++i) {
+			  if(doc.content[i].table !== undefined){
+				tableNode = doc.content[i];
+				break;
+			  }
+			}
+
+			var rowIndex = 0;
+			var tableColumnCount = tableNode.table.body[rowIndex].length;
+			if(tableColumnCount > 5){
+			  doc.pageOrientation = 'landscape';
+			}
 		}
 	
 	    },
@@ -66,8 +80,6 @@ tableReporteInsumos = $("#tablaReporteInsumos").DataTable({
 		className: 'btn-secondary',
 		text: "Registros"
 		}],
-    "deferRender": true,
-	
 	"columnDefs": [
 		{"className": "dt-center", "targets": "_all"},
 		//Tipo de dato (Número)

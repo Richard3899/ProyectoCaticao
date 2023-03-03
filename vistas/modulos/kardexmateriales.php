@@ -46,7 +46,7 @@
 
                     $marcas = ControladorMarcas::ctrMostrarMarcas($item,$valor);
 
-                    echo '<option value="'.$value["idMateria"].'">'.$value["nombre"].' - '.$marcas["descripcion"].'</option>';
+                    echo '<option value="'.$value["idMateria"].'" nombreMaterial="'.$value["nombre"].' - '.$marcas["descripcion"].'" >'.$value["nombre"].' - '.$marcas["descripcion"].'</option>';
                   }
 
                   ?>

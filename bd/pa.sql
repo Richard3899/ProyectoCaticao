@@ -1113,7 +1113,7 @@ DELIMITER $$
 USE `caticao`$$
 CREATE PROCEDURE `mostrar_recetas` ()
 BEGIN
-	select * from receta ;
+	select * from receta ORDER BY idReceta desc;
 END$$
 DELIMITER ;
 

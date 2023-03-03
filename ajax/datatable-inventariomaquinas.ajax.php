@@ -40,15 +40,11 @@ class TablaInventarioMaquinas{
 
 		  	$maquinas = ControladorMaquinas::ctrMostrarMaquinas($item1, $valor1);
 			
-
 			$stock=$inventariomaquinas[$i]["stock"] ?? 0;
 
-
-			if($stock<10){
+			if($stock<2){
 				$stock =  "<button class='btn btn-danger'>".$stock."</button>";				
-			}else if($stock>9 & $stock<15){
-				$stock =  "<button class='btn btn-warning'>".$stock."</button>";	
-			}else{
+		    }else{
 				$stock =  "<button class='btn btn-success'>".$stock."</button>";
 			}
 

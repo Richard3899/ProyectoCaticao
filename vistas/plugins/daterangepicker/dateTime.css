@@ -35,9 +35,19 @@ div.dt-datetime {
   div.dt-datetime table.dt-datetime-table-nospace {
     margin-top: -12px;
   }
+
+  .dark-mode div.dt-datetime table th {
+    font-size: 0.8em;
+    color: #ffffff;
+    font-weight: normal;
+    width: 14.285714286%;
+    padding: 0 0 4px 0;
+    text-align: center;
+  }
+
   div.dt-datetime table th {
     font-size: 0.8em;
-    color: #777;
+    color: #000000;
     font-weight: normal;
     width: 14.285714286%;
     padding: 0 0 4px 0;

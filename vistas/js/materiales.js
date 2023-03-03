@@ -169,7 +169,7 @@ $(".tablaMateriales tbody").on("click", "button.btnEditarMaterial", function(){
 
            $("#editarDescripcion").val(respuesta["descripcion"]);
 
-		   $("#editarMarca").val(respuesta["idMarca"]);
+		   $('#editarMarca').val(respuesta["idMarca"]).trigger('change.select2');
 
 		   $("#editarUnidadMedida").val(respuesta["idUnidadMedida"]);
 

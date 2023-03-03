@@ -1,5 +1,13 @@
+.dark-mode tr.even td {
+  background-color: rgb(36,41,45);
+}
+
 tr.even td {
   background-color: #ffffff;
+}
+
+.dark-mode tr.odd td {
+  background-color:rgb(34,39,43);
 }
 
 tr.odd td {
@@ -10,8 +18,16 @@ tr.selected td {
   background-color: #0088cc;
 }
 
+.dark-mode thead th {
+  background-color: rgb(36,41,45);
+}
+
 thead th {
   background-color: white;
+}
+
+.dark-mode tfoot th {
+  background-color: rgb(36,41,45);
 }
 
 tfoot th {

@@ -5,7 +5,7 @@ var tableReporteRecetas;
 
 tableReporteRecetas = $("#tablaReporteRecetas").DataTable({
 	"ajax": "ajax/datatable-reporterecetas.ajax.php",
-	"dom": 'Brti',
+	"dom": 'Brtip',
     "buttons": [{
 		extend: 'pdf',
 		className: 'btn-danger',
@@ -38,7 +38,7 @@ tableReporteRecetas = $("#tablaReporteRecetas").DataTable({
 	
 	    },
 		{
-		extend: 'excel',
+		extend: 'excelHtml5',
 		className: 'btn-success',
 		text: "Excel",
 		title:'Reporte Recetas',
@@ -52,7 +52,7 @@ tableReporteRecetas = $("#tablaReporteRecetas").DataTable({
 				$('row c[r^="D"]', sheet).attr( 's', '51' );
 				$('row c[r^="E"]', sheet).attr( 's', '51' );
                 $('row c[r^="F"]', sheet).attr( 's', '51' );
-				$('row c[r^="G"]', sheet).attr( 's', '51' );
+				$('row c[r^="G"]', sheet).attr( 's', '67' );
 				$('row c[r^="H"]', sheet).attr( 's', '51' );
 				$('row c[r^="I"]', sheet).attr( 's', '51' );
             },
@@ -81,8 +81,6 @@ tableReporteRecetas = $("#tablaReporteRecetas").DataTable({
 		className: 'btn-secondary',
 		text: "Registros"
 		}],
-    "deferRender": true,
-	
 	"columnDefs": [
 		{"className": "dt-center", "targets": "_all"}
 	  ],

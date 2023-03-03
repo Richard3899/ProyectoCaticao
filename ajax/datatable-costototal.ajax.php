@@ -219,7 +219,7 @@ class TablaCostoTotal{
 			for($i = 0; $i < count($recetamanodeobra); $i++){
 			   
 				 $datosJson .='[
-					 "'.($i+1).' - '.$recetamanodeobra[$i]["nombreEmpleado"].'",
+					 "'.($i+1).' - '.$recetamanodeobra[$i]["nombreMaquina"].'",
 					 "'.$recetamanodeobra[$i]["precioUnitario"].'",
 					 "'.$recetamanodeobra[$i]["tiempoHoras"].'",
 					 "'.$recetamanodeobra[$i]["total"].'"

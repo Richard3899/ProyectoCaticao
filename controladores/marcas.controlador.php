@@ -58,6 +58,82 @@ class ControladorMarcas{
 	}
 
 	/*=============================================
+	CREAR MARCAS
+	=============================================*/
+
+	static public function ctrCrearMarcaInsumos(){
+
+		if(isset($_POST["nuevaDescripcionMarca"])){
+
+		   		
+				$datos = array("descripcion" => $_POST["nuevaDescripcionMarca"]);
+							   
+				$respuesta = ModeloMarcas::mdlIngresarMarca($datos);
+
+				if($respuesta == "ok"){
+
+					echo '<script>
+
+					Swal.fire({
+					
+						icon: "success",
+						title: "¡La marca ha sido guardada correctamente!",
+						showConfirmButton: false,
+						timer: 1500
+					
+					}).then(function(result){
+					
+							window.location = "insumos";
+					
+					});
+					
+					
+					</script>';
+
+				}
+
+
+		}
+
+	}
+
+	static public function ctrCrearMarcaMateriales(){
+
+		if(isset($_POST["nuevaDescripcionMarca"])){
+
+		   		
+				$datos = array("descripcion" => $_POST["nuevaDescripcionMarca"]);
+							   
+				$respuesta = ModeloMarcas::mdlIngresarMarca($datos);
+
+				if($respuesta == "ok"){
+
+					echo '<script>
+
+					Swal.fire({
+					
+						icon: "success",
+						title: "¡La marca ha sido guardada correctamente!",
+						showConfirmButton: false,
+						timer: 1500
+					
+					}).then(function(result){
+					
+							window.location = "materiales";
+					
+					});
+					
+					
+					</script>';
+
+				}
+
+
+		}
+
+	}
+
+	/*=============================================
 	EDITAR MARCAS
 	=============================================*/
 

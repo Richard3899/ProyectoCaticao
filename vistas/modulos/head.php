@@ -54,6 +54,7 @@
   <link rel="stylesheet" href="vistas/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
   <link rel="stylesheet" href="vistas/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
   <link rel="stylesheet" href="vistas/plugins/datatables-buttons/css/buttons.bootstrap4.css">
+  <link rel="stylesheet" href="vistas/plugins/datatables-fixedcolumns/css/fixedColumns.bootstrap4.css">
   
   <!--=====================================
   PLUGINS DE JAVASCRIPT
@@ -96,13 +97,15 @@
   <script src="vistas/plugins/datatables/fnFilterClear.js"></script>
   <script src="vistas/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
   <script src="vistas/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+  <script src="vistas/plugins/datatables-fixedcolumns/js/dataTables.fixedColumns.min.js"></script>
+  <script src="vistas/plugins/datatables-fixedcolumns/js/fixedColumns.bootstrap4.min.js"></script>
   <script src="vistas/plugins/datatables-rowgroup/js/dataTables.rowGroup.js"></script>
   <script src="vistas/plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
   <script src="vistas/plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
   <script src="vistas/plugins/jszip/jszip.min.js"></script>
   <script src="vistas/plugins/pdfmake/pdfmake.min.js"></script>
   <script src="vistas/plugins/pdfmake/vfs_fonts.js"></script>
-  <script src="vistas/plugins/datatables-buttons/js/buttons.html5.min.js"></script>
+  <script src="vistas/plugins/datatables-buttons/js/buttons.html5.js"></script>
   <script src="vistas/plugins/datatables-buttons/js/buttons.print.min.js"></script>
   <script src="vistas/plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
 

@@ -65,8 +65,8 @@ $(".tablaRecetas tbody").on("click", "button.btnEditarReceta", function(){
 
 		$("#editarFechaVencimiento").val(respuesta["fechaVencimiento"]);
 
-		$("#editaridProducto").val(respuesta["idProducto"]);
-  
+		$("#editaridProducto").val(respuesta["idProducto"]).trigger('change.select2');
+
 	  }
   
      })
