@@ -60,7 +60,7 @@ class TablaRecetaMateriales{
 		  	$datosJson .='[
 			      "'.($i+1).'",
 				  "'.$materialesreceta[$i]["nombre"].'",
-			      "'.$materialesreceta[$i]["cantidad"]." ".$materialesreceta[$i]["unidadMedida"].'",
+			      "'.$materialesreceta[$i]["cantidad"].'",
 				  "'.$materialesreceta[$i]["precioUnitario"].'",
 				  "'.$materialesreceta[$i]["total"].'",
 				  "'.$botones.'"
@@ -70,7 +70,7 @@ class TablaRecetaMateriales{
 
 		  $datosJson = substr($datosJson, 0, -1);
 
-		 $datosJson .=   ',["Total","","","","S/. '.$total.'",""]] 
+		 $datosJson .=   ',["Total","","","","'.$total.'",""]] 
 
 		 }';
 		

@@ -73,17 +73,15 @@ class TablaRecetas{
 			}else{
 				$estado =  "<button class='btn btn-danger'>".$estados["descripcion"]."</button>";
 			}
-
 			/*=============================================
- 	 		DESIGNAR ID A RECETA DUPLICADA
+ 	 		BOTÓN PARA VER DETALLES
   			=============================================*/
-			$CantidadId=count($recetas)-1;
-			$NuevoId=$recetas[$CantidadId]["idReceta"]+1;
-			
+			$detalle =  "<button class='btn btn-info btnDetalleReceta' idReceta='".$recetas[$i]["idReceta"]."' codigoLote='".$recetas[$i]["codigoLote"]."'  data-toggle='modal' data-target='#modalDetalleReceta' ><i class='fa fa-eye'></i></button>";
+		  	
 			/*=============================================
  	 		BOTÓN PARA DUPLICAR
   			=============================================*/
-			$duplicar =  "<div class='btn-group'><button class='btn btn-success btnDuplicarReceta' idReceta='".$recetas[$i]["idReceta"]."' codigoReceta='".$recetas[$i]["codigo"]."' codigoLote='".$recetas[$i]["codigoLote"]."' nuevoIdReceta='".$NuevoId."'  data-toggle='modal' data-target='#modalDuplicarReceta' ><i class='fa fa-clone'></i></button></div>";
+			$duplicar =  "<button class='btn btn-success btnDuplicarReceta' idReceta='".$recetas[$i]["idReceta"]."' codigoReceta='".$recetas[$i]["codigo"]."' codigoLote='".$recetas[$i]["codigoLote"]."'  data-toggle='modal' data-target='#modalDuplicarReceta' ><i class='fa fa-clone'></i></button>";
 		  	
 			/*==Botón Editar y Eliminar=*/
 
@@ -152,7 +150,7 @@ class TablaRecetas{
 				  "'.$productos["nombre"].'",
 				  "'.$recetas[$i]["batch"].'",
 				  "'.$estado.'",
-				  "empty",
+				  "'.$detalle.'",
 				  "'.$duplicar.'",
 			      "'.$opciones.'",
 				  "'.$botones.'"

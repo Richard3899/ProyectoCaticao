@@ -77,7 +77,7 @@ class TablaCostoMarketing{
 			      "'.($i+1).'",
 			      "'.$costomarketing[$i]["descripcion"].'",
 				  "'.$unidadmedida["descripcion"].'",
-			      "'."S/. ".$costomarketing[$i]["precio"].'",
+			      "'.$costomarketing[$i]["precio"].'",
 				  "'.$tipocosto["descripcion"].'",
 			      "'.$botones.'"
 			    ],';

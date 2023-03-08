@@ -165,7 +165,7 @@ MODAL INGRESO DE MAQUINA
                 <span class="input-group-text"><i class="fas fa-layer-group"></i></span>
                 </div>
                 <input type="number" class="form-control input-lg" name="nuevaCantidadI" placeholder="Ingresar cantidad" 
-                 min="0" max="9999999" step="0.001" required>
+                 min="1" max="9999999" required>
             </div>
 
             </div>
@@ -303,7 +303,7 @@ MODAL SALIDA DE MAQUINA
                 <span class="input-group-text"><i class="fas fa-layer-group"></i></span>
                 </div>
                 <input type="number" class="form-control input-lg" name="nuevaCantidadS" placeholder="Ingresar cantidad" 
-                 min="0" max="9999999" step="0.001" required>
+                 min="1" max="9999999" required>
             </div>
 
             </div>

@@ -3,7 +3,9 @@ $('.tablaGastoAdmin').DataTable( {
     "ajax": "ajax/datatable-gastoadmin.ajax.php?permisoEditar="+permisoEditar+"&permisoEliminar="+permisoEliminar,
     "deferRender": true,
 	"columnDefs": [
-		{"className": "dt-center", "targets": "_all"}
+		{"className": "dt-center", "targets": "_all"},
+		//Tipo de dato (Número)
+		{targets:[3], render: DataTable.render.number( '.', ',', 2, 'S/ ')}
 	  ],
 	"retrieve": true,
 	"processing": true,

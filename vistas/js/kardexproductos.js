@@ -133,7 +133,35 @@ function KardexProductos() {
 			"createdCell": function (td) {
 				$(td).css('padding', '3px')
 				
-			}}
+			}},
+			//Tipo de dato (Número)
+			{targets: [6],
+				render: function ( ingreso, type, row ) {
+					var color = 'dark';
+					if (ingreso > 0) {
+					  color = 'success';
+					}
+				  return '<p class="text-' + color + '">' + DataTable.render.number( '.', ',', 2).display(ingreso) + '</button>';
+				}
+			},
+			{targets: [7],
+				render: function ( salida, type, row ) {
+					var color = 'dark';
+					if (salida > 0) {
+					  color = 'danger';
+					}
+				  return '<p class="text-' + color + '">' + DataTable.render.number( '.', ',', 2).display(salida) + '</button>';
+				}
+			},
+			{targets: [8],
+				render: function ( saldo, type, row ) {
+					var color = 'dark';
+					if (saldo > 0) {
+					  color = 'primary';
+					}
+				  return '<p class="text-' + color + '">' + DataTable.render.number( '.', ',', 2).display(saldo) + '</button>';
+				}
+			}
 		  ],
 		  "buttons": [{
 			extend: 'pdf',

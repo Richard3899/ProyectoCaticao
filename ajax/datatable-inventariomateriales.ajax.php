@@ -56,26 +56,7 @@ class TablaInventarioMateriales{
 
 		  	$marcas = ControladorMarcas::ctrMostrarMarcas($item2, $valor2);
 
-
-			/*=============================================
- 	 		TRAEMOS LA UNIDAD DE MEDIDA
-  			=============================================*/ 
-
-		  	$item3 = "idUnidadMedida";
-		  	$valor3 = $materiales["idUnidadMedida"];
-
-		  	$unidadmedida = ControladorUnidadMedida::ctrMostrarUnidadMedida($item3, $valor3);
-
 			$stock=$inventariomateriales[$i]["stock"] ?? 0;
-
-
-			if($stock<10){
-				$stock =  "<button class='btn btn-danger'>".$stock.' '.$unidadmedida["descripcion"]."</button>";				
-			}else if($stock>9 & $stock<15){
-				$stock =  "<button class='btn btn-warning'>".$stock.' '.$unidadmedida["descripcion"]."</button>";	
-			}else{
-				$stock =  "<button class='btn btn-success'>".$stock.' '.$unidadmedida["descripcion"]."</button>";
-			}
 
 		  	$datosJson .='[
 			      "'.($i+1).'",

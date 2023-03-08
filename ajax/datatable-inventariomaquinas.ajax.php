@@ -42,12 +42,6 @@ class TablaInventarioMaquinas{
 			
 			$stock=$inventariomaquinas[$i]["stock"] ?? 0;
 
-			if($stock<2){
-				$stock =  "<button class='btn btn-danger'>".$stock."</button>";				
-		    }else{
-				$stock =  "<button class='btn btn-success'>".$stock."</button>";
-			}
-
 		  	$datosJson .='[
 			      "'.($i+1).'",
 				  "'.$maquinas["nombre"].'",

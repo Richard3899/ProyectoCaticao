@@ -70,7 +70,7 @@ class TablaRecetaCostoVenta{
 
 		 $datosJson = substr($datosJson, 0, -1);
 
-		 $datosJson .=   ',["Total","","","","S/. '.$total.'",""]] 
+		 $datosJson .=   ',["Total","","","","'.$total.'",""]] 
 
 		 }';
 		

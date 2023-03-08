@@ -9,7 +9,11 @@ $('.tablaRecetaCostoVenta').DataTable( {
 	"columnDefs": [
 		{"className": "dt-center", "targets": "_all",
 		 "sortable": false
-		}
+		},
+		//Tipo de dato (Número)
+		{targets:[2], render: DataTable.render.number( '.', ',', 2)},
+		{targets:[3], render: DataTable.render.number( '.', ',', 2, 'S/ ')},
+		{targets:[4], render: DataTable.render.number( '.', ',', 2, 'S/ ')}
 	  ],
 	"retrieve": true,
 	"processing": true,

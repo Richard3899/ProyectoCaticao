@@ -77,7 +77,7 @@ class TablaCostoOperativo{
 			      "'.($i+1).'",
 			      "'.$costooperativo[$i]["descripcion"].'",
 				  "'.$unidadmedida["descripcion"].'",
-			      "'."S/. ".$costooperativo[$i]["precio"].'",
+			      "'.$costooperativo[$i]["precio"].'",
 				  "'.$tipocosto["descripcion"].'",
 			      "'.$botones.'"
 			    ],';

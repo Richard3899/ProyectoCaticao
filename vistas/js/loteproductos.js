@@ -90,7 +90,9 @@ function LoteProductos() {
 			"createdCell": function (td) {
 				$(td).css('padding', '3px')
 				
-			}}
+			}},
+			//Tipo de dato (Número)
+			{targets:[3], render: DataTable.render.number( '.', ',', 2)}
 		  ],
 		  "buttons": [{
 			extend: 'pdf',

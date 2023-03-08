@@ -3,7 +3,12 @@ $('.tablaMaquinas').DataTable( {
     "ajax": "ajax/datatable-maquinas.ajax.php?permisoEditar="+permisoEditar+"&permisoEliminar="+permisoEliminar,
     "deferRender": true,
 	"columnDefs": [
-		{"className": "dt-center", "targets": "_all"}
+		{"className": "dt-center", "targets": "_all"},
+		//Tipo de dato (Número)
+		{targets:[7], render: DataTable.render.number( '.', ',', 2, 'S/ ')},
+		{targets:[9], render: DataTable.render.number( '.', ',', 2)},
+		{targets:[10], render: DataTable.render.number( '.', ',', 2)},
+		{targets:[11], render: DataTable.render.number( '.', ',', 2)}
 	  ],
 	"retrieve": true,
 	"processing": true,

@@ -72,25 +72,7 @@ class TablaKardexProductos{
 
 		  	$movimiento = ControladorMovimiento::ctrMostrarMovimiento($item4, $valor4);
 
-			$ingreso=0;
-			$salida=0;
-			$saldo=0;
 			$movimientos="";
-
-			if($kardexproductos[$i]["ingreso"]>0){
-				
-				$ingreso =  "<p class='text-success'>".$kardexproductos[$i]["ingreso"].' '.$unidadmedida["descripcion"]."</p>";				
-			}
-
-			if($kardexproductos[$i]["salida"]>0){
-				
-				$salida =  "<p class='text-danger'>".$kardexproductos[$i]["salida"].' '.$unidadmedida["descripcion"]."</p>";				
-			}
-
-			if($kardexproductos[$i]["saldo"]){
-				
-				$saldo =  "<p class='text-primary'>".$kardexproductos[$i]["saldo"].' '.$unidadmedida["descripcion"]."</p>";				
-			}
 
 			if($kardexproductos[$i]["idMovimiento"]==1){
 				
@@ -99,7 +81,6 @@ class TablaKardexProductos{
 				$movimientos =  "<p class='text-danger bg-danger'>".$movimiento["descripcion"]."</p>";	
 			}
 
-
 		  	$datosJson .='[
 			      "'.($i+1).'",
 				  "'.$kardexproductos[$i]["hora"].'",
@@ -107,9 +88,9 @@ class TablaKardexProductos{
 			      "'.$kardexproductos[$i]["observacion"].'",
 				  "'.$kardexproductos[$i]["fecha"].'",
 				  "'.$kardexproductos[$i]["codigoLote"].'",
-				  "'.$ingreso.'",
-				  "'.$salida.'",
-				  "'.$saldo.'"
+				  "'.$kardexproductos[$i]["ingreso"].'",
+				  "'.$kardexproductos[$i]["salida"].'",
+				  "'.$kardexproductos[$i]["saldo"].'"
 			    ],';
 
 		  }

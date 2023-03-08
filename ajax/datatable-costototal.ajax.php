@@ -193,7 +193,7 @@ class TablaCostoTotal{
 				$datosJson .='[
 					"'.($i+1).' - '.$recetainsumos[$i]["nombre"].'",
 					"'.$recetainsumos[$i]["precioUnitario"].'",
-					"'.$recetainsumos[$i]["cantidad"]." ".$recetainsumos[$i]["unidadMedida"].'",
+					"'.$recetainsumos[$i]["cantidad"].'",
 					"'.$recetainsumos[$i]["total"].'"
 				  ],';
   
@@ -207,7 +207,7 @@ class TablaCostoTotal{
 				$datosJson .='[
 					"'.($i+1).' - '.$recetamateriales[$i]["nombre"].'",
 					"'.$recetamateriales[$i]["precioUnitario"].'",
-					"'.$recetamateriales[$i]["cantidad"]." ".$recetamateriales[$i]["unidadMedida"].'",
+					"'.$recetamateriales[$i]["cantidad"].'",
 					"'.$recetamateriales[$i]["total"].'"
 			  ],';
   

@@ -77,7 +77,7 @@ class TablaCostoVenta{
 			      "'.($i+1).'",
 			      "'.$costoventa[$i]["descripcion"].'",
 				  "'.$unidadmedida["descripcion"].'",
-			      "'."S/. ".$costoventa[$i]["precio"].'",
+			      "'.$costoventa[$i]["precio"].'",
 				  "'.$tipocosto["descripcion"].'",
 			      "'.$botones.'"
 			    ],';

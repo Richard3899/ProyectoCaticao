@@ -71,8 +71,9 @@ $("#tablaCostoTotal").DataTable({
 	"columnDefs": [
 		{"className": "dt-center", "targets": "_all"},
 		//Tipo de dato (Número)
-		{targets:[1], render: DataTable.render.number( ',', '.', 2, 'S/' )},
-		{targets:[3], render: DataTable.render.number( ',', '.', 2, 'S/' )}
+		{targets:[1], render: DataTable.render.number( '.', ',', 2, 'S/ ')},
+		{targets:[2], render: DataTable.render.number( '.', ',', 2)},
+		{targets:[3], render: DataTable.render.number( '.', ',', 2, 'S/ ')}
 	  ],
 	"processing": true,
 	"language": {

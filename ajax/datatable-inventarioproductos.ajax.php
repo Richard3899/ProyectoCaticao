@@ -73,23 +73,11 @@ class TablaInventarioProductos{
 				$tp =  "<button class='btn btn-success'>".$tipoproducto["descripcion"]."</button>";
 			}
 
-
-			$stock=$inventarioproductos[$i]["stock"];
-
-
-			if($stock<10){
-				$stock =  "<button class='btn btn-danger'>".$stock.' '.$unidadmedida["descripcion"]."</button>";				
-			}else if($stock>9 & $stock<15){
-				$stock =  "<button class='btn btn-warning'>".$stock.' '.$unidadmedida["descripcion"]."</button>";	
-			}else{
-				$stock =  "<button class='btn btn-success'>".$stock.' '.$unidadmedida["descripcion"]."</button>";
-			}
-
 		  	$datosJson .='[
 			      "'.($i+1).'",
 				  "'.$productos["nombre"].'",
 				  "'.$tp.'",
-			      "'.$stock.'"
+			      "'.$inventarioproductos[$i]["stock"].'"
 			    ],';
 
 		  }

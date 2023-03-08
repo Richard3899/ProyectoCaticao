@@ -77,7 +77,7 @@ class TablaGastoAdmin{
 			      "'.($i+1).'",
 			      "'.$gastoadmin[$i]["descripcion"].'",
 				  "'.$unidadmedida["descripcion"].'",
-			      "'."S/. ".$gastoadmin[$i]["precio"].'",
+			      "'.$gastoadmin[$i]["precio"].'",
 				  "'.$tipocosto["descripcion"].'",
 			      "'.$botones.'"
 			    ],';

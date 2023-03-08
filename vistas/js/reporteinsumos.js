@@ -83,7 +83,8 @@ tableReporteInsumos = $("#tablaReporteInsumos").DataTable({
 	"columnDefs": [
 		{"className": "dt-center", "targets": "_all"},
 		//Tipo de dato (Número)
-		{targets:[6], render: DataTable.render.number( ',', '.', 2, 'S/' )}
+		{targets:[6], render: DataTable.render.number( '.', ',', 2, 'S/ ')},
+		{targets:[7], render: DataTable.render.number( '.', ',', 2)}
 	  ],
 	"processing": true,
 	"language": {

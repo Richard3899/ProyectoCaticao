@@ -3,7 +3,19 @@ $('.tablaInventarioMaquinas').DataTable( {
     "ajax": "ajax/datatable-inventariomaquinas.ajax.php",
     "deferRender": true,
 	"columnDefs": [
-		{"className": "dt-center", "targets": "_all"}
+		{"className": "dt-center", "targets": "_all"},
+		//Tipo de dato (Número)
+		{targets: [2],
+			render: function ( stock, type, row ) {
+			  var color = '';
+			  if (stock < 2) {
+				color = 'danger';
+			  }else{
+				color = 'success';
+			  }
+			  return '<button class="btn btn-' + color + '" ">' + DataTable.render.number( '.', ',', 2).display(stock) + '</button>';
+			}
+	   }
 	  ],
 	"retrieve": true,
 	"processing": true,

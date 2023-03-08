@@ -18,7 +18,11 @@ class AjaxRecetas{
 		$item = "idReceta";
 		$valor = $this->idReceta;
 
-		$respuesta = ControladorRecetas::ctrMostrarRecetas($item, $valor);
+        if($valor==NULL){
+			$respuesta = ControladorRecetas::ctrMostrarRecetas(NULL, NULL);
+		}else{
+			$respuesta = ControladorRecetas::ctrMostrarRecetas($item, $valor);
+		}
 
 		echo json_encode($respuesta);
 

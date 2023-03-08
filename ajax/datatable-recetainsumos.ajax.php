@@ -60,7 +60,7 @@ class TablaRecetaInsumos{
 		  	$datosJson .='[
 			      "'.($i+1).'",
 				  "'.$insumosreceta[$i]["nombre"].'",
-			      "'.$insumosreceta[$i]["cantidad"]." ".$insumosreceta[$i]["unidadMedida"].'",
+			      "'.$insumosreceta[$i]["cantidad"].'",
 				  "'.$insumosreceta[$i]["precioUnitario"].'",
 				  "'.$insumosreceta[$i]["total"].'",
 				  "'.$botones.'"
@@ -70,7 +70,7 @@ class TablaRecetaInsumos{
 
 		  $datosJson = substr($datosJson, 0, -1);
 
-		 $datosJson .=   ',["Total","","","","S/. '.$total.'",""]] 
+		 $datosJson .=   ',["Total","","","","'.$total.'",""]] 
 
 		 }';
 		

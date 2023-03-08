@@ -9,7 +9,11 @@ $('.tablaRecetaCostoOperativo').DataTable( {
 	"columnDefs": [
 		{"className": "dt-center", "targets": "_all",
 		 "orderable": false
-		}
+		},
+		//Tipo de dato (Número)
+		{targets:[2], render: DataTable.render.number( '.', ',', 2)},
+		{targets:[3], render: DataTable.render.number( '.', ',', 2, 'S/ ')},
+		{targets:[4], render: DataTable.render.number( '.', ',', 2, 'S/ ')}
 	  ],
 	"retrieve": true,
 	"processing": true,
@@ -255,6 +259,7 @@ $(".tablaRecetaCostoOperativo tbody").on("click", "button.btnEditarCostoOperativ
 		   $("#editarCantidad").val(respuesta["cantidad"]);
 
 		   $(".editarPrecioCostoOperativo").val(respuesta["total"]);
+		   
 		   $(".editarPrecioCostoOperativo").attr("editarprecioReal",respuesta["precio"]);
 		   
 		   editarsumaTotalPrecioRecetaCostoOperativo();
@@ -309,8 +314,8 @@ function editarsumaTotalPrecioRecetaCostoOperativo(){
 
 	var sumaTotalPrecioUnitario = arraySumaPrecioUnitario.reduce(sumaArrayPrecioUnitario,0);
 
-		$(".editarPrecioCostoOperativo").number(true,2);
-		$(".editarPrecioCostoOperativo").val(sumaTotalPrecioUnitario);
+		$(".editarPrecioCostoOperativo").val(new Intl.NumberFormat(['ban', 'id']).format(sumaTotalPrecioUnitario));
+
 		$("#editarPrecioTotal").val(sumaTotalPrecioUnitario);
 
 }

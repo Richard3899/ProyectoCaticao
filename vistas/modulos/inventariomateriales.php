@@ -168,7 +168,7 @@ MODAL INGRESO DE MATERIAL
                 <span class="input-group-text"><i class="fas fa-layer-group"></i></span>
                 </div>
                 <input type="number" class="form-control input-lg" name="nuevaCantidadI" placeholder="Ingresar cantidad" 
-                 min="0" max="9999999" step="0.001" required>
+                 min="0" max="9999999" step="0.01" required>
             </div>
 
             </div>
@@ -310,7 +310,7 @@ MODAL SALIDA DE MATERIAL
                 <span class="input-group-text"><i class="fas fa-layer-group"></i></span>
                 </div>
                 <input type="number" class="form-control input-lg" name="nuevaCantidadS" placeholder="Ingresar cantidad" 
-                 min="0" max="9999999" step="0.001" required>
+                 min="0" max="9999999" step="0.01" required>
             </div>
 
             </div>

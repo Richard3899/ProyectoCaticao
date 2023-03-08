@@ -1,9 +1,10 @@
-
 $('.tablaRecetas').DataTable( {
     "ajax": "ajax/datatable-recetas.ajax.php?permisoEditar="+permisoEditar+"&permisoEliminar="+permisoEliminar,
     "deferRender": true,
 	"columnDefs": [
-		{"className": "dt-center", "targets": "_all"}
+		{"className": "dt-center", "targets": "_all"},
+		//Tipo de dato (Número)
+		{targets:[4], render: DataTable.render.number( '.', ',', 2)}
 	  ],
 	"retrieve": true,
 	"processing": true,
@@ -36,6 +37,54 @@ $('.tablaRecetas').DataTable( {
 
 } );
 
+/*=============================================
+CREAR ID PARA PRODUCTO
+=============================================*/
+
+$(".tablaRecetas").on("draw.dt", function() {
+
+	var idReceta = "";
+
+	var datos = new FormData();
+
+	datos.append("idReceta", idReceta);
+
+	const arrayIdRecetas = [];
+
+	  $.ajax({
+
+     	url:"ajax/recetas.ajax.php",
+      	method: "POST",
+      	data: datos,
+      	cache: false,
+      	contentType: false,
+      	processData: false,
+      	dataType:"json",
+      	success:function(respuesta){
+
+		if(respuesta.length!=0){
+			
+		for (var i=0; i<respuesta.length; i++) { 
+
+		arrayIdRecetas.push(respuesta[i]["idReceta"]);
+	
+		}
+		arrayIdRecetas.sort(function(a, b){return a - b});
+
+		const ultimoIdReceta = $(arrayIdRecetas).get(-1);
+	
+		$("#nuevoIdReceta").val(parseInt(ultimoIdReceta)+1);
+			
+		}else{
+
+		$("#nuevoIdReceta").val(1)
+
+		}
+		
+	    }
+		
+	})
+})
 
 /*=============================================
 EDITAR RECETA
@@ -46,6 +95,7 @@ $(".tablaRecetas tbody").on("click", "button.btnEditarReceta", function(){
 	var codigoLote = $(this).attr("codigoLote");
 	
 	var datos = new FormData();
+	
 	datos.append("codigoLote", codigoLote);
 
 	 $.ajax({
@@ -117,6 +167,78 @@ $(".tablaRecetas tbody").on("click", "button.btnEditarReceta", function(){
 
 
 })
+
+
+
+/*=============================================
+DETALLE RECETA
+=============================================*/
+
+$(".tablaRecetas tbody").on("click", "button.btnDetalleReceta", function(){
+
+	var codigoLote = $(this).attr("codigoLote");
+	
+	var datos = new FormData();
+	
+	datos.append("codigoLote", codigoLote);
+
+	 $.ajax({
+  
+	  url:"ajax/recetas.ajax.php",
+	  method: "POST",
+	  data: datos,
+	  cache: false,
+	  contentType: false,
+	  processData: false,
+	  dataType:"json",
+	  success:function(respuesta){
+  
+		$("#detalleCodigoLote").val(respuesta["codigoLote"]);
+		$("#detalleCodigoLote").disabled;
+		$("#detalleFechaVencimiento").val(respuesta["fechaVencimiento"]);
+
+	  }
+  
+     })
+	
+	var idReceta = $(this).attr("idReceta");
+	
+	var datos = new FormData();
+
+    datos.append("idReceta", idReceta);
+
+     $.ajax({
+
+      url:"ajax/recetas.ajax.php",
+      method: "POST",
+      data: datos,
+      cache: false,
+      contentType: false,
+      processData: false,
+      dataType:"json",
+      success:function(respuesta){
+
+		   $("#detalleFechaInicio").val(respuesta["fechaInicio"]);
+		   $("#detalleFechaInicio").disabled=true;
+		   $("#detalleFechaFin").val(respuesta["fechaFin"]);
+
+		   $("#detallePesoPorTableta").val(new Intl.NumberFormat(['ban', 'id']).format(respuesta["pesoPorTableta"]));
+		   
+		   $("#detallePesoEnTableta").val(new Intl.NumberFormat(['ban', 'id']).format(respuesta["pesoEnTableta"]));
+
+		   $("#detalleMerma").val(new Intl.NumberFormat(['ban', 'id']).format(respuesta["merma"]));
+
+		   $("#detalleReproceso").val(new Intl.NumberFormat(['ban', 'id']).format(respuesta["reproceso"]));
+
+		   $("#detalleCantidadTabletas").val(respuesta["cantidadTabletas"]);
+
+      }
+
+  })
+
+
+})
+
 
 /*=============================================
 ELIMINAR RECETA
@@ -191,7 +313,6 @@ $(".tablaRecetas tbody").on("click", "button.btnDuplicarReceta", function(){
 
 	$("#duplicarIdReceta").val($(this).attr("idReceta"));
 	$("#codigoLote").val($(this).attr("codigoLote"));
-	$("#nuevoIdReceta").val($(this).attr("nuevoIdReceta"));
 
 })
 	

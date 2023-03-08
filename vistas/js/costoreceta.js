@@ -3,7 +3,9 @@ $('.tablaCostoReceta').DataTable( {
     "ajax": "ajax/datatable-costoreceta.ajax.php",
     "deferRender": true,
 	"columnDefs": [
-		{"className": "dt-center", "targets": "_all"}
+		{"className": "dt-center", "targets": "_all"},
+		//Tipo de dato (Número)
+		{targets:[3], render: DataTable.render.number( '.', ',', 2)}
 	  ],
 	"retrieve": true,
 	"processing": true,

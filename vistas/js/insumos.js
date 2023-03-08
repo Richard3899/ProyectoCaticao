@@ -2,7 +2,10 @@ $('.tablaInsumos').DataTable( {
     "ajax": "ajax/datatable-insumos.ajax.php?permisoEditar="+permisoEditar+"&permisoEliminar="+permisoEliminar,
     "deferRender": true,
 	"columnDefs": [
-		{"className": "dt-center", "targets": "_all"}
+		{"className": "dt-center", "targets": "_all"},
+		//Tipo de dato (Número)
+		{targets:[7], render: DataTable.render.number( '.', ',', 2)},
+		{targets:[8], render: DataTable.render.number( '.', ',', 2, 'S/ ')}
 	  ],
 	"retrieve": true,
 	"processing": true,

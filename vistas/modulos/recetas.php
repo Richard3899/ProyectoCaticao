@@ -698,7 +698,181 @@ MODAL EDITAR RECETA
 
 
 <!--=====================================
-MODAL EDITAR RECETA
+MODAL DETALLE RECETA
+======================================-->
+
+<div id="modalDetalleReceta" class="modal fade" role="dialog">
+  
+  <div class="modal-dialog modal-lg">
+
+    <div class="modal-content">
+
+        <!--=====================================
+        CABEZA DEL MODAL
+        ======================================-->
+
+        <div class="modal-header" style="background:gray; color:white">
+
+        <h4 class="modal-title">Detalle Receta</h4>
+
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+
+        </div>
+
+        <!--=====================================
+        CUERPO DEL MODAL
+        ======================================-->
+
+        <div class="modal-body">
+
+        <div class="box-body">
+
+          <div class="row">
+
+          <!-- ENTRADA PARA LA FECHA DE INICIO -->
+          <div class="form-group col-sm">
+          <label for="fechaInicio">Fecha de Inicio</label>
+          <div class="input-group">
+              <div class="input-group-prepend">
+              <span class="input-group-text"><i class="fas fa-calendar-alt"></i></span>
+              </div>
+              <input type="text" class="form-control"  name="detalleFechaInicio" id="detalleFechaInicio" readonly>
+
+          </div>
+          </div>
+
+          <!-- ENTRADA PARA LA FECHA DE FIN -->
+          <div class="form-group col-sm">
+          <label for="FechaFin">Fecha de Fin</label>
+          <div class="input-group">
+              <div class="input-group-prepend">
+              <span class="input-group-text"><i class="fas fa-calendar-alt"></i></span>
+              </div>
+              <input type="text" class="form-control"  name="detalleFechaFin" id="detalleFechaFin" readonly>
+          </div>
+          </div>
+
+          </div>
+
+          <div class="row">
+
+            <!-- ENTRADA PARA EL LOTE -->
+            <div class="form-group col-sm">
+            <label for="lote">Lote</label>
+            <div class="input-group ">
+                <div class="input-group-prepend">
+                <span class="input-group-text"><i class="fas fa-vote-yea"></i></span>
+                </div>
+                <input type="text" class="form-control" name="detalleCodigoLote" id="detalleCodigoLote" readonly>
+              </div>
+            </div>
+
+          <!-- ENTRADA PARA LA FECHA DE VENCIMIENTO -->
+          <div class="form-group col-sm">
+          <label for="fechaVencimiento">Fecha de Vencimiento</label>
+          <div class="input-group">
+              <div class="input-group-prepend">
+              <span class="input-group-text"><i class="fas fa-calendar-alt"></i></span>
+              </div>
+              <input type="text" class="form-control"  name="detalleFechaVencimiento" id="detalleFechaVencimiento" readonly>
+          </div>
+          </div>
+
+          </div>
+
+          <div class="row">
+
+            <!-- ENTRADA PARA PESO POR TABLETA -->
+            <div class="form-group col-sm">
+            <label for="pesoPorTableta">Peso por tableta (Kg)</label>
+            <div class="input-group">
+                <div class="input-group-prepend">
+                <span class="input-group-text"><i class="fas fa-layer-group"></i></span>
+                </div>
+                <input type="text" class="form-control" name="detallePesoPorTableta"  id="detallePesoPorTableta" readonly>
+            </div>
+
+            </div>
+
+            <!-- ENTRADA PARA PESO EN TABLETA -->
+            <div class="form-group col-sm">
+            <label for="pesoEnTableta">Peso en tableta (Kg)</label>
+            <div class="input-group">
+                <div class="input-group-prepend">
+                <span class="input-group-text"><i class="fas fa-layer-group"></i></span>
+                </div>
+                <input type="text" class="form-control" name="detallePesoEnTableta"  id="detallePesoEnTableta" readonly>
+            </div>
+
+            </div>
+
+          </div>
+
+          <div class="row">
+
+            <!-- ENTRADA PARA MERMA -->
+            <div class="form-group col-sm">
+            <label for="merma">Merma (Kg)</label>
+            <div class="input-group">
+                <div class="input-group-prepend">
+                <span class="input-group-text"><i class="fas fa-layer-group"></i></span>
+                </div>
+                <input type="text" class="form-control" name="detalleMerma"  id="detalleMerma" readonly>
+            </div>
+            </div>
+
+            <!-- ENTRADA PARA REPROCESO -->
+            <div class="form-group col-sm">
+            <label for="reproceso">Reproceso (Kg)</label>
+            <div class="input-group">
+                <div class="input-group-prepend">
+                <span class="input-group-text"><i class="fas fa-layer-group"></i></span>
+                </div>
+                <input type="text" class="form-control" name="detalleReproceso"  id="detalleReproceso" readonly>
+            </div>
+            </div>
+
+          </div>
+
+          <div class="row">
+
+            <!-- ENTRADA CANTIDAD DE TABLETAS -->
+            <div class="form-group col-sm">
+            <label for="reproceso">Tabletas</label>
+            <div class="input-group">
+                <div class="input-group-prepend">
+                <span class="input-group-text"><i class="fas fa-layer-group"></i></span>
+                </div>
+                <input type="text" class="form-control" name="detalleCantidadTabletas"  id="detalleCantidadTabletas" readonly>
+            </div>
+            </div>
+
+          </div>
+
+        </div>
+
+        </div>
+
+        <!--=====================================
+        PIE DEL MODAL
+        ======================================-->
+
+        <div class="modal-footer">
+
+          <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Salir</button>
+
+        </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+
+<!--=====================================
+MODAL DUPLICAR RECETA
 ======================================-->
 
 <div id="modalDuplicarReceta" class="modal fade" role="dialog">
