@@ -46,16 +46,20 @@ $(document).on('click','#KardexProductos',function() {
 			function(settings, aData, iDataIndex) {
 				if ( settings.nTable.id !== 'tablaKardexProductos' ) {
 						return true;
-						}
-				var dateIni = $('#min').val();
-				var dateFin = $('#max').val();
-		
+				}
+				var dateIni =$('#min').val();
+				var dateFin =$('#max').val();
+
+				if(dateIni!=""){
+					dateIni = (moment(dateIni,'DD/MM/YYYY')).format('YYYY-MM-DD');
+				}
+				if(dateFin!=""){
+					dateFin = (moment(dateFin,'DD/MM/YYYY')).format('YYYY-MM-DD');
+				}
+				
 				var indexCol = 4;
 		
-				dateIni = dateIni?.replace(/-/g, "");
-				dateFin= dateFin?.replace(/-/g, "");
-		
-				var dateCol = aData[indexCol]?.replace(/-/g, "");
+				var dateCol = (moment(aData[indexCol],'DD/MM/YYYY')).format('YYYY-MM-DD');
 		
 				if (dateIni === "" && dateFin === "")
 				{
@@ -91,8 +95,13 @@ $(document).on('click','#KardexProductos',function() {
 	
 	$(document).ready(function() {
 		// Create date inputs
-		minDate = new DateTime($('#min'));
-		maxDate = new DateTime($('#max'));
+		minDate = new DateTime($('#min'), {
+			format: 'DD/MM/YYYY'
+		});
+		maxDate = new DateTime($('#max'), {
+			format: 'DD/MM/YYYY'
+		});
+
 		// Refilter the table
 		$('#min, #max').on('change', function () {
 			table.draw();			
@@ -126,44 +135,7 @@ function KardexProductos() {
 		"ajax": "ajax/datatable-kardexproductos.ajax.php?ProductoK="+ProductoK,
 		"dom": 'Brtip',
 		"processing": true,
-		"columnDefs": [
-			{"className": "dt-center", "targets": "_all",
-			"targets": '_all',
-			"sortable": false,
-			"createdCell": function (td) {
-				$(td).css('padding', '3px')
-				
-			}},
-			//Tipo de dato (Número)
-			{targets: [6],
-				render: function ( ingreso, type, row ) {
-					var color = 'dark';
-					if (ingreso > 0) {
-					  color = 'success';
-					}
-				  return '<p class="text-' + color + '">' + DataTable.render.number( '.', ',', 2).display(ingreso) + '</button>';
-				}
-			},
-			{targets: [7],
-				render: function ( salida, type, row ) {
-					var color = 'dark';
-					if (salida > 0) {
-					  color = 'danger';
-					}
-				  return '<p class="text-' + color + '">' + DataTable.render.number( '.', ',', 2).display(salida) + '</button>';
-				}
-			},
-			{targets: [8],
-				render: function ( saldo, type, row ) {
-					var color = 'dark';
-					if (saldo > 0) {
-					  color = 'primary';
-					}
-				  return '<p class="text-' + color + '">' + DataTable.render.number( '.', ',', 2).display(saldo) + '</button>';
-				}
-			}
-		  ],
-		  "buttons": [{
+		"buttons": [{
 			extend: 'pdf',
 			className: 'btn-danger',
 			text: "PDF",
@@ -206,7 +178,7 @@ function KardexProductos() {
 					 $('row c[r^="B"]', sheet).attr( 's', '51' );
 					 $('row c[r^="C"]', sheet).attr( 's', '51' );
 					 $('row c[r^="D"]', sheet).attr( 's', '51' );
-					 $('row c[r^="E"]', sheet).attr( 's', '67' );
+					 $('row c[r^="E"]', sheet).attr( 's', '51' );
 					 $('row c[r^="F"]', sheet).attr( 's', '51' );
 					 $('row c[r^="G"]', sheet).attr( 's', '51' );
 					 $('row c[r^="H"]', sheet).attr( 's', '51' );
@@ -214,7 +186,8 @@ function KardexProductos() {
 		
 				},
 			exportOptions: {
-				columns: ':visible'
+				columns: ':visible',
+				orthogonal: 'exportxls'
 			}
 			},
 			{
@@ -233,7 +206,58 @@ function KardexProductos() {
 			extend: 'colvis',
 			className: 'btn-secondary',
 			text: "Columnas Visibles"
-			}],   
+			},{
+			extend: 'pageLength',
+			className: 'btn-secondary',
+			text: "Registros"
+			}],
+		"columnDefs": [
+				{"className": "dt-center", "targets": "_all",
+				"targets": '_all',
+				"sortable": false,
+				"createdCell": function (td) {
+					$(td).css('padding', '3px')
+				}},
+				{targets: [1], render: DataTable.render.moment("YYYY-MM-DD HH:mm:ss","DD/MM/YYYY HH:mm:ss")},
+				{targets: [4], render: DataTable.render.moment( 'DD/MM/YYYY' )},
+				//Tipo de dato (Número)
+				{targets: [6],
+					render: function ( ingreso, type, row ) {
+					if(type==="display"){
+						var color = 'dark';
+						if (ingreso > 0) {
+						  color = 'success';
+						}
+					  return '<p class="text-' + color + '">' + DataTable.render.number( '.', ',', 2).display(ingreso) + '</button>';
+					}
+					  return ingreso;
+					}
+				},
+				{targets: [7],
+					render: function ( salida, type, row ) {
+					if(type==="display"){
+						var color = 'dark';
+						if (salida > 0) {
+						  color = 'danger';
+						}
+					  return '<p class="text-' + color + '">' + DataTable.render.number( '.', ',', 2).display(salida) + '</button>';
+					}
+					  return salida;
+					}
+				},
+				{targets: [8],
+					render: function ( saldo, type, row ) {
+					if(type==="display"){
+						var color = 'dark';
+						if (saldo > 0) {
+						  color = 'primary';
+						}
+						return '<p class="text-' + color + '">' + DataTable.render.number( '.', ',', 2).display(saldo) + '</button>';
+					}
+						return saldo;
+					}
+				}
+		],  
 		"language": {
 	
 			"sProcessing":     "Procesando...",

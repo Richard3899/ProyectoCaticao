@@ -354,7 +354,7 @@ MODAL SALIDA DE PRODUCTO
                 <span class="input-group-text"><i class="fas fa-layer-group"></i></span>
                 </div>
                 <input type="number" class="form-control input-lg nuevaCantidadS" id="nuevaCantidadS" name="nuevaCantidadS" placeholder="Ingresar cantidad" 
-                 min="0" max="9999999" step="0.01" required disabled>
+                 min="1" max="9999999" required disabled>
             </div>
 
             </div>

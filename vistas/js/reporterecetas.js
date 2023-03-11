@@ -52,12 +52,13 @@ tableReporteRecetas = $("#tablaReporteRecetas").DataTable({
 				$('row c[r^="D"]', sheet).attr( 's', '51' );
 				$('row c[r^="E"]', sheet).attr( 's', '51' );
                 $('row c[r^="F"]', sheet).attr( 's', '51' );
-				$('row c[r^="G"]', sheet).attr( 's', '67' );
+				$('row c[r^="G"]', sheet).attr( 's', '51' );
 				$('row c[r^="H"]', sheet).attr( 's', '51' );
 				$('row c[r^="I"]', sheet).attr( 's', '51' );
             },
 		exportOptions: {
-			columns: ':visible'
+			columns: ':visible',
+			orthogonal: 'exportxls'
 		}
 	    },
 		{
@@ -84,7 +85,8 @@ tableReporteRecetas = $("#tablaReporteRecetas").DataTable({
 	"columnDefs": [
 		{"className": "dt-center", "targets": "_all"},
 		//Tipo de dato (Número)
-		{targets:[7,8], render: DataTable.render.number( '.', ',', 2, 'S/ ')}
+		{targets: [6],  render: DataTable.render.moment('DD/MM/YYYY') },
+	    {targets:[7,8], render: DataTable.render.number('.', ',', 2, 'S/ ')}
 	  ],
 	"processing": true,
 	"language": {

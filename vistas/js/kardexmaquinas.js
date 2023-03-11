@@ -44,44 +44,7 @@ function KardexMaquinas() {
 		"ajax": "ajax/datatable-kardexmaquinas.ajax.php?MaquinaK="+MaquinaK,
 		"dom": 'Brtip',
 		"processing": true,
-		"columnDefs": [
-			{"className": "dt-center", "targets": "_all",
-			"targets": '_all',
-			"sortable": false,
-			"createdCell": function (td) {
-				$(td).css('padding', '3px')
-				
-			}},
-			//Tipo de dato (Número)
-			{targets: [5],
-				render: function ( ingreso, type, row ) {
-					var color = 'dark';
-					if (ingreso > 0) {
-					  color = 'success';
-					}
-				  return '<p class="text-' + color + '">' + DataTable.render.number( '.', ',', 2).display(ingreso) + '</button>';
-				}
-			},
-			{targets: [6],
-				render: function ( salida, type, row ) {
-					var color = 'dark';
-					if (salida > 0) {
-					  color = 'danger';
-					}
-				  return '<p class="text-' + color + '">' + DataTable.render.number( '.', ',', 2).display(salida) + '</button>';
-				}
-			},
-			{targets: [7],
-				render: function ( saldo, type, row ) {
-					var color = 'dark';
-					if (saldo > 0) {
-					  color = 'primary';
-					}
-				  return '<p class="text-' + color + '">' + DataTable.render.number( '.', ',', 2).display(saldo) + '</button>';
-				}
-			}
-		  ],
-		  "buttons": [{
+		"buttons": [{
 			extend: 'pdf',
 			className: 'btn-danger',
 			text: "PDF",
@@ -124,14 +87,15 @@ function KardexMaquinas() {
 					 $('row c[r^="B"]', sheet).attr( 's', '51' );
 					 $('row c[r^="C"]', sheet).attr( 's', '51' );
 					 $('row c[r^="D"]', sheet).attr( 's', '51' );
-					 $('row c[r^="E"]', sheet).attr( 's', '67' );
+					 $('row c[r^="E"]', sheet).attr( 's', '51' );
 					 $('row c[r^="F"]', sheet).attr( 's', '51' );
 					 $('row c[r^="G"]', sheet).attr( 's', '51' );
 					 $('row c[r^="H"]', sheet).attr( 's', '51' );
 		
 				},
 			exportOptions: {
-				columns: ':visible'
+				columns: ':visible',
+				orthogonal: 'exportxls'
 			}
 			},
 			{
@@ -150,7 +114,58 @@ function KardexMaquinas() {
 			extend: 'colvis',
 			className: 'btn-secondary',
 			text: "Columnas Visibles"
-			}],   
+			},{
+			extend: 'pageLength',
+			className: 'btn-secondary',
+			text: "Registros"
+			}],  
+		"columnDefs": [
+				{"className": "dt-center", "targets": "_all",
+				"targets": '_all',
+				"sortable": false,
+				"createdCell": function (td) {
+					$(td).css('padding', '3px')	
+				}},
+				{targets: [1], render: DataTable.render.moment("YYYY-MM-DD HH:mm:ss","DD/MM/YYYY HH:mm:ss")},
+				{targets: [4], render: DataTable.render.moment( 'DD/MM/YYYY' )},
+				//Tipo de dato (Número)
+				{targets: [5],
+					render: function ( ingreso, type, row ) {
+					if(type==="display"){
+						var color = 'dark';
+						if (ingreso > 0) {
+						  color = 'success';
+						}
+					  return '<p class="text-' + color + '">' + DataTable.render.number( '.', ',', 2).display(ingreso) + '</button>';
+					}
+					  return ingreso;
+					}
+				},
+				{targets: [6],
+					render: function ( salida, type, row ) {
+					if(type==="display"){
+						var color = 'dark';
+						if (salida > 0) {
+						  color = 'danger';
+						}
+					  return '<p class="text-' + color + '">' + DataTable.render.number( '.', ',', 2).display(salida) + '</button>';
+					}
+					  return salida;
+					}
+				},
+				{targets: [7],
+					render: function ( saldo, type, row ) {
+					if(type==="display"){
+						var color = 'dark';
+						if (saldo > 0) {
+						  color = 'primary';
+						}
+						return '<p class="text-' + color + '">' + DataTable.render.number( '.', ',', 2).display(saldo) + '</button>';
+					}
+						return saldo;
+					}
+				}
+		], 
 		"language": {
 	
 			"sProcessing":     "Procesando...",

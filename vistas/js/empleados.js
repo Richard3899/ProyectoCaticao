@@ -5,6 +5,7 @@ $('.tablaEmpleados').DataTable( {
 	"columnDefs": [
 		{"className": "dt-center", "targets": "_all"},
 		//Tipo de dato (Número)
+		{targets:[12], render: DataTable.render.number( '.', ',', 2)},
 		{targets:[13], render: DataTable.render.number( '.', ',', 2, 'S/ ')},
 		{targets:[14], render: DataTable.render.number( '.', ',', 2, 'S/ ')}
 	  ],

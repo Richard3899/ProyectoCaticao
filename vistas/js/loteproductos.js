@@ -42,6 +42,45 @@ $(document).on('click','#LoteProductos',function() {
 
 	LoteProductos()
 
+	$.fn.dataTable.ext.search.push(
+		function(settings, aData, iDataIndex) {
+			
+			if ( settings.nTable.id !== 'tablaLoteProductos' ) {
+					return true;
+			}
+			var dateIni =$('#min').val();
+			var dateFin =$('#max').val();
+
+			if(dateIni!=""){
+				dateIni = (moment(dateIni,'DD/MM/YYYY')).format('YYYY-MM-DD');
+			}
+			if(dateFin!=""){
+				dateFin = (moment(dateFin,'DD/MM/YYYY')).format('YYYY-MM-DD');
+			}
+
+			var indexCol = 2;
+	
+			var dateCol = (moment(aData[indexCol],'DD/MM/YYYY')).format('YYYY-MM-DD');
+			
+			if (dateIni === "" && dateFin === "")
+			{
+				return true;
+			}
+	
+			if(dateIni === "")
+			{
+				return dateCol <= dateFin;
+			}
+	
+			if(dateFin === "")
+			{
+				return dateCol >= dateIni;
+			}
+	
+			return dateCol >= dateIni && dateCol <= dateFin;
+		}
+	);
+
 	/*===================================================================*/
 	// EVENTOS PARA CRITERIOS DE BUSQUEDA
 	/*===================================================================*/
@@ -52,17 +91,25 @@ $(document).on('click','#LoteProductos',function() {
 	
 	$(document).ready(function() {
 		// Create date inputs
-		minDate = new DateTime($('#fechaVencimiento'));
+		minDate = new DateTime($('#min'), {
+			format: 'DD/MM/YYYY'
+		});
+		maxDate = new DateTime($('#max'), {
+			format: 'DD/MM/YYYY'
+		});
+
+		// Refilter the table
+		$('#min, #max').on('change', function () {
+			table.draw();			
+		});
 	});
 
-	$("#fechaVencimiento").on('change',function(){
-		table.column($(this).data('index')).search(this.value).draw();
-	})
 
 	$("#btnLimpiarBusqueda").on('click',function(){
 
 		$("#lote").val('')
-		$("#fechaVencimiento").val('')
+		$("#min").val('')
+		$("#max").val('')
 
 		table.search('').columns().search('').draw();
 		
@@ -83,18 +130,7 @@ function LoteProductos() {
 		"ajax": "ajax/datatable-loteproductos.ajax.php?ProductoL="+ProductoL,
 		"dom": 'Brtip',
 		"processing": true,
-		"columnDefs": [
-			{"className": "dt-center", "targets": "_all",
-			"targets": '_all',
-			"sortable": false,
-			"createdCell": function (td) {
-				$(td).css('padding', '3px')
-				
-			}},
-			//Tipo de dato (Número)
-			{targets:[3], render: DataTable.render.number( '.', ',', 2)}
-		  ],
-		  "buttons": [{
+		"buttons": [{
 			extend: 'pdf',
 			className: 'btn-danger',
 			text: "PDF",
@@ -121,11 +157,12 @@ function LoteProductos() {
 					//Centrar al exportar en Excel
 					 $('row c[r^="A"]', sheet).attr( 's', '51' );
 					 $('row c[r^="B"]', sheet).attr( 's', '51' );
-					 $('row c[r^="C"]', sheet).attr( 's', '67' );
+					 $('row c[r^="C"]', sheet).attr( 's', '51' );
 					 $('row c[r^="D"]', sheet).attr( 's', '51' );
 				},
 			exportOptions: {
-				columns: ':visible'
+				columns: ':visible',
+				orthogonal: 'exportxls'
 			}
 			},
 			{
@@ -144,7 +181,22 @@ function LoteProductos() {
 			extend: 'colvis',
 			className: 'btn-secondary',
 			text: "Columnas Visibles"
-			}],  
+			},{
+			extend: 'pageLength',
+			className: 'btn-secondary',
+			text: "Registros"
+			}],
+		"columnDefs": [
+				{"className": "dt-center", "targets": "_all",
+				"targets": '_all',
+				"sortable": false,
+				"createdCell": function (td) {
+					$(td).css('padding', '3px')
+				}},
+				//Tipo de dato (Número)
+				{targets:[2], render: DataTable.render.moment( 'DD/MM/YYYY' )},
+				{targets:[3], render: DataTable.render.number( '.', ',', 2)}
+		],  
 		"language": {
 	
 			"sProcessing":     "Procesando...",

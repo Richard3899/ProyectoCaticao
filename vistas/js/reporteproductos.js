@@ -55,7 +55,8 @@ tableReporteProductos = $("#tablaReporteProductos").DataTable({
 	
             },
 		exportOptions: {
-			columns: ':visible'
+			columns: ':visible',
+			orthogonal: 'exportxls'
 		}
 	    },
 		{

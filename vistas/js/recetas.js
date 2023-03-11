@@ -219,16 +219,20 @@ $(".tablaRecetas tbody").on("click", "button.btnDetalleReceta", function(){
       success:function(respuesta){
 
 		   $("#detalleFechaInicio").val(respuesta["fechaInicio"]);
+		  
 		   $("#detalleFechaInicio").disabled=true;
+
 		   $("#detalleFechaFin").val(respuesta["fechaFin"]);
 
-		   $("#detallePesoPorTableta").val(new Intl.NumberFormat(['ban', 'id']).format(respuesta["pesoPorTableta"]));
+	 //    $("#detallePesoPorTableta").val(new Intl.NumberFormat(['ban', 'id']).format(respuesta["pesoPorTableta"]));
+
+		   $("#detallePesoPorTableta").val(respuesta["pesoPorTableta"]);
 		   
-		   $("#detallePesoEnTableta").val(new Intl.NumberFormat(['ban', 'id']).format(respuesta["pesoEnTableta"]));
+		   $("#detallePesoEnTableta").val(respuesta["pesoEnTableta"]);
 
-		   $("#detalleMerma").val(new Intl.NumberFormat(['ban', 'id']).format(respuesta["merma"]));
+		   $("#detalleMerma").val(respuesta["merma"]);
 
-		   $("#detalleReproceso").val(new Intl.NumberFormat(['ban', 'id']).format(respuesta["reproceso"]));
+		   $("#detalleReproceso").val(respuesta["reproceso"]);
 
 		   $("#detalleCantidadTabletas").val(respuesta["cantidadTabletas"]);
 

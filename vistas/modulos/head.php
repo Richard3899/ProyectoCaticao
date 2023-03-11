@@ -108,7 +108,9 @@
   <script src="vistas/plugins/datatables-buttons/js/buttons.html5.js"></script>
   <script src="vistas/plugins/datatables-buttons/js/buttons.print.min.js"></script>
   <script src="vistas/plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
-
+  <script src="vistas/plugins/jszip/jszip.min.js"></script>
+  <script src="vistas/plugins/datarender/datetime.js"></script>
+  
   <!-- jQuery Number -->
   <script src="vistas/plugins/jqueryNumber/jquerynumber.min.js"></script>
 

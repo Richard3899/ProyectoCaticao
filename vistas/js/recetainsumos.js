@@ -185,7 +185,7 @@ $(".formularioRecetaInsumos").on("change", "input.nuevaCantidadInsumo", function
 
 	precioUnitario.val(precioUnitarioFinal);
 
-	var nuevoStock = (Number($(this).attr("stock")) - $(this).val()).toFixed(3);
+	var nuevoStock = (Number($(this).attr("stock")) - $(this).val()).toFixed(2);
 
 	$(this).attr("nuevoStock", nuevoStock);
 
@@ -319,7 +319,7 @@ $(".tablaRecetaInsumos tbody").on("click", "button.btnEditarInsumoReceta", funct
 
 		   $(".editarCantidadInsumo").attr("edStock",(Number(respuesta["stock"])+Number(respuesta["cantidad"])));
 		   $("#editarCantidad").val(respuesta["cantidad"]);
-		   $("#editarStock").val(Number(respuesta["stock"]).toFixed(3)+" "+respuesta["unidadMedida"]);
+		   $("#editarStock").val(Number(respuesta["stock"]).toFixed(2)+" "+respuesta["unidadMedida"]);
 
 		   $("#editarprecioUnitario").val(respuesta["precioUnitario"]);
 		   $(".editarPrecioInsumo").val(respuesta["total"]);
@@ -345,7 +345,7 @@ $(".formularioEditarRecetaInsumo").on("change", "input.editarCantidadInsumo", fu
 
 	editarprecioUnitario.val(precioUnitarioFinal);
 
-	var editarStock = (Number($(this).attr("edStock")) - $(this).val()).toFixed(3);
+	var editarStock = (Number($(this).attr("edStock")) - $(this).val()).toFixed(2);
 
     $(this).attr("editarStock", editarStock);
 

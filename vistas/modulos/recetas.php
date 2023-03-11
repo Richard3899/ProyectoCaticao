@@ -789,7 +789,7 @@ MODAL DETALLE RECETA
                 <div class="input-group-prepend">
                 <span class="input-group-text"><i class="fas fa-layer-group"></i></span>
                 </div>
-                <input type="text" class="form-control" name="detallePesoPorTableta"  id="detallePesoPorTableta" readonly>
+                <input type="number" class="form-control" name="detallePesoPorTableta"  id="detallePesoPorTableta" readonly>
             </div>
 
             </div>
@@ -801,7 +801,7 @@ MODAL DETALLE RECETA
                 <div class="input-group-prepend">
                 <span class="input-group-text"><i class="fas fa-layer-group"></i></span>
                 </div>
-                <input type="text" class="form-control" name="detallePesoEnTableta"  id="detallePesoEnTableta" readonly>
+                <input type="number" class="form-control" name="detallePesoEnTableta"  id="detallePesoEnTableta" readonly>
             </div>
 
             </div>
@@ -817,7 +817,7 @@ MODAL DETALLE RECETA
                 <div class="input-group-prepend">
                 <span class="input-group-text"><i class="fas fa-layer-group"></i></span>
                 </div>
-                <input type="text" class="form-control" name="detalleMerma"  id="detalleMerma" readonly>
+                <input type="number" class="form-control" name="detalleMerma"  id="detalleMerma" readonly>
             </div>
             </div>
 
@@ -828,7 +828,7 @@ MODAL DETALLE RECETA
                 <div class="input-group-prepend">
                 <span class="input-group-text"><i class="fas fa-layer-group"></i></span>
                 </div>
-                <input type="text" class="form-control" name="detalleReproceso"  id="detalleReproceso" readonly>
+                <input type="number" class="form-control" name="detalleReproceso"  id="detalleReproceso" readonly>
             </div>
             </div>
 
@@ -843,7 +843,7 @@ MODAL DETALLE RECETA
                 <div class="input-group-prepend">
                 <span class="input-group-text"><i class="fas fa-layer-group"></i></span>
                 </div>
-                <input type="text" class="form-control" name="detalleCantidadTabletas"  id="detalleCantidadTabletas" readonly>
+                <input type="number" class="form-control" name="detalleCantidadTabletas"  id="detalleCantidadTabletas" readonly>
             </div>
             </div>
 

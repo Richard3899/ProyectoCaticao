@@ -92,10 +92,17 @@
                           </div>
                           </div>
 
-                          <!-- ENTRADA PARA LA FECHA DE EMISIÓN -->
+                          <!-- ENTRADA PARA LA FECHA DE VECIMIENTO -->
                           <div class="form-group col-sm-6 col-md-4 col-lg">
                           <div class="input-group">
-                              <input type="text" id="fechaVencimiento"  class="form-control" placeholder="Fecha de Vencimiento"  data-index="2">   
+                              <input type="text" id="min"  class="form-control" placeholder="Fecha de Vencimiento"  data-index="2">   
+                          </div>
+                          </div>
+
+                          <!-- ENTRADA PARA LA FECHA DE VECIMIENTO -->
+                          <div class="form-group col-sm-6 col-md-4 col-lg">
+                          <div class="input-group">
+                              <input type="text" id="max"  class="form-control" placeholder="Fecha de Vencimiento"  data-index="2">   
                           </div>
                           </div>
 
@@ -105,7 +112,7 @@
 
       <div  class="card-body">
 
-      <table id="tablaKardexProductos" class="table table-bordered table-striped dt-responsive tablaLoteProductos" width="100%">
+      <table id="tablaLoteProductos" class="table table-bordered table-striped dt-responsive tablaLoteProductos" width="100%">
        
        <thead>
         
