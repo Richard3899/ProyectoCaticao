@@ -141,7 +141,8 @@ $(".formularioRecetaInsumos").on("change", "select.seleccionarNombreInsumo", fun
 							$("#nombreInsumo").val(respuesta["nombre"]+" - "+respuesta["marca"]);
 							$(".nuevaCantidadInsumo").attr("stock",respuesta["stock"]);
 							$("#nuevaCantidad").val(0);
-							$("#nuevoStock").val(respuesta["stock"]+" "+respuesta["unidadMedida"]);
+							$("#nuevoStock").val((respuesta["stock"]));
+
 							$("#precioUnitario").val(respuesta["precioUnitario"]);
 							$(".precioInsumo").val(0);
 							$(".precioInsumo").attr("precioReal",respuesta["precioUnitario"]);
@@ -150,7 +151,7 @@ $(".formularioRecetaInsumos").on("change", "select.seleccionarNombreInsumo", fun
 							if(respuesta["stock"] <= 0){
 
 								$("#nuevaCantidad").val(0);
-								$("#nuevoStock").val("0 "+respuesta["unidadMedida"]);
+								$("#nuevoStock").val(0);
 								$(".nuevaCantidadInsumo").attr("stock",0);
 							}
 							
@@ -164,8 +165,6 @@ $(".formularioRecetaInsumos").on("change", "select.seleccionarNombreInsumo", fun
 			  
 			  sumaTotalPrecioRecetaInsumos();
 
-			  
-	
       	}
 
 
@@ -192,7 +191,6 @@ $(".formularioRecetaInsumos").on("change", "input.nuevaCantidadInsumo", function
 	$("#nuevoStock").val(nuevoStock);
 
 		if(Number($(this).val()) > Number($(this).attr("stock"))){
-
 
 			if(Number($(this).attr("stock")) <= 0){
 	
@@ -280,8 +278,7 @@ function sumaTotalPrecioRecetaInsumos(){
 
 	}else{
 
-		$(".precioInsumo").number(true,2);
-		$(".precioInsumo").val(sumaTotalPrecioUnitario);
+		$(".precioInsumo").val(sumaTotalPrecioUnitario.toFixed(2));
 		$("#precioTotal").val(sumaTotalPrecioUnitario);
 		
 	}
@@ -319,7 +316,7 @@ $(".tablaRecetaInsumos tbody").on("click", "button.btnEditarInsumoReceta", funct
 
 		   $(".editarCantidadInsumo").attr("edStock",(Number(respuesta["stock"])+Number(respuesta["cantidad"])));
 		   $("#editarCantidad").val(respuesta["cantidad"]);
-		   $("#editarStock").val(Number(respuesta["stock"]).toFixed(2)+" "+respuesta["unidadMedida"]);
+		   $("#editarStock").val(Number(respuesta["stock"]).toFixed(2));
 
 		   $("#editarprecioUnitario").val(respuesta["precioUnitario"]);
 		   $(".editarPrecioInsumo").val(respuesta["total"]);
@@ -437,8 +434,7 @@ function editarsumaTotalPrecioRecetaInsumos(){
 
 	}else{
 
-		$(".editarPrecioInsumo").number(true,2);
-		$(".editarPrecioInsumo").val(sumaTotalPrecioUnitario);
+		$(".editarPrecioInsumo").val(sumaTotalPrecioUnitario.toFixed(2));
 		$("#editarprecioTotal").val(sumaTotalPrecioUnitario);
 
 	}

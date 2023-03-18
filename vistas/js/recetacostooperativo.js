@@ -222,8 +222,7 @@ function sumaTotalPrecioRecetaCostoOperativo(){
 
 	var sumaTotalPrecioUnitario = arraySumaPrecioUnitario.reduce(sumaArrayPrecioUnitario,0);
 
-		$(".precioCostoOperativo").number(true,2);
-		$(".precioCostoOperativo").val(sumaTotalPrecioUnitario);
+		$(".precioCostoOperativo").val(sumaTotalPrecioUnitario.toFixed(2));
 		$("#precioTotal").val(sumaTotalPrecioUnitario);
 
 }
@@ -314,7 +313,7 @@ function editarsumaTotalPrecioRecetaCostoOperativo(){
 
 	var sumaTotalPrecioUnitario = arraySumaPrecioUnitario.reduce(sumaArrayPrecioUnitario,0);
 
-		$(".editarPrecioCostoOperativo").val(new Intl.NumberFormat(['ban', 'id']).format(sumaTotalPrecioUnitario));
+		$(".editarPrecioCostoOperativo").val(sumaTotalPrecioUnitario.toFixed(2));
 
 		$("#editarPrecioTotal").val(sumaTotalPrecioUnitario);
 

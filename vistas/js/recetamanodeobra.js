@@ -262,8 +262,7 @@ function sumaTotalPrecioRecetaManodeObra(){
 
 	var sumaTotalPrecioUnitario = arraySumaPrecioUnitario.reduce(sumaArrayPrecioUnitario,0);
 
-		$(".precioManodeObra").number(true,2);
-		$(".precioManodeObra").val(sumaTotalPrecioUnitario);
+		$(".precioManodeObra").val(sumaTotalPrecioUnitario.toFixed(2));
 		$("#precioTotal").val(sumaTotalPrecioUnitario);
 
 }
@@ -362,8 +361,7 @@ function editarsumaTotalPrecioRecetaManodeObra(){
 
 	}else{
 
-		$(".editarPrecioManodeObra").number(true,2);
-		$(".editarPrecioManodeObra").val(sumaTotalPrecioUnitario);
+		$(".editarPrecioManodeObra").val(sumaTotalPrecioUnitario.toFixed(2));
 		$("#editarprecioTotal").val(sumaTotalPrecioUnitario);
 
 	}

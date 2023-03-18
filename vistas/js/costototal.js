@@ -42,11 +42,12 @@ $("#tablaCostoTotal").DataTable({
  				$('row c[r^="A"]', sheet).attr( 's', '51' );
                 $('row c[r^="B"]', sheet).attr( 's', '51' );
 				$('row c[r^="C"]', sheet).attr( 's', '51' );
-				$('row c[r^="D"]', sheet).attr( 's', '52' );
+				$('row c[r^="D"]', sheet).attr( 's', '51' );
 	
             },
 		exportOptions: {
-			columns: ':visible'
+			columns: ':visible',
+			orthogonal: 'exportxls'
 		}
 	    },
 		{

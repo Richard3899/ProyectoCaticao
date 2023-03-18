@@ -281,8 +281,7 @@ function sumaTotalPrecioRecetaConsumoEnergia(){
 
 	var sumaTotalPrecioUnitario = arraySumaPrecioUnitario.reduce(sumaArrayPrecioUnitario,0);
 
-		$(".precioConsumoEnergia").number(true,2);
-		$(".precioConsumoEnergia").val(sumaTotalPrecioUnitario);
+		$(".precioConsumoEnergia").val(sumaTotalPrecioUnitario.toFixed(2));
 		$("#precioTotal").val(sumaTotalPrecioUnitario);
 
 }
@@ -374,8 +373,7 @@ function editarsumaTotalPrecioRecetaConsumoEnergia(){
 
 	var sumaTotalPrecioUnitario = arraySumaPrecioUnitario.reduce(sumaArrayPrecioUnitario,0);
 
-		$(".editarPrecioConsumoEnergia").number(true,2);
-		$(".editarPrecioConsumoEnergia").val(sumaTotalPrecioUnitario);
+		$(".editarPrecioConsumoEnergia").val(sumaTotalPrecioUnitario.toFixed(2));
 		$("#editarprecioTotal").val(sumaTotalPrecioUnitario);
 
 }

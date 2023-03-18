@@ -55,7 +55,7 @@
          <th>Producto</th>
          <th>Batch</th>
          <th>Estado</th>
-         <th>Más detalle</th>
+         <th>Detalle</th>
          <th>Duplicar</th>
          <th>Agregar</th>
          <th>Acciones</th>

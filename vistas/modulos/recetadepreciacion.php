@@ -199,7 +199,7 @@ MODAL RECETA DEPRECIACIÓN
                 </div>
                 <input type="hidden" id="precioUnitario" name="precioUnitario">
                 <input type="hidden" id="precioTotal" name="precioTotal">
-                <input type="text" class="form-control input-lg precioDepreciacion" precioReal name="nuevoPrecioUnitario" id="nuevoPrecioUnitario"
+                <input type="number" class="form-control input-lg precioDepreciacion" precioReal name="nuevoPrecioUnitario" id="nuevoPrecioUnitario"
                  required readonly>
             </div>
 
@@ -317,7 +317,7 @@ MODAL EDITAR RECETA DEPRECIACIÓN
                 <span class="input-group-text"><i class="fas fa-dollar-sign"></i></span>
                 </div>
                 <input type="hidden" id="editarprecioTotal" name="editarprecioTotal">
-                <input type="text" class="form-control input-lg editarPrecioDepreciacion" name="editarPrecioDepreciacion" id="editarPrecioDepreciacion"
+                <input type="number" class="form-control input-lg editarPrecioDepreciacion" name="editarPrecioDepreciacion" id="editarPrecioDepreciacion"
                  required readonly>
             </div>
 

@@ -208,7 +208,7 @@ CREATE TABLE materia (
   nombre VARCHAR(50) ,
   descripcion VARCHAR(100) ,
   precio DECIMAL(10,2) ,
-  cantidad DECIMAL(10,3) ,
+  cantidad DECIMAL(10,2) ,
   precioUnitario DECIMAL(10,2) ,
   imagen VARCHAR(100),
   idUnidadMedida INT REFERENCES unidadmedida(idUnidadMedida),
@@ -290,8 +290,8 @@ CREATE TABLE producto (
 
 CREATE TABLE MovimientoMateria (
   idMovimientoMateria INT  AUTO_INCREMENT primary key,
-  ingreso DECIMAL(10,3) ,
-  salida DECIMAL(10,3) ,
+  ingreso DECIMAL(10,2) ,
+  salida DECIMAL(10,2) ,
   observacion VARCHAR(100),
   fecha DATE,
   codigoReceta VARCHAR(20),
@@ -306,7 +306,7 @@ CREATE TABLE MovimientoMateria (
 
 CREATE TABLE InventarioMateria (
   idInventarioMateria INT  AUTO_INCREMENT primary key,
-  stock DECIMAL(10,3) ,
+  stock DECIMAL(10,2) ,
   idMateria INT REFERENCES Materia (idMateria)
 );
 
@@ -404,7 +404,7 @@ CREATE TABLE Receta (
 CREATE TABLE RecetaMateria (
   idRecetaMateria INT  AUTO_INCREMENT primary key,
   nombre VARCHAR(50),
-  cantidad DECIMAL(10,3),
+  cantidad DECIMAL(10,2),
   precioUnitario DECIMAL(10,2),
   total DECIMAL(10,2),
   idMateria INT REFERENCES Materia (idMateria),

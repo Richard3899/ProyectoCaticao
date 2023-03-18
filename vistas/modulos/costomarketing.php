@@ -162,7 +162,7 @@ MODAL AGREGAR COSTOS DE VENTAS
                 <span class="input-group-text"><i class="fas fa-dollar-sign"></i></span>
                 </div>
                 <input type="number" class="form-control input-lg" name="nuevoPrecio" id="nuevoPrecio"
-                placeholder="Ingresar precio" min="0" max="9999999" step="0.01" required>
+                placeholder="Ingresar precio" min="0.01" max="9999999" step="0.01" required>
             </div>
 
             </div>
@@ -326,7 +326,7 @@ MODAL EDITAR COSTOS DE VENTAS
               <span class="input-group-text"><i class="fas fa-dollar-sign"></i></span>
               </div>
               <input type="number" class="form-control input-lg" name="editarPrecio" id="editarPrecio"
-              placeholder="Ingresar precio" min="0" max="9999999" step="0.01" required>
+              placeholder="Ingresar precio" min="0.01" max="9999999" step="0.01" required>
           </div>
 
           </div>

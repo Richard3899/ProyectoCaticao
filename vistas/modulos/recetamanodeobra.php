@@ -232,7 +232,7 @@ MODAL RECETA MANO DE OBRA
                 </div>
                 <input type="hidden" id="precioUnitario" name="precioUnitario">
                 <input type="hidden" id="precioTotal" name="precioTotal">
-                <input type="text" class="form-control input-lg precioManodeObra" precioReal name="nuevoPrecioUnitario" id="nuevoPrecioUnitario"
+                <input type="number" class="form-control input-lg precioManodeObra" precioReal name="nuevoPrecioUnitario" id="nuevoPrecioUnitario"
                  required readonly>
             </div>
 
@@ -361,7 +361,7 @@ MODAL EDITAR RECETA MANO DE OBRA
                 <span class="input-group-text"><i class="fas fa-dollar-sign"></i></span>
                 </div>
                 <input type="hidden" id="editarprecioTotal" name="editarprecioTotal">
-                <input type="text" class="form-control input-lg editarPrecioManodeObra" name="editarPrecioManodeObra" id="editarPrecioManodeObra"
+                <input type="number" class="form-control input-lg editarPrecioManodeObra" name="editarPrecioManodeObra" id="editarPrecioManodeObra"
                  required readonly>
             </div>
 

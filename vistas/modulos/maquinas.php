@@ -208,7 +208,7 @@ MODAL AGREGAR MAQUINA
                 <span class="input-group-text"><i class="fas fa-dollar-sign"></i></span>
                 </div>
                 <input type="number" class="form-control input-lg" name="nuevoPrecio" id="nuevoPrecio"
-                 placeholder="Ingresar precio" min="0" step="0.01" max="9999999" required>
+                 placeholder="Ingresar precio" min="0.01" step="0.01" max="9999999" required>
             </div>
 
             </div>
@@ -238,7 +238,7 @@ MODAL AGREGAR MAQUINA
                 <span class="input-group-text"><i class="fas fa-battery-three-quarters"></i></span>
                 </div>
                 <input type="number" class="form-control input-lg" name="nuevaCapacidad"  id="nuevaCapacidad" 
-                 placeholder="Ingresar capacidad" min="0" step="0.01" max="9999999" required>
+                 placeholder="Ingresar capacidad" min="0.01" step="0.01" max="9999999" required>
             </div>
 
             </div>
@@ -255,7 +255,7 @@ MODAL AGREGAR MAQUINA
                 <span class="input-group-text"><i class="fas fa-bolt"></i></span>
                 </div>
                 <input type="number" class="form-control input-lg" name="nuevaPotenciaHP"  id="nuevaPotenciaHP" 
-                 placeholder="Ingresar potencia HP" min="0" step="0.01" max="9999999" required>
+                 placeholder="Ingresar potencia HP" min="0.01" step="0.01" max="9999999" required>
             </div>
 
             </div>
@@ -268,7 +268,7 @@ MODAL AGREGAR MAQUINA
                 <span class="input-group-text"><i class="fas fa-hourglass-half"></i></span>
                 </div>
                 <input type="number" class="form-control input-lg" name="nuevaVidaUtil"  id="nuevaVidaUtil" 
-                 placeholder="Ingresar vida util" min="0"  max="99" required>
+                 placeholder="Ingresar vida util" min="1"  max="99" required>
             </div>
             </div>
 
@@ -431,7 +431,7 @@ MODAL EDITAR MAQUINA
                 <span class="input-group-text"><i class="fas fa-dollar-sign"></i></span>
                 </div>
                 <input type="number" class="form-control input-lg" id="editarPrecio" name="editarPrecio" 
-                 placeholder="Ingresar precio" min="0" max="9999999" step="0.01" required>
+                 placeholder="Ingresar precio" min="0.01" max="9999999" step="0.01" required>
             </div>
 
             </div>
@@ -460,7 +460,7 @@ MODAL EDITAR MAQUINA
                 <span class="input-group-text"><i class="fas fa-battery-three-quarters"></i></span>
                 </div>
                 <input type="number" class="form-control input-lg" name="editarCapacidad"  id="editarCapacidad" 
-                placeholder="Ingresar capacidad" min="0" step="0.01" max="9999999" required>
+                placeholder="Ingresar capacidad" min="0.01" step="0.01" max="9999999" required>
             </div>
 
             </div>
@@ -477,7 +477,7 @@ MODAL EDITAR MAQUINA
                 <span class="input-group-text"><i class="fas fa-bolt"></i></span>
                 </div>
                 <input type="number" class="form-control input-lg" name="editarPotenciaHP"  id="editarPotenciaHP" 
-                placeholder="Ingresar potencia HP" min="0" step="0.01" max="9999999" required>
+                placeholder="Ingresar potencia HP" min="0.01" step="0.01" max="9999999" required>
             </div>
 
             </div>
@@ -490,7 +490,7 @@ MODAL EDITAR MAQUINA
                 <span class="input-group-text"><i class="fas fa-hourglass-half"></i></span>
                 </div>
                 <input type="number" class="form-control input-lg" name="editarVidaUtil"  id="editarVidaUtil" 
-                 placeholder="Ingresar vida util" min="0" max="99" required>
+                 placeholder="Ingresar vida util" min="1" max="99" required>
             </div>
             </div>
 

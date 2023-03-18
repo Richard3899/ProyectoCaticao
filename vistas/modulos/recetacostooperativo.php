@@ -199,7 +199,7 @@ MODAL RECETA COSTO OPERATIVO
                 </div>
                 <input type="hidden" id="precio" name="precio">
                 <input type="hidden" id="precioTotal" name="precioTotal">
-                <input type="text" class="form-control input-lg precioCostoOperativo" precioReal name="nuevoPrecio" id="nuevoPrecio"
+                <input type="number" class="form-control input-lg precioCostoOperativo" precioReal name="nuevoPrecio" id="nuevoPrecio"
                  required readonly>
             </div>
 
@@ -317,7 +317,7 @@ MODAL EDITAR RECETA COSTO OPERATIVO
                 <span class="input-group-text"><i class="fas fa-dollar-sign"></i></span>
                 </div>
                 <input type="hidden" id="editarPrecioTotal" name="editarPrecioTotal">
-                <input type="text" class="form-control input-lg editarPrecioCostoOperativo" name="editarPrecioCostoOperativo" id="editarPrecioCostoOperativo"
+                <input type="number" class="form-control input-lg editarPrecioCostoOperativo" name="editarPrecioCostoOperativo" id="editarPrecioCostoOperativo"
                  required readonly>
             </div>
 

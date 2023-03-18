@@ -198,7 +198,7 @@ MODAL RECETA COSTO DE VENTA
                 </div>
                 <input type="hidden" id="precio" name="precio">
                 <input type="hidden" id="precioTotal" name="precioTotal">
-                <input type="text" class="form-control input-lg precioCostoVenta" precioReal name="nuevoPrecio" id="nuevoPrecio"
+                <input type="number" class="form-control input-lg precioCostoVenta" precioReal name="nuevoPrecio" id="nuevoPrecio"
                  required readonly>
             </div>
 
@@ -316,7 +316,7 @@ MODAL EDITAR RECETA COSTO DE VENTA
                 <span class="input-group-text"><i class="fas fa-dollar-sign"></i></span>
                 </div>
                 <input type="hidden" id="editarPrecioTotal" name="editarPrecioTotal">
-                <input type="text" class="form-control input-lg editarPrecioCostoVenta" name="editarPrecioCostoVenta" id="editarPrecioCostoVenta"
+                <input type="number" class="form-control input-lg editarPrecioCostoVenta" name="editarPrecioCostoVenta" id="editarPrecioCostoVenta"
                  required readonly>
             </div>
 

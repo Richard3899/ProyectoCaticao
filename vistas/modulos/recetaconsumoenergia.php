@@ -312,7 +312,7 @@ MODAL RECETA CONSUMO DE ENERGÍA
                 </div>
                 <input type="hidden" id="tarifaKwh" name="tarifaKwh">
                 <input type="hidden" id="precioTotal" name="precioTotal">
-                <input type="text" class="form-control input-lg precioConsumoEnergia" name="nuevoPrecioUnitario" id="nuevoPrecioUnitario"
+                <input type="number" class="form-control input-lg precioConsumoEnergia" name="nuevoPrecioUnitario" id="nuevoPrecioUnitario"
                  required readonly>
             </div>
 
@@ -433,7 +433,7 @@ MODAL EDITAR RECETA CONSUMO DE ENERGÍA
                 </div>
                 <input type="hidden" id="editarTarifaKwhCE" name="editarTarifaKwhCE">
                 <input type="hidden" id="editarprecioTotal" name="editarprecioTotal">
-                <input type="text" class="form-control input-lg editarPrecioConsumoEnergia" name="editarPrecioConsumoEnergia" id="editarPrecioConsumoEnergia"
+                <input type="number" class="form-control input-lg editarPrecioConsumoEnergia" name="editarPrecioConsumoEnergia" id="editarPrecioConsumoEnergia"
                  required readonly>
             </div>
 

@@ -200,7 +200,7 @@ MODAL RECETA COSTO DE MARKETING
                 </div>
                 <input type="hidden" id="precio" name="precio">
                 <input type="hidden" id="precioTotal" name="precioTotal">
-                <input type="text" class="form-control input-lg precioCostoMarketing" precioReal name="nuevoPrecio" id="nuevoPrecio"
+                <input type="number" class="form-control input-lg precioCostoMarketing" precioReal name="nuevoPrecio" id="nuevoPrecio"
                  required readonly>
             </div>
 
@@ -318,7 +318,7 @@ MODAL EDITAR RECETA COSTO DE MARKETING
                 <span class="input-group-text"><i class="fas fa-dollar-sign"></i></span>
                 </div>
                 <input type="hidden" id="editarPrecioTotal" name="editarPrecioTotal">
-                <input type="text" class="form-control input-lg editarPrecioCostoMarketing" name="editarPrecioCostoMarketing" id="editarPrecioCostoMarketing"
+                <input type="number" class="form-control input-lg editarPrecioCostoMarketing" name="editarPrecioCostoMarketing" id="editarPrecioCostoMarketing"
                  required readonly>
             </div>
 

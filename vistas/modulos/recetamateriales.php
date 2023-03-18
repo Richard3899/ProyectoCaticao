@@ -185,7 +185,7 @@ MODAL RECETA MATERIAL
                 <div class="input-group-prepend">
                 <span class="input-group-text"><i class="fas fa-box"></i></span>
                 </div>
-                <input type="text" class="form-control input-lg" id="nuevoStock" name="nuevoStock" readonly required>
+                <input type="number" class="form-control input-lg" id="nuevoStock" name="nuevoStock" readonly required>
             </div>
             </div>
 
@@ -201,7 +201,7 @@ MODAL RECETA MATERIAL
                 <span class="input-group-text"><i class="fas fa-layer-group"></i></span>
                 </div>
                 <input type="number" class="form-control input-lg nuevaCantidadMaterial" stock id="nuevaCantidad" name="nuevaCantidad" 
-                 min="0.1" step="0.001" required>
+                 min="0.01" step="0.01" required>
             </div>
 
             </div>
@@ -215,7 +215,7 @@ MODAL RECETA MATERIAL
                 </div>
                 <input type="hidden" id="precioUnitario" name="precioUnitario">
                 <input type="hidden" id="precioTotal" name="precioTotal">
-                <input type="text" class="form-control input-lg precioMaterial" precioReal name="nuevoPrecioUnitario" id="nuevoPrecioUnitario"
+                <input type="number" class="form-control input-lg precioMaterial" precioReal name="nuevoPrecioUnitario" id="nuevoPrecioUnitario"
                  required readonly>
             </div>
 
@@ -320,7 +320,7 @@ MODAL EDITAR RECETA MATERIAL
                 <div class="input-group-prepend">
                 <span class="input-group-text"><i class="fas fa-box"></i></span>
                 </div>
-                <input type="text" class="form-control input-lg" id="editarStock" name="editarStock" readonly required>
+                <input type="number" class="form-control input-lg" id="editarStock" name="editarStock" readonly required>
             </div>
             </div>
 
@@ -336,7 +336,7 @@ MODAL EDITAR RECETA MATERIAL
                 <span class="input-group-text"><i class="fas fa-layer-group"></i></span>
                 </div>
                 <input type="number" class="form-control input-lg editarCantidadMaterial" edStock id="editarCantidad" name="editarCantidad" 
-                min="0.1" step="0.001" required>
+                min="0.01" step="0.01" required>
             </div>
 
             </div>
@@ -350,7 +350,7 @@ MODAL EDITAR RECETA MATERIAL
                 </div>
                 <input type="hidden" id="editarprecioUnitario" name="editarprecioUnitario">
                 <input type="hidden" id="editarprecioTotal" name="editarprecioTotal">
-                <input type="text" class="form-control input-lg editarPrecioMaterial" name="editarPrecioMaterial" id="editarPrecioMaterial"
+                <input type="number" class="form-control input-lg editarPrecioMaterial" name="editarPrecioMaterial" id="editarPrecioMaterial"
                  required readonly>
             </div>
 

@@ -185,7 +185,7 @@ MODAL RECETA INSUMO
                 <div class="input-group-prepend">
                 <span class="input-group-text"><i class="fas fa-box"></i></span>
                 </div>
-                <input type="text" class="form-control input-lg" id="nuevoStock" name="nuevoStock" readonly required>
+                <input type="number" class="form-control input-lg" id="nuevoStock" name="nuevoStock" readonly required>
             </div>
             </div>
 
@@ -201,7 +201,7 @@ MODAL RECETA INSUMO
                 <span class="input-group-text"><i class="fas fa-layer-group"></i></span>
                 </div>
                 <input type="number" class="form-control input-lg nuevaCantidadInsumo" stock id="nuevaCantidad" name="nuevaCantidad" 
-                 min="0.1" step="0.001" required>
+                 min="0.01" step="0.01" required>
             </div>
 
             </div>
@@ -215,7 +215,7 @@ MODAL RECETA INSUMO
                 </div>
                 <input type="hidden" id="precioUnitario" name="precioUnitario">
                 <input type="hidden" id="precioTotal" name="precioTotal">
-                <input type="text" class="form-control input-lg precioInsumo" precioReal name="nuevoPrecioUnitario" id="nuevoPrecioUnitario"
+                <input type="number" class="form-control input-lg precioInsumo" precioReal name="nuevoPrecioUnitario" id="nuevoPrecioUnitario"
                  required readonly>
             </div>
 
@@ -321,7 +321,7 @@ MODAL EDITAR RECETA INSUMO
                 <div class="input-group-prepend">
                 <span class="input-group-text"><i class="fas fa-box"></i></span>
                 </div>
-                <input type="text" class="form-control input-lg" id="editarStock" name="editarStock" readonly required>
+                <input type="number" class="form-control input-lg" id="editarStock" name="editarStock" readonly required>
             </div>
             </div>
 
@@ -337,7 +337,7 @@ MODAL EDITAR RECETA INSUMO
                 <span class="input-group-text"><i class="fas fa-layer-group"></i></span>
                 </div>
                 <input type="number" class="form-control input-lg editarCantidadInsumo" edStock id="editarCantidad" name="editarCantidad" 
-                min="0.1" step="0.001" required>
+                min="0.01" step="0.01" required>
             </div>
 
             </div>
@@ -351,7 +351,7 @@ MODAL EDITAR RECETA INSUMO
                 </div>
                 <input type="hidden" id="editarprecioUnitario" name="editarprecioUnitario">
                 <input type="hidden" id="editarprecioTotal" name="editarprecioTotal">
-                <input type="text" class="form-control input-lg editarPrecioInsumo" name="editarPrecioInsumo" id="editarPrecioInsumo"
+                <input type="number" class="form-control input-lg editarPrecioInsumo" name="editarPrecioInsumo" id="editarPrecioInsumo"
                  required readonly>
             </div>
 

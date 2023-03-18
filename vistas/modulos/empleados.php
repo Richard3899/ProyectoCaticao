@@ -264,7 +264,7 @@ MODAL AGREGAR EMPLEADO
           </div>
           </div>
 
-          <!-- ENTRADA PARA EL FECHA NACIMIENTO -->
+          <!-- ENTRADA PARA LA FECHA NACIMIENTO -->
           <div class="form-group col-sm">
           <label for="fechaNacimiento">Fecha de Nacimiento</label>
           <div class="input-group">
@@ -316,7 +316,7 @@ MODAL AGREGAR EMPLEADO
               <span class="input-group-text"><i class="fas fa-clock"></i></span>
               </div>
               <input type="number" class="form-control input-lg" id="nuevoHorasPorDia" name="nuevoHorasPorDia" placeholder="Ingresar horas de trabajo por día" 
-               min="0" max="24" required>
+               min="1" max="24" required>
           </div>
           </div>
 
@@ -328,7 +328,7 @@ MODAL AGREGAR EMPLEADO
               <span class="input-group-text"><i class="fas fa-dollar-sign"></i></span>
               </div>
               <input type="number" class="form-control input-lg" name="nuevoSueldoPorDia" id="nuevoSueldoPorDia"
-               placeholder="Ingresar sueldo por día" min="0" max="9999999" step="0.01" required>
+               placeholder="Ingresar sueldo por día" min="0.01" max="9999999" step="0.01" required>
           </div>
           </div>
 
@@ -344,7 +344,7 @@ MODAL AGREGAR EMPLEADO
                 <span class="input-group-text"><i class="fas fa-money-bill"></i></span>
                 </div>
                 <input type="number" class="form-control input-lg" name="nuevoSueldoPorMes" id="nuevoSueldoPorMes"
-                 placeholder="Ingresar sueldo por mes" min="0" max="9999999" step="0.01" required>
+                 placeholder="Ingresar sueldo por mes" min="0.01" max="9999999" step="0.01" required>
             </div>
             </div>
 
@@ -650,7 +650,7 @@ MODAL EDITAR EMPLEADO
               <span class="input-group-text"><i class="fas fa-clock"></i></span>
               </div>
               <input type="number" class="form-control input-lg" id="editarHorasPorDia" name="editarHorasPorDia" placeholder="Ingresar horas de trabajo por día" 
-               min="0" max="24" required>
+               min="1" max="24" required>
           </div>
           </div>
 
@@ -662,7 +662,7 @@ MODAL EDITAR EMPLEADO
               <span class="input-group-text"><i class="fas fa-dollar-sign"></i></span>
               </div>
               <input type="number" class="form-control input-lg" name="editarSueldoPorDia" id="editarSueldoPorDia"
-               placeholder="Ingresar sueldo por día" min="0" max="9999999" step="0.01" required>
+               placeholder="Ingresar sueldo por día" min="0.01" max="9999999" step="0.01" required>
           </div>
           </div>
 
@@ -678,7 +678,7 @@ MODAL EDITAR EMPLEADO
                 <span class="input-group-text"><i class="fas fa-money-bill"></i></span>
                 </div>
                 <input type="number" class="form-control input-lg" name="editarSueldoPorMes" id="editarSueldoPorMes"
-                 placeholder="Ingresar sueldo por mes" min="0" max="9999999" step="0.01" required>
+                 placeholder="Ingresar sueldo por mes" min="0.01" max="9999999" step="0.01" required>
             </div>
             </div>
 

@@ -253,7 +253,7 @@
 						render: function ( saldo, type, row ) {
 						if(type==="display"){
 							var color = 'dark';
-							if (saldo > 0) {
+							if (saldo > 0 || saldo <= 0 ) {
 							  color = 'primary';
 							}
 							return '<p class="text-' + color + '">' + DataTable.render.number( '.', ',', 2).display(saldo) + '</button>';

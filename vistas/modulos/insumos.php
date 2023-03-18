@@ -228,7 +228,7 @@ MODAL AGREGAR INSUMO
                 <span class="input-group-text"><i class="fas fa-layer-group"></i></span>
                 </div>
                 <input type="number" class="form-control input-lg" name="nuevaCantidad" placeholder="Ingresar cantidad" 
-                 min="0" max="9999999" step="0.001" required>
+                 min="0.01" max="9999999" step="0.01" required>
             </div>
 
             </div>
@@ -241,7 +241,7 @@ MODAL AGREGAR INSUMO
                 <span class="input-group-text"><i class="fas fa-dollar-sign"></i></span>
                 </div>
                 <input type="number" class="form-control input-lg" name="nuevoPrecio" id="nuevoPrecio"
-                placeholder="Ingresar precio" min="0" max="9999999" step="0.01" required>
+                placeholder="Ingresar precio" min="0.01" max="9999999" step="0.01" required>
             </div>
             </div>
           </div>
@@ -521,7 +521,7 @@ MODAL EDITAR INSUMO
                 <span class="input-group-text"><i class="fas fa-layer-group"></i></span>
                 </div>
                 <input type="number" class="form-control input-lg" name="editarCantidad"  id="editarCantidad" 
-                placeholder="Ingresar cantidad" min="0" step="0.001" max="9999999" required>
+                placeholder="Ingresar cantidad" min="0.01" step="0.001" max="9999999" required>
             </div>
 
             </div>
@@ -534,7 +534,7 @@ MODAL EDITAR INSUMO
                 <span class="input-group-text"><i class="fas fa-dollar-sign"></i></span>
                 </div>
                 <input type="number" class="form-control input-lg" name="editarPrecio"  id="editarPrecio" 
-                placeholder="Ingresar precio" min="0" step="0.01" max="9999999" required>
+                placeholder="Ingresar precio" min="0.01" step="0.01" max="9999999" required>
             </div>
 
             </div>

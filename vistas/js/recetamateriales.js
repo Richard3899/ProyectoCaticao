@@ -142,7 +142,7 @@ $(".formularioRecetaMateriales").on("change", "select.seleccionarNombreMaterial"
 							$("#nombreMaterial").val(respuesta["nombre"]+" - "+respuesta["marca"]);
 							$(".nuevaCantidadMaterial").attr("stock",respuesta["stock"]);
 							$("#nuevaCantidad").val(0);
-							$("#nuevoStock").val(respuesta["stock"]+" "+respuesta["unidadMedida"]);
+							$("#nuevoStock").val(respuesta["stock"]);
 							$("#precioUnitario").val(respuesta["precioUnitario"]);
 							$(".precioMaterial").val(0);
 							$(".precioMaterial").attr("precioReal",respuesta["precioUnitario"]);
@@ -151,7 +151,7 @@ $(".formularioRecetaMateriales").on("change", "select.seleccionarNombreMaterial"
 							if(respuesta["stock"] <= 0){
 
 								$("#nuevaCantidad").val(0);
-								$("#nuevoStock").val("0 "+respuesta["unidadMedida"]);
+								$("#nuevoStock").val(0);
 								$(".nuevaCantidadMaterial").attr("stock",0);
 							}
 							
@@ -279,8 +279,7 @@ function sumaTotalPrecioRecetaMateriales(){
 
 	}else{
 
-		$(".precioMaterial").number(true,2);
-		$(".precioMaterial").val(sumaTotalPrecioUnitario);
+		$(".precioMaterial").val(sumaTotalPrecioUnitario.toFixed(2));
 		$("#precioTotal").val(sumaTotalPrecioUnitario);
 
 	}
@@ -318,7 +317,7 @@ $(".tablaRecetaMateriales tbody").on("click", "button.btnEditarMaterialReceta", 
 
 		   $(".editarCantidadMaterial").attr("edStock",(Number(respuesta["stock"])+Number(respuesta["cantidad"])));
 		   $("#editarCantidad").val(respuesta["cantidad"]);
-		   $("#editarStock").val(Number(respuesta["stock"]).toFixed(2)+" "+respuesta["unidadMedida"]);
+		   $("#editarStock").val(Number(respuesta["stock"]).toFixed(2));
 
 		   $("#editarprecioUnitario").val(respuesta["precioUnitario"]);
 		   $(".editarPrecioMaterial").val(respuesta["total"]);
@@ -436,8 +435,7 @@ function editarsumaTotalPrecioRecetaMateriales(){
 
 	}else{
 
-		$(".editarPrecioMaterial").number(true,2);
-		$(".editarPrecioMaterial").val(sumaTotalPrecioUnitario);
+		$(".editarPrecioMaterial").val(sumaTotalPrecioUnitario.toFixed(2));
 		$("#editarprecioTotal").val(sumaTotalPrecioUnitario);
 
 	}
