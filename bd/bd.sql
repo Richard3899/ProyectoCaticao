@@ -381,7 +381,7 @@ CREATE TABLE Estado (
 CREATE TABLE Receta (
   idReceta INT  AUTO_INCREMENT primary key,
   codigo VARCHAR(20) ,
-  nombre VARCHAR(50) ,
+  nombre VARCHAR(100) ,
   batch DECIMAL(10,2) ,
   fechaInicio DATE ,
   fechaFin DATE ,

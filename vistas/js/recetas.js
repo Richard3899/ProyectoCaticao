@@ -8,6 +8,7 @@ $('.tablaRecetas').DataTable( {
 	  ],
 	"retrieve": true,
 	"processing": true,
+	"aLengthMenu": [[10,25,50,-1],[10,25,50,"Todos"]],
 	"language": {
 
 		"sProcessing":     "Procesando...",
@@ -36,6 +37,30 @@ $('.tablaRecetas').DataTable( {
 }
 
 } );
+
+$(document).ready(function() {
+	// Create date inputs
+	new DateTime($('#nuevaFechaInicio'), {
+		format: 'DD/MM/YYYY'
+	});
+	new DateTime($('#nuevaFechaFin'), {
+		format: 'DD/MM/YYYY'
+	});
+	new DateTime($('#nuevaFechaVencimiento'), {
+		format: 'DD/MM/YYYY'
+	});
+
+	new DateTime($('#editarFechaInicio'), {
+		format: 'DD/MM/YYYY'
+	});
+	new DateTime($('#editarFechaFin'), {
+		format: 'DD/MM/YYYY'
+	});
+	new DateTime($('#editarFechaVencimiento'), {
+		format: 'DD/MM/YYYY'
+	});
+
+});
 
 /*=============================================
 CREAR ID PARA PRODUCTO
@@ -113,8 +138,8 @@ $(".tablaRecetas tbody").on("click", "button.btnEditarReceta", function(){
   
 		$("#editarCodigoLote").val(respuesta["codigoLote"]);
 
-		$("#editarFechaVencimiento").val(respuesta["fechaVencimiento"]);
-
+		$("#editarFechaVencimiento").val(moment(respuesta["fechaVencimiento"],'YYYY-MM-DD').format('DD/MM/YYYY'));
+		
 		$("#editaridProducto").val(respuesta["idProducto"]).trigger('change.select2');
 
 	  }
@@ -124,6 +149,7 @@ $(".tablaRecetas tbody").on("click", "button.btnEditarReceta", function(){
 	var idReceta = $(this).attr("idReceta");
 	
 	var datos = new FormData();
+
     datos.append("idReceta", idReceta);
 
      $.ajax({
@@ -146,10 +172,10 @@ $(".tablaRecetas tbody").on("click", "button.btnEditarReceta", function(){
            $("#editarBatch").val(respuesta["batch"]);
 
 		   $("#editaridEstado").val(respuesta["idEstado"]);
+		   
+		   $("#editarFechaInicio").val(moment(respuesta["fechaInicio"],'YYYY-MM-DD').format('DD/MM/YYYY'));
 
-		   $("#editarFechaInicio").val(respuesta["fechaInicio"]);
-
-		   $("#editarFechaFin").val(respuesta["fechaFin"]);
+		   $("#editarFechaFin").val(moment(respuesta["fechaFin"],'YYYY-MM-DD').format('DD/MM/YYYY'));
 
 		   $("#editarPesoPorTableta").val(respuesta["pesoPorTableta"]);
 
@@ -195,8 +221,8 @@ $(".tablaRecetas tbody").on("click", "button.btnDetalleReceta", function(){
   
 		$("#detalleCodigoLote").val(respuesta["codigoLote"]);
 		$("#detalleCodigoLote").disabled;
-		$("#detalleFechaVencimiento").val(respuesta["fechaVencimiento"]);
-
+		$("#detalleFechaVencimiento").val(moment(respuesta["fechaVencimiento"],'YYYY-MM-DD').format('DD/MM/YYYY'));
+		
 	  }
   
      })
@@ -217,14 +243,11 @@ $(".tablaRecetas tbody").on("click", "button.btnDetalleReceta", function(){
       processData: false,
       dataType:"json",
       success:function(respuesta){
-
-		   $("#detalleFechaInicio").val(respuesta["fechaInicio"]);
-		  
-		   $("#detalleFechaInicio").disabled=true;
-
-		   $("#detalleFechaFin").val(respuesta["fechaFin"]);
-
 	 //    $("#detallePesoPorTableta").val(new Intl.NumberFormat(['ban', 'id']).format(respuesta["pesoPorTableta"]));
+
+		   $("#detalleFechaInicio").val(moment(respuesta["fechaInicio"],'YYYY-MM-DD').format('DD/MM/YYYY'));
+
+		   $("#detalleFechaFin").val(moment(respuesta["fechaFin"],'YYYY-MM-DD').format('DD/MM/YYYY'));
 
 		   $("#detallePesoPorTableta").val(respuesta["pesoPorTableta"]);
 		   

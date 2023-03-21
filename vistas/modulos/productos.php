@@ -133,7 +133,7 @@ MODAL AGREGAR PRODUCTO
                 <span class="input-group-text"><i class="fas fa-file-signature"></i></span>
                 </div>
                 <input type="text" class="form-control input-lg" id="idNombre" name="nuevoNombre" placeholder="Ingresar nombre" 
-                 maxlength="50"  pattern="[A-Za-z0-9ñÑáéíóúÁÉÍÓÚ% ]+" title="Solo se acepta letras y números" required>
+                 maxlength="50"  pattern="[-A-Za-z0-9ñÑáéíóúÁÉÍÓÚ,.:;()% ]+" title="Solo se acepta letras y números" required>
             </div>
             </div>
 
@@ -149,7 +149,7 @@ MODAL AGREGAR PRODUCTO
                 <span class="input-group-text"><i class="fas fa-bars"></i></span>
                 </div>
                 <input type="text" class="form-control input-lg" name="nuevaDescripcion" placeholder="Ingresar descripción" 
-                maxlength="100" pattern="[A-Za-z0-9ñÑáéíóúÁÉÍÓÚ% ]+" title="Solo se acepta letras y números" required>
+                maxlength="100" pattern="[-A-Za-z0-9ñÑáéíóúÁÉÍÓÚ,.:;()% ]+" title="Solo se acepta letras y números" required>
             </div>
            </div>
 
@@ -326,7 +326,7 @@ MODAL EDITAR PRODUCTO
                 <span class="input-group-text"><i class="fas fa-file-signature"></i></span>
                 </div>
                 <input type="text" class="form-control input-lg" name="editarNombre" id="editarNombre" placeholder="Ingresar nombre"
-                 maxlength="50"  pattern="[A-Za-z0-9ñÑáéíóúÁÉÍÓÚ% ]+" title="Solo se acepta letras y números" required>
+                 maxlength="50"  pattern="[-A-Za-z0-9ñÑáéíóúÁÉÍÓÚ,.:;()% ]+" title="Solo se acepta letras y números" required>
             </div>
             </div>
 
@@ -341,7 +341,7 @@ MODAL EDITAR PRODUCTO
                 <span class="input-group-text"><i class="fas fa-bars"></i></span>
                 </div>
                 <input type="text" class="form-control input-lg" name="editarDescripcion" id="editarDescripcion" placeholder="Ingresar descripción"
-                maxlength="100" pattern="[A-Za-z0-9ñÑáéíóúÁÉÍÓÚ% ]+" title="Solo se acepta letras y números" required>
+                maxlength="100" pattern="[-A-Za-z0-9ñÑáéíóúÁÉÍÓÚ,.:;()% ]+" title="Solo se acepta letras y números" required>
             </div>
            </div>
 

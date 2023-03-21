@@ -196,7 +196,7 @@ MODAL RECETA COSTO DE MARKETING
             <label for="precio">Precio</label>
             <div class="input-group">
                 <div class="input-group-prepend">
-                <span class="input-group-text"><i class="fas fa-dollar-sign"></i></span>
+                <span class="input-group-text"><strong>S/.</strong></span>
                 </div>
                 <input type="hidden" id="precio" name="precio">
                 <input type="hidden" id="precioTotal" name="precioTotal">
@@ -315,7 +315,7 @@ MODAL EDITAR RECETA COSTO DE MARKETING
             <label for="precio">Precio</label>
             <div class="input-group">
                 <div class="input-group-prepend">
-                <span class="input-group-text"><i class="fas fa-dollar-sign"></i></span>
+                <span class="input-group-text"><strong>S/.</strong></span>
                 </div>
                 <input type="hidden" id="editarPrecioTotal" name="editarPrecioTotal">
                 <input type="number" class="form-control input-lg editarPrecioCostoMarketing" name="editarPrecioCostoMarketing" id="editarPrecioCostoMarketing"

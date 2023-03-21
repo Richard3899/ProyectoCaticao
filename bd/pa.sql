@@ -548,7 +548,7 @@ CREATE PROCEDURE `insertar_empleado` (  in nombreI VARCHAR(50),
                                         in numeroDocumentoI VARCHAR(15),
                                         in direccionI  VARCHAR(50),
                                         in telefonoI  VARCHAR(15),
-                                        in fechaNacimientoI DATE,
+                                        in fechaNacimientoI TEXT,
                                         in cargoI  VARCHAR(50),
                                         in horarioTrabajoI  VARCHAR(50),
                                         in horasPorDiaI INT,
@@ -557,7 +557,7 @@ CREATE PROCEDURE `insertar_empleado` (  in nombreI VARCHAR(50),
                                         in idTipoCostoI INT)
 BEGIN
 	insert into empleado (nombre,apellido,idUsuario,correo,idTipoDocumento,numeroDocumento,direccion,telefono,fechaNacimiento,cargo,horarioTrabajo,horasPorDia,sueldoPorDia,precioUnitario,sueldoPorMes,idTipoCosto)
-				 values  (nombreI,apellidoI,idUsuarioI,correoI,idTipoDocumentoI,numeroDocumentoI,direccionI,telefonoI,fechaNacimientoI,cargoI,horarioTrabajoI,horasPorDiaI,sueldoPorDiaI,sueldoPorDiaI/horasPorDiaI,sueldoPorMesI,idTipoCostoI);
+				 values  (nombreI,apellidoI,idUsuarioI,correoI,idTipoDocumentoI,numeroDocumentoI,direccionI,telefonoI,STR_TO_DATE(REPLACE(fechaNacimientoI,'/','.') ,GET_FORMAT(date,'EUR')),cargoI,horarioTrabajoI,horasPorDiaI,sueldoPorDiaI,sueldoPorDiaI/horasPorDiaI,sueldoPorMesI,idTipoCostoI);
 END$$
 DELIMITER ;
 
@@ -574,7 +574,7 @@ CREATE PROCEDURE `editar_empleado` (    in idEmpleadoE INT,
                                         in numeroDocumentoE VARCHAR(15),
                                         in direccionE  VARCHAR(50),
                                         in telefonoE  VARCHAR(15),
-                                        in fechaNacimientoE DATE,
+                                        in fechaNacimientoE TEXT,
                                         in cargoE  VARCHAR(50),
                                         in horarioTrabajoE  VARCHAR(50),
                                         in horasPorDiaE INT,
@@ -591,7 +591,7 @@ BEGIN
                         numeroDocumento=numeroDocumentoE,
                         direccion=direccionE,
                         telefono=telefonoE,
-                        fechaNacimiento=fechaNacimientoE,
+                        fechaNacimiento=STR_TO_DATE(REPLACE(fechaNacimientoE,'/','.') ,GET_FORMAT(date,'EUR')),
                         cargo=cargoE,
                         horarioTrabajo=horarioTrabajoE,
                         horasPorDia=horasPorDiaE,
@@ -751,10 +751,10 @@ DELIMITER $$
 USE `caticao`$$
 CREATE PROCEDURE `mostrar_inventarioinsumos` ()
 BEGIN
-	Select * from inventariomateria im 
+	 SELECT * FROM inventariomateria im 
              right join materia m on m.idMateria=im.idMateria
              where m.idTipoMateria=1
-             order by im.stock asc;
+             order by im.stock ASC;
 END$$
 DELIMITER ;
 
@@ -1126,10 +1126,10 @@ CREATE PROCEDURE `insertar_receta` (    in codigoI VARCHAR(20),
                                         in idProductoI INT,
                                         in batchI DECIMAL(10,2),
                                         in idEstadoI INT,
-                                        in fechaInicioI date,
-                                        in fechaFinI date,
+                                        in fechaInicioI TEXT,
+                                        in fechaFinI TEXT,
                                         in codigoLoteI VARCHAR(20),
-                                        in fechaVencimientoI date,
+                                        in fechaVencimientoI TEXT,
                                         in pesoPorTabletaI DECIMAL(10,2),
                                         in pesoEnTabletaI DECIMAL(10,2),
                                         in mermaI DECIMAL(10,2),
@@ -1138,10 +1138,10 @@ CREATE PROCEDURE `insertar_receta` (    in codigoI VARCHAR(20),
 BEGIN
 
     insert into lote (codigoLote,fechaVencimiento,cantidad,idProducto)
-			   values (codigoLoteI,fechaVencimientoI,0,idProductoI);
+			   values (codigoLoteI,STR_TO_DATE(REPLACE(fechaVencimientoI,'/','.') ,GET_FORMAT(date,'EUR')),0,idProductoI);
                 
 	insert into receta (codigo,nombre,batch,idEstado,fechaInicio,fechaFin,pesoPorTableta,pesoEnTableta,merma,reproceso,codigoLote,cerrado,cantidadTabletas,costoTotal,costoPorTableta)
-			      values (codigoI,nombreI,batchI,idEstadoI,fechaInicioI,fechaFinI,pesoPorTabletaI,pesoEnTabletaI,mermaI,reprocesoI,codigoLoteI,0,cantidadTabletasI,0,0);
+			      values (codigoI,nombreI,batchI,idEstadoI,STR_TO_DATE(REPLACE(fechaInicioI,'/','.') ,GET_FORMAT(date,'EUR')),STR_TO_DATE(REPLACE(fechaFinI,'/','.') ,GET_FORMAT(date,'EUR')),pesoPorTabletaI,pesoEnTabletaI,mermaI,reprocesoI,codigoLoteI,0,cantidadTabletasI,0,0);
 	
 END$$
 DELIMITER ;
@@ -1157,10 +1157,10 @@ CREATE PROCEDURE `editar_receta` (      in idRecetaE INT,
                                         in idProductoE INT,
                                         in batchE DECIMAL(10,2),
                                         in idEstadoE INT,
-                                        in fechaInicioE date,
-                                        in fechaFinE date,
+                                        in fechaInicioE TEXT,
+                                        in fechaFinE TEXT,
                                         in codigoLoteE VARCHAR(20),
-                                        in fechaVencimientoE date,
+                                        in fechaVencimientoE TEXT,
                                         in pesoPorTabletaE DECIMAL(10,2),
                                         in pesoEnTabletaE DECIMAL(10,2),
                                         in mermaE DECIMAL(10,2),
@@ -1168,7 +1168,7 @@ CREATE PROCEDURE `editar_receta` (      in idRecetaE INT,
 													 in cantidadTabletasE INT)
 BEGIN
 	update lote  SET     codigoLote=codigoLoteE,
-                        fechaVencimiento=fechaVencimientoE,
+                        fechaVencimiento=STR_TO_DATE(REPLACE(fechaVencimientoE,'/','.') ,GET_FORMAT(date,'EUR')),
                         idProducto=idProductoE
 			   WHERE       idLote=idLoteE;
 
@@ -1176,8 +1176,8 @@ BEGIN
                         nombre=nombreE,
                         batch=batchE,
                         idEstado=idEstadoE,
-                        fechaInicio=fechaInicioE,
-                        fechaFin=fechaFinE,
+                        fechaInicio=STR_TO_DATE(REPLACE(fechaInicioE,'/','.') ,GET_FORMAT(date,'EUR')),
+                        fechaFin=STR_TO_DATE(REPLACE(fechaFinE,'/','.') ,GET_FORMAT(date,'EUR')),
                         codigoLote=codigoLoteE,
                         pesoPorTableta=pesoPorTabletaE,
                         pesoEnTableta=pesoEnTabletaE,

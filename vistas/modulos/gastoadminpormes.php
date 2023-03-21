@@ -184,11 +184,11 @@ MODAL GASTO ADMINISTRATIVO POR MES
             <label for="precio">Precio</label>
             <div class="input-group">
                 <div class="input-group-prepend">
-                <span class="input-group-text"><i class="fas fa-dollar-sign"></i></span>
+                <span class="input-group-text"><strong>S/.</strong></span>
                 </div>
                 <input type="hidden" id="precio" name="precio">
                 <input type="hidden" id="precioTotal" name="precioTotal">
-                <input type="text" class="form-control input-lg precioGastoAdmin" precioReal name="nuevoPrecio" id="nuevoPrecio"
+                <input type="number" class="form-control input-lg precioGastoAdmin" precioReal name="nuevoPrecio" id="nuevoPrecio"
                  required readonly>
             </div>
 
@@ -301,10 +301,10 @@ MODAL EDITAR GASTO ADMINISTRATIVO POR MES
             <label for="precio">Precio</label>
             <div class="input-group">
                 <div class="input-group-prepend">
-                <span class="input-group-text"><i class="fas fa-dollar-sign"></i></span>
+                <span class="input-group-text"><strong>S/.</strong></span>
                 </div>
                 <input type="hidden" id="editarPrecioTotal" name="editarPrecioTotal">
-                <input type="text" class="form-control input-lg editarPrecioGastoAdmin" name="editarPrecioGastoAdmin" id="editarPrecioGastoAdmin"
+                <input type="number" class="form-control input-lg editarPrecioGastoAdmin" name="editarPrecioGastoAdmin" id="editarPrecioGastoAdmin"
                  required readonly>
             </div>
 

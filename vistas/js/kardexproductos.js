@@ -135,6 +135,7 @@ function KardexProductos() {
 		"ajax": "ajax/datatable-kardexproductos.ajax.php?ProductoK="+ProductoK,
 		"dom": 'Brtip',
 		"processing": true,
+		"aLengthMenu": [[10,25,50,-1],[10,25,50,"Todos"]],
 		"buttons": [{
 			extend: 'pdf',
 			className: 'btn-danger',

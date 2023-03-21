@@ -140,7 +140,7 @@ MODAL AGREGAR MAQUINA
                 <span class="input-group-text"><i class="fas fa-file-signature"></i></span>
                 </div>
                 <input type="text" class="form-control input-lg" id="nuevoNombre" name="nuevoNombre" placeholder="Ingresar nombre" 
-                 maxlength="50"  pattern="[A-Za-z0-9ñÑáéíóúÁÉÍÓÚ ]+" title="Solo se acepta letras y números" required>
+                 maxlength="50"  pattern="[-A-Za-z0-9ñÑáéíóúÁÉÍÓÚ,.:;() ]+" title="Solo se acepta letras y números" required>
             </div>
             </div>
 
@@ -154,7 +154,7 @@ MODAL AGREGAR MAQUINA
                 <span class="input-group-text"><i class="fas fa-bars"></i></span>
                 </div>
                 <input type="text" class="form-control input-lg" name="nuevaDescripcion" placeholder="Ingresar descripción" 
-                maxlength="100" pattern="[A-Za-z0-9ñÑáéíóúÁÉÍÓÚ ]+" title="Solo se acepta letras y números" required>
+                maxlength="100" pattern="[-A-Za-z0-9ñÑáéíóúÁÉÍÓÚ,.:;() ]+" title="Solo se acepta letras y números" required>
             </div>
            </div>
 
@@ -196,7 +196,7 @@ MODAL AGREGAR MAQUINA
                 <span class="input-group-text"><i class="fas fa-file-signature"></i>  </span>
                 </div>
                 <input type="text" class="form-control input-lg" id="nuevaMarca" name="nuevaMarca" placeholder="Ingresar marca" 
-                maxlength="50"  pattern="[A-Za-z0-9ñÑáéíóúÁÉÍÓÚ ]+" title="Solo se acepta letras y números" required>
+                maxlength="50"  pattern="[-A-Za-z0-9ñÑáéíóúÁÉÍÓÚ,.:;() ]+" title="Solo se acepta letras y números" required>
             </div>
             </div>
 
@@ -205,7 +205,7 @@ MODAL AGREGAR MAQUINA
             <label for="precio">Precio</label>
             <div class="input-group">
                 <div class="input-group-prepend">
-                <span class="input-group-text"><i class="fas fa-dollar-sign"></i></span>
+                <span class="input-group-text"><strong>S/.</strong></span>
                 </div>
                 <input type="number" class="form-control input-lg" name="nuevoPrecio" id="nuevoPrecio"
                  placeholder="Ingresar precio" min="0.01" step="0.01" max="9999999" required>
@@ -363,7 +363,7 @@ MODAL EDITAR MAQUINA
                 <span class="input-group-text"><i class="fas fa-file-signature"></i></span>
                 </div>
                 <input type="text" class="form-control input-lg" name="editarNombre" id="editarNombre" placeholder="Ingresar nombre"
-                 maxlength="50"  pattern="[A-Za-z0-9ñÑáéíóúÁÉÍÓÚ ]+" title="Solo se acepta letras y números" required>
+                 maxlength="50"  pattern="[-A-Za-z0-9ñÑáéíóúÁÉÍÓÚ,.:;() ]+" title="Solo se acepta letras y números" required>
             </div>
             </div>
 
@@ -377,7 +377,7 @@ MODAL EDITAR MAQUINA
                 <span class="input-group-text"><i class="fas fa-bars"></i></span>
                 </div>
                 <input type="text" class="form-control input-lg" name="editarDescripcion" id="editarDescripcion" placeholder="Ingresar descripcion"
-                 maxlength="100" pattern="[A-Za-z0-9ñÑáéíóúÁÉÍÓÚ ]+" title="Solo se acepta letras y números" required>
+                 maxlength="100" pattern="[-A-Za-z0-9ñÑáéíóúÁÉÍÓÚ,.:;() ]+" title="Solo se acepta letras y números" required>
             </div>
             </div>
 
@@ -419,7 +419,7 @@ MODAL EDITAR MAQUINA
                 <span class="input-group-text"><i class="fas fa-file-signature"></i>  </span>
                 </div>
                 <input type="text" class="form-control input-lg" id="editarMarca" name="editarMarca" placeholder="Ingresar marca"
-                maxlength="50"  pattern="[A-Za-z0-9ñÑáéíóúÁÉÍÓÚ ]+" title="Solo se acepta letras y números" required>
+                maxlength="50"  pattern="[-A-Za-z0-9ñÑáéíóúÁÉÍÓÚ,.:;() ]+" title="Solo se acepta letras y números" required>
             </div>
             </div>
 
@@ -428,7 +428,7 @@ MODAL EDITAR MAQUINA
             <label for="precio">Precio</label>
             <div class="input-group">
                 <div class="input-group-prepend">
-                <span class="input-group-text"><i class="fas fa-dollar-sign"></i></span>
+                <span class="input-group-text"><strong>S/.</strong></span>
                 </div>
                 <input type="number" class="form-control input-lg" id="editarPrecio" name="editarPrecio" 
                  placeholder="Ingresar precio" min="0.01" max="9999999" step="0.01" required>

@@ -53,8 +53,8 @@ INSERT INTO `tipoproducto` (`idTipoProducto`, `descripcion`) VALUES
 
 INSERT INTO `unidadmedida` (`idUnidadMedida`, `descripcion`) VALUES
 	(1, 'Kg'),
-	(2, 'Lt'),
-	(3, 'Niu');
+	(2, 'L'),
+	(3, 'Unid');
 
 INSERT INTO `tipomateria` (`idTipoMateria`, `descripcion`) VALUES
 	(1, 'Insumo'),

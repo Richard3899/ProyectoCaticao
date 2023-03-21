@@ -181,8 +181,7 @@ MODAL INGRESO DE MAQUINA
               <div class="input-group-prepend">
               <span class="input-group-text"><i class="fas fa-calendar-alt"></i></span>
               </div>
-               <input type="text" class="textbox-n form-control"  name="nuevaFechaI" id="nuevaFechaI"
-               placeholder="Ingresar fecha de emisión" onfocus="(this.type='date')" onblur="(this.type='date')" id="date" required>
+               <input type="date" class="form-control input-lg"  name="nuevaFechaI" id="nuevaFechaI" required>
           </div>
           </div>
 
@@ -194,7 +193,7 @@ MODAL INGRESO DE MAQUINA
                 <span class="input-group-text"><i class="fas fa-bars"></i></span>
                 </div>
                 <input type="text" class="form-control input-lg" id="nuevaObservacionI" name="nuevaObservacionI" 
-                 placeholder="Ingresar observación" maxlength="100" pattern="[A-Za-z0-9ñÑáéíóúÁÉÍÓÚ ]+" 
+                 placeholder="Ingresar observación" maxlength="100" pattern="[-A-Za-z0-9ñÑáéíóúÁÉÍÓÚ,.:;() ]+" 
                  title="Solo se acepta letras y números" required>
             </div>
           </div>
@@ -319,8 +318,7 @@ MODAL SALIDA DE MAQUINA
               <div class="input-group-prepend">
               <span class="input-group-text"><i class="fas fa-calendar-alt"></i></span>
               </div>
-               <input type="text" class="textbox-n form-control"  name="nuevaFechaS" id="nuevaFechaS"
-               placeholder="Ingresar fecha de emisión" onfocus="(this.type='date')" onblur="(this.type='date')" id="date" required>
+               <input type="date" class="form-control input-lg"  name="nuevaFechaS" id="nuevaFechaS" required>
           </div>
           </div>
 
@@ -332,7 +330,7 @@ MODAL SALIDA DE MAQUINA
                 <span class="input-group-text"><i class="fas fa-bars"></i></span>
                 </div>
                 <input type="text" class="form-control input-lg" id="nuevaObservacionS" name="nuevaObservacionS" 
-                 placeholder="Ingresar observación" maxlength="100" pattern="[A-Za-z0-9ñÑáéíóúÁÉÍÓÚ ]+" 
+                 placeholder="Ingresar observación" maxlength="100" pattern="[-A-Za-z0-9ñÑáéíóúÁÉÍÓÚ,.:;() ]+" 
                  title="Solo se acepta letras y números" required>
             </div>
            </div>

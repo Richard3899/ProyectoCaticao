@@ -17,6 +17,7 @@ $('.tablaGastoAdminPorMes').DataTable( {
 	  ],
 	"retrieve": true,
 	"processing": true,
+	"aLengthMenu": [[10,25,50,-1],[10,25,50,"Todos"]],
 	"language": {
 
 			"sProcessing":     "Procesando...",
@@ -221,8 +222,7 @@ function sumaTotalPrecioGastoAdminPorMes(){
 
 	var sumaTotalPrecioUnitario = arraySumaPrecioUnitario.reduce(sumaArrayPrecioUnitario,0);
 
-		$(".precioGastoAdmin").number(true,2);
-		$(".precioGastoAdmin").val(sumaTotalPrecioUnitario);
+		$(".precioGastoAdmin").val(sumaTotalPrecioUnitario.toFixed(2));
 		$("#precioTotal").val(sumaTotalPrecioUnitario);
 
 }
@@ -313,8 +313,7 @@ function editarsumaTotalPrecioGastoAdminPorMes(){
 
 	var sumaTotalPrecioUnitario = arraySumaPrecioUnitario.reduce(sumaArrayPrecioUnitario,0);
 
-		$(".editarPrecioGastoAdmin").number(true,2);
-		$(".editarPrecioGastoAdmin").val(sumaTotalPrecioUnitario);
+		$(".editarPrecioGastoAdmin").val(sumaTotalPrecioUnitario.toFixed(2));
 		$("#editarPrecioTotal").val(sumaTotalPrecioUnitario);
 
 }

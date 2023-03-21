@@ -10,6 +10,7 @@ $('.tablaMateriales').DataTable( {
 	  ],
 	"retrieve": true,
 	"processing": true,
+	"aLengthMenu": [[10,25,50,-1],[10,25,50,"Todos"]],
 	"language": {
 
 		"sProcessing":     "Procesando...",

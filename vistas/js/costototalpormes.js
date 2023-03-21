@@ -36,11 +36,12 @@ $("#tablaCostoTotalPorMes").DataTable({
                 var sheet = xlsx.xl.worksheets['sheet1.xml'];
 				//Centrar al exportar en Excel
  				 $('row c[r^="A"]', sheet).attr( 's', '51' );
-				 $('row c[r^="B"]', sheet).attr( 's', '52' );
+				 $('row c[r^="B"]', sheet).attr( 's', '51' );
 	
             },
 		exportOptions: {
-			columns: ':visible'
+			columns: ':visible',
+			orthogonal: 'exportxls'
 		}
 	    },
 		{

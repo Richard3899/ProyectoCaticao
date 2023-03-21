@@ -1556,7 +1556,7 @@ DateTime.defaults = {
 	showWeekNumber: false,
 
 	// overruled by max / min date
-	yearRange: 25
+	yearRange: 100
 };
 
 DateTime.version = '1.2.0';

@@ -86,6 +86,7 @@ tableReporteProductos = $("#tablaReporteProductos").DataTable({
 		{targets:[5], render: DataTable.render.number( '.', ',', 2)}
 	  ],
 	"processing": true,
+	"aLengthMenu": [[10,25,50,-1],[10,25,50,"Todos"]],
 	"language": {
 		"sProcessing":     "Procesando...",
 		"sLengthMenu":     "Mostrar _MENU_ registros",

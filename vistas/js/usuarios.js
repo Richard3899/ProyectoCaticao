@@ -2,10 +2,12 @@ $('.tablaUsuarios').DataTable( {
     "ajax": "ajax/datatable-usuarios.ajax.php?permisoEditar="+permisoEditar+"&permisoEliminar="+permisoEliminar+"&idUsuarioSession="+idUsuarioSession,
     "deferRender": true,
 	"columnDefs": [
+		{targets: [6], render: DataTable.render.moment("YYYY-MM-DD HH:mm:ss","DD/MM/YYYY HH:mm:ss")},
 		{"className": "dt-center", "targets": "_all"}
 	  ],
 	"retrieve": true,
 	"processing": true,
+	"aLengthMenu": [[10,25,50,-1],[10,25,50,"Todos"]],
 	"language": {
 
 		"sProcessing":     "Procesando...",

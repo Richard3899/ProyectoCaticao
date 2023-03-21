@@ -211,7 +211,7 @@ MODAL RECETA INSUMO
             <label for="precio">Precio</label>
             <div class="input-group">
                 <div class="input-group-prepend">
-                <span class="input-group-text"><i class="fas fa-dollar-sign"></i></span>
+                <span class="input-group-text"><strong>S/.</strong></span>
                 </div>
                 <input type="hidden" id="precioUnitario" name="precioUnitario">
                 <input type="hidden" id="precioTotal" name="precioTotal">
@@ -347,7 +347,7 @@ MODAL EDITAR RECETA INSUMO
             <label for="precio">Precio</label>
             <div class="input-group">
                 <div class="input-group-prepend">
-                <span class="input-group-text"><i class="fas fa-dollar-sign"></i></span>
+                <span class="input-group-text"><strong>S/.</strong></span>
                 </div>
                 <input type="hidden" id="editarprecioUnitario" name="editarprecioUnitario">
                 <input type="hidden" id="editarprecioTotal" name="editarprecioTotal">

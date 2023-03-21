@@ -136,7 +136,7 @@ MODAL AGREGAR RECETA
                 <span class="input-group-text"><i class="fas fa-file-signature"></i></span>
                 </div>
                 <input type="text" class="form-control input-lg" id="idNombre" name="nuevoNombre" placeholder="Ingresar nombre" 
-                 maxlength="50"  pattern="[A-Za-z0-9ñÑáéíóúÁÉÍÓÚ ]+" title="Solo se acepta letras y números" required>
+                 maxlength="50"  pattern="[-A-Za-z0-9ñÑáéíóúÁÉÍÓÚ,.:;() ]+" title="Solo se acepta letras y números" required>
             </div>
             </div>
 
@@ -232,8 +232,8 @@ MODAL AGREGAR RECETA
               <div class="input-group-prepend">
               <span class="input-group-text"><i class="fas fa-calendar-alt"></i></span>
               </div>
-              <input type="text" class="textbox-n form-control"  name="nuevaFechaInicio" id="nuevaFechaInicio"
-              placeholder="Ingresar fecha de inicio" onfocus="(this.type='date')" onblur="(this.type='date')" id="date" required>
+              <input type="text" class="form-control input-lg"  name="nuevaFechaInicio" id="nuevaFechaInicio"
+              placeholder="Ingresar fecha de inicio" required>
 
           </div>
           </div>
@@ -245,8 +245,8 @@ MODAL AGREGAR RECETA
               <div class="input-group-prepend">
               <span class="input-group-text"><i class="fas fa-calendar-alt"></i></span>
               </div>
-              <input type="text" class="textbox-n form-control"  name="nuevaFechaFin" id="nuevaFechaFin"
-              placeholder="Ingresar fecha de fin" onfocus="(this.type='date')" onblur="(this.type='date')" id="date" required>
+              <input type="text" class="form-control input-lg"  name="nuevaFechaFin" id="nuevaFechaFin"
+              placeholder="Ingresar fecha de fin" required>
           </div>
           </div>
 
@@ -273,8 +273,8 @@ MODAL AGREGAR RECETA
               <div class="input-group-prepend">
               <span class="input-group-text"><i class="fas fa-calendar-alt"></i></span>
               </div>
-              <input type="text" class="textbox-n form-control"  name="nuevaFechaVencimiento" id="nuevaFechaVencimiento"
-               placeholder="Ingresar fecha de vencimiento" onfocus="(this.type='date')" onblur="(this.type='date')" id="date" required>
+              <input type="text" class="form-control input-lg"  name="nuevaFechaVencimiento" id="nuevaFechaVencimiento"
+               placeholder="Ingresar fecha de vencimiento" required>
           </div>
           </div>
 
@@ -443,7 +443,7 @@ MODAL EDITAR RECETA
                 <span class="input-group-text"><i class="fas fa-file-signature"></i></span>
                 </div>
                 <input type="text" class="form-control input-lg" id="editarNombre" name="editarNombre" placeholder="Ingresar nombre" 
-                maxlength="50"  pattern="[A-Za-z0-9ñÑáéíóúÁÉÍÓÚ ]+" title="Solo se acepta letras y números" required>
+                maxlength="50"  pattern="[-A-Za-z0-9ñÑáéíóúÁÉÍÓÚ,.:;() ]+" title="Solo se acepta letras y números" required>
             </div>
             </div>
 
@@ -540,8 +540,8 @@ MODAL EDITAR RECETA
               <div class="input-group-prepend">
               <span class="input-group-text"><i class="fas fa-calendar-alt"></i></span>
               </div>
-              <input type="text" class="textbox-n form-control"  name="editarFechaInicio" id="editarFechaInicio"
-              placeholder="Ingresar fecha de inicio" onfocus="(this.type='date')" onblur="(this.type='date')" id="date" required>
+              <input type="text" class="form-control input-lg"  name="editarFechaInicio" id="editarFechaInicio"
+              placeholder="Ingresar fecha de inicio" required>
 
           </div>
           </div>
@@ -553,8 +553,8 @@ MODAL EDITAR RECETA
               <div class="input-group-prepend">
               <span class="input-group-text"><i class="fas fa-calendar-alt"></i></span>
               </div>
-              <input type="text" class="textbox-n form-control"  name="editarFechaFin" id="editarFechaFin"
-              placeholder="Ingresar fecha de fin" onfocus="(this.type='date')" onblur="(this.type='date')" id="date" required>
+              <input type="text" class="form-control input-lg"  name="editarFechaFin" id="editarFechaFin"
+              placeholder="Ingresar fecha de fin" required>
           </div>
           </div>
 
@@ -582,8 +582,8 @@ MODAL EDITAR RECETA
               <div class="input-group-prepend">
               <span class="input-group-text"><i class="fas fa-calendar-alt"></i></span>
               </div>
-              <input type="text" class="textbox-n form-control"  name="editarFechaVencimiento" id="editarFechaVencimiento"
-               placeholder="Ingresar fecha de vencimiento" onfocus="(this.type='date')" onblur="(this.type='date')" id="date" required>
+              <input type="text" class="form-control input-lg"  name="editarFechaVencimiento" id="editarFechaVencimiento"
+               placeholder="Ingresar fecha de vencimiento" required>
           </div>
           </div>
 

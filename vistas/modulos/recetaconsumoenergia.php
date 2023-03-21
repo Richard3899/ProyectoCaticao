@@ -308,7 +308,7 @@ MODAL RECETA CONSUMO DE ENERGÍA
             <label for="precio">Precio</label>
             <div class="input-group">
                 <div class="input-group-prepend">
-                <span class="input-group-text"><i class="fas fa-dollar-sign"></i></span>
+                <span class="input-group-text"><strong>S/.</strong></span>
                 </div>
                 <input type="hidden" id="tarifaKwh" name="tarifaKwh">
                 <input type="hidden" id="precioTotal" name="precioTotal">
@@ -429,7 +429,7 @@ MODAL EDITAR RECETA CONSUMO DE ENERGÍA
             <label for="precio">Precio</label>
             <div class="input-group">
                 <div class="input-group-prepend">
-                <span class="input-group-text"><i class="fas fa-dollar-sign"></i></span>
+                <span class="input-group-text"><strong>S/.</strong></span>
                 </div>
                 <input type="hidden" id="editarTarifaKwhCE" name="editarTarifaKwhCE">
                 <input type="hidden" id="editarprecioTotal" name="editarprecioTotal">

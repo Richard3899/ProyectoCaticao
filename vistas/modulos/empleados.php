@@ -125,7 +125,7 @@ MODAL AGREGAR EMPLEADO
                 <span class="input-group-text"><i class="fas fa-file-signature"></i></span>
                 </div>
                 <input type="text" class="form-control input-lg" id="nuevoNombre" name="nuevoNombre" placeholder="Ingresar nombre" 
-                 maxlength="50"  pattern="[A-Za-zñÑáéíóúÁÉÍÓÚ ]+" title="Solo se acepta letras" required>
+                 maxlength="50"  pattern="[-A-Za-z0-9ñÑáéíóúÁÉÍÓÚ,.:;() ]+" title="Solo se acepta letras" required>
             </div>
             </div>
 
@@ -137,7 +137,7 @@ MODAL AGREGAR EMPLEADO
                 <span class="input-group-text"><i class="fas fa-file-signature"></i></span>
                 </div>
                 <input type="text" class="form-control input-lg" id="nuevoApellido" name="nuevoApellido" placeholder="Ingresar apellido" 
-                 maxlength="50"  pattern="[A-Za-zñÑáéíóúÁÉÍÓÚ ]+" title="Solo se acepta letras" required>
+                 maxlength="50"  pattern="[-A-Za-z0-9ñÑáéíóúÁÉÍÓÚ,.:;() ]+" title="Solo se acepta letras" required>
             </div>
             </div>
 
@@ -245,7 +245,7 @@ MODAL AGREGAR EMPLEADO
               <span class="input-group-text"><i class="fas fa-map"></i></span>
               </div>
               <input type="text" class="form-control input-lg" id="nuevaDireccion" name="nuevaDireccion" placeholder="Ingresar dirección" 
-               maxlength="50"  pattern="[A-Za-z0-9ñÑáéíóúÁÉÍÓÚ-. ]+" title="Solo se acepta letras, números, guiones y puntos" required>
+               maxlength="50"  pattern="[-A-Za-z0-9ñÑáéíóúÁÉÍÓÚ,.:;() ]+" title="Solo se acepta letras, números, guiones y puntos" required>
           </div>
           </div>
 
@@ -271,8 +271,8 @@ MODAL AGREGAR EMPLEADO
               <div class="input-group-prepend">
               <span class="input-group-text"><i class="fas fa-calendar-alt"></i></span>
               </div>
-              <input type="text" class="textbox-n form-control"  name="nuevaFechaNacimiento" id="nuevaFechaNacimiento"
-              placeholder="Ingresar fecha de nacimiento" onfocus="(this.type='date')" onblur="(this.type='date')" id="date" required>
+              <input type="text" class="form-control input-lg"  name="nuevaFechaNacimiento" id="nuevaFechaNacimiento" 
+               placeholder="Ingresar fecha de nacimiento" required>
           </div>
           </div>
 
@@ -288,7 +288,7 @@ MODAL AGREGAR EMPLEADO
                 <span class="input-group-text"><i class="fas fa-users"></i></span>
                 </div>
                 <input type="text" class="form-control input-lg" id="nuevoCargo" name="nuevoCargo" placeholder="Ingresar cargo" 
-                 maxlength="50"  pattern="[A-Za-zñÑáéíóúÁÉÍÓÚ ]+" title="Solo se acepta letras" required>
+                 maxlength="50"  pattern="[-A-Za-z0-9ñÑáéíóúÁÉÍÓÚ,.:;() ]+" title="Solo se acepta letras" required>
             </div>
             </div>
 
@@ -300,7 +300,7 @@ MODAL AGREGAR EMPLEADO
                 <span class="input-group-text"><i class="fas fa-stopwatch"></i></span>
                 </div>
                 <input type="text" class="form-control input-lg" id="nuevoHorarioTrabajo" name="nuevoHorarioTrabajo" placeholder="Ingresar horario de trabajo" 
-                 maxlength="50" pattern="[A-Za-z0-9-:. ]+" title="Solo se aceptan letras, números, guiones y puntos" required>
+                 maxlength="50" pattern="[-A-Za-z0-9ñÑáéíóúÁÉÍÓÚ,.:;() ]+" title="Solo se aceptan letras, números, guiones y puntos" required>
             </div>
             </div>
 
@@ -325,7 +325,7 @@ MODAL AGREGAR EMPLEADO
           <label for="sueldoPorDia">Sueldo por día</label>
           <div class="input-group">
               <div class="input-group-prepend">
-              <span class="input-group-text"><i class="fas fa-dollar-sign"></i></span>
+              <span class="input-group-text"><strong>S/.</strong></span>
               </div>
               <input type="number" class="form-control input-lg" name="nuevoSueldoPorDia" id="nuevoSueldoPorDia"
                placeholder="Ingresar sueldo por día" min="0.01" max="9999999" step="0.01" required>
@@ -456,7 +456,7 @@ MODAL EDITAR EMPLEADO
                 <span class="input-group-text"><i class="fas fa-file-signature"></i></span>
                 </div>
                 <input type="text" class="form-control input-lg" id="editarNombre" name="editarNombre" placeholder="Ingresar nombre" 
-                 maxlength="50"  pattern="[A-Za-zñÑáéíóúÁÉÍÓÚ ]+" title="Solo se acepta letras" required>
+                 maxlength="50"  pattern="[-A-Za-z0-9ñÑáéíóúÁÉÍÓÚ,.:;() ]+" title="Solo se acepta letras" required>
                  <input type="hidden" id="idEmpleado" name="idEmpleado">
             </div>
             </div>
@@ -469,7 +469,7 @@ MODAL EDITAR EMPLEADO
                 <span class="input-group-text"><i class="fas fa-file-signature"></i></span>
                 </div>
                 <input type="text" class="form-control input-lg" id="editarApellido" name="editarApellido" placeholder="Ingresar apellido" 
-                 maxlength="50"  pattern="[A-Za-zñÑáéíóúÁÉÍÓÚ ]+" title="Solo se acepta letras" required>
+                 maxlength="50"  pattern="[-A-Za-z0-9ñÑáéíóúÁÉÍÓÚ,.:;() ]+" title="Solo se acepta letras" required>
             </div>
             </div>
 
@@ -578,7 +578,7 @@ MODAL EDITAR EMPLEADO
               <span class="input-group-text"><i class="fas fa-map"></i></span>
               </div>
               <input type="text" class="form-control input-lg" id="editarDireccion" name="editarDireccion" placeholder="Ingresar dirección" 
-               maxlength="50"  pattern="[A-Za-z0-9ñÑáéíóúÁÉÍÓÚ-. ]+" title="Solo se acepta letras, números, guiones y puntos" required>
+               maxlength="50"  pattern="[-A-Za-z0-9ñÑáéíóúÁÉÍÓÚ,.:;() ]+" title="Solo se acepta letras, números, guiones y puntos" required>
           </div>
           </div>
 
@@ -604,8 +604,8 @@ MODAL EDITAR EMPLEADO
               <div class="input-group-prepend">
               <span class="input-group-text"><i class="fas fa-calendar-alt"></i></span>
               </div>
-               <input type="text" class="textbox-n form-control"  name="editarFechaNacimiento" id="editarFechaNacimiento"
-               placeholder="Ingresar fecha de nacimiento" onfocus="(this.type='date')" onblur="(this.type='date')" id="date" required>
+               <input type="text" class="form-control input-lg"  name="editarFechaNacimiento" id="editarFechaNacimiento" 
+                placeholder="Ingresar fecha de nacimiento" required>
           </div>
           </div>
 
@@ -622,7 +622,7 @@ MODAL EDITAR EMPLEADO
                 <span class="input-group-text"><i class="fas fa-users"></i></span>
                 </div>
                 <input type="text" class="form-control input-lg" id="editarCargo" name="editarCargo" placeholder="Ingresar cargo" 
-                 maxlength="50"  pattern="[A-Za-zñÑáéíóúÁÉÍÓÚ ]+" title="Solo se acepta letras" required>
+                 maxlength="50"  pattern="[-A-Za-z0-9ñÑáéíóúÁÉÍÓÚ,.:;() ]+" title="Solo se acepta letras" required>
             </div>
             </div>
 
@@ -634,7 +634,7 @@ MODAL EDITAR EMPLEADO
                 <span class="input-group-text"><i class="fas fa-stopwatch"></i></span>
                 </div>
                 <input type="text" class="form-control input-lg" id="editarHorarioTrabajo" name="editarHorarioTrabajo" placeholder="Ingresar horario de trabajo" 
-                 maxlength="50" pattern="[A-Za-z0-9-:. ]+" title="Solo se aceptan letras, números, guiones y puntos" required>
+                 maxlength="50" pattern="[-A-Za-z0-9ñÑáéíóúÁÉÍÓÚ,.:;() ]+" title="Solo se aceptan letras, números, guiones y puntos" required>
             </div>
             </div>
 
@@ -659,7 +659,7 @@ MODAL EDITAR EMPLEADO
           <label for="sueldoPorDia">Sueldo por día</label>
           <div class="input-group">
               <div class="input-group-prepend">
-              <span class="input-group-text"><i class="fas fa-dollar-sign"></i></span>
+              <span class="input-group-text"><strong>S/.</strong></span>
               </div>
               <input type="number" class="form-control input-lg" name="editarSueldoPorDia" id="editarSueldoPorDia"
                placeholder="Ingresar sueldo por día" min="0.01" max="9999999" step="0.01" required>

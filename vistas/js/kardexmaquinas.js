@@ -44,6 +44,7 @@ function KardexMaquinas() {
 		"ajax": "ajax/datatable-kardexmaquinas.ajax.php?MaquinaK="+MaquinaK,
 		"dom": 'Brtip',
 		"processing": true,
+		"aLengthMenu": [[10,25,50,-1],[10,25,50,"Todos"]],
 		"buttons": [{
 			extend: 'pdf',
 			className: 'btn-danger',

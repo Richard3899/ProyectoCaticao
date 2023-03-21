@@ -45,11 +45,14 @@ class TablaCostoTotal{
 		
 		if($costototal==0){
 			$costoPorTableta=0;
-		}else{
-			$costoPorTableta=$costototal/$cantidadTabletas;
+		}else {
+			if($cantidadTabletas==0){
+				$costoPorTableta=0;
+			}else{
+				$costoPorTableta=$costototal/$cantidadTabletas;
+			}
 		}
 		
-
 
 		$datosJson = '{
 			"data": [["Costo total de las recetas","'.$costototalpormes.'"],';				  

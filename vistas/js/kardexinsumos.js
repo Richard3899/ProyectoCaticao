@@ -138,6 +138,7 @@
 			"ajax": "ajax/datatable-kardexinsumos.ajax.php?InsumoK="+InsumoK,
 			"dom": 'Brtip',
 			"processing": true,
+			"aLengthMenu": [[10,25,50,-1],[10,25,50,"Todos"]],
 			"buttons": [{
 				extend: 'pdf',
 				className: 'btn-danger',

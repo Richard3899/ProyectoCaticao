@@ -209,7 +209,7 @@ MODAL RECETA CONSUMO DE GAS
             <label for="tarifaGas">Tarifa de gas por Kg</label>
             <div class="input-group">
                 <div class="input-group-prepend">
-                <span class="input-group-text"><i class="fas fa-dollar-sign"></i></span>
+                <span class="input-group-text"><strong>S/.</strong></span>
                 </div>
                 <input type="number" class="form-control input-lg nuevaTarifaGas" name="nuevaTarifaGas" id="nuevaTarifaGas"
                  placeholder="Ingresar tarifa de gas por Kg" min="0.1" step="0.1" required>
@@ -340,7 +340,7 @@ MODAL EDITAR RECETA CONSUMO DE GAS
             <label for="precio">Tarifa de gas por Kg</label>
             <div class="input-group">
                 <div class="input-group-prepend">
-                <span class="input-group-text"><i class="fas fa-dollar-sign"></i></span>
+                <span class="input-group-text"><strong>S/.</strong></span>
                 </div>
                 <input type="number" class="form-control input-lg editarTarifaGas" name="editarTarifaGas" id="editarTarifaGas"
                 placeholder="Ingresar tarifa de gas por Kg" min="0.1" step="0.1" required>

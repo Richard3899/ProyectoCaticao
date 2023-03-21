@@ -12,6 +12,7 @@ $('.tablaEmpleados').DataTable( {
 	  ],
 	"retrieve": true,
 	"processing": true,
+	"aLengthMenu": [[10,25,50,-1],[10,25,50,"Todos"]],
 	"language": {
 
 		"sProcessing":     "Procesando...",
@@ -42,6 +43,15 @@ $('.tablaEmpleados').DataTable( {
 } );
 
 
+$(document).ready(function() {
+	// Create date inputs
+	new DateTime($('#editarFechaNacimiento'), {
+		format: 'DD/MM/YYYY'
+	});
+	new DateTime($('#nuevaFechaNacimiento'), {
+		format: 'DD/MM/YYYY'
+	});
+});
 
 /*=============================================
 EDITAR EMPLEADO
@@ -83,8 +93,8 @@ $(".tablaEmpleados tbody").on("click", "button.btnEditarEmpleado", function(){
 
 		   $("#editarTelefono").val(respuesta["telefono"]);
 
-		   $("#editarFechaNacimiento").val(respuesta["fechaNacimiento"]);
-
+		   $("#editarFechaNacimiento").val(moment(respuesta["fechaNacimiento"],'YYYY-MM-DD').format('DD/MM/YYYY'));
+  
 		   $("#editarCargo").val(respuesta["cargo"]);
 
 		   $("#editarHorarioTrabajo").val(respuesta["horarioTrabajo"]);
