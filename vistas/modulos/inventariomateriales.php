@@ -167,8 +167,10 @@ MODAL INGRESO DE MATERIAL
                 <div class="input-group-prepend">
                 <span class="input-group-text"><i class="fas fa-layer-group"></i></span>
                 </div>
-                <input type="number" class="form-control input-lg" name="nuevaCantidadI" placeholder="Ingresar cantidad" 
+                <input type="number" class="form-control input-lg" name="nuevaCantidadI" id="nuevaCantidadI" placeholder="Ingresar cantidad" 
                  min="0.01" max="9999999" step="0.01" required>
+
+                <input type="text" class="form-control input-lg"  id="unidadMedidaI" name="unidadMedidaI" readonly> 
             </div>
 
             </div>
@@ -308,8 +310,10 @@ MODAL SALIDA DE MATERIAL
                 <div class="input-group-prepend">
                 <span class="input-group-text"><i class="fas fa-layer-group"></i></span>
                 </div>
-                <input type="number" class="form-control input-lg" name="nuevaCantidadS" placeholder="Ingresar cantidad" 
+                <input type="number" class="form-control input-lg" name="nuevaCantidadS" id="nuevaCantidadS" placeholder="Ingresar cantidad" 
                  min="0.01" max="9999999" step="0.01" required>
+
+                 <input type="text" class="form-control input-lg"  id="unidadMedidaS" name="unidadMedidaS" readonly>
             </div>
 
             </div>

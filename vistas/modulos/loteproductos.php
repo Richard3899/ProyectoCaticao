@@ -119,8 +119,10 @@
         <tr>
           <th style="width:0px">#</th>
           <th>Código Lote</th>
+          <th>Fecha de Producción</th>
           <th>Fecha de Vencimiento</th>
           <th>Cantidad</th>
+
         </tr> 
  
        </thead>

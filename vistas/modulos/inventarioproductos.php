@@ -166,8 +166,10 @@ MODAL INGRESO DE PRODUCTO
                 <div class="input-group-prepend">
                 <span class="input-group-text"><i class="fas fa-layer-group"></i></span>
                 </div>
-                <input type="number" class="form-control input-lg" name="nuevaCantidadI" placeholder="Ingresar cantidad" 
+                <input type="number" class="form-control input-lg" name="nuevaCantidadI" id="nuevaCantidadI" placeholder="Ingresar cantidad" 
                  min="1" max="9999999" required>
+
+                <input type="text" class="form-control input-lg"  id="unidadMedidaI" name="unidadMedidaI" readonly>
             </div>
 
             </div>
@@ -353,6 +355,8 @@ MODAL SALIDA DE PRODUCTO
                 </div>
                 <input type="number" class="form-control input-lg nuevaCantidadS" id="nuevaCantidadS" name="nuevaCantidadS" placeholder="Ingresar cantidad" 
                  min="1" max="9999999" required disabled>
+
+                <input type="text" class="form-control input-lg"  id="unidadMedidaS" name="unidadMedidaS" readonly>
             </div>
 
             </div>
@@ -364,7 +368,9 @@ MODAL SALIDA DE PRODUCTO
                 <div class="input-group-prepend">
                 <span class="input-group-text"><i class="fas fa-layer-group"></i></span>
                 </div>
-                <input type="number" class="form-control input-lg" id="nuevoStockS" name="nuevoStockS" placeholder="0" disabled>
+                <input type="number" class="form-control input-lg" id="nuevoStockS" name="nuevoStockS" disabled>
+                
+                <input type="text" class="form-control input-lg"  id="unidadMedidaStockS" name="unidadMedidaStockS" readonly>
             </div>
 
             </div>

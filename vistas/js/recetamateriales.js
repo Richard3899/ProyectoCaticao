@@ -121,6 +121,8 @@ $(".formularioRecetaMateriales").on("change", "select.seleccionarNombreMaterial"
 					$("#nuevoStock").val(0);
 					$(".precioMaterial").attr("precioReal",0);
 					$("#precioTotal").val(0);
+					$("#unidadMedidaI").val("");
+					$("#unidadMedidaStockI").val("");
 					
 				}else{
 						
@@ -148,6 +150,8 @@ $(".formularioRecetaMateriales").on("change", "select.seleccionarNombreMaterial"
 							$(".precioMaterial").val(0);
 							$(".precioMaterial").attr("precioReal",respuesta["precioUnitario"]);
 							
+							$("#unidadMedidaI").val(respuesta["unidadMedida"]);
+							$("#unidadMedidaStockI").val(respuesta["unidadMedida"]);
 
 							if(respuesta["stock"] <= 0){
 
@@ -309,6 +313,50 @@ $(".tablaRecetaMateriales tbody").on("click", "button.btnEditarMaterialReceta", 
       processData: false,
       dataType:"json",
       success:function(respuesta){
+
+		var idMaterial = respuesta["idMateria"];
+
+		var datos = new FormData();
+	
+		datos.append("idMaterial", idMaterial);
+	
+		$.ajax({
+	
+			url:"ajax/materiales.ajax.php",
+			method: "POST",
+			data: datos,
+			cache: false,
+			contentType: false,
+			processData: false,
+			dataType:"json",
+			success:function(respuesta){
+	
+				var idUnidadMedida=respuesta["idUnidadMedida"];
+	
+				var datos = new FormData();
+	
+				datos.append("idUnidadMedida", idUnidadMedida);
+	
+				$.ajax({
+	
+					url:"ajax/unidadmedida.ajax.php",
+					method: "POST",
+					data: datos,
+					cache: false,
+					contentType: false,
+					processData: false,
+					dataType:"json",
+					  success:function(respuesta){
+						
+						$("#unidadMedidaA").val(respuesta["descripcion"]);
+						$("#unidadMedidaStockA").val(respuesta["descripcion"]);
+					}
+					
+				})
+				
+			}
+			
+		})
 
 		   $("#editaridRecetaMaterial").val(respuesta["idRecetaMateria"]);
 		   $("#editaridMaterial").val(respuesta["idMateria"]);

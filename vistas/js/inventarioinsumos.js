@@ -50,3 +50,115 @@ $('.tablaInventarioInsumos').DataTable( {
 }
 
 } );
+
+/*=============================================
+MOSTRAR LA UNIDAD DE MEDIDAD DEL INSUMO INGRESO STOCK
+=============================================*/
+
+$("#nuevoInsumoI").on("change", function() {
+
+	var idInsumo = $(this).val();
+
+	var datos = new FormData();
+
+	datos.append("idInsumo", idInsumo);
+
+	if($(this).val()==""){
+		$("#nuevaCantidadI").val("");
+	}
+
+	$.ajax({
+
+		url:"ajax/insumos.ajax.php",
+		method: "POST",
+		data: datos,
+		cache: false,
+		contentType: false,
+		processData: false,
+		dataType:"json",
+      	success:function(respuesta){
+
+			var idUnidadMedida=respuesta["idUnidadMedida"];
+
+			var datos = new FormData();
+
+			datos.append("idUnidadMedida", idUnidadMedida);
+
+			$.ajax({
+
+				url:"ajax/unidadmedida.ajax.php",
+				method: "POST",
+				data: datos,
+				cache: false,
+				contentType: false,
+				processData: false,
+				dataType:"json",
+			  	success:function(respuesta){
+					
+					$("#unidadMedidaI").val(respuesta["descripcion"]);
+
+			    }
+				
+			})
+            
+	    }
+		
+	})
+	
+})
+
+/*=============================================
+MOSTRAR LA UNIDAD DE MEDIDAD DEL INSUMO SALIDA STOCK
+=============================================*/
+
+$("#nuevoInsumoS").on("change", function() {
+
+	var idInsumo = $(this).val();
+
+	var datos = new FormData();
+
+	datos.append("idInsumo", idInsumo);
+
+	if($(this).val()==""){
+		$("#nuevaCantidadS").val("");
+	}
+
+	$.ajax({
+
+		url:"ajax/insumos.ajax.php",
+		method: "POST",
+		data: datos,
+		cache: false,
+		contentType: false,
+		processData: false,
+		dataType:"json",
+      	success:function(respuesta){
+
+			var idUnidadMedida=respuesta["idUnidadMedida"];
+
+			var datos = new FormData();
+
+			datos.append("idUnidadMedida", idUnidadMedida);
+
+			$.ajax({
+
+				url:"ajax/unidadmedida.ajax.php",
+				method: "POST",
+				data: datos,
+				cache: false,
+				contentType: false,
+				processData: false,
+				dataType:"json",
+			  	success:function(respuesta){
+					
+					$("#unidadMedidaS").val(respuesta["descripcion"]);
+
+			    }
+				
+			})
+            
+	    }
+		
+	})
+	
+})

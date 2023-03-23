@@ -40,6 +40,7 @@ class TablaLoteProductos{
 		  	$datosJson .='[
 			      "'.($i+1).'",
 				  "'.$loteproductos[$i]["codigoLote"].'",
+				  "'.$loteproductos[$i]["fechaFin"].'",
 				  "'.$loteproductos[$i]["fechaVencimiento"].'",
 			      "'.$loteproductos[$i]["cantidad"].'"
 			    ],';

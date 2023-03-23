@@ -160,6 +160,7 @@ function LoteProductos() {
 					 $('row c[r^="B"]', sheet).attr( 's', '51' );
 					 $('row c[r^="C"]', sheet).attr( 's', '51' );
 					 $('row c[r^="D"]', sheet).attr( 's', '51' );
+					 $('row c[r^="E"]', sheet).attr( 's', '51' );
 				},
 			exportOptions: {
 				columns: ':visible',
@@ -196,7 +197,8 @@ function LoteProductos() {
 				}},
 				//Tipo de dato (Número)
 				{targets:[2], render: DataTable.render.moment( 'DD/MM/YYYY' )},
-				{targets:[3], render: DataTable.render.number( '.', ',', 2)}
+				{targets:[3], render: DataTable.render.moment( 'DD/MM/YYYY' )},
+				{targets:[4], render: DataTable.render.number( '.', ',', 2)}
 		],  
 		"language": {
 	

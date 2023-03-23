@@ -103,7 +103,7 @@ $(".formularioRecetaInsumos").on("change", "select.seleccionarNombreInsumo", fun
 
 	datos.append("idInsumoDetalle", idInsumoDetalle);
     
-	  $.ajax({
+	$.ajax({
 
      	url:"ajax/recetainsumos.ajax.php",
       	method: "POST",
@@ -120,9 +120,11 @@ $(".formularioRecetaInsumos").on("change", "select.seleccionarNombreInsumo", fun
 					$("#nuevoStock").val(0);
 					$(".precioInsumo").attr("precioReal",0);
 					$("#precioTotal").val(0);
+					$("#unidadMedidaI").val("");
+					$("#unidadMedidaStockI").val("");
 					
 				}else{
-						
+
 					for(i=0;i<idArrayRecetaInsumos.length;i++){
 		
 						if(idArrayRecetaInsumos[i]==idInsumoDetalle){
@@ -148,6 +150,8 @@ $(".formularioRecetaInsumos").on("change", "select.seleccionarNombreInsumo", fun
 							$(".precioInsumo").val(0);
 							$(".precioInsumo").attr("precioReal",respuesta["precioUnitario"]);
 							
+							$("#unidadMedidaI").val(respuesta["unidadMedida"]);
+							$("#unidadMedidaStockI").val(respuesta["unidadMedida"]);
 
 							if(respuesta["stock"] <= 0){
 
@@ -308,6 +312,50 @@ $(".tablaRecetaInsumos tbody").on("click", "button.btnEditarInsumoReceta", funct
       processData: false,
       dataType:"json",
       success:function(respuesta){
+
+		var idInsumo = respuesta["idMateria"];
+
+		var datos = new FormData();
+	
+		datos.append("idInsumo", idInsumo);
+	
+		$.ajax({
+	
+			url:"ajax/insumos.ajax.php",
+			method: "POST",
+			data: datos,
+			cache: false,
+			contentType: false,
+			processData: false,
+			dataType:"json",
+			success:function(respuesta){
+	
+				var idUnidadMedida=respuesta["idUnidadMedida"];
+	
+				var datos = new FormData();
+	
+				datos.append("idUnidadMedida", idUnidadMedida);
+	
+				$.ajax({
+	
+					url:"ajax/unidadmedida.ajax.php",
+					method: "POST",
+					data: datos,
+					cache: false,
+					contentType: false,
+					processData: false,
+					dataType:"json",
+					  success:function(respuesta){
+						
+						$("#unidadMedidaA").val(respuesta["descripcion"]);
+						$("#unidadMedidaStockA").val(respuesta["descripcion"]);
+					}
+					
+				})
+				
+			}
+			
+		})
 
 		   $("#editaridRecetaInsumo").val(respuesta["idRecetaMateria"]);
 		   $("#editaridInsumo").val(respuesta["idMateria"]);

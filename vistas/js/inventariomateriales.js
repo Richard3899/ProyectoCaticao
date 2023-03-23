@@ -50,3 +50,115 @@ $('.tablaInventarioMateriales').DataTable( {
 }
 
 } );
+
+/*=============================================
+MOSTRAR LA UNIDAD DE MEDIDAD DEL MATERIAL INGRESO STOCK
+=============================================*/
+
+$("#nuevoMaterialI").on("change", function() {
+
+	var idMaterial = $(this).val();
+
+	var datos = new FormData();
+
+	datos.append("idMaterial", idMaterial);
+
+	if($(this).val()==""){
+		$("#nuevaCantidadI").val("");
+	}
+
+	$.ajax({
+
+		url:"ajax/materiales.ajax.php",
+		method: "POST",
+		data: datos,
+		cache: false,
+		contentType: false,
+		processData: false,
+		dataType:"json",
+      	success:function(respuesta){
+
+			var idUnidadMedida=respuesta["idUnidadMedida"];
+
+			var datos = new FormData();
+
+			datos.append("idUnidadMedida", idUnidadMedida);
+
+			$.ajax({
+
+				url:"ajax/unidadmedida.ajax.php",
+				method: "POST",
+				data: datos,
+				cache: false,
+				contentType: false,
+				processData: false,
+				dataType:"json",
+			  	success:function(respuesta){
+					
+					$("#unidadMedidaI").val(respuesta["descripcion"]);
+
+			    }
+				
+			})
+            
+	    }
+		
+	})
+	
+})
+
+/*=============================================
+MOSTRAR LA UNIDAD DE MEDIDAD DEL MATERIAL SALIDA STOCK
+=============================================*/
+
+$("#nuevoMaterialS").on("change", function() {
+
+	var idMaterial = $(this).val();
+
+	var datos = new FormData();
+
+	datos.append("idMaterial", idMaterial);
+
+	if($(this).val()==""){
+		$("#nuevaCantidadS").val("");
+	}
+
+	$.ajax({
+
+		url:"ajax/materiales.ajax.php",
+		method: "POST",
+		data: datos,
+		cache: false,
+		contentType: false,
+		processData: false,
+		dataType:"json",
+      	success:function(respuesta){
+
+			var idUnidadMedida=respuesta["idUnidadMedida"];
+
+			var datos = new FormData();
+
+			datos.append("idUnidadMedida", idUnidadMedida);
+
+			$.ajax({
+
+				url:"ajax/unidadmedida.ajax.php",
+				method: "POST",
+				data: datos,
+				cache: false,
+				contentType: false,
+				processData: false,
+				dataType:"json",
+			  	success:function(respuesta){
+					
+					$("#unidadMedidaS").val(respuesta["descripcion"]);
+
+			    }
+				
+			})
+            
+	    }
+		
+	})
+	
+})

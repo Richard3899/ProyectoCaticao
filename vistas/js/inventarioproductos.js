@@ -101,6 +101,64 @@ $(".tablaInventarioProductos").on("draw.dt", function() {
 	})
 })
 
+
+/*=============================================
+MOSTRAR LA UNIDAD DE MEDIDAD DEL INSUMO INGRESO STOCK
+=============================================*/
+
+$("#nuevoProductoI").on("change", function() {
+
+	var idProducto = $(this).val();
+
+	var datos = new FormData();
+
+	datos.append("idProducto", idProducto);
+
+	if($(this).val()==""){
+		$("#nuevaCantidadI").val("");
+	}
+
+	$.ajax({
+
+		url:"ajax/productos.ajax.php",
+		method: "POST",
+		data: datos,
+		cache: false,
+		contentType: false,
+		processData: false,
+		dataType:"json",
+      	success:function(respuesta){
+
+			var idUnidadMedida=respuesta["idUnidadMedida"];
+
+			var datos = new FormData();
+
+			datos.append("idUnidadMedida", idUnidadMedida);
+
+			$.ajax({
+
+				url:"ajax/unidadmedida.ajax.php",
+				method: "POST",
+				data: datos,
+				cache: false,
+				contentType: false,
+				processData: false,
+				dataType:"json",
+			  	success:function(respuesta){
+					
+					$("#unidadMedidaI").val(respuesta["descripcion"]);
+
+			    }
+				
+			})
+            
+	    }
+		
+	})
+	
+})
+
+
 /*=============================================
 MOSTRAR LOTES POR ID PRODUCTO
 =============================================*/
@@ -123,12 +181,49 @@ $(".nuevoProductoS").on("change", function() {
 	$("#nuevaCantidadS").prop("disabled", true);
 	$("#nuevoStockS").val("");
 	$("#idLoteS").prop("disabled", true);
-
 	}
 
 	$("#idLoteS").empty();
 
-	  $.ajax({
+	$.ajax({
+
+		url:"ajax/productos.ajax.php",
+		method: "POST",
+		data: datos,
+		cache: false,
+		contentType: false,
+		processData: false,
+		dataType:"json",
+      	success:function(respuesta){
+
+			var idUnidadMedida=respuesta["idUnidadMedida"];
+
+			var datos = new FormData();
+
+			datos.append("idUnidadMedida", idUnidadMedida);
+
+			$.ajax({
+
+				url:"ajax/unidadmedida.ajax.php",
+				method: "POST",
+				data: datos,
+				cache: false,
+				contentType: false,
+				processData: false,
+				dataType:"json",
+			  	success:function(respuesta){
+					
+					$("#unidadMedidaS").val(respuesta["descripcion"]);
+					$("#unidadMedidaStockS").val(respuesta["descripcion"]);
+			    }
+				
+			})
+            
+	    }
+		
+	})
+
+	$.ajax({
 
      	url:"ajax/lotes.ajax.php",
       	method: "POST",
@@ -153,6 +248,7 @@ $(".nuevoProductoS").on("change", function() {
 
 	})
 })
+
 
 
 $(".idLoteS").on("change", function() {

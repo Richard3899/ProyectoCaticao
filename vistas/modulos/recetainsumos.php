@@ -186,6 +186,7 @@ MODAL RECETA INSUMO
                 <span class="input-group-text"><i class="fas fa-box"></i></span>
                 </div>
                 <input type="number" class="form-control input-lg" id="nuevoStock" name="nuevoStock" readonly required>
+                <input type="text" class="form-control input-lg"  id="unidadMedidaStockI" name="unidadMedidaStockI" readonly>
             </div>
             </div>
 
@@ -202,6 +203,7 @@ MODAL RECETA INSUMO
                 </div>
                 <input type="number" class="form-control input-lg nuevaCantidadInsumo" stock id="nuevaCantidad" name="nuevaCantidad" 
                  min="0.01" step="0.01" required>
+                <input type="text" class="form-control input-lg"  id="unidadMedidaI" name="unidadMedidaI" readonly>
             </div>
 
             </div>
@@ -322,6 +324,7 @@ MODAL EDITAR RECETA INSUMO
                 <span class="input-group-text"><i class="fas fa-box"></i></span>
                 </div>
                 <input type="number" class="form-control input-lg" id="editarStock" name="editarStock" readonly required>
+                <input type="text" class="form-control input-lg"  id="unidadMedidaStockA" name="unidadMedidaStockA" readonly>
             </div>
             </div>
 
@@ -338,6 +341,7 @@ MODAL EDITAR RECETA INSUMO
                 </div>
                 <input type="number" class="form-control input-lg editarCantidadInsumo" edStock id="editarCantidad" name="editarCantidad" 
                 min="0.01" step="0.01" required>
+                <input type="text" class="form-control input-lg"  id="unidadMedidaA" name="unidadMedidaA" readonly>
             </div>
 
             </div>

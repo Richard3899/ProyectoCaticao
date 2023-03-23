@@ -133,7 +133,7 @@ MODAL INGRESO DE INSUMO
             <label for="insumo">Insumo</label>
             <div class="input-group">
 
-                <select class="form-control select2 input-lg" style="width: 100%;" id="nuevoInsumoI" name="nuevoInsumoI" required>
+                <select class="form-control select2 input-lg"  id="nuevoInsumoI" name="nuevoInsumoI" style="width: 100%;" required>
                 
                 <option value="">Seleccionar Insumo</option>
 
@@ -168,10 +168,10 @@ MODAL INGRESO DE INSUMO
                 <div class="input-group-prepend">
                 <span class="input-group-text"><i class="fas fa-layer-group"></i></span>
                 </div>
-                <input type="number" class="form-control input-lg" name="nuevaCantidadI" placeholder="Ingresar cantidad" 
+                <input type="number" class="form-control input-lg" name="nuevaCantidadI" id="nuevaCantidadI" placeholder="Ingresar cantidad" 
                  min="0.01" max="9999999" step="0.01" required>
 
-                <input type="text" class="form-control input-lg"  id="unidadMedidadI" name="unidadMedidadI" readonly>
+                <input type="text" class="form-control input-lg"  id="unidadMedidaI" name="unidadMedidaI" readonly>
             </div>
 
             </div>
@@ -313,11 +313,10 @@ MODAL SALIDA DE INSUMO
                 <div class="input-group-prepend">
                 <span class="input-group-text"><i class="fas fa-layer-group"></i></span>
                 </div>
-                <input type="number" class="form-control input-lg" name="nuevaCantidadS" placeholder="Ingresar cantidad" 
+                <input type="number" class="form-control input-lg" name="nuevaCantidadS" id="nuevaCantidadS" placeholder="Ingresar cantidad" 
                  min="0.01" max="9999999" step="0.01" required>
                 
-                <input type="text" class="form-control input-lg"  id="unidadMedidadS" name="unidadMedidadS" readonly>
-                
+                <input type="text" class="form-control input-lg"  id="unidadMedidaS" name="unidadMedidaS" readonly> 
             </div>
 
             </div>
