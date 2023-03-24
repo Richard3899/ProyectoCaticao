@@ -15,7 +15,8 @@ $('.tablaInventarioMaquinas').DataTable( {
 			  }
 			  return '<button class="btn btn-' + color + '" ">' + DataTable.render.number( '.', ',', 2).display(stock) + '</button>';
 			}
-	   }
+	   },
+	   {targets: [3], render: DataTable.render.moment("YYYY-MM-DD HH:mm:ss","DD/MM/YYYY HH:mm:ss")}
 	  ],
 	"retrieve": true,
 	"processing": true,

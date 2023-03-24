@@ -46,7 +46,15 @@ class TablaInventarioMateriales{
 
 		  	$materiales = ControladorMateriales::ctrMostrarMateriales($item1, $valor1);
 
-		
+			/*=============================================
+ 	 		TRAEMOS LA UNIDAD DE MEDIDA
+  			=============================================*/ 
+
+		  	$item3 = "idUnidadMedida";
+		  	$valor3 = $materiales["idUnidadMedida"];
+
+		  	$unidadmedida = ControladorUnidadMedida::ctrMostrarUnidadMedida($item3, $valor3);
+
 			/*=============================================
  	 		TRAEMOS LA MARCA
   			=============================================*/ 
@@ -61,7 +69,9 @@ class TablaInventarioMateriales{
 		  	$datosJson .='[
 			      "'.($i+1).'",
 				  "'.$materiales["nombre"].' - '.$marcas["descripcion"].'",
-			      "'.$stock.'"
+			      "'.$stock.'",
+				  "'.$unidadmedida["descripcion"].'",
+				  "'.$inventariomateriales[$i]["ultimoMovimiento"].'"
 			    ],';
 
 		  }

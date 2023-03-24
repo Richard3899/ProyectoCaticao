@@ -45,7 +45,8 @@ class TablaInventarioMaquinas{
 		  	$datosJson .='[
 			      "'.($i+1).'",
 				  "'.$maquinas["nombre"].'",
-			      "'.$stock.'"
+			      "'.$stock.'",
+				  "'.$inventariomaquinas[$i]["ultimoMovimiento"].'"
 			    ],';
 
 		  }

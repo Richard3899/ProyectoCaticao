@@ -76,6 +76,8 @@
          <th style="width:10px">#</th>
          <th>Nombre</th>
          <th>Stock</th>
+         <th>Unidad de Medida</th>
+         <th>Último Movimiento</th>
 
        </tr> 
 

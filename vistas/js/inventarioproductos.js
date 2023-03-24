@@ -17,7 +17,8 @@ $('.tablaInventarioProductos').DataTable( {
 			  }
 			  return '<button class="btn btn-' + color + '" ">' + DataTable.render.number( '.', ',', 2).display(stock) + '</button>';
 			}
-	   }
+	   },
+	   {targets: [5], render: DataTable.render.moment("YYYY-MM-DD HH:mm:ss","DD/MM/YYYY HH:mm:ss")}
 	  ],
 	"retrieve": true,
 	"processing": true,
@@ -185,6 +186,7 @@ $(".nuevoProductoS").on("change", function() {
 
 	$("#idLoteS").empty();
 
+
 	$.ajax({
 
 		url:"ajax/productos.ajax.php",
@@ -224,7 +226,7 @@ $(".nuevoProductoS").on("change", function() {
 	})
 
 	$.ajax({
-
+        
      	url:"ajax/lotes.ajax.php",
       	method: "POST",
       	data: datos,
@@ -233,19 +235,19 @@ $(".nuevoProductoS").on("change", function() {
       	processData: false,
       	dataType:"json",
       	success:function(respuesta){
-
+			
 		$(".idLoteS").append("<option value =''>Seleccionar Lote</option>");
 		
 		for (var i=0; i<respuesta.length; i++) { 
 
 		$(".idLoteS").append("<option stock='"+respuesta[i]["cantidad"]+"' value ='"+respuesta[i]["idLote"]+"'>"+respuesta[i]["codigoLote"]+"</option>");
 		
+		
 	    }
 
 	
 	    }
 		
-
 	})
 })
 

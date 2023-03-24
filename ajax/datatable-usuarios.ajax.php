@@ -49,16 +49,6 @@ class TablaUsuarios{
 
 		  	$perfiles = ControladorPerfiles::ctrMostrarPerfiles($item, $valor);
 
-			if($usuarios[$i]["ultimo_login"] != ""){  
-
-				$ultimoLogin= $usuarios[$i]["ultimo_login"];
-
-			  }else{
-
-				$ultimoLogin= "Aun no inicia sesión";
-
-			}
-
 		    /*==Botón Editar y Eliminar=*/
 
             if($_GET["permisoEditar"]==1 && $_GET["permisoEliminar"]==0){
@@ -179,7 +169,7 @@ class TablaUsuarios{
 				  "'.$foto.'",
 				  "'.$perfiles["descripcion"].'",
 				  "'.$estado.'",
-				  "'.$ultimoLogin.'",
+				  "'.$usuarios[$i]["ultimo_login"].'",
 			      "'.$botones.'"
 			    ],';
 

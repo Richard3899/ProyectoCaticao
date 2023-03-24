@@ -46,7 +46,15 @@ class TablaInventarioInsumos{
 
 		  	$insumos = ControladorInsumos::ctrMostrarInsumos($item1, $valor1);
 
-		
+			/*=============================================
+ 	 		TRAEMOS LA UNIDAD DE MEDIDA
+  			=============================================*/ 
+
+		  	$item3 = "idUnidadMedida";
+		  	$valor3 = $insumos["idUnidadMedida"];
+
+		  	$unidadmedida = ControladorUnidadMedida::ctrMostrarUnidadMedida($item3, $valor3);
+
 			/*=============================================
  	 		TRAEMOS LA MARCA
   			=============================================*/ 
@@ -61,7 +69,9 @@ class TablaInventarioInsumos{
 		  	$datosJson .='[
 			      "'.($i+1).'",
 				  "'.$insumos["nombre"].' - '.$marcas["descripcion"].'",
-			      "'.$stock.'"
+			      "'.$stock.'",
+				  "'.$unidadmedida["descripcion"].'",
+				  "'.$inventarioinsumos[$i]["ultimoMovimiento"].'"
 			    ],';
 
 		  }

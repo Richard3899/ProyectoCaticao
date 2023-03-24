@@ -80,6 +80,8 @@
          <th>Nombre</th>
          <th>Tipo de Producto</th>
          <th>Stock</th>
+         <th>Unidad de Medida</th>
+         <th>Último Movimiento</th>
 
        </tr> 
 

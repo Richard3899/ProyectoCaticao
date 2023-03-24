@@ -769,7 +769,8 @@ CREATE PROCEDURE `insertar_ingresoinsumo` (     in idMateriaI INT,
                                                 in fechaI date)
 BEGIN
 
-    UPDATE inventariomateria SET stock = stock + ingresoI
+    UPDATE inventariomateria SET stock = stock + ingresoI,
+                                 ultimoMovimiento=NOW()
 						   WHERE idMateria=idMateriaI;
                            
     insert into movimientomateria (idMateria,ingreso,salida,observacion,codigoReceta,fecha,idMovimiento)
@@ -787,7 +788,8 @@ CREATE PROCEDURE `insertar_salidainsumo` (      in idMateriaI INT,
                                                 in observacionI varchar(50),
                                                 in fechaI date)
 BEGIN
-     UPDATE inventariomateria SET stock = stock - salidaI
+     UPDATE inventariomateria SET stock = stock - salidaI,
+     										ultimoMovimiento=NOW()
 						   WHERE idMateria=idMateriaI;
 	insert into movimientomateria (idMateria,ingreso,salida,observacion,codigoReceta,fecha,idMovimiento)
 				           values (idMateriaI,0,salidaI,observacionI,"S-C",fechaI,2);
@@ -863,7 +865,8 @@ CREATE PROCEDURE `insertar_ingresomaterial` (   in idMateriaI INT,
                                                 in fechaI date)
 BEGIN
 
-    UPDATE inventariomateria SET stock = stock + ingresoI
+    UPDATE inventariomateria SET stock = stock + ingresoI,
+    										ultimoMovimiento=NOW()
 						   WHERE idMateria=idMateriaI;
                            
     insert into movimientomateria (idMateria,ingreso,salida,observacion,codigoReceta,fecha,idMovimiento)
@@ -881,8 +884,10 @@ CREATE PROCEDURE `insertar_salidamaterial` (    in idMateriaI INT,
                                                 in observacionI varchar(50),
                                                 in fechaI date)
 BEGIN
-     UPDATE inventariomateria SET stock = stock - salidaI
+     UPDATE inventariomateria SET stock = stock - salidaI,
+     										 ultimoMovimiento=NOW()
 						   WHERE idMateria=idMateriaI;
+						   
 	insert into movimientomateria (idMateria,ingreso,salida,observacion,codigoReceta,fecha,idMovimiento)
 				           values (idMateriaI,0,salidaI,observacionI,"S-C",fechaI,2);
 						
@@ -956,7 +961,8 @@ BEGIN
                     fechaVencimiento=fechaVencimientoI
 					WHERE codigoLote=codigoLoteI;   
 					
-	 UPDATE inventarioproducto SET stock = stock + ingresoI
+	 UPDATE inventarioproducto SET stock = stock + ingresoI,
+	 										 ultimoMovimiento=NOW()
 						           WHERE idProducto=idProductoI;              
                      
     insert into movimientoproducto (idLote,ingreso,salida,observacion,fecha,idMovimiento)
@@ -975,7 +981,8 @@ CREATE PROCEDURE `insertar_salidaproducto` (    in idProductoI INT,
                                                 in observacionI varchar(50),
                                                 in fechaI date)
 BEGIN
-     UPDATE inventarioproducto SET stock = stock - salidaI
+     UPDATE inventarioproducto SET stock = stock - salidaI,
+     										  ultimoMovimiento=NOW()
 						   WHERE idProducto=idProductoI;
 						   
      UPDATE lote SET cantidad = cantidad-salidaI
@@ -986,6 +993,7 @@ BEGIN
 						
 END$$
 DELIMITER ;
+
 
 -- Procedimientos almacenados de mostrar kardex de productos --
 DROP procedure IF EXISTS `mostrar_kardexproductos`;
@@ -1029,7 +1037,8 @@ CREATE PROCEDURE `insertar_ingresomaquina` (    in idMaquinaI INT,
                                                 in fechaI date)
 BEGIN
 
-    UPDATE inventariomaquina SET stock = stock + ingresoI
+    UPDATE inventariomaquina SET stock = stock + ingresoI,
+    										ultimoMovimiento=NOW()
 						   WHERE idMaquina=idMaquinaI;
                            
     insert into movimientomaquina (idMaquina,ingreso,salida,observacion,fecha,idMovimiento)
@@ -1047,13 +1056,13 @@ CREATE PROCEDURE `insertar_salidamaquina` (     in idMaquinaI INT,
                                                 in observacionI varchar(50),
                                                 in fechaI date)
 BEGIN
-     UPDATE inventariomaquina SET stock = stock - salidaI
+     UPDATE inventariomaquina SET stock = stock - salidaI,
+     										 ultimoMovimiento=NOW()
 						   WHERE idMaquina=idMaquinaI;
                            
 	insert into movimientomaquina (idMaquina,ingreso,salida,observacion,fecha,idMovimiento)
 				           values (idMaquinaI,0,salidaI,observacionI,fechaI,2);
 						
-    
 
 END$$
 DELIMITER ;
@@ -1102,7 +1111,9 @@ DELIMITER $$
 USE `caticao`$$
 CREATE PROCEDURE `mostrar_lotes2` (in idProductoM INT)
 BEGIN
-	select * from lote WHERE idProducto=idProductoM and cantidad > 0;
+	SELECT l.idLote,l.codigoLote,l.fechaVencimiento,l.cantidad,l.idProducto,r.fechaFin from lote l LEFT  JOIN receta r ON r.codigoLote=l.codigoLote 
+	
+	WHERE l.idProducto=idProductoM and cantidad > 0;
 END$$
 DELIMITER ;
 
@@ -1275,7 +1286,8 @@ BEGIN
 	UPDATE lote SET cantidad = cantidad + cantidadTabletasE
 					WHERE codigoLote=codigoLoteE;   
 					
-	UPDATE inventarioproducto SET stock = stock + cantidadTabletasE
+	UPDATE inventarioproducto SET stock = stock + cantidadTabletasE,
+											ultimoMovimiento=NOW()
 						           WHERE idProducto=idProductoC;              
                      
    insert into movimientoproducto (idLote,ingreso,salida,observacion,fecha,idMovimiento)
@@ -1351,7 +1363,8 @@ CREATE PROCEDURE `insertar_recetainsumo` (      in idRecetaI INT,
                                                 in precioUnitarioI DECIMAL(10,2),
 																in totalI DECIMAL(10,2) )
 BEGIN
-    UPDATE inventariomateria SET stock = stock - cantidadI
+    UPDATE inventariomateria SET stock = stock - cantidadI,
+    										ultimoMovimiento=NOW()
 						         WHERE idMateria=idMateriaI;
                             
     INSERT INTO movimientomateria (idMateria,ingreso,salida,observacion,codigoReceta,fecha,idMovimiento)
@@ -1398,6 +1411,9 @@ BEGIN
                           INNER JOIN materia m ON m.idMateria=mm.idMateria
                           GROUP BY mm.idMateria;
                           
+   UPDATE inventariomateria SET ultimoMovimiento=NOW()
+						         WHERE idMateria=idMateriaE;
+                          
 	CALL sumatotal_costoporreceta(idRecetaE);
 END$$
 DELIMITER ;
@@ -1428,6 +1444,9 @@ BEGIN
                           INNER JOIN materia m ON m.idMateria=mm.idMateria
                           GROUP BY mm.idMateria;
                           
+   UPDATE inventariomateria SET ultimoMovimiento=NOW()
+						         WHERE idMateria=idMateriaE;
+						         
 	CALL sumatotal_costoporreceta(idRecetaE);
 					
 END$$

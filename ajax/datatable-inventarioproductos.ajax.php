@@ -77,7 +77,9 @@ class TablaInventarioProductos{
 			      "'.($i+1).'",
 				  "'.$productos["nombre"].'",
 				  "'.$tp.'",
-			      "'.$inventarioproductos[$i]["stock"].'"
+			      "'.$inventarioproductos[$i]["stock"].'",
+				  "'.$unidadmedida["descripcion"].'",
+				  "'.$inventarioproductos[$i]["ultimoMovimiento"].'"
 			    ],';
 
 		  }

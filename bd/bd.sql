@@ -307,6 +307,7 @@ CREATE TABLE MovimientoMateria (
 CREATE TABLE InventarioMateria (
   idInventarioMateria INT  AUTO_INCREMENT primary key,
   stock DECIMAL(10,2) ,
+  ultimoMovimiento TIMESTAMP,
   idMateria INT REFERENCES Materia (idMateria)
 );
 
@@ -317,6 +318,7 @@ CREATE TABLE InventarioMateria (
 CREATE TABLE InventarioProducto (
   idInventarioProducto INT  AUTO_INCREMENT primary key,
   stock DECIMAL(10,2) ,
+  ultimoMovimiento TIMESTAMP,
   idProducto INT REFERENCES Producto (idProducto)
 );
 
@@ -343,6 +345,7 @@ CREATE TABLE MovimientoProducto (
 CREATE TABLE InventarioMaquina (
   idInventarioMaquina INT  AUTO_INCREMENT primary key,
   stock DECIMAL(10,2) ,
+  ultimoMovimiento TIMESTAMP,
   idMaquina INT REFERENCES Maquina (idMaquina)
 );
 
