@@ -69,11 +69,11 @@ class TablaInsumos{
 
             if($_GET["permisoEditar"]==1 && $_GET["permisoEliminar"]==0){
 				
-			$botones =  "<div class='btn-group'><button class='btn btn-warning btnEditarInsumo' idInsumo='".$insumos[$i]["idMateria"]."' data-toggle='modal' data-target='#modalEditarInsumo'><i class='fa fa-pen'></i></button></div>";				
+			$botones =  "<div class='btn-group'><button title='Editar' class='btn btn-warning btnEditarInsumo' idInsumo='".$insumos[$i]["idMateria"]."' data-toggle='modal' data-target='#modalEditarInsumo'><i class='fa fa-pen'></i></button></div>";				
 
 			}else if($_GET["permisoEditar"]==0 && $_GET["permisoEliminar"]==1){
 
-			$botones =  "<div class='btn-group'><button class='btn btn-danger btnEliminarInsumo' idInsumo='".$insumos[$i]["idMateria"]."' codigo='".$insumos[$i]["codigo"]."' imagen='".$insumos[$i]["imagen"]."'><i class='fa fa-times'></i></button></div>";				
+			$botones =  "<div class='btn-group'><button title='Eliminar' class='btn btn-danger btnEliminarInsumo' idInsumo='".$insumos[$i]["idMateria"]."' codigo='".$insumos[$i]["codigo"]."' imagen='".$insumos[$i]["imagen"]."'><i class='fa fa-times'></i></button></div>";				
 
 			}else if($_GET["permisoEditar"]==0 && $_GET["permisoEliminar"]==0){
 
@@ -81,7 +81,7 @@ class TablaInsumos{
 				
 		    }else{
 
-			$botones =  "<div class='btn-group'><button class='btn btn-warning btnEditarInsumo' idInsumo='".$insumos[$i]["idMateria"]."' data-toggle='modal' data-target='#modalEditarInsumo'><i class='fa fa-pen'></i></button><button class='btn btn-danger btnEliminarInsumo' idInsumo='".$insumos[$i]["idMateria"]."' codigo='".$insumos[$i]["codigo"]."' imagen='".$insumos[$i]["imagen"]."'><i class='fa fa-times'></i></button></div>";				
+			$botones =  "<div class='btn-group'><button title='Editar' class='btn btn-warning btnEditarInsumo' idInsumo='".$insumos[$i]["idMateria"]."' data-toggle='modal' data-target='#modalEditarInsumo'><i class='fa fa-pen'></i></button><button title='Eliminar' class='btn btn-danger btnEliminarInsumo' idInsumo='".$insumos[$i]["idMateria"]."' codigo='".$insumos[$i]["codigo"]."' imagen='".$insumos[$i]["imagen"]."'><i class='fa fa-times'></i></button></div>";				
 
 			}
 

@@ -60,7 +60,7 @@ class TablaUsuarios{
 		    
 		    }else if($usuarios[$i]["idUsuario"] == 1 && $_GET["idUsuarioSession"]==1){
 
-			$botones = "<div class='btn-group'><button class='btn btn-warning btnEditarUsuario' idUsuario='".$usuarios[$i]["idUsuario"]."' data-toggle='modal' data-target='#modalEditarUsuario'><i class='fa fa-pen'></i></button></div>";  
+			$botones = "<div class='btn-group'><button title='Editar' class='btn btn-warning btnEditarUsuario' idUsuario='".$usuarios[$i]["idUsuario"]."' data-toggle='modal' data-target='#modalEditarUsuario'><i class='fa fa-pen'></i></button></div>";  
 			$estado="<button class='btn btn-success'>Activado</button>";
 
 			}else{
@@ -74,7 +74,7 @@ class TablaUsuarios{
 			$estado="<button class='btn btn-danger btnActivar' idUsuario='".$usuarios[$i]["idUsuario"]."' estadoUsuario='1'>Desactivado</button>";
 	
 			}
-			$botones = "<div class='btn-group'><button class='btn btn-warning btnEditarUsuario' idUsuario='".$usuarios[$i]["idUsuario"]."' data-toggle='modal' data-target='#modalEditarUsuario'><i class='fa fa-pen'></i></button></div>";  
+			$botones = "<div class='btn-group'><button title='Editar' class='btn btn-warning btnEditarUsuario' idUsuario='".$usuarios[$i]["idUsuario"]."' data-toggle='modal' data-target='#modalEditarUsuario'><i class='fa fa-pen'></i></button></div>";  
 	
 			}
 
@@ -87,7 +87,7 @@ class TablaUsuarios{
 		    
 		    }else if($usuarios[$i]["idUsuario"] == 1 && $_GET["idUsuarioSession"]==1){
 
-			$botones = "<div class='btn-group'><button class='btn btn-warning btnEditarUsuario' idUsuario='".$usuarios[$i]["idUsuario"]."' data-toggle='modal' data-target='#modalEditarUsuario'><i class='fa fa-pen'></i></button></div>";  
+			$botones = "<div class='btn-group'><button title='Editar' class='btn btn-warning btnEditarUsuario' idUsuario='".$usuarios[$i]["idUsuario"]."' data-toggle='modal' data-target='#modalEditarUsuario'><i class='fa fa-pen'></i></button></div>";  
 			$estado="<button class='btn btn-success'>Activado</button>";
 
 			}else{
@@ -101,7 +101,7 @@ class TablaUsuarios{
 			$estado="<button class='btn btn-danger' idUsuario='".$usuarios[$i]["idUsuario"]."' estadoUsuario='1'>Desactivado</button>";
 	
 			}
-			$botones = "<div class='btn-group'><button class='btn btn-danger btnEliminarUsuario' idUsuario='".$usuarios[$i]["idUsuario"]."' fotoUsuario='".$usuarios[$i]["foto"]."' usuario='".$usuarios[$i]["usuario"]."'><i class='fa fa-times'></i></button></div>";  
+			$botones = "<div class='btn-group'><button title='Eliminar' class='btn btn-danger btnEliminarUsuario' idUsuario='".$usuarios[$i]["idUsuario"]."' fotoUsuario='".$usuarios[$i]["foto"]."' usuario='".$usuarios[$i]["usuario"]."'><i class='fa fa-times'></i></button></div>";  
 	
 			}
 
@@ -114,7 +114,7 @@ class TablaUsuarios{
 		    
 		    }else if($usuarios[$i]["idUsuario"] == 1 && $_GET["idUsuarioSession"]==1){
 
-			$botones = "<div class='btn-group'><button class='btn btn-warning btnEditarUsuario' idUsuario='".$usuarios[$i]["idUsuario"]."' data-toggle='modal' data-target='#modalEditarUsuario'><i class='fa fa-pen'></i></button></div>";  
+			$botones = "<div class='btn-group'><button title='Editar' class='btn btn-warning btnEditarUsuario' idUsuario='".$usuarios[$i]["idUsuario"]."' data-toggle='modal' data-target='#modalEditarUsuario'><i class='fa fa-pen'></i></button></div>";  
 			$estado="<button class='btn btn-success'>Activado</button>";
 	
 			}else{
@@ -142,7 +142,7 @@ class TablaUsuarios{
 		    
 		    }else if($usuarios[$i]["idUsuario"] == 1 && $_GET["idUsuarioSession"]==1){
 
-			$botones = "<div class='btn-group'><button class='btn btn-warning btnEditarUsuario' idUsuario='".$usuarios[$i]["idUsuario"]."' data-toggle='modal' data-target='#modalEditarUsuario'><i class='fa fa-pen'></i></button></div>";  
+			$botones = "<div class='btn-group'><button title='Editar' class='btn btn-warning btnEditarUsuario' idUsuario='".$usuarios[$i]["idUsuario"]."' data-toggle='modal' data-target='#modalEditarUsuario'><i class='fa fa-pen'></i></button></div>";  
 			$estado="<button class='btn btn-success'>Activado</button>";
 
 			}else{
@@ -156,7 +156,7 @@ class TablaUsuarios{
 			$estado="<button class='btn btn-danger btnActivar' idUsuario='".$usuarios[$i]["idUsuario"]."' estadoUsuario='1'>Desactivado</button>";
 	
 			}
-			$botones = "<div class='btn-group'><button class='btn btn-warning btnEditarUsuario' idUsuario='".$usuarios[$i]["idUsuario"]."' data-toggle='modal' data-target='#modalEditarUsuario'><i class='fa fa-pen'></i></button><button class='btn btn-danger btnEliminarUsuario' idUsuario='".$usuarios[$i]["idUsuario"]."' fotoUsuario='".$usuarios[$i]["foto"]."' usuario='".$usuarios[$i]["usuario"]."'><i class='fa fa-times'></i></button></div>";  
+			$botones = "<div class='btn-group'><button title='Editar' class='btn btn-warning btnEditarUsuario' idUsuario='".$usuarios[$i]["idUsuario"]."' data-toggle='modal' data-target='#modalEditarUsuario'><i class='fa fa-pen'></i></button><button title='Eliminar' class='btn btn-danger btnEliminarUsuario' idUsuario='".$usuarios[$i]["idUsuario"]."' fotoUsuario='".$usuarios[$i]["foto"]."' usuario='".$usuarios[$i]["usuario"]."'><i class='fa fa-times'></i></button></div>";  
 	
 			}
 

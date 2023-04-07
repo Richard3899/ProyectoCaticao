@@ -74,11 +74,11 @@
                       <td>";
                       if($permisoEliminar==1){
 
-                        echo "<button class='btn btn-danger btnEliminarBackup' nombreBackup='".$archivo."'><i class='fa fa-times'></i></button>";
+                        echo "<button title='Eliminar' class='btn btn-danger btnEliminarBackup' nombreBackup='".$archivo."'><i class='fa fa-times'></i></button>";
                  
                         }else{
                  
-                        echo "<button class='btn btn-danger'><i class='fa fa-times'></i></button>";
+                        echo "<button class='btn btn-danger'><i class='fa fa-lock'></i></button>";
                  
                         }
 

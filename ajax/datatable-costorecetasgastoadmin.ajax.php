@@ -33,7 +33,7 @@ class TablaCostoRecetasGastoAdmin{
 				
 		    }else{
 
-			$botones =  "<div class='btn-group'><a type='button'class='btn btn-primary' href='index.php?ruta=gastoadminpormes&idCostoRecetasGastoAdmin=".$costorecetasgastoadmin[$i]["idCostoRecetasGastoAdmin"]."&descripcion=".$costorecetasgastoadmin[$i]["descripcion"]."';>Gasto Administrativo</a><a type='button'class='btn btn-success' href='index.php?ruta=costototalpormes&idCostoRecetasGastoAdmin=".$costorecetasgastoadmin[$i]["idCostoRecetasGastoAdmin"]."&mes=".$costorecetasgastoadmin[$i]["mes"]."&descripcion=".$costorecetasgastoadmin[$i]["descripcion"]."'>Costo Total</a><button class='btn btn-danger btnEliminarCostoRecetasGastoAdmin' idCostoRecetasGastoAdmin='".$costorecetasgastoadmin[$i]["idCostoRecetasGastoAdmin"]."'><i class='fa fa-times'></i></button></div>"; 
+			$botones =  "<div class='btn-group'><a type='button'class='btn btn-primary' href='index.php?ruta=gastoadminpormes&idCostoRecetasGastoAdmin=".$costorecetasgastoadmin[$i]["idCostoRecetasGastoAdmin"]."&descripcion=".$costorecetasgastoadmin[$i]["descripcion"]."';>Gasto Administrativo</a><a type='button'class='btn btn-success' href='index.php?ruta=costototalpormes&idCostoRecetasGastoAdmin=".$costorecetasgastoadmin[$i]["idCostoRecetasGastoAdmin"]."&mes=".$costorecetasgastoadmin[$i]["mes"]."&descripcion=".$costorecetasgastoadmin[$i]["descripcion"]."'>Costo Total</a><button title='Eliminar' class='btn btn-danger btnEliminarCostoRecetasGastoAdmin' idCostoRecetasGastoAdmin='".$costorecetasgastoadmin[$i]["idCostoRecetasGastoAdmin"]."'><i class='fa fa-times'></i></button></div>"; 
 
 			}
 

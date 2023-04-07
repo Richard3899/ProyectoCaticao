@@ -1442,6 +1442,7 @@ BEGIN
 	INSERT INTO inventariomateria (idInventarioMateria,stock,idMateria)		
 	                       SELECT mm.idMateria AS idInventarioMateria,SUM(mm.ingreso) - SUM(mm.salida) AS stock,mm.idMateria FROM movimientomateria mm
                           INNER JOIN materia m ON m.idMateria=mm.idMateria
+                          WHERE m.idMateria=3
                           GROUP BY mm.idMateria;
                           
    UPDATE inventariomateria SET ultimoMovimiento=NOW()

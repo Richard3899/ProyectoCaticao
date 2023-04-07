@@ -284,7 +284,7 @@ MODAL AGREGAR RECETA
 
             <!-- ENTRADA PARA PESO POR TABLETA -->
             <div class="form-group col-sm">
-            <label for="pesoPorTableta">Peso por tableta (Kg)</label>
+            <label for="pesoPorTableta">Peso por tableta (g)</label>
             <div class="input-group">
                 <div class="input-group-prepend">
                 <span class="input-group-text"><i class="fas fa-layer-group"></i></span>
@@ -344,7 +344,7 @@ MODAL AGREGAR RECETA
 
             <!-- ENTRADA CANTIDAD DE TABLETAS -->
             <div class="form-group col-sm">
-            <label for="reproceso">Tabletas</label>
+            <label for="reproceso">Tabletas (unidades)</label>
             <div class="input-group">
                 <div class="input-group-prepend">
                 <span class="input-group-text"><i class="fas fa-layer-group"></i></span>
@@ -593,7 +593,7 @@ MODAL EDITAR RECETA
 
             <!-- ENTRADA PARA PESO POR TABLETA -->
             <div class="form-group col-sm">
-            <label for="pesoPorTableta">Peso por tableta (Kg)</label>
+            <label for="pesoPorTableta">Peso por tableta (g)</label>
             <div class="input-group">
                 <div class="input-group-prepend">
                 <span class="input-group-text"><i class="fas fa-layer-group"></i></span>
@@ -652,7 +652,7 @@ MODAL EDITAR RECETA
 
             <!-- ENTRADA CANTIDAD DE TABLETAS -->
             <div class="form-group col-sm">
-            <label for="reproceso">Tabletas</label>
+            <label for="reproceso">Tabletas (unidades)</label>
             <div class="input-group">
                 <div class="input-group-prepend">
                 <span class="input-group-text"><i class="fas fa-layer-group"></i></span>
@@ -784,7 +784,7 @@ MODAL DETALLE RECETA
 
             <!-- ENTRADA PARA PESO POR TABLETA -->
             <div class="form-group col-sm">
-            <label for="pesoPorTableta">Peso por tableta (Kg)</label>
+            <label for="pesoPorTableta">Peso por tableta (g)</label>
             <div class="input-group">
                 <div class="input-group-prepend">
                 <span class="input-group-text"><i class="fas fa-layer-group"></i></span>
@@ -838,7 +838,7 @@ MODAL DETALLE RECETA
 
             <!-- ENTRADA CANTIDAD DE TABLETAS -->
             <div class="form-group col-sm">
-            <label for="reproceso">Tabletas</label>
+            <label for="reproceso">Tabletas (unidades)</label>
             <div class="input-group">
                 <div class="input-group-prepend">
                 <span class="input-group-text"><i class="fas fa-layer-group"></i></span>

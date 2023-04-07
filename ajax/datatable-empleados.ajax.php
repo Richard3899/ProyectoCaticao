@@ -69,11 +69,11 @@ class TablaEmpleados{
 
             if($_GET["permisoEditar"]==1 && $_GET["permisoEliminar"]==0){
 				
-			$botones =  "<div class='btn-group'><button class='btn btn-warning btnEditarEmpleado' idEmpleado='".$empleados[$i]["idEmpleado"]."' data-toggle='modal' data-target='#modalEditarEmpleado'><i class='fa fa-pen'></i></button></div>"; 
+			$botones =  "<div class='btn-group'><button title='Editar' class='btn btn-warning btnEditarEmpleado' idEmpleado='".$empleados[$i]["idEmpleado"]."' data-toggle='modal' data-target='#modalEditarEmpleado'><i class='fa fa-pen'></i></button></div>"; 
 
 			}else if($_GET["permisoEditar"]==0 && $_GET["permisoEliminar"]==1){
 
-			$botones =  "<div class='btn-group'><button class='btn btn-danger btnEliminarEmpleado' idEmpleado='".$empleados[$i]["idEmpleado"]."'><i class='fa fa-times'></i></button></div>"; 
+			$botones =  "<div class='btn-group'><button title='Eliminar' class='btn btn-danger btnEliminarEmpleado' idEmpleado='".$empleados[$i]["idEmpleado"]."'><i class='fa fa-times'></i></button></div>"; 
 
 			}else if($_GET["permisoEditar"]==0 && $_GET["permisoEliminar"]==0){
 
@@ -81,7 +81,7 @@ class TablaEmpleados{
 				
 		    }else{
 
-			$botones =  "<div class='btn-group'><button class='btn btn-warning btnEditarEmpleado' idEmpleado='".$empleados[$i]["idEmpleado"]."' data-toggle='modal' data-target='#modalEditarEmpleado'><i class='fa fa-pen'></i></button><button class='btn btn-danger btnEliminarEmpleado' idEmpleado='".$empleados[$i]["idEmpleado"]."'><i class='fa fa-times'></i></button></div>"; 
+			$botones =  "<div class='btn-group'><button title='Editar' class='btn btn-warning btnEditarEmpleado' idEmpleado='".$empleados[$i]["idEmpleado"]."' data-toggle='modal' data-target='#modalEditarEmpleado'><i class='fa fa-pen'></i></button><button title='Eliminar' class='btn btn-danger btnEliminarEmpleado' idEmpleado='".$empleados[$i]["idEmpleado"]."'><i class='fa fa-times'></i></button></div>"; 
 
 			}
 
