@@ -935,6 +935,7 @@ CREATE PROCEDURE `insertar_ingresoproducto` (   in idProductoI INT,
                                                 in ingresoI double(10,2),
                                                 in idLoteI INT,
                                                 in codigoLoteI varchar(50),
+                                                in fechaProduccionI DATE,
                                                 in fechaVencimientoI DATE,
                                                 in fechaI DATE,
                                                 in observacionI varchar(50))
@@ -958,6 +959,7 @@ BEGIN
     end if; 
     		   
     UPDATE lote SET cantidad = cantidad+ingresoI,
+                    fechaProduccion=fechaProduccionI,
                     fechaVencimiento=fechaVencimientoI
 					WHERE codigoLote=codigoLoteI;   
 					
@@ -983,10 +985,10 @@ CREATE PROCEDURE `insertar_salidaproducto` (    in idProductoI INT,
 BEGIN
      UPDATE inventarioproducto SET stock = stock - salidaI,
      										  ultimoMovimiento=NOW()
-						   WHERE idProducto=idProductoI;
+						   			 WHERE idProducto=idProductoI;
 						   
      UPDATE lote SET cantidad = cantidad-salidaI
-					WHERE idLote=idLoteI; 
+					  WHERE idLote=idLoteI; 
 					                     
 	  insert into movimientoproducto (idLote,ingreso,salida,observacion,fecha,idMovimiento)
 				                 values (idLoteI,0,salidaI,observacionI,fechaI,2);
@@ -1111,11 +1113,34 @@ DELIMITER $$
 USE `caticao`$$
 CREATE PROCEDURE `mostrar_lotes2` (in idProductoM INT)
 BEGIN
-	SELECT l.idLote,l.codigoLote,l.fechaVencimiento,l.cantidad,l.idProducto,r.fechaFin from lote l LEFT  JOIN receta r ON r.codigoLote=l.codigoLote 
+	SELECT idLote,codigoLote,fechaVencimiento,cantidad,idProducto,fechaProduccion from lote
 	
-	WHERE l.idProducto=idProductoM and cantidad > 0;
+	WHERE idProducto=idProductoM and cantidad > 0;
 END$$
 DELIMITER ;
+
+
+-- Procedimientos almacenados para Actualizar el Inventario de Insumos y Materiales --
+
+DROP procedure IF EXISTS `actualizar_inventariomateria`;
+DELIMITER $$
+USE `caticao`$$
+CREATE PROCEDURE `actualizar_inventariomateria` ()
+BEGIN
+	
+		-- ACTUALIZA EL INVENTARIO CON ELIMINAR E INSERTAR--						   
+	DELETE inventariomateria FROM inventariomateria
+	                         INNER JOIN materia ON inventariomateria.idMateria=inventariomateria.idMateria 
+					             WHERE inventariomateria.idMateria > 0;
+								
+	INSERT INTO inventariomateria (idInventarioMateria,stock,idMateria,ultimoMovimiento)		
+	                       SELECT mm.idMateria AS idInventarioMateria,SUM(mm.ingreso) - SUM(mm.salida) AS stock,mm.idMateria, MAX(mm.hora) AS ultimoMovimiento FROM movimientomateria mm
+                          INNER JOIN materia m ON m.idMateria=mm.idMateria
+                          GROUP BY mm.idMateria;      
+	
+END$$
+DELIMITER ;
+
 
 -- Procedimientos almacenados de Recetas --
 
@@ -1241,15 +1266,7 @@ BEGIN
     DELETE FROM lote
     WHERE codigoLote=codigoLoteE;
     
-    	-- ACTUALIZA EL INVENTARIO CON ELIMINAR E INSERTAR--						   
-	DELETE inventariomateria FROM inventariomateria
-	                         INNER JOIN materia ON inventariomateria.idMateria=inventariomateria.idMateria 
-					             WHERE inventariomateria.idMateria > 0;
-								
-	INSERT INTO inventariomateria (idInventarioMateria,stock,idMateria)		
-	                       SELECT mm.idMateria AS idInventarioMateria,SUM(mm.ingreso) - SUM(mm.salida) AS stock,mm.idMateria FROM movimientomateria mm
-                          INNER JOIN materia m ON m.idMateria=mm.idMateria
-                          GROUP BY mm.idMateria;
+    CALL actualizar_inventariomateria();
     
 END$$
 DELIMITER ;
@@ -1283,7 +1300,8 @@ BEGIN
    UPDATE receta set cerrado=1                
 	WHERE idReceta=idRecetaE;
 	
-	UPDATE lote SET cantidad = cantidad + cantidadTabletasE
+	UPDATE lote SET cantidad = cantidad + cantidadTabletasE,
+	                fechaProduccion = fechaFinalizado
 					WHERE codigoLote=codigoLoteE;   
 					
 	UPDATE inventarioproducto SET stock = stock + cantidadTabletasE,
@@ -1362,18 +1380,17 @@ CREATE PROCEDURE `insertar_recetainsumo` (      in idRecetaI INT,
                                                 in cantidadI DECIMAL(10,3),
                                                 in precioUnitarioI DECIMAL(10,2),
 																in totalI DECIMAL(10,2) )
-BEGIN
-    UPDATE inventariomateria SET stock = stock - cantidadI,
-    										ultimoMovimiento=NOW()
-						         WHERE idMateria=idMateriaI;
-                            
+BEGIN                      
     INSERT INTO movimientomateria (idMateria,ingreso,salida,observacion,codigoReceta,fecha,idMovimiento)
 				               VALUES (idMateriaI,0,cantidadI,"Agregado Receta:",codigoRecetaI,CURRENT_DATE(),2);
 
 	 INSERT INTO recetamateria (idMateria,idReceta,nombre,cantidad,precioUnitario,total)
 			              VALUES (idMateriaI,idRecetaI,nombreI,cantidadI,precioUnitarioI,totalI);
-	 		              
+			              
+	 CALL actualizar_inventariomateria();          
+	   
 	 CALL sumatotal_costoporreceta(idRecetaI);
+	 
 END$$
 DELIMITER ;
 
@@ -1401,20 +1418,10 @@ BEGIN
 	INSERT INTO recetamateria (idRecetaMateria,idMateria,idReceta,nombre,cantidad,precioUnitario,total)
 			             VALUES (idRecetaMateriaE,idMateriaE,idRecetaE,nombreE,cantidadE,precioUnitarioE,totalE);
 
-	-- ACTUALIZA EL INVENTARIO CON ELIMINAR E INSERTAR--						   
-	DELETE inventariomateria FROM inventariomateria
-	                         INNER JOIN materia ON inventariomateria.idMateria=inventariomateria.idMateria 
-					             WHERE inventariomateria.idMateria > 0;
-								
-	INSERT INTO inventariomateria (idInventarioMateria,stock,idMateria)		
-	                       SELECT mm.idMateria AS idInventarioMateria,SUM(mm.ingreso) - SUM(mm.salida) AS stock,mm.idMateria FROM movimientomateria mm
-                          INNER JOIN materia m ON m.idMateria=mm.idMateria
-                          GROUP BY mm.idMateria;
-                          
-   UPDATE inventariomateria SET ultimoMovimiento=NOW()
-						         WHERE idMateria=idMateriaE;
-                          
+   CALL actualizar_inventariomateria();    
+   
 	CALL sumatotal_costoporreceta(idRecetaE);
+	
 END$$
 DELIMITER ;
 
@@ -1434,19 +1441,7 @@ BEGIN
 	                         INNER JOIN materia ON movimientomateria.idMateria=movimientomateria.idMateria 
 					             WHERE movimientomateria.idMateria=idMateriaE  AND movimientomateria.codigoReceta=codigoRecetaE;
 					             
-	-- ACTUALIZA EL INVENTARIO CON ELIMINAR E INSERTAR--						   
-	DELETE inventariomateria FROM inventariomateria
-	                         INNER JOIN materia ON inventariomateria.idMateria=inventariomateria.idMateria 
-					             WHERE inventariomateria.idMateria > 0;
-								
-	INSERT INTO inventariomateria (idInventarioMateria,stock,idMateria)		
-	                       SELECT mm.idMateria AS idInventarioMateria,SUM(mm.ingreso) - SUM(mm.salida) AS stock,mm.idMateria FROM movimientomateria mm
-                          INNER JOIN materia m ON m.idMateria=mm.idMateria
-                          WHERE m.idMateria=3
-                          GROUP BY mm.idMateria;
-                          
-   UPDATE inventariomateria SET ultimoMovimiento=NOW()
-						         WHERE idMateria=idMateriaE;
+	CALL actualizar_inventariomateria();  
 						         
 	CALL sumatotal_costoporreceta(idRecetaE);
 					
@@ -1460,7 +1455,7 @@ USE `caticao`$$
 CREATE PROCEDURE `sumatotal_recetainsumo` (in idRecetaC INT)
 BEGIN
       SELECT if(SUM(total) IS NULL, 0, SUM(total)) FROM recetamateria rm INNER JOIN materia m ON m.idMateria=rm.idMateria
-		                                        WHERE rm.idReceta=idRecetaC AND m.idTipoMateria=1;
+		                                             WHERE rm.idReceta=idRecetaC AND m.idTipoMateria=1;
 END$$
 DELIMITER ;
 
@@ -1532,18 +1527,17 @@ CREATE PROCEDURE `insertar_recetamaterial` (    in idRecetaI INT,
                                                 in precioUnitarioI DECIMAL(10,2),
 												            in totalI DECIMAL(10,2) )
 BEGIN
-
-
-	 UPDATE inventariomateria SET stock = stock - cantidadI
-						         WHERE idMateria=idMateriaI;
-                            
+                    
     INSERT INTO movimientomateria (idMateria,ingreso,salida,observacion,codigoReceta,fecha,idMovimiento)
 				               VALUES (idMateriaI,0,cantidadI,"Agregado Receta:",codigoRecetaI,CURRENT_DATE(),2);
 
 	 INSERT INTO recetamateria (idMateria,idReceta,nombre,cantidad,precioUnitario,total)
 			              VALUES (idMateriaI,idRecetaI,nombreI,cantidadI,precioUnitarioI,totalI);
-
+			              
+   CALL actualizar_inventariomateria();
+   
 	CALL sumatotal_costoporreceta(idRecetaI);	
+	
 END$$
 DELIMITER ;
 
@@ -1571,17 +1565,10 @@ BEGIN
 	INSERT INTO recetamateria (idRecetaMateria,idMateria,idReceta,nombre,cantidad,precioUnitario,total)
 			             VALUES (idRecetaMateriaE,idMateriaE,idRecetaE,nombreE,cantidadE,precioUnitarioE,totalE);
 			             		             
-	-- ACTUALIZA EL INVENTARIO CON ELIMINAR E INSERTAR--						   
-	DELETE inventariomateria FROM inventariomateria
-	                         INNER JOIN materia ON inventariomateria.idMateria=inventariomateria.idMateria 
-					             WHERE inventariomateria.idMateria > 0;
-								
-	INSERT INTO inventariomateria (idInventarioMateria,stock,idMateria)		
-	                       SELECT mm.idMateria AS idInventarioMateria,SUM(mm.ingreso) - SUM(mm.salida) AS stock,mm.idMateria FROM movimientomateria mm
-                          INNER JOIN materia m ON m.idMateria=mm.idMateria
-                          GROUP BY mm.idMateria;
+	CALL actualizar_inventariomateria();  
 								  			             	             
-	CALL sumatotal_costoporreceta(idRecetaE);			             
+	CALL sumatotal_costoporreceta(idRecetaE);		
+		             
 END$$
 DELIMITER ;
 
@@ -1601,16 +1588,8 @@ BEGIN
 	                         INNER JOIN materia ON movimientomateria.idMateria=movimientomateria.idMateria 
 					             WHERE movimientomateria.idMateria=idMateriaE  AND movimientomateria.codigoReceta=codigoRecetaE;
 					             
-	-- ACTUALIZA EL INVENTARIO CON ELIMINAR E INSERTAR--						   
-	DELETE inventariomateria FROM inventariomateria
-	                         INNER JOIN materia ON inventariomateria.idMateria=inventariomateria.idMateria 
-					             WHERE inventariomateria.idMateria > 0;
-								
-	INSERT INTO inventariomateria (idInventarioMateria,stock,idMateria)		
-	                       SELECT mm.idMateria AS idInventarioMateria,SUM(mm.ingreso) - SUM(mm.salida) AS stock,mm.idMateria FROM movimientomateria mm
-                          INNER JOIN materia m ON m.idMateria=mm.idMateria
-                          GROUP BY mm.idMateria;
-
+	CALL actualizar_inventariomateria();  
+	
    CALL sumatotal_costoporreceta(idRecetaE);
 						
 END$$
@@ -1623,7 +1602,7 @@ USE `caticao`$$
 CREATE PROCEDURE `sumatotal_recetamaterial` (in idRecetaC INT)
 BEGIN
 			SELECT if(SUM(total) IS NULL, 0, SUM(total)) FROM recetamateria rm INNER JOIN materia m ON m.idMateria=rm.idMateria
-		                                           WHERE rm.idReceta=idRecetaC AND m.idTipoMateria=2;
+		                                                WHERE rm.idReceta=idRecetaC AND m.idTipoMateria=2;
 END$$
 DELIMITER ;
 
@@ -2310,14 +2289,14 @@ BEGIN
 	
 	-- INSERTA EL LOTE DE LA RECETA DUPLICADA --
 	INSERT INTO lote (codigoLote,fechaVencimiento,cantidad,idProducto)
-				  SELECT rc,fechaVencimiento,0,idProducto FROM lote
-				  WHERE  codigoLote = codigoLoteD;
+				  				SELECT rc,fechaVencimiento,0,idProducto FROM lote
+				  				WHERE  codigoLote = codigoLoteD;
 				  
 	-- INSERTA LA RECETA DUPLICADA --
 	INSERT INTO receta (idReceta,codigo,nombre,batch,idEstado,fechaInicio,fechaFin,pesoPorTableta,pesoEnTableta,merma,reproceso,codigoLote,cerrado,cantidadTabletas,costoTotal,costoPorTableta)
-	             SELECT nuevoIdRecetaD,codigoRecetaD AS codigo,CONCAT(nombre,'-','Duplicado')AS nombre, batch,1,fechaInicio,fechaFin,pesoPorTableta,pesoEnTableta,merma,reproceso,rc AS codigoLote,0,cantidadTabletas,costoTotal,costoPorTableta
-				    FROM receta
-				    WHERE idReceta = idRecetaD;
+	             			SELECT nuevoIdRecetaD,codigoRecetaD AS codigo,CONCAT(nombre,'-','Duplicado')AS nombre, batch,1,fechaInicio,fechaFin,pesoPorTableta,pesoEnTableta,merma,reproceso,rc AS codigoLote,0,cantidadTabletas,costoTotal,costoPorTableta
+				    			FROM receta
+				    			WHERE idReceta = idRecetaD;
 				    
 	-- INSERTA LOS INSUMOS DE LA RECETA DUPLICADA --
 	INSERT INTO recetamateria ( idMateria,idReceta,nombre,cantidad,precioUnitario,total)
@@ -2371,18 +2350,10 @@ BEGIN
 	INSERT INTO recetacostooperativo (idReceta,idGastoAdmin,nombreCostoOperativo,cantidad,precio,total)
 	                    SELECT nuevoIdRecetaD,idGastoAdmin,nombreCostoOperativo,cantidad,precio,total
 	   					  FROM recetacostooperativo                                                        
-	   					  WHERE idReceta = idRecetaD;							  	 					  
-							  							  
-	-- ACTUALIZA EL INVENTARIO CON ELIMINAR E INSERTAR--						   
-	DELETE inventariomateria FROM inventariomateria
-	                         INNER JOIN materia ON inventariomateria.idMateria=inventariomateria.idMateria 
-					             WHERE inventariomateria.idMateria > 0;
-								
-	INSERT INTO inventariomateria (idInventarioMateria,stock,idMateria)		
-	                       SELECT mm.idMateria AS idInventarioMateria,SUM(mm.ingreso) - SUM(mm.salida) AS stock,mm.idMateria FROM movimientomateria mm
-                          INNER JOIN materia m ON m.idMateria=mm.idMateria
-                          GROUP BY mm.idMateria;
-	
+	   					  WHERE idReceta = idRecetaD;
+							  
+	CALL actualizar_inventariomateria();						  							  	 					  
+							  										
 END$$
 DELIMITER ;
 

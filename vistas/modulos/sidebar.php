@@ -265,7 +265,7 @@ if($value["modoDark"] == 1){
           <a href='#' class='nav-link "; if(in_array($url,$descripcionModulosCostos) && in_array($url,$arrayDescripcionModulos)){ echo "active"; } echo"'>
               <i class='nav-icon fas fa-money-bill'></i>
               <p>
-                Costos
+                Costeo
                 <i class='right fas fa-angle-left'></i>
               </p>
             </a>
@@ -276,7 +276,7 @@ if($value["modoDark"] == 1){
               echo "<li class='nav-item'>
                 <a href='costoreceta' class='nav-link "; if(in_array($url, array('costoreceta','costototal'))){ echo "active"; } echo"'>
                 <i class='nav-icon fas fa-angle-double-right'></i>
-                  <p>Costo de Receta</p>
+                  <p>Costo por Receta</p>
                 </a>
               </li>";}
             

@@ -27,6 +27,7 @@ class ControladorInventarioProductos{
 							   "cantidad" => $_POST["nuevaCantidadI"],
 							   "idLote" => $_POST["idLote"],
 							   "codigoLote" => $_POST["nuevoCodigoLoteI"],
+							   "fechaProduccion" => $_POST["nuevaFechaProduccionI"],
 							   "fechaVencimiento" => $_POST["nuevaFechaVencimientoI"],
 							   "fecha" => $_POST["nuevaFechaI"],
 							   "observacion" => $_POST["nuevaObservacionI"]);

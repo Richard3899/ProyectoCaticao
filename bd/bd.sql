@@ -164,6 +164,7 @@ CREATE TABLE lote(
   codigoLote VARCHAR(20),
   fechaVencimiento DATE,
   cantidad DECIMAL(10,2),
+  fechaProduccion DATE,
   idProducto INT REFERENCES producto (idProducto)
 );
 

@@ -132,7 +132,6 @@ MODAL INGRESO DE PRODUCTO
         <div class="box-body">
 
           <div class="row">
-
           <!-- ENTRADA PARA SELECCIONAR PRODUCTO -->
           <div class="form-group col-sm">
             <label for="producto">Producto</label>
@@ -160,6 +159,23 @@ MODAL INGRESO DE PRODUCTO
             </div>
 
           </div>
+          </div>
+
+          <div class="row">
+
+          <input type="hidden" id="idLote" name="idLote">
+
+          <!-- ENTRADA PARA EL LOTE -->
+          <div class="form-group col-sm">
+          <label for="lote">Lote</label>
+           <div class="input-group ">
+                <div class="input-group-prepend">
+                <span class="input-group-text"><i class="fas fa-vote-yea"></i></span>
+                </div>
+                <input type="text" class="form-control input-lg" name="nuevoCodigoLoteI" id="nuevoCodigoLoteI" placeholder="Ingresar lote" 
+                maxlength="20" pattern="[A-Za-z0-9-]+" title="Solo se aceptan letras,números y guiones sin espacios" required>
+          </div>
+          </div>
 
             <!-- ENTRADA PARA EL CANTIDAD -->
             <div class="form-group col-sm">
@@ -180,17 +196,14 @@ MODAL INGRESO DE PRODUCTO
 
           <div class="row">
 
-          <input type="hidden" id="idLote" name="idLote">
-
-          <!-- ENTRADA PARA EL LOTE -->
+          <!-- ENTRADA PARA LA FECHA DE PRODUCCIÓN -->
           <div class="form-group col-sm">
-          <label for="lote">Lote</label>
-           <div class="input-group ">
-                <div class="input-group-prepend">
-                <span class="input-group-text"><i class="fas fa-vote-yea"></i></span>
-                </div>
-                <input type="text" class="form-control input-lg" name="nuevoCodigoLoteI" id="nuevoCodigoLoteI" placeholder="Ingresar lote" 
-                maxlength="20" pattern="[A-Za-z0-9-]+" title="Solo se aceptan letras,números y guiones sin espacios" required>
+          <label for="fechaVencimiento">Fecha de Producción</label>
+          <div class="input-group">
+              <div class="input-group-prepend">
+              <span class="input-group-text"><i class="fas fa-calendar-alt"></i></span>
+              </div>
+              <input type="date" class="form-control input-lg"  name="nuevaFechaProduccionI" id="nuevaFechaProduccionI" required>
           </div>
           </div>
 

@@ -321,13 +321,13 @@ MODAL AGREGAR USUARIO
             </div>
 
             <a class="btn btn-outline-primary collapsed my-1 text-left" data-toggle="collapse" data-target="#pCostos">
-            <i class="fas fa-money-bill px-2"></i> Costos
+            <i class="fas fa-money-bill px-2"></i> Costeo
             </a>
             <div id="pCostos" class="collapse">
                 <div class="card-body">
                   <div class="icheck-primary">
                       <input class="checkModulos" type="checkbox" id="cbCostoReceta" value="17" name="checkListModulos[]">
-                      <label for="cbCostoReceta">Costo de Receta</label>
+                      <label for="cbCostoReceta">Costo por Receta</label>
                   </div>   
                   <div class="icheck-primary">
                       <input class="checkModulos" type="checkbox" id="cbCostoRecetasGastoAdmin" value="18" name="checkListModulos[]">
@@ -694,13 +694,13 @@ MODAL EDITAR USUARIO
             </div>
 
             <a class="btn btn-outline-primary collapsed my-1 text-left" data-toggle="collapse" data-target="#editarpCostos">
-            <i class="fas fa-money-bill px-2"></i> Costos
+            <i class="fas fa-money-bill px-2"></i> Costeo
             </a>
             <div id="editarpCostos" class="collapse">
                 <div class="card-body">
                   <div class="icheck-primary">
                       <input class="editarCheckModulos" type="checkbox" id="costoreceta" value="17" name="editarCheckListModulos[]">
-                      <label for="costoreceta">Costo de Receta</label>
+                      <label for="costoreceta">Costo por Receta</label>
                   </div>   
                   <div class="icheck-primary">
                       <input class="editarCheckModulos" type="checkbox" id="costorecetasgastoadmin" value="18" name="editarCheckListModulos[]">
