@@ -136,7 +136,7 @@ MODAL AGREGAR RECETA
                 <span class="input-group-text"><i class="fas fa-file-signature"></i></span>
                 </div>
                 <input type="text" class="form-control input-lg" id="idNombre" name="nuevoNombre" placeholder="Ingresar nombre" 
-                 maxlength="50"  pattern="[-A-Za-z0-9ñÑáéíóúÁÉÍÓÚ,.:;() ]+" title="Solo se acepta letras y números" required>
+                 maxlength="50"  pattern="[-A-Za-z0-9ñÑáéíóúÁÉÍÓÚ,.:;()+/=* ]+" title="Solo se acepta letras y números" required>
             </div>
             </div>
 
@@ -443,7 +443,7 @@ MODAL EDITAR RECETA
                 <span class="input-group-text"><i class="fas fa-file-signature"></i></span>
                 </div>
                 <input type="text" class="form-control input-lg" id="editarNombre" name="editarNombre" placeholder="Ingresar nombre" 
-                maxlength="50"  pattern="[-A-Za-z0-9ñÑáéíóúÁÉÍÓÚ,.:;() ]+" title="Solo se acepta letras y números" required>
+                maxlength="50"  pattern="[-A-Za-z0-9ñÑáéíóúÁÉÍÓÚ,.:;()+/=* ]+" title="Solo se acepta letras y números" required>
             </div>
             </div>
 

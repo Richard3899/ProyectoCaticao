@@ -182,11 +182,8 @@ class TablaCostoTotal{
  	 	SUMA TOTAL DE RECETA
   		=============================================*/
 
-		$totalreceta = $receta[13];
-		$totalPorTableta=$receta[14];
-
 		$datosJson = '{
-			"data": [["INSUMOS","","",""],';
+			"data": [["<strong>INSUMOS</strong>","","",""],';
   
 			for($i = 0; $i < count($recetainsumos); $i++){
 
@@ -200,7 +197,7 @@ class TablaCostoTotal{
 			};
   
 		   $datosJson .='["TOTAL","","","'.$totalinsumos.'"],["","","",""],
-		   				 ["MATERIALES","","",""],'; 
+		   				 ["<strong>MATERIALES</strong>","","",""],'; 
   
 		   for($i = 0; $i < count($recetamateriales); $i++){
 			  
@@ -214,7 +211,7 @@ class TablaCostoTotal{
 			};
 
 			$datosJson .='["TOTAL","","","'.$totalmateriales.'"],["","","",""],
-						  ["MANO DE OBRA","","",""],'; 
+						  ["<strong>MANO DE OBRA</strong>","","",""],'; 
   
 			for($i = 0; $i < count($recetamanodeobra); $i++){
 			   
@@ -228,7 +225,7 @@ class TablaCostoTotal{
 			 };
 
 			 $datosJson .='["TOTAL","","","'.$totalmanodeobra.'"],["","","",""],
-			 			   ["DEPRECIACIÓN","","",""],'; 
+			 			   ["<strong>DEPRECIACIÓN</strong>","","",""],'; 
   
 			 for($i = 0; $i < count($recetadepreciacion); $i++){
 				
@@ -242,7 +239,7 @@ class TablaCostoTotal{
 			  };
 
 			$datosJson .='["TOTAL","","","'.$totaldepreciacion.'"],["","","",""],
-						  ["CONSUMO DE ENERGÍA","","",""],'; 
+						  ["<strong>CONSUMO DE ENERGÍA</strong>","","",""],'; 
 
 			 for($i = 0; $i < count($recetaconsumoenergia); $i++){
 				
@@ -256,7 +253,7 @@ class TablaCostoTotal{
 			  };	
 			  
 			$datosJson .='["TOTAL","","","'.$totalconsumoenergia.'"],["","","",""],
-			              ["CONSUMO DE GAS","","",""],';
+			              ["<strong>CONSUMO DE GAS</strong>","","",""],';
 						  
 			 for($i = 0; $i < count($recetaconsumogas); $i++){
 				
@@ -270,7 +267,7 @@ class TablaCostoTotal{
 			  };	
 			  
 			$datosJson .='["TOTAL","","","'.$totalconsumogas.'"],["","","",""],
-			              ["COSTO DE VENTA","","",""],'; 
+			              ["<strong>COSTO DE VENTA</strong>","","",""],'; 
 
 			 for($i = 0; $i < count($recetacostoventa); $i++){
 				
@@ -284,7 +281,7 @@ class TablaCostoTotal{
 			  };	
 			  
 			$datosJson .='["TOTAL","","","'.$totalcostoventa.'"],["","","",""],
-			              ["COSTO DE MARKETING","","",""],'; 
+			              ["<strong>COSTO DE MARKETING</strong>","","",""],'; 
 						  
 			 for($i = 0; $i < count($recetacostomarketing); $i++){
 				
@@ -298,7 +295,7 @@ class TablaCostoTotal{
 			  };	
 			  
 			$datosJson .='["TOTAL","","","'.$totalcostomarketing.'"],["","","",""],
-			              ["COSTO OPERATIVO","","",""],'; 
+			              ["<strong>COSTO OPERATIVO</strong>","","",""],'; 
 						  
 			 for($i = 0; $i < count($recetacostooperativo); $i++){
 				
@@ -313,13 +310,13 @@ class TablaCostoTotal{
 			  
 			$datosJson .='["TOTAL","","","'.$totalcostooperativo.'"],["","","",""]'; 						  
 			
-			$datosJson .=',["Costo Total de Producción: ","","","'.$totalreceta.'"]
-			              ,["Costo Por Tableta: ","","","'.$totalPorTableta.'"]]}';
+			$datosJson .=',["Costo Total de Producción: ","","","'.$receta["costoTotal"].'"]
+						  ,["Cantidad de Tabletas: ","","","('.$receta["cantidadTabletas"].')"]
+			              ,["Costo Por Tableta: ","","","'.$receta["costoPorTableta"].'"]]}';
 
 		    echo $datosJson;
 
 	}
-
 
 }
 

@@ -39,6 +39,7 @@ class TablaCostoReceta{
 			      "'.$recetas[$i]["codigo"].'",
 			      "'.$recetas[$i]["nombre"].'",
 				  "'.$recetas[$i]["batch"].'",
+				  "'.$recetas[$i]["fechaFin"].'",
 			      "'.$botones.'"
 			    ],';
 

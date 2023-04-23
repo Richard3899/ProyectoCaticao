@@ -36,6 +36,7 @@
          <th>Código</th>
          <th>Nombre</th>
          <th>Batch</th>
+         <th>Fecha de Fin</th>
          <th>Acciones</th>
 
        </tr> 

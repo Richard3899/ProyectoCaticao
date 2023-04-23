@@ -113,7 +113,7 @@ MODAL COSTO DE RECETAS Y GASTO ADMINISTRATIVO
                 <span class="input-group-text"><i class="fas fa-bars"></i></span>
                 </div>
                 <input type="text" class="form-control input-lg" name="nuevaDescripcion" id="nuevaDescripcion" placeholder="Ingresar descripción" 
-                 maxlength="20" pattern="[-A-Za-z0-9ñÑáéíóúÁÉÍÓÚ,.:;() ]+" title="Solo se acepta letras y números" required>
+                 maxlength="20" pattern="[-A-Za-z0-9ñÑáéíóúÁÉÍÓÚ,.:;()+/=* ]+" title="Solo se acepta letras y números" required>
             </div>
            </div>
 

@@ -2521,7 +2521,7 @@ BEGIN
 	SELECT if(SUM(total) IS NULL, 0, SUM(total)) FROM recetacostooperativo
 		            WHERE idReceta=idRecetaT  INTO totalcostooperativo;
 	
-	SELECT cantidadTabletas FROM receta WHERE idReceta=1 INTO cantidadTableta;
+	SELECT cantidadTabletas FROM receta WHERE idReceta=idRecetaT INTO cantidadTableta;
 			
 	SET totalreceta = totalinsumos + totalmanodeobra + totaldepreciacion + totalconsumoenergia + totalconsumogas + totalcostoventa + totalcostomarketing + totalcostooperativo;
    

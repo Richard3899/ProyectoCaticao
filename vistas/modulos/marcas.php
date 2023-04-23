@@ -111,7 +111,7 @@ MODAL AGREGAR MARCA
                 <span class="input-group-text"><i class="fas fa-hashtag"></i></span>
                 </div>
                 <input type="text" class="form-control input-lg" name="nuevaDescripcionMarca" id="nuevaDescripcionMarca" placeholder="Ingresar Marca" 
-                 maxlength="45" pattern="[-A-Za-z0-9ñÑáéíóúÁÉÍÓÚ,.:;() ]+" title="Solo se acepta letras y números" required>
+                 maxlength="45" pattern="[-A-Za-z0-9ñÑáéíóúÁÉÍÓÚ,.:;()+/=* ]+" title="Solo se acepta letras y números" required>
             </div>
             </div>
 
@@ -191,7 +191,7 @@ MODAL EDITAR MARCA
                 <span class="input-group-text"><i class="fas fa-hashtag"></i></span>
                 </div>
                 <input type="text" class="form-control input-lg" name="editarDescripcionMarca" id="editarDescripcionMarca" 
-                 maxlength="45" pattern="[-A-Za-z0-9ñÑáéíóúÁÉÍÓÚ,.:;() ]+" title="Solo se acepta letras y números"  required>
+                 maxlength="45" pattern="[-A-Za-z0-9ñÑáéíóúÁÉÍÓÚ,.:;()+/=* ]+" title="Solo se acepta letras y números"  required>
                 <input type="hidden" id="idMarca" name="idMarca">
             </div>
             </div>

@@ -5,7 +5,8 @@ $('.tablaCostoReceta').DataTable( {
 	"columnDefs": [
 		{"className": "dt-center", "targets": "_all"},
 		//Tipo de dato (Número)
-		{targets:[3], render: DataTable.render.number( '.', ',', 2)}
+		{targets:[3], render: DataTable.render.number( '.', ',', 2)},
+		{targets: [4], render: DataTable.render.moment("YYYY-MM-DD","DD/MM/YYYY")}
 	  ],
 	"retrieve": true,
 	"processing": true,

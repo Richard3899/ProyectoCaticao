@@ -115,7 +115,7 @@ MODAL AGREGAR COSTOS DE VENTAS
                 <span class="input-group-text"><i class="fas fa-bars"></i></span>
                 </div>
                 <input type="text" class="form-control input-lg" name="nuevaDescripcion" placeholder="Ingresar descripción" 
-                maxlength="100" pattern="[-A-Za-z0-9ñÑáéíóúÁÉÍÓÚ,.:;() ]+" title="Solo se acepta letras y números" required>
+                maxlength="100" pattern="[-A-Za-z0-9ñÑáéíóúÁÉÍÓÚ,.:;()+/=* ]+" title="Solo se acepta letras y números" required>
             </div>
           </div>
  
@@ -278,7 +278,7 @@ MODAL EDITAR COSTOS DE VENTAS
               <span class="input-group-text"><i class="fas fa-bars"></i></span>
               </div>
               <input type="text" class="form-control input-lg" id="editarDescripcion" name="editarDescripcion" placeholder="Ingresar descripción" 
-              maxlength="100" pattern="[-A-Za-z0-9ñÑáéíóúÁÉÍÓÚ,.:;() ]+" title="Solo se acepta letras y números" required>
+              maxlength="100" pattern="[-A-Za-z0-9ñÑáéíóúÁÉÍÓÚ,.:;()+/=* ]+" title="Solo se acepta letras y números" required>
               <input type="hidden" id="idCostoMarketing" name="idCostoMarketing">
           </div>
         </div>

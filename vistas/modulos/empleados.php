@@ -125,7 +125,7 @@ MODAL AGREGAR EMPLEADO
                 <span class="input-group-text"><i class="fas fa-file-signature"></i></span>
                 </div>
                 <input type="text" class="form-control input-lg" id="nuevoNombre" name="nuevoNombre" placeholder="Ingresar nombre" 
-                 maxlength="50"  pattern="[-A-Za-z0-9ñÑáéíóúÁÉÍÓÚ,.:;() ]+" title="Solo se acepta letras" required>
+                 maxlength="50"  pattern="[-A-Za-z0-9ñÑáéíóúÁÉÍÓÚ,.:;()+/=* ]+" title="Solo se acepta letras" required>
             </div>
             </div>
 
@@ -137,7 +137,7 @@ MODAL AGREGAR EMPLEADO
                 <span class="input-group-text"><i class="fas fa-file-signature"></i></span>
                 </div>
                 <input type="text" class="form-control input-lg" id="nuevoApellido" name="nuevoApellido" placeholder="Ingresar apellido" 
-                 maxlength="50"  pattern="[-A-Za-z0-9ñÑáéíóúÁÉÍÓÚ,.:;() ]+" title="Solo se acepta letras" required>
+                 maxlength="50"  pattern="[-A-Za-z0-9ñÑáéíóúÁÉÍÓÚ,.:;()+/=* ]+" title="Solo se acepta letras" required>
             </div>
             </div>
 
@@ -245,7 +245,7 @@ MODAL AGREGAR EMPLEADO
               <span class="input-group-text"><i class="fas fa-map"></i></span>
               </div>
               <input type="text" class="form-control input-lg" id="nuevaDireccion" name="nuevaDireccion" placeholder="Ingresar dirección" 
-               maxlength="50"  pattern="[-A-Za-z0-9ñÑáéíóúÁÉÍÓÚ,.:;() ]+" title="Solo se acepta letras, números, guiones y puntos" required>
+               maxlength="50"  pattern="[-A-Za-z0-9ñÑáéíóúÁÉÍÓÚ,.:;()+/=* ]+" title="Solo se acepta letras, números, guiones y puntos" required>
           </div>
           </div>
 
@@ -288,7 +288,7 @@ MODAL AGREGAR EMPLEADO
                 <span class="input-group-text"><i class="fas fa-users"></i></span>
                 </div>
                 <input type="text" class="form-control input-lg" id="nuevoCargo" name="nuevoCargo" placeholder="Ingresar cargo" 
-                 maxlength="50"  pattern="[-A-Za-z0-9ñÑáéíóúÁÉÍÓÚ,.:;() ]+" title="Solo se acepta letras" required>
+                 maxlength="50"  pattern="[-A-Za-z0-9ñÑáéíóúÁÉÍÓÚ,.:;()+/=* ]+" title="Solo se acepta letras" required>
             </div>
             </div>
 
@@ -300,7 +300,7 @@ MODAL AGREGAR EMPLEADO
                 <span class="input-group-text"><i class="fas fa-stopwatch"></i></span>
                 </div>
                 <input type="text" class="form-control input-lg" id="nuevoHorarioTrabajo" name="nuevoHorarioTrabajo" placeholder="Ingresar horario de trabajo" 
-                 maxlength="50" pattern="[-A-Za-z0-9ñÑáéíóúÁÉÍÓÚ,.:;() ]+" title="Solo se aceptan letras, números, guiones y puntos" required>
+                 maxlength="50" pattern="[-A-Za-z0-9ñÑáéíóúÁÉÍÓÚ,.:;()+/=* ]+" title="Solo se aceptan letras, números, guiones y puntos" required>
             </div>
             </div>
 
@@ -456,7 +456,7 @@ MODAL EDITAR EMPLEADO
                 <span class="input-group-text"><i class="fas fa-file-signature"></i></span>
                 </div>
                 <input type="text" class="form-control input-lg" id="editarNombre" name="editarNombre" placeholder="Ingresar nombre" 
-                 maxlength="50"  pattern="[-A-Za-z0-9ñÑáéíóúÁÉÍÓÚ,.:;() ]+" title="Solo se acepta letras" required>
+                 maxlength="50"  pattern="[-A-Za-z0-9ñÑáéíóúÁÉÍÓÚ,.:;()+/=* ]+" title="Solo se acepta letras" required>
                  <input type="hidden" id="idEmpleado" name="idEmpleado">
             </div>
             </div>
@@ -469,7 +469,7 @@ MODAL EDITAR EMPLEADO
                 <span class="input-group-text"><i class="fas fa-file-signature"></i></span>
                 </div>
                 <input type="text" class="form-control input-lg" id="editarApellido" name="editarApellido" placeholder="Ingresar apellido" 
-                 maxlength="50"  pattern="[-A-Za-z0-9ñÑáéíóúÁÉÍÓÚ,.:;() ]+" title="Solo se acepta letras" required>
+                 maxlength="50"  pattern="[-A-Za-z0-9ñÑáéíóúÁÉÍÓÚ,.:;()+/=* ]+" title="Solo se acepta letras" required>
             </div>
             </div>
 
@@ -578,7 +578,7 @@ MODAL EDITAR EMPLEADO
               <span class="input-group-text"><i class="fas fa-map"></i></span>
               </div>
               <input type="text" class="form-control input-lg" id="editarDireccion" name="editarDireccion" placeholder="Ingresar dirección" 
-               maxlength="50"  pattern="[-A-Za-z0-9ñÑáéíóúÁÉÍÓÚ,.:;() ]+" title="Solo se acepta letras, números, guiones y puntos" required>
+               maxlength="50"  pattern="[-A-Za-z0-9ñÑáéíóúÁÉÍÓÚ,.:;()+/=* ]+" title="Solo se acepta letras, números, guiones y puntos" required>
           </div>
           </div>
 
@@ -622,7 +622,7 @@ MODAL EDITAR EMPLEADO
                 <span class="input-group-text"><i class="fas fa-users"></i></span>
                 </div>
                 <input type="text" class="form-control input-lg" id="editarCargo" name="editarCargo" placeholder="Ingresar cargo" 
-                 maxlength="50"  pattern="[-A-Za-z0-9ñÑáéíóúÁÉÍÓÚ,.:;() ]+" title="Solo se acepta letras" required>
+                 maxlength="50"  pattern="[-A-Za-z0-9ñÑáéíóúÁÉÍÓÚ,.:;()+/=* ]+" title="Solo se acepta letras" required>
             </div>
             </div>
 
@@ -634,7 +634,7 @@ MODAL EDITAR EMPLEADO
                 <span class="input-group-text"><i class="fas fa-stopwatch"></i></span>
                 </div>
                 <input type="text" class="form-control input-lg" id="editarHorarioTrabajo" name="editarHorarioTrabajo" placeholder="Ingresar horario de trabajo" 
-                 maxlength="50" pattern="[-A-Za-z0-9ñÑáéíóúÁÉÍÓÚ,.:;() ]+" title="Solo se aceptan letras, números, guiones y puntos" required>
+                 maxlength="50" pattern="[-A-Za-z0-9ñÑáéíóúÁÉÍÓÚ,.:;()+/=* ]+" title="Solo se aceptan letras, números, guiones y puntos" required>
             </div>
             </div>
 
