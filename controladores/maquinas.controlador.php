@@ -15,6 +15,16 @@ class ControladorMaquinas{
 		return $respuesta;
 	}
 
+	/*=============================================
+	MOSTRAR MAQUINAS CON DEPRECIACIÓN
+	=============================================*/
+
+	static public function ctrMostrarMaquinasConDepreciacion(){
+
+		$respuesta = ModeloMaquinas::mdlMostrarMaquinasConDepreciacion();
+
+		return $respuesta;
+	}
 
 	/*=============================================
 	CREAR MAQUINA

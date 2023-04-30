@@ -379,6 +379,15 @@ BEGIN
 END$$
 DELIMITER ;
 
+DROP procedure IF EXISTS `mostrar_maquinascondepreciacion`;
+DELIMITER $$
+USE `caticao`$$
+CREATE PROCEDURE `mostrar_maquinascondepreciacion` ()
+BEGIN
+	SELECT * from maquina WHERE añoCompra+vidaUtil>= year(NOW());
+END$$
+DELIMITER ;
+
 DROP procedure IF EXISTS `insertar_maquina`;
 DELIMITER $$
 USE `caticao`$$

@@ -38,6 +38,24 @@ class ModeloMaquinas{
 	}
 
 	/*=============================================
+	MOSTRAR MAQUINAS CON DEPRECIACIÓN
+	=============================================*/
+
+	static public function mdlMostrarMaquinasConDepreciacion(){
+
+		$stmt = Conexion::conectar()->prepare("call mostrar_maquinascondepreciacion");
+
+		$stmt -> execute();
+
+		return $stmt -> fetchAll();
+
+		#$stmt -> close();
+
+		$stmt = null;
+
+	}
+
+	/*=============================================
 	REGISTRO DE MAQUINA
 	=============================================*/
 

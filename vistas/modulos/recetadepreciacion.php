@@ -155,10 +155,8 @@ MODAL RECETA DEPRECIACIÓN
                 <option value="">Seleccionar Maquina</option>
 
                 <?php 
-                    $item = null;
-                    $valor = null;
 
-                    $maquina = ControladorMaquinas::ctrMostrarMaquinas($item,$valor);
+                  $maquina = ControladorMaquinas::ctrMostrarMaquinasConDepreciacion();
 
                   foreach($maquina as $key=> $value){ 
 
