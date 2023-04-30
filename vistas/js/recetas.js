@@ -38,6 +38,52 @@ $('.tablaRecetas').DataTable( {
 
 } );
 
+$("#nuevoidEstado" ).on("change", function() {
+	
+	if($("#nuevoidEstado").val()==3){
+		$("#nuevaFechaFin").prop('required', true);
+		$("#nuevaFechaVencimiento").prop('required', true);
+		$("#nuevoPesoPorTableta").prop('required', true);
+		$("#nuevoPesoEnTableta").prop('required', true);
+		$("#nuevaMerma").prop('required', true);
+		$("#nuevoReproceso").prop('required', true);
+		$("#nuevaCantidadTabletas").prop('required', true);
+	}else{
+		$("#nuevaFechaFin").prop('required', false);
+		$("#nuevaFechaVencimiento").prop('required', false);
+		$("#nuevoPesoPorTableta").prop('required', false);
+		$("#nuevoPesoEnTableta").prop('required', false);
+		$("#nuevaMerma").prop('required', false);
+		$("#nuevoReproceso").prop('required', false);
+		$("#nuevaCantidadTabletas").prop('required', false);
+	}
+
+});
+   
+
+$("#editaridEstado" ).on("change", function() {
+	
+	if($("#editaridEstado").val()==3){
+		$("#editarFechaFin").prop('required', true);
+		$("#editarFechaVencimiento").prop('required', true);
+		$("#editarPesoPorTableta").prop('required', true);
+		$("#editarPesoEnTableta").prop('required', true);
+		$("#editarMerma").prop('required', true);
+		$("#editarReproceso").prop('required', true);
+		$("#editarCantidadTabletas").prop('required', true);
+	}else{
+		$("#editarFechaFin").prop('required', false);
+		$("#editarFechaVencimiento").prop('required', false);
+		$("#editarPesoPorTableta").prop('required', false);
+		$("#editarPesoEnTableta").prop('required', false);
+		$("#editarMerma").prop('required', false);
+		$("#editarReproceso").prop('required', false);
+		$("#editarCantidadTabletas").prop('required', false);
+	}
+
+});
+   
+
 $(document).ready(function() {
 	// Create date inputs
 	new DateTime($('#nuevaFechaInicio'), {
@@ -138,7 +184,13 @@ $(".tablaRecetas tbody").on("click", "button.btnEditarReceta", function(){
   
 		$("#editarCodigoLote").val(respuesta["codigoLote"]);
 
-		$("#editarFechaVencimiento").val(moment(respuesta["fechaVencimiento"],'YYYY-MM-DD').format('DD/MM/YYYY'));
+		if(respuesta["fechaVencimiento"]==null){
+			var fechaVencimiento="";
+		}else{
+			fechaVencimiento=moment(respuesta["fechaVencimiento"],'YYYY-MM-DD').format('DD/MM/YYYY');
+		}
+
+		$("#editarFechaVencimiento").val(fechaVencimiento);
 		
 		$("#editaridProducto").val(respuesta["idProducto"]).trigger('change.select2');
 
@@ -172,10 +224,16 @@ $(".tablaRecetas tbody").on("click", "button.btnEditarReceta", function(){
            $("#editarBatch").val(respuesta["batch"]);
 
 		   $("#editaridEstado").val(respuesta["idEstado"]);
-		   
+
 		   $("#editarFechaInicio").val(moment(respuesta["fechaInicio"],'YYYY-MM-DD').format('DD/MM/YYYY'));
 
-		   $("#editarFechaFin").val(moment(respuesta["fechaFin"],'YYYY-MM-DD').format('DD/MM/YYYY'));
+		   if(respuesta["fechaFin"]==null){
+             var fechaFin="";
+		   }else{
+             fechaFin=moment(respuesta["fechaFin"],'YYYY-MM-DD').format('DD/MM/YYYY');
+		   }
+		   
+		   $("#editarFechaFin").val(fechaFin);
 
 		   $("#editarPesoPorTableta").val(respuesta["pesoPorTableta"]);
 
@@ -221,7 +279,14 @@ $(".tablaRecetas tbody").on("click", "button.btnDetalleReceta", function(){
   
 		$("#detalleCodigoLote").val(respuesta["codigoLote"]);
 		$("#detalleCodigoLote").disabled;
-		$("#detalleFechaVencimiento").val(moment(respuesta["fechaVencimiento"],'YYYY-MM-DD').format('DD/MM/YYYY'));
+
+		if(respuesta["fechaVencimiento"]==null){
+			var fechaVencimiento="";
+		}else{
+			fechaVencimiento=moment(respuesta["fechaVencimiento"],'YYYY-MM-DD').format('DD/MM/YYYY');
+		}
+
+		$("#detalleFechaVencimiento").val(fechaVencimiento);
 		
 	  }
   
@@ -247,7 +312,13 @@ $(".tablaRecetas tbody").on("click", "button.btnDetalleReceta", function(){
 
 		   $("#detalleFechaInicio").val(moment(respuesta["fechaInicio"],'YYYY-MM-DD').format('DD/MM/YYYY'));
 
-		   $("#detalleFechaFin").val(moment(respuesta["fechaFin"],'YYYY-MM-DD').format('DD/MM/YYYY'));
+		   if(respuesta["fechaFin"]==null){
+		   	   var fechaFin="";
+		   }else{
+			   fechaFin=moment(respuesta["fechaFin"],'YYYY-MM-DD').format('DD/MM/YYYY');
+		   }
+
+		   $("#detalleFechaFin").val(fechaFin);
 
 		   $("#detallePesoPorTableta").val(respuesta["pesoPorTableta"]);
 		   

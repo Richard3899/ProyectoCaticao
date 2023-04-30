@@ -56,7 +56,6 @@
          <th>Batch</th>
          <th>Estado</th>
          <th>Detalle</th>
-         <th>Duplicar</th>
          <th>Agregar</th>
          <th>Acciones</th>
 
@@ -246,7 +245,7 @@ MODAL AGREGAR RECETA
               <span class="input-group-text"><i class="fas fa-calendar-alt"></i></span>
               </div>
               <input type="text" class="form-control input-lg"  name="nuevaFechaFin" id="nuevaFechaFin"
-              placeholder="Ingresar fecha de fin" required>
+              placeholder="Ingresar fecha de fin">
           </div>
           </div>
 
@@ -274,7 +273,7 @@ MODAL AGREGAR RECETA
               <span class="input-group-text"><i class="fas fa-calendar-alt"></i></span>
               </div>
               <input type="text" class="form-control input-lg"  name="nuevaFechaVencimiento" id="nuevaFechaVencimiento"
-               placeholder="Ingresar fecha de vencimiento" required>
+               placeholder="Ingresar fecha de vencimiento">
           </div>
           </div>
 
@@ -290,7 +289,7 @@ MODAL AGREGAR RECETA
                 <span class="input-group-text"><i class="fas fa-layer-group"></i></span>
                 </div>
                 <input type="number" class="form-control input-lg" name="nuevoPesoPorTableta"  id="nuevoPesoPorTableta" 
-                placeholder="Ingresar peso por tableta (Kg)" min="0" step="0.01" max="9999999" required>
+                placeholder="Ingresar peso por tableta (Kg)" min="0" step="0.01" max="9999999">
             </div>
 
             </div>
@@ -303,7 +302,7 @@ MODAL AGREGAR RECETA
                 <span class="input-group-text"><i class="fas fa-layer-group"></i></span>
                 </div>
                 <input type="number" class="form-control input-lg" name="nuevoPesoEnTableta"  id="nuevoPesoEnTableta" 
-                placeholder="Ingresar peso en tableta (Kg)" min="0" step="0.01" max="9999999" required>
+                placeholder="Ingresar peso en tableta (Kg)" min="0" step="0.01" max="9999999">
             </div>
 
             </div>
@@ -320,7 +319,7 @@ MODAL AGREGAR RECETA
                 <span class="input-group-text"><i class="fas fa-layer-group"></i></span>
                 </div>
                 <input type="number" class="form-control input-lg" name="nuevaMerma"  id="nuevaMerma" 
-                placeholder="Ingresar merma (Kg)" min="0" step="0.01" max="9999999" required>
+                placeholder="Ingresar merma (Kg)" min="0" step="0.01" max="9999999">
             </div>
 
             </div>
@@ -333,7 +332,7 @@ MODAL AGREGAR RECETA
                 <span class="input-group-text"><i class="fas fa-layer-group"></i></span>
                 </div>
                 <input type="number" class="form-control input-lg" name="nuevoReproceso"  id="nuevoReproceso" 
-                placeholder="Ingresar reproceso (Kg)" min="0" step="0.01" max="9999999" required>
+                placeholder="Ingresar reproceso (Kg)" min="0" step="0.01" max="9999999">
             </div>
 
             </div>
@@ -350,7 +349,7 @@ MODAL AGREGAR RECETA
                 <span class="input-group-text"><i class="fas fa-layer-group"></i></span>
                 </div>
                 <input type="number" class="form-control input-lg" name="nuevaCantidadTabletas"  id="nuevaCantidadTabletas" 
-                placeholder="Ingresar cantidad de tabletas" min="1" max="9999999" required>
+                placeholder="Ingresar cantidad de tabletas" min="1" max="9999999">
             </div>
             </div>
 
@@ -398,7 +397,7 @@ MODAL EDITAR RECETA
 
     <div class="modal-content">
 
-      <form role="form" method="post" enctype="multipart/form-data">
+      <form id="formEditarReceta" role="form" method="post" enctype="multipart/form-data">
 
         <!--=====================================
         CABEZA DEL MODAL
@@ -507,7 +506,7 @@ MODAL EDITAR RECETA
                 <span class="input-group-text"><i class="fas fa-sync"></i></span>
                 </div>
 
-                <select class="form-control input-lg" id="editaridEstado" name="editaridEstado">
+                <select class="form-control input-lg" id="editaridEstado" name="editaridEstado" required>
                 
                 <option value="">Estado</option>
 
@@ -554,7 +553,7 @@ MODAL EDITAR RECETA
               <span class="input-group-text"><i class="fas fa-calendar-alt"></i></span>
               </div>
               <input type="text" class="form-control input-lg"  name="editarFechaFin" id="editarFechaFin"
-              placeholder="Ingresar fecha de fin" required>
+              placeholder="Ingresar fecha de fin">
           </div>
           </div>
 
@@ -583,7 +582,7 @@ MODAL EDITAR RECETA
               <span class="input-group-text"><i class="fas fa-calendar-alt"></i></span>
               </div>
               <input type="text" class="form-control input-lg"  name="editarFechaVencimiento" id="editarFechaVencimiento"
-               placeholder="Ingresar fecha de vencimiento" required>
+               placeholder="Ingresar fecha de vencimiento">
           </div>
           </div>
 
@@ -599,7 +598,7 @@ MODAL EDITAR RECETA
                 <span class="input-group-text"><i class="fas fa-layer-group"></i></span>
                 </div>
                 <input type="number" class="form-control input-lg" name="editarPesoPorTableta"  id="editarPesoPorTableta" 
-                placeholder="Ingresar peso por tableta (Kg)" min="0" step="0.01" max="9999999" required>
+                placeholder="Ingresar peso por tableta (Kg)" min="0" step="0.01" max="9999999">
             </div>
 
             </div>
@@ -612,7 +611,7 @@ MODAL EDITAR RECETA
                 <span class="input-group-text"><i class="fas fa-layer-group"></i></span>
                 </div>
                 <input type="number" class="form-control input-lg" name="editarPesoEnTableta"  id="editarPesoEnTableta" 
-                placeholder="Ingresar peso en tableta (Kg)" min="0" step="0.01" max="9999999" required>
+                placeholder="Ingresar peso en tableta (Kg)" min="0" step="0.01" max="9999999">
             </div>
 
             </div>
@@ -629,7 +628,7 @@ MODAL EDITAR RECETA
                 <span class="input-group-text"><i class="fas fa-layer-group"></i></span>
                 </div>
                 <input type="number" class="form-control input-lg" name="editarMerma"  id="editarMerma" 
-                placeholder="Ingresar merma (Kg)" min="0" step="0.01" max="9999999" required>
+                placeholder="Ingresar merma (Kg)" min="0" step="0.01" max="9999999">
             </div>
 
             </div>
@@ -642,7 +641,7 @@ MODAL EDITAR RECETA
                 <span class="input-group-text"><i class="fas fa-layer-group"></i></span>
                 </div>
                 <input type="number" class="form-control input-lg" name="editarReproceso"  id="editarReproceso" 
-                placeholder="Ingresar reproceso (Kg)" min="0" step="0.01" max="9999999" required>
+                placeholder="Ingresar reproceso (Kg)" min="0" step="0.01" max="9999999">
             </div>
             </div>
 
@@ -658,7 +657,7 @@ MODAL EDITAR RECETA
                 <span class="input-group-text"><i class="fas fa-layer-group"></i></span>
                 </div>
                 <input type="number" class="form-control input-lg" name="editarCantidadTabletas"  id="editarCantidadTabletas" 
-                placeholder="Ingresar cantidad de tabletas" min="1" max="9999999" required>
+                placeholder="Ingresar cantidad de tabletas" min="1" max="9999999">
             </div>
             </div>
 
@@ -955,8 +954,6 @@ MODAL DUPLICAR RECETA
   </div>
 
 </div>
-
-
 
 
 <?php

@@ -11,10 +11,7 @@ class TablaCostoReceta{
 
 	public function mostrarTablaCostoReceta(){
 
-		$item = null;
-    	$valor = null;
-
-  		$recetas = ControladorRecetas::ctrMostrarRecetas($item, $valor);
+  		$recetas = ControladorRecetas::ctrMostrarRecetasCerradas();
 		
 		if(count($recetas) == 0){
 

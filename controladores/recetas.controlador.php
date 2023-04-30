@@ -14,6 +14,16 @@ class ControladorRecetas{
 
 		return $respuesta;
 	}
+	/*=============================================
+	MOSTRAR RECETAS CERRADAS
+	=============================================*/
+
+	static public function ctrMostrarRecetasCerradas(){
+
+		$respuesta = ModeloRecetas::mdlMostrarRecetasCerradas();
+
+		return $respuesta;
+	}
 
 
 	/*=============================================
@@ -30,16 +40,15 @@ class ControladorRecetas{
 							   "batch" => $_POST["nuevoBatch"],
 							   "idEstado" => $_POST["nuevoidEstado"],
 							   "fechaInicio" => $_POST["nuevaFechaInicio"],
-							   "fechaFin" => $_POST["nuevaFechaFin"],
-							   "codigoLote" => $_POST["nuevoCodigoLote"],
-							   "fechaVencimiento" => $_POST["nuevaFechaVencimiento"],
-							   "pesoPorTableta" => $_POST["nuevoPesoPorTableta"],
-							   "pesoEnTableta" => $_POST["nuevoPesoEnTableta"],
-							   "merma" => $_POST["nuevaMerma"],
-							   "reproceso" => $_POST["nuevoReproceso"],
-							   "cantidadTabletas" => $_POST["nuevaCantidadTabletas"]);
+							   "fechaFin" => (!empty($_POST['nuevaFechaFin'])) ? $_POST['nuevaFechaFin'] : NULL,
+							   "codigoLote" => $_POST['nuevoCodigoLote'],
+							   "fechaVencimiento" => (!empty($_POST['nuevaFechaVencimiento'])) ? $_POST['nuevaFechaVencimiento'] : NULL,
+							   "pesoPorTableta" => (!empty($_POST['nuevoPesoPorTableta'])) ? $_POST['nuevoPesoPorTableta'] : NULL,
+							   "pesoEnTableta" => (!empty($_POST['nuevoPesoEnTableta'])) ? $_POST['nuevoPesoEnTableta'] : NULL,
+							   "merma" => (!empty($_POST['nuevaMerma'])) ? $_POST['nuevaMerma'] : NULL,
+							   "reproceso" => (!empty($_POST['nuevoReproceso'])) ? $_POST['nuevoReproceso'] : NULL,
+							   "cantidadTabletas" => (!empty($_POST['nuevaCantidadTabletas'])) ? $_POST['nuevaCantidadTabletas'] : NULL);
 							 
-
 				$respuesta = ModeloRecetas::mdlIngresarReceta($datos);
 
 				if($respuesta == "ok"){
@@ -77,7 +86,6 @@ class ControladorRecetas{
 
 		if(isset($_POST["editarCodigoReceta"])){
 
-
 			$datos = array( "idReceta" => $_POST["idReceta"],
 							"idLote" => $_POST["idLote"],
 				            "codigo" => $_POST["editarCodigoReceta"],
@@ -86,14 +94,14 @@ class ControladorRecetas{
 							"batch" => $_POST["editarBatch"],
 							"idEstado" => $_POST["editaridEstado"],
 							"fechaInicio" => $_POST["editarFechaInicio"],
-							"fechaFin" => $_POST["editarFechaFin"],
-							"codigoLote" => $_POST["editarCodigoLote"],
-							"fechaVencimiento" => $_POST["editarFechaVencimiento"],
-							"pesoPorTableta" => $_POST["editarPesoPorTableta"],
-							"pesoEnTableta" => $_POST["editarPesoEnTableta"],
-							"merma" => $_POST["editarMerma"],
-							"reproceso" => $_POST["editarReproceso"],
-							"cantidadTabletas" => $_POST["editarCantidadTabletas"]);						   
+							"fechaFin" => (!empty($_POST['editarFechaFin'])) ? $_POST['editarFechaFin'] : NULL,
+							"codigoLote" => ($_POST['editarCodigoLote']),
+							"fechaVencimiento" => (!empty($_POST['editarFechaVencimiento'])) ? $_POST['editarFechaVencimiento'] : NULL,
+							"pesoPorTableta" => (!empty($_POST['editarPesoPorTableta'])) ? $_POST['editarPesoPorTableta'] : NULL,
+							"pesoEnTableta" => (!empty($_POST['editarPesoEnTableta'])) ? $_POST['editarPesoEnTableta'] : NULL,
+							"merma" => (!empty($_POST['editarMerma'])) ? $_POST['editarMerma'] : NULL,
+							"reproceso" => (!empty($_POST['editarReproceso'])) ? $_POST['editarReproceso'] : NULL,
+							"cantidadTabletas" => (!empty($_POST['editarCantidadTabletas'])) ? $_POST['editarCantidadTabletas'] : NULL);					   
 
 				$respuesta = ModeloRecetas::mdlEditarReceta($datos);
 
@@ -112,12 +120,9 @@ class ControladorRecetas{
 					
 							window.location = "recetas";
 					
-					});
-					
+					});	
 					
 					</script>';
-
-					
 
 				}
 
@@ -170,7 +175,7 @@ class ControladorRecetas{
 	=============================================*/
 	static public function ctrCerrarReceta(){
 
-		if(isset($_GET["idReceta"]) && isset($_GET["idEstado"]) && $_GET["cantidadTabletas"]){
+		if(isset($_GET["idReceta"]) && isset($_GET["idEstado"]) && isset($_GET["cantidadTabletas"])){
 
 			if($_GET["idEstado"]!=3){
 
@@ -181,11 +186,11 @@ class ControladorRecetas{
 					icon: "error",
 					title: "¡El estado de la receta debe estar Terminado!",
 					showConfirmButton: false,
-					timer: 1500
+					timer: 2500
 				
 				}).then(function(result){
 				
-						window.location = "recetas";
+					window.location = "recetas";
 				
 				});
 				
@@ -193,40 +198,59 @@ class ControladorRecetas{
 				
 			}else{
 
-				$datos = array( "idReceta" => $_GET["idReceta"],
-				"codigoLote" => $_GET["codigoLote"],
-				"cantidadTabletas" => $_GET["cantidadTabletas"],
-				"idEstado" => $_GET["idEstado"]);
+				if($_GET["cantidadTabletas"]!="" || $_GET["cantidadTabletas"]!=0){
+					
+					$datos = array( "idReceta" => $_GET["idReceta"],
+					"codigoLote" => $_GET["codigoLote"],
+					"cantidadTabletas" => $_GET["cantidadTabletas"],
+					"idEstado" => $_GET["idEstado"]);
 
-				$respuesta = ModeloRecetas::mdlCerrarReceta($datos);
-        
-				if($respuesta == "ok"){
-	
-					echo '<script>
-	
-					Swal.fire({
-					
-						icon: "success",
-						title: "¡La receta ha sido cerrada correctamente!",
-						showConfirmButton: false,
-						timer: 1500
-					
-					}).then(function(result){
-					
+					$respuesta = ModeloRecetas::mdlCerrarReceta($datos);
+			
+					if($respuesta == "ok"){
+		
+						echo '<script>
+		
+						Swal.fire({
+						
+							icon: "success",
+							title: "¡La receta ha sido cerrada correctamente!",
+							showConfirmButton: false,
+							timer: 1500
+						
+						}).then(function(result){
+						
 							window.location = "recetas";
-					
-					});
-					
-					</script>';
-	
+						
+						});
+						
+						</script>';
+		
+					}
+
+				}else{
+
+						echo '<script>
+
+						Swal.fire({
+						
+							icon: "error",
+							title: "¡Completar todos los datos correctamente!",
+							showConfirmButton: false,
+							timer: 2500
+						
+						}).then(function(result){
+						
+								window.location = "recetas";
+						
+						});
+						
+						</script>';
 				}
 
 			}
-
-
 	
 		}
-
 
 	}
 

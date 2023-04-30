@@ -37,6 +37,20 @@ class ModeloRecetas{
 
 	}
 
+	static public function mdlMostrarRecetasCerradas(){
+
+		$stmt = Conexion::conectar()->prepare("call mostrar_recetascerradas");
+
+		$stmt -> execute();
+
+		return $stmt -> fetchAll();
+
+		#$stmt -> close();
+
+		$stmt = null;
+
+	}
+
 	/*=============================================
 	REGISTRO DE RECETA
 	=============================================*/

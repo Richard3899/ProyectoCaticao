@@ -1153,6 +1153,15 @@ BEGIN
 END$$
 DELIMITER ;
 
+DROP procedure IF EXISTS `mostrar_recetascerradas`;
+DELIMITER $$
+USE `caticao`$$
+CREATE PROCEDURE `mostrar_recetascerradas` ()
+BEGIN
+	select * from receta  WHERE cerrado=1 ORDER BY idReceta desc;
+END$$
+DELIMITER ;
+
 
 DROP procedure IF EXISTS `insertar_receta`;
 DELIMITER $$
