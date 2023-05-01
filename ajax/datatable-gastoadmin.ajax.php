@@ -9,6 +9,9 @@ require_once "../modelos/tipocosto.modelo.php";
 require_once "../controladores/unidadmedida.controlador.php";
 require_once "../modelos/unidadmedida.modelo.php";
 
+require_once "../controladores/tipogasto.controlador.php";
+require_once "../modelos/tipogasto.modelo.php";
+
 class TablaGastoAdmin{
 
  	/*=============================================
@@ -53,6 +56,15 @@ class TablaGastoAdmin{
 
 		  	$unidadmedida = ControladorUnidadMedida::ctrMostrarUnidadMedida($items, $valors);
 
+			/*=============================================
+ 	 		TRAEMOS EL TIPO DE GASTO
+  			=============================================*/ 
+
+		  	$item3 = "idTipoGasto";
+		  	$valor3 = $gastoadmin[$i]["idTipoGasto"];
+
+		  	$tipogasto = ControladorTipoGasto::ctrMostrarTipoGasto($item3, $valor3);
+
 			/*==Botón Editar y Eliminar=*/
 
             if($_GET["permisoEditar"]==1 && $_GET["permisoEliminar"]==0){
@@ -75,10 +87,11 @@ class TablaGastoAdmin{
 
 		  	$datosJson .='[
 			      "'.($i+1).'",
+				  "'.$gastoadmin[$i]["codigo"].'",
 			      "'.$gastoadmin[$i]["descripcion"].'",
 				  "'.$unidadmedida["descripcion"].'",
-			      "'.$gastoadmin[$i]["precio"].'",
 				  "'.$tipocosto["descripcion"].'",
+				  "'.$tipogasto["descripcion"].'",
 			      "'.$botones.'"
 			    ],';
 

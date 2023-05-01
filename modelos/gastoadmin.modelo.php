@@ -12,7 +12,7 @@ class ModeloGastoAdmin{
 
 		if($item != null){
 
-			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item && idDesembolso=1");
+			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
 			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
 
@@ -44,12 +44,13 @@ class ModeloGastoAdmin{
 
 	static public function mdlIngresarGastoAdmin($datos){
 
-		$stmt = Conexion::conectar()->prepare("call insertar_gastoadmin(?,?,?,?)");
+		$stmt = Conexion::conectar()->prepare("call insertar_gastoadmin(?,?,?,?,?)");
 
-		$stmt->bindParam(1, $datos["descripcion"], PDO::PARAM_STR);
-		$stmt->bindParam(2, $datos["idUnidadMedida"], PDO::PARAM_INT);
-		$stmt->bindParam(3, $datos["precio"], PDO::PARAM_STR);
+		$stmt->bindParam(1, $datos["codigo"], PDO::PARAM_STR);
+		$stmt->bindParam(2, $datos["descripcion"], PDO::PARAM_STR);
+		$stmt->bindParam(3, $datos["idUnidadMedida"], PDO::PARAM_INT);
 		$stmt->bindParam(4, $datos["idTipoCosto"], PDO::PARAM_INT);
+		$stmt->bindParam(5, $datos["idTipoGasto"], PDO::PARAM_INT);
 
 		if($stmt->execute()){
 
@@ -78,10 +79,8 @@ class ModeloGastoAdmin{
 		$stmt->bindParam(1, $datos["idGastoAdmin"], PDO::PARAM_INT);
 		$stmt->bindParam(2, $datos["descripcion"], PDO::PARAM_STR);
 		$stmt->bindParam(3, $datos["idUnidadMedida"], PDO::PARAM_INT);
-		$stmt->bindParam(4, $datos["precio"], PDO::PARAM_STR);
-		$stmt->bindParam(5, $datos["idTipoCosto"], PDO::PARAM_INT);
-
-		
+		$stmt->bindParam(4, $datos["idTipoCosto"], PDO::PARAM_INT);
+		$stmt->bindParam(5, $datos["idTipoGasto"], PDO::PARAM_INT);
 
 		if($stmt -> execute()){
 
@@ -92,7 +91,6 @@ class ModeloGastoAdmin{
 			return "error";	
 
 		}
-		
 
 		#$stmt -> close();
 
@@ -124,7 +122,6 @@ class ModeloGastoAdmin{
 		#$stmt -> close();
 
 		$stmt = null;
-
 
 	}
 

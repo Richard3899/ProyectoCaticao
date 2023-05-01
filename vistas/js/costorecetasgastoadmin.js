@@ -38,6 +38,40 @@ $('.tablaCostoRecetasGastoAdmin').DataTable( {
 
 
 /*=============================================
+EDITAR GASTO ADMIN
+=============================================*/
+
+$(".tablaCostoRecetasGastoAdmin tbody").on("click", "button.btnEditarCostoRecetasGastoAdmin", function(){
+
+	var idCostoRecetasGastoAdmin = $(this).attr("idCostoRecetasGastoAdmin");
+	
+	var datos = new FormData();
+
+    datos.append("idCostoRecetasGastoAdmin", idCostoRecetasGastoAdmin);
+
+     $.ajax({
+
+      url:"ajax/costorecetagastoadmin.ajax.php",
+      method: "POST",
+      data: datos,
+      cache: false,
+      contentType: false,
+      processData: false,
+      dataType:"json",
+      success:function(respuesta){
+
+		   $("#idCostoRecetasGastoAdmin").val(respuesta["idCostoRecetasGastoAdmin"]);
+
+		   $("#editarDescripcion").val(respuesta["descripcion"]);
+
+      }
+
+  })
+
+})
+
+
+/*=============================================
 ELIMINAR COSTO DE RECETAS Y GASTO ADMINISTRATIVO
 =============================================*/
 
@@ -65,4 +99,40 @@ $(".tablaCostoRecetasGastoAdmin tbody").on("click", "button.btnEliminarCostoRece
 
 	})
 
+})
+
+/*=============================================
+REVISAR SI EL GASTO YA ESTÁ REGISTRADO
+=============================================*/
+
+$("#nuevoMes").change(function(){
+
+	$(".alert").remove();
+
+	var mes = $(this).val();
+
+	var datos = new FormData();
+	datos.append("validarFecha", mes+"-01");
+
+	 $.ajax({
+	    url:"ajax/costorecetagastoadmin.ajax.php",
+	    method:"POST",
+	    data: datos,
+	    cache: false,
+	    contentType: false,
+	    processData: false,
+	    dataType: "json",
+	    success:function(respuesta){
+	    	
+	    	if(respuesta){
+
+	    		$("#nuevoMes").parent().after('<div class="alert alert-warning">Este mes ya está registrado</div>');
+
+	    		$("#nuevoMes").val("");
+
+	    	}
+
+	    }
+
+	})
 })

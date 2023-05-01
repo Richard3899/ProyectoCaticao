@@ -12,7 +12,7 @@ class ModeloCostoOperativo{
 
 		if($item != null){
 
-			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item && idDesembolso=4");
+			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item && idTipoGasto=4");
 
 			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
 

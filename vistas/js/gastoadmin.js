@@ -64,13 +64,15 @@ $(".tablaGastoAdmin tbody").on("click", "button.btnEditarGastoAdmin", function()
 
 		   $("#idGastoAdmin").val(respuesta["idGastoAdmin"]);
 
+		   $("#editarCodigoGasto").val(respuesta["codigo"]);
+
            $("#editarDescripcion").val(respuesta["descripcion"]);
 
 		   $("#editarUnidadMedida").val(respuesta["idUnidadMedida"]);
 
-           $("#editarPrecio").val(respuesta["precio"]);
-
 		   $("#editarTipoCosto").val(respuesta["idTipoCosto"]);
+
+		   $("#editarTipoGasto").val(respuesta["idTipoGasto"]);
       }
 
   })
@@ -105,4 +107,40 @@ $(".tablaGastoAdmin tbody").on("click", "button.btnEliminarGastoAdmin", function
 
 	})
 
+})
+
+/*=============================================
+REVISAR SI EL GASTO YA ESTÁ REGISTRADO
+=============================================*/
+
+$("#nuevoCodigoGasto").change(function(){
+
+	$(".alert").remove();
+
+	var gasto = $(this).val();
+
+	var datos = new FormData();
+	datos.append("validarCodigo", gasto);
+
+	 $.ajax({
+	    url:"ajax/gastoadmin.ajax.php",
+	    method:"POST",
+	    data: datos,
+	    cache: false,
+	    contentType: false,
+	    processData: false,
+	    dataType: "json",
+	    success:function(respuesta){
+	    	
+	    	if(respuesta){
+
+	    		$("#nuevoCodigoGasto").parent().after('<div class="alert alert-warning">Este código ya existe en la base de datos</div>');
+
+	    		$("#nuevoCodigoGasto").val("");
+
+	    	}
+
+	    }
+
+	})
 })

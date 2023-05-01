@@ -624,28 +624,39 @@ BEGIN
 END$$
 DELIMITER ;
 
+-- Procedimientos almacenados de TipoGasto --
+
+DROP procedure IF EXISTS `mostrar_tipogasto`;
+DELIMITER $$
+USE `caticao`$$
+CREATE PROCEDURE `mostrar_tipogasto` ()
+BEGIN
+	select * from tipogasto;
+END$$
+DELIMITER ;
+
 
 -- Procedimientos almacenados de GastoAdmin --
-
 DROP procedure IF EXISTS `mostrar_gastoadmin`;
 DELIMITER $$
 USE `caticao`$$
 CREATE PROCEDURE `mostrar_gastoadmin` ()
 BEGIN
-	select * from gastoadmin where idDesembolso=1;
+	select * from gastoadmin;
 END$$
 DELIMITER ;
 
 DROP procedure IF EXISTS `insertar_gastoadmin`;
 DELIMITER $$
 USE `caticao`$$
-CREATE PROCEDURE `insertar_gastoadmin` (in descripcionI VARCHAR(100),
+CREATE PROCEDURE `insertar_gastoadmin` (in codigoI VARCHAR(20),
+													 in descripcionI VARCHAR(100),
                                         in idUnidadMedidaI INT,
-                                        in precioI DECIMAL(10,2),
-                                        in idTipoCostoI INT)
+                                        in idTipoCostoI INT,
+													 in idTipoGastoI INT)
 BEGIN
-	insert into gastoadmin (descripcion,idUnidadMedida,precio,idTipoCosto,idDesembolso)
-				  values   (descripcionI,idUnidadMedidaI,precioI,idTipoCostoI,1);
+	insert into gastoadmin (codigo,descripcion,idUnidadMedida,idTipoCosto,idTipoGasto)
+				     values   (codigoI,descripcionI,idUnidadMedidaI,idTipoCostoI,idTipoGastoI);
 END$$
 DELIMITER ;
 
@@ -656,15 +667,14 @@ USE `caticao`$$
 CREATE PROCEDURE `editar_gastoadmin` (  in idGastoAdminE INT,
                                         in descripcionE VARCHAR(100),
                                         in idUnidadMedidaE INT,
-                                        in precioE DECIMAL(10,2),
-                                        in idTipoCostoE INT)
+                                        in idTipoCostoE INT,
+													 in idTipoGastoE INT)
 BEGIN
-	update gastoadmin set   idGastoAdmin=idGastoAdminE,
-							descripcion=descripcionE,
-							idUnidadMedida=idUnidadMedidaE,
-							precio=precioE,
-							idTipoCosto=idTipoCostoE
-				      where idGastoAdmin=idGastoAdminE;
+	update gastoadmin set   descripcion=descripcionE,
+									idUnidadMedida=idUnidadMedidaE,
+									idTipoCosto=idTipoCostoE,
+									idTipoGasto=idTipoGastoE
+				      WHERE    idGastoAdmin=idGastoAdminE;
 END$$
 DELIMITER ;
 
@@ -687,7 +697,7 @@ DELIMITER $$
 USE `caticao`$$
 CREATE PROCEDURE `mostrar_costoventa` ()
 BEGIN
-	select * from gastoadmin where idDesembolso=2;
+	select * from gastoadmin where idTipoGasto=2;
 END$$
 DELIMITER ;
 
@@ -696,11 +706,10 @@ DELIMITER $$
 USE `caticao`$$
 CREATE PROCEDURE `insertar_costoventa` (in descripcionI VARCHAR(100),
                                         in idUnidadMedidaI INT,
-                                        in precioI DECIMAL(10,2),
                                         in idTipoCostoI INT)
 BEGIN
-	insert into gastoadmin (descripcion,idUnidadMedida,precio,idTipoCosto,idDesembolso)
-				  values   (descripcionI,idUnidadMedidaI,precioI,idTipoCostoI,2);
+	insert into gastoadmin (descripcion,idUnidadMedida,idTipoCosto,idTipoGasto)
+				  values   (descripcionI,idUnidadMedidaI,idTipoCostoI,2);
 END$$
 DELIMITER ;
 
@@ -711,7 +720,7 @@ DELIMITER $$
 USE `caticao`$$
 CREATE PROCEDURE `mostrar_costomarketing` ()
 BEGIN
-	select * from gastoadmin where idDesembolso=3;
+	select * from gastoadmin where idTipoGasto=3;
 END$$
 DELIMITER ;
 
@@ -720,11 +729,10 @@ DELIMITER $$
 USE `caticao`$$
 CREATE PROCEDURE `insertar_costomarketing` (in descripcionI VARCHAR(100),
                                         in idUnidadMedidaI INT,
-                                        in precioI DECIMAL(10,2),
                                         in idTipoCostoI INT)
 BEGIN
-	insert into gastoadmin (descripcion,idUnidadMedida,precio,idTipoCosto,idDesembolso)
-				  values   (descripcionI,idUnidadMedidaI,precioI,idTipoCostoI,3);
+	insert into gastoadmin (descripcion,idUnidadMedida,idTipoCosto,idTipoGasto)
+				  values   (descripcionI,idUnidadMedidaI,idTipoCostoI,3);
 END$$
 DELIMITER ;
 
@@ -736,7 +744,7 @@ DELIMITER $$
 USE `caticao`$$
 CREATE PROCEDURE `mostrar_costooperativo` ()
 BEGIN
-	select * from gastoadmin where idDesembolso=4;
+	select * from gastoadmin where idTipoGasto=4;
 END$$
 DELIMITER ;
 
@@ -745,11 +753,10 @@ DELIMITER $$
 USE `caticao`$$
 CREATE PROCEDURE `insertar_costooperativo` (in descripcionI VARCHAR(100),
 											in idUnidadMedidaI INT,
-											in precioI DECIMAL(10,2),
 											in idTipoCostoI INT)
 BEGIN
-	insert into gastoadmin (descripcion,idUnidadMedida,precio,idTipoCosto,idDesembolso)
-				  values   (descripcionI,idUnidadMedidaI,precioI,idTipoCostoI,4);
+	insert into gastoadmin (descripcion,idUnidadMedida,idTipoCosto,idTipoGasto)
+				  values   (descripcionI,idUnidadMedidaI,idTipoCostoI,4);
 END$$
 DELIMITER ;
 
@@ -2395,6 +2402,17 @@ CREATE PROCEDURE `insertar_costorecetasgastoadmin` (IN descripcionI VARCHAR(45),
 BEGIN
 	INSERT INTO costorecetasgastoadmin (descripcion,mes)
 				                   VALUES (descripcionI,mesI);
+END$$
+DELIMITER ;
+
+DROP procedure IF EXISTS `editar_costorecetasgastoadmin`;
+DELIMITER $$
+USE `caticao`$$
+CREATE PROCEDURE `editar_costorecetasgastoadmin` (IN idCostoRecetasGastoAdminI INT ,IN descripcionI VARCHAR(45))
+BEGIN
+	UPDATE costorecetasgastoadmin SET descripcion=descripcionI
+	
+				                   WHERE idCostoRecetasGastoAdmin=idCostoRecetasGastoAdminI;
 END$$
 DELIMITER ;
 

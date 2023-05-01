@@ -10,7 +10,7 @@ INSERT INTO `orderTable` (`idOrderTable`, `descripcion`) VALUES
 (7,'tipomateria'),
 (8,'tipocosto'),
 (9,'tipodocumento'),
-(10,'desembolso'),
+(10,'tipogasto'),
 (11,'movimiento'),
 (12,'estado'),
 (13,'perfil'),
@@ -69,7 +69,7 @@ INSERT INTO `tipodocumento` (`idTipoDocumento`, `descripcion`) VALUES
 	(2, 'RUC'),
     (3, 'Pasaporte');
 
-INSERT INTO `desembolso` (`idDesembolso`, `descripcion`) VALUES
+INSERT INTO `tipogasto` (`idTipoGasto`, `descripcion`) VALUES
 	(1, 'Gastos Administrativos'),
 	(2, 'Costos de Ventas'),
 	(3, 'Costos de Marketing'),
@@ -230,11 +230,11 @@ INSERT INTO `inventariomaquina` (`idInventarioMaquina`,`idMaquina`,`stock`) VALU
 	(1,1,0),
 	(2,2,0);
 
-INSERT INTO `gastoadmin` (`idGastoAdmin`, `descripcion`, `precio`, `idUnidadMedida`, `idTipoCosto`, `idDesembolso`) VALUES
-	(1, 'Gasto Administrativo 1', 70.00, 1, 1, 1),
-	(2, 'Costo de Venta 1', 15.00, 3, 2, 2),
-	(3, 'Costo de Marketing 1', 10.00, 3, 2, 3),
-	(4, 'Costo Operativo 1', 12.00, 3, 1, 4);
+INSERT INTO `gastoadmin` (`idGastoAdmin`, `codigo`, `descripcion`, `idTipoGasto`, `idUnidadMedida`, `idTipoCosto`) VALUES
+	(1, 'A1231', 'Gasto Administrativo 1', 1, 1, 1),
+	(2, 'A1234', 'Costo de Venta 1', 2, 3, 2),
+	(3, 'A1235', 'Costo de Marketing 1', 3, 3, 2),
+	(4, 'A3213', 'Costo Operativo 1', 4, 3, 1);
 
 INSERT INTO `receta` (`idReceta`, `codigo`, `nombre`, `batch`, `fechaInicio`, `fechaFin`, `pesoPorTableta`, `pesoEnTableta`, `merma`, `reproceso`, `codigoLote`, `idEstado`,`cerrado`,`cantidadTabletas`,`costoTotal`,`costoPorTableta`) VALUES
 	(1, 'RC001', 'Receta 1', 60.00, '2022-12-10', '2022-12-10', 1.00, 1.00, 1.00, 1.00, '123456', 1, 0, 5, 0, 0);

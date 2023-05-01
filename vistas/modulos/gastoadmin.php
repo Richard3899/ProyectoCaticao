@@ -6,7 +6,7 @@
     <div class="container-fluid">
       <div class="row mb-2">
         <div class="col-sm-6">
-          <h1>Administrador de Gastos Administrarivos</h1>
+          <h1>Administrador de Gastos y Costos</h1>
         </div>
         <div class="col-sm-6">
           <ol class="breadcrumb float-sm-right">
@@ -30,12 +30,12 @@
        if($permisoInsertar==1){
 
        echo "<button class='btn btn-primary' data-toggle='modal' data-target='#modalAgregarGastoAdmin'>
-            Agregar Gasto Administrativo
+            Agregar Gasto o Costo
             </button>";
 
        }else{
 
-       echo "<button class='btn btn-primary'>Agregar Gasto Administrativo</button>";
+       echo "<button class='btn btn-primary'>Agregar Gasto o Costo</button>";
 
        }
       ?>       
@@ -50,10 +50,11 @@
        <tr>
          
          <th style="width:10px">#</th>
+         <th>Código</th>
          <th>Descripción</th>
          <th>Unidad de Medida</th>
-         <th>Precio</th>
          <th>Tipo de Costo</th>
+         <th>Gastos y Costos</th>
          <th>Acciones</th>
 
        </tr> 
@@ -91,7 +92,7 @@ MODAL AGREGAR GASTOS ADMINISTRATIVOS
 
       <div class="modal-header" style="background:gray; color:white">
 
-      <h4 class="modal-title">Agregar Gasto Administrativo</h4>
+      <h4 class="modal-title">Agregar Gasto o Costo</h4>
 
       <button type="button" class="close" data-dismiss="modal">&times;</button>
 
@@ -106,6 +107,18 @@ MODAL AGREGAR GASTOS ADMINISTRATIVOS
         <div class="box-body">
 
           <div class="row">
+            
+          <!-- ENTRADA PARA EL CÓDIGO -->
+          <div class="form-group col-sm">
+          <label for="codigo">Código</label>
+          <div class="input-group ">
+              <div class="input-group-prepend">
+              <span class="input-group-text"><i class="fas fa-hashtag"></i></span>
+              </div>
+              <input type="text" class="form-control input-lg" name="nuevoCodigoGasto" id="nuevoCodigoGasto" placeholder="Ingresar código" 
+                maxlength="20" pattern="[A-Za-z0-9-]+" title="Solo se aceptan letras,números y guiones sin espacios" required>
+          </div>
+          </div>
 
           <!-- ENTRADA PARA EL DESCRIPCIÓN -->
           <div class="form-group col-sm">
@@ -119,6 +132,9 @@ MODAL AGREGAR GASTOS ADMINISTRATIVOS
             </div>
           </div>
  
+          </div>
+
+          <div class="row">
           <!-- ENTRADA PARA SELECCIONAR SU UNIDAD DE MEDIDA -->
           <div class="form-group col-sm">
           <label for="unidadMedida">Unidad de Medida</label>
@@ -149,23 +165,6 @@ MODAL AGREGAR GASTOS ADMINISTRATIVOS
             </div>
 
           </div>
-
-          </div>
-
-          <div class="row">
-
-          <!-- ENTRADA PARA EL PRECIO -->
-            <div class="form-group col-sm">
-            <label for="precio">Precio</label>
-            <div class="input-group">
-                <div class="input-group-prepend">
-                <span class="input-group-text"><strong>S/.</strong></span>
-                </div>
-                <input type="number" class="form-control input-lg" name="nuevoPrecio" id="nuevoPrecio"
-                placeholder="Ingresar precio" min="0.01" max="9999999" step="0.01" required>
-            </div>
-
-            </div>
 
           <!-- ENTRADA PARA SELECCIONAR SU TIPO DE COSTO -->
           <div class="form-group col-sm">
@@ -200,6 +199,40 @@ MODAL AGREGAR GASTOS ADMINISTRATIVOS
 
           </div>
 
+          <div class="row">
+          <!-- ENTRADA PARA SELECCIONAR EL TIPO DE GASTO-->
+          <div class="form-group col-sm">
+          <label for="unidadMedida">Gastos y Costos</label>
+            <div class="input-group">
+            
+                <div class="input-group-prepend">
+                <span class="input-group-text"><i class="fas fa-ruler"></i></span>
+                </div>
+
+                <select class="form-control input-lg" id="nuevoTipoGasto" name="nuevoTipoGasto" required>
+                
+                <option value="">Seleccionar :</option>
+
+                <?php 
+
+                $item = null;
+                $valor = null;
+
+                $unidadmedida = ControladorTipoGasto::ctrMostrarTipoGasto($item,$valor);
+
+                foreach($unidadmedida as $key=> $value){ 
+                  echo '<option value="'.$value["idTipoGasto"].'">'.$value["descripcion"].'</option>';
+                }
+
+                ?>
+
+              </select>
+
+            </div>
+
+          </div>
+          </div>
+
 
         </div>
 
@@ -213,7 +246,7 @@ MODAL AGREGAR GASTOS ADMINISTRATIVOS
 
         <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Salir</button>
 
-        <button type="submit" class="btn btn-primary">Guardar Gasto Administrativo</button>
+        <button type="submit" class="btn btn-primary">Guardar Gasto o Costo</button>
 
       </div>
 
@@ -254,7 +287,7 @@ MODAL EDITAR GASTOS ADMINISTRATIVOS
 
       <div class="modal-header" style="background:gray; color:white">
 
-      <h4 class="modal-title">Editar Gasto Administrativo</h4>
+      <h4 class="modal-title">Editar Gasto o Costo</h4>
 
       <button type="button" class="close" data-dismiss="modal">&times;</button>
 
@@ -270,6 +303,19 @@ MODAL EDITAR GASTOS ADMINISTRATIVOS
 
         <div class="row">
 
+        <!-- ENTRADA PARA EL CÓDIGO -->
+        <div class="form-group col-sm">
+          <label for="codigo">Código</label>
+          <input type="hidden" id="idGastoAdmin" name="idGastoAdmin">
+          <div class="input-group ">
+              <div class="input-group-prepend">
+              <span class="input-group-text"><i class="fas fa-hashtag"></i></span>
+              </div>
+              <input type="text" class="form-control input-lg" name="editarCodigoGasto" id="editarCodigoGasto" placeholder="Ingresar código" 
+                maxlength="20" pattern="[A-Za-z0-9-]+" title="Solo se aceptan letras,números y guiones sin espacios" readonly required>
+          </div>
+        </div>
+
         <!-- ENTRADA PARA EL DESCRIPCIÓN -->
         <div class="form-group col-sm">
         <label for="descripcion">Descripción</label>
@@ -279,9 +325,12 @@ MODAL EDITAR GASTOS ADMINISTRATIVOS
               </div>
               <input type="text" class="form-control input-lg" id="editarDescripcion" name="editarDescripcion" placeholder="Ingresar descripción" 
               maxlength="100" pattern="[-A-Za-z0-9ñÑáéíóúÁÉÍÓÚ,.:;()+/=* ]+" title="Solo se acepta letras y números" required>
-              <input type="hidden" id="idGastoAdmin" name="idGastoAdmin">
           </div>
         </div>
+
+        </div>
+
+        <div class="row">
 
         <!-- ENTRADA PARA SELECCIONAR SU UNIDAD DE MEDIDA -->
         <div class="form-group col-sm">
@@ -313,23 +362,6 @@ MODAL EDITAR GASTOS ADMINISTRATIVOS
           </div>
 
         </div>
-
-        </div>
-
-        <div class="row">
-
-          <!-- ENTRADA PARA EL PRECIO -->
-          <div class="form-group col-sm">
-          <label for="precio">Precio</label>
-          <div class="input-group">
-              <div class="input-group-prepend">
-              <span class="input-group-text"><strong>S/.</strong></span>
-              </div>
-              <input type="number" class="form-control input-lg" name="editarPrecio" id="editarPrecio"
-              placeholder="Ingresar precio" min="0.01" max="9999999" step="0.01" required>
-          </div>
-
-          </div>
 
         <!-- ENTRADA PARA SELECCIONAR SU TIPO DE COSTO -->
         <div class="form-group col-sm">
@@ -364,6 +396,40 @@ MODAL EDITAR GASTOS ADMINISTRATIVOS
 
         </div>
 
+        <div class="row">
+          <!-- ENTRADA PARA SELECCIONAR EL TIPO DE GASTO-->
+          <div class="form-group col-sm">
+          <label for="unidadMedida">Gastos y Costos</label>
+            <div class="input-group">
+            
+                <div class="input-group-prepend">
+                <span class="input-group-text"><i class="fas fa-ruler"></i></span>
+                </div>
+
+                <select class="form-control input-lg" id="editarTipoGasto" name="editarTipoGasto" required>
+                
+                <option value="">Seleccionar :</option>
+
+                <?php 
+
+                $item = null;
+                $valor = null;
+
+                $unidadmedida = ControladorTipoGasto::ctrMostrarTipoGasto($item,$valor);
+
+                foreach($unidadmedida as $key=> $value){ 
+                  echo '<option value="'.$value["idTipoGasto"].'">'.$value["descripcion"].'</option>';
+                }
+
+                ?>
+
+              </select>
+
+            </div>
+
+          </div>
+        </div>
+
 
        </div>
 
@@ -377,7 +443,7 @@ MODAL EDITAR GASTOS ADMINISTRATIVOS
 
         <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Salir</button>
 
-        <button type="submit" class="btn btn-primary">Editar Gasto Administrativo</button>
+        <button type="submit" class="btn btn-primary">Editar Gasto o Costo</button>
 
       </div>
 

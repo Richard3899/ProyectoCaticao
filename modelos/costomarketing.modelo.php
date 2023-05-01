@@ -12,7 +12,7 @@ class ModeloCostoMarketing{
 
 		if($item != null){
 
-			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item && idDesembolso=3");
+			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item && idTipoGasto=3");
 
 			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
 

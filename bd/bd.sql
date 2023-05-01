@@ -13,8 +13,8 @@ CREATE TABLE ordertable(
 -- -----------------------------------------------------
 -- Table DESEMBOLSO
 -- -----------------------------------------------------
-CREATE TABLE desembolso(
-  idDesembolso int AUTO_INCREMENT primary key,
+CREATE TABLE tipogasto(
+  idTipoGasto int AUTO_INCREMENT primary key,
   descripcion VARCHAR(50)
   
 );
@@ -101,14 +101,13 @@ CREATE TABLE RecetaDepreciacion (
 -- -----------------------------------------------------
 -- Table gastoadmin
 -- -----------------------------------------------------
-
 CREATE TABLE gastoadmin (
   idGastoAdmin INT  AUTO_INCREMENT  primary key,
-  descripcion VARCHAR(50) ,
-  precio DECIMAL(10,2) ,
+  codigo VARCHAR(20),
+  descripcion VARCHAR(50),
+  idTipoGasto int REFERENCES tipogasto (idTipoGasto),
   idUnidadMedida INT REFERENCES unidadmedida (idUnidadMedida),
-  idTipoCosto INT REFERENCES tipocosto (idTipoCosto),
-  idDesembolso int REFERENCES desembolso (idDesembolso)
+  idTipoCosto INT REFERENCES tipocosto (idTipoCosto)
 );
 
 -- -----------------------------------------------------
@@ -543,7 +542,7 @@ CREATE TABLE Configuracion (
 
   alter Table gastoadmin add foreign key (idUnidadMedida) REFERENCES  unidadmedida (idUnidadMedida);
   alter Table gastoadmin add foreign key (idTipoCosto) REFERENCES  tipocosto (idTipoCosto);
-  alter Table gastoadmin add foreign key (idDesembolso) REFERENCES  desembolso (idDesembolso);
+  alter Table gastoadmin add foreign key (idTipoGasto) REFERENCES  tipogasto (idTipoGasto);
   
   alter Table GastoAdminPorMes add foreign key (idGastoAdmin) REFERENCES  gastoadmin (idGastoAdmin);
   alter Table GastoAdminPorMes add foreign key (idCostoRecetasGastoAdmin) REFERENCES  CostoRecetasGastoAdmin (idCostoRecetasGastoAdmin);

@@ -35,7 +35,7 @@ class TablaGastoAdmin{
 		  $checkI.='",';
 		}
 
-		if(count($gastoadmin)>1){
+		if(count($gastoadmin)>=1){
 		  $checkI.='"';
 		  $checkI.="<input type='checkbox' id='cbox1' value='first_checkbox'>";
 		  $checkI.='"';

@@ -24,10 +24,11 @@ class ControladorGastoAdmin{
 
 		if(isset($_POST["nuevaDescripcion"])){
 
-				$datos = array("descripcion" => $_POST["nuevaDescripcion"],
+				$datos = array("codigo" => $_POST["nuevoCodigoGasto"],
+							   "descripcion" => $_POST["nuevaDescripcion"],
 							   "idUnidadMedida" => $_POST["nuevaUnidadMedida"],
-							   "precio" => $_POST["nuevoPrecio"],
-							   "idTipoCosto" => $_POST["nuevoTipoCosto"]);
+							   "idTipoCosto" => $_POST["nuevoTipoCosto"],
+							   "idTipoGasto" => $_POST["nuevoTipoGasto"]);
 
 				$respuesta = ModeloGastoAdmin::mdlIngresarGastoAdmin($datos);
 
@@ -53,7 +54,6 @@ class ControladorGastoAdmin{
 
 				}
 
-
 		}
 
 	}
@@ -69,8 +69,8 @@ class ControladorGastoAdmin{
 				$datos = array("idGastoAdmin" =>$_POST["idGastoAdmin"],
                                "descripcion" => $_POST["editarDescripcion"],
 							   "idUnidadMedida" => $_POST["editarUnidadMedida"],
-							   "precio" => $_POST["editarPrecio"],
-							   "idTipoCosto" => $_POST["editarTipoCosto"]);
+							   "idTipoCosto" => $_POST["editarTipoCosto"],
+							   "idTipoGasto" => $_POST["editarTipoGasto"]);
 							
 				$respuesta = ModeloGastoAdmin::mdlEditarGastoAdmin($datos);
 
@@ -94,10 +94,7 @@ class ControladorGastoAdmin{
 					
 					</script>';
 
-					
-
 				}
-
 
 		}
 

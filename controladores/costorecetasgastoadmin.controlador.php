@@ -6,9 +6,11 @@ class ControladorCostoRecetasGastoAdmin{
 	MOSTRAR COSTO DE RECETAS Y GASTO ADMINISTRATIVO
 	=============================================*/
 
-	static public function ctrMostrarCostoRecetasGastoAdmin(){
+	static public function ctrMostrarCostoRecetasGastoAdmin($item, $valor){
 
-		$respuesta = ModeloCostoRecetasGastoAdmin::MdlMostrarCostoRecetasGastoAdmin();
+		$tabla = "costorecetasgastoadmin";
+
+		$respuesta = ModeloCostoRecetasGastoAdmin::MdlMostrarCostoRecetasGastoAdmin($tabla, $item, $valor);
 
 		return $respuesta;
 	}
@@ -34,6 +36,46 @@ class ControladorCostoRecetasGastoAdmin{
 					
 						icon: "success",
 						title: "¡El costo de recetas y gasto admin ha sido guardado correctamente!",
+						showConfirmButton: false,
+						timer: 1500
+					
+					}).then(function(result){
+					
+							window.location = "costorecetasgastoadmin";
+					
+					});
+					
+					
+					</script>';
+
+				}
+
+
+		}
+
+	}
+
+	/*=============================================
+	CREAR COSTO DE RECETAS Y GASTO ADMINISTRATIVO
+	=============================================*/
+
+	static public function ctrEditarCostoRecetasGastoAdmin(){
+
+		if(isset($_POST["editarDescripcion"])){
+
+				$datos = array("idCostoRecetasGastoAdmin" => $_POST["idCostoRecetasGastoAdmin"],
+							   "descripcion" => $_POST["editarDescripcion"]);
+
+				$respuesta = ModeloCostoRecetasGastoAdmin::mdlEditarCostoRecetasGastoAdmin($datos);
+
+				if($respuesta == "ok"){
+
+					echo '<script>
+
+					Swal.fire({
+					
+						icon: "success",
+						title: "¡El costo de recetas y gasto admin ha sido editado correctamente!",
 						showConfirmButton: false,
 						timer: 1500
 					

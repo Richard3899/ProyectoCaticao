@@ -14,9 +14,12 @@
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
--- Volcando datos para la tabla caticao.lote: ~1 rows (aproximadamente)
-INSERT IGNORE INTO `lote` (`idLote`, `codigoLote`, `fechaVencimiento`, `cantidad`, `idProducto`) VALUES
-	(1, '123456', '2022-12-11', NULL, 1);
+-- Volcando datos para la tabla caticao.gastoadmin: ~4 rows (aproximadamente)
+INSERT INTO `gastoadmin` (`idGastoAdmin`, `codigo`, `descripcion`, `idTipoGasto`, `idUnidadMedida`, `idTipoCosto`) VALUES
+	(1, 'A1231', 'Gasto Administrativo 1', 1, 1, 1),
+	(2, 'A1234', 'Costo de Venta 1', 2, 3, 2),
+	(3, 'A1235', 'Costo de Marketing 1', 3, 3, 2),
+	(4, 'A3213', 'Costo Operativo 1', 4, 3, 1);
 
 /*!40103 SET TIME_ZONE=IFNULL(@OLD_TIME_ZONE, 'system') */;
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;

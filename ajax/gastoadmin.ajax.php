@@ -3,10 +3,10 @@
 require_once "../controladores/gastoadmin.controlador.php";
 require_once "../modelos/gastoadmin.modelo.php";
 
-class AjaxGastoAdmin{
+class AjaxGastoAdmin{ 
 
 	/*=============================================
-	EDITAR GASTO ADMIN
+	EDITAR GASTO
 	=============================================*/	
 
 	public $idGastoAdmin;
@@ -15,6 +15,23 @@ class AjaxGastoAdmin{
 
 		$item = "idGastoAdmin";
 		$valor = $this->idGastoAdmin;
+
+		$respuesta = ControladorGastoAdmin::ctrMostrarGastoAdmin($item, $valor);
+
+		echo json_encode($respuesta);
+
+	}
+
+	/*=============================================
+	VALIDAR NO REPETIR GASTO
+	=============================================*/	
+
+	public $validarCodigo;
+
+	public function ajaxValidarCodigo(){
+
+		$item = "codigo"; 
+		$valor = $this->validarCodigo;
 
 		$respuesta = ControladorGastoAdmin::ctrMostrarGastoAdmin($item, $valor);
 
@@ -34,3 +51,17 @@ if(isset($_POST["idGastoAdmin"])){
 	$editar -> ajaxEditarGastoAdmin();
 
 }
+
+
+/*=============================================
+VALIDAR NO REPETIR INSUMO
+=============================================*/
+
+if(isset($_POST["validarCodigo"])){
+
+	$valCodigo = new AjaxGastoAdmin();
+	$valCodigo -> validarCodigo = $_POST["validarCodigo"];
+	$valCodigo -> ajaxValidarCodigo();
+
+}
+

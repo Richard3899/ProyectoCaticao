@@ -6,13 +6,13 @@
     <div class="container-fluid">
       <div class="row mb-2">
         <div class="col-sm-6">
-          <h1>Costo de Recetas y Gasto Administrativo</h1>
+          <h1>Gastos y Costos por Mes</h1>
         </div>
         <div class="col-sm-6">
           <ol class="breadcrumb float-sm-right">
             <li class="breadcrumb-item"><a href="inicio">Inicio</a></li>
             <li class="breadcrumb-item active">Costos</li>
-            <li class="breadcrumb-item active">Costo de Recetas y Gasto Administrativo</li>
+            <li class="breadcrumb-item active">Gastos y Costos por Mes</li>
           </ol>
         </div>
       </div>
@@ -89,7 +89,7 @@ MODAL COSTO DE RECETAS Y GASTO ADMINISTRATIVO
 
       <div class="modal-header" style="background:gray; color:white">
 
-      <h4 class="modal-title">Costo de recetas y Gasto Administrativo</h4>
+      <h4 class="modal-title">Gastos y Costos por Mes</h4>
 
       <button type="button" class="close" data-dismiss="modal">&times;</button>
 
@@ -107,7 +107,7 @@ MODAL COSTO DE RECETAS Y GASTO ADMINISTRATIVO
 
           <!-- ENTRADA PARA LA DESCRIPCIÓN -->
            <div class="form-group col-sm">
-           <label for="descripcion">Descripción</label>
+           <label for="descripcion">Descripción del Mes</label>
             <div class="input-group">
                 <div class="input-group-prepend">
                 <span class="input-group-text"><i class="fas fa-bars"></i></span>
@@ -150,6 +150,87 @@ MODAL COSTO DE RECETAS Y GASTO ADMINISTRATIVO
 
         $guardarCostoRecetasGastoAdmin = new ControladorCostoRecetasGastoAdmin();
         $guardarCostoRecetasGastoAdmin -> ctrCrearCostoRecetasGastoAdmin();
+
+      ?>
+
+    </form>
+
+  </div>
+
+</div>
+
+</div>
+
+
+<!--=====================================
+MODAL EDITAR COSTO DE RECETAS Y GASTO ADMINISTRATIVO
+======================================-->
+
+<div id="modalEditarCostoRecetasGastoAdmin" class="modal fade" role="dialog">
+
+<div class="modal-dialog modal-lg">
+
+  <div class="modal-content">
+
+    <form role="form" method="post" enctype="multipart/form-data">
+
+      <!--=====================================
+      CABEZA DEL MODAL
+      ======================================-->
+
+      <div class="modal-header" style="background:gray; color:white">
+
+      <h4 class="modal-title">Gastos y Costos por Mes</h4>
+
+      <button type="button" class="close" data-dismiss="modal">&times;</button>
+
+      </div>
+
+      <!--=====================================
+      CUERPO DEL MODAL
+      ======================================-->
+
+      <div class="modal-body">
+
+        <div class="box-body">
+
+        <div class="row">
+
+          <!-- ENTRADA PARA LA DESCRIPCIÓN -->
+           <div class="form-group col-sm">
+           <label for="descripcion">Descripción del Mes</label>
+           <input type="hidden" id="idCostoRecetasGastoAdmin" name="idCostoRecetasGastoAdmin">
+            <div class="input-group">
+                <div class="input-group-prepend">
+                <span class="input-group-text"><i class="fas fa-bars"></i></span>
+                </div>
+                <input type="text" class="form-control input-lg" name="editarDescripcion" id="editarDescripcion" placeholder="Ingresar descripción" 
+                 maxlength="20" pattern="[-A-Za-z0-9ñÑáéíóúÁÉÍÓÚ,.:;()+/=* ]+" title="Solo se acepta letras y números" required>
+            </div>
+           </div>
+
+        </div>
+
+        </div>
+
+      </div>
+
+      <!--=====================================
+      PIE DEL MODAL
+      ======================================-->
+
+      <div class="modal-footer">
+
+        <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Salir</button>
+
+        <button type="submit" class="btn btn-primary">Editar Mes</button>
+
+      </div>
+
+      <?php
+
+        $editarCostoRecetasGastoAdmin = new ControladorCostoRecetasGastoAdmin();
+        $editarCostoRecetasGastoAdmin -> ctrEditarCostoRecetasGastoAdmin();
 
       ?>
 
