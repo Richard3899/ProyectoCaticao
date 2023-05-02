@@ -125,6 +125,27 @@ class ModeloGastoAdmin{
 
 	}
 
+
+	/*=============================================
+	MOSTRAR GASTO POR ID TIPO GASTO
+	=============================================*/
+
+	static public function mdlMostrarGastoAdmin2($valor){
+
+		$stmt = Conexion::conectar()->prepare("call mostrar_gastoadmin2(?)");
+
+		$stmt->bindParam(1, $valor, PDO::PARAM_INT);
+
+		$stmt -> execute();
+
+		return $stmt -> fetchAll();
+
+		#$stmt -> close();
+
+		$stmt = null;
+
+	}
+
 }
 
 

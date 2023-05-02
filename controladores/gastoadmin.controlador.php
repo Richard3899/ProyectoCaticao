@@ -15,6 +15,16 @@ class ControladorGastoAdmin{
 		return $respuesta;
 	}
 
+	/*=============================================
+	MOSTRAR GASTO POR ID TIPO GASTO
+	=============================================*/
+
+	static public function ctrMostrarGastoAdmin2($valor){
+
+		$respuesta = ModeloGastoAdmin::MdlMostrarGastoAdmin2($valor);
+
+		return $respuesta;
+	}
 
 	/*=============================================
 	CREAR GASTOS ADMIN

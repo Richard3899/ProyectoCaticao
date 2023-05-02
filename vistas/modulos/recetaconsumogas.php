@@ -214,9 +214,21 @@ MODAL RECETA CONSUMO DE GAS
                 <input type="number" class="form-control input-lg nuevaTarifaGas" name="nuevaTarifaGas" id="nuevaTarifaGas"
                  placeholder="Ingresar tarifa de gas por Kg" min="0.1" step="0.1" required>
             </div>
-
             </div>
+          </div>
 
+          <div class="row">
+            <!-- ENTRADA PARA EL PRECIO Total -->
+            <div class="form-group col-sm">
+            <label for="tarifaGas">Precio Total</label>
+            <div class="input-group">
+                <div class="input-group-prepend">
+                <span class="input-group-text"><strong>S/.</strong></span>
+                </div>
+                <input type="number" class="form-control input-lg" name="nuevoTotal" id="nuevoTotal"
+                 placeholder="0,00" readonly>
+            </div>
+            </div>
           </div>
 
         </div>
@@ -348,6 +360,20 @@ MODAL EDITAR RECETA CONSUMO DE GAS
 
             </div>
 
+          </div>
+
+          <div class="row">
+            <!-- ENTRADA PARA EL PRECIO Total -->
+            <div class="form-group col-sm">
+            <label for="tarifaGas">Precio Total</label>
+            <div class="input-group">
+                <div class="input-group-prepend">
+                <span class="input-group-text"><strong>S/.</strong></span>
+                </div>
+                <input type="number" class="form-control input-lg" name="editarTotal" id="editarTotal"
+                 placeholder="0,00" readonly>
+            </div>
+            </div>
           </div>
 
         </div>

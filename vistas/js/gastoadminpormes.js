@@ -90,6 +90,78 @@ $(".tablaGastoAdminPorMes").on("draw.dt", function() {
 })
 
 /*=============================================
+MOSTRAR GASTO POR ID TIPO GASTO
+=============================================*/
+
+$(".nuevoidTipoGasto").on("change", function() {
+
+	var idTipoGasto = $(this).val();
+
+	var datos = new FormData();
+
+	datos.append("idTipoGasto", idTipoGasto);
+
+    if($(this).val()!=''){
+
+	$("#seleccionarNombreGastoAdmin").prop("disabled", false);
+
+	}else{
+
+	$("#seleccionarNombreGastoAdmin").prop("disabled", true);
+	}
+
+	$("#seleccionarNombreGastoAdmin").empty();
+
+	$.ajax({
+        
+     	url:"ajax/gastoadmin.ajax.php",
+      	method: "POST",
+      	data: datos,
+      	cache: false,
+      	contentType: false,
+      	processData: false,
+      	dataType:"json",
+      	success:function(respuesta){
+
+		$(".seleccionarNombreGastoAdmin").append("<option value =''>Seleccionar :</option>");
+		
+		for (var i=0; i<respuesta.length; i++) { 
+
+		$(".seleccionarNombreGastoAdmin").append("<option value ='"+respuesta[i]["idGastoAdmin"]+"'>"+respuesta[i]["descripcion"]+"</option>");
+
+	    }
+
+	    }
+		
+	})
+})
+
+/*=============================================
+CALCULAR TOTAL
+=============================================*/
+
+$("#nuevaCantidad").on("change", function() {
+
+var cantidad = $(this).val();
+var precio = $("#nuevoPrecio").val();
+
+var total= (cantidad*precio).toFixed(2);
+
+$("#nuevoTotal").val(total);
+})
+
+$("#nuevoPrecio").on("change", function() {
+
+var precio = $(this).val();
+var cantidad = $("#nuevaCantidad").val();
+
+var total= (precio*cantidad).toFixed(2);
+
+$("#nuevoTotal").val(total);
+})
+
+
+/*=============================================
 SELECCIONAR GASTO ADMIN
 =============================================*/
 
@@ -112,49 +184,34 @@ $(".formularioGastoAdminPorMes").on("change", "select.seleccionarNombreGastoAdmi
       	dataType:"json",
       	success:function(respuesta){
 
-				if($(".seleccionarNombreGastoAdmin").val() == ""){
-
-					$("#nuevaCantidad").val(0);
-					$(".precioGastoAdmin").val("");
-					$("#precioTotal").val(0);
-					
-				}else{
-						
-					for(i=0;i<idArrayGastoAdminPorMes.length;i++){
-		
-						if(idArrayGastoAdminPorMes[i]==idGastoAdmin){
+		if($(".seleccionarNombreGastoAdmin").val() == ""){
+			
+		}else{
 				
-							Swal.fire({
-								icon: "error",
-								title: "El gasto administrativo ya está en la receta",
-								showConfirmButton: false,
-							    timer: 2000
-							  })
+			for(i=0;i<idArrayGastoAdminPorMes.length;i++){
 
-							$('#seleccionarNombreGastoAdmin').val(null).trigger('change');
+				if(idArrayGastoAdminPorMes[i]==idGastoAdmin){
+		
+					Swal.fire({
+						icon: "error",
+						title: "El gasto ya está registrado",
+						showConfirmButton: false,
+						timer: 2000
+					  })
 
-						}else{
+					$('#seleccionarNombreGastoAdmin').val(null).trigger('change');
 
-							$("#idGastoAdmin").val(respuesta["idGastoAdmin"]);
-							$("#nombreGastoAdmin").val(respuesta["descripcion"]);
-							$("#nuevaCantidad").val(0);
-							$("#precio").val(respuesta["precio"]);
-							$(".precioGastoAdmin").val(0);
-							$(".precioGastoAdmin").attr("precioReal",respuesta["precio"]);
-							
-						}
-					 }
+				}else{
 
+					$("#idGastoAdmin").val(respuesta["idGastoAdmin"]);
+					$("#nombreGastoAdmin").val(respuesta["descripcion"]);
+					
 				}
+			 }
 
-			  
-			  // SUMAR TOTAL DE PRECIOS
-			  
-			  sumaTotalPrecioGastoAdminPorMes();
-
-			  
+		}
+  
       	}
-
 
 	})
 
@@ -165,67 +222,67 @@ $(".formularioGastoAdminPorMes").on("change", "select.seleccionarNombreGastoAdmi
 MODIFICAR LA CANTIDAD
 =============================================*/
 
-$(".formularioGastoAdminPorMes").on("change", "input.nuevaCantidadGastoAdmin", function(){
+// $(".formularioGastoAdminPorMes").on("change", "input.nuevaCantidadGastoAdmin", function(){
 
-	var precio = $(".precioGastoAdmin");
+// 	var precio = $(".precioGastoAdmin");
 
-	var precioUnitarioFinal = $(this).val() * precio.attr("precioReal");
+// 	var precioUnitarioFinal = $(this).val() * precio.attr("precioReal");
 
-	precio.val(precioUnitarioFinal);
+// 	precio.val(precioUnitarioFinal);
 
-	$(".precioGastoAdmin").val(precioUnitarioFinal);
+// 	$(".precioGastoAdmin").val(precioUnitarioFinal);
 
-	if($('#seleccionarNombreGastoAdmin').val() == ""){
+// 	if($('#seleccionarNombreGastoAdmin').val() == ""){
 		
-		$(this).val(0);
+// 		$(this).val(0);
 
-		precio.val(0);
+// 		precio.val(0);
 
-		Swal.fire({
-			title: "Seleccionar gasto administrativo",
-			icon: "error",
-			showConfirmButton: false,
-			timer: 2000
-		  });
+// 		Swal.fire({
+// 			title: "Seleccionar gasto administrativo",
+// 			icon: "error",
+// 			showConfirmButton: false,
+// 			timer: 2000
+// 		  });
 
-	}
+// 	}
 
-	// SUMAR TOTAL DE PRECIOS
+// 	// SUMAR TOTAL DE PRECIOS
 
-	sumaTotalPrecioGastoAdminPorMes()
+// 	 sumaTotalPrecioGastoAdminPorMes()
 
 	
-})
+// })
 
 /*=============================================
 SUMAR TODOS LOS PRECIOS
 =============================================*/
 
-function sumaTotalPrecioGastoAdminPorMes(){
+// function sumaTotalPrecioGastoAdminPorMes(){
 
-	var precioUnitarioItem = $(".precioGastoAdmin");
+// 	var precioUnitarioItem = $(".precioGastoAdmin");
 
-	var arraySumaPrecioUnitario = [];  
+// 	var arraySumaPrecioUnitario = [];  
 
-	for(var i = 0; i < precioUnitarioItem.length; i++){
+// 	for(var i = 0; i < precioUnitarioItem.length; i++){
 
-		 arraySumaPrecioUnitario.push(Number($(precioUnitarioItem[i]).val()));
+// 		 arraySumaPrecioUnitario.push(Number($(precioUnitarioItem[i]).val()));
 		 
-	}
+// 	}
 
 
-	function sumaArrayPrecioUnitario(total, numero){
+// 	function sumaArrayPrecioUnitario(total, numero){
 
-		return total + numero;
+// 		return total + numero;
 
-	}
+// 	}
 
-	var sumaTotalPrecioUnitario = arraySumaPrecioUnitario.reduce(sumaArrayPrecioUnitario,0);
+// 	var sumaTotalPrecioUnitario = arraySumaPrecioUnitario.reduce(sumaArrayPrecioUnitario,0);
 
-		$(".precioGastoAdmin").val(sumaTotalPrecioUnitario.toFixed(2));
-		$("#precioTotal").val(sumaTotalPrecioUnitario);
+// 		$(".precioGastoAdmin").val(sumaTotalPrecioUnitario.toFixed(2));
+// 		$("#precioTotal").val(sumaTotalPrecioUnitario);
 
-}
+// }
 
 /*=============================================
 EDITAR GASTO ADMIN POR MES
@@ -251,72 +308,92 @@ $(".tablaGastoAdminPorMes tbody").on("click", "button.btnEditarGastoAdminPorMes"
       success:function(respuesta){
 
 		   $("#editaridGastoAdminPorMes").val(respuesta["idGastoAdminPorMes"]);
-
-		   $("#editarNombreGastoAdmin").val(respuesta["nombreGastoAdmin"]);
-		   $("#editarNombreGastoAdmin").attr('disabled', 'disabled');	
+		   $("#editarNombreGastoAdmin").val(respuesta["nombreGastoAdmin"]);	
 
 		   $("#editarCantidad").val(respuesta["cantidad"]);
-
-		   $(".editarPrecioGastoAdmin").val(respuesta["total"]);
-		   $(".editarPrecioGastoAdmin").attr("editarprecioReal",respuesta["precio"]);
+		   $("#editarPrecio").val(respuesta["precio"]);
+		   $("#editarTotal").val(respuesta["total"]);
 	
-		   editarsumaTotalPrecioGastoAdminPorMes();
-
       }
 
   })
 
 })
 
+/*=============================================
+CALCULAR TOTAL EDITAR
+=============================================*/
+
+$("#editarCantidad").on("change", function() {
+
+var cantidad = $(this).val();
+var precio = $("#editarPrecio").val();
+
+var total= (cantidad*precio).toFixed(2);
+
+$("#editarTotal").val(total);
+})
+	
+$("#editarPrecio").on("change", function() {
+	
+var precio = $(this).val();
+var cantidad = $("#editarCantidad").val();
+
+var total= (precio*cantidad).toFixed(2);
+
+$("#editarTotal").val(total);
+})
+	
+
 
 /*=============================================
 MODIFICAR LA CANTIDAD AL EDITAR
 =============================================*/
 
-$(".formularioEditarGastoAdminPorMes").on("change", "input.editarCantidadGastoAdmin", function(){
+// $(".formularioEditarGastoAdminPorMes").on("change", "input.editarCantidadGastoAdmin", function(){
 
-	var editarprecioUnitario = $(".editarPrecioGastoAdmin");
+// 	var editarprecioUnitario = $(".editarPrecioGastoAdmin");
 
-	var precioUnitarioFinal = $(this).val() * editarprecioUnitario.attr("editarprecioReal");
+// 	var precioUnitarioFinal = $(this).val() * editarprecioUnitario.attr("editarprecioReal");
 
-	editarprecioUnitario.val(precioUnitarioFinal);
+// 	editarprecioUnitario.val(precioUnitarioFinal);
 
-	// SUMAR TOTAL DE PRECIOS
+// 	// SUMAR TOTAL DE PRECIOS
 
-	editarsumaTotalPrecioGastoAdminPorMes();
+// 	editarsumaTotalPrecioGastoAdminPorMes();
 
 
-})
+// })
 
 /*=============================================
 SUMAR TODOS LOS PRECIOS AL EDITAR
 =============================================*/
 
-function editarsumaTotalPrecioGastoAdminPorMes(){
+// function editarsumaTotalPrecioGastoAdminPorMes(){
 
-	var precioUnitarioItem = $(".editarPrecioGastoAdmin");
+// 	var precioUnitarioItem = $(".editarPrecioGastoAdmin");
 
-	var arraySumaPrecioUnitario = [];  
+// 	var arraySumaPrecioUnitario = [];  
 
-	for(var i = 0; i < precioUnitarioItem.length; i++){
+// 	for(var i = 0; i < precioUnitarioItem.length; i++){
 
-		 arraySumaPrecioUnitario.push(Number($(precioUnitarioItem[i]).val()));
+// 		 arraySumaPrecioUnitario.push(Number($(precioUnitarioItem[i]).val()));
 		 
-	}
+// 	}
 
 
-	function sumaArrayPrecioUnitario(total, numero){
+// 	function sumaArrayPrecioUnitario(total, numero){
 
-		return total + numero;
+// 		return total + numero;
 
-	}
+// 	}
 
-	var sumaTotalPrecioUnitario = arraySumaPrecioUnitario.reduce(sumaArrayPrecioUnitario,0);
+// 	var sumaTotalPrecioUnitario = arraySumaPrecioUnitario.reduce(sumaArrayPrecioUnitario,0);
 
-		$(".editarPrecioGastoAdmin").val(sumaTotalPrecioUnitario.toFixed(2));
-		$("#editarPrecioTotal").val(sumaTotalPrecioUnitario);
+// 		$(".editarPrecioGastoAdmin").val(sumaTotalPrecioUnitario.toFixed(2));
+// 		$("#editarPrecioTotal").val(sumaTotalPrecioUnitario);
 
-}
+// }
 
 
 /*=============================================

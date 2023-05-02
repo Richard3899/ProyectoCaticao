@@ -76,11 +76,12 @@ class ModeloGastoAdminPorMes{
 
 	static public function mdlEditarGastoAdminPorMes($datos){
 
-		$stmt = Conexion::conectar()->prepare("call editar_gastoadminpormes(?,?,?)");
+		$stmt = Conexion::conectar()->prepare("call editar_gastoadminpormes(?,?,?,?)");
 
 		$stmt->bindParam(1, $datos["idGastoAdminPorMes"], PDO::PARAM_INT);
 		$stmt->bindParam(2, $datos["cantidad"], PDO::PARAM_STR);
-		$stmt->bindParam(3, $datos["total"], PDO::PARAM_STR);
+		$stmt->bindParam(3, $datos["precio"], PDO::PARAM_STR);
+		$stmt->bindParam(4, $datos["total"], PDO::PARAM_STR);
 
 		if($stmt->execute()){
 

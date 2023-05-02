@@ -35,8 +35,8 @@ class ControladorGastoAdminPorMes{
 						   "idGastoAdmin"=>$_POST["idGastoAdmin"],
 						   "nombreGastoAdmin"=>$_POST["nombreGastoAdmin"],
 						   "cantidad"=>$_POST["nuevaCantidad"],
-						   "precio"=>$_POST["precio"],
-						   "total"=>$_POST["precioTotal"]);
+						   "precio"=>$_POST["nuevoPrecio"],
+						   "total"=>$_POST["nuevoTotal"]);
 		
 			$respuesta = ModeloGastoAdminPorMes::mdlIngresarGastoAdminPorMes($datos);
 
@@ -79,7 +79,8 @@ class ControladorGastoAdminPorMes{
 
 			$datos = array( "idGastoAdminPorMes"=>$_POST["editaridGastoAdminPorMes"],
 							"cantidad"=>$_POST["editarCantidad"],
-							"total"=>$_POST["editarPrecioTotal"]);
+							"precio"=>$_POST["editarPrecio"],
+							"total"=>$_POST["editarTotal"]);
 							   
 			$respuesta = ModeloGastoAdminPorMes::mdlEditarGastoAdminPorMes($datos);
 		

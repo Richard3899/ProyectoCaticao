@@ -646,6 +646,17 @@ BEGIN
 END$$
 DELIMITER ;
 
+
+DROP procedure IF EXISTS `mostrar_gastoadmin2`;
+DELIMITER $$
+USE `caticao`$$
+CREATE PROCEDURE `mostrar_gastoadmin2` ( IN idTipoGastoI INT)
+BEGIN
+	select * from gastoadmin WHERE idTipoGasto = idTipoGastoI;
+END$$
+DELIMITER ;
+
+
 DROP procedure IF EXISTS `insertar_gastoadmin`;
 DELIMITER $$
 USE `caticao`$$
@@ -2480,10 +2491,12 @@ DELIMITER $$
 USE `caticao`$$
 CREATE PROCEDURE `editar_gastoadminpormes` (    in idGastoAdminPorMesE INT,
                                                 in cantidadE DECIMAL(10,2),
+                                                IN precioE DECIMAL(10,2),
 												            in totalE DECIMAL(10,2))
 BEGIN
 
    UPDATE gastoadminpormes SET cantidad = cantidadE,
+   									 precio = precioE,
                                total=totalE
 						         WHERE idGastoAdminPorMes=idGastoAdminPorMesE;
                             

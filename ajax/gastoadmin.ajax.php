@@ -39,6 +39,22 @@ class AjaxGastoAdmin{
 
 	}
 
+	/*=============================================
+	MOSTRAR GASTO POR ID TIPO GASTO
+	=============================================*/	
+
+	public $idTipoGasto;
+
+	public function ajaxMostrarGastoPorTipo(){
+
+		$valor = $this->idTipoGasto;
+
+		$respuesta = ControladorGastoAdmin::ctrMostrarGastoAdmin2($valor);
+		
+		echo json_encode($respuesta);
+
+	}
+
 }
 
 /*=============================================
@@ -65,3 +81,13 @@ if(isset($_POST["validarCodigo"])){
 
 }
 
+/*=============================================
+MOSTRAR GASTO POR ID TIPO GASTO
+=============================================*/
+if(isset($_POST["idTipoGasto"])){
+
+	$editar = new AjaxGastoAdmin();
+	$editar -> idTipoGasto = $_POST["idTipoGasto"];
+	$editar -> ajaxMostrarGastoPorTipo();
+
+}

@@ -67,7 +67,7 @@
        
       <thead>
        
-       <tr>
+       <tr> 
          
          <th style="width:20px">#</th>
          <th>Nombre</th>
@@ -110,7 +110,7 @@ MODAL GASTO ADMINISTRATIVO POR MES
 
       <div class="modal-header" style="background:gray; color:white">
 
-      <h4 class="modal-title">Gasto Admin por Mes</h4>
+      <h4 class="modal-title">Gasto por Mes</h4>
 
       <button type="button" class="close" data-dismiss="modal">&times;</button>
 
@@ -130,28 +130,24 @@ MODAL GASTO ADMINISTRATIVO POR MES
 
         <div class="row">
 
-            <!-- ENTRADA PARA SELECCIONAR GASTO ADMINISTRATIVO -->
+            <!-- ENTRADA PARA SELECCIONAR TIPO GASTO o Costo-->
             <div class="form-group col-sm">
-            <label for="gastoAdministrativo">Gasto Administrativo</label>
+            <label for="tipoGasto">Tipo Gasto</label>
             <div class="input-group">
 
-                <input type="hidden" name="idGastoAdmin" id="idGastoAdmin">
-
-                <input type="hidden" name="nombreGastoAdmin" id="nombreGastoAdmin">
-
-                <select class="form-control select2 input-lg seleccionarNombreGastoAdmin" id="seleccionarNombreGastoAdmin" name="seleccionarNombreGastoAdmin" style="width: 100%;" required>
+                <select class="form-control select2 input-lg nuevoidTipoGasto" id="nuevoidTipoGasto" name="nuevoidTipoGasto" style="width: 100%;" required>
                 
-                <option value="">Seleccionar Gasto Admin</option>
+                <option value="">Seleccionar :</option>
 
                 <?php 
                     $item = null;
                     $valor = null;
 
-                    $maquina = ControladorGastoAdmin::ctrMostrarGastoAdmin($item,$valor);
+                    $maquina = ControladorTipoGasto::ctrMostrarTipoGasto($item,$valor);
 
                   foreach($maquina as $key=> $value){ 
 
-                    echo '<option value="'.$value["idGastoAdmin"].'">'.$value["descripcion"].'</option>';
+                    echo '<option value="'.$value["idTipoGasto"].'">'.$value["descripcion"].'</option>';
                   }
 
                   ?>
@@ -159,8 +155,25 @@ MODAL GASTO ADMINISTRATIVO POR MES
               </select>
               
             </div>
+            </div>
 
-          </div>
+            <!-- ENTRADA PARA SELECCIONAR GASTO ADMINISTRATIVO -->
+            <div class="form-group col-sm">
+            <label for="gastoAdministrativo">Gasto</label>
+            <div class="input-group">
+
+                <input type="hidden" name="idGastoAdmin" id="idGastoAdmin">
+
+                <input type="hidden" name="nombreGastoAdmin" id="nombreGastoAdmin">
+
+                <select class="form-control select2 input-lg seleccionarNombreGastoAdmin" id="seleccionarNombreGastoAdmin" name="seleccionarNombreGastoAdmin" style="width: 100%;" required disabled>
+                
+                <option value="">Seleccionar :</option>
+
+                </select>
+              
+            </div>
+            </div>
 
           </div>
 
@@ -173,8 +186,8 @@ MODAL GASTO ADMINISTRATIVO POR MES
                 <div class="input-group-prepend">
                 <span class="input-group-text"><i class="fas fa-layer-group"></i></span>
                 </div>
-                <input type="number" class="form-control input-lg nuevaCantidadGastoAdmin" id="nuevaCantidad" name="nuevaCantidad" 
-                 min="0.1" step="0.1" required>
+                <input type="number" class="form-control input-lg" id="nuevaCantidad" name="nuevaCantidad" 
+                 placeholder="0,00" min="0.1" step="0.1" required>
             </div>
 
             </div>
@@ -186,14 +199,24 @@ MODAL GASTO ADMINISTRATIVO POR MES
                 <div class="input-group-prepend">
                 <span class="input-group-text"><strong>S/.</strong></span>
                 </div>
-                <input type="hidden" id="precio" name="precio">
-                <input type="hidden" id="precioTotal" name="precioTotal">
-                <input type="number" class="form-control input-lg precioGastoAdmin" precioReal name="nuevoPrecio" id="nuevoPrecio"
-                 required readonly>
+                <input type="number" class="form-control input-lg" name="nuevoPrecio" id="nuevoPrecio"
+                 placeholder="0,00" min="0.1" step="0.1"   required>
             </div>
-
             </div>
+          </div>
 
+          <div class="row">
+            <!-- ENTRADA PARA EL PRECIO -->
+            <div class="form-group col-sm">
+            <label for="precio">Total</label>
+            <div class="input-group">
+                <div class="input-group-prepend">
+                <span class="input-group-text"><strong>S/.</strong></span>
+                </div>
+                <input type="number" class="form-control input-lg" name="nuevoTotal" id="nuevoTotal"
+                 placeholder="0,00" readonly>
+            </div>
+            </div>
           </div>
 
         </div>
@@ -273,7 +296,7 @@ MODAL EDITAR GASTO ADMINISTRATIVO POR MES
             
             <div class="input-group">
 
-                <input type="text" class="form-control input-lg" name="editarNombreGastoAdmin" id="editarNombreGastoAdmin">
+                <input type="text" class="form-control input-lg" name="editarNombreGastoAdmin" id="editarNombreGastoAdmin" readonly>
 
             </div>
 
@@ -290,8 +313,8 @@ MODAL EDITAR GASTO ADMINISTRATIVO POR MES
                 <div class="input-group-prepend">
                 <span class="input-group-text"><i class="fas fa-layer-group"></i></span>
                 </div>
-                <input type="number" class="form-control input-lg editarCantidadGastoAdmin" id="editarCantidad" name="editarCantidad" 
-                 min="0.1" step="0.1" required>
+                <input type="number" class="form-control input-lg" id="editarCantidad" name="editarCantidad" 
+                placeholder="0,00" min="0.1" step="0.1" required>
             </div>
 
             </div>
@@ -303,13 +326,26 @@ MODAL EDITAR GASTO ADMINISTRATIVO POR MES
                 <div class="input-group-prepend">
                 <span class="input-group-text"><strong>S/.</strong></span>
                 </div>
-                <input type="hidden" id="editarPrecioTotal" name="editarPrecioTotal">
-                <input type="number" class="form-control input-lg editarPrecioGastoAdmin" name="editarPrecioGastoAdmin" id="editarPrecioGastoAdmin"
-                 required readonly>
+                <input type="number" class="form-control input-lg" name="editarPrecio" id="editarPrecio"
+                 placeholder="0,00" min="0.1" step="0.1" required>
             </div>
 
             </div>
 
+          </div>
+
+          <div class="row">
+            <!-- ENTRADA PARA EL PRECIO -->
+            <div class="form-group col-sm">
+            <label for="precio">Total</label>
+            <div class="input-group">
+                <div class="input-group-prepend">
+                <span class="input-group-text"><strong>S/.</strong></span>
+                </div>
+                <input type="number" class="form-control input-lg" name="editarTotal" id="editarTotal"
+                 placeholder="0,00" readonly>
+            </div>
+            </div>
           </div>
 
         </div>

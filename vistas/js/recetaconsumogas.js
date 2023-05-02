@@ -120,6 +120,7 @@ $(".formularioRecetaConsumoGas").on("change", "select.seleccionarNombreMaquina",
 					$("#nuevoTrabajoPorBatch").val("");
 					$("#nuevoPesoBalonGas").val("");
 					$("#nuevaTarifaGas").val("");
+					$("#precioTotal").val("");
 					
 				}else{
 						
@@ -154,6 +155,32 @@ $(".formularioRecetaConsumoGas").on("change", "select.seleccionarNombreMaquina",
 
 })
 
+/*=============================================
+CALCULAR TOTAL
+=============================================*/
+
+$("#nuevoPesoBalonGas").on("change", function() {
+
+	var cantidad = $(this).val();
+	var precio = $("#nuevaTarifaGas").val();
+	
+	var total= (cantidad*precio).toFixed(2);
+	
+	$("#nuevoTotal").val(total);
+	
+	})
+	
+$("#nuevaTarifaGas").on("change", function() {
+	
+	var precio = $(this).val();
+	var cantidad = $("#nuevoPesoBalonGas").val();
+	
+	var total= (precio*cantidad).toFixed(2);
+	
+	$("#nuevoTotal").val(total);
+		
+})
+
 
 /*=============================================
 EDITAR DEPRECIACIÓN DE LA RECETA
@@ -186,13 +213,40 @@ $(".tablaRecetaConsumoGas tbody").on("click", "button.btnEditarConsumoGasReceta"
 		   $("#editarTrabajoPorBatch").val(respuesta["trabajoPorBatch"]);
 		   $("#editarPesoBalonGas").val(respuesta["pesoBalonGas"]);
 		   $("#editarTarifaGas").val(respuesta["tarifaGas"]);
-		  
+
+		   $("#editarTotal").val(respuesta["pagoPorBatch"]);
       }
 
   })
 
 })
 
+
+/*=============================================
+CALCULAR TOTAL AL EDITAR
+=============================================*/
+
+$("#editarPesoBalonGas").on("change", function() {
+
+	var cantidad = $(this).val();
+	var precio = $("#editarTarifaGas").val();
+	
+	var total= (cantidad*precio).toFixed(2);
+	
+	$("#editarTotal").val(total);
+	
+	})
+	
+$("#editarTarifaGas").on("change", function() {
+	
+	var precio = $(this).val();
+	var cantidad = $("#editarPesoBalonGas").val();
+	
+	var total= (precio*cantidad).toFixed(2);
+	
+	$("#editarTotal").val(total);
+		
+})
 
 
 /*=============================================
