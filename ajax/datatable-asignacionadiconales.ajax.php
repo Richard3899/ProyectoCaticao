@@ -14,49 +14,47 @@ class TablaGastoAdmin{
 
 	public function mostrarTablaGastoAdmin(){
 
+		$idTipoGasto=(!empty($_GET['idTipoGasto'])) ? $_GET['idTipoGasto'] : NULL;
+
 		$item = null;
     	$valor = null;
 
-  		$gastoadmin = ControladorGastoAdmin::ctrMostrarGastoAdmin($item, $valor);	
+  		$gastoadmin = ControladorGastoAdmin::ctrMostrarGastoAdmin2($idTipoGasto);	
 		$recetas = ControladorRecetas::ctrMostrarRecetas($item, $valor);	
 
-		if(count($gastoadmin) == 0 || count($recetas) == 0 ){
+		if(count($gastoadmin) == 0 || count($recetas) == 0){
 
 			echo '{"data": []}';
 
 			return;
 		}
 
-		$checkI='';
-
-		for($i = 1; $i < count($gastoadmin); $i++){
-		  $checkI.='"';
-		  $checkI.="<input type='checkbox' id='cbox1' value='first_checkbox'>";
-		  $checkI.='",';
-		}
-
-		if(count($gastoadmin)>=1){
-		  $checkI.='"';
-		  $checkI.="<input type='checkbox' id='cbox1' value='first_checkbox'>";
-		  $checkI.='"';
-		}
-
   		$datosJson = '{
 		  "data": [';
-
 		  for($i = 0; $i < count($recetas); $i++){
-			
-		  	$datosJson .='[
-			      "'.($recetas[$i]["codigo"]).'",
-				  '.$checkI.'
-		
-			    ],';
+
+			$datosJson .='[';
+			$datosJson.='"';
+			$datosJson.="<p  id='".$i."' value='".$recetas[$i]["idReceta"]."'>".$recetas[$i]["codigo"]."</p>";
+			$datosJson.='"';
+			$datosJson .=',';
+
+			for($k = 0; $k < count($gastoadmin); $k++){	
+				$datosJson.='"';
+				$datosJson.="<input id='".$i."'  class='checkGastos' type='checkbox' value='".$gastoadmin[$k]["idGastoAdmin"]."'>";
+				if( (count($gastoadmin)-$k) ==1){
+				  $datosJson.='"';
+				}else{
+				  $datosJson.='",';
+				}
+			  }
+			$datosJson .='],';
 
 		  }
 
-		  $datosJson = substr($datosJson, 0, -1);
+		 $datosJson = substr($datosJson, 0, -1);
 
-		 $datosJson .=   '] 
+		 $datosJson .= '] 
 
 		 }';
 		
