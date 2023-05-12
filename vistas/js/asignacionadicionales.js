@@ -1,4 +1,6 @@
 const datosAjax=[];
+const valoresRecetas= [];
+const valoresGastos = [];
 
 $('.tablaAsignacionAdicionales').dataTable( {
 	"searching": false,
@@ -31,9 +33,27 @@ $('.tablaAsignacionAdicionales').dataTable( {
 }
   } );
 
+
+$( document ).on( 'click', '.checkGastos', function() {
+
+	if( $(this).is(':checked') ){
+		valoresRecetas.push($(this).attr('idReceta'));
+		valoresGastos.push(this.value);
+    }else{
+		var indice =valoresRecetas.indexOf($(this).attr('idReceta')); 
+		valoresRecetas.splice(indice, 1);
+		valoresGastos.splice(indice, 1);
+	}
+	console.log(valoresRecetas);
+	console.log(valoresGastos);
+
+} );
+	
 $("#nuevoTipoGasto").on("change", function() {
 
 	datosAjax.length = 0;
+	valoresGastos.length = 0;
+	valoresRecetas.length = 0;
 
 	var idTipoGasto = $(this).val();
 
@@ -115,6 +135,4 @@ function tablaAdicionales(idTipoGasto){
 			}
 	}
 	});
-
-	// table.ajax.reload();
 }

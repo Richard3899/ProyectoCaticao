@@ -7,3 +7,13 @@ label{
     color: white;
     
   }
+
+  input[type=checkbox]
+  {
+    /* Doble-tamaño Checkboxes */
+    -ms-transform: scale(1.7); /* IE */
+    -moz-transform: scale(1.7); /* FF */
+    -webkit-transform: scale(1.7); /* Safari y Chrome */
+    -o-transform: scale(1.7); /* Opera */
+    padding: 10px;
+  }

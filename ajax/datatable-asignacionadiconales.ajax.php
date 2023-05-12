@@ -35,19 +35,20 @@ class TablaGastoAdmin{
 
 			$datosJson .='[';
 			$datosJson.='"';
-			$datosJson.="<p  id='".$i."' value='".$recetas[$i]["idReceta"]."'>".$recetas[$i]["codigo"]."</p>";
+			$datosJson.=$recetas[$i]["codigo"];
 			$datosJson.='"';
 			$datosJson .=',';
 
 			for($k = 0; $k < count($gastoadmin); $k++){	
 				$datosJson.='"';
-				$datosJson.="<input id='".$i."'  class='checkGastos' type='checkbox' value='".$gastoadmin[$k]["idGastoAdmin"]."'>";
+				$datosJson.="<input id='".$gastoadmin[$k]["idGastoAdmin"]."' idReceta='".$recetas[$i]["idReceta"]."'  class='checkGastos' type='checkbox' value='".$gastoadmin[$k]["idGastoAdmin"]."'>";
 				if( (count($gastoadmin)-$k) ==1){
 				  $datosJson.='"';
 				}else{
 				  $datosJson.='",';
 				}
-			  }
+			}
+
 			$datosJson .='],';
 
 		  }
