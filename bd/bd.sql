@@ -465,6 +465,16 @@ CREATE TABLE GastoAdminPorMes (
 
 
 -- -----------------------------------------------------
+-- Table Receta y Gasto Admin Por Mes
+-- -----------------------------------------------------
+
+CREATE TABLE RecetaGastoAdminPorMes (
+  idRecetaGastoAdminPorMes INT  AUTO_INCREMENT primary key,
+  idReceta INT REFERENCES receta (idReceta),
+  idGastoAdminPorMes INT REFERENCES gastosadmin (idGastoAdmin)
+);
+
+-- -----------------------------------------------------
 -- Table perfil
 -- -----------------------------------------------------
 
@@ -546,6 +556,9 @@ CREATE TABLE Configuracion (
   
   alter Table GastoAdminPorMes add foreign key (idGastoAdmin) REFERENCES  gastoadmin (idGastoAdmin);
   alter Table GastoAdminPorMes add foreign key (idCostoRecetasGastoAdmin) REFERENCES  CostoRecetasGastoAdmin (idCostoRecetasGastoAdmin);
+
+  alter Table RecetaGastoAdminPorMes add foreign key (idGastoAdminPorMes) REFERENCES  GastoAdminPorMes (idGastoAdminPorMes);
+  alter Table RecetaGastoAdminPorMes add foreign key (idReceta) REFERENCES  receta (idReceta);
 
   alter Table RecetaCostoVenta add foreign key (idGastoAdmin) REFERENCES  gastoadmin (idGastoAdmin);
   alter Table RecetaCostoVenta add foreign key (idReceta) REFERENCES  receta (idReceta);

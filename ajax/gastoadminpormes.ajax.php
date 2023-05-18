@@ -38,6 +38,22 @@ class AjaxGastoAdminPorMes{
 
 	}
 
+	/*=============================================
+	MOSTRAR GASTO POR ID TIPO GASTO
+	=============================================*/	
+
+	public $idTipoGasto;
+
+	public function ajaxMostrarGastoPorTipo(){
+
+		$valor = $this->idTipoGasto;
+
+		$respuesta = ControladorGastoAdminPorMes::ctrMostrarGastoAdminPorMesTG($valor);
+		
+		echo json_encode($respuesta);
+
+	}
+
 }
 
 
@@ -63,3 +79,13 @@ if(isset($_POST["idCostoRecetasGastoAdmin"])){
 
 }
 
+/*=============================================
+MOSTRAR GASTO POR ID TIPO GASTO
+=============================================*/
+if(isset($_POST["idTipoGasto"])){
+
+	$editar = new AjaxGastoAdminPorMes();
+	$editar -> idTipoGasto = $_POST["idTipoGasto"];
+	$editar -> ajaxMostrarGastoPorTipo();
+
+}

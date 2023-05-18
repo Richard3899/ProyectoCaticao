@@ -1,25 +1,25 @@
 <?php
 
-require_once "../controladores/gastoadmin.controlador.php";
-require_once "../modelos/gastoadmin.modelo.php";
+require_once "../controladores/gastoadminpormes.controlador.php";
+require_once "../modelos/gastoadminpormes.modelo.php";
 
 require_once "../controladores/recetas.controlador.php";
 require_once "../modelos/recetas.modelo.php";
 
-class TablaGastoAdmin{
+class TablaRecetaGastoAdminPorMes{
 
  	/*=============================================
  	 MOSTRAR LA TABLA DE GASTO ADMIN
   	=============================================*/ 
 
-	public function mostrarTablaGastoAdmin(){
+	public function mostrarTablaRecetaGastoAdminPorMes(){
 
 		$idTipoGasto=(!empty($_GET['idTipoGasto'])) ? $_GET['idTipoGasto'] : NULL;
 
 		$item = null;
     	$valor = null;
 
-  		$gastoadmin = ControladorGastoAdmin::ctrMostrarGastoAdmin2($idTipoGasto);	
+  		$gastoadmin = ControladorGastoAdminPorMes::ctrMostrarGastoAdminPorMesTG($idTipoGasto);	
 		$recetas = ControladorRecetas::ctrMostrarRecetas($item, $valor);	
 
 		if(count($gastoadmin) == 0 || count($recetas) == 0){
@@ -41,7 +41,7 @@ class TablaGastoAdmin{
 
 			for($k = 0; $k < count($gastoadmin); $k++){	
 				$datosJson.='"';
-				$datosJson.="<input id='".$gastoadmin[$k]["idGastoAdmin"]."' idReceta='".$recetas[$i]["idReceta"]."'  class='checkGastos' type='checkbox' value='".$gastoadmin[$k]["idGastoAdmin"]."'>";
+				$datosJson.="<input id='".$gastoadmin[$k]["idGastoAdminPorMes"]."' idReceta='".$recetas[$i]["idReceta"]."'  class='checkGastos' type='checkbox' value='".$gastoadmin[$k]["idGastoAdminPorMes"]."'>";
 				if( (count($gastoadmin)-$k) ==1){
 				  $datosJson.='"';
 				}else{
@@ -70,5 +70,5 @@ class TablaGastoAdmin{
 /*=============================================
 ACTIVAR TABLA DE GASTO ADMIN
 =============================================*/ 
-$activarGastoAdmin = new TablaGastoAdmin();
-$activarGastoAdmin -> mostrarTablaGastoAdmin();
+$activarGastoAdmin = new TablaRecetaGastoAdminPorMes();
+$activarGastoAdmin -> mostrarTablaRecetaGastoAdminPorMes();

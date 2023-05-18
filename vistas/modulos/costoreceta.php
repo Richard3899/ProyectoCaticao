@@ -72,7 +72,7 @@
 <!-- /.content-wrapper -->
 
 <!--=====================================
-MODAL AGREGAR COSTOS DE VENTAS
+MODAL ASIGNAR ADICIONAL
 ======================================-->
 
 <div id="modalAsignarAdicional" class="modal fade" role="dialog">
@@ -148,12 +148,15 @@ MODAL AGREGAR COSTOS DE VENTAS
         <thead>
           
           <tr id="thRecetasyGastos">
-           
+            
           </tr> 
   
         </thead>
   
         </table>
+
+        <input type="hidden" id="idReceta" name="idReceta">
+        <input type="hidden" id="idGastoAdminPorMes" name="idGastoAdminPorMes">
 
         </div>
         </div>
@@ -172,12 +175,12 @@ MODAL AGREGAR COSTOS DE VENTAS
 
       </div>
 
-      <!-- <?php
+      <?php
 
-          $crearCostoVenta= new ControladorCostoVenta();
-          $crearCostoVenta -> ctrCrearCostoVenta();
+          $crearRecetaGastoAdminPorMes= new ControladorRecetaGastoAdminPorMes();
+          $crearRecetaGastoAdminPorMes -> ctrCrearRecetaGastoAdminPorMes();
 
-      ?> -->
+      ?>
 
 
     </form>

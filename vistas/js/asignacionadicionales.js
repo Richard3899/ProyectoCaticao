@@ -44,8 +44,8 @@ $( document ).on( 'click', '.checkGastos', function() {
 		valoresRecetas.splice(indice, 1);
 		valoresGastos.splice(indice, 1);
 	}
-	console.log(valoresRecetas);
-	console.log(valoresGastos);
+	$("#idReceta").val(valoresRecetas);
+	$("#idGastoAdminPorMes").val(valoresGastos);
 
 } );
 	
@@ -63,9 +63,9 @@ $("#nuevoTipoGasto").on("change", function() {
 	
 	$.ajax({
 
-		url:"ajax/gastoadmin.ajax.php",
+		url:"ajax/gastoadminpormes.ajax.php",
 		method: "POST",
-		data: datos,
+		data: datos, 
 		cache: false,
 		contentType: false,
 		processData: false,
@@ -80,7 +80,7 @@ $("#nuevoTipoGasto").on("change", function() {
 			for (var i=0; i<respuesta.length; i++) { 
 
 				datosAjax.push({ 
-					"title"    : respuesta[i]["descripcion"],
+					"title"    : respuesta[i]["codigo"],
 					"targets"  : i+1
 				});
 			

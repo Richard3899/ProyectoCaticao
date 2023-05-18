@@ -657,6 +657,18 @@ END$$
 DELIMITER ;
 
 
+
+DROP procedure IF EXISTS `mostrar_gastoadminpormestg`;
+DELIMITER $$
+USE `caticao`$$
+CREATE PROCEDURE `mostrar_gastoadminpormestg` ( IN idTipoGastoI INT)
+BEGIN
+	select * from gastoadminpormes gap INNER JOIN gastoadmin ga ON ga.idGastoAdmin=gap.idGastoAdmin
+	WHERE idTipoGasto = idTipoGastoI;
+END$$
+DELIMITER ;
+
+
 DROP procedure IF EXISTS `insertar_gastoadmin`;
 DELIMITER $$
 USE `caticao`$$
@@ -2393,6 +2405,41 @@ BEGIN
 END$$
 DELIMITER ;
 
+-- Procedimientos almacenados de Recetas y Gasto Admin Por Mes --
+
+DROP procedure IF EXISTS `mostrar_recetagastoadminpormes`;
+DELIMITER $$
+USE `caticao`$$
+CREATE PROCEDURE `mostrar_recetagastoadminpormes` ( in variable INT)
+BEGIN
+	SELECT * from recetagastoadminpormes;
+END$$
+DELIMITER ;
+
+
+DROP procedure IF EXISTS `insertar_recetagastoadminpormes`;
+DELIMITER $$
+USE `caticao`$$
+CREATE PROCEDURE `insertar_recetagastoadminpormes` (   in idRecetaI INT,
+                                                in idGastoAdminPorMesI INT)
+                                    
+BEGIN
+	insert into recetagastoadminpormes (idReceta,idGastoAdminPorMes)
+				  					    values (idRecetaI,idGastoAdminPorMesI);
+END$$
+DELIMITER ;
+
+
+DROP procedure IF EXISTS `eliminar_recetagastoadminpormes`;
+DELIMITER $$
+USE `caticao`$$
+CREATE PROCEDURE `eliminar_recetagastoadminpormes` (in variable int)
+BEGIN
+	 delete from recetagastoadminpormes
+    where idReceta=1;
+END$$
+DELIMITER ;
+
 
 -- Procedimientos almacenados Costo de Recetas y Gasto Administrativo --
 
@@ -2455,13 +2502,16 @@ BEGIN
 END$$
 DELIMITER ;
 
+
 DROP procedure IF EXISTS `mostrar_gastoadminpormes2`;
 DELIMITER $$
 USE `caticao`$$
 CREATE PROCEDURE `mostrar_gastoadminpormes2` (in idCostoRecetasGastoAdminC INT)
 BEGIN
 
-	 SELECT * FROM gastoadminpormes
+	 SELECT gap.idGastoAdminPorMes,tg.descripcion AS descripcionTipoGasto, gap.idGastoAdmin,gap.nombreGastoAdmin,gap.cantidad,gap.precio,gap.precio,gap.total
+	 FROM gastoadminpormes gap INNER JOIN gastoadmin ga ON gap.idGastoAdmin = ga.idGastoAdmin
+	 												INNER JOIN tipogasto tg ON ga.idTipoGasto = tg.idTipoGasto
     WHERE idCostoRecetasGastoAdmin=idCostoRecetasGastoAdminC;
 
 END$$
@@ -2738,4 +2788,3 @@ select descripcion from ordertable;
 	 
 END$$
 DELIMITER ;
-gastoadmin

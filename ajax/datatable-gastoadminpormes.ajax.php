@@ -59,6 +59,7 @@ class TablaGastoAdminPorMes{
 
 		  	$datosJson .='[
 			      "'.($i+1).'",
+				  "'.$gastoadminpormes[$i]["descripcionTipoGasto"].'",
 				  "'.$gastoadminpormes[$i]["nombreGastoAdmin"].'",
 			      "'.$gastoadminpormes[$i]["cantidad"].'",
 				  "'.$gastoadminpormes[$i]["precio"].'",
@@ -70,7 +71,7 @@ class TablaGastoAdminPorMes{
 
 		 $datosJson = substr($datosJson, 0, -1);
 
-		 $datosJson .=   ',["Total","","","","'.$total.'",""]] 
+		 $datosJson .=   ',["Total","","","","","'.$total.'",""]] 
 
 		 }';
 		

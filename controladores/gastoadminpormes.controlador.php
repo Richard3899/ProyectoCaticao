@@ -14,6 +14,17 @@ class ControladorGastoAdminPorMes{
 	}
 
 	/*=============================================
+	MOSTRAR GASTO POR ID TIPO GASTO
+	=============================================*/
+
+	static public function ctrMostrarGastoAdminPorMesTG($valor){
+
+		$respuesta = ModeloGastoAdminPorMes::mdlMostrarGastoAdminPorMesTG($valor);
+
+		return $respuesta;
+	}
+
+	/*=============================================
 	SUMAR TOTAL DE GASTO ADMIN POR MES
 	=============================================*/
 	static public function ctrSumaTotalGastoAdminPorMes($valor){

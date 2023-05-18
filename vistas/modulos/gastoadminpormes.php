@@ -70,6 +70,7 @@
        <tr> 
          
          <th style="width:20px">#</th>
+         <th>Tipo de Gasto</th>
          <th>Nombre</th>
          <th>Cantidad</th>
          <th>Precio</th>

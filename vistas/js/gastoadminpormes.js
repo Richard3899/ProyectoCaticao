@@ -11,9 +11,9 @@ $('.tablaGastoAdminPorMes').DataTable( {
 		 "sortable": false
 		},
 		//Tipo de dato (Número)
-		{targets:[2], render: DataTable.render.number( '.', ',', 2)},
-		{targets:[3], render: DataTable.render.number( '.', ',', 2, 'S/ ')},
-		{targets:[4], render: DataTable.render.number( '.', ',', 2, 'S/ ')}
+		{targets:[3], render: DataTable.render.number( '.', ',', 2)},
+		{targets:[4], render: DataTable.render.number( '.', ',', 2, 'S/ ')},
+		{targets:[5], render: DataTable.render.number( '.', ',', 2, 'S/ ')}
 	  ],
 	"retrieve": true,
 	"processing": true,
@@ -219,72 +219,6 @@ $(".formularioGastoAdminPorMes").on("change", "select.seleccionarNombreGastoAdmi
 
 
 /*=============================================
-MODIFICAR LA CANTIDAD
-=============================================*/
-
-// $(".formularioGastoAdminPorMes").on("change", "input.nuevaCantidadGastoAdmin", function(){
-
-// 	var precio = $(".precioGastoAdmin");
-
-// 	var precioUnitarioFinal = $(this).val() * precio.attr("precioReal");
-
-// 	precio.val(precioUnitarioFinal);
-
-// 	$(".precioGastoAdmin").val(precioUnitarioFinal);
-
-// 	if($('#seleccionarNombreGastoAdmin').val() == ""){
-		
-// 		$(this).val(0);
-
-// 		precio.val(0);
-
-// 		Swal.fire({
-// 			title: "Seleccionar gasto administrativo",
-// 			icon: "error",
-// 			showConfirmButton: false,
-// 			timer: 2000
-// 		  });
-
-// 	}
-
-// 	// SUMAR TOTAL DE PRECIOS
-
-// 	 sumaTotalPrecioGastoAdminPorMes()
-
-	
-// })
-
-/*=============================================
-SUMAR TODOS LOS PRECIOS
-=============================================*/
-
-// function sumaTotalPrecioGastoAdminPorMes(){
-
-// 	var precioUnitarioItem = $(".precioGastoAdmin");
-
-// 	var arraySumaPrecioUnitario = [];  
-
-// 	for(var i = 0; i < precioUnitarioItem.length; i++){
-
-// 		 arraySumaPrecioUnitario.push(Number($(precioUnitarioItem[i]).val()));
-		 
-// 	}
-
-
-// 	function sumaArrayPrecioUnitario(total, numero){
-
-// 		return total + numero;
-
-// 	}
-
-// 	var sumaTotalPrecioUnitario = arraySumaPrecioUnitario.reduce(sumaArrayPrecioUnitario,0);
-
-// 		$(".precioGastoAdmin").val(sumaTotalPrecioUnitario.toFixed(2));
-// 		$("#precioTotal").val(sumaTotalPrecioUnitario);
-
-// }
-
-/*=============================================
 EDITAR GASTO ADMIN POR MES
 =============================================*/
 
@@ -344,57 +278,6 @@ var total= (precio*cantidad).toFixed(2);
 $("#editarTotal").val(total);
 })
 	
-
-
-/*=============================================
-MODIFICAR LA CANTIDAD AL EDITAR
-=============================================*/
-
-// $(".formularioEditarGastoAdminPorMes").on("change", "input.editarCantidadGastoAdmin", function(){
-
-// 	var editarprecioUnitario = $(".editarPrecioGastoAdmin");
-
-// 	var precioUnitarioFinal = $(this).val() * editarprecioUnitario.attr("editarprecioReal");
-
-// 	editarprecioUnitario.val(precioUnitarioFinal);
-
-// 	// SUMAR TOTAL DE PRECIOS
-
-// 	editarsumaTotalPrecioGastoAdminPorMes();
-
-
-// })
-
-/*=============================================
-SUMAR TODOS LOS PRECIOS AL EDITAR
-=============================================*/
-
-// function editarsumaTotalPrecioGastoAdminPorMes(){
-
-// 	var precioUnitarioItem = $(".editarPrecioGastoAdmin");
-
-// 	var arraySumaPrecioUnitario = [];  
-
-// 	for(var i = 0; i < precioUnitarioItem.length; i++){
-
-// 		 arraySumaPrecioUnitario.push(Number($(precioUnitarioItem[i]).val()));
-		 
-// 	}
-
-
-// 	function sumaArrayPrecioUnitario(total, numero){
-
-// 		return total + numero;
-
-// 	}
-
-// 	var sumaTotalPrecioUnitario = arraySumaPrecioUnitario.reduce(sumaArrayPrecioUnitario,0);
-
-// 		$(".editarPrecioGastoAdmin").val(sumaTotalPrecioUnitario.toFixed(2));
-// 		$("#editarPrecioTotal").val(sumaTotalPrecioUnitario);
-
-// }
-
 
 /*=============================================
 ELIMINAR GASTO ADMIN POR MES

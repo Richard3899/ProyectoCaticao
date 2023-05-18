@@ -144,5 +144,25 @@ class ModeloGastoAdminPorMes{
 
 	}
 
+	/*=============================================
+	MOSTRAR GASTO POR ID TIPO GASTO
+	=============================================*/
+
+	static public function mdlMostrarGastoAdminPorMesTG($valor){
+
+		$stmt = Conexion::conectar()->prepare("call mostrar_gastoadminpormestg(?)");
+
+		$stmt->bindParam(1, $valor, PDO::PARAM_INT);
+
+		$stmt -> execute();
+
+		return $stmt -> fetchAll();
+
+		#$stmt -> close();
+
+		$stmt = null;
+
+	}
+
 	
 }
