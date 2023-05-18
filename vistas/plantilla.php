@@ -154,7 +154,6 @@ session_start();
 <script src="vistas/js/reporteproductos.js"></script>
 <script src="vistas/js/reporterecetas.js"></script>
 <script src="vistas/js/dashboard.js"></script>
-<script src="vistas/js/asignacionadicionales.js"></script>
 <script src="vistas/js/backup.js"></script>
 
 
