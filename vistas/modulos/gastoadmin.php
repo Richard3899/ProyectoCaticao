@@ -107,6 +107,40 @@ MODAL AGREGAR GASTOS ADMINISTRATIVOS
         <div class="box-body">
 
           <div class="row">
+          <!-- ENTRADA PARA SELECCIONAR EL TIPO DE GASTO-->
+          <div class="form-group col-sm">
+          <label for="unidadMedida">Gastos y Costos</label>
+            <div class="input-group">
+            
+                <div class="input-group-prepend">
+                <span class="input-group-text"><i class="fas fa-ruler"></i></span>
+                </div>
+
+                <select class="form-control input-lg" id="nuevoTipoGasto" name="nuevoTipoGasto" required>
+                
+                <option value="">Seleccionar :</option>
+
+                <?php 
+
+                $item = null;
+                $valor = null;
+
+                $unidadmedida = ControladorTipoGasto::ctrMostrarTipoGasto($item,$valor);
+
+                foreach($unidadmedida as $key=> $value){ 
+                  echo '<option value="'.$value["idTipoGasto"].'">'.$value["descripcion"].'</option>';
+                }
+
+                ?>
+
+              </select>
+
+            </div>
+
+          </div>
+          </div>
+
+          <div class="row">
             
           <!-- ENTRADA PARA EL CÓDIGO -->
           <div class="form-group col-sm">
@@ -199,41 +233,6 @@ MODAL AGREGAR GASTOS ADMINISTRATIVOS
 
           </div>
 
-          <div class="row">
-          <!-- ENTRADA PARA SELECCIONAR EL TIPO DE GASTO-->
-          <div class="form-group col-sm">
-          <label for="unidadMedida">Gastos y Costos</label>
-            <div class="input-group">
-            
-                <div class="input-group-prepend">
-                <span class="input-group-text"><i class="fas fa-ruler"></i></span>
-                </div>
-
-                <select class="form-control input-lg" id="nuevoTipoGasto" name="nuevoTipoGasto" required>
-                
-                <option value="">Seleccionar :</option>
-
-                <?php 
-
-                $item = null;
-                $valor = null;
-
-                $unidadmedida = ControladorTipoGasto::ctrMostrarTipoGasto($item,$valor);
-
-                foreach($unidadmedida as $key=> $value){ 
-                  echo '<option value="'.$value["idTipoGasto"].'">'.$value["descripcion"].'</option>';
-                }
-
-                ?>
-
-              </select>
-
-            </div>
-
-          </div>
-          </div>
-
-
         </div>
 
       </div>
@@ -300,6 +299,40 @@ MODAL EDITAR GASTOS ADMINISTRATIVOS
       <div class="modal-body">
 
       <div class="box-body">
+
+          <div class="row">
+          <!-- ENTRADA PARA SELECCIONAR EL TIPO DE GASTO-->
+          <div class="form-group col-sm">
+          <label for="unidadMedida">Gastos y Costos</label>
+            <div class="input-group">
+            
+                <div class="input-group-prepend">
+                <span class="input-group-text"><i class="fas fa-ruler"></i></span>
+                </div>
+
+                <select class="form-control input-lg" id="editarTipoGasto" name="editarTipoGasto" required disabled>
+                
+                <option value="">Seleccionar :</option>
+
+                <?php 
+
+                $item = null;
+                $valor = null;
+
+                $unidadmedida = ControladorTipoGasto::ctrMostrarTipoGasto($item,$valor);
+
+                foreach($unidadmedida as $key=> $value){ 
+                  echo '<option value="'.$value["idTipoGasto"].'">'.$value["descripcion"].'</option>';
+                }
+
+                ?>
+
+              </select>
+
+            </div>
+
+          </div>
+        </div>
 
         <div class="row">
 
@@ -395,41 +428,6 @@ MODAL EDITAR GASTOS ADMINISTRATIVOS
         </div>
 
         </div>
-
-        <div class="row">
-          <!-- ENTRADA PARA SELECCIONAR EL TIPO DE GASTO-->
-          <div class="form-group col-sm">
-          <label for="unidadMedida">Gastos y Costos</label>
-            <div class="input-group">
-            
-                <div class="input-group-prepend">
-                <span class="input-group-text"><i class="fas fa-ruler"></i></span>
-                </div>
-
-                <select class="form-control input-lg" id="editarTipoGasto" name="editarTipoGasto" required>
-                
-                <option value="">Seleccionar :</option>
-
-                <?php 
-
-                $item = null;
-                $valor = null;
-
-                $unidadmedida = ControladorTipoGasto::ctrMostrarTipoGasto($item,$valor);
-
-                foreach($unidadmedida as $key=> $value){ 
-                  echo '<option value="'.$value["idTipoGasto"].'">'.$value["descripcion"].'</option>';
-                }
-
-                ?>
-
-              </select>
-
-            </div>
-
-          </div>
-        </div>
-
 
        </div>
 

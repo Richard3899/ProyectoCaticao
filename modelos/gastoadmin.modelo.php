@@ -74,13 +74,12 @@ class ModeloGastoAdmin{
 
 	static public function mdlEditarGastoAdmin($datos){
 	
-		$stmt = Conexion::conectar()->prepare("call editar_gastoadmin(?,?,?,?,?)");
+		$stmt = Conexion::conectar()->prepare("call editar_gastoadmin(?,?,?,?)");
 
 		$stmt->bindParam(1, $datos["idGastoAdmin"], PDO::PARAM_INT);
 		$stmt->bindParam(2, $datos["descripcion"], PDO::PARAM_STR);
 		$stmt->bindParam(3, $datos["idUnidadMedida"], PDO::PARAM_INT);
 		$stmt->bindParam(4, $datos["idTipoCosto"], PDO::PARAM_INT);
-		$stmt->bindParam(5, $datos["idTipoGasto"], PDO::PARAM_INT);
 
 		if($stmt -> execute()){
 

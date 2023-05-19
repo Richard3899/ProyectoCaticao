@@ -79,8 +79,7 @@ class ControladorGastoAdmin{
 				$datos = array("idGastoAdmin" =>$_POST["idGastoAdmin"],
                                "descripcion" => $_POST["editarDescripcion"],
 							   "idUnidadMedida" => $_POST["editarUnidadMedida"],
-							   "idTipoCosto" => $_POST["editarTipoCosto"],
-							   "idTipoGasto" => $_POST["editarTipoGasto"]);
+							   "idTipoCosto" => $_POST["editarTipoCosto"]);
 							
 				$respuesta = ModeloGastoAdmin::mdlEditarGastoAdmin($datos);
 

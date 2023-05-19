@@ -690,13 +690,11 @@ USE `caticao`$$
 CREATE PROCEDURE `editar_gastoadmin` (  in idGastoAdminE INT,
                                         in descripcionE VARCHAR(100),
                                         in idUnidadMedidaE INT,
-                                        in idTipoCostoE INT,
-													 in idTipoGastoE INT)
+                                        in idTipoCostoE INT)
 BEGIN
 	update gastoadmin set   descripcion=descripcionE,
 									idUnidadMedida=idUnidadMedidaE,
-									idTipoCosto=idTipoCostoE,
-									idTipoGasto=idTipoGastoE
+									idTipoCosto=idTipoCostoE
 				      WHERE    idGastoAdmin=idGastoAdminE;
 END$$
 DELIMITER ;
