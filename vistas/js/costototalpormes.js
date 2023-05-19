@@ -1,12 +1,12 @@
 /*=============================================
 TABLA COSTO TOTAL POR MES
 =============================================*/
-var idCostoRecetasGastoAdmin = $("#idCostoRecetasGastoAdmin").val();
+var idMesGasto = $("#idMesGasto").val();
 var mes = $("#mes").val();
 var descripcion = $("#descripcion").val();
 
 $("#tablaCostoTotalPorMes").DataTable({
-	"ajax": "ajax/datatable-costototalpormes.ajax.php?idCostoRecetasGastoAdmin="+idCostoRecetasGastoAdmin+"&mes="+mes,
+	"ajax": "ajax/datatable-costototalpormes.ajax.php?idMesGasto="+idMesGasto+"&mes="+mes,
 	"dom": 'Bfrtip',
 	"searching": false,
 	"paging": false,

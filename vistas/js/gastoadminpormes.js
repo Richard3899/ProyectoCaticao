@@ -1,10 +1,10 @@
 /*=============================================
 TABLA GASTO ADMIN POR MES
 =============================================*/
-var idCostoRecetasGastoAdminC = $("#idCostoRecetasGastoAdmin").val();
+var idMesGastoC = $("#idMesGasto").val();
 
 $('.tablaGastoAdminPorMes').DataTable( {
-	"ajax": "ajax/datatable-gastoadminpormes.ajax.php?idCostoRecetasGastoAdminC="+idCostoRecetasGastoAdminC+"&permisoEditar="+permisoEditar+"&permisoEliminar="+permisoEliminar,
+	"ajax": "ajax/datatable-gastoadminpormes.ajax.php?idMesGastoC="+idMesGastoC+"&permisoEditar="+permisoEditar+"&permisoEliminar="+permisoEliminar,
     "deferRender": true,
 	"columnDefs": [
 		{"className": "dt-center", "targets": "_all",
@@ -58,15 +58,15 @@ $(".tablaGastoAdminPorMes").on("draw.dt", function() {
 
 	if(x.length > 20){
 
-		window.location ="costorecetasgastoadmin";
+		window.location ="mesgasto";
 
 	}
 
-	var idCostoRecetasGastoAdmin = $("#idCostoRecetasGastoAdmin").val();
+	var idMesGasto = $("#idMesGasto").val();
 
 	var datos = new FormData();
 
-	datos.append("idCostoRecetasGastoAdmin", idCostoRecetasGastoAdmin);
+	datos.append("idMesGasto", idMesGasto);
 
 	  $.ajax({
 
@@ -285,7 +285,7 @@ ELIMINAR GASTO ADMIN POR MES
 
 $(".tablaGastoAdminPorMes tbody").on("click", "button.btnEliminarGastoAdminPorMes", function(){
 
-	var idCostoRecetasGastoAdmin = $("#idCostoRecetasGastoAdmin").val();
+	var idMesGasto = $("#idMesGasto").val();
 	var descripcion = $("#descripcion").val();
 	var idGastoAdminPorMes = $(this).attr("idGastoAdminPorMes");
 	
@@ -303,7 +303,7 @@ $(".tablaGastoAdminPorMes tbody").on("click", "button.btnEliminarGastoAdminPorMe
         if (result.value) {
 
         window.location = "index.php?ruta=gastoadminpormes&idGastoAdminPorMes="+idGastoAdminPorMes+"&descripcion="+
-		                   descripcion+"&idCostoRecetasGastoAdmin="+idCostoRecetasGastoAdmin;
+		                   descripcion+"&idMesGasto="+idMesGasto;
 
         }
 

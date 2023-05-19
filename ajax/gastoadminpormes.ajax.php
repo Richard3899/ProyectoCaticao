@@ -10,7 +10,7 @@ class AjaxGastoAdminPorMes{
 	=============================================*/	
 
 	public $idGastoAdminPorMes;
-	public $idCostoRecetasGastoAdmin;
+	public $idMesGasto;
 
 	public function ajaxEditarGastoAdminPorMes(){
 
@@ -26,11 +26,11 @@ class AjaxGastoAdminPorMes{
 	/*=============================================
 	MOSTRAR GASTO ADMIN POR MESS
 	=============================================*/
-	public function ajaxCostoRecetasGastoAdmin(){
+	public function ajaxMesGasto(){
 
-		$item="CostoRecetasGastoAdmin";
+		$item="MesGasto";
 
-		$valor = $this->idCostoRecetasGastoAdmin;
+		$valor = $this->idMesGasto;
 
 		$respuesta = ControladorGastoAdminPorMes::ctrMostrarGastoAdminPorMes($item,$valor);
 
@@ -71,11 +71,11 @@ if(isset($_POST["idGastoAdminPorMes"])){
 /*=============================================
 MOSTRAR GASTO ADMIN POR MES
 =============================================*/
-if(isset($_POST["idCostoRecetasGastoAdmin"])){
+if(isset($_POST["idMesGasto"])){
 
 	$editar = new AjaxGastoAdminPorMes();
-	$editar -> idCostoRecetasGastoAdmin = $_POST["idCostoRecetasGastoAdmin"];
-	$editar -> ajaxCostoRecetasGastoAdmin();
+	$editar -> idMesGasto = $_POST["idMesGasto"];
+	$editar -> ajaxMesGasto();
 
 }
 

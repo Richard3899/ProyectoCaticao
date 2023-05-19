@@ -55,7 +55,7 @@
           }
           ?>
 
-         <a type="button" class="btn btn-secondary my-1 col-12 col-sm-4 col-md-3 col-lg-3 col-xl-3" href="costorecetasgastoadmin">Volver</a>
+         <a type="button" class="btn btn-secondary my-1 col-12 col-sm-4 col-md-3 col-lg-3 col-xl-3" href="mesgasto">Volver</a>
         </div>
         
       </div>
@@ -117,7 +117,7 @@ MODAL GASTO ADMINISTRATIVO POR MES
 
       </div>
  
-      <input type="hidden" name="idCostoRecetasGastoAdmin" id="idCostoRecetasGastoAdmin" value="<?php echo $_GET['idCostoRecetasGastoAdmin']; ?>">
+      <input type="hidden" name="idMesGasto" id="idMesGasto" value="<?php echo $_GET['idMesGasto']; ?>">
 
       <input type="hidden" name="descripcion" id="descripcion" value="<?php echo $_GET['descripcion']; ?>">
 
@@ -275,7 +275,7 @@ MODAL EDITAR GASTO ADMINISTRATIVO POR MES
 
       </div>
 
-      <input type="hidden" name="editarIdCostoRecetasGastoAdmin" id="editarIdCostoRecetasGastoAdmin" value="<?php echo $_GET['idCostoRecetasGastoAdmin']; ?>">
+      <input type="hidden" name="editaridMesGasto" id="editaridMesGasto" value="<?php echo $_GET['idMesGasto']; ?>">
 
       <input type="hidden" name="editarDescripcion" id="editarDescripcion" value="<?php echo $_GET['descripcion']; ?>">
 

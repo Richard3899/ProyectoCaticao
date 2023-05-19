@@ -2441,50 +2441,50 @@ END$$
 DELIMITER ;
 
 
--- Procedimientos almacenados Costo de Recetas y Gasto Administrativo --
+-- Procedimientos almacenados Mes Gasto --
 
-DROP procedure IF EXISTS `mostrar_costorecetasgastoadmin`;
+DROP procedure IF EXISTS `mostrar_mesgasto`;
 DELIMITER $$
 USE `caticao`$$
-CREATE PROCEDURE `mostrar_costorecetasgastoadmin` ()
+CREATE PROCEDURE `mostrar_mesgasto` ()
 BEGIN
-	SELECT idCostoRecetasGastoAdmin,descripcion, DATE_FORMAT(mes,'%m - %Y') AS mesV, mes AS mes from costorecetasgastoadmin;
+	SELECT idMesGasto,descripcion, DATE_FORMAT(mes,'%m - %Y') AS mesV, mes AS mes from mesgasto;
 END$$
 DELIMITER ;
 
 
-DROP procedure IF EXISTS `insertar_costorecetasgastoadmin`;
+DROP procedure IF EXISTS `insertar_mesgasto`;
 DELIMITER $$
 USE `caticao`$$
-CREATE PROCEDURE `insertar_costorecetasgastoadmin` (IN descripcionI VARCHAR(45), IN mesI DATE)
+CREATE PROCEDURE `insertar_mesgasto` (IN descripcionI VARCHAR(45), IN mesI DATE)
 BEGIN
-	INSERT INTO costorecetasgastoadmin (descripcion,mes)
+	INSERT INTO mesgasto (descripcion,mes)
 				                   VALUES (descripcionI,mesI);
 END$$
 DELIMITER ;
 
-DROP procedure IF EXISTS `editar_costorecetasgastoadmin`;
+DROP procedure IF EXISTS `editar_mesgasto`;
 DELIMITER $$
 USE `caticao`$$
-CREATE PROCEDURE `editar_costorecetasgastoadmin` (IN idCostoRecetasGastoAdminI INT ,IN descripcionI VARCHAR(45))
+CREATE PROCEDURE `editar_mesgasto` (IN idMesGastoI INT ,IN descripcionI VARCHAR(45))
 BEGIN
-	UPDATE costorecetasgastoadmin SET descripcion=descripcionI
+	UPDATE mesgasto SET descripcion=descripcionI
 	
-				                   WHERE idCostoRecetasGastoAdmin=idCostoRecetasGastoAdminI;
+				                   WHERE idMesGasto=idMesGastoI;
 END$$
 DELIMITER ;
 
 
-DROP procedure IF EXISTS `eliminar_costorecetasgastoadmin`;
+DROP procedure IF EXISTS `eliminar_mesgasto`;
 DELIMITER $$
 USE `caticao`$$
-CREATE PROCEDURE `eliminar_costorecetasgastoadmin` (in idCostoRecetasGastoAdminE int)
+CREATE PROCEDURE `eliminar_mesgasto` (in idMesGastoE int)
 BEGIN
    DELETE FROM gastoadminpormes 
-   WHERE idCostoRecetasGastoAdmin=idCostoRecetasGastoAdminE;
+   WHERE idMesGasto=idMesGastoE;
    
-   DELETE FROM costorecetasgastoadmin
-   WHERE idCostoRecetasGastoAdmin=idCostoRecetasGastoAdminE;
+   DELETE FROM mesgasto
+   WHERE idMesGasto=idMesGastoE;
 END$$
 DELIMITER ;
 
@@ -2506,13 +2506,13 @@ DELIMITER ;
 DROP procedure IF EXISTS `mostrar_gastoadminpormes2`;
 DELIMITER $$
 USE `caticao`$$
-CREATE PROCEDURE `mostrar_gastoadminpormes2` (in idCostoRecetasGastoAdminC INT)
+CREATE PROCEDURE `mostrar_gastoadminpormes2` (in idMesGastoC INT)
 BEGIN
 
 	 SELECT gap.idGastoAdminPorMes,tg.descripcion AS descripcionTipoGasto, gap.idGastoAdmin,gap.nombreGastoAdmin,gap.cantidad,gap.precio,gap.precio,gap.total
 	 FROM gastoadminpormes gap INNER JOIN gastoadmin ga ON gap.idGastoAdmin = ga.idGastoAdmin
 	 												INNER JOIN tipogasto tg ON ga.idTipoGasto = tg.idTipoGasto
-    WHERE idCostoRecetasGastoAdmin=idCostoRecetasGastoAdminC;
+    WHERE idMesGasto=idMesGastoC;
 
 END$$
 DELIMITER ;
@@ -2521,7 +2521,7 @@ DELIMITER ;
 DROP procedure IF EXISTS `insertar_gastoadminpormes`;
 DELIMITER $$
 USE `caticao`$$
-CREATE PROCEDURE `insertar_gastoadminpormes` (     in idCostoRecetasGastoAdminI INT,
+CREATE PROCEDURE `insertar_gastoadminpormes` (     in idMesGastoI INT,
 	                                                in idGastoAdminI INT,
 	                                                in nombreGastoAdminI VARCHAR(50),
 	                                                in cantidadI DECIMAL(10,2),
@@ -2529,8 +2529,8 @@ CREATE PROCEDURE `insertar_gastoadminpormes` (     in idCostoRecetasGastoAdminI 
 													            in totalI DECIMAL(10,2) )
 BEGIN
 
-	 INSERT INTO gastoadminpormes(idCostoRecetasGastoAdmin,idGastoAdmin,nombreGastoAdmin,cantidad,precio,total)
-			                 VALUES (idCostoRecetasGastoAdminI,idGastoAdminI,nombreGastoAdminI,cantidadI,precioI,totalI);
+	 INSERT INTO gastoadminpormes(idMesGasto,idGastoAdmin,nombreGastoAdmin,cantidad,precio,total)
+			                 VALUES (idMesGastoI,idGastoAdminI,nombreGastoAdminI,cantidadI,precioI,totalI);
 	
 END$$
 DELIMITER ;
@@ -2569,10 +2569,10 @@ DELIMITER ;
 DROP procedure IF EXISTS `sumatotal_gastoadminpormes`;
 DELIMITER $$
 USE `caticao`$$
-CREATE PROCEDURE `sumatotal_gastoadminpormes` (in idCostoRecetasGastoAdminC INT)
+CREATE PROCEDURE `sumatotal_gastoadminpormes` (in idMesGastoC INT)
 BEGIN
 			SELECT if(SUM(total) IS NULL, 0, SUM(total)) FROM gastoadminpormes
-		                     WHERE idCostoRecetasGastoAdmin=idCostoRecetasGastoAdminC;
+		                     WHERE idMesGasto=idMesGastoC;
 END$$
 DELIMITER ;
 

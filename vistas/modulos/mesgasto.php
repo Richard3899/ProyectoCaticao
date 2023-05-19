@@ -28,7 +28,7 @@
       <?php 
        if($permisoInsertar==1){
 
-       echo "<button class='btn btn-primary' data-toggle='modal' data-target='#modalCostoRecetasGastoAdmin'>
+       echo "<button class='btn btn-primary' data-toggle='modal' data-target='#modalMesGasto'>
             Agregar Mes
             </button>";
 
@@ -43,7 +43,7 @@
 
       <div class="card-body">
 
-      <table class="table table-bordered table-striped dt-responsive tablaCostoRecetasGastoAdmin" width="100%">
+      <table class="table table-bordered table-striped dt-responsive tablaMesGasto" width="100%">
        
       <thead>
        
@@ -72,10 +72,10 @@
 
 
 <!--=====================================
-MODAL COSTO DE RECETAS Y GASTO ADMINISTRATIVO
+MODAL MES GASTO
 ======================================-->
 
-<div id="modalCostoRecetasGastoAdmin" class="modal fade" role="dialog">
+<div id="modalMesGasto" class="modal fade" role="dialog">
 
 <div class="modal-dialog modal-lg">
 
@@ -148,8 +148,8 @@ MODAL COSTO DE RECETAS Y GASTO ADMINISTRATIVO
 
       <?php
 
-        $guardarCostoRecetasGastoAdmin = new ControladorCostoRecetasGastoAdmin();
-        $guardarCostoRecetasGastoAdmin -> ctrCrearCostoRecetasGastoAdmin();
+        $guardarMesGasto = new ControladorMesGasto();
+        $guardarMesGasto -> ctrCrearMesGasto();
 
       ?>
 
@@ -163,10 +163,10 @@ MODAL COSTO DE RECETAS Y GASTO ADMINISTRATIVO
 
 
 <!--=====================================
-MODAL EDITAR COSTO DE RECETAS Y GASTO ADMINISTRATIVO
+MODAL EDITAR MES GASTO
 ======================================-->
 
-<div id="modalEditarCostoRecetasGastoAdmin" class="modal fade" role="dialog">
+<div id="modalEditarMesGasto" class="modal fade" role="dialog">
 
 <div class="modal-dialog modal-lg">
 
@@ -199,7 +199,7 @@ MODAL EDITAR COSTO DE RECETAS Y GASTO ADMINISTRATIVO
           <!-- ENTRADA PARA LA DESCRIPCIÓN -->
            <div class="form-group col-sm">
            <label for="descripcion">Descripción del Mes</label>
-           <input type="hidden" id="idCostoRecetasGastoAdmin" name="idCostoRecetasGastoAdmin">
+           <input type="hidden" id="idMesGasto" name="idMesGasto">
             <div class="input-group">
                 <div class="input-group-prepend">
                 <span class="input-group-text"><i class="fas fa-bars"></i></span>
@@ -229,8 +229,8 @@ MODAL EDITAR COSTO DE RECETAS Y GASTO ADMINISTRATIVO
 
       <?php
 
-        $editarCostoRecetasGastoAdmin = new ControladorCostoRecetasGastoAdmin();
-        $editarCostoRecetasGastoAdmin -> ctrEditarCostoRecetasGastoAdmin();
+        $editarMesGasto = new ControladorMesGasto();
+        $editarMesGasto -> ctrEditarMesGasto();
 
       ?>
 
@@ -244,7 +244,7 @@ MODAL EDITAR COSTO DE RECETAS Y GASTO ADMINISTRATIVO
 
 <?php
 
-  $borrarCostoRecetasGastoAdmin = new ControladorCostoRecetasGastoAdmin();
-  $borrarCostoRecetasGastoAdmin -> ctrEliminarCostoRecetasGastoAdmin();
+  $borrarMesGasto = new ControladorMesGasto();
+  $borrarMesGasto -> ctrEliminarMesGasto();
 
 ?> 

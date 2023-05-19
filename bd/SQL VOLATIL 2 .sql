@@ -1,2 +1,2 @@
 
-SELECT * FROM costorecetasgastoadmin WHERE fecha = 2022-08-01;
+SELECT * FROM mesgasto WHERE fecha = 2022-08-01;

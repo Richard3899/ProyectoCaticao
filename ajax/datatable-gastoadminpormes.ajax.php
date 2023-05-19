@@ -11,17 +11,17 @@ class TablaGastoAdminPorMes{
 
 	public function mostrarTablaGastoAdminPorMes(){
 
-    	$idCostoRecetasGastoAdminC=$_GET["idCostoRecetasGastoAdminC"];
+    	$idMesGastoC=$_GET["idMesGastoC"];
 
-		$item = "CostoRecetasGastoAdmin";
+		$item = "MesGasto";
 
-  		$gastoadminpormes = ControladorGastoAdminPorMes::ctrMostrarGastoAdminPorMes($item,$idCostoRecetasGastoAdminC);	
+  		$gastoadminpormes = ControladorGastoAdminPorMes::ctrMostrarGastoAdminPorMes($item,$idMesGastoC);	
 
 		/*============================================
  	 	TRAEMOS EL TOTAL DE GASTOS ADMINISTRATIVOS POR MES
   		=============================================*/
 
-		$sumatotalgastoadminpormes = ControladorGastoAdminPorMes::ctrSumaTotalGastoAdminPorMes($idCostoRecetasGastoAdminC);	
+		$sumatotalgastoadminpormes = ControladorGastoAdminPorMes::ctrSumaTotalGastoAdminPorMes($idMesGastoC);	
 
 		$total = $sumatotalgastoadminpormes[0];
 

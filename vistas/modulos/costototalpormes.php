@@ -25,13 +25,13 @@
     <div class="card">
       <div class="card-header">
    
-      <input type="hidden" name="idCostoRecetasGastoAdmin" id="idCostoRecetasGastoAdmin" value="<?php echo $_GET['idCostoRecetasGastoAdmin']; ?>">
+      <input type="hidden" name="idMesGasto" id="idMesGasto" value="<?php echo $_GET['idMesGasto']; ?>">
       <input type="hidden" name="mes" id="mes" value="<?php echo $_GET['mes']; ?>">
       <input type="hidden" name="descripcion" id="descripcion" value="<?php echo $_GET['descripcion']; ?>">
       
       <div class="row justify-content-sm-end">
 
-         <a type="button" class="btn btn-secondary col-12 col-sm-4 col-md-3 col-lg-2 col-xl-2" href="costorecetasgastoadmin">Volver</a>
+         <a type="button" class="btn btn-secondary col-12 col-sm-4 col-md-3 col-lg-2 col-xl-2" href="mesgasto">Volver</a>
       </div>
 
       </div>

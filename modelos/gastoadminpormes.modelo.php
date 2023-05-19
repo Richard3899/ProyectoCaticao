@@ -11,7 +11,7 @@ class ModeloGastoAdminPorMes{
 
 	static public function mdlMostrarGastoAdminPorMes($item,$valor){
 		
-		if($item != "CostoRecetasGastoAdmin"){ 
+		if($item != "MesGasto"){ 
 
 			$stmt = Conexion::conectar()->prepare("call mostrar_gastoadminpormes1(?)");
 
@@ -48,7 +48,7 @@ class ModeloGastoAdminPorMes{
 
 		$stmt = Conexion::conectar()->prepare("call insertar_gastoadminpormes(?,?,?,?,?,?)");
 
-		$stmt->bindParam(1, $datos["idCostoRecetasGastoAdmin"], PDO::PARAM_INT);
+		$stmt->bindParam(1, $datos["idMesGasto"], PDO::PARAM_INT);
 		$stmt->bindParam(2, $datos["idGastoAdmin"], PDO::PARAM_INT);
 		$stmt->bindParam(3, $datos["nombreGastoAdmin"], PDO::PARAM_STR);
 		$stmt->bindParam(4, $datos["cantidad"], PDO::PARAM_STR);

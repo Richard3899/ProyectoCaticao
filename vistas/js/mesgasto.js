@@ -1,5 +1,5 @@
-$('.tablaCostoRecetasGastoAdmin').DataTable( {
-    "ajax": "ajax/datatable-costorecetasgastoadmin.ajax.php?permisoEditar="+permisoEditar+"&permisoEliminar="+permisoEliminar,
+$('.tablaMesGasto').DataTable( {
+    "ajax": "ajax/datatable-mesgasto.ajax.php?permisoEditar="+permisoEditar+"&permisoEliminar="+permisoEliminar,
     "deferRender": true,
 	"columnDefs": [
 		{"className": "dt-center", "targets": "_all"}
@@ -41,17 +41,17 @@ $('.tablaCostoRecetasGastoAdmin').DataTable( {
 EDITAR GASTO ADMIN
 =============================================*/
 
-$(".tablaCostoRecetasGastoAdmin tbody").on("click", "button.btnEditarCostoRecetasGastoAdmin", function(){
+$(".tablaMesGasto tbody").on("click", "button.btnEditarMesGasto", function(){
 
-	var idCostoRecetasGastoAdmin = $(this).attr("idCostoRecetasGastoAdmin");
+	var idMesGasto = $(this).attr("idMesGasto");
 	
 	var datos = new FormData();
 
-    datos.append("idCostoRecetasGastoAdmin", idCostoRecetasGastoAdmin);
+    datos.append("idMesGasto", idMesGasto);
 
      $.ajax({
 
-      url:"ajax/costorecetagastoadmin.ajax.php",
+      url:"ajax/mesgasto.ajax.php",
       method: "POST",
       data: datos,
       cache: false,
@@ -60,7 +60,7 @@ $(".tablaCostoRecetasGastoAdmin tbody").on("click", "button.btnEditarCostoReceta
       dataType:"json",
       success:function(respuesta){
 
-		   $("#idCostoRecetasGastoAdmin").val(respuesta["idCostoRecetasGastoAdmin"]);
+		   $("#idMesGasto").val(respuesta["idMesGasto"]);
 
 		   $("#editarDescripcion").val(respuesta["descripcion"]);
 
@@ -72,12 +72,12 @@ $(".tablaCostoRecetasGastoAdmin tbody").on("click", "button.btnEditarCostoReceta
 
 
 /*=============================================
-ELIMINAR COSTO DE RECETAS Y GASTO ADMINISTRATIVO
+ELIMINAR MES GASTO
 =============================================*/
 
-$(".tablaCostoRecetasGastoAdmin tbody").on("click", "button.btnEliminarCostoRecetasGastoAdmin", function(){
+$(".tablaMesGasto tbody").on("click", "button.btnEliminarMesGasto", function(){
 
-	var idCostoRecetasGastoAdmin = $(this).attr("idCostoRecetasGastoAdmin");
+	var idMesGasto = $(this).attr("idMesGasto");
 
 	Swal.fire({
 
@@ -92,7 +92,7 @@ $(".tablaCostoRecetasGastoAdmin tbody").on("click", "button.btnEliminarCostoRece
         }).then(function(result){
         if (result.value) {
 
-        	window.location = "index.php?ruta=costorecetasgastoadmin&idCostoRecetasGastoAdmin="+idCostoRecetasGastoAdmin;
+        	window.location = "index.php?ruta=mesgasto&idMesGasto="+idMesGasto;
 
         }
 
@@ -102,7 +102,7 @@ $(".tablaCostoRecetasGastoAdmin tbody").on("click", "button.btnEliminarCostoRece
 })
 
 /*=============================================
-REVISAR SI EL GASTO YA ESTÁ REGISTRADO
+REVISAR SI EL MES YA ESTÁ REGISTRADO
 =============================================*/
 
 $("#nuevoMes").change(function(){
@@ -115,7 +115,7 @@ $("#nuevoMes").change(function(){
 	datos.append("validarFecha", mes+"-01");
 
 	 $.ajax({
-	    url:"ajax/costorecetagastoadmin.ajax.php",
+	    url:"ajax/mesgasto.ajax.php",
 	    method:"POST",
 	    data: datos,
 	    cache: false,

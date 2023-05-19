@@ -257,7 +257,7 @@ if($value["modoDark"] == 1){
 
           <?php 
           $idModulosCostos=array(17,18);
-          $descripcionModulosCostos=array('costoreceta','costototal','costorecetasgastoadmin','gastoadminpormes','costototalpormes');
+          $descripcionModulosCostos=array('costoreceta','costototal','mesgasto','gastoadminpormes','costototalpormes');
           ?>
 
           <?php if((array_intersect($idModulosCostos,$arrayidModulos))){ 
@@ -282,7 +282,7 @@ if($value["modoDark"] == 1){
             
             if(in_array(18, $arrayidModulos)){ 
               echo "<li class='nav-item'>
-                <a href='costorecetasgastoadmin' class='nav-link "; if(in_array($url, array('costorecetasgastoadmin','gastoadminpormes','costototalpormes'))){ echo "active"; } echo"'>
+                <a href='mesgasto' class='nav-link "; if(in_array($url, array('mesgasto','gastoadminpormes','costototalpormes'))){ echo "active"; } echo"'>
                 <i class='nav-icon fas fa-angle-double-right'></i>
                   <p>C. Receta y G. Admin</p>
                 </a>

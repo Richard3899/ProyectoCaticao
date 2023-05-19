@@ -330,8 +330,8 @@ MODAL AGREGAR USUARIO
                       <label for="cbCostoReceta">Costo por Receta</label>
                   </div>   
                   <div class="icheck-primary">
-                      <input class="checkModulos" type="checkbox" id="cbCostoRecetasGastoAdmin" value="18" name="checkListModulos[]">
-                      <label for="cbCostoRecetasGastoAdmin">C. Receta y G. Admin</label>
+                      <input class="checkModulos" type="checkbox" id="cbMesGasto" value="18" name="checkListModulos[]">
+                      <label for="cbMesGasto">C. Receta y G. Admin</label>
                   </div>              
                 </div>
             </div>
@@ -703,8 +703,8 @@ MODAL EDITAR USUARIO
                       <label for="costoreceta">Costo por Receta</label>
                   </div>   
                   <div class="icheck-primary">
-                      <input class="editarCheckModulos" type="checkbox" id="costorecetasgastoadmin" value="18" name="editarCheckListModulos[]">
-                      <label for="costorecetasgastoadmin">C. Receta y G. Admin</label>
+                      <input class="editarCheckModulos" type="checkbox" id="mesgasto" value="18" name="editarCheckListModulos[]">
+                      <label for="mesgasto">C. Receta y G. Admin</label>
                   </div>              
                 </div>
             </div>

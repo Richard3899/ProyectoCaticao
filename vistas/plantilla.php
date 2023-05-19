@@ -146,7 +146,7 @@ session_start();
 <script src="vistas/js/recetacostooperativo.js"></script>
 <script src="vistas/js/costoreceta.js"></script>
 <script src="vistas/js/costototal.js"></script>
-<script src="vistas/js/costorecetasgastoadmin.js"></script>
+<script src="vistas/js/mesgasto.js"></script>
 <script src="vistas/js/gastoadminpormes.js"></script>
 <script src="vistas/js/costototalpormes.js"></script>
 <script src="vistas/js/reporteinsumos.js"></script>

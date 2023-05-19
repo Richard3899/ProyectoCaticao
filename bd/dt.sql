@@ -40,7 +40,7 @@ INSERT INTO `orderTable` (`idOrderTable`, `descripcion`) VALUES
 (37,'recetacostoventa'),
 (38,'recetacostomarketing'),
 (39,'recetacostooperativo'),
-(40,'costorecetasgastoadmin'),
+(40,'mesgasto'),
 (41,'gastoadminpormes'),
 (42,'loteproductos');
 
@@ -113,7 +113,7 @@ INSERT INTO `modulo` (`idModulo`, `descripcion`) VALUES
 	(15, 'inventariomaquinas'),
 	(16, 'recetas'),
 	(17, 'costoreceta'),
-	(18, 'costorecetasgastoadmin'),
+	(18, 'mesgasto'),
 	(19, 'usuarios'),
 	(20, 'reporteinsumos'),
 	(21, 'reportemateriales'),

@@ -42,7 +42,7 @@ class ControladorGastoAdminPorMes{
 			
 		if(isset($_POST["idGastoAdmin"])){
 
-			$datos = array("idCostoRecetasGastoAdmin"=>$_POST["idCostoRecetasGastoAdmin"],
+			$datos = array("idMesGasto"=>$_POST["idMesGasto"],
 						   "idGastoAdmin"=>$_POST["idGastoAdmin"],
 						   "nombreGastoAdmin"=>$_POST["nombreGastoAdmin"],
 						   "cantidad"=>$_POST["nuevaCantidad"],
@@ -64,7 +64,7 @@ class ControladorGastoAdminPorMes{
 				
 				}).then(function(result){
 				
-					window.location = "index.php?ruta=gastoadminpormes&idCostoRecetasGastoAdmin='.$_POST["idCostoRecetasGastoAdmin"].'&descripcion='.$_POST["descripcion"].'";
+					window.location = "index.php?ruta=gastoadminpormes&idMesGasto='.$_POST["idMesGasto"].'&descripcion='.$_POST["descripcion"].'";
 			
 			    });
 				
@@ -108,7 +108,7 @@ class ControladorGastoAdminPorMes{
 					
 					}).then(function(result){
 					
-						window.location = "index.php?ruta=gastoadminpormes&idCostoRecetasGastoAdmin='.$_POST["editarIdCostoRecetasGastoAdmin"].'&descripcion='.$_POST["editarDescripcion"].'";
+						window.location = "index.php?ruta=gastoadminpormes&idMesGasto='.$_POST["editaridMesGasto"].'&descripcion='.$_POST["editarDescripcion"].'";
 				
 					});
 					
@@ -148,7 +148,7 @@ class ControladorGastoAdminPorMes{
 				
 				}).then(function(result){
 
-					window.location = "index.php?ruta=gastoadminpormes&idCostoRecetasGastoAdmin='.$_GET["idCostoRecetasGastoAdmin"].'&descripcion='.$_GET["descripcion"].'";
+					window.location = "index.php?ruta=gastoadminpormes&idMesGasto='.$_GET["idMesGasto"].'&descripcion='.$_GET["descripcion"].'";
 			
 			    });
 				

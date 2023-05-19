@@ -1,32 +1,32 @@
 <?php
 
-class ControladorCostoRecetasGastoAdmin{
+class ControladorMesGasto{
 
 	/*=============================================
-	MOSTRAR COSTO DE RECETAS Y GASTO ADMINISTRATIVO
+	MOSTRAR MES GASTO
 	=============================================*/
 
-	static public function ctrMostrarCostoRecetasGastoAdmin($item, $valor){
+	static public function ctrMostrarMesGasto($item, $valor){
 
-		$tabla = "costorecetasgastoadmin";
+		$tabla = "mesgasto";
 
-		$respuesta = ModeloCostoRecetasGastoAdmin::MdlMostrarCostoRecetasGastoAdmin($tabla, $item, $valor);
+		$respuesta = ModeloMesGasto::MdlMostrarMesGasto($tabla, $item, $valor);
 
 		return $respuesta;
 	}
 
 	/*=============================================
-	CREAR COSTO DE RECETAS Y GASTO ADMINISTRATIVO
+	CREAR MES GASTO
 	=============================================*/
 
-	static public function ctrCrearCostoRecetasGastoAdmin(){
+	static public function ctrCrearMesGasto(){
 
 		if(isset($_POST["nuevaDescripcion"])){
 
 				$datos = array("descripcion" => $_POST["nuevaDescripcion"],
 							   "mes" => $_POST["nuevoMes"].'-01');
 
-				$respuesta = ModeloCostoRecetasGastoAdmin::mdlIngresarCostoRecetasGastoAdmin($datos);
+				$respuesta = ModeloMesGasto::mdlIngresarMesGasto($datos);
 
 				if($respuesta == "ok"){
 
@@ -41,7 +41,7 @@ class ControladorCostoRecetasGastoAdmin{
 					
 					}).then(function(result){
 					
-							window.location = "costorecetasgastoadmin";
+							window.location = "mesgasto";
 					
 					});
 					
@@ -56,17 +56,17 @@ class ControladorCostoRecetasGastoAdmin{
 	}
 
 	/*=============================================
-	CREAR COSTO DE RECETAS Y GASTO ADMINISTRATIVO
+	EDITAR MES GASTO
 	=============================================*/
 
-	static public function ctrEditarCostoRecetasGastoAdmin(){
+	static public function ctrEditarMesGasto(){
 
 		if(isset($_POST["editarDescripcion"])){
 
-				$datos = array("idCostoRecetasGastoAdmin" => $_POST["idCostoRecetasGastoAdmin"],
+				$datos = array("idMesGasto" => $_POST["idMesGasto"],
 							   "descripcion" => $_POST["editarDescripcion"]);
 
-				$respuesta = ModeloCostoRecetasGastoAdmin::mdlEditarCostoRecetasGastoAdmin($datos);
+				$respuesta = ModeloMesGasto::mdlEditarMesGasto($datos);
 
 				if($respuesta == "ok"){
 
@@ -81,7 +81,7 @@ class ControladorCostoRecetasGastoAdmin{
 					
 					}).then(function(result){
 					
-							window.location = "costorecetasgastoadmin";
+							window.location = "mesgasto";
 					
 					});
 					
@@ -96,15 +96,15 @@ class ControladorCostoRecetasGastoAdmin{
 	}
 
 	/*=============================================
-	BORRAR COSTO DE RECETAS Y GASTO ADMINISTRATIVO
+	BORRAR MES GASTO
 	=============================================*/
-	static public function ctrEliminarCostoRecetasGastoAdmin(){
+	static public function ctrEliminarMesGasto(){
 
-		if(isset($_GET["idCostoRecetasGastoAdmin"])){
+		if(isset($_GET["idMesGasto"])){
 
-			$datos = $_GET["idCostoRecetasGastoAdmin"];
+			$datos = $_GET["idMesGasto"];
 
-			$respuesta = ModeloCostoRecetasGastoAdmin::mdlEliminarCostoRecetasGastoAdmin($datos);
+			$respuesta = ModeloMesGasto::mdlEliminarMesGasto($datos);
 
 			if($respuesta == "ok"){
 
@@ -119,7 +119,7 @@ class ControladorCostoRecetasGastoAdmin{
 				
 				}).then(function(result){
 				
-						window.location = "costorecetasgastoadmin";
+						window.location = "mesgasto";
 				
 				});
 				

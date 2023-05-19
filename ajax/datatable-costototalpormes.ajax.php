@@ -17,14 +17,14 @@ class TablaCostoTotal{
  	 	TRAEMOS LOS PARAMETROS
   		=============================================*/
 
-		$idCostoRecetasGastoAdminC=$_GET["idCostoRecetasGastoAdmin"];
+		$idMesGastoC=$_GET["idMesGasto"];
 		$mes=$_GET["mes"];
 
 		/*============================================
  	 	TRAEMOS EL TOTAL DE GASTOS ADMINISTRATIVOS POR MES
   		=============================================*/
 
-		$sumatotalgastoadminpormes = ControladorGastoAdminPorMes::ctrSumaTotalGastoAdminPorMes($idCostoRecetasGastoAdminC);	
+		$sumatotalgastoadminpormes = ControladorGastoAdminPorMes::ctrSumaTotalGastoAdminPorMes($idMesGastoC);	
 
 		$totalgastosadmin = $sumatotalgastoadminpormes[0];
 

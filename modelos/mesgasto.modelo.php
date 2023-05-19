@@ -2,13 +2,13 @@
 
 require_once "conexion.php";
 
-class ModeloCostoRecetasGastoAdmin{
+class ModeloMesGasto{
 
 	/*=============================================
-	MOSTRAR COSTO DE RECETAS Y GASTO ADMINISTRATIVO
+	MOSTRAR MES GASTO
 	=============================================*/
 
-	static public function mdlMostrarCostoRecetasGastoAdmin($tabla, $item, $valor){
+	static public function mdlMostrarMesGasto($tabla, $item, $valor){
 
 		if($item != null){
 
@@ -22,7 +22,7 @@ class ModeloCostoRecetasGastoAdmin{
 
 		}else{
 
-			$stmt = Conexion::conectar()->prepare("call mostrar_costorecetasgastoadmin");
+			$stmt = Conexion::conectar()->prepare("call mostrar_mesgasto");
 
 			$stmt -> execute();
 
@@ -38,12 +38,12 @@ class ModeloCostoRecetasGastoAdmin{
 
 
 	/*=============================================
-	REGISTRO DE COSTO DE RECETAS Y GASTO ADMINISTRATIVO
+	REGISTRO DE MES GASTO
 	=============================================*/
 
-	static public function mdlIngresarCostoRecetasGastoAdmin($datos){
+	static public function mdlIngresarMesGasto($datos){
 
-		$stmt = Conexion::conectar()->prepare("call insertar_costorecetasgastoadmin(?,?)");
+		$stmt = Conexion::conectar()->prepare("call insertar_mesgasto(?,?)");
 
 		$stmt->bindParam(1, $datos["descripcion"], PDO::PARAM_STR);
 		$stmt->bindParam(2, $datos["mes"], PDO::PARAM_STR);
@@ -65,14 +65,14 @@ class ModeloCostoRecetasGastoAdmin{
 	}
 
 	/*=============================================
-	EDITAR COSTO DE RECETAS Y GASTO ADMINISTRATIVO
+	EDITAR MES GASTO
 	=============================================*/
 
-	static public function mdlEditarCostoRecetasGastoAdmin($datos){
+	static public function mdlEditarMesGasto($datos){
 
-		$stmt = Conexion::conectar()->prepare("call editar_costorecetasgastoadmin(?,?)");
+		$stmt = Conexion::conectar()->prepare("call editar_mesgasto(?,?)");
 
-		$stmt->bindParam(1, $datos["idCostoRecetasGastoAdmin"], PDO::PARAM_INT);
+		$stmt->bindParam(1, $datos["idMesGasto"], PDO::PARAM_INT);
 		$stmt->bindParam(2, $datos["descripcion"], PDO::PARAM_STR);
 
 		if($stmt->execute()){
@@ -93,12 +93,12 @@ class ModeloCostoRecetasGastoAdmin{
 
 
 	/*=============================================
-	BORRAR COSTO DE RECETAS Y GASTO ADMINISTRATIVO
+	BORRAR MES GASTO
 	=============================================*/
 
-	static public function mdlEliminarCostoRecetasGastoAdmin($datos){
+	static public function mdlEliminarMesGasto($datos){
 
-		$stmt = Conexion::conectar()->prepare("call eliminar_costorecetasgastoadmin(?)");
+		$stmt = Conexion::conectar()->prepare("call eliminar_mesgasto(?)");
 
 		$stmt -> bindParam(1, $datos, PDO::PARAM_INT);
 
