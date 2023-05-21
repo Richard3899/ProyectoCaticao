@@ -8,6 +8,7 @@ $('.tablaRecetas').DataTable( {
 	  ],
 	"retrieve": true,
 	"processing": true,
+	"order": [[0, 'desc']],
 	"aLengthMenu": [[10,25,50,-1],[10,25,50,"Todos"]],
 	"language": {
 

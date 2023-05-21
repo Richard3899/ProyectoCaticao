@@ -1186,7 +1186,7 @@ DELIMITER $$
 USE `caticao`$$
 CREATE PROCEDURE `mostrar_recetas` ()
 BEGIN
-	select * from receta ORDER BY idReceta desc;
+	select * from receta;
 END$$
 DELIMITER ;
 
@@ -1195,7 +1195,7 @@ DELIMITER $$
 USE `caticao`$$
 CREATE PROCEDURE `mostrar_recetascerradas` ()
 BEGIN
-	select * from receta  WHERE cerrado=1 ORDER BY idReceta desc;
+	select * from receta  WHERE cerrado=1;
 END$$
 DELIMITER ;
 
@@ -2418,12 +2418,13 @@ DELIMITER ;
 DROP procedure IF EXISTS `insertar_recetagastoadminpormes`;
 DELIMITER $$
 USE `caticao`$$
-CREATE PROCEDURE `insertar_recetagastoadminpormes` (   in idRecetaI INT,
+CREATE PROCEDURE `insertar_recetagastoadminpormes` (        in indiceI INT,
+																		    in idRecetaI INT,
                                                 in idGastoAdminPorMesI INT)
                                     
 BEGIN
-	insert into recetagastoadminpormes (idReceta,idGastoAdminPorMes)
-				  					    values (idRecetaI,idGastoAdminPorMesI);
+	insert into recetagastoadminpormes (indice,idReceta,idGastoAdminPorMes)
+				  					    VALUES (indiceI,idRecetaI,idGastoAdminPorMesI);
 END$$
 DELIMITER ;
 
@@ -2434,7 +2435,7 @@ USE `caticao`$$
 CREATE PROCEDURE `eliminar_recetagastoadminpormes` (in variable int)
 BEGIN
 	 delete from recetagastoadminpormes
-    where idReceta=1;
+    where idReceta > 0;
 END$$
 DELIMITER ;
 

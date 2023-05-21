@@ -22,14 +22,46 @@ class ControladorRecetaGastoAdminPorMes{
 
 		if(isset($_POST["idReceta"])){
 
+            $rc = !isset($_POST["idReceta"])? '0' : $_POST["idReceta"];
+
+			if($rc==0){
+
+			ModeloRecetaGastoAdminPorMes::mdlEliminarRecetaGastoAdminPorMes(1);
+
+			echo '<script>
+
+				Swal.fire({
+				
+					icon: "success",
+					title: "¡Los gastos adicionales han sido actualizados correctamente!",
+					showConfirmButton: false,
+					timer: 1500
+				
+				}).then(function(result){
+				
+						window.location = "costoreceta";
+				
+				});
+
+				</script>';
+
+			}else{
+
+			ModeloRecetaGastoAdminPorMes::mdlEliminarRecetaGastoAdminPorMes(1);
+
+			$indice = $_POST['indice'];
 			$idReceta = $_POST['idReceta'];
 			$idGastoAdminPorMes = $_POST['idGastoAdminPorMes'];
+
+			$indice=explode( ',', $indice );
 			$idReceta=explode( ',', $idReceta );
 			$idGastoAdminPorMes=explode( ',', $idGastoAdminPorMes );
 
 			foreach($idReceta as $i => $valor){
 
-				$datos = array("idReceta" => $valor,"idGastoAdminPorMes" => $idGastoAdminPorMes[$i]);
+				$datos = array("idReceta" => $valor,
+				               "idGastoAdminPorMes" => $idGastoAdminPorMes[$i],
+							   "indice" => $indice[$i]);
 
 				$respuesta=ModeloRecetaGastoAdminPorMes::mdlIngresarRecetaGastoAdminPorMes($datos);
 			}
@@ -50,12 +82,11 @@ class ControladorRecetaGastoAdminPorMes{
 						window.location = "costoreceta";
 				
 				});
-				
-				
+
 				</script>';
 
-
 			}	
+			}
 
 		}
 	} 

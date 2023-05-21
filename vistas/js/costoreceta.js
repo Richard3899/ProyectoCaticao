@@ -1,3 +1,8 @@
+const datosAjax=[];
+const indice= [];
+const valoresRecetas= [];
+const valoresGastos = [];
+
 $('.tablaCostoReceta').DataTable( {
     "ajax": "ajax/datatable-costoreceta.ajax.php",
     "deferRender": true,
@@ -9,6 +14,7 @@ $('.tablaCostoReceta').DataTable( {
 	  ],
 	"retrieve": true,
 	"processing": true,
+	"order": [[0, 'desc']],
 	"aLengthMenu": [[10,25,50,-1],[10,25,50,"Todos"]],
 	"language": {
 
@@ -39,14 +45,46 @@ $('.tablaCostoReceta').DataTable( {
 
 } );
 
+/*=============================================
+INICIALIZA LA TABLA DE COSTOS
+=============================================*/
+$(".tablaCostoReceta").on("draw.dt", function() {
 
-const datosAjax=[];
-const valoresRecetas= [];
-const valoresGastos = [];
+	$("#nuevoTipoGasto").prop("disabled", true);
+
+})
+
+
+/*=============================================
+SELECCIONAR MES
+=============================================*/
+
+$(".seleccionarMesGasto").on("change", function(){
+
+	var idMesGasto = $(this).val();
+
+	if(idMesGasto !=''){
+
+	$("#nuevoTipoGasto").prop("disabled", false);
+	$("#nuevoTipoGasto").val("");
+	mostrarRecetasYGastos('');
+
+	}else{
+
+	$("#nuevoTipoGasto").val("");
+	$("#nuevoTipoGasto").prop("disabled", true);
+	mostrarRecetasYGastos('');
+
+	}
+	
+})
+
+
 
 $('.tablaAsignacionAdicionales').dataTable( {
 	"searching": false,
-	"columnDefs": [{ "title": "Recetas", "targets": 0 }],
+	"columnDefs": [{"className": "dt-center", "targets": "_all"},
+				   { "title": "Recetas", "targets": 0 }],
 	"paging": false,
 	"language": {
 		"sProcessing":     "Procesando...",
@@ -75,29 +113,52 @@ $('.tablaAsignacionAdicionales').dataTable( {
 }
   } );
 
-
+/*=============================================
+GUARDAR LOS GASTOS SELECCIONADOS EN UN ARRAY
+=============================================*/
 $( document ).on( 'click', '.checkGastos', function() {
 
 	if( $(this).is(':checked') ){
+
 		valoresRecetas.push($(this).attr('idReceta'));
 		valoresGastos.push(this.value);
+		indice.push($(this).attr('index'));
+
     }else{
-		var indice =valoresRecetas.indexOf($(this).attr('idReceta')); 
-		valoresRecetas.splice(indice, 1);
-		valoresGastos.splice(indice, 1);
+
+		var index =indice.indexOf($(this).attr('index'));
+		indice.splice(index, 1);
+		valoresRecetas.splice(index, 1);
+		valoresGastos.splice(index, 1);
+		
 	}
+	$("#indice").val(indice);
 	$("#idReceta").val(valoresRecetas);
 	$("#idGastoAdminPorMes").val(valoresGastos);
 
-} );
+	console.log(indice); 
+	console.log(valoresRecetas)
+	console.log(valoresGastos)
 	
-$("#nuevoTipoGasto").on("change", function() {
+} );
 
+/*=============================================
+CADA VEZ QUE SE CAMBIE EL TIPO DE GASTO
+=============================================*/
+$("#nuevoTipoGasto").on("change", function() {
+	
 	datosAjax.length = 0;
+	indice.length = 0;
 	valoresGastos.length = 0;
 	valoresRecetas.length = 0;
 
 	var idTipoGasto = $(this).val();
+
+	mostrarRecetasYGastos(idTipoGasto)
+	
+})
+
+function mostrarRecetasYGastos(idTipoGasto){
 
 	var datos = new FormData();
 
@@ -114,29 +175,35 @@ $("#nuevoTipoGasto").on("change", function() {
 		dataType:"json",
 			success:function(respuesta){
 
-			datosAjax.push({ 
-				"title"    : 'Receta',
+			datosAjax.push({"className": "dt-center", "targets": "_all"},
+			{ 
+				"title"    : 'N°',
 				"targets"  : 0
+			},{ 
+				"title"    : 'Receta',
+				"targets"  : 1
 			});
 
 			for (var i=0; i<respuesta.length; i++) { 
 
 				datosAjax.push({ 
 					"title"    : respuesta[i]["codigo"],
-					"targets"  : i+1
+					"targets"  : i+2
 				});
 			
 			}
 
-			tablaAdicionales(idTipoGasto);
+			tablaAdicionales(idTipoGasto)
+
+			$('.tablaAsignacionAdicionales').DataTable().on("draw", function(){
+				MarcarGastos();
+			})
 
 		}
 
 		
 	}) 
-	
-})
-
+}
 
 function tablaAdicionales(idTipoGasto){
 
@@ -151,6 +218,7 @@ function tablaAdicionales(idTipoGasto){
 		"processing": true,
 		"columnDefs": datosAjax,
 		"scrollX": true,
+		"order": [[0, 'desc']],
 		"aLengthMenu": [[10,25,50,-1],[10,25,50,"Todos"]],
 		"language": {
 			"sProcessing":     "Procesando...",
@@ -177,4 +245,67 @@ function tablaAdicionales(idTipoGasto){
 			}
 	}
 	});
+}
+
+function MarcarGastos(){
+
+		var idMesGasto = "";
+
+		var datos2 = new FormData();
+
+		datos2.append("idMesGasto", idMesGasto);
+
+		$.ajax({
+
+			url:"ajax/costoreceta.ajax.php",
+			method: "POST",
+			data: datos2, 
+			cache: false,
+			contentType: false,
+			processData: false,
+			dataType:"json",
+				success:function(respuesta){
+
+				indice.length = 0;
+				valoresGastos.length = 0;
+				valoresRecetas.length = 0;
+
+				var index= [];
+				var idReceta= [];
+				var idGastoAdminPorMes= [];
+
+				for (var i=0; i<respuesta.length; i++) { 
+
+				index.push(respuesta[i]["indice"]);
+				indice.push(respuesta[i]["indice"]);
+
+				idReceta.push(respuesta[i]["idReceta"]);
+				valoresRecetas.push(respuesta[i]["idReceta"]);
+
+				idGastoAdminPorMes.push(respuesta[i]["idGastoAdminPorMes"]);
+				valoresGastos.push(respuesta[i]["idGastoAdminPorMes"]);
+
+				}
+				
+				$.each(idReceta, function(i,rc){
+				
+				$('.checkGastos').each(function(){
+
+					var idRecetaDT = $(this).attr('idReceta');
+					var idGastoAdminPorMesDT = $(this).val();
+ 
+					if(idRecetaDT == rc && idGastoAdminPorMesDT==idGastoAdminPorMes[i]){
+
+						$(this).prop('checked', true);
+
+					}
+							
+				});
+
+				});
+				
+
+			}
+	
+		}) 
 }

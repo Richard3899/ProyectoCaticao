@@ -105,6 +105,39 @@ MODAL ASIGNAR ADICIONAL
         <div class="card-header">
         
         <div class="row">
+
+        <!-- ENTRADA PARA SELECCIONAR INSUMO -->
+        <div class="form-group col-sm">
+          <label for="insumo">Mes</label>
+            <div class="input-group">
+
+                <input type="hidden" name="idMesGasto" id="idMesGasto">
+
+                <select class="form-control select2 input-lg seleccionarMesGasto" id="seleccionarMesGasto" name="seleccionarMesGasto" style="width: 100%;" required>
+                
+                <option value="">Seleccionar Mes</option>
+
+                <?php 
+                    $item = null;
+                    $valor = null;
+
+                    $mes = ControladorMesGasto::ctrMostrarMesGasto($item,$valor);
+
+                  foreach($mes as $key=> $value){ 
+
+                    echo '<option value="'.$value["idMesGasto"].'">'.$value["descripcion"].'</option>';
+                  
+                  }
+
+                  ?>
+
+              </select>
+              
+
+            </div>
+
+          </div>
+
           <!-- ENTRADA PARA SELECCIONAR EL TIPO DE GASTO-->
           <div class="form-group col-sm">
             <label for="unidadMedida">Gastos y Costos</label>
@@ -155,9 +188,10 @@ MODAL ASIGNAR ADICIONAL
   
         </table>
 
+        <input type="hidden" id="indice" name="indice">
         <input type="hidden" id="idReceta" name="idReceta">
         <input type="hidden" id="idGastoAdminPorMes" name="idGastoAdminPorMes">
-
+        
         </div>
         </div>
 

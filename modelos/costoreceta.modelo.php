@@ -30,10 +30,11 @@ class ModeloRecetaGastoAdminPorMes{
 
 	static public function mdlIngresarRecetaGastoAdminPorMes($datos){
 
-		$stmt = Conexion::conectar()->prepare("call insertar_recetagastoadminpormes(?,?)");
+		$stmt = Conexion::conectar()->prepare("call insertar_recetagastoadminpormes(?,?,?)");
 
-		$stmt->bindParam(1, $datos["idReceta"], PDO::PARAM_INT);
-		$stmt->bindParam(2, $datos["idGastoAdminPorMes"], PDO::PARAM_INT);
+		$stmt->bindParam(1, $datos["indice"], PDO::PARAM_INT);
+		$stmt->bindParam(2, $datos["idReceta"], PDO::PARAM_INT);
+		$stmt->bindParam(3, $datos["idGastoAdminPorMes"], PDO::PARAM_INT);
 		
 		if($stmt->execute()){
 

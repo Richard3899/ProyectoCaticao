@@ -470,6 +470,7 @@ CREATE TABLE GastoAdminPorMes (
 
 CREATE TABLE RecetaGastoAdminPorMes (
   idRecetaGastoAdminPorMes INT  AUTO_INCREMENT primary key,
+  indice INT,
   idReceta INT REFERENCES receta (idReceta),
   idGastoAdminPorMes INT REFERENCES gastosadmin (idGastoAdmin)
 );
