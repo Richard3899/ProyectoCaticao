@@ -148,11 +148,12 @@ class ModeloGastoAdminPorMes{
 	MOSTRAR GASTO POR ID TIPO GASTO
 	=============================================*/
 
-	static public function mdlMostrarGastoAdminPorMesTG($valor){
+	static public function mdlMostrarGastoAdminPorMesTG($valor1,$valor2){
 
-		$stmt = Conexion::conectar()->prepare("call mostrar_gastoadminpormestg(?)");
+		$stmt = Conexion::conectar()->prepare("call mostrar_gastoadminpormestg(?,?)");
 
-		$stmt->bindParam(1, $valor, PDO::PARAM_INT);
+		$stmt->bindParam(1, $valor1, PDO::PARAM_INT);
+		$stmt->bindParam(2, $valor2, PDO::PARAM_INT);
 
 		$stmt -> execute();
 

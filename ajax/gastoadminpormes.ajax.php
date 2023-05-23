@@ -43,12 +43,14 @@ class AjaxGastoAdminPorMes{
 	=============================================*/	
 
 	public $idTipoGasto;
+	public $idMesGasto2;
 
 	public function ajaxMostrarGastoPorTipo(){
 
-		$valor = $this->idTipoGasto;
+		$valor1 = $this->idMesGasto2;
+		$valor2 = $this->idTipoGasto;
 
-		$respuesta = ControladorGastoAdminPorMes::ctrMostrarGastoAdminPorMesTG($valor);
+		$respuesta = ControladorGastoAdminPorMes::ctrMostrarGastoAdminPorMesTG($valor1,$valor2);
 		
 		echo json_encode($respuesta);
 
@@ -76,7 +78,7 @@ if(isset($_POST["idMesGasto"])){
 	$editar = new AjaxGastoAdminPorMes();
 	$editar -> idMesGasto = $_POST["idMesGasto"];
 	$editar -> ajaxMesGasto();
-
+ 
 }
 
 /*=============================================
@@ -86,6 +88,7 @@ if(isset($_POST["idTipoGasto"])){
 
 	$editar = new AjaxGastoAdminPorMes();
 	$editar -> idTipoGasto = $_POST["idTipoGasto"];
+	$editar -> idMesGasto2 = $_POST["idMesGasto2"];
 	$editar -> ajaxMostrarGastoPorTipo();
 
 }

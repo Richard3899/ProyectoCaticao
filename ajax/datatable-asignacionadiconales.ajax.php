@@ -15,11 +15,12 @@ class TablaRecetaGastoAdminPorMes{
 	public function mostrarTablaRecetaGastoAdminPorMes(){
 
 		$idTipoGasto=(!empty($_GET['idTipoGasto'])) ? $_GET['idTipoGasto'] : NULL;
-
+		$idMesGasto=(!empty($_GET['idMesGasto'])) ? $_GET['idMesGasto'] : NULL;
+		
 		$k=0;
 		$index=0;
-  		$gastoadmin = ControladorGastoAdminPorMes::ctrMostrarGastoAdminPorMesTG($idTipoGasto);	
-		$recetas = ControladorRecetas::ctrMostrarRecetasCerradas();	
+  		$gastoadmin = ControladorGastoAdminPorMes::ctrMostrarGastoAdminPorMesTG($idMesGasto,$idTipoGasto);	
+		$recetas = ControladorRecetas::ctrMostrarRecetasCerradas2();	
 
 		if(count($gastoadmin) == 0 || count($recetas) == 0){
 

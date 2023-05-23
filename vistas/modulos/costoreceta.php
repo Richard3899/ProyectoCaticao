@@ -29,7 +29,7 @@
       <?php 
        if($permisoInsertar==1){
 
-       echo "<button class='btn btn-info' data-toggle='modal' data-target='#modalAsignarAdicional'> 
+       echo "<button class='btn btn-info' onclick='LimpiarModalAsignar()' data-toggle='modal' data-target='#modalAsignarAdicional'> 
              Asignar Adicional</button>";
 
        }else{
@@ -75,7 +75,7 @@
 MODAL ASIGNAR ADICIONAL
 ======================================-->
 
-<div id="modalAsignarAdicional" class="modal fade" role="dialog">
+<div id="modalAsignarAdicional" data-backdrop="static" class="modal fade" role="dialog">
 
 <div class="modal-dialog modal-xl">
   
@@ -91,7 +91,7 @@ MODAL ASIGNAR ADICIONAL
 
       <h4 class="modal-title">Asignación de Adicionales</h4>
 
-      <button type="button" class="close" data-dismiss="modal">&times;</button>
+      <button type="button" class="close" data-dismiss="modal" onclick="LimpiarModalAsignar()">&times;</button>
 
       </div>
 
@@ -203,7 +203,7 @@ MODAL ASIGNAR ADICIONAL
 
       <div class="modal-footer">
 
-        <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Cancelar</button>
+        <button type="button" class="btn btn-default pull-left" data-dismiss="modal" onclick="LimpiarModalAsignar()">Cancelar</button>
 
         <button type="submit" class="btn btn-primary">Guardar Asignación</button>
 

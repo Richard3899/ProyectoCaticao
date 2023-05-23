@@ -17,9 +17,9 @@ class ControladorGastoAdminPorMes{
 	MOSTRAR GASTO POR ID TIPO GASTO
 	=============================================*/
 
-	static public function ctrMostrarGastoAdminPorMesTG($valor){
+	static public function ctrMostrarGastoAdminPorMesTG($valor1,$valor2){
 
-		$respuesta = ModeloGastoAdminPorMes::mdlMostrarGastoAdminPorMesTG($valor);
+		$respuesta = ModeloGastoAdminPorMes::mdlMostrarGastoAdminPorMesTG($valor1,$valor2);
 
 		return $respuesta;
 	}

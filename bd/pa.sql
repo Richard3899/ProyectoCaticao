@@ -661,10 +661,11 @@ DELIMITER ;
 DROP procedure IF EXISTS `mostrar_gastoadminpormestg`;
 DELIMITER $$
 USE `caticao`$$
-CREATE PROCEDURE `mostrar_gastoadminpormestg` ( IN idTipoGastoI INT)
+CREATE PROCEDURE `mostrar_gastoadminpormestg` (IN idMesGastoI INT, IN idTipoGastoI INT)
 BEGIN
 	select * from gastoadminpormes gap INNER JOIN gastoadmin ga ON ga.idGastoAdmin=gap.idGastoAdmin
-	WHERE idTipoGasto = idTipoGastoI;
+	                                   INNER JOIN mesgasto mg ON mg.idMesGasto=gap.idMesGasto
+	WHERE idTipoGasto = idTipoGastoI AND mg.cerradoMes=1;
 END$$
 DELIMITER ;
 
@@ -1196,6 +1197,15 @@ USE `caticao`$$
 CREATE PROCEDURE `mostrar_recetascerradas` ()
 BEGIN
 	select * from receta  WHERE cerrado=1;
+END$$
+DELIMITER ;
+
+DROP procedure IF EXISTS `mostrar_recetascerradas2`;
+DELIMITER $$
+USE `caticao`$$
+CREATE PROCEDURE `mostrar_recetascerradas2` ()
+BEGIN
+	select * from receta  WHERE cerrado=1 AND cerradoAdicional=0;
 END$$
 DELIMITER ;
 

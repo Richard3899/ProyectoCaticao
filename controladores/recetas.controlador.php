@@ -25,6 +25,13 @@ class ControladorRecetas{
 		return $respuesta;
 	}
 
+	static public function ctrMostrarRecetasCerradas2(){
+
+		$respuesta = ModeloRecetas::mdlMostrarRecetasCerradas2();
+
+		return $respuesta;
+	}
+
 
 	/*=============================================
 	CREAR RECETA
