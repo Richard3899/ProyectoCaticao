@@ -132,6 +132,42 @@ class ControladorMesGasto{
 
 	}
 
+	/*=============================================
+	CERRAR MES
+	=============================================*/
+	static public function ctrCerrarMes(){
+
+		if(isset($_GET["idMGasto"])){
+					
+			$datos = array( "idMesGasto" => $_GET["idMGasto"]);
+
+			$respuesta = ModeloMesGasto::mdlCerrarMes($datos);
+
+			if($respuesta == "ok"){
+
+				echo '<script>
+
+				Swal.fire({
+				
+					icon: "success",
+					title: "¡El mes ha sido cerrado correctamente!",
+					showConfirmButton: false,
+					timer: 1500
+				
+				}).then(function(result){
+				
+					window.location = "mesgasto";
+				
+				});
+				
+				</script>';
+
+			}
+	
+		}
+
+	}
+
 }
 
 

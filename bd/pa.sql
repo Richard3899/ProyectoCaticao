@@ -1222,8 +1222,8 @@ BEGIN
     insert into lote (codigoLote,fechaVencimiento,cantidad,idProducto)
 			   values (codigoLoteI,STR_TO_DATE(REPLACE(fechaVencimientoI,'/','.') ,GET_FORMAT(date,'EUR')),0,idProductoI);
                 
-	insert into receta (codigo,nombre,batch,idEstado,fechaInicio,fechaFin,pesoPorTableta,pesoEnTableta,merma,reproceso,codigoLote,cerrado,cantidadTabletas,costoTotal,costoPorTableta)
-			      values (codigoI,nombreI,batchI,idEstadoI,STR_TO_DATE(REPLACE(fechaInicioI,'/','.') ,GET_FORMAT(date,'EUR')),STR_TO_DATE(REPLACE(fechaFinI,'/','.') ,GET_FORMAT(date,'EUR')),pesoPorTabletaI,pesoEnTabletaI,mermaI,reprocesoI,codigoLoteI,0,cantidadTabletasI,0,0);
+	insert into receta (codigo,nombre,batch,idEstado,fechaInicio,fechaFin,pesoPorTableta,pesoEnTableta,merma,reproceso,codigoLote,cerrado,cerradoAdicional,cantidadTabletas,costoTotal,costoPorTableta)
+			      values (codigoI,nombreI,batchI,idEstadoI,STR_TO_DATE(REPLACE(fechaInicioI,'/','.') ,GET_FORMAT(date,'EUR')),STR_TO_DATE(REPLACE(fechaFinI,'/','.') ,GET_FORMAT(date,'EUR')),pesoPorTabletaI,pesoEnTabletaI,mermaI,reprocesoI,codigoLoteI,0,0,cantidadTabletasI,0,0);
 	
 END$$
 DELIMITER ;
@@ -2440,6 +2440,18 @@ END$$
 DELIMITER ;
 
 
+DROP procedure IF EXISTS `cerrar_adicional`;
+DELIMITER $$
+USE `caticao`$$
+CREATE PROCEDURE `cerrar_adicional` (in idRecetaE INT)
+BEGIN
+
+   UPDATE receta set cerradoAdicional=1                
+	WHERE idReceta=idRecetaE;
+     
+END$$
+DELIMITER ;
+
 -- Procedimientos almacenados Mes Gasto --
 
 DROP procedure IF EXISTS `mostrar_mesgasto`;
@@ -2447,7 +2459,7 @@ DELIMITER $$
 USE `caticao`$$
 CREATE PROCEDURE `mostrar_mesgasto` ()
 BEGIN
-	SELECT idMesGasto,descripcion, DATE_FORMAT(mes,'%m - %Y') AS mesV, mes AS mes from mesgasto;
+	SELECT idMesGasto,descripcion, DATE_FORMAT(mes,'%m - %Y') AS mesV, mes AS mes,cerradoMes from mesgasto;
 END$$
 DELIMITER ;
 
@@ -2457,8 +2469,8 @@ DELIMITER $$
 USE `caticao`$$
 CREATE PROCEDURE `insertar_mesgasto` (IN descripcionI VARCHAR(45), IN mesI DATE)
 BEGIN
-	INSERT INTO mesgasto (descripcion,mes)
-				                   VALUES (descripcionI,mesI);
+	INSERT INTO mesgasto (descripcion,mes,cerradoMes)
+				                   VALUES (descripcionI,mesI,0);
 END$$
 DELIMITER ;
 
@@ -2473,7 +2485,6 @@ BEGIN
 END$$
 DELIMITER ;
 
-
 DROP procedure IF EXISTS `eliminar_mesgasto`;
 DELIMITER $$
 USE `caticao`$$
@@ -2484,6 +2495,18 @@ BEGIN
    
    DELETE FROM mesgasto
    WHERE idMesGasto=idMesGastoE;
+END$$
+DELIMITER ;
+
+DROP procedure IF EXISTS `cerrar_mes`;
+DELIMITER $$
+USE `caticao`$$
+CREATE PROCEDURE `cerrar_mes` (in idMesGastoE INT)
+BEGIN
+
+   UPDATE mesgasto set cerradoMes=1                
+	WHERE idMesGasto=idMesGastoE;
+     
 END$$
 DELIMITER ;
 

@@ -4,7 +4,7 @@ const valoresRecetas= [];
 const valoresGastos = [];
 
 $('.tablaCostoReceta').DataTable( {
-    "ajax": "ajax/datatable-costoreceta.ajax.php",
+	"ajax": "ajax/datatable-costoreceta.ajax.php?permisoEditar="+permisoEditar+"&permisoEliminar="+permisoEliminar,
     "deferRender": true,
 	"columnDefs": [
 		{"className": "dt-center", "targets": "_all"},
@@ -246,7 +246,9 @@ function tablaAdicionales(idTipoGasto){
 	}
 	});
 }
-
+/*=============================================
+CARGAR GASTOS MARCADOS
+=============================================*/
 function MarcarGastos(){
 
 		var idMesGasto = "";
@@ -309,3 +311,32 @@ function MarcarGastos(){
 	
 		}) 
 }
+
+/*=============================================
+CERRAR ADICIONAL
+=============================================*/
+
+$(".tablaCostoReceta tbody").on("click", "button.btnCerrarAdicional", function(){
+
+	var idReceta = $(this).attr("idReceta");
+
+	Swal.fire({
+
+		title: '¿Está seguro de cerrar los adicionales?',
+		text: "¡Si no lo está puede cancelar la acción!",
+		icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        cancelButtonText: 'Cancelar',
+        confirmButtonText: 'Si, cerrar adicionales!'
+        }).then(function(result){
+        if (result.value) {
+
+			window.location = "index.php?ruta=costoreceta&idReceta="+idReceta;
+
+        }
+
+	})
+
+})

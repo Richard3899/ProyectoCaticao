@@ -78,5 +78,32 @@ class ModeloRecetaGastoAdminPorMes{
 
 	}
 
+	/*=============================================
+	CERRAR ADICIONALES
+	=============================================*/
+
+	static public function mdlCerrarAdicional($datos){
+
+		$stmt = Conexion::conectar()->prepare("call cerrar_adicional(?)");
+
+		$stmt->bindParam(1, $datos["idReceta"], PDO::PARAM_INT);
+
+		if($stmt -> execute()){
+
+			return "ok";
+		
+		}else{
+
+			return "error";	
+
+		}
+
+		#$stmt -> close();
+
+		$stmt = null;
+
+
+	}
+
 
 }

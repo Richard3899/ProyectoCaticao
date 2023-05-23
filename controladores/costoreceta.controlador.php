@@ -67,7 +67,7 @@ class ControladorRecetaGastoAdminPorMes{
 			}
  
 			if($respuesta == "ok"){
-
+ 
 				echo '<script>
 
 				Swal.fire({
@@ -91,6 +91,42 @@ class ControladorRecetaGastoAdminPorMes{
 		}
 	} 
 
+
+	/*=============================================
+	CERRAR ADICIONAL
+	=============================================*/
+	static public function ctrCerrarAdicional(){
+
+		if(isset($_GET["idReceta"])){
+					
+			$datos = array( "idReceta" => $_GET["idReceta"]);
+
+			$respuesta = ModeloRecetaGastoAdminPorMes::mdlCerrarAdicional($datos);
+
+			if($respuesta == "ok"){
+
+				echo '<script>
+
+				Swal.fire({
+				
+					icon: "success",
+					title: "¡Los adicionales ha sido cerrado correctamente!",
+					showConfirmButton: false,
+					timer: 1500
+				
+				}).then(function(result){
+				
+					window.location = "costoreceta";
+				
+				});
+				
+				</script>';
+
+			}
+	
+		}
+
+	}
 }
 
 

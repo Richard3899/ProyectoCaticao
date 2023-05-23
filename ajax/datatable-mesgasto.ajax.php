@@ -27,25 +27,59 @@ class TablaMesGasto{
 		  "data": [';
 
 		  for($i = 0; $i < count($mesgasto); $i++){
-	  
+	
 			/*==Botón Editar y Eliminar=*/
 
 			if($_GET["permisoEditar"]==1 && $_GET["permisoEliminar"]==0){
+
+				if($mesgasto[$i]["cerradoMes"]==1){
+					
+				$botones =  "<div class='btn-group'><a type='button'class='btn btn-success' href='index.php?ruta=costototalpormes&idMesGasto=".$mesgasto[$i]["idMesGasto"]."&mes=".$mesgasto[$i]["mes"]."&descripcion=".$mesgasto[$i]["descripcion"]."'>Costo Total</a><button title='Mes Cerrado' class='btn btn-info'><i class='fa fa-lock'></i></button></div>"; 
 				
-				$botones =  "<div class='btn-group'><a type='button'class='btn btn-primary' href='index.php?ruta=gastoadminpormes&idMesGasto=".$mesgasto[$i]["idMesGasto"]."&descripcion=".$mesgasto[$i]["descripcion"]."';>Gasto Administrativo</a><a type='button'class='btn btn-success' href='index.php?ruta=costototalpormes&idMesGasto=".$mesgasto[$i]["idMesGasto"]."&mes=".$mesgasto[$i]["mes"]."&descripcion=".$mesgasto[$i]["descripcion"]."'>Costo Total</a><button title='Editar' class='btn btn-warning btnEditarMesGasto' idMesGasto='".$mesgasto[$i]["idMesGasto"]."' data-toggle='modal' data-target='#modalEditarMesGasto'><i class='fa fa-pen'></i></button></div>"; 
+				}else{
+			
+				$botones =  "<div class='btn-group'><a type='button'class='btn btn-primary' href='index.php?ruta=gastoadminpormes&idMesGasto=".$mesgasto[$i]["idMesGasto"]."&descripcion=".$mesgasto[$i]["descripcion"]."';>Gastos y Costos</a><a type='button'class='btn btn-success' href='index.php?ruta=costototalpormes&idMesGasto=".$mesgasto[$i]["idMesGasto"]."&mes=".$mesgasto[$i]["mes"]."&descripcion=".$mesgasto[$i]["descripcion"]."'>Costo Total</a><button title='Editar' class='btn btn-warning btnEditarMesGasto' idMesGasto='".$mesgasto[$i]["idMesGasto"]."' data-toggle='modal' data-target='#modalEditarMesGasto'><i class='fa fa-pen'></i></button><button title='Cerrar Mes' class='btn btn-success btnCerrarMes' idMesGasto='".$mesgasto[$i]["idMesGasto"]."'><i class='fa fa-lock'></i></button></div>"; 
+						
+				}
 
 			}else if($_GET["permisoEditar"]==0 && $_GET["permisoEliminar"]==1){
 
-				$botones =  "<div class='btn-group'><a type='button'class='btn btn-primary' href='index.php?ruta=gastoadminpormes&idMesGasto=".$mesgasto[$i]["idMesGasto"]."&descripcion=".$mesgasto[$i]["descripcion"]."';>Gasto Administrativo</a><a type='button'class='btn btn-success' href='index.php?ruta=costototalpormes&idMesGasto=".$mesgasto[$i]["idMesGasto"]."&mes=".$mesgasto[$i]["mes"]."&descripcion=".$mesgasto[$i]["descripcion"]."'>Costo Total</a><button title='Eliminar' class='btn btn-danger btnEliminarMesGasto' idMesGasto='".$mesgasto[$i]["idMesGasto"]."'><i class='fa fa-times'></i></button></div>"; 
+				if($mesgasto[$i]["cerradoMes"]==1){
+
+				$botones =  "<div class='btn-group'><a type='button'class='btn btn-success' href='index.php?ruta=costototalpormes&idMesGasto=".$mesgasto[$i]["idMesGasto"]."&mes=".$mesgasto[$i]["mes"]."&descripcion=".$mesgasto[$i]["descripcion"]."'>Costo Total</a><button title='Mes Cerrado' class='btn btn-info'><i class='fa fa-lock'></i></button></div>"; 
+				
+				}else{
+			
+				$botones =  "<div class='btn-group'><a type='button'class='btn btn-primary' href='index.php?ruta=gastoadminpormes&idMesGasto=".$mesgasto[$i]["idMesGasto"]."&descripcion=".$mesgasto[$i]["descripcion"]."';>Gastos y Costos</a><a type='button'class='btn btn-success' href='index.php?ruta=costototalpormes&idMesGasto=".$mesgasto[$i]["idMesGasto"]."&mes=".$mesgasto[$i]["mes"]."&descripcion=".$mesgasto[$i]["descripcion"]."'>Costo Total</a><button title='Eliminar' class='btn btn-danger btnEliminarMesGasto' idMesGasto='".$mesgasto[$i]["idMesGasto"]."'><i class='fa fa-times'></i></button></div>"; 
+						
+				}
+
 	
 			}else if($_GET["permisoEditar"]==0 && $_GET["permisoEliminar"]==0){
 	
-				$botones =  "<div class='btn-group'><a type='button'class='btn btn-primary' href='index.php?ruta=gastoadminpormes&idMesGasto=".$mesgasto[$i]["idMesGasto"]."&descripcion=".$mesgasto[$i]["descripcion"]."';>Gasto Administrativo</a><a type='button'class='btn btn-success' href='index.php?ruta=costototalpormes&idMesGasto=".$mesgasto[$i]["idMesGasto"]."&mes=".$mesgasto[$i]["mes"]."&descripcion=".$mesgasto[$i]["descripcion"]."'>Costo Total</a><button class='btn btn-danger'><i class='fa fa-lock'></i></button></div>"; 
+
+				if($mesgasto[$i]["cerradoMes"]==1){
+
+					$botones =  "<div class='btn-group'><a type='button'class='btn btn-success' href='index.php?ruta=costototalpormes&idMesGasto=".$mesgasto[$i]["idMesGasto"]."&mes=".$mesgasto[$i]["mes"]."&descripcion=".$mesgasto[$i]["descripcion"]."'>Costo Total</a><button title='Mes Cerrado' class='btn btn-info'><i class='fa fa-lock'></i></button></div>"; 
+
+				}else{
+			
+					$botones =  "<div class='btn-group'><a type='button'class='btn btn-primary' href='index.php?ruta=gastoadminpormes&idMesGasto=".$mesgasto[$i]["idMesGasto"]."&descripcion=".$mesgasto[$i]["descripcion"]."';>Gastos y Costos</a><a type='button'class='btn btn-success' href='index.php?ruta=costototalpormes&idMesGasto=".$mesgasto[$i]["idMesGasto"]."&mes=".$mesgasto[$i]["mes"]."&descripcion=".$mesgasto[$i]["descripcion"]."'>Costo Total</a><button class='btn btn-danger'><i class='fa fa-lock'></i></button></div>"; 
+						
+				}
 
 			}else{
 
-				$botones =  "<div class='btn-group'><a type='button'class='btn btn-primary' href='index.php?ruta=gastoadminpormes&idMesGasto=".$mesgasto[$i]["idMesGasto"]."&descripcion=".$mesgasto[$i]["descripcion"]."';>Gasto Administrativo</a><a type='button'class='btn btn-success' href='index.php?ruta=costototalpormes&idMesGasto=".$mesgasto[$i]["idMesGasto"]."&mes=".$mesgasto[$i]["mes"]."&descripcion=".$mesgasto[$i]["descripcion"]."'>Costo Total</a><button title='Editar' class='btn btn-warning btnEditarMesGasto' idMesGasto='".$mesgasto[$i]["idMesGasto"]."' data-toggle='modal' data-target='#modalEditarMesGasto'><i class='fa fa-pen'></i></button><button title='Eliminar' class='btn btn-danger btnEliminarMesGasto' idMesGasto='".$mesgasto[$i]["idMesGasto"]."'><i class='fa fa-times'></i></button></div>"; 
-	
+				if($mesgasto[$i]["cerradoMes"]==1){
+					
+				$botones =  "<div class='btn-group'><a type='button'class='btn btn-success' href='index.php?ruta=costototalpormes&idMesGasto=".$mesgasto[$i]["idMesGasto"]."&mes=".$mesgasto[$i]["mes"]."&descripcion=".$mesgasto[$i]["descripcion"]."'>Costo Total</a><button title='Mes Cerrado' class='btn btn-info'><i class='fa fa-lock'></i></button></div>"; 
+
+				}else{
+			
+				$botones =  "<div class='btn-group'><a type='button'class='btn btn-primary' href='index.php?ruta=gastoadminpormes&idMesGasto=".$mesgasto[$i]["idMesGasto"]."&descripcion=".$mesgasto[$i]["descripcion"]."';>Gastos y Costos</a><a type='button'class='btn btn-success' href='index.php?ruta=costototalpormes&idMesGasto=".$mesgasto[$i]["idMesGasto"]."&mes=".$mesgasto[$i]["mes"]."&descripcion=".$mesgasto[$i]["descripcion"]."'>Costo Total</a><button title='Editar' class='btn btn-warning btnEditarMesGasto' idMesGasto='".$mesgasto[$i]["idMesGasto"]."' data-toggle='modal' data-target='#modalEditarMesGasto'><i class='fa fa-pen'></i></button><button title='Eliminar' class='btn btn-danger btnEliminarMesGasto' idMesGasto='".$mesgasto[$i]["idMesGasto"]."'><i class='fa fa-times'></i></button><button title='Cerrar Mes' class='btn btn-success btnCerrarMes' idMesGasto='".$mesgasto[$i]["idMesGasto"]."'><i class='fa fa-lock'></i></button></div>"; 
+						
+				}
+
 			}
 
 		  	$datosJson .='[

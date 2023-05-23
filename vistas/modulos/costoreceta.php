@@ -26,7 +26,7 @@
     
       <div class="card-header">
         
-        <?php 
+      <?php 
        if($permisoInsertar==1){
 
        echo "<button class='btn btn-info' data-toggle='modal' data-target='#modalAsignarAdicional'> 
@@ -115,7 +115,7 @@ MODAL ASIGNAR ADICIONAL
 
                 <select class="form-control select2 input-lg seleccionarMesGasto" id="seleccionarMesGasto" name="seleccionarMesGasto" style="width: 100%;" required>
                 
-                <option value="">Seleccionar Mes</option>
+                <option value="">Seleccionar Mes :</option>
 
                 <?php 
                     $item = null;
@@ -224,3 +224,10 @@ MODAL ASIGNAR ADICIONAL
 </div>
 
 </div>
+
+<?php
+
+$cerrarAdicional= new ControladorRecetaGastoAdminPorMes();
+$cerrarAdicional -> ctrCerrarAdicional();
+
+?>

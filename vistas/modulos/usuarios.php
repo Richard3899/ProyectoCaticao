@@ -331,7 +331,7 @@ MODAL AGREGAR USUARIO
                   </div>   
                   <div class="icheck-primary">
                       <input class="checkModulos" type="checkbox" id="cbMesGasto" value="18" name="checkListModulos[]">
-                      <label for="cbMesGasto">C. Receta y G. Admin</label>
+                      <label for="cbMesGasto">Mes y Gastos</label>
                   </div>              
                 </div>
             </div>
@@ -704,7 +704,7 @@ MODAL EDITAR USUARIO
                   </div>   
                   <div class="icheck-primary">
                       <input class="editarCheckModulos" type="checkbox" id="mesgasto" value="18" name="editarCheckListModulos[]">
-                      <label for="mesgasto">C. Receta y G. Admin</label>
+                      <label for="mesgasto">Mes y Gastos</label>
                   </div>              
                 </div>
             </div>

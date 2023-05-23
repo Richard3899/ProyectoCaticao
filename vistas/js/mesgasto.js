@@ -136,3 +136,32 @@ $("#nuevoMes").change(function(){
 
 	})
 })
+
+/*=============================================
+CERRAR MES
+=============================================*/
+
+$(".tablaMesGasto tbody").on("click", "button.btnCerrarMes", function(){
+
+	var idMesGasto = $(this).attr("idMesGasto");
+
+	Swal.fire({
+
+		title: '¿Está seguro de cerrar el mes?',
+		text: "¡Si no lo está puede cancelar la acción!",
+		icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        cancelButtonText: 'Cancelar',
+        confirmButtonText: 'Si, cerrar mes!'
+        }).then(function(result){
+        if (result.value) {
+
+			window.location = "index.php?ruta=mesgasto&idMGasto="+idMesGasto;
+
+        }
+
+	})
+
+})

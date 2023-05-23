@@ -394,6 +394,7 @@ CREATE TABLE Receta (
   reproceso DECIMAL(10,2),
   codigoLote VARCHAR(20),
   cerrado INT,
+  cerradoAdicional INT,
   cantidadTabletas INT,
   costoTotal DECIMAL(10,2),
   costoPorTableta DECIMAL(10,2),
@@ -446,7 +447,8 @@ CREATE TABLE RecetaConsumoGas (
 CREATE TABLE MesGasto (
   idMesGasto INT  AUTO_INCREMENT primary key,
   descripcion VARCHAR(50) ,
-  mes DATE
+  mes DATE,
+  cerradoMes INT
 );
 
 -- -----------------------------------------------------

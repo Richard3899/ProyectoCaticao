@@ -119,6 +119,33 @@ class ModeloMesGasto{
 
 	}
 
+
+	/*=============================================
+	CERRAR ADICIONALES
+	=============================================*/
+
+	static public function mdlCerrarMes($datos){
+
+		$stmt = Conexion::conectar()->prepare("call cerrar_mes(?)");
+
+		$stmt->bindParam(1, $datos["idMesGasto"], PDO::PARAM_INT);
+
+		if($stmt -> execute()){
+
+			return "ok";
+		
+		}else{
+
+			return "error";	
+
+		}
+
+		#$stmt -> close();
+
+		$stmt = null;
+
+
+	}
 }
 
 

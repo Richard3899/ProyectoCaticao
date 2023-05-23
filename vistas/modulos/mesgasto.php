@@ -247,4 +247,6 @@ MODAL EDITAR MES GASTO
   $borrarMesGasto = new ControladorMesGasto();
   $borrarMesGasto -> ctrEliminarMesGasto();
 
-?> 
+  $cerrarMes= new ControladorMesGasto();
+  $cerrarMes -> ctrCerrarMes();
+?>
