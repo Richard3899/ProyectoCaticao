@@ -37,6 +37,21 @@ class ModeloMesGasto{
 	}
 
 
+	static public function mdlMostrarMesGasto2(){
+
+		$stmt = Conexion::conectar()->prepare("call mostrar_mesgasto2");
+
+		$stmt -> execute();
+
+		return $stmt -> fetchAll();
+
+		#$stmt -> close();
+
+		$stmt = null;
+
+	}
+
+
 	/*=============================================
 	REGISTRO DE MES GASTO
 	=============================================*/

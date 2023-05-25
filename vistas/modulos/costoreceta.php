@@ -111,19 +111,15 @@ MODAL ASIGNAR ADICIONAL
           <label for="insumo">Mes</label>
             <div class="input-group">
 
-                <input type="hidden" name="idMesGasto" id="idMesGasto">
-
                 <select class="form-control select2 input-lg seleccionarMesGasto" id="seleccionarMesGasto" name="seleccionarMesGasto" style="width: 100%;" required>
                 
                 <option value="">Seleccionar Mes :</option>
 
                 <?php 
-                    $item = null;
-                    $valor = null;
 
-                    $mes = ControladorMesGasto::ctrMostrarMesGasto($item,$valor);
+                  $mes = ControladorMesGasto::ctrMostrarMesGasto2();
 
-                  foreach($mes as $key=> $value){ 
+                  foreach($mes as $key=> $value){  
 
                     echo '<option value="'.$value["idMesGasto"].'">'.$value["descripcion"].'</option>';
                   
@@ -150,20 +146,7 @@ MODAL ASIGNAR ADICIONAL
                 <select class="form-control input-lg" id="nuevoTipoGasto" name="nuevoTipoGasto" required>
                 
                 <option value="">Seleccionar :</option>
-
-                <?php 
-
-                $item = null;
-                $valor = null;
-
-                $unidadmedida = ControladorTipoGasto::ctrMostrarTipoGasto($item,$valor);
-
-                foreach($unidadmedida as $key=> $value){ 
-                  echo '<option value="'.$value["idTipoGasto"].'">'.$value["descripcion"].'</option>';
-                }
-
-                ?>
-
+  
               </select>
 
             </div>

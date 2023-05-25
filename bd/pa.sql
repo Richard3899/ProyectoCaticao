@@ -665,7 +665,7 @@ CREATE PROCEDURE `mostrar_gastoadminpormestg` (IN idMesGastoI INT, IN idTipoGast
 BEGIN
 	select * from gastoadminpormes gap INNER JOIN gastoadmin ga ON ga.idGastoAdmin=gap.idGastoAdmin
 	                                   INNER JOIN mesgasto mg ON mg.idMesGasto=gap.idMesGasto
-	WHERE idTipoGasto = idTipoGastoI AND mg.cerradoMes=1;
+	WHERE mg.idMesGasto=idMesGastoI AND  ga.idTipoGasto= idTipoGastoI AND mg.cerradoMes=1;
 END$$
 DELIMITER ;
 
@@ -2418,9 +2418,29 @@ DELIMITER ;
 DROP procedure IF EXISTS `mostrar_recetagastoadminpormes`;
 DELIMITER $$
 USE `caticao`$$
-CREATE PROCEDURE `mostrar_recetagastoadminpormes` ( in variable INT)
+CREATE PROCEDURE `mostrar_recetagastoadminpormes` ( IN idMesGastoV INT, IN idTipoGastoV INT)
 BEGIN
-	SELECT * from recetagastoadminpormes;
+
+	SELECT rgap.* from recetagastoadminpormes rgap INNER JOIN gastoadminpormes gap ON gap.idGastoAdminPorMes=rgap.idGastoAdminPorMes
+															INNER JOIN gastoadmin ga ON ga.idGastoAdmin=gap.idGastoAdmin
+	                                          INNER JOIN tipogasto tp ON tp.idTipoGasto=ga.idTipoGasto
+	                                          INNER JOIN mesgasto mg ON mg.idMesGasto=gap.idMesGasto
+															WHERE mg.cerradoMes=1 AND gap.idMesGasto=idMesGastoV AND ga.idTipoGasto=idTipoGastoV;
+														
+END$$
+DELIMITER ;
+
+DROP procedure IF EXISTS `mostrar_tipogastopormes`;
+DELIMITER $$
+USE `caticao`$$
+CREATE PROCEDURE `mostrar_tipogastopormes` ( in idMesGastoV INT)
+BEGIN
+	SELECT tp.idTipoGasto,tp.descripcion from gastoadminpormes gap 
+															INNER JOIN gastoadmin ga ON ga.idGastoAdmin=gap.idGastoAdmin
+	                                          INNER JOIN tipogasto tp ON tp.idTipoGasto=ga.idTipoGasto
+	                                          INNER JOIN mesgasto mg ON mg.idMesGasto=gap.idMesGasto
+															WHERE mg.cerradoMes=1 AND gap.idMesGasto=idMesGastoV
+															GROUP BY ga.idTipoGasto;
 END$$
 DELIMITER ;
 
@@ -2442,12 +2462,19 @@ DELIMITER ;
 DROP procedure IF EXISTS `eliminar_recetagastoadminpormes`;
 DELIMITER $$
 USE `caticao`$$
-CREATE PROCEDURE `eliminar_recetagastoadminpormes` (in variable int)
+CREATE PROCEDURE `eliminar_recetagastoadminpormes` (in idMesGastoV INT, in idTipoGastoV INT)
 BEGIN
-	 delete from recetagastoadminpormes
-    where idReceta > 0;
+	 DELETE FROM recetagastoadminpormes
+    WHERE idRecetaGastoAdminPorMes IN (  SELECT * FROM(
+	 														SELECT rgap.idRecetaGastoAdminPorMes from recetagastoadminpormes rgap INNER JOIN gastoadminpormes gap ON gap.idGastoAdminPorMes=rgap.idGastoAdminPorMes
+															INNER JOIN gastoadmin ga ON ga.idGastoAdmin=gap.idGastoAdmin
+	                                          INNER JOIN tipogasto tp ON tp.idTipoGasto=ga.idTipoGasto
+	                                          INNER JOIN mesgasto mg ON mg.idMesGasto=gap.idMesGasto
+															WHERE mg.cerradoMes=1 AND gap.idMesGasto=idMesGastoV AND ga.idTipoGasto=idTipoGastoV)
+															AS idRecetaGastoAdminPorMes);
 END$$
 DELIMITER ;
+
 
 
 DROP procedure IF EXISTS `cerrar_adicional`;
@@ -2470,6 +2497,15 @@ USE `caticao`$$
 CREATE PROCEDURE `mostrar_mesgasto` ()
 BEGIN
 	SELECT idMesGasto,descripcion, DATE_FORMAT(mes,'%m - %Y') AS mesV, mes AS mes,cerradoMes from mesgasto;
+END$$
+DELIMITER ;
+
+DROP procedure IF EXISTS `mostrar_mesgasto2`;
+DELIMITER $$
+USE `caticao`$$
+CREATE PROCEDURE `mostrar_mesgasto2` ()
+BEGIN
+	SELECT * from mesgasto WHERE cerradoMes=1;
 END$$
 DELIMITER ;
 

@@ -6,12 +6,29 @@ class ModeloRecetaGastoAdminPorMes{
 
 
 	/*=============================================
-	MOSTRAR USUARIOS MODULOS
+	MOSTRAR RECETAS Y GASTO ADMIN POR MES
 	=============================================*/
 
-	static public function mdlMostrarRecetaGastoAdminPorMes($valor){
+	static public function mdlMostrarRecetaGastoAdminPorMes($valor1,$valor2){
 
-		$stmt = Conexion::conectar()->prepare("call mostrar_recetagastoadminpormes(?)");
+		$stmt = Conexion::conectar()->prepare("call mostrar_recetagastoadminpormes(?,?)");
+
+		$stmt->bindParam(1, $valor1, PDO::PARAM_INT);
+		$stmt->bindParam(2, $valor2, PDO::PARAM_INT);
+
+		$stmt -> execute();
+
+		return $stmt -> fetchAll();
+		
+		#$stmt -> close();
+
+		$stmt = null;
+
+	}
+
+	static public function mdlMostrarTipoGastoPorMes($valor){
+
+		$stmt = Conexion::conectar()->prepare("call mostrar_tipogastopormes(?)");
 
 		$stmt->bindParam(1, $valor, PDO::PARAM_INT);
 
@@ -25,7 +42,7 @@ class ModeloRecetaGastoAdminPorMes{
 
 	}
 	/*=============================================
-	REGISTRO DE USUARIOS Y MODULOS
+	REGISTRO DE RECETAS Y GASTO ADMIN POR MES
 	=============================================*/
 
 	static public function mdlIngresarRecetaGastoAdminPorMes($datos){
@@ -53,14 +70,15 @@ class ModeloRecetaGastoAdminPorMes{
 	}
 
 	/*=============================================
-	ELIMINAR USUARIOS Y MODULOS
+	ELIMINAR RECETAS Y GASTO ADMIN POR MES
 	=============================================*/
 
-	static public function mdlEliminarRecetaGastoAdminPorMes($datos){
+	static public function mdlEliminarRecetaGastoAdminPorMes($valor1,$valor2){
 	
-		$stmt = Conexion::conectar()->prepare("call eliminar_recetagastoadminpormes(?)");
+		$stmt = Conexion::conectar()->prepare("call eliminar_recetagastoadminpormes(?,?)");
 		
-		$stmt->bindParam(1, $datos, PDO::PARAM_INT);
+		$stmt->bindParam(1, $valor1, PDO::PARAM_INT);
+		$stmt->bindParam(2, $valor2, PDO::PARAM_INT);
 
 		if($stmt -> execute()){
 

@@ -6,9 +6,16 @@ class ControladorRecetaGastoAdminPorMes{
 	MOSTRAR RECETAS Y GASTO ADMIN POR MES
 	=============================================*/
 
-	static public function ctrMostrarRecetaGastoAdminPorMes($valor){
+	static public function ctrMostrarRecetaGastoAdminPorMes($valor1,$valor2){
 
-		$respuesta = ModeloRecetaGastoAdminPorMes::MdlMostrarRecetaGastoAdminPorMes($valor);
+		$respuesta = ModeloRecetaGastoAdminPorMes::MdlMostrarRecetaGastoAdminPorMes($valor1,$valor2);
+
+		return $respuesta;
+	}
+
+	static public function ctrMostrarTipoGastoPorMes($valor){
+
+		$respuesta = ModeloRecetaGastoAdminPorMes::mdlMostrarTipoGastoPorMes($valor);
 
 		return $respuesta;
 	} 
@@ -24,9 +31,14 @@ class ControladorRecetaGastoAdminPorMes{
 
             $rc = !isset($_POST["idReceta"])? '0' : $_POST["idReceta"];
 
+			$idMesGasto = $_POST['seleccionarMesGasto'];
+			$idTipoGasto = $_POST['nuevoTipoGasto'];
+            echo $idMesGasto;
+			echo "-";
+			echo $idTipoGasto;
 			if($rc==0){
 
-			ModeloRecetaGastoAdminPorMes::mdlEliminarRecetaGastoAdminPorMes(1);
+			ModeloRecetaGastoAdminPorMes::mdlEliminarRecetaGastoAdminPorMes($idMesGasto,$idTipoGasto);
 
 			echo '<script>
 
@@ -47,7 +59,9 @@ class ControladorRecetaGastoAdminPorMes{
 
 			}else{
 
-			ModeloRecetaGastoAdminPorMes::mdlEliminarRecetaGastoAdminPorMes(1);
+			$rpt =ModeloRecetaGastoAdminPorMes::mdlEliminarRecetaGastoAdminPorMes($idMesGasto,$idTipoGasto);
+			
+			echo $rpt;
 
 			$indice = $_POST['indice'];
 			$idReceta = $_POST['idReceta'];
@@ -73,7 +87,7 @@ class ControladorRecetaGastoAdminPorMes{
 				Swal.fire({
 				
 					icon: "success",
-					title: "¡Los gastos adicionales han sido guardado correctamente!",
+					title: "¡Los gastos adicionales han sido actualizados correctamente!",
 					showConfirmButton: false,
 					timer: 1500
 				

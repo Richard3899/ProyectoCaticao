@@ -15,6 +15,13 @@ class ControladorMesGasto{
 		return $respuesta;
 	}
 
+	static public function ctrMostrarMesGasto2(){
+
+		$respuesta = ModeloMesGasto::MdlMostrarMesGasto2();
+
+		return $respuesta;
+	}
+
 	/*=============================================
 	CREAR MES GASTO
 	=============================================*/
