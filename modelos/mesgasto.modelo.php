@@ -161,6 +161,34 @@ class ModeloMesGasto{
 
 
 	}
+
+
+	/*=============================================
+	CERRAR ADICIONALES
+	=============================================*/
+
+	static public function mdlOcultarMes($datos){
+
+		$stmt = Conexion::conectar()->prepare("call ocultar_mes(?)");
+
+		$stmt->bindParam(1, $datos["idMesGasto"], PDO::PARAM_INT);
+
+		if($stmt -> execute()){
+
+			return "ok";
+		
+		}else{
+
+			return "error";	
+
+		}
+
+		#$stmt -> close();
+
+		$stmt = null;
+
+
+	}
 }
 
 

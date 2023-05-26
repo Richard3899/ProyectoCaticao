@@ -448,7 +448,8 @@ CREATE TABLE MesGasto (
   idMesGasto INT  AUTO_INCREMENT primary key,
   descripcion VARCHAR(50) ,
   mes DATE,
-  cerradoMes INT
+  cerradoMes INT,
+  ocultoMes INT
 );
 
 -- -----------------------------------------------------

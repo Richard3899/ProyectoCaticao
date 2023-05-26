@@ -59,8 +59,8 @@ class TablaGastoAdminPorMes{
 
 		  	$datosJson .='[
 			      "'.($i+1).'",
-				  "'.$gastoadminpormes[$i]["descripcionTipoGasto"].'",
 				  "'.$gastoadminpormes[$i]["nombreGastoAdmin"].'",
+				  "'.$gastoadminpormes[$i]["descripcionTipoGasto"].'",
 			      "'.$gastoadminpormes[$i]["cantidad"].'",
 				  "'.$gastoadminpormes[$i]["precio"].'",
 				  "'.$gastoadminpormes[$i]["total"].'",

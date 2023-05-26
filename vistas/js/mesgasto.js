@@ -6,6 +6,7 @@ $('.tablaMesGasto').DataTable( {
 	  ],
 	"retrieve": true,
 	"processing": true,
+	"order": [[2, 'asc']],
 	"aLengthMenu": [[10,25,50,-1],[10,25,50,"Todos"]],
 	"language": {
 
@@ -159,6 +160,35 @@ $(".tablaMesGasto tbody").on("click", "button.btnCerrarMes", function(){
         if (result.value) {
 
 			window.location = "index.php?ruta=mesgasto&idMGasto="+idMesGasto;
+
+        }
+
+	})
+
+})
+
+/*=============================================
+OCULTAR MES
+=============================================*/
+
+$(".tablaMesGasto tbody").on("click", "button.btnOcultarMes", function(){
+
+	var idMesGasto = $(this).attr("idMesGasto");
+
+	Swal.fire({
+
+		title: '¿Está seguro de ocultar el mes?',
+		text: "¡Si no lo está puede cancelar la acción!",
+		icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        cancelButtonText: 'Cancelar',
+        confirmButtonText: 'Si, ocultar mes!'
+        }).then(function(result){
+        if (result.value) {
+
+			window.location = "index.php?ruta=mesgasto&idM2Gasto="+idMesGasto;
 
         }
 

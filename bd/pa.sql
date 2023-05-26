@@ -2476,7 +2476,6 @@ END$$
 DELIMITER ;
 
 
-
 DROP procedure IF EXISTS `cerrar_adicional`;
 DELIMITER $$
 USE `caticao`$$
@@ -2496,7 +2495,7 @@ DELIMITER $$
 USE `caticao`$$
 CREATE PROCEDURE `mostrar_mesgasto` ()
 BEGIN
-	SELECT idMesGasto,descripcion, DATE_FORMAT(mes,'%m - %Y') AS mesV, mes AS mes,cerradoMes from mesgasto;
+	SELECT idMesGasto,descripcion, DATE_FORMAT(mes,'%m - %Y') AS mesV, mes AS mes,cerradoMes,ocultoMes from mesgasto;
 END$$
 DELIMITER ;
 
@@ -2505,7 +2504,7 @@ DELIMITER $$
 USE `caticao`$$
 CREATE PROCEDURE `mostrar_mesgasto2` ()
 BEGIN
-	SELECT * from mesgasto WHERE cerradoMes=1;
+	SELECT * from mesgasto WHERE cerradoMes=1 AND ocultoMes=0;
 END$$
 DELIMITER ;
 
@@ -2515,8 +2514,8 @@ DELIMITER $$
 USE `caticao`$$
 CREATE PROCEDURE `insertar_mesgasto` (IN descripcionI VARCHAR(45), IN mesI DATE)
 BEGIN
-	INSERT INTO mesgasto (descripcion,mes,cerradoMes)
-				                   VALUES (descripcionI,mesI,0);
+	INSERT INTO mesgasto (descripcion,mes,cerradoMes,ocultoMes)
+				                   VALUES (descripcionI,mesI,0,0);
 END$$
 DELIMITER ;
 
@@ -2555,6 +2554,19 @@ BEGIN
      
 END$$
 DELIMITER ;
+
+DROP procedure IF EXISTS `ocultar_mes`;
+DELIMITER $$
+USE `caticao`$$
+CREATE PROCEDURE `ocultar_mes` (in idMesGastoE INT)
+BEGIN
+
+   UPDATE mesgasto set ocultoMes=1                
+	WHERE idMesGasto=idMesGastoE;
+     
+END$$
+DELIMITER ;
+
 
 -- Procedimientos almacenados de Gasto Administrativo por Mes-
 
@@ -2656,9 +2668,12 @@ BEGIN
 	DECLARE totaldepreciacion DECIMAL(10,2);
 	DECLARE totalconsumoenergia DECIMAL(10,2);
 	DECLARE totalconsumogas DECIMAL(10,2);
+	
+	DECLARE totalgastoadmin DECIMAL(10,2);
 	DECLARE totalcostoventa DECIMAL(10,2);
 	DECLARE totalcostomarketing DECIMAL(10,2);
 	DECLARE totalcostooperativo DECIMAL(10,2);
+	
 	DECLARE totalreceta DECIMAL(10,2);
 	DECLARE cantidadTableta INT;
 	DECLARE totalportableta DECIMAL(10,2);
@@ -2678,19 +2693,26 @@ BEGIN
 		            
 	SELECT if(SUM(pagoPorBatch) IS NULL, 0, SUM(pagoPorBatch))  FROM recetaconsumogas
 		            WHERE idReceta=idRecetaT  INTO totalconsumogas;
+		            
+	SELECT if(SUM(gap.total) IS NULL, 0, SUM(gap.total)) FROM recetagastoadminpormes rgap INNER JOIN gastoadminpormes gap ON gap.idGastoAdminPorMes=rgap.idGastoAdminPorMes
+	                                          INNER JOIN gastoadmin ga ON ga.idGastoAdmin=gap.idGastoAdmin
+		            WHERE idReceta=idRecetaT AND ga.idTipoGasto=1 INTO totalgastoadmin;   
 		                     
-	SELECT if(SUM(total) IS NULL, 0, SUM(total)) FROM recetacostoventa
-		            WHERE idReceta=idRecetaT INTO totalcostoventa;
+	SELECT if(SUM(gap.total) IS NULL, 0, SUM(gap.total)) FROM recetagastoadminpormes rgap INNER JOIN gastoadminpormes gap ON gap.idGastoAdminPorMes=rgap.idGastoAdminPorMes
+	                                          INNER JOIN gastoadmin ga ON ga.idGastoAdmin=gap.idGastoAdmin
+		            WHERE idReceta=idRecetaT AND ga.idTipoGasto=2 INTO totalcostoventa;
 		            
-   SELECT if(SUM(total) IS NULL, 0, SUM(total)) FROM recetacostomarketing
-		            WHERE idReceta=idRecetaT  INTO totalcostomarketing;
+	SELECT if(SUM(gap.total) IS NULL, 0, SUM(gap.total)) FROM recetagastoadminpormes rgap INNER JOIN gastoadminpormes gap ON gap.idGastoAdminPorMes=rgap.idGastoAdminPorMes
+	                                          INNER JOIN gastoadmin ga ON ga.idGastoAdmin=gap.idGastoAdmin
+		            WHERE idReceta=idRecetaT AND ga.idTipoGasto=3  INTO totalcostomarketing;
 		            
-	SELECT if(SUM(total) IS NULL, 0, SUM(total)) FROM recetacostooperativo
-		            WHERE idReceta=idRecetaT  INTO totalcostooperativo;
+	SELECT if(SUM(gap.total) IS NULL, 0, SUM(gap.total)) FROM recetagastoadminpormes rgap INNER JOIN gastoadminpormes gap ON gap.idGastoAdminPorMes=rgap.idGastoAdminPorMes
+	                                          INNER JOIN gastoadmin ga ON ga.idGastoAdmin=gap.idGastoAdmin
+		            WHERE idReceta=idRecetaT AND ga.idTipoGasto=4  INTO totalcostooperativo;
 	
 	SELECT cantidadTabletas FROM receta WHERE idReceta=idRecetaT INTO cantidadTableta;
 			
-	SET totalreceta = totalinsumos + totalmanodeobra + totaldepreciacion + totalconsumoenergia + totalconsumogas + totalcostoventa + totalcostomarketing + totalcostooperativo;
+	SET totalreceta = totalinsumos + totalmanodeobra + totaldepreciacion + totalconsumoenergia + totalconsumogas + totalgastoadmin + totalcostoventa + totalcostomarketing + totalcostooperativo;
    
 	SET totalportableta = totalreceta / cantidadTableta;
 
@@ -2779,7 +2801,7 @@ BEGIN
 	 SELECT r.codigo,r.nombre,p.nombre AS nombreProducto,r.cantidadTabletas,l.codigoLote,l.fechaVencimiento,r.costoTotal,r.costoPorTableta 
 	                                   FROM receta r INNER JOIN lote l on l.codigoLote=r.codigoLote
 	                                         			 INNER JOIN producto p ON p.idProducto=l.idProducto
-	                                         			 WHERE r.idEstado=3
+	                                         			 WHERE r.cerrado=1 AND r.cerradoAdicional=1
 									 								 ORDER BY r.codigo ASC;
 	 
 END$$

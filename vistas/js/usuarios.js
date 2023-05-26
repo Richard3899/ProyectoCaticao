@@ -372,7 +372,7 @@ $(document).on("click", ".btnActivar", function(){
 		      	icon: "success",
 				showConfirmButton: false,
 				timer: 1000
-		    	}).then(function(result) {
+		    	}).then(function() {
 		        
 		        	window.location = "usuarios";
 

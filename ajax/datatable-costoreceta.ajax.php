@@ -33,22 +33,22 @@ class TablaCostoReceta{
 			
 			if($recetas[$i]["cerradoAdicional"]==1){
 				
-			$botones =  "<div class='btn-group'><a class='btn btn-primary' href='index.php?ruta=costototal&idReceta=".$recetas[$i]["idReceta"]."&codigo=".$recetas[$i]["codigo"]."'>Costo Total</a><button title='Adicionales Cerrado' class='btn btn-info' ><i class='fa fa-lock'></i></button></div>"; 
+			$botones =  "<div class='btn-group'><a class='btn btn-success' href='index.php?ruta=costototal&idReceta=".$recetas[$i]["idReceta"]."&codigo=".$recetas[$i]["codigo"]."'>Costo Total</a><button title='Adicionales Cerrado' class='btn btn-dark' ><i class='fa fa-lock'></i></button></div>"; 
 			
 			}else{
 
-			$botones =  "<div class='btn-group'><a class='btn btn-primary' href='index.php?ruta=costototal&idReceta=".$recetas[$i]["idReceta"]."&codigo=".$recetas[$i]["codigo"]."'>Costo Total</a></div>"; 
+			$botones =  "<div class='btn-group'><a class='btn btn-success' href='index.php?ruta=costototal&idReceta=".$recetas[$i]["idReceta"]."&codigo=".$recetas[$i]["codigo"]."'>Costo Total</a></div>"; 
 			
 		    }
 			}else{
 
 			if($recetas[$i]["cerradoAdicional"]==1){
 
-			$botones =  "<div class='btn-group'><a class='btn btn-primary' href='index.php?ruta=costototal&idReceta=".$recetas[$i]["idReceta"]."&codigo=".$recetas[$i]["codigo"]."'>Costo Total</a><button title='Adicionales Cerrado' class='btn btn-info' ><i class='fa fa-lock'></i></button></div>"; 
+			$botones =  "<div class='btn-group'><a class='btn btn-success' href='index.php?ruta=costototal&idReceta=".$recetas[$i]["idReceta"]."&codigo=".$recetas[$i]["codigo"]."'>Costo Total</a><button title='Adicionales Cerrado' class='btn btn-dark' ><i class='fa fa-lock'></i></button></div>"; 
 			
 			}else{
 
-			$botones =  "<div class='btn-group'><a class='btn btn-primary' href='index.php?ruta=costototal&idReceta=".$recetas[$i]["idReceta"]."&codigo=".$recetas[$i]["codigo"]."'>Costo Total</a><button title='Cerrar Adicionales' class='btn btn-success btnCerrarAdicional' idReceta='".$recetas[$i]["idReceta"]."'><i class='fa fa-lock'></i></button></div>"; 
+			$botones =  "<div class='btn-group'><a class='btn btn-success' href='index.php?ruta=costototal&idReceta=".$recetas[$i]["idReceta"]."&codigo=".$recetas[$i]["codigo"]."'>Costo Total</a><button title='Cerrar Adicionales' class='btn btn-secondary btnCerrarAdicional' idReceta='".$recetas[$i]["idReceta"]."'><i class='fa fa-lock'></i></button></div>"; 
 			
 			}
 			}

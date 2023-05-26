@@ -249,4 +249,7 @@ MODAL EDITAR MES GASTO
 
   $cerrarMes= new ControladorMesGasto();
   $cerrarMes -> ctrCerrarMes();
+
+  $ocultarMes= new ControladorMesGasto();
+  $ocultarMes -> ctrOcultarMes();
 ?>

@@ -118,6 +118,8 @@ $(".seleccionarMesGasto").on("change", function(){
 	var datos = new FormData();
 	datos.append("idMesGasto2", idMesGasto);
 
+	$("#nuevoTipoGasto").empty();
+
 	$.ajax({
         url: "ajax/costoreceta.ajax.php",
 		method: "POST",
@@ -128,11 +130,13 @@ $(".seleccionarMesGasto").on("change", function(){
 		dataType:"json",
 	    success: function(datos){
 
-		var dt="<option value=''>Seleccionar :</option>";
-		for (let i = 0; i < datos.length; i++) {
-			dt+="<option value='"+datos[i]["idTipoGasto"]+"'>"+datos[i]["descripcion"]+"</option>";
-		}
-		$("#nuevoTipoGasto").html(dt);
+		$("#nuevoTipoGasto").append("<option id='inputTipoGasto' value =''>Seleccionar :</option>");
+		
+		for (var i=0; i<datos.length; i++) { 
+
+		$("#nuevoTipoGasto").append("<option value ='"+datos[i]["idTipoGasto"]+"'>"+datos[i]["descripcion"]+"</option>");
+		
+	    }
         }
     });
 
@@ -190,10 +194,14 @@ $( document ).on( 'click', '.checkGastos', function() {
 	$("#indice").val(indice);
 	$("#idReceta").val(valoresRecetas);
 	$("#idGastoAdminPorMes").val(valoresGastos)
-	
+
 	console.log(indice); 
 	console.log(valoresRecetas)
-	console.log(valoresGastos)	
+	console.log(valoresGastos)
+	console.log("-------------")
+	console.log($("#idReceta").val());
+	console.log($("#idReceta").val());
+	console.log($("#idGastoAdminPorMes").val());
 
 } );
 
@@ -202,14 +210,22 @@ CADA VEZ QUE SE CAMBIE EL TIPO DE GASTO
 =============================================*/
 $("#nuevoTipoGasto").on("change", function() {
 	
+	if($(this).val()!=""){
+
 	datosAjax.length = 0;
+	indice.length = 0;
+	valoresGastos.length = 0;
+	valoresRecetas.length = 0;
+
+	$('#inputTipoGasto').prop("disabled", true);
 
 	var idMesGasto = $("#seleccionarMesGasto").val();
 	var idTipoGasto = $(this).val();
 
 	mostrarRecetasYGastos(idMesGasto,idTipoGasto)
-	
-	
+
+	}
+
 })
 
 function mostrarRecetasYGastos(idMesGasto,idTipoGasto){
@@ -227,7 +243,7 @@ function mostrarRecetasYGastos(idMesGasto,idTipoGasto){
 		contentType: false,
 		processData: false,
 		dataType:"json",
-			success:function(respuesta){
+		success:function(respuesta){
 
 			datosAjax.push({"className": "dt-center", "targets": "_all"},
 			{ 
@@ -248,17 +264,9 @@ function mostrarRecetasYGastos(idMesGasto,idTipoGasto){
 			}
 
 			tablaAdicionales(idMesGasto,idTipoGasto)
-
-			$('.tablaAsignacionAdicionales').DataTable().on("draw", function(){
-				if($("#nuevoTipoGasto").val()!=""){
-					MarcarGastos(idMesGasto,idTipoGasto);
-				}
-				
-			})
-
+			
 		}
 
-		
 	}) 
 }
 
@@ -300,8 +308,13 @@ function tablaAdicionales(idMesGasto,idTipoGasto){
 				"sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
 				"sSortDescending": ": Activar para ordenar la columna de manera descendente"
 			}
-	}
+		},"initComplete": function() {
+
+			MarcarGastos(idMesGasto,idTipoGasto);
+
+		}
 	});
+	
 }
 /*=============================================
 CARGAR GASTOS MARCADOS
@@ -322,15 +335,13 @@ function MarcarGastos(idMesGasto,idTipoGasto){
 			contentType: false,
 			processData: false,
 			dataType:"json",
-				success:function(respuesta){
+			success:function(respuesta){
 
-				indice.length = 0;
-				valoresGastos.length = 0;
-				valoresRecetas.length = 0;
+               if(respuesta!=""){
 
-				var index=[];
-				var idReceta=[];
-				var idGastoAdminPorMes=[];
+				let index=[];
+				let idReceta=[];
+				let idGastoAdminPorMes=[];
 			
 				for (var i=0; i<respuesta.length; i++) { 
 
@@ -344,27 +355,36 @@ function MarcarGastos(idMesGasto,idTipoGasto){
 				valoresGastos.push(respuesta[i]["idGastoAdminPorMes"]);
 
 				}
+				$("#indice").val(indice);
+				$("#idReceta").val(valoresRecetas);
+				$("#idGastoAdminPorMes").val(valoresGastos)
 
-				console.log(indice)
-
-
+				console.log(indice);
+				console.log(valoresRecetas)
+				console.log(valoresGastos)
+				console.log("-------------")
+				console.log($("#indice").val());
+				console.log($("#idReceta").val());
+				console.log($("#idGastoAdminPorMes").val());
+				
 				$.each(idReceta, function(i,rc){
 				
-				$('.checkGastos').each(function(){
+					$('.checkGastos').each(function(){
 
-					var idRecetaDT = $(this).attr('idReceta');
-					var idGastoAdminPorMesDT = $(this).val();
- 
-					if(idRecetaDT == rc && idGastoAdminPorMesDT==idGastoAdminPorMes[i]){
+						var idRecetaDT = $(this).attr('idReceta');
+						var idGastoAdminPorMesDT = $(this).val();
 
-						$(this).prop('checked', true);
+						if(idRecetaDT == rc && idGastoAdminPorMesDT==idGastoAdminPorMes[i]){
 
-					}
-							
+							$(this).prop('checked', true);
+						
+						}
+								
+					});
+
 				});
 
-				});
-
+			   }
 			}
 	
 		}) 

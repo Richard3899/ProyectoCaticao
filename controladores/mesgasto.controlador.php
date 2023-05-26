@@ -175,6 +175,42 @@ class ControladorMesGasto{
 
 	}
 
+	/*=============================================
+	CERRAR MES
+	=============================================*/
+	static public function ctrOcultarMes(){
+
+		if(isset($_GET["idM2Gasto"])){
+					
+			$datos = array( "idMesGasto" => $_GET["idM2Gasto"]);
+
+			$respuesta = ModeloMesGasto::mdlOcultarMes($datos);
+
+			if($respuesta == "ok"){
+
+				echo '<script>
+
+				Swal.fire({
+				
+					icon: "success",
+					title: "¡El mes ha sido oculto correctamente!",
+					showConfirmButton: false,
+					timer: 1500
+				
+				}).then(function(result){
+				
+					window.location = "mesgasto";
+				
+				});
+				
+				</script>';
+
+			}
+	
+		}
+
+	}
+
 }
 
 

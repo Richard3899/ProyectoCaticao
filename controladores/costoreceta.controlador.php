@@ -29,14 +29,12 @@ class ControladorRecetaGastoAdminPorMes{
 
 		if(isset($_POST["idReceta"])){
 
-            $rc = !isset($_POST["idReceta"])? '0' : $_POST["idReceta"];
+            $indice = !isset($_POST["indice"])? '0' : $_POST["indice"];
 
 			$idMesGasto = $_POST['seleccionarMesGasto'];
 			$idTipoGasto = $_POST['nuevoTipoGasto'];
-            echo $idMesGasto;
-			echo "-";
-			echo $idTipoGasto;
-			if($rc==0){
+
+			if($indice==0){
 
 			ModeloRecetaGastoAdminPorMes::mdlEliminarRecetaGastoAdminPorMes($idMesGasto,$idTipoGasto);
 
@@ -59,11 +57,8 @@ class ControladorRecetaGastoAdminPorMes{
 
 			}else{
 
-			$rpt =ModeloRecetaGastoAdminPorMes::mdlEliminarRecetaGastoAdminPorMes($idMesGasto,$idTipoGasto);
-			
-			echo $rpt;
+			ModeloRecetaGastoAdminPorMes::mdlEliminarRecetaGastoAdminPorMes($idMesGasto,$idTipoGasto);
 
-			$indice = $_POST['indice'];
 			$idReceta = $_POST['idReceta'];
 			$idGastoAdminPorMes = $_POST['idGastoAdminPorMes'];
 
