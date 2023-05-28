@@ -39,6 +39,26 @@ class ModeloGastoAdminPorMes{
 
 	}
 
+	static public function mdlMostrarGastoAdminPorMes3($valor1,$valor2,$valor3,$valor4,$valor5){
+
+		$stmt = Conexion::conectar()->prepare("call mostrar_gastoadminpormes3(?,?,?,?,?)");
+
+		$stmt->bindParam(1, $valor1, PDO::PARAM_INT);
+		$stmt->bindParam(2, $valor2, PDO::PARAM_INT);
+		$stmt->bindParam(3, $valor3, PDO::PARAM_INT);
+		$stmt->bindParam(4, $valor4, PDO::PARAM_INT);
+		$stmt->bindParam(5, $valor5, PDO::PARAM_INT);
+
+		$stmt -> execute();
+
+		return $stmt -> fetch();
+		
+		#$stmt -> close();
+
+		$stmt = null;
+
+	}
+
 
 	/*=============================================
 	REGISTRO DE GASTO ADMIN POR MES

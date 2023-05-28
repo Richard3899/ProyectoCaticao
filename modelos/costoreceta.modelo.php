@@ -41,6 +41,7 @@ class ModeloRecetaGastoAdminPorMes{
 		$stmt = null;
 
 	}
+
 	/*=============================================
 	REGISTRO DE RECETAS Y GASTO ADMIN POR MES
 	=============================================*/

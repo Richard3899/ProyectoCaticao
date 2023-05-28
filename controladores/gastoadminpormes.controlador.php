@@ -24,6 +24,13 @@ class ControladorGastoAdminPorMes{
 		return $respuesta;
 	}
 
+	static public function ctrMostrarGastoAdminPorMes3($valor1,$valor2,$valor3,$valor4,$valor5){
+
+		$respuesta = ModeloGastoAdminPorMes::mdlMostrarGastoAdminPorMes3($valor1,$valor2,$valor3,$valor4,$valor5);
+
+		return $respuesta;
+	} 
+
 	/*=============================================
 	SUMAR TOTAL DE GASTO ADMIN POR MES
 	=============================================*/

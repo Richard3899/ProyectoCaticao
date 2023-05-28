@@ -19,10 +19,10 @@ class TablaRecetaGastoAdminPorMes{
 		
 		$k=0;
 		$index=0;
-  		$gastoadmin = ControladorGastoAdminPorMes::ctrMostrarGastoAdminPorMesTG($idMesGasto,$idTipoGasto);	
+  		$gastoadminpormes = ControladorGastoAdminPorMes::ctrMostrarGastoAdminPorMesTG($idMesGasto,$idTipoGasto);	
 		$recetas = ControladorRecetas::ctrMostrarRecetasCerradas2();	
 
-		if(count($gastoadmin) == 0 || count($recetas) == 0){
+		if(count($gastoadminpormes) == 0 || count($recetas) == 0){
 
 			echo '{"data": []}';
 
@@ -32,9 +32,11 @@ class TablaRecetaGastoAdminPorMes{
   		$datosJson = '{
 		  "data": [';
 		  for($i = 0; $i < count($recetas); $i++){
-			if((count($gastoadmin)-$k)==1){
-				$index=$index+count($gastoadmin);
+
+			if((count($gastoadminpormes)-$k)==1){
+				$index=$index+count($gastoadminpormes);
 			}
+			
 			$datosJson .='[';
 			$datosJson.='"';
 			$datosJson.=($i+1);
@@ -45,11 +47,11 @@ class TablaRecetaGastoAdminPorMes{
 			$datosJson.='"';
 			$datosJson .=',';
 
-			for($k = 0; $k < count($gastoadmin); $k++){	
+			for($k = 0; $k < count($gastoadminpormes); $k++){	
 				$index++;
 				$datosJson.='"';
-				$datosJson.="<input index='".$index."' id='".$gastoadmin[$k]["idGastoAdminPorMes"]."' idReceta='".$recetas[$i]["idReceta"]."'  class='checkGastos' type='checkbox' value='".$gastoadmin[$k]["idGastoAdminPorMes"]."'>";
-				if( (count($gastoadmin)-$k) ==1){
+				$datosJson.="<input index='".$index."' id='".$gastoadminpormes[$k]["idGastoAdminPorMes"]."' idMesGasto='".$gastoadminpormes[$k]["idMesGasto"]."' idReceta='".$recetas[$i]["idReceta"]."' idGastoAdmin='".$gastoadminpormes[$k]["idGastoAdmin"]."' idTipoGasto='".$gastoadminpormes[$k]["idTipoGasto"]."' class='checkGastos' type='checkbox' value='".$gastoadminpormes[$k]["idGastoAdminPorMes"]."'>";
+				if( (count($gastoadminpormes)-$k) ==1){
 				  $datosJson.='"';
 				}else{
 				  $datosJson.='",';

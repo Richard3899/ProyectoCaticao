@@ -4,6 +4,7 @@ const valoresRecetas= [];
 const valoresGastos = [];
 var tablaInicial;
 var tablaFinal;
+var validacion=0;
 
 function iniciar(){
 	tablaAsignacionInicial();
@@ -155,12 +156,14 @@ $(".seleccionarMesGasto").on("change", function(){
 })
 
 function LimpiarModalAsignar(){
-
+	$("#seleccionarMesGasto").val("").trigger("change");
 	CargarTablaInicial();
 
 }
 
 function CargarTablaInicial(){
+
+	
 
 	var table = $('.tablaAsignacionAdicionales').DataTable();
 	
@@ -176,32 +179,89 @@ function CargarTablaInicial(){
 GUARDAR LOS GASTOS SELECCIONADOS EN UN ARRAY
 =============================================*/
 $( document ).on( 'click', '.checkGastos', function() {
+	var val=$(this);
+	var idIndex=$(this).attr('index');
+	var idGastoAdminPorMes=this.value;
+	var idMesGasto =$(this).attr('idMesGasto');
+	var idReceta=$(this).attr('idReceta');
+	var idGastoAdmin=$(this).attr('idGastoAdmin');
+	var idTipoGasto =$(this).attr('idTipoGasto');
+
+	var datos = new FormData();
+
+	datos.append("idGastoAdminPorMes3", idGastoAdminPorMes);
+	datos.append("idMesGasto3", idMesGasto);
+	datos.append("idReceta3", idReceta);
+	datos.append("idGastoAdmin3", idGastoAdmin);
+	datos.append("idTipoGasto3", idTipoGasto);
 
 	if( $(this).is(':checked') ){
+	
+		valoresRecetas.push(idReceta);
+		valoresGastos.push(idGastoAdminPorMes);
+		indice.push(idIndex);
+		
 
-		valoresRecetas.push($(this).attr('idReceta'));
-		valoresGastos.push(this.value);
-		indice.push($(this).attr('index'));
+	}else{
 
-    }else{
-
-		var index =indice.indexOf($(this).attr('index'));
+		var index =indice.indexOf(idIndex);
 		indice.splice(index, 1);
 		valoresRecetas.splice(index, 1);
 		valoresGastos.splice(index, 1);
-		
-	}
-	$("#indice").val(indice);
-	$("#idReceta").val(valoresRecetas);
-	$("#idGastoAdminPorMes").val(valoresGastos)
 
-	console.log(indice); 
-	console.log(valoresRecetas)
-	console.log(valoresGastos)
-	console.log("-------------")
-	console.log($("#idReceta").val());
-	console.log($("#idReceta").val());
-	console.log($("#idGastoAdminPorMes").val());
+	}
+
+	$.ajax({
+
+		url:"ajax/gastoadminpormes.ajax.php",
+		method: "POST",
+		data: datos, 
+		cache: false,
+		contentType: false,
+		processData: false,
+		dataType:"json",
+		success:function(respuesta){
+
+			if(respuesta!=""){
+
+				validacion=respuesta["validacion"];
+
+				if(validacion!=0){
+
+					var index =indice.indexOf(idIndex);
+					indice.splice(index, 1);
+					valoresRecetas.splice(index, 1);
+					valoresGastos.splice(index, 1);
+
+					val.prop( "checked", false );
+
+					Swal.fire({
+						icon: 'error',
+						title: 'Los adicionales de esta receta ya se asignaron en otro mes',
+						showConfirmButton: false,
+						timer: 5000
+					})
+
+				}
+				
+			}
+
+		},complete: function () {
+			$("#indice").val(indice);
+			$("#idReceta").val(valoresRecetas);
+			$("#idGastoAdminPorMes").val(valoresGastos)
+
+			console.log(validacion)
+			console.log(indice); 
+			console.log(valoresRecetas)
+			console.log(valoresGastos)
+			console.log("-------------")
+			console.log($("#idReceta").val());
+			console.log($("#idReceta").val());
+			console.log($("#idGastoAdminPorMes").val());
+        },
+
+	})
 
 } );
 
@@ -217,6 +277,9 @@ $("#nuevoTipoGasto").on("change", function() {
 	valoresGastos.length = 0;
 	valoresRecetas.length = 0;
 
+	$("#indice").val("");
+	$("#idReceta").val("");
+	$("#idGastoAdminPorMes").val("");
 	$('#inputTipoGasto').prop("disabled", true);
 
 	var idMesGasto = $("#seleccionarMesGasto").val();

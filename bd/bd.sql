@@ -394,6 +394,7 @@ CREATE TABLE Receta (
   reproceso DECIMAL(10,2),
   codigoLote VARCHAR(20),
   cerrado INT,
+  agregadoAdicional INT,
   cerradoAdicional INT,
   cantidadTabletas INT,
   costoTotal DECIMAL(10,2),

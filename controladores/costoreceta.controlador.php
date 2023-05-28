@@ -18,7 +18,7 @@ class ControladorRecetaGastoAdminPorMes{
 		$respuesta = ModeloRecetaGastoAdminPorMes::mdlMostrarTipoGastoPorMes($valor);
 
 		return $respuesta;
-	} 
+	}
 
 
 	/*=============================================

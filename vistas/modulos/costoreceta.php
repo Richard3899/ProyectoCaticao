@@ -53,6 +53,7 @@
          <th>Nombre</th>
          <th>Batch</th>
          <th>Fecha de Fin</th>
+         <th>Adicionales</th>
          <th>Acciones</th>
 
        </tr> 

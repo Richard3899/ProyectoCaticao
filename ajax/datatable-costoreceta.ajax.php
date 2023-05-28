@@ -53,12 +53,20 @@ class TablaCostoReceta{
 			}
 			}
 
+			if($recetas[$i]["agregadoAdicional"]==0){
+				$agregadoAdicional="<span class='bg-warning btn-sm'>No agregado</span>";
+			}else{
+				$agregadoAdicional="<span class='bg-primary btn-sm'>Agregado</span>";
+			}
+			
+
 		  	$datosJson .='[
 			      "'.($i+1).'",
 			      "'.$recetas[$i]["codigo"].'",
 			      "'.$recetas[$i]["nombre"].'",
 				  "'.$recetas[$i]["batch"].'",
 				  "'.$recetas[$i]["fechaFin"].'",
+				  "'.$agregadoAdicional.'",
 			      "'.$botones.'"
 			    ],';
 

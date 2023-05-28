@@ -56,6 +56,26 @@ class AjaxGastoAdminPorMes{
 
 	}
 
+	public $idGastoAdminPorMes3;
+	public $idMesGasto3;
+	public $idReceta3;
+	public $idGastoAdmin3;
+	public $idTipoGasto3;
+
+	public function ajaxMostrarGastoAdminPorMes(){
+
+		$valor1 = $this->idGastoAdminPorMes3;
+		$valor2 = $this->idMesGasto3;
+		$valor3 = $this->idReceta3;
+		$valor4 = $this->idGastoAdmin3;
+		$valor5 = $this->idTipoGasto3;
+
+		$respuesta = ControladorGastoAdminPorMes::ctrMostrarGastoAdminPorMes3($valor1,$valor2,$valor3,$valor4,$valor5);
+
+		echo json_encode($respuesta);
+
+	}
+
 }
 
 
@@ -90,5 +110,20 @@ if(isset($_POST["idTipoGasto"])){
 	$editar -> idTipoGasto = $_POST["idTipoGasto"];
 	$editar -> idMesGasto2 = $_POST["idMesGasto2"];
 	$editar -> ajaxMostrarGastoPorTipo();
+
+}
+
+/*=============================================
+CONSULTA GASTO ADMIN POR MES
+=============================================*/
+if(isset($_POST["idGastoAdminPorMes3"])){
+
+	$editar = new AjaxGastoAdminPorMes();
+	$editar -> idGastoAdminPorMes3 = $_POST["idGastoAdminPorMes3"];
+	$editar -> idMesGasto3 = $_POST["idMesGasto3"];
+	$editar -> idReceta3 = $_POST["idReceta3"];
+	$editar -> idGastoAdmin3 = $_POST["idGastoAdmin3"];
+	$editar -> idTipoGasto3 = $_POST["idTipoGasto3"];
+	$editar -> ajaxMostrarGastoAdminPorMes();
 
 }

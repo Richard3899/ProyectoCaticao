@@ -1232,8 +1232,8 @@ BEGIN
     insert into lote (codigoLote,fechaVencimiento,cantidad,idProducto)
 			   values (codigoLoteI,STR_TO_DATE(REPLACE(fechaVencimientoI,'/','.') ,GET_FORMAT(date,'EUR')),0,idProductoI);
                 
-	insert into receta (codigo,nombre,batch,idEstado,fechaInicio,fechaFin,pesoPorTableta,pesoEnTableta,merma,reproceso,codigoLote,cerrado,cerradoAdicional,cantidadTabletas,costoTotal,costoPorTableta)
-			      values (codigoI,nombreI,batchI,idEstadoI,STR_TO_DATE(REPLACE(fechaInicioI,'/','.') ,GET_FORMAT(date,'EUR')),STR_TO_DATE(REPLACE(fechaFinI,'/','.') ,GET_FORMAT(date,'EUR')),pesoPorTabletaI,pesoEnTabletaI,mermaI,reprocesoI,codigoLoteI,0,0,cantidadTabletasI,0,0);
+	insert into receta (codigo,nombre,batch,idEstado,fechaInicio,fechaFin,pesoPorTableta,pesoEnTableta,merma,reproceso,codigoLote,cerrado,agregadoAdicional,cerradoAdicional,cantidadTabletas,costoTotal,costoPorTableta)
+			      values (codigoI,nombreI,batchI,idEstadoI,STR_TO_DATE(REPLACE(fechaInicioI,'/','.') ,GET_FORMAT(date,'EUR')),STR_TO_DATE(REPLACE(fechaFinI,'/','.') ,GET_FORMAT(date,'EUR')),pesoPorTabletaI,pesoEnTabletaI,mermaI,reprocesoI,codigoLoteI,0,0,0,cantidadTabletasI,0,0);
 	
 END$$
 DELIMITER ;
@@ -2349,8 +2349,8 @@ BEGIN
 				  				WHERE  codigoLote = codigoLoteD;
 				  
 	-- INSERTA LA RECETA DUPLICADA --
-	INSERT INTO receta (idReceta,codigo,nombre,batch,idEstado,fechaInicio,fechaFin,pesoPorTableta,pesoEnTableta,merma,reproceso,codigoLote,cerrado,cantidadTabletas,costoTotal,costoPorTableta)
-	             			SELECT nuevoIdRecetaD,codigoRecetaD AS codigo,CONCAT(nombre,'-','Duplicado')AS nombre, batch,1,fechaInicio,fechaFin,pesoPorTableta,pesoEnTableta,merma,reproceso,rc AS codigoLote,0,cantidadTabletas,costoTotal,costoPorTableta
+	INSERT INTO receta (idReceta,codigo,nombre,batch,idEstado,fechaInicio,fechaFin,pesoPorTableta,pesoEnTableta,merma,reproceso,codigoLote,cerrado,agregadoAdicional,cerradoAdicional,cantidadTabletas,costoTotal,costoPorTableta)
+	             			SELECT nuevoIdRecetaD,codigoRecetaD AS codigo,CONCAT(nombre,'-','Duplicado')AS nombre, batch,1,fechaInicio,fechaFin,pesoPorTableta,pesoEnTableta,merma,reproceso,rc AS codigoLote,0,0,0,cantidadTabletas,costoTotal,costoPorTableta
 				    			FROM receta
 				    			WHERE idReceta = idRecetaD;
 				    
@@ -2421,7 +2421,9 @@ USE `caticao`$$
 CREATE PROCEDURE `mostrar_recetagastoadminpormes` ( IN idMesGastoV INT, IN idTipoGastoV INT)
 BEGIN
 
-	SELECT rgap.* from recetagastoadminpormes rgap INNER JOIN gastoadminpormes gap ON gap.idGastoAdminPorMes=rgap.idGastoAdminPorMes
+	
+	SELECT rgap.idRecetaGastoAdminPorMes,rgap.indice,rgap.idReceta, rgap.idGastoAdminPorMes,gap.idMesGasto
+	 from recetagastoadminpormes rgap INNER JOIN gastoadminpormes gap ON gap.idGastoAdminPorMes=rgap.idGastoAdminPorMes
 															INNER JOIN gastoadmin ga ON ga.idGastoAdmin=gap.idGastoAdmin
 	                                          INNER JOIN tipogasto tp ON tp.idTipoGasto=ga.idTipoGasto
 	                                          INNER JOIN mesgasto mg ON mg.idMesGasto=gap.idMesGasto
@@ -2429,6 +2431,7 @@ BEGIN
 														
 END$$
 DELIMITER ;
+
 
 DROP procedure IF EXISTS `mostrar_tipogastopormes`;
 DELIMITER $$
@@ -2455,6 +2458,16 @@ CREATE PROCEDURE `insertar_recetagastoadminpormes` (        in indiceI INT,
 BEGIN
 	insert into recetagastoadminpormes (indice,idReceta,idGastoAdminPorMes)
 				  					    VALUES (indiceI,idRecetaI,idGastoAdminPorMesI);
+				  					    
+	UPDATE receta SET agregadoAdicional=1
+	               WHERE idReceta IN (  SELECT * FROM(
+	 														SELECT rgap.idReceta from recetagastoadminpormes rgap INNER JOIN gastoadminpormes gap ON gap.idGastoAdminPorMes=rgap.idGastoAdminPorMes
+															INNER JOIN gastoadmin ga ON ga.idGastoAdmin=gap.idGastoAdmin
+	                                          INNER JOIN tipogasto tp ON tp.idTipoGasto=ga.idTipoGasto
+	                                          INNER JOIN mesgasto mg ON mg.idMesGasto=gap.idMesGasto
+															WHERE mg.cerradoMes=1 AND rgap.idReceta=idRecetaI
+															GROUP BY rgap.idReceta) 
+															AS idRecetas);
 END$$
 DELIMITER ;
 
@@ -2464,6 +2477,21 @@ DELIMITER $$
 USE `caticao`$$
 CREATE PROCEDURE `eliminar_recetagastoadminpormes` (in idMesGastoV INT, in idTipoGastoV INT)
 BEGIN
+	 
+	 CREATE TEMPORARY TABLE temp_recetas (
+		   idReceta INT,
+		   cantidadGastos INT 
+	 );
+	 
+	 
+	 INSERT INTO temp_recetas
+	 SELECT rgap.idReceta,COUNT(*) AS cantidadGastos from recetagastoadminpormes rgap INNER JOIN gastoadminpormes gap ON gap.idGastoAdminPorMes=rgap.idGastoAdminPorMes
+															INNER JOIN gastoadmin ga ON ga.idGastoAdmin=gap.idGastoAdmin
+	                                          INNER JOIN tipogasto tp ON tp.idTipoGasto=ga.idTipoGasto
+	                                          INNER JOIN mesgasto mg ON mg.idMesGasto=gap.idMesGasto
+															WHERE mg.cerradoMes=1 AND gap.idMesGasto=idMesGastoV AND (ga.idTipoGasto=idTipoGastoV OR ga.idTipoGasto!=idTipoGastoV)
+															GROUP BY rgap.idReceta;
+	
 	 DELETE FROM recetagastoadminpormes
     WHERE idRecetaGastoAdminPorMes IN (  SELECT * FROM(
 	 														SELECT rgap.idRecetaGastoAdminPorMes from recetagastoadminpormes rgap INNER JOIN gastoadminpormes gap ON gap.idGastoAdminPorMes=rgap.idGastoAdminPorMes
@@ -2472,6 +2500,19 @@ BEGIN
 	                                          INNER JOIN mesgasto mg ON mg.idMesGasto=gap.idMesGasto
 															WHERE mg.cerradoMes=1 AND gap.idMesGasto=idMesGastoV AND ga.idTipoGasto=idTipoGastoV)
 															AS idRecetaGastoAdminPorMes);
+																							
+	 UPDATE receta SET agregadoAdicional=0
+	               WHERE ( SELECT * FROM(     SELECT rgap.idReceta from recetagastoadminpormes rgap INNER JOIN gastoadminpormes gap ON gap.idGastoAdminPorMes=rgap.idGastoAdminPorMes
+															INNER JOIN gastoadmin ga ON ga.idGastoAdmin=gap.idGastoAdmin
+	                                          INNER JOIN tipogasto tp ON tp.idTipoGasto=ga.idTipoGasto
+	                                          INNER JOIN mesgasto mg ON mg.idMesGasto=gap.idMesGasto
+															WHERE mg.cerradoMes=1 AND gap.idMesGasto=idMesGastoV AND (ga.idTipoGasto=idTipoGastoV OR ga.idTipoGasto!=idTipoGastoV)
+															GROUP BY rgap.idReceta)
+															AS idReceta) IS NULL
+															AND idReceta IN  ( SELECT * FROM(SELECT idReceta FROM temp_recetas) AS idReceta );
+															
+	 DROP TABLE temp_recetas;								
+														
 END$$
 DELIMITER ;
 
@@ -2593,6 +2634,23 @@ BEGIN
 	 FROM gastoadminpormes gap INNER JOIN gastoadmin ga ON gap.idGastoAdmin = ga.idGastoAdmin
 	 												INNER JOIN tipogasto tg ON ga.idTipoGasto = tg.idTipoGasto
     WHERE idMesGasto=idMesGastoC;
+
+END$$
+DELIMITER ;
+
+DROP procedure IF EXISTS `mostrar_gastoadminpormes3`;
+DELIMITER $$
+USE `caticao`$$
+CREATE PROCEDURE `mostrar_gastoadminpormes3` (in idGastoAdminPorMesC INT, IN idMesGastoC INT, IN idRecetaC INT, IN idGastoAdminC INT, IN idTipoGastoC INT)
+BEGIN
+   
+																
+	SELECT COUNT(rgap.idRecetaGastoAdminPorMes) AS validacion from recetagastoadminpormes rgap INNER JOIN gastoadminpormes gap ON gap.idGastoAdminPorMes=rgap.idGastoAdminPorMes
+																INNER JOIN gastoadmin ga ON ga.idGastoAdmin=gap.idGastoAdmin
+		                                          INNER JOIN tipogasto tp ON tp.idTipoGasto=ga.idTipoGasto
+		                                          INNER JOIN mesgasto mg ON mg.idMesGasto=gap.idMesGasto
+																WHERE mg.cerradoMes=1 AND gap.idMesGasto!=idMesGastoC AND rgap.idReceta=idRecetaC
+																AND (ga.idTipoGasto=idTipoGastoC OR ga.idTipoGasto!=idTipoGastoC);																									
 
 END$$
 DELIMITER ;

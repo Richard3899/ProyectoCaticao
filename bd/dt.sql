@@ -41,8 +41,7 @@ INSERT INTO `orderTable` (`idOrderTable`, `descripcion`) VALUES
 (38,'recetacostomarketing'),
 (39,'recetacostooperativo'),
 (40,'mesgasto'),
-(41,'gastoadminpormes'),
-(42,'loteproductos');
+(41,'gastoadminpormes');
 
 INSERT INTO `marca` (`idMarca`, `descripcion`) VALUES
 	(1, 'GLORIA'),(2, 'DULFINA'),(3, 'SAFE');
@@ -236,8 +235,8 @@ INSERT INTO `gastoadmin` (`idGastoAdmin`, `codigo`, `descripcion`, `idTipoGasto`
 	(3, 'A1235', 'Costo de Marketing 1', 3, 3, 2),
 	(4, 'A3213', 'Costo Operativo 1', 4, 3, 1);
 
-INSERT INTO `receta` (`idReceta`, `codigo`, `nombre`, `batch`, `fechaInicio`, `fechaFin`, `pesoPorTableta`, `pesoEnTableta`, `merma`, `reproceso`, `codigoLote`, `idEstado`,`cerrado`,`cantidadTabletas`,`costoTotal`,`costoPorTableta`) VALUES
-	(1, 'RC001', 'Receta 1', 60.00, '2022-12-10', '2022-12-10', 1.00, 1.00, 1.00, 1.00, '123456', 1, 0, 5, 0, 0);
+INSERT INTO `receta` (`idReceta`, `codigo`, `nombre`, `batch`, `fechaInicio`, `fechaFin`, `pesoPorTableta`, `pesoEnTableta`, `merma`, `reproceso`, `codigoLote`, `idEstado`,`cerrado`,`agregadoAdicional`,`cerradoAdicional`,`cantidadTabletas`,`costoTotal`,`costoPorTableta`) VALUES
+	(1, 'RC001', 'Receta 1', 60.00, '2022-12-10', '2022-12-10', 1.00, 1.00, 1.00, 1.00, '123456', 1, 0, 0, 0, 5, 0, 0);
 
 INSERT INTO `lote` (`idLote`, `codigoLote`, `cantidad`, `fechaVencimiento`, `idProducto`) VALUES
 	(1, '123456',0, '2022-12-11', 1);

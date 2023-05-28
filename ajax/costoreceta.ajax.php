@@ -35,6 +35,8 @@ class AjaxCostoReceta{
 
 	}
 
+
+
 }
 
 /*=============================================
@@ -50,7 +52,7 @@ if(isset($_POST["idMesGasto"])){
 }
 
 /*=============================================
-EDITAR COSTO DE VENTA
+CONSULTA COSTO DE VENTA
 =============================================*/
 if(isset($_POST["idMesGasto2"])){
 
