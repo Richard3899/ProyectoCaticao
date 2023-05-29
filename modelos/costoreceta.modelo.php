@@ -4,7 +4,6 @@ require_once "conexion.php";
 
 class ModeloRecetaGastoAdminPorMes{
 
-
 	/*=============================================
 	MOSTRAR RECETAS Y GASTO ADMIN POR MES
 	=============================================*/
@@ -124,5 +123,41 @@ class ModeloRecetaGastoAdminPorMes{
 
 	}
 
+
+	/*=============================================
+	MOSTRAR RECETAS Y GASTOS POR MES
+	=============================================*/
+
+	static public function mdlMostrarRecetaGastoAdmin($valor){
+
+		$stmt = Conexion::conectar()->prepare("call mostrar_recetagastoadmin(?)");
+
+		$stmt->bindParam(1, $valor, PDO::PARAM_INT);
+
+		$stmt -> execute();
+
+		return $stmt -> fetchAll();
+		
+		#$stmt -> close();
+
+		$stmt = null;
+
+	}
+
+	static public function mdlSumaTotalRecetaGastoAdmin($valor){
+
+		$stmt = Conexion::conectar()->prepare("call sumatotal_recetagastoadmin(?,@variable)");
+
+		$stmt->bindParam(1, $valor, PDO::PARAM_INT);
+
+		$stmt -> execute();
+
+		return $stmt -> fetch();
+		
+		#$stmt -> close();
+
+		$stmt = null;
+
+	}
 
 }

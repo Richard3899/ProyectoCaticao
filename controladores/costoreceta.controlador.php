@@ -74,6 +74,17 @@ class ControladorRecetaGastoAdminPorMes{
 
 				$respuesta=ModeloRecetaGastoAdminPorMes::mdlIngresarRecetaGastoAdminPorMes($datos);
 			}
+
+
+		// 	------------------------------------
+		// AGREGAR UN PROCEDIMIENTO ALMACENADO PARA ACTUALIZAR LOS PRECIOS (POR RECETA)
+
+		// CALL sumatotal_costoporreceta(idRecetaI);
+		// --------------------------------------------------------------------------
+
+		// 	------------------------------------
+		//  CREAR CONDICION SI VA A CERRAR LOS ADICIONALES PRIMERO QUE OCULTE CIERRE EL MES
+		// --------------------------------------------------------------------------
  
 			if($respuesta == "ok"){
  
@@ -136,6 +147,29 @@ class ControladorRecetaGastoAdminPorMes{
 		}
 
 	}
+
+	/*=============================================
+	MOSTRAR RECETAS Y GASTOS POR MES
+	=============================================*/
+
+	static public function ctrMostrarRecetaGastoAdmin($valor){
+
+		$respuesta = ModeloRecetaGastoAdminPorMes::MdlMostrarRecetaGastoAdmin($valor);
+
+		return $respuesta;
+	}
+
+	/*=============================================
+	MOSTRAR RECETAS Y GASTOS POR MES
+	=============================================*/
+
+	static public function ctrSumaTotalRecetaGastoAdmin($valor){
+
+		$respuesta = ModeloRecetaGastoAdminPorMes::MdlSumaTotalRecetaGastoAdmin($valor);
+
+		return $respuesta;
+	}
+
 }
 
 

@@ -2458,6 +2458,8 @@ CREATE PROCEDURE `insertar_recetagastoadminpormes` (        in indiceI INT,
 BEGIN
 	insert into recetagastoadminpormes (indice,idReceta,idGastoAdminPorMes)
 				  					    VALUES (indiceI,idRecetaI,idGastoAdminPorMesI);
+	
+	CALL sumatotal_costoporreceta(idRecetaI);
 				  					    
 	UPDATE receta SET agregadoAdicional=1
 	               WHERE idReceta IN (  SELECT * FROM(
@@ -2468,6 +2470,9 @@ BEGIN
 															WHERE mg.cerradoMes=1 AND rgap.idReceta=idRecetaI
 															GROUP BY rgap.idReceta) 
 															AS idRecetas);
+															
+	
+	
 END$$
 DELIMITER ;
 
@@ -2655,6 +2660,119 @@ BEGIN
 END$$
 DELIMITER ;
 
+DROP procedure IF EXISTS `mostrar_recetagastoadmin`;
+DELIMITER $$
+USE `caticao`$$
+CREATE PROCEDURE `mostrar_recetagastoadmin` (IN idRecetaC INT)
+BEGIN
+			
+	CREATE TEMPORARY TABLE temp_gastoadminpormes1(
+	idGastoAdminPorMes INT
+	);
+	
+	INSERT INTO temp_gastoadminpormes1		
+	SELECT rgap.idGastoAdminPorMes
+	  				from recetagastoadminpormes rgap INNER JOIN gastoadminpormes gap ON gap.idGastoAdminPorMes=rgap.idGastoAdminPorMes
+																INNER JOIN gastoadmin ga ON ga.idGastoAdmin=gap.idGastoAdmin
+		                                          INNER JOIN tipogasto tp ON tp.idTipoGasto=ga.idTipoGasto
+		                                          INNER JOIN mesgasto mg ON mg.idMesGasto=gap.idMesGasto
+																WHERE mg.cerradoMes=1 AND rgap.idReceta=idRecetaC;
+																
+	CREATE TEMPORARY TABLE temp_gastoadminpormes2(
+	idGastoAdminPorMes INT,
+	cantidadRecetas INT
+	);	
+																	
+	INSERT INTO temp_gastoadminpormes2																												
+   SELECT rgap.idGastoAdminPorMes, COUNT(rgap.idGastoAdminPorMes) AS cantidadRecetas
+	  				from recetagastoadminpormes rgap INNER JOIN gastoadminpormes gap ON gap.idGastoAdminPorMes=rgap.idGastoAdminPorMes
+																INNER JOIN gastoadmin ga ON ga.idGastoAdmin=gap.idGastoAdmin
+		                                          INNER JOIN tipogasto tp ON tp.idTipoGasto=ga.idTipoGasto
+		                                          INNER JOIN mesgasto mg ON mg.idMesGasto=gap.idMesGasto
+																WHERE mg.cerradoMes=1 AND rgap.idGastoAdminPorMes IN ( SELECT idGastoAdminPorMes FROM temp_gastoadminpormes1)
+																GROUP BY rgap.idGastoAdminPorMes;
+																
+	SELECT gap.idGastoAdminPorMes,gap.nombreGastoAdmin, gap.total AS precio, ROUND((((gap.total / tgap.cantidadRecetas) / gap.total ) *100),2) AS cantidad,
+			 ROUND((gap.total / tgap.cantidadRecetas),2) AS total
+	  				from recetagastoadminpormes rgap INNER JOIN gastoadminpormes gap ON gap.idGastoAdminPorMes=rgap.idGastoAdminPorMes
+																INNER JOIN gastoadmin ga ON ga.idGastoAdmin=gap.idGastoAdmin
+		                                          INNER JOIN tipogasto tp ON tp.idTipoGasto=ga.idTipoGasto
+		                                          INNER JOIN mesgasto mg ON mg.idMesGasto=gap.idMesGasto
+		                                          INNER JOIN temp_gastoadminpormes2 tgap ON tgap.idGastoAdminPorMes=gap.idGastoAdminPorMes
+																WHERE mg.cerradoMes=1 AND rgap.idReceta=idRecetaC AND ga.idTipoGasto=1;
+																					
+	DROP TABLE temp_gastoadminpormes1;
+	
+	DROP TABLE temp_gastoadminpormes2;
+															
+END$$
+DELIMITER ;
+
+
+DROP procedure IF EXISTS `sumatotal_recetagastoadmin`;
+DELIMITER $$
+USE `caticao`$$
+CREATE PROCEDURE `sumatotal_recetagastoadmin` (IN idRecetaC INT,OUT total DECIMAL(10,2))
+BEGIN
+
+   DECLARE totalgastoadmin DECIMAL(10,2);
+   DECLARE totalgastoadmin2 DECIMAL(10,2);
+		
+	CREATE TEMPORARY TABLE temp_gastoadminpormes1(
+	idGastoAdminPorMes INT
+	);
+	
+	INSERT INTO temp_gastoadminpormes1		
+	SELECT rgap.idGastoAdminPorMes
+	  				from recetagastoadminpormes rgap INNER JOIN gastoadminpormes gap ON gap.idGastoAdminPorMes=rgap.idGastoAdminPorMes
+																INNER JOIN gastoadmin ga ON ga.idGastoAdmin=gap.idGastoAdmin
+		                                          INNER JOIN tipogasto tp ON tp.idTipoGasto=ga.idTipoGasto
+		                                          INNER JOIN mesgasto mg ON mg.idMesGasto=gap.idMesGasto
+																WHERE mg.cerradoMes=1 AND rgap.idReceta=idRecetaC;
+																
+	CREATE TEMPORARY TABLE temp_gastoadminpormes2(
+	idGastoAdminPorMes INT,
+	cantidadRecetas INT
+	);	
+																	
+	INSERT INTO temp_gastoadminpormes2																												
+   SELECT rgap.idGastoAdminPorMes, COUNT(rgap.idGastoAdminPorMes) AS cantidadRecetas
+	  				from recetagastoadminpormes rgap INNER JOIN gastoadminpormes gap ON gap.idGastoAdminPorMes=rgap.idGastoAdminPorMes
+																INNER JOIN gastoadmin ga ON ga.idGastoAdmin=gap.idGastoAdmin
+		                                          INNER JOIN tipogasto tp ON tp.idTipoGasto=ga.idTipoGasto
+		                                          INNER JOIN mesgasto mg ON mg.idMesGasto=gap.idMesGasto
+																WHERE mg.cerradoMes=1 AND rgap.idGastoAdminPorMes IN ( SELECT idGastoAdminPorMes FROM temp_gastoadminpormes1)
+																GROUP BY rgap.idGastoAdminPorMes;
+																
+	SELECT SUM(ROUND((gap.total / tgap.cantidadRecetas),2)) AS SumaTotal
+	  				from recetagastoadminpormes rgap INNER JOIN gastoadminpormes gap ON gap.idGastoAdminPorMes=rgap.idGastoAdminPorMes
+																INNER JOIN gastoadmin ga ON ga.idGastoAdmin=gap.idGastoAdmin
+		                                          INNER JOIN tipogasto tp ON tp.idTipoGasto=ga.idTipoGasto
+		                                          INNER JOIN mesgasto mg ON mg.idMesGasto=gap.idMesGasto
+		                                          INNER JOIN temp_gastoadminpormes2 tgap ON tgap.idGastoAdminPorMes=gap.idGastoAdminPorMes
+																WHERE mg.cerradoMes=1 AND rgap.idReceta=idRecetaC AND ga.idTipoGasto=1
+																GROUP BY rgap.idReceta INTO totalgastoadmin;
+	
+	SELECT  IF(totalgastoadmin IS NULL, 0, totalgastoadmin) AS SumaTotal;
+	
+	SELECT SUM(gap.total / tgap.cantidadRecetas) AS SumaTotal
+	  				from recetagastoadminpormes rgap INNER JOIN gastoadminpormes gap ON gap.idGastoAdminPorMes=rgap.idGastoAdminPorMes
+																INNER JOIN gastoadmin ga ON ga.idGastoAdmin=gap.idGastoAdmin
+		                                          INNER JOIN tipogasto tp ON tp.idTipoGasto=ga.idTipoGasto
+		                                          INNER JOIN mesgasto mg ON mg.idMesGasto=gap.idMesGasto
+		                                          INNER JOIN temp_gastoadminpormes2 tgap ON tgap.idGastoAdminPorMes=gap.idGastoAdminPorMes
+																WHERE mg.cerradoMes=1 AND rgap.idReceta=idRecetaC AND ga.idTipoGasto=1
+																GROUP BY rgap.idReceta INTO totalgastoadmin2;
+	
+	SET total = totalgastoadmin2;
+																	
+	DROP TABLE temp_gastoadminpormes1;
+	
+	DROP TABLE temp_gastoadminpormes2;
+															
+END$$
+DELIMITER ;
+
 
 DROP procedure IF EXISTS `insertar_gastoadminpormes`;
 DELIMITER $$
@@ -2709,7 +2827,7 @@ DELIMITER $$
 USE `caticao`$$
 CREATE PROCEDURE `sumatotal_gastoadminpormes` (in idMesGastoC INT)
 BEGIN
-			SELECT if(SUM(total) IS NULL, 0, SUM(total)) FROM gastoadminpormes
+			SELECT IF(SUM(total) IS NULL, 0, SUM(total)) FROM gastoadminpormes
 		                     WHERE idMesGasto=idMesGastoC;
 END$$
 DELIMITER ;
@@ -2752,21 +2870,21 @@ BEGIN
 	SELECT if(SUM(pagoPorBatch) IS NULL, 0, SUM(pagoPorBatch))  FROM recetaconsumogas
 		            WHERE idReceta=idRecetaT  INTO totalconsumogas;
 		            
-	SELECT if(SUM(gap.total) IS NULL, 0, SUM(gap.total)) FROM recetagastoadminpormes rgap INNER JOIN gastoadminpormes gap ON gap.idGastoAdminPorMes=rgap.idGastoAdminPorMes
-	                                          INNER JOIN gastoadmin ga ON ga.idGastoAdmin=gap.idGastoAdmin
-		            WHERE idReceta=idRecetaT AND ga.idTipoGasto=1 INTO totalgastoadmin;   
+	CALL sumatotal_recetagastoadmin(idRecetaT,@totalGA);
+	
+	SET totalgastoadmin = if(@totalGA IS NULL, 0, @totalGA); 
 		                     
 	SELECT if(SUM(gap.total) IS NULL, 0, SUM(gap.total)) FROM recetagastoadminpormes rgap INNER JOIN gastoadminpormes gap ON gap.idGastoAdminPorMes=rgap.idGastoAdminPorMes
 	                                          INNER JOIN gastoadmin ga ON ga.idGastoAdmin=gap.idGastoAdmin
-		            WHERE idReceta=idRecetaT AND ga.idTipoGasto=2 INTO totalcostoventa;
+		            WHERE idReceta=idRecetaT AND ga.idTipoGasto=0 INTO totalcostoventa;
 		            
 	SELECT if(SUM(gap.total) IS NULL, 0, SUM(gap.total)) FROM recetagastoadminpormes rgap INNER JOIN gastoadminpormes gap ON gap.idGastoAdminPorMes=rgap.idGastoAdminPorMes
 	                                          INNER JOIN gastoadmin ga ON ga.idGastoAdmin=gap.idGastoAdmin
-		            WHERE idReceta=idRecetaT AND ga.idTipoGasto=3  INTO totalcostomarketing;
+		            WHERE idReceta=idRecetaT AND ga.idTipoGasto=0  INTO totalcostomarketing;
 		            
 	SELECT if(SUM(gap.total) IS NULL, 0, SUM(gap.total)) FROM recetagastoadminpormes rgap INNER JOIN gastoadminpormes gap ON gap.idGastoAdminPorMes=rgap.idGastoAdminPorMes
 	                                          INNER JOIN gastoadmin ga ON ga.idGastoAdmin=gap.idGastoAdmin
-		            WHERE idReceta=idRecetaT AND ga.idTipoGasto=4  INTO totalcostooperativo;
+		            WHERE idReceta=idRecetaT AND ga.idTipoGasto=0  INTO totalcostooperativo;
 	
 	SELECT cantidadTabletas FROM receta WHERE idReceta=idRecetaT INTO cantidadTableta;
 			
@@ -2777,9 +2895,16 @@ BEGIN
    UPDATE receta SET costototal = totalreceta,
                      costoPorTableta=totalportableta
 						WHERE idReceta=idRecetaT;
+	
+	SELECT totalinsumos,totalmanodeobra,totaldepreciacion,totalconsumoenergia,totalconsumogas,
+	       totalgastoadmin,totalcostoventa,totalcostomarketing,totalcostooperativo;
+	       
+	SELECT totalreceta,cantidadTableta,totalportableta;
              
 END$$
 DELIMITER ;
+
+CALL sumatotal_costoporreceta(1)
 
 
 -- Procedimientos almacenados Costo total de las recetas por mes-

@@ -20,6 +20,9 @@ require_once "../modelos/recetaconsumoenergia.modelo.php";
 require_once "../controladores/recetaconsumogas.controlador.php";
 require_once "../modelos/recetaconsumogas.modelo.php";
 
+require_once "../controladores/costoreceta.controlador.php";
+require_once "../modelos/costoreceta.modelo.php";
+
 require_once "../controladores/recetacostoventa.controlador.php";
 require_once "../modelos/recetacostoventa.modelo.php";
 
@@ -124,6 +127,23 @@ class TablaCostoTotal{
 
 		$totalconsumogas = $sumatotalconsumogasreceta[0];
 
+
+
+
+
+		
+
+		/*=============================================
+ 	 	TRAEMOS GASTO ADMIN
+  		=============================================*/
+  		$recetagastoadmin = ControladorRecetaGastoAdminPorMes::ctrMostrarRecetaGastoAdmin($idRecetaC);	
+
+		$sumatotalgastoadmin= ControladorRecetaGastoAdminPorMes::ctrSumaTotalRecetaGastoAdmin($idRecetaC);	
+
+		$totalgastoadmin = $sumatotalgastoadmin[0];
+
+
+
 		/*=============================================
  	 	TRAEMOS COSTO DE VENTA
   		=============================================*/
@@ -165,18 +185,6 @@ class TablaCostoTotal{
 		$sumatotalcostooperativoreceta = ControladorRecetaCostoOperativo::ctrSumaTotalRecetaCostoOperativo($idRecetaC);	
 
 		$totalcostooperativo = $sumatotalcostooperativoreceta[0];
-
-		/*============================================
- 	 	VALIDAR SI LA RECETA TIENE DATOS
-  		=============================================*/
-		if(count($recetamateriales) == 0  && count($recetainsumos) == 0 && count($recetamanodeobra) == 0 
-		&& count($recetadepreciacion) == 0 && count($recetaconsumoenergia) == 0 && count($recetaconsumogas) == 0 
-		&& count($recetacostoventa) == 0 && count($recetacostomarketing) == 0 && count($recetacostooperativo) == 0){
-
-			echo '{"data": []}';
-			
-			return;
-		}
 
 		/*============================================
  	 	SUMA TOTAL DE RECETA
@@ -265,8 +273,22 @@ class TablaCostoTotal{
 				],';
 	
 			  };	
-			  
+
 			$datosJson .='["TOTAL","","","'.$totalconsumogas.'"],["","","",""],
+			              ["<strong>GASTO ADMINISTRATIVO</strong>","","",""],'; 
+
+			 for($i = 0; $i < count($recetagastoadmin); $i++){
+				
+				  $datosJson .='[
+					  "'.($i+1).' - '.$recetagastoadmin[$i]["nombreGastoAdmin"].'",
+					  "'.$recetagastoadmin[$i]["precio"].'",
+					  "('.$recetagastoadmin[$i]["cantidad"].' %)",
+					  "'.$recetagastoadmin[$i]["total"].'"
+				],';
+	
+			  };
+			  
+			$datosJson .='["TOTAL","","","'.$totalgastoadmin.'"],["","","",""],
 			              ["<strong>COSTO DE VENTA</strong>","","",""],'; 
 
 			 for($i = 0; $i < count($recetacostoventa); $i++){
