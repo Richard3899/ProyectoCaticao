@@ -176,6 +176,8 @@ MODAL ASIGNAR ADICIONAL
         <input type="hidden" id="idReceta" name="idReceta">
         <input type="hidden" id="idGastoAdminPorMes" name="idGastoAdminPorMes">
         
+        <input type="hidden" id="RecetasActualizar" name="RecetasActualizar">
+
         </div>
         </div>
 
@@ -211,7 +213,7 @@ MODAL ASIGNAR ADICIONAL
 
 <?php
 
-$cerrarAdicional= new ControladorRecetaGastoAdminPorMes();
-$cerrarAdicional -> ctrCerrarAdicional();
+$ocultarAdicional= new ControladorRecetaGastoAdminPorMes();
+$ocultarAdicional -> ctrOcultarAdicional();
 
 ?>

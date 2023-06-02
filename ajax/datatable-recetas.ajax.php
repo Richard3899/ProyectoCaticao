@@ -73,9 +73,7 @@ class TablaRecetas{
 			}else{
 				$estado =  "<button class='btn btn-danger'>".$estados["descripcion"]."</button>";
 			}
-			/*=============================================
- 	 		BOTÓN PARA VER DETALLES
-  			=============================================*/
+			/*= BOTÓN PARA VER DETALLES =*/
 			$detalle =  "<button title='Detalle de la Receta' class='btn btn-info btnDetalleReceta' idReceta='".$recetas[$i]["idReceta"]."' codigoLote='".$recetas[$i]["codigoLote"]."'  data-toggle='modal' data-target='#modalDetalleReceta' ><i class='fa fa-eye'></i></button>";
 		  	
 			/*==Botón Editar y Eliminar=*/

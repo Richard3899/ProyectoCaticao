@@ -52,6 +52,7 @@
          <th style="width:20px">#</th>
          <th>Descripción</th>
          <th>Mes</th>
+         <th>Detalle</th>
          <th>Acciones</th>
 
        </tr> 
@@ -235,6 +236,82 @@ MODAL EDITAR MES GASTO
       ?>
 
     </form>
+
+  </div>
+
+</div>
+
+</div>
+
+
+
+<!--=====================================
+MODAL GASTO ADMINISTRATIVO POR MES
+======================================-->
+
+<div id="modalDetalleMesGasto" class="modal fade" role="dialog">
+
+<div class="modal-dialog modal-xl">
+
+  <div class="modal-content">
+
+      <!--=====================================
+      CABEZA DEL MODAL
+      ======================================-->
+
+      <div class="modal-header" style="background:gray; color:white">
+
+      <h4 id="descripcionMes" class="modal-title"></h4>
+
+      <button type="button" class="close" data-dismiss="modal">&times;</button>
+
+      </div>
+ 
+      <!--=====================================
+      CUERPO DEL MODAL
+      ======================================-->
+
+      <div class="modal-body">
+
+      <div class="card">
+
+        <div class="card-body">
+
+          <table class="table table-bordered table-striped dt-responsive tablaGastoAdminPorMes2" width="100%">
+          
+            <thead>
+            
+            <tr> 
+              
+              <th style="width:20px">#</th>
+              <th>Nombre</th>
+              <th>Tipo de Gasto</th>  
+              <th>Cantidad</th>
+              <th>Precio</th>
+              <th>Total</th>
+
+            </tr> 
+
+            </thead>
+
+          </table>
+          
+        </div>
+      
+      </div>
+
+      </div>
+
+      <!--=====================================
+      PIE DEL MODAL
+      ======================================-->
+
+      <div class="modal-footer">
+
+        <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Salir</button>
+
+      </div>
+
 
   </div>
 

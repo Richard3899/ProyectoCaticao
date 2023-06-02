@@ -114,10 +114,14 @@ class TablaMesGasto{
 
 			}
 
+			/*= BOTÓN PARA VER DETALLES =*/
+			$detalle =  "<button title='Detalle de los gastos del mes' class='btn btn-info btnDetalleMesGasto' idMesGasto='".$mesgasto[$i]["idMesGasto"]."' descripcionMes='".$mesgasto[$i]["descripcion"]."'  data-toggle='modal' data-target='#modalDetalleMesGasto' ><i class='fa fa-eye'></i></button>";
+
 		  	$datosJson .='[
 			      "'.($i+1).'",
 			      "'.$mesgasto[$i]["descripcion"].'",
 				  "'.$mesgasto[$i]["mesV"].'",
+				  "'.$detalle.'",
 			      "'.$botones.'"
 			    ],';
 

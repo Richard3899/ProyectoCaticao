@@ -35,7 +35,29 @@ class AjaxCostoReceta{
 
 	}
 
+	public $idReceta;
 
+	public function ajaxValidarMesOculto(){
+
+		$valor = $this->idReceta;
+
+		$respuesta = ControladorRecetaGastoAdminPorMes::ctrValidarMesOculto($valor);
+
+		echo json_encode($respuesta);
+
+	}
+
+	public $idMesGasto3;
+
+	public function ajaxValidarGastoNoAgregado(){
+
+		$valor = $this->idMesGasto3;
+
+		$respuesta = ControladorRecetaGastoAdminPorMes::ctrValidarGastoNoAgregado($valor);
+
+		echo json_encode($respuesta);
+
+	}
 
 }
 
@@ -56,8 +78,30 @@ CONSULTA COSTO DE VENTA
 =============================================*/
 if(isset($_POST["idMesGasto2"])){
 
-	$editar = new AjaxCostoReceta();
-	$editar -> idMesGasto2 = $_POST["idMesGasto2"];
-	$editar -> ajaxMostrarTipoGasto2();
+	$consulta = new AjaxCostoReceta();
+	$consulta -> idMesGasto2 = $_POST["idMesGasto2"];
+	$consulta -> ajaxMostrarTipoGasto2();
+
+}
+
+/*=============================================
+VALIDAR MES OCULTO
+=============================================*/
+if(isset($_POST["idReceta"])){
+
+	$validar = new AjaxCostoReceta();
+	$validar -> idReceta = $_POST["idReceta"];
+	$validar -> ajaxValidarMesOculto();
+
+}
+
+/*=============================================
+VALIDAR GASTO MES
+=============================================*/
+if(isset($_POST["idMesGasto3"])){
+
+	$consulta = new AjaxCostoReceta();
+	$consulta -> idMesGasto3 = $_POST["idMesGasto3"];
+	$consulta -> ajaxValidarGastoNoAgregado();
 
 }

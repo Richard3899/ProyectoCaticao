@@ -70,6 +70,32 @@ class ModeloRecetaGastoAdminPorMes{
 	}
 
 	/*=============================================
+	ACTUALIZAR COSTO TOTAL DE LA RECETA
+	=============================================*/
+
+	static public function mdlActualizarCostoTotalReceta($valor){
+
+		$stmt = Conexion::conectar()->prepare("call sumatotal_costoporreceta(?)");
+
+		$stmt->bindParam(1, $valor, PDO::PARAM_INT);
+		
+		if($stmt->execute()){
+
+			return "ok";	
+
+		}else{
+
+			return "error";
+		
+		}
+
+		#$stmt->close();
+		
+		$stmt = null;
+
+	}
+
+	/*=============================================
 	ELIMINAR RECETAS Y GASTO ADMIN POR MES
 	=============================================*/
 
@@ -100,9 +126,9 @@ class ModeloRecetaGastoAdminPorMes{
 	CERRAR ADICIONALES
 	=============================================*/
 
-	static public function mdlCerrarAdicional($datos){
+	static public function mdlOcultarAdicional($datos){
 
-		$stmt = Conexion::conectar()->prepare("call cerrar_adicional(?)");
+		$stmt = Conexion::conectar()->prepare("call ocultar_adicional(?)");
 
 		$stmt->bindParam(1, $datos["idReceta"], PDO::PARAM_INT);
 
@@ -123,14 +149,25 @@ class ModeloRecetaGastoAdminPorMes{
 
 	}
 
+	static public function mdlValidarMesOculto($valor){
 
-	/*=============================================
-	MOSTRAR RECETAS Y GASTOS POR MES
-	=============================================*/
+		$stmt = Conexion::conectar()->prepare("call validar_MesOculto(?)");
 
-	static public function mdlMostrarRecetaGastoAdmin($valor){
+		$stmt->bindParam(1, $valor, PDO::PARAM_INT);
 
-		$stmt = Conexion::conectar()->prepare("call mostrar_recetagastoadmin(?)");
+		$stmt -> execute();
+
+		return $stmt -> fetch();
+		
+		#$stmt -> close();
+
+		$stmt = null;
+
+	}
+
+	static public function mdlValidarGastoNoAgregado($valor){
+
+		$stmt = Conexion::conectar()->prepare("call validar_gastonoagregado(?)");
 
 		$stmt->bindParam(1, $valor, PDO::PARAM_INT);
 
@@ -144,11 +181,34 @@ class ModeloRecetaGastoAdminPorMes{
 
 	}
 
-	static public function mdlSumaTotalRecetaGastoAdmin($valor){
 
-		$stmt = Conexion::conectar()->prepare("call sumatotal_recetagastoadmin(?,@variable)");
+	/*=============================================
+	MOSTRAR RECETAS Y GASTOS POR MES
+	=============================================*/
 
-		$stmt->bindParam(1, $valor, PDO::PARAM_INT);
+	static public function mdlMostrarRecetaGastoAdmin($valor1,$valor2){
+
+		$stmt = Conexion::conectar()->prepare("call mostrar_recetagastoadmin(?,?)");
+
+		$stmt->bindParam(1, $valor1, PDO::PARAM_INT);
+		$stmt->bindParam(2, $valor2, PDO::PARAM_INT);
+
+		$stmt -> execute();
+
+		return $stmt -> fetchAll();
+		
+		#$stmt -> close();
+
+		$stmt = null;
+
+	}
+
+	static public function mdlSumaTotalRecetaGastoAdmin($valor1,$valor2){
+
+		$stmt = Conexion::conectar()->prepare("call sumatotal_recetagastoadmin(?,?,@variable)");
+
+		$stmt->bindParam(1, $valor1, PDO::PARAM_INT);
+		$stmt->bindParam(2, $valor2, PDO::PARAM_INT);
 
 		$stmt -> execute();
 

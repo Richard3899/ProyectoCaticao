@@ -31,9 +31,9 @@ class TablaCostoReceta{
 
 			if($_GET["permisoEditar"]==0){
 			
-			if($recetas[$i]["cerradoAdicional"]==1){
+			if($recetas[$i]["ocultoAdicional"]==1){
 				
-			$botones =  "<div class='btn-group'><a class='btn btn-success' href='index.php?ruta=costototal&idReceta=".$recetas[$i]["idReceta"]."&codigo=".$recetas[$i]["codigo"]."'>Costo Total</a><button title='Adicionales Cerrado' class='btn btn-dark' ><i class='fa fa-lock'></i></button></div>"; 
+			$botones =  "<div class='btn-group'><a class='btn btn-success' href='index.php?ruta=costototal&idReceta=".$recetas[$i]["idReceta"]."&codigo=".$recetas[$i]["codigo"]."'>Costo Total</a><button title='Receta oculta en adicionales' class='btn btn-dark' ><i class='fa fa-lock'></i></button></div>"; 
 			
 			}else{
 
@@ -42,13 +42,13 @@ class TablaCostoReceta{
 		    }
 			}else{
 
-			if($recetas[$i]["cerradoAdicional"]==1){
+			if($recetas[$i]["ocultoAdicional"]==1){
 
-			$botones =  "<div class='btn-group'><a class='btn btn-success' href='index.php?ruta=costototal&idReceta=".$recetas[$i]["idReceta"]."&codigo=".$recetas[$i]["codigo"]."'>Costo Total</a><button title='Adicionales Cerrado' class='btn btn-dark' ><i class='fa fa-lock'></i></button></div>"; 
+			$botones =  "<div class='btn-group'><a class='btn btn-success' href='index.php?ruta=costototal&idReceta=".$recetas[$i]["idReceta"]."&codigo=".$recetas[$i]["codigo"]."'>Costo Total</a><button title='Receta oculta en adicionales' class='btn btn-dark' ><i class='fa fa-lock'></i></button></div>"; 
 			
 			}else{
 
-			$botones =  "<div class='btn-group'><a class='btn btn-success' href='index.php?ruta=costototal&idReceta=".$recetas[$i]["idReceta"]."&codigo=".$recetas[$i]["codigo"]."'>Costo Total</a><button title='Cerrar Adicionales' class='btn btn-secondary btnCerrarAdicional' idReceta='".$recetas[$i]["idReceta"]."'><i class='fa fa-lock'></i></button></div>"; 
+			$botones =  "<div class='btn-group'><a class='btn btn-success' href='index.php?ruta=costototal&idReceta=".$recetas[$i]["idReceta"]."&codigo=".$recetas[$i]["codigo"]."'>Costo Total</a><button title='Ocultar receta en adicionales' class='btn btn-secondary btnOcultarAdicional' idReceta='".$recetas[$i]["idReceta"]."'><i class='fa fa-lock'></i></button></div>"; 
 			
 			}
 			}

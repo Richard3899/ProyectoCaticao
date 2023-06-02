@@ -1,6 +1,7 @@
 const datosAjax=[];
 const indice= [];
 const valoresRecetas= [];
+const RecetasActualizar= [];
 const valoresGastos = [];
 var tablaInicial;
 var tablaFinal;
@@ -9,7 +10,7 @@ var validacion=0;
 function iniciar(){
 	tablaAsignacionInicial();
 	tablaCostoReceta();
-	CerrarAdicional();
+	OcultarAdicional();
 }
 
 function tablaCostoReceta(){
@@ -163,8 +164,6 @@ function LimpiarModalAsignar(){
 
 function CargarTablaInicial(){
 
-	
-
 	var table = $('.tablaAsignacionAdicionales').DataTable();
 	
 	table.destroy();
@@ -200,7 +199,8 @@ $( document ).on( 'click', '.checkGastos', function() {
 		valoresRecetas.push(idReceta);
 		valoresGastos.push(idGastoAdminPorMes);
 		indice.push(idIndex);
-		
+
+		RecetasActualizar.push(idReceta);
 
 	}else{
 
@@ -208,6 +208,8 @@ $( document ).on( 'click', '.checkGastos', function() {
 		indice.splice(index, 1);
 		valoresRecetas.splice(index, 1);
 		valoresGastos.splice(index, 1);
+
+		RecetasActualizar.push(idReceta);
 
 	}
 
@@ -251,14 +253,22 @@ $( document ).on( 'click', '.checkGastos', function() {
 			$("#idReceta").val(valoresRecetas);
 			$("#idGastoAdminPorMes").val(valoresGastos)
 
-			console.log(validacion)
-			console.log(indice); 
-			console.log(valoresRecetas)
-			console.log(valoresGastos)
-			console.log("-------------")
-			console.log($("#idReceta").val());
-			console.log($("#idReceta").val());
-			console.log($("#idGastoAdminPorMes").val());
+			var RecetasUnicas = RecetasActualizar.filter((item,index)=>{
+			  return RecetasActualizar.indexOf(item) === index;
+			})
+			$("#RecetasActualizar").val(RecetasUnicas)
+
+			// console.log(validacion)
+			// console.log(indice);
+			// console.log(valoresRecetas)
+			// console.log(valoresGastos)
+			// console.log("-------------")
+			// console.log($("#indice").val());
+			// console.log($("#idReceta").val());
+			// console.log($("#idGastoAdminPorMes").val());
+			// console.log("-------------")
+			// console.log(RecetasUnicas)
+			// console.log($("#RecetasActualizar").val());
         },
 
 	})
@@ -277,9 +287,13 @@ $("#nuevoTipoGasto").on("change", function() {
 	valoresGastos.length = 0;
 	valoresRecetas.length = 0;
 
+	RecetasActualizar.length = 0;
+
 	$("#indice").val("");
 	$("#idReceta").val("");
 	$("#idGastoAdminPorMes").val("");
+	$("#RecetasActualizar").val("");
+
 	$('#inputTipoGasto').prop("disabled", true);
 
 	var idMesGasto = $("#seleccionarMesGasto").val();
@@ -405,7 +419,7 @@ function MarcarGastos(idMesGasto,idTipoGasto){
 				let index=[];
 				let idReceta=[];
 				let idGastoAdminPorMes=[];
-			
+			    
 				for (var i=0; i<respuesta.length; i++) { 
 
 				index.push(respuesta[i]["indice"]);
@@ -417,18 +431,29 @@ function MarcarGastos(idMesGasto,idTipoGasto){
 				idGastoAdminPorMes.push(respuesta[i]["idGastoAdminPorMes"]);
 				valoresGastos.push(respuesta[i]["idGastoAdminPorMes"]);
 
+				RecetasActualizar.push(respuesta[i]["idReceta"]);
+
 				}
+
 				$("#indice").val(indice);
 				$("#idReceta").val(valoresRecetas);
 				$("#idGastoAdminPorMes").val(valoresGastos)
 
-				console.log(indice);
-				console.log(valoresRecetas)
-				console.log(valoresGastos)
-				console.log("-------------")
-				console.log($("#indice").val());
-				console.log($("#idReceta").val());
-				console.log($("#idGastoAdminPorMes").val());
+				var RecetasUnicas = RecetasActualizar.filter((item,index)=>{
+					return RecetasActualizar.indexOf(item) === index;
+				  })
+				$("#RecetasActualizar").val(RecetasUnicas)
+
+				// console.log(indice);
+				// console.log(valoresRecetas)
+				// console.log(valoresGastos)
+				// console.log("-------------")
+				// console.log($("#indice").val());
+				// console.log($("#idReceta").val());
+				// console.log($("#idGastoAdminPorMes").val());
+				// console.log("-------------")
+				// console.log(RecetasUnicas);
+				// console.log($("#RecetasActualizar").val());
 				
 				$.each(idReceta, function(i,rc){
 				
@@ -456,25 +481,67 @@ function MarcarGastos(idMesGasto,idTipoGasto){
 /*=============================================
 CERRAR ADICIONAL
 =============================================*/
-function CerrarAdicional(){
-	$(".tablaCostoReceta tbody").on("click", "button.btnCerrarAdicional", function(){
+function OcultarAdicional(){
+
+	$(".tablaCostoReceta tbody").on("click", "button.btnOcultarAdicional", function(){
 
 		var idReceta = $(this).attr("idReceta");
+
+		var datos = new FormData();
+
+		datos.append("idReceta", idReceta);
+
+		$.ajax({
+
+			url:"ajax/costoreceta.ajax.php",
+			method: "POST",
+			data: datos, 
+			cache: false,
+			contentType: false,
+			processData: false,
+			dataType:"json",
+			success:function(respuesta){
 	
-		Swal.fire({
+				if(respuesta!=""){
 	
-			title: '¿Está seguro de cerrar los adicionales?',
-			text: "¡Si no lo está puede cancelar la acción!",
-			icon: 'warning',
-			showCancelButton: true,
-			confirmButtonColor: '#3085d6',
-			cancelButtonColor: '#d33',
-			cancelButtonText: 'Cancelar',
-			confirmButtonText: 'Si, cerrar adicionales!'
-			}).then(function(result){
-			if (result.value) {
+					validacion=respuesta["validacion"];
+
+					if(validacion!=0){
+
+						Swal.fire({
 	
-				window.location = "index.php?ruta=costoreceta&idReceta="+idReceta;
+							title: '¿Está seguro de ocultar la receta en adicionales?',
+							text: "¡Si no lo está puede cancelar la acción!",
+							icon: 'warning',
+							showCancelButton: true,
+							confirmButtonColor: '#3085d6',
+							cancelButtonColor: '#d33',
+							cancelButtonText: 'Cancelar',
+							confirmButtonText: 'Si, ocultar receta en adicionales!'
+							}).then(function(result){
+							if (result.value) {
+					
+								window.location = "index.php?ruta=costoreceta&idReceta="+idReceta;
+					
+							}
+					
+						})
+	
+					}else{
+
+						Swal.fire({
+	
+							title: 'Ocultar Mes',
+							text: "¡Primero debe estar oculto el mes para ocultar la receta en adicionales!",
+							icon: 'warning',
+							showConfirmButton: "false",
+							timer: "5000"
+
+						})
+
+					}
+					
+				}
 	
 			}
 	

@@ -28,30 +28,39 @@
       <input type="hidden" name="idReceta" id="idReceta" value="<?php echo $_GET['idReceta']; ?>">
       <input type="hidden" name="codigo" id="codigo" value="<?php echo $_GET['codigo']; ?>">
       
-      <div class="row justify-content-sm-end">
+        <div class="row justify-content-sm-end">
 
-         <a type="button" class="btn btn-secondary col-12 col-sm-4 col-md-3 col-lg-2 col-xl-2" href="costoreceta">Volver</a>
-      </div>
+          <a type="button" class="btn btn-secondary col-12 col-sm-4 col-md-3 col-lg-2 col-xl-2" href="costoreceta">Volver</a> 
+        </div>
 
       </div>
 
       <div class="card-body">
 
-      <table id="tablaCostoTotal" class="table table-bordered table-striped dt-responsive tablaCostoTotal" width="100%">
-       
-      <thead>
-       
-       <tr>
-         <th>Nombre</th>
-         <th>Precio Unitario</th>
-         <th>Cantidad</th>
-         <th>Total</th>
+        <table id="tablaCostoTotal" class="table table-bordered table-striped dt-responsive tablaCostoTotal" width="100%">
+        
+          <thead>
+          
+          <tr>
+            <th>Nombre</th>
+            <th>Precio Unitario</th>
+            <th>Cantidad</th>
+            <th>Total</th>
 
-       </tr> 
+          </tr> 
 
-      </thead>
+          </thead>
 
-     </table>
+        </table>
+
+      </div>
+      <div class="card-footer">
+
+        <div class="row justify-content-sm-end">
+
+        <a type="button" class="btn btn-secondary col-12 col-sm-4 col-md-3 col-lg-2 col-xl-2" href="costoreceta">Volver</a>
+
+        </div>
 
       </div>
       <!-- /.card-body -->

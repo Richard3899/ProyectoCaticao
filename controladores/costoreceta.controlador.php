@@ -61,10 +61,12 @@ class ControladorRecetaGastoAdminPorMes{
 
 			$idReceta = $_POST['idReceta'];
 			$idGastoAdminPorMes = $_POST['idGastoAdminPorMes'];
+			$RecetasActualizar=$_POST['RecetasActualizar'];
 
 			$indice=explode( ',', $indice );
 			$idReceta=explode( ',', $idReceta );
 			$idGastoAdminPorMes=explode( ',', $idGastoAdminPorMes );
+			$RecetasActualizar=explode( ',', $RecetasActualizar );
 
 			foreach($idReceta as $i => $valor){
 
@@ -74,17 +76,12 @@ class ControladorRecetaGastoAdminPorMes{
 
 				$respuesta=ModeloRecetaGastoAdminPorMes::mdlIngresarRecetaGastoAdminPorMes($datos);
 			}
+			
+			foreach($RecetasActualizar as $valor){
 
+				ModeloRecetaGastoAdminPorMes::mdlActualizarCostoTotalReceta($valor);
 
-		// 	------------------------------------
-		// AGREGAR UN PROCEDIMIENTO ALMACENADO PARA ACTUALIZAR LOS PRECIOS (POR RECETA)
-
-		// CALL sumatotal_costoporreceta(idRecetaI);
-		// --------------------------------------------------------------------------
-
-		// 	------------------------------------
-		//  CREAR CONDICION SI VA A CERRAR LOS ADICIONALES PRIMERO QUE OCULTE CIERRE EL MES
-		// --------------------------------------------------------------------------
+			}
  
 			if($respuesta == "ok"){
  
@@ -111,17 +108,16 @@ class ControladorRecetaGastoAdminPorMes{
 		}
 	} 
 
-
 	/*=============================================
 	CERRAR ADICIONAL
 	=============================================*/
-	static public function ctrCerrarAdicional(){
+	static public function ctrOcultarAdicional(){
 
 		if(isset($_GET["idReceta"])){
 					
 			$datos = array( "idReceta" => $_GET["idReceta"]);
 
-			$respuesta = ModeloRecetaGastoAdminPorMes::mdlCerrarAdicional($datos);
+			$respuesta = ModeloRecetaGastoAdminPorMes::mdlOcultarAdicional($datos);
 
 			if($respuesta == "ok"){
 
@@ -130,7 +126,7 @@ class ControladorRecetaGastoAdminPorMes{
 				Swal.fire({
 				
 					icon: "success",
-					title: "¡Los adicionales ha sido cerrado correctamente!",
+					title: "¡La receta a sido oculta en adicionales correctamente!",
 					showConfirmButton: false,
 					timer: 1500
 				
@@ -148,13 +144,16 @@ class ControladorRecetaGastoAdminPorMes{
 
 	}
 
-	/*=============================================
-	MOSTRAR RECETAS Y GASTOS POR MES
-	=============================================*/
+	static public function ctrValidarMesOculto($valor){
 
-	static public function ctrMostrarRecetaGastoAdmin($valor){
+		$respuesta = ModeloRecetaGastoAdminPorMes::mdlValidarMesOculto($valor);
 
-		$respuesta = ModeloRecetaGastoAdminPorMes::MdlMostrarRecetaGastoAdmin($valor);
+		return $respuesta;
+	}
+
+	static public function ctrValidarGastoNoAgregado($valor){
+
+		$respuesta = ModeloRecetaGastoAdminPorMes::mdlValidarGastoNoAgregado($valor);
 
 		return $respuesta;
 	}
@@ -163,9 +162,20 @@ class ControladorRecetaGastoAdminPorMes{
 	MOSTRAR RECETAS Y GASTOS POR MES
 	=============================================*/
 
-	static public function ctrSumaTotalRecetaGastoAdmin($valor){
+	static public function ctrMostrarRecetaGastoAdmin($valor1,$valor2){
 
-		$respuesta = ModeloRecetaGastoAdminPorMes::MdlSumaTotalRecetaGastoAdmin($valor);
+		$respuesta = ModeloRecetaGastoAdminPorMes::MdlMostrarRecetaGastoAdmin($valor1,$valor2);
+
+		return $respuesta;
+	}
+
+	/*=============================================
+	MOSTRAR RECETAS Y GASTOS POR MES
+	=============================================*/
+
+	static public function ctrSumaTotalRecetaGastoAdmin($valor1,$valor2){
+
+		$respuesta = ModeloRecetaGastoAdminPorMes::MdlSumaTotalRecetaGastoAdmin($valor1,$valor2);
 
 		return $respuesta;
 	}

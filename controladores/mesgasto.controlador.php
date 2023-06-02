@@ -120,7 +120,7 @@ class ControladorMesGasto{
 				Swal.fire({
 				
 					icon: "success",
-					title: "¡El costo de recetas y gasto admin ha sido eliminado correctamente!",
+					title: "¡El mes ha sido eliminado correctamente!",
 					showConfirmButton: false,
 					timer: 1500
 				
@@ -133,7 +133,26 @@ class ControladorMesGasto{
 				
 				</script>';
 
-			}	
+			}else{
+
+				echo '<script>
+
+				Swal.fire({
+				
+					icon: "error",
+					title: "¡El mes tiene gastos adicionales asignados!",
+					showConfirmButton: false,
+					timer: 1500
+				
+				}).then(function(result){
+				
+						window.location = "mesgasto";
+				
+				});
+				
+				</script>';
+
+			}
 		}
 
 

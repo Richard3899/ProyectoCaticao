@@ -127,34 +127,22 @@ class TablaCostoTotal{
 
 		$totalconsumogas = $sumatotalconsumogasreceta[0];
 
-
-
-
-
-		
-
 		/*=============================================
  	 	TRAEMOS GASTO ADMIN
   		=============================================*/
-  		$recetagastoadmin = ControladorRecetaGastoAdminPorMes::ctrMostrarRecetaGastoAdmin($idRecetaC);	
+  		$recetagastoadmin = ControladorRecetaGastoAdminPorMes::ctrMostrarRecetaGastoAdmin($idRecetaC,1);	
 
-		$sumatotalgastoadmin= ControladorRecetaGastoAdminPorMes::ctrSumaTotalRecetaGastoAdmin($idRecetaC);	
+		$sumatotalgastoadmin= ControladorRecetaGastoAdminPorMes::ctrSumaTotalRecetaGastoAdmin($idRecetaC,1);	
 
 		$totalgastoadmin = $sumatotalgastoadmin[0];
-
-
 
 		/*=============================================
  	 	TRAEMOS COSTO DE VENTA
   		=============================================*/
 
-  		$recetacostoventa = ControladorRecetaCostoVenta::ctrMostrarRecetaCostoVenta($item,$idRecetaC);	
+  		$recetacostoventa = ControladorRecetaGastoAdminPorMes::ctrMostrarRecetaGastoAdmin($idRecetaC,2);
 
-		/*============================================
- 	 	TRAEMOS EL TOTAL DE RECETA COSTO DE VENTA
-  		=============================================*/
-
-		$sumatotalcostoventareceta = ControladorRecetaCostoVenta::ctrSumaTotalRecetaCostoVenta($idRecetaC);	
+		$sumatotalcostoventareceta = ControladorRecetaGastoAdminPorMes::ctrSumaTotalRecetaGastoAdmin($idRecetaC,2);
 
 		$totalcostoventa = $sumatotalcostoventareceta[0];
 
@@ -162,13 +150,9 @@ class TablaCostoTotal{
  	 	TRAEMOS COSTO MARKETING
   		=============================================*/
 
-  		$recetacostomarketing = ControladorRecetaCostoMarketing::ctrMostrarRecetaCostoMarketing($item,$idRecetaC);	
+  		$recetacostomarketing = ControladorRecetaGastoAdminPorMes::ctrMostrarRecetaGastoAdmin($idRecetaC,3);
 
-		/*============================================
- 	 	TRAEMOS EL TOTAL DE RECETA COSTO DE MARKETING
-  		=============================================*/
-
-		$sumatotalcostomarketingreceta = ControladorRecetaCostoMarketing::ctrSumaTotalRecetaCostoMarketing($idRecetaC);	
+		$sumatotalcostomarketingreceta = ControladorRecetaGastoAdminPorMes::ctrSumaTotalRecetaGastoAdmin($idRecetaC,3);
 
 		$totalcostomarketing = $sumatotalcostomarketingreceta[0];
 
@@ -176,13 +160,9 @@ class TablaCostoTotal{
  	 	TRAEMOS COSTO OPERATIVO
   		=============================================*/
 
-  		$recetacostooperativo = ControladorRecetaCostoOperativo::ctrMostrarRecetaCostoOperativo($item,$idRecetaC);	
+  		$recetacostooperativo = ControladorRecetaGastoAdminPorMes::ctrMostrarRecetaGastoAdmin($idRecetaC,4);	
 
-		/*============================================
- 	 	TRAEMOS EL TOTAL DE RECETA COSTO OPERATIVO
-  		=============================================*/
-
-		$sumatotalcostooperativoreceta = ControladorRecetaCostoOperativo::ctrSumaTotalRecetaCostoOperativo($idRecetaC);	
+		$sumatotalcostooperativoreceta = ControladorRecetaGastoAdminPorMes::ctrSumaTotalRecetaGastoAdmin($idRecetaC,4);	
 
 		$totalcostooperativo = $sumatotalcostooperativoreceta[0];
 
@@ -294,9 +274,9 @@ class TablaCostoTotal{
 			 for($i = 0; $i < count($recetacostoventa); $i++){
 				
 				  $datosJson .='[
-					  "'.($i+1).' - '.$recetacostoventa[$i]["nombreCostoVenta"].'",
+					  "'.($i+1).' - '.$recetacostoventa[$i]["nombreGastoAdmin"].'",
 					  "'.$recetacostoventa[$i]["precio"].'",
-					  "'.$recetacostoventa[$i]["cantidad"].'",
+					  "('.$recetacostoventa[$i]["cantidad"].' %)",
 					  "'.$recetacostoventa[$i]["total"].'"
 				],';
 	
@@ -308,9 +288,9 @@ class TablaCostoTotal{
 			 for($i = 0; $i < count($recetacostomarketing); $i++){
 				
 				  $datosJson .='[
-					  "'.($i+1).' - '.$recetacostomarketing[$i]["nombreCostoMarketing"].'",
+					  "'.($i+1).' - '.$recetacostomarketing[$i]["nombreGastoAdmin"].'",
 					  "'.$recetacostomarketing[$i]["precio"].'",
-					  "'.$recetacostomarketing[$i]["cantidad"].'",
+					  "('.$recetacostomarketing[$i]["cantidad"].' %)",
 					  "'.$recetacostomarketing[$i]["total"].'"
 				],';
 	
@@ -322,9 +302,9 @@ class TablaCostoTotal{
 			 for($i = 0; $i < count($recetacostooperativo); $i++){
 				
 				  $datosJson .='[
-					  "'.($i+1).' - '.$recetacostooperativo[$i]["nombreCostoOperativo"].'",
+					  "'.($i+1).' - '.$recetacostooperativo[$i]["nombreGastoAdmin"].'",
 					  "'.$recetacostooperativo[$i]["precio"].'",
-					  "'.$recetacostooperativo[$i]["cantidad"].'",
+					  "('.$recetacostooperativo[$i]["cantidad"].' %)",
 					  "'.$recetacostooperativo[$i]["total"].'"
 				],';
 	
@@ -333,7 +313,7 @@ class TablaCostoTotal{
 			$datosJson .='["TOTAL","","","'.$totalcostooperativo.'"],["","","",""]'; 						  
 			
 			$datosJson .=',["Costo Total de Producción: ","","","'.$receta["costoTotal"].'"]
-						  ,["Cantidad de Tabletas: ","","","('.$receta["cantidadTabletas"].')"]
+						  ,["Cantidad de Tabletas: ","","","['.$receta["cantidadTabletas"].']"]
 			              ,["Costo Por Tableta: ","","","'.$receta["costoPorTableta"].'"]]}';
 
 		    echo $datosJson;
