@@ -233,7 +233,7 @@
 							if (ingreso > 0) {
 							  color = 'success';
 							}
-						  return '<p class="text-' + color + '">' + DataTable.render.number( '.', ',', 2).display(ingreso) + '</button>';
+						  return '<p class="text-' + color + '">' + DataTable.render.number( '.', ',', 2).display(ingreso) + '</p>';
 						}
 						  return ingreso;
 						}
@@ -245,7 +245,7 @@
 							if (salida > 0) {
 							  color = 'danger';
 							}
-						  return '<p class="text-' + color + '">' + DataTable.render.number( '.', ',', 2).display(salida) + '</button>';
+						  return '<p class="text-' + color + '">' + DataTable.render.number( '.', ',', 2).display(salida) + '</p>';
 						}
 						  return salida;
 						}
@@ -257,7 +257,7 @@
 							if (saldo > 0 || saldo <= 0 ) {
 							  color = 'primary';
 							}
-							return '<p class="text-' + color + '">' + DataTable.render.number( '.', ',', 2).display(saldo) + '</button>';
+							return '<p class="text-' + color + '">' + DataTable.render.number( '.', ',', 2).display(saldo) + '</p>';
 						}
 						    return saldo;
 						}
