@@ -22,6 +22,13 @@ class ControladorMesGasto{
 		return $respuesta;
 	}
 
+	static public function ctrMostrarMesGasto3($valor){
+
+		$respuesta = ModeloMesGasto::MdlMostrarMesGasto3($valor);
+
+		return $respuesta;
+	}
+
 	/*=============================================
 	CREAR MES GASTO
 	=============================================*/

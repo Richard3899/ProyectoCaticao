@@ -51,6 +51,22 @@ class ModeloMesGasto{
 
 	}
 
+	static public function mdlMostrarMesGasto3($valor){
+
+		$stmt = Conexion::conectar()->prepare("call mostrar_mesgasto3(?)");
+
+		$stmt->bindParam(1, $valor, PDO::PARAM_STR);
+
+		$stmt -> execute();
+
+		return $stmt -> fetch();
+
+		#$stmt -> close();
+
+		$stmt = null;
+
+	}
+
 
 	/*=============================================
 	REGISTRO DE MES GASTO

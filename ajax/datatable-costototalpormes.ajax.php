@@ -18,48 +18,53 @@ class TablaCostoTotal{
   		=============================================*/
 
 		$idMesGastoC=$_GET["idMesGasto"];
-		$mes=$_GET["mes"];
+		// $mes=$_GET["mes"];
 
 		/*============================================
- 	 	TRAEMOS EL TOTAL DE GASTOS ADMINISTRATIVOS POR MES
+ 	 	TRAEMOS EL TOTAL DE GASTOS DEL MES
   		=============================================*/
 
-		$sumatotalgastoadminpormes = ControladorGastoAdminPorMes::ctrSumaTotalGastoAdminPorMes($idMesGastoC);	
+		$sumatotalgastoadmindelmes = ControladorGastoAdminPorMes::ctrSumaTotalGastoAdminPorMes($idMesGastoC,1);	
 
-		$totalgastosadmin = $sumatotalgastoadminpormes[0];
+		$totalgastosadmin = $sumatotalgastoadmindelmes[0];
+
+		$sumatotalcostoventadelmes = ControladorGastoAdminPorMes::ctrSumaTotalGastoAdminPorMes($idMesGastoC,2);	
+
+		$totalcostoventa = $sumatotalcostoventadelmes[0];
+
+		$sumatotalcostomarketingdelmes = ControladorGastoAdminPorMes::ctrSumaTotalGastoAdminPorMes($idMesGastoC,3);	
+
+		$totalcostomarketing = $sumatotalcostomarketingdelmes[0];
+
+		$sumatotalcostooperativodelmes = ControladorGastoAdminPorMes::ctrSumaTotalGastoAdminPorMes($idMesGastoC,4);	
+
+		$totalcostooperativo = $sumatotalcostooperativodelmes[0];
+
+		$sumatotalgastosdelmes = ControladorGastoAdminPorMes::ctrSumaTotalGastoAdminPorMes($idMesGastoC,0);	
+
+		$totalgastosdelmes = $sumatotalgastosdelmes[0];
 
 		/*============================================
- 	 	TRAEMOS EL COSTO TOTAL POR MES
+ 	 	TRAEMOS EL COSTO TOTAL POR MES DE LAS RECETAS
   		=============================================*/
 
-		$sumacostototalpormes = ControladorCostoTotalPorMes::ctrSumaTotalCostoTotalPorMes($mes);	
+		// $sumacostototalpormes = ControladorCostoTotalPorMes::ctrSumaTotalCostoTotalPorMes($mes);	
 
-		$costototalpormes = $sumacostototalpormes[0];
-		$cantidadTabletas = $sumacostototalpormes[1];
+		// $costototalpormes = $sumacostototalpormes[0];
+		// $cantidadTabletas = $sumacostototalpormes[1];
 
 		/*============================================
  	 	SUMA TOTAL
   		=============================================*/
 
-		$costototal=$costototalpormes+$totalgastosadmin;
-		
-		if($costototal==0){
-			$costoPorTableta=0;
-		}else {
-			if($cantidadTabletas==0){
-				$costoPorTableta=0;
-			}else{
-				$costoPorTableta=$costototal/$cantidadTabletas;
-			}
-		}
-		
-
-		$datosJson = '{
-			"data": [["Costo total de las recetas","'.$costototalpormes.'"],';				  
-			
-			$datosJson .='["Gastos administrativos","'.$totalgastosadmin.'"],
-			          ["",""],["Costo total de producción  del mes : ","'.$costototal.'"],
-					  ["Costo total por tableta : ","'.$costoPorTableta.'"]]}';
+		$datosJson = '{"data": [';
+					  
+			$datosJson .='	["Gastos administrativos","'.$totalgastosadmin.'"],
+							["Costos de Ventas","'.$totalcostoventa.'"],
+							["Costos de Marketing","'.$totalcostomarketing.'"],
+							["Costos Operativos","'.$totalcostooperativo.'"],
+							["",""],
+							["Costo total: ","'.$totalgastosdelmes.'"]]}';
 
 		    echo $datosJson;
 

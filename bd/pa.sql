@@ -2570,6 +2570,23 @@ BEGIN
 END$$
 DELIMITER ;
 
+DROP procedure IF EXISTS `mostrar_mesgasto3`;
+DELIMITER $$
+USE `caticao`$$
+CREATE PROCEDURE `mostrar_mesgasto3` (IN idRecetaC INT)
+BEGIN
+
+   DECLARE descripcionMes TEXT;
+									  
+	SELECT DISTINCT(mg.descripcion) AS mesDescripcion FROM recetagastoadminpormes rgap INNER JOIN gastoadminpormes gap ON gap.idGastoAdminPorMes=rgap.idGastoAdminPorMes
+	                                          INNER JOIN mesgasto mg ON mg.idMesGasto=gap.idMesGasto
+	           										   WHERE  rgap.idReceta=idRecetaC INTO descripcionMes;
+	           										   
+	SELECT IFNULL(descripcionMes,"") AS descripcionMes;
+END$$
+DELIMITER ;
+
+CALL mostrar_mesgasto3(3)
 
 DROP procedure IF EXISTS `insertar_mesgasto`;
 DELIMITER $$
@@ -2865,10 +2882,23 @@ DELIMITER ;
 DROP procedure IF EXISTS `sumatotal_gastoadminpormes`;
 DELIMITER $$
 USE `caticao`$$
-CREATE PROCEDURE `sumatotal_gastoadminpormes` (in idMesGastoC INT)
+CREATE PROCEDURE `sumatotal_gastoadminpormes` (IN idMesGastoC INT, IN idTipoGastoC INT)
 BEGIN
-			SELECT IF(SUM(total) IS NULL, 0, SUM(total)) FROM gastoadminpormes
+
+    if idTipoGastoC!=0 then
+   
+    SELECT IF(SUM(gap.total) IS NULL, 0, SUM(gap.total)) FROM gastoadminpormes gap
+                                                 INNER JOIN gastoadmin ga ON ga.idGastoAdmin=gap.idGastoAdmin
+		                     							 WHERE idMesGasto=idMesGastoC AND ga.idTipoGasto=idTipoGastoC;
+    
+    else
+    
+    SELECT IF(SUM(total) IS NULL, 0, SUM(total)) FROM gastoadminpormes
 		                     WHERE idMesGasto=idMesGastoC;
+    
+    end if; 
+    
+
 END$$
 DELIMITER ;
 
@@ -2940,32 +2970,30 @@ BEGIN
 END$$
 DELIMITER ;
 
-
-
-
 -- Procedimientos almacenados Costo total de las recetas por mes-
-DROP procedure IF EXISTS `sumatotal_costototalpormes`;
-DELIMITER $$
-USE `caticao`$$
-CREATE PROCEDURE `sumatotal_costototalpormes` (IN mes DATE)
-BEGIN
-	-- Declaramos las variables-
-	DECLARE totalreceta DECIMAL(10,2);
-	DECLARE cantidadTableta DECIMAL(10,2);
-	
-  -- Calculamos los totales-
-	SELECT if(SUM(costoTotal) IS NULL, 0, SUM(costoTotal)) FROM receta 
-	WHERE MONTH(fechaFin) = MONTH(mes) AND YEAR(fechaFin) = YEAR(mes) INTO totalreceta;
-	
-	SELECT if(SUM(cantidadTabletas) IS NULL, 0, SUM(cantidadTabletas)) FROM receta 
-	WHERE MONTH(fechaFin) = MONTH(mes) AND YEAR(fechaFin) = YEAR(mes) INTO cantidadTableta;
 
-	-- sumamos los totales-
-	SELECT totalreceta,cantidadTableta;
-		                     
-END$$
-DELIMITER ;
-
+-- DROP procedure IF EXISTS `sumatotal_costototalpormes`;
+-- DELIMITER $$
+-- USE `caticao`$$
+-- CREATE PROCEDURE `sumatotal_costototalpormes` (IN mes DATE)
+-- BEGIN
+-- 	-- Declaramos las variables-
+-- 	DECLARE totalreceta DECIMAL(10,2);
+-- 	DECLARE cantidadTableta DECIMAL(10,2);
+-- 	
+--   -- Calculamos los totales-
+-- 	SELECT if(SUM(costoTotal) IS NULL, 0, SUM(costoTotal)) FROM receta 
+-- 	WHERE MONTH(fechaFin) = MONTH(mes) AND YEAR(fechaFin) = YEAR(mes) INTO totalreceta;
+-- 	
+-- 	SELECT if(SUM(cantidadTabletas) IS NULL, 0, SUM(cantidadTabletas)) FROM receta 
+-- 	WHERE MONTH(fechaFin) = MONTH(mes) AND YEAR(fechaFin) = YEAR(mes) INTO cantidadTableta;
+-- 
+-- 	-- sumamos los totales-
+-- 	SELECT totalreceta,cantidadTableta;
+-- 		                     
+-- END$$
+-- DELIMITER ;
+-- 
 
 -- Procedimientos almacenados de Reportes --
 DROP procedure IF EXISTS `mostrar_reporteinsumos`;

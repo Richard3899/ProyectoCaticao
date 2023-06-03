@@ -34,9 +34,9 @@ class ControladorGastoAdminPorMes{
 	/*=============================================
 	SUMAR TOTAL DE GASTO ADMIN POR MES
 	=============================================*/
-	static public function ctrSumaTotalGastoAdminPorMes($valor){
+	static public function ctrSumaTotalGastoAdminPorMes($valor1,$valor2){
 
-		$respuesta = ModeloGastoAdminPorMes::mdlSumaTotalGastoAdminPorMes($valor);
+		$respuesta = ModeloGastoAdminPorMes::mdlSumaTotalGastoAdminPorMes($valor1,$valor2);
 
 		return $respuesta;
 	}

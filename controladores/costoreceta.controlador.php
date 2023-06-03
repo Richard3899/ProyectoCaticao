@@ -34,9 +34,18 @@ class ControladorRecetaGastoAdminPorMes{
 			$idMesGasto = $_POST['seleccionarMesGasto'];
 			$idTipoGasto = $_POST['nuevoTipoGasto'];
 
+			$RecetasActualizar=$_POST['RecetasActualizar'];
+			$RecetasActualizar=explode( ',', $RecetasActualizar );
+
 			if($indice==0){
 
 			ModeloRecetaGastoAdminPorMes::mdlEliminarRecetaGastoAdminPorMes($idMesGasto,$idTipoGasto);
+
+			foreach($RecetasActualizar as $valor){
+
+			ModeloRecetaGastoAdminPorMes::mdlActualizarCostoTotalReceta($valor);
+				
+			}
 
 			echo '<script>
 
@@ -61,12 +70,12 @@ class ControladorRecetaGastoAdminPorMes{
 
 			$idReceta = $_POST['idReceta'];
 			$idGastoAdminPorMes = $_POST['idGastoAdminPorMes'];
-			$RecetasActualizar=$_POST['RecetasActualizar'];
+			
 
 			$indice=explode( ',', $indice );
 			$idReceta=explode( ',', $idReceta );
 			$idGastoAdminPorMes=explode( ',', $idGastoAdminPorMes );
-			$RecetasActualizar=explode( ',', $RecetasActualizar );
+			
 
 			foreach($idReceta as $i => $valor){
 
@@ -82,7 +91,7 @@ class ControladorRecetaGastoAdminPorMes{
 				ModeloRecetaGastoAdminPorMes::mdlActualizarCostoTotalReceta($valor);
 
 			}
- 
+
 			if($respuesta == "ok"){
  
 				echo '<script>

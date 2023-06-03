@@ -23,14 +23,17 @@ require_once "../modelos/recetaconsumogas.modelo.php";
 require_once "../controladores/costoreceta.controlador.php";
 require_once "../modelos/costoreceta.modelo.php";
 
-require_once "../controladores/recetacostoventa.controlador.php";
-require_once "../modelos/recetacostoventa.modelo.php";
+require_once "../controladores/mesgasto.controlador.php";
+require_once "../modelos/mesgasto.modelo.php";
 
-require_once "../controladores/recetacostomarketing.controlador.php";
-require_once "../modelos/recetacostomarketing.modelo.php";
+// require_once "../controladores/recetacostoventa.controlador.php";
+// require_once "../modelos/recetacostoventa.modelo.php";
 
-require_once "../controladores/recetacostooperativo.controlador.php";
-require_once "../modelos/recetacostooperativo.modelo.php";
+// require_once "../controladores/recetacostomarketing.controlador.php";
+// require_once "../modelos/recetacostomarketing.modelo.php";
+
+// require_once "../controladores/recetacostooperativo.controlador.php";
+// require_once "../modelos/recetacostooperativo.modelo.php";
 
 class TablaCostoTotal{
 
@@ -126,6 +129,13 @@ class TablaCostoTotal{
 		$sumatotalconsumogasreceta = ControladorRecetaConsumoGas::ctrSumaTotalRecetaConsumoGas($idRecetaC);	
 
 		$totalconsumogas = $sumatotalconsumogasreceta[0];
+
+		/*=============================================
+ 	 	TRAEMOS DESCRIPCIÓN DEL MES
+  		=============================================*/
+
+		$gastomes = ControladorMesGasto::ctrMostrarMesGasto3($idRecetaC);	
+		$descripcionMes = $gastomes[0];
 
 		/*=============================================
  	 	TRAEMOS GASTO ADMIN
@@ -255,7 +265,8 @@ class TablaCostoTotal{
 			  };	
 
 			$datosJson .='["TOTAL","","","'.$totalconsumogas.'"],["","","",""],
-			              ["<strong>GASTO ADMINISTRATIVO</strong>","","",""],'; 
+						  ["<strong>( GASTOS '.$descripcionMes.' )</strong>","","",""],
+						  ["","","",""],["<strong>GASTO ADMINISTRATIVO</strong>","","",""],'; 
 
 			 for($i = 0; $i < count($recetagastoadmin); $i++){
 				

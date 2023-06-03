@@ -21,7 +21,7 @@ class TablaGastoAdminPorMes{
  	 	TRAEMOS EL TOTAL DE GASTOS ADMINISTRATIVOS POR MES
   		=============================================*/
 
-		$sumatotalgastoadminpormes = ControladorGastoAdminPorMes::ctrSumaTotalGastoAdminPorMes($idMesGastoC);	
+		$sumatotalgastoadminpormes = ControladorGastoAdminPorMes::ctrSumaTotalGastoAdminPorMes($idMesGastoC,0);	
 
 		$total = $sumatotalgastoadminpormes[0];
 

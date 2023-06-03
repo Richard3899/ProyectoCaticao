@@ -148,11 +148,12 @@ class ModeloGastoAdminPorMes{
 	SUMAR EL TOTAL DE GASTO ADMIN POR MES
 	=============================================*/
 
-	static public function mdlSumaTotalGastoAdminPorMes($valor){
+	static public function mdlSumaTotalGastoAdminPorMes($valor1,$valor2){
 
-		$stmt = Conexion::conectar()->prepare("call sumatotal_gastoadminpormes(?)");
+		$stmt = Conexion::conectar()->prepare("call sumatotal_gastoadminpormes(?,?)");
 
-		$stmt->bindParam(1, $valor, PDO::PARAM_INT);
+		$stmt->bindParam(1, $valor1, PDO::PARAM_INT);
+		$stmt->bindParam(2, $valor2, PDO::PARAM_INT);
 
 		$stmt -> execute();
 
