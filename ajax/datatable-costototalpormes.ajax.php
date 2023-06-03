@@ -45,7 +45,7 @@ class TablaCostoTotal{
 		$totalgastosdelmes = $sumatotalgastosdelmes[0];
 
 		/*============================================
- 	 	TRAEMOS EL COSTO TOTAL POR MES DE LAS RECETAS
+ 	 	TRAEMOS EL COSTO TOTAL DE LAS RECETAS DEL MES
   		=============================================*/
 
 		// $sumacostototalpormes = ControladorCostoTotalPorMes::ctrSumaTotalCostoTotalPorMes($mes);	

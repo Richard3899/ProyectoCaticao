@@ -42,8 +42,8 @@ if($value["modoDark"] == 1){
           ?>
 
           <?php 
-          $idModulosRegistro=array(2,3,4,5,6,7,8,9,10,11);
-          $descripcionModulosRegistro=array('insumos', 'materiales','marcas','productos','maquinas','empleados','gastoadmin', 'costoventa','costomarketing','costooperativo');
+          $idModulosRegistro=array(2,3,4,5,6,7,8);
+          $descripcionModulosRegistro=array('insumos', 'materiales','marcas','productos','maquinas','empleados','gastoadmin');
           ?>
 
           <?php if (array_intersect($idModulosRegistro,$arrayidModulos)){
@@ -121,53 +121,13 @@ if($value["modoDark"] == 1){
                 </a>
               </li>";}
 
-              $descripcionModulosGCCC=array('gastoadmin', 'costoventa','costomarketing','costooperativo');
-
-              if (array_intersect(array(8,9,10,11),$arrayidModulos)){
-              echo "<li class='nav-item "; if(in_array($url,$descripcionModulosGCCC) && in_array($url,$arrayDescripcionModulos)){ echo "menu-open"; } echo"'>
-                <a href='#' class='nav-link "; if(in_array($url,$descripcionModulosGCCC) && in_array($url,$arrayDescripcionModulos)){ echo "active"; } echo"'>
-                  <i class='nav-icon fas fa-angle-double-right'></i>
-                  <p>Gastos y Costos
-                  <i class='right fas fa-angle-left'></i>
-                  </p>
-                </a>
-                
-              <ul class='nav nav-treeview'>";
-
               if (in_array(8, $arrayidModulos)){
-              echo "<li class='nav-item'>
-                <a href='gastoadmin' class='nav-link "; if($url=='gastoadmin'){ echo "active"; } echo"'>
-                  <i class='nav-icon fas fa-angle-right'></i>
-                  <p>Gastos Admin</p>
-                </a>
-              </li>";}
-
-              if (in_array(9, $arrayidModulos)){
-              echo "<li class='nav-item'>
-                <a href='costoventa' class='nav-link "; if($url=='costoventa'){ echo "active"; } echo"'>
-                <i class='nav-icon fas fa-angle-right'></i>
-                  <p>Costos de Ventas</p>
-                </a>
-              </li>";}
-
-              if (in_array(10, $arrayidModulos)){
-              echo "<li class='nav-item'>
-                <a href='costomarketing' class='nav-link "; if($url=='costomarketing'){ echo "active"; } echo"'>
-                <i class='nav-icon fas fa-angle-right'></i>
-                  <p>Costos de Marketing</p>
-                </a>
-              </li>";}
-
-              if (in_array(11, $arrayidModulos)){
-              echo "<li class='nav-item'>
-                <a href='costooperativo' class='nav-link "; if($url=='costooperativo'){ echo "active"; } echo"'>
-                <i class='nav-icon fas fa-angle-right'></i>
-                  <p>Costos Operativos</p>
-                </a>
-              </li>";}
-
-            echo "</ul>
-            </li>";}
+                echo "<li class='nav-item'>
+                  <a href='gastoadmin' class='nav-link "; if($url=='gastoadmin'){ echo "active"; } echo"'>
+                  <i class='nav-icon fas fa-angle-double-right'></i>
+                    <p>Gastos y Costos</p>
+                  </a>
+                </li>";}
 
             echo "</ul>
             
@@ -229,7 +189,7 @@ if($value["modoDark"] == 1){
 
           <?php 
           $idModulosOperaciones=array(16);
-          $descripcionModulosOperaciones=array('recetas','recetainsumos','recetamateriales','recetamanodeobra','recetadepreciacion','recetaconsumoenergia','recetaconsumogas','recetacostoventa','recetacostomarketing','recetacostooperativo');
+          $descripcionModulosOperaciones=array('recetas','recetainsumos','recetamateriales','recetamanodeobra','recetadepreciacion','recetaconsumoenergia','recetaconsumogas');
           ?>
 
           <?php if ((array_intersect($idModulosOperaciones,$arrayidModulos))){

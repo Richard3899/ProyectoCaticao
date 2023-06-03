@@ -26,15 +26,6 @@ require_once "../modelos/costoreceta.modelo.php";
 require_once "../controladores/mesgasto.controlador.php";
 require_once "../modelos/mesgasto.modelo.php";
 
-// require_once "../controladores/recetacostoventa.controlador.php";
-// require_once "../modelos/recetacostoventa.modelo.php";
-
-// require_once "../controladores/recetacostomarketing.controlador.php";
-// require_once "../modelos/recetacostomarketing.modelo.php";
-
-// require_once "../controladores/recetacostooperativo.controlador.php";
-// require_once "../modelos/recetacostooperativo.modelo.php";
-
 class TablaCostoTotal{
 
  	/*=============================================

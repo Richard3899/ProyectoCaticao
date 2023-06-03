@@ -77,8 +77,7 @@ class ControladorUsuarios{
 						
 					}else{
 
-						echo '<br>
-							<div class="alert alert-danger">El usuario aún no está activado</div>';
+						echo '<br><div class="alert alert-danger">El usuario aún no está activado</div>';
 
 					}
  
@@ -198,7 +197,7 @@ class ControladorUsuarios{
 				if(in_array(13, $idModulos)){array_push($idModulos,31);}
 				if(in_array(14, $idModulos)){array_push($idModulos,32,24);}
 				if(in_array(15, $idModulos)){array_push($idModulos,33);}
-				if(in_array(16, $idModulos)){array_push($idModulos,34,35,36,37,38,39,40,41,42);}
+				if(in_array(16, $idModulos)){array_push($idModulos,34,35,36,37,38,39);}
 				if(in_array(17, $idModulos)){array_push($idModulos,43);}
 				if(in_array(18, $idModulos)){array_push($idModulos,44,45);}
 
@@ -388,7 +387,7 @@ class ControladorUsuarios{
 				if(in_array(13, $editaridModulos)){array_push($editaridModulos,31);}
 				if(in_array(14, $editaridModulos)){array_push($editaridModulos,32,24);}
 				if(in_array(15, $editaridModulos)){array_push($editaridModulos,33);}
-				if(in_array(16, $editaridModulos)){array_push($editaridModulos,34,35,36,37,38,39,40,41,42);}
+				if(in_array(16, $editaridModulos)){array_push($editaridModulos,34,35,36,37,38,39);}
 				if(in_array(17, $editaridModulos)){array_push($editaridModulos,43);}
 				if(in_array(18, $editaridModulos)){array_push($editaridModulos,44,45);}
 

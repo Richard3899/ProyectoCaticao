@@ -69,11 +69,6 @@
 
       <!-- /.card-body -->
     </div>
-     <br>
-     <br>
-     <br>
-     <br>
-     <br>
     <!-- /.card -->
   </section>
   <!-- /.content -->

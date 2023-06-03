@@ -111,50 +111,6 @@ CREATE TABLE gastoadmin (
 );
 
 -- -----------------------------------------------------
--- Table Receta Costo Venta
--- -----------------------------------------------------
-
-CREATE TABLE RecetaCostoVenta (
-  idRecetaCostoVenta INT  AUTO_INCREMENT primary key,
-  nombreCostoVenta VARCHAR(50),
-  cantidad DECIMAL(10,2),
-  precio DECIMAL(10,2),
-  total DECIMAL(10,2),
-  idGastoAdmin INT REFERENCES gastosadmin (idGastoAdmin),
-  idReceta INT REFERENCES receta (idReceta)
-);
- 
-
--- -----------------------------------------------------
--- Table Receta Costo Marketing
--- -----------------------------------------------------
-
-CREATE TABLE RecetaCostoMarketing (
-  idRecetaCostoMarketing INT  AUTO_INCREMENT primary key,
-  nombreCostoMarketing VARCHAR(50),
-  cantidad DECIMAL(10,2),
-  precio DECIMAL(10,2),
-  total DECIMAL(10,2),
-  idGastoAdmin INT REFERENCES gastosadmin (idGastoAdmin),
-  idReceta INT REFERENCES receta (idReceta)
-);
- 
-
--- -----------------------------------------------------
--- Table Receta Costo Operativo
--- -----------------------------------------------------
-
-CREATE TABLE RecetaCostoOperativo (
-  idRecetaCostoOperativo INT  AUTO_INCREMENT primary key,
-  nombreCostoOperativo VARCHAR(50),
-  cantidad DECIMAL(10,2),
-  precio DECIMAL(10,2),
-  total DECIMAL(10,2),
-  idGastoAdmin INT REFERENCES gastosadmin (idGastoAdmin),
-  idReceta INT REFERENCES receta (idReceta)
-);
-
--- -----------------------------------------------------
 -- Table lote
 -- -----------------------------------------------------
 
@@ -564,15 +520,6 @@ CREATE TABLE Configuracion (
 
   alter Table RecetaGastoAdminPorMes add foreign key (idGastoAdminPorMes) REFERENCES  GastoAdminPorMes (idGastoAdminPorMes);
   alter Table RecetaGastoAdminPorMes add foreign key (idReceta) REFERENCES  receta (idReceta);
-
-  alter Table RecetaCostoVenta add foreign key (idGastoAdmin) REFERENCES  gastoadmin (idGastoAdmin);
-  alter Table RecetaCostoVenta add foreign key (idReceta) REFERENCES  receta (idReceta);
-
-  alter Table RecetaCostoMarketing add foreign key (idGastoAdmin) REFERENCES  gastoadmin (idGastoAdmin);
-  alter Table RecetaCostoMarketing add foreign key (idReceta) REFERENCES  receta (idReceta);
-
-  alter Table RecetaCostoOperativo add foreign key (idGastoAdmin) REFERENCES  gastoadmin (idGastoAdmin);
-  alter Table RecetaCostoOperativo add foreign key (idReceta) REFERENCES  receta (idReceta);
 
   alter Table RecetaManodeObra add foreign key (idReceta) REFERENCES  receta (idReceta);
   alter Table RecetaManodeObra add foreign key (idEmpleado) REFERENCES Empleado (idEmpleado);

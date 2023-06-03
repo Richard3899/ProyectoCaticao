@@ -122,9 +122,6 @@ session_start();
 <script src="vistas/js/maquinas.js"></script>
 <script src="vistas/js/empleados.js"></script>
 <script src="vistas/js/gastoadmin.js"></script>
-<script src="vistas/js/costoventa.js"></script>
-<script src="vistas/js/costomarketing.js"></script>
-<script src="vistas/js/costooperativo.js"></script>
 <script src="vistas/js/inventarioinsumos.js"></script>
 <script src="vistas/js/kardexinsumos.js"></script>
 <script src="vistas/js/inventariomateriales.js"></script>
@@ -141,9 +138,6 @@ session_start();
 <script src="vistas/js/recetadepreciacion.js"></script>
 <script src="vistas/js/recetaconsumoenergia.js"></script>
 <script src="vistas/js/recetaconsumogas.js"></script>
-<script src="vistas/js/recetacostoventa.js"></script>
-<script src="vistas/js/recetacostomarketing.js"></script>
-<script src="vistas/js/recetacostooperativo.js"></script>
 <script src="vistas/js/costoreceta.js"></script>
 <script src="vistas/js/costototal.js"></script>
 <script src="vistas/js/mesgasto.js"></script>

@@ -263,22 +263,7 @@ MODAL AGREGAR USUARIO
 
               <div class="icheck-primary">
                   <input class="checkModulos" type="checkbox" id="cbGastoAdmin" value="8" name="checkListModulos[]">
-                  <label for="cbGastoAdmin">Gasto Administrativo</label>
-              </div>
-
-              <div class="icheck-primary">
-                  <input class="checkModulos" type="checkbox" id="cbCostoVenta" value="9" name="checkListModulos[]">
-                  <label for="cbCostoVenta">Costo de Venta</label>
-              </div>
-
-              <div class="icheck-primary">
-                  <input class="checkModulos" type="checkbox" id="cbCostoMarketing" value="10" name="checkListModulos[]">
-                  <label for="cbCostoMarketing">Costo de Marketing</label>
-              </div>
-
-              <div class="icheck-primary">
-                  <input class="checkModulos" type="checkbox" id="cbCostoOperativo" value="11" name="checkListModulos[]">
-                  <label for="cbCostoOperativo">Costo Operativo</label>
+                  <label for="cbGastoAdmin">Gastos y Costos</label>
               </div>
 
             </div>
@@ -636,22 +621,7 @@ MODAL EDITAR USUARIO
 
                   <div class="icheck-primary">
                       <input class="editarCheckModulos" type="checkbox" id="gastoadmin" value="8" name="editarCheckListModulos[]">
-                      <label for="gastoadmin">Gasto Administrativo</label>
-                  </div>
-
-                  <div class="icheck-primary">
-                      <input class="editarCheckModulos" type="checkbox" id="costoventa" value="9" name="editarCheckListModulos[]">
-                      <label for="costoventa">Costo de Venta</label>
-                  </div>
-
-                  <div class="icheck-primary">
-                      <input class="editarCheckModulos" type="checkbox" id="costomarketing" value="10" name="editarCheckListModulos[]">
-                      <label for="costomarketing">Costo de Marketing</label>
-                  </div>
-
-                  <div class="icheck-primary">
-                      <input class="editarCheckModulos" type="checkbox" id="costooperativo" value="11" name="editarCheckListModulos[]">
-                      <label for="costooperativo">Costo Operativo</label>
+                      <label for="gastoadmin">Gastos y Costos</label>
                   </div>
 
                 </div>
