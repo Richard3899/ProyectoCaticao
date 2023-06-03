@@ -244,7 +244,7 @@ MODAL AGREGAR GASTOS ADMINISTRATIVOS
 
         <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Salir</button>
 
-        <button type="submit" class="btn btn-primary">Guardar Gasto o Costo</button>
+        <button type="submit" class="btn btn-primary">Guardar Gasto</button>
 
       </div>
 
@@ -285,7 +285,7 @@ MODAL EDITAR GASTOS ADMINISTRATIVOS
 
       <div class="modal-header" style="background:gray; color:white">
 
-      <h4 class="modal-title">Editar Gasto o Costo</h4>
+      <h4 class="modal-title">Editar Gasto</h4>
 
       <button type="button" class="close" data-dismiss="modal">&times;</button>
 
@@ -440,7 +440,7 @@ MODAL EDITAR GASTOS ADMINISTRATIVOS
 
         <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Salir</button>
 
-        <button type="submit" class="btn btn-primary">Editar Gasto o Costo</button>
+        <button type="submit" class="btn btn-primary">Editar Gasto</button>
 
       </div>
 

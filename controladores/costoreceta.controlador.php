@@ -118,51 +118,58 @@ class ControladorRecetaGastoAdminPorMes{
 	} 
 
 	/*=============================================
-	CERRAR ADICIONAL
+	OCULTAR ADICIONAL
 	=============================================*/
-	static public function ctrOcultarAdicional(){
+	// static public function ctrOcultarAdicional(){
 
-		if(isset($_GET["idReceta"])){
+	// 	if(isset($_GET["idReceta"])){
 					
-			$datos = array( "idReceta" => $_GET["idReceta"]);
+	// 		$datos = array( "idReceta" => $_GET["idReceta"]);
 
-			$respuesta = ModeloRecetaGastoAdminPorMes::mdlOcultarAdicional($datos);
+	// 		$respuesta = ModeloRecetaGastoAdminPorMes::mdlOcultarAdicional($datos);
 
-			if($respuesta == "ok"){
+	// 		if($respuesta == "ok"){
 
-				echo '<script>
+	// 			echo '<script>
 
-				Swal.fire({
+	// 			Swal.fire({
 				
-					icon: "success",
-					title: "¡La receta a sido oculta en adicionales correctamente!",
-					showConfirmButton: false,
-					timer: 1500
+	// 				icon: "success",
+	// 				title: "¡La receta a sido oculta en adicionales correctamente!",
+	// 				showConfirmButton: false,
+	// 				timer: 1500
 				
-				}).then(function(result){
+	// 			}).then(function(result){
 				
-					window.location = "costoreceta";
+	// 				window.location = "costoreceta";
 				
-				});
+	// 			});
 				
-				</script>';
+	// 			</script>';
 
-			}
+	// 		}
 	
-		}
+	// 	}
 
-	}
+	// }
 
-	static public function ctrValidarMesOculto($valor){
+	// static public function ctrValidarMesOculto($valor){
 
-		$respuesta = ModeloRecetaGastoAdminPorMes::mdlValidarMesOculto($valor);
+	// 	$respuesta = ModeloRecetaGastoAdminPorMes::mdlValidarMesOculto($valor);
 
-		return $respuesta;
-	}
+	// 	return $respuesta;
+	// }
 
 	static public function ctrValidarGastoNoAgregado($valor){
 
 		$respuesta = ModeloRecetaGastoAdminPorMes::mdlValidarGastoNoAgregado($valor);
+
+		return $respuesta;
+	}
+
+	static public function ctrMostrarRecetasDelMes($valor){
+
+		$respuesta = ModeloRecetaGastoAdminPorMes::mdlMostrarRecetasDelMes($valor);
 
 		return $respuesta;
 	}

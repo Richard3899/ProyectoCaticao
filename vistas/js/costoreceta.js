@@ -10,7 +10,7 @@ var validacion=0;
 function iniciar(){
 	tablaAsignacionInicial();
 	tablaCostoReceta();
-	OcultarAdicional();
+	// OcultarAdicional();
 }
 
 function tablaCostoReceta(){
@@ -258,17 +258,17 @@ $( document ).on( 'click', '.checkGastos', function() {
 			})
 			$("#RecetasActualizar").val(RecetasUnicas)
 
-			// console.log(validacion)
-			// console.log(indice);
-			// console.log(valoresRecetas)
-			// console.log(valoresGastos)
-			// console.log("-------------")
-			// console.log($("#indice").val());
-			// console.log($("#idReceta").val());
-			// console.log($("#idGastoAdminPorMes").val());
-			// console.log("-------------")
-			// console.log(RecetasUnicas)
-			// console.log($("#RecetasActualizar").val());
+			console.log(validacion)
+			console.log(indice);
+			console.log(valoresRecetas)
+			console.log(valoresGastos)
+			console.log("-------------")
+			console.log($("#indice").val());
+			console.log($("#idReceta").val());
+			console.log($("#idGastoAdminPorMes").val());
+			console.log("-------------")
+			console.log(RecetasUnicas)
+			console.log($("#RecetasActualizar").val());
         },
 
 	})
@@ -444,16 +444,16 @@ function MarcarGastos(idMesGasto,idTipoGasto){
 				  })
 				$("#RecetasActualizar").val(RecetasUnicas)
 
-				// console.log(indice);
-				// console.log(valoresRecetas)
-				// console.log(valoresGastos)
-				// console.log("-------------")
-				// console.log($("#indice").val());
-				// console.log($("#idReceta").val());
-				// console.log($("#idGastoAdminPorMes").val());
-				// console.log("-------------")
-				// console.log(RecetasUnicas);
-				// console.log($("#RecetasActualizar").val());
+				console.log(indice);
+				console.log(valoresRecetas)
+				console.log(valoresGastos)
+				console.log("-------------")
+				console.log($("#indice").val());
+				console.log($("#idReceta").val());
+				console.log($("#idGastoAdminPorMes").val());
+				console.log("-------------")
+				console.log(RecetasUnicas);
+				console.log($("#RecetasActualizar").val());
 				
 				$.each(idReceta, function(i,rc){
 				
@@ -481,74 +481,74 @@ function MarcarGastos(idMesGasto,idTipoGasto){
 /*=============================================
 CERRAR ADICIONAL
 =============================================*/
-function OcultarAdicional(){
+// function OcultarAdicional(){ 
 
-	$(".tablaCostoReceta tbody").on("click", "button.btnOcultarAdicional", function(){
+// 	$(".tablaCostoReceta tbody").on("click", "button.btnOcultarAdicional", function(){
 
-		var idReceta = $(this).attr("idReceta");
+// 		var idReceta = $(this).attr("idReceta");
 
-		var datos = new FormData();
+// 		var datos = new FormData();
 
-		datos.append("idReceta", idReceta);
+// 		datos.append("idReceta", idReceta);
 
-		$.ajax({
+// 		$.ajax({
 
-			url:"ajax/costoreceta.ajax.php",
-			method: "POST",
-			data: datos, 
-			cache: false,
-			contentType: false,
-			processData: false,
-			dataType:"json",
-			success:function(respuesta){
+// 			url:"ajax/costoreceta.ajax.php",
+// 			method: "POST",
+// 			data: datos, 
+// 			cache: false,
+// 			contentType: false,
+// 			processData: false,
+// 			dataType:"json",
+// 			success:function(respuesta){
 	
-				if(respuesta!=""){
+// 				if(respuesta!=""){
 	
-					validacion=respuesta["validacion"];
+// 					validacion=respuesta["validacion"];
 
-					if(validacion!=0){
+// 					if(validacion!=0){
 
-						Swal.fire({
+// 						Swal.fire({
 	
-							title: '¿Está seguro de ocultar la receta en adicionales?',
-							text: "¡Si no lo está puede cancelar la acción!",
-							icon: 'warning',
-							showCancelButton: true,
-							confirmButtonColor: '#3085d6',
-							cancelButtonColor: '#d33',
-							cancelButtonText: 'Cancelar',
-							confirmButtonText: 'Si, ocultar receta en adicionales!'
-							}).then(function(result){
-							if (result.value) {
+// 							title: '¿Está seguro de ocultar la receta en adicionales?',
+// 							text: "¡Si no lo está puede cancelar la acción!",
+// 							icon: 'warning',
+// 							showCancelButton: true,
+// 							confirmButtonColor: '#3085d6',
+// 							cancelButtonColor: '#d33',
+// 							cancelButtonText: 'Cancelar',
+// 							confirmButtonText: 'Si, ocultar receta en adicionales!'
+// 							}).then(function(result){
+// 							if (result.value) {
 					
-								window.location = "index.php?ruta=costoreceta&idReceta="+idReceta;
+// 								window.location = "index.php?ruta=costoreceta&idReceta="+idReceta;
 					
-							}
+// 							}
 					
-						})
+// 						})
 	
-					}else{
+// 					}else{
 
-						Swal.fire({
+// 						Swal.fire({
 	
-							title: 'Ocultar Mes',
-							text: "¡Primero debe estar oculto el mes para ocultar la receta en adicionales!",
-							icon: 'warning',
-							showConfirmButton: "false",
-							timer: "5000"
+// 							title: 'Ocultar Mes',
+// 							text: "¡Primero debe estar oculto el mes para ocultar la receta en adicionales!",
+// 							icon: 'warning',
+// 							showConfirmButton: "false",
+// 							timer: "5000"
 
-						})
+// 						})
 
-					}
+// 					}
 					
-				}
+// 				}
 	
-			}
+// 			}
 	
-		})
+// 		})
 	
-	})
+// 	})
 	
-}
+// }
 
 iniciar();

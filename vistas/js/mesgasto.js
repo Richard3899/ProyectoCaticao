@@ -6,7 +6,7 @@ $('.tablaMesGasto').DataTable( {
 	  ],
 	"retrieve": true,
 	"processing": true,
-	"order": [[2, 'asc']],
+	"order": [[0, 'desc']],
 	"aLengthMenu": [[10,25,50,-1],[10,25,50,"Todos"]],
 	"language": {
 
@@ -189,7 +189,7 @@ $(".tablaMesGasto tbody").on("click", "button.btnOcultarMes", function(){
 		processData: false,
 		dataType:"json",
 		success:function(respuesta){
-
+        
 			if(respuesta!=""){
 
 				var GastosNoAgregados=[];
@@ -199,8 +199,6 @@ $(".tablaMesGasto tbody").on("click", "button.btnOcultarMes", function(){
 					GastosNoAgregados.push(respuesta[i]["nombreGastoAdmin"]);
 						
 				}
-
-				console.log(GastosNoAgregados);
 
 				Swal.fire({
 
@@ -215,50 +213,155 @@ $(".tablaMesGasto tbody").on("click", "button.btnOcultarMes", function(){
 					}).then(function(result){
 
 					if (result.value) {
-			
-						Swal.fire({
 
-							title: '¿Está seguro de ocultar el mes?',
-							text: "¡Si no lo está puede cancelar la acción!",
-							icon: 'warning',
-							showCancelButton: true,
-							confirmButtonColor: '#3085d6',
-							cancelButtonColor: '#d33',
-							cancelButtonText: 'Cancelar',
-							confirmButtonText: 'Si, ocultar mes!'
-							}).then(function(result){
-							if (result.value) {
+						var datos2 = new FormData();
+
+						datos2.append("idMesGasto4", idMesGasto);
+		
+						$.ajax({
+		
+							url:"ajax/costoreceta.ajax.php",
+							method: "POST",
+							data: datos2, 
+							cache: false,
+							contentType: false,
+							processData: false,
+							dataType:"json",
+							success:function(respuesta){
+							
+								if(respuesta!=""){
+				
+									var RecetasDelMes=[];
 					
-								window.location = "index.php?ruta=mesgasto&idM2Gasto="+idMesGasto;
+									for (var i=0; i<respuesta.length; i++) { 
+					
+										RecetasDelMes.push(respuesta[i]["codigo"]);
+											
+									}
+		
+									Swal.fire({
+		
+										title: '¿Está seguro de ocultar el mes?',
+										text: "Los gastos del mes fueron asignados a las recetas : "+RecetasDelMes,
+										icon: 'warning',
+										showCancelButton: true,
+										confirmButtonColor: '#3085d6',
+										cancelButtonColor: '#d33',
+										cancelButtonText: 'Cancelar',
+										confirmButtonText: 'Si, ocultar mes!'
+										}).then(function(result){
+										if (result.value) {
+								
+											window.location = "index.php?ruta=mesgasto&idM2Gasto="+idMesGasto;
+								
+										}
+								
+									})
+		
+								}else{
+
+									Swal.fire({
+
+										title: '¿Está seguro de ocultar el mes?',
+										text: "¡No se ha asignado los gastos a ninguna receta!",
+										icon: 'error',
+										showCancelButton: true,
+										confirmButtonColor: '#3085d6',
+										cancelButtonColor: '#d33',
+										cancelButtonText: 'Cancelar',
+										confirmButtonText: 'Si, ocultar mes!'
+										}).then(function(result){
+										if (result.value) {
+								
+											window.location = "index.php?ruta=mesgasto&idM2Gasto="+idMesGasto;
+								
+										}
+								
+									})
+
+								}
 					
 							}
 					
 						})
-			
+
 					}
 			
 				})
 				
 			}else{
 
-				Swal.fire({
+				var datos3 = new FormData();
 
-					title: '¿Está seguro de ocultar el mes?',
-					text: "¡Si no lo está puede cancelar la acción!",
-					icon: 'warning',
-					showCancelButton: true,
-					confirmButtonColor: '#3085d6',
-					cancelButtonColor: '#d33',
-					cancelButtonText: 'Cancelar',
-					confirmButtonText: 'Si, ocultar mes!'
-					}).then(function(result){
-					if (result.value) {
+				datos3.append("idMesGasto4", idMesGasto);
+
+				$.ajax({
+
+					url:"ajax/costoreceta.ajax.php",
+					method: "POST",
+					data: datos3, 
+					cache: false,
+					contentType: false,
+					processData: false,
+					dataType:"json",
+					success:function(respuesta){
+					
+						if(respuesta!=""){
 			
-						window.location = "index.php?ruta=mesgasto&idM2Gasto="+idMesGasto;
+							var RecetasDelMes=[];
+			
+							for (var i=0; i<respuesta.length; i++) { 
+			
+								RecetasDelMes.push(respuesta[i]["codigo"]);
+									
+							}
+
+							Swal.fire({
+
+								title: '¿Está seguro de ocultar el mes?',
+								text: "Los gastos del mes fueron asignados a las recetas : "+RecetasDelMes,
+								icon: 'warning',
+								showCancelButton: true,
+								confirmButtonColor: '#3085d6',
+								cancelButtonColor: '#d33',
+								cancelButtonText: 'Cancelar',
+								confirmButtonText: 'Si, ocultar mes!'
+								}).then(function(result){
+								if (result.value) {
+						
+									window.location = "index.php?ruta=mesgasto&idM2Gasto="+idMesGasto;
+						
+								}
+						
+							})
+
+						}else{
+
+							Swal.fire({
+
+								title: '¿Está seguro de ocultar el mes?',
+								text: "¡No se ha asignado los gastos a ninguna receta!",
+								icon: 'error',
+								showCancelButton: true,
+								confirmButtonColor: '#3085d6',
+								cancelButtonColor: '#d33',
+								cancelButtonText: 'Cancelar',
+								confirmButtonText: 'Si, ocultar mes!'
+								}).then(function(result){
+								if (result.value) {
+						
+									window.location = "index.php?ruta=mesgasto&idM2Gasto="+idMesGasto;
+						
+								}
+						
+							})
+
+						}
 			
 					}
 			
 				})
+
 			}
 
 		}

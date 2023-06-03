@@ -2270,7 +2270,23 @@ BEGIN
 
    UPDATE mesgasto set ocultoMes=1                
 	WHERE idMesGasto=idMesGastoE;
-     
+	
+	CREATE TEMPORARY TABLE temp_recetasocultar(
+	idReceta INT
+	);
+	
+	INSERT INTO temp_recetasocultar
+	SELECT DISTINCT(rgap.idReceta) AS idReceta FROM recetagastoadminpormes rgap 
+	                                          INNER JOIN gastoadminpormes gap ON gap.idGastoAdminPorMes=rgap.idGastoAdminPorMes
+	                                          INNER JOIN mesgasto mg ON mg.idMesGasto=gap.idMesGasto
+	                                          INNER JOIN receta r ON r.idReceta=rgap.idReceta
+	                                          WHERE  r.cerrado=1 AND mg.idMesGasto=idMesGastoE;
+	                                          
+   UPDATE receta SET ocultoAdicional=1
+	WHERE idReceta IN ( SELECT idReceta FROM temp_recetasocultar);
+	
+	DROP TABLE temp_recetasocultar;
+   
 END$$
 DELIMITER ;
 
@@ -2290,12 +2306,39 @@ BEGIN
 															INNER JOIN gastoadmin ga ON ga.idGastoAdmin=gap.idGastoAdmin
 	                                          INNER JOIN mesgasto mg ON mg.idMesGasto=gap.idMesGasto
 	                                          WHERE mg.idMesGasto=idMesGastoE;
-	
+	                                          
 	SELECT gap.*,ga.codigo from gastoadminpormes gap INNER JOIN gastoadmin ga ON ga.idGastoAdmin=gap.idGastoAdmin
 	                                          INNER JOIN mesgasto mg ON mg.idMesGasto=gap.idMesGasto
 	                                          WHERE mg.idMesGasto=idMesGastoE AND gap.idGastoAdminPorMes
 															NOT IN (SELECT idGastoAdminPorMes FROM temp_gastosEnRecetas);
-     
+	
+	DROP TABLE temp_gastosEnRecetas;
+															
+END$$
+DELIMITER ;
+
+
+DROP procedure IF EXISTS `mostrar_recetasdelmes`;
+DELIMITER $$
+USE `caticao`$$
+CREATE PROCEDURE `mostrar_recetasdelmes` (in idMesGastoE INT)
+BEGIN
+
+ 	CREATE TEMPORARY TABLE temp_RecetasDelMes(
+ 	codigo TEXT	
+ 	);
+ 	
+   INSERT INTO temp_RecetasDelMes
+	SELECT DISTINCT(r.codigo) AS codigo from recetagastoadminpormes rgap INNER JOIN gastoadminpormes gap ON gap.idGastoAdminPorMes=rgap.idGastoAdminPorMes
+															INNER JOIN gastoadmin ga ON ga.idGastoAdmin=gap.idGastoAdmin
+	                                          INNER JOIN mesgasto mg ON mg.idMesGasto=gap.idMesGasto
+	                                          INNER JOIN receta r ON r.idReceta=rgap.idReceta
+	                                          WHERE mg.idMesGasto=idMesGastoE;
+	                                          
+	SELECT codigo FROM temp_RecetasDelMes;
+													
+	DROP TABLE temp_RecetasDelMes;
+															
 END$$
 DELIMITER ;
 

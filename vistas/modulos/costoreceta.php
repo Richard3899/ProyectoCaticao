@@ -119,10 +119,20 @@ MODAL ASIGNAR ADICIONAL
                 <?php 
 
                   $mes = ControladorMesGasto::ctrMostrarMesGasto2();
+ 
+                  foreach($mes as $key=> $value){
 
-                  foreach($mes as $key=> $value){  
+                    if($key==0){
 
-                    echo '<option value="'.$value["idMesGasto"].'">'.$value["descripcion"].'</option>';
+                      echo '<option value="'.$value["idMesGasto"].'">'.$value["descripcion"].'</option>';
+
+                    }else{
+
+                      echo '<option value="'.$value["idMesGasto"].'" disabled>'.$value["descripcion"].'</option>';
+
+
+                    }
+
                   
                   }
 
@@ -213,7 +223,7 @@ MODAL ASIGNAR ADICIONAL
 
 <?php
 
-$ocultarAdicional= new ControladorRecetaGastoAdminPorMes();
-$ocultarAdicional -> ctrOcultarAdicional();
+// $ocultarAdicional= new ControladorRecetaGastoAdminPorMes();
+// $ocultarAdicional -> ctrOcultarAdicional();
 
 ?>

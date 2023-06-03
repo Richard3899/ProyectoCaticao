@@ -123,47 +123,47 @@ class ModeloRecetaGastoAdminPorMes{
 	}
 
 	/*=============================================
-	CERRAR ADICIONALES
+	OCULTAR ADICIONALES
 	=============================================*/
 
-	static public function mdlOcultarAdicional($datos){
+	// static public function mdlOcultarAdicional($datos){
 
-		$stmt = Conexion::conectar()->prepare("call ocultar_adicional(?)");
+	// 	$stmt = Conexion::conectar()->prepare("call ocultar_adicional(?)");
 
-		$stmt->bindParam(1, $datos["idReceta"], PDO::PARAM_INT);
+	// 	$stmt->bindParam(1, $datos["idReceta"], PDO::PARAM_INT);
 
-		if($stmt -> execute()){
+	// 	if($stmt -> execute()){
 
-			return "ok";
+	// 		return "ok";
 		
-		}else{
+	// 	}else{
 
-			return "error";	
+	// 		return "error";	
 
-		}
+	// 	}
 
-		#$stmt -> close();
+	// 	#$stmt -> close();
 
-		$stmt = null;
+	// 	$stmt = null;
 
 
-	}
+	// }
 
-	static public function mdlValidarMesOculto($valor){
+	// static public function mdlValidarMesOculto($valor){
 
-		$stmt = Conexion::conectar()->prepare("call validar_MesOculto(?)");
+	// 	$stmt = Conexion::conectar()->prepare("call validar_MesOculto(?)");
 
-		$stmt->bindParam(1, $valor, PDO::PARAM_INT);
+	// 	$stmt->bindParam(1, $valor, PDO::PARAM_INT);
 
-		$stmt -> execute();
+	// 	$stmt -> execute();
 
-		return $stmt -> fetch();
+	// 	return $stmt -> fetch();
 		
-		#$stmt -> close();
+	// 	#$stmt -> close();
 
-		$stmt = null;
+	// 	$stmt = null;
 
-	}
+	// }
 
 	static public function mdlValidarGastoNoAgregado($valor){
 
@@ -181,6 +181,21 @@ class ModeloRecetaGastoAdminPorMes{
 
 	}
 
+	static public function mdlMostrarRecetasDelMes($valor){
+
+		$stmt = Conexion::conectar()->prepare("call mostrar_recetasdelmes(?)");
+
+		$stmt->bindParam(1, $valor, PDO::PARAM_INT);
+
+		$stmt -> execute();
+
+		return $stmt -> fetchAll();
+		
+		#$stmt -> close();
+
+		$stmt = null;
+
+	}
 
 	/*=============================================
 	MOSTRAR RECETAS Y GASTOS POR MES
