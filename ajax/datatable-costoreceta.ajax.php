@@ -54,9 +54,9 @@ class TablaCostoReceta{
 			}
 
 			if($recetas[$i]["agregadoAdicional"]==0){
-				$agregadoAdicional="<span class='bg-warning btn-sm'>No agregado</span>";
+				$agregadoAdicional="<span class='bg-warning btn-sm'>No Asignado</span>";
 			}else{
-				$agregadoAdicional="<span class='bg-primary btn-sm'>Agregado</span>";
+				$agregadoAdicional="<span class='bg-primary btn-sm'>Asignado</span>";
 			}
 			
 

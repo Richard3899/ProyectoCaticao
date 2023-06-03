@@ -11,7 +11,7 @@
         <div class="col-sm-6">
           <ol class="breadcrumb float-sm-right">
             <li class="breadcrumb-item"><a href="inicio">Inicio</a></li>
-            <li class="breadcrumb-item active">Costos</li>
+            <li class="breadcrumb-item active">Costeo</li>
             <li class="breadcrumb-item active">Mes y Gastos</li>
           </ol>
         </div>
@@ -90,7 +90,7 @@ MODAL MES GASTO
 
       <div class="modal-header" style="background:gray; color:white">
 
-      <h4 class="modal-title">Gastos y Costos por Mes</h4>
+      <h4 class="modal-title">Registrar Mes</h4>
 
       <button type="button" class="close" data-dismiss="modal">&times;</button>
 
@@ -181,7 +181,7 @@ MODAL EDITAR MES GASTO
 
       <div class="modal-header" style="background:gray; color:white">
 
-      <h4 class="modal-title">Gastos y Costos por Mes</h4>
+      <h4 class="modal-title">Editar Mes</h4>
 
       <button type="button" class="close" data-dismiss="modal">&times;</button>
 

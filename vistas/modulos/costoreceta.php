@@ -11,7 +11,7 @@
         <div class="col-sm-6">
           <ol class="breadcrumb float-sm-right">
             <li class="breadcrumb-item"><a href="inicio">Inicio</a></li>
-            <li class="breadcrumb-item active">Costos</li>
+            <li class="breadcrumb-item active">Costeo</li>
             <li class="breadcrumb-item active">Costo por Receta</li>
           </ol>
         </div>
@@ -137,7 +137,7 @@ MODAL ASIGNAR ADICIONAL
 
           <!-- ENTRADA PARA SELECCIONAR EL TIPO DE GASTO-->
           <div class="form-group col-sm">
-            <label for="unidadMedida">Gastos y Costos</label>
+            <label for="unidadMedida">Tipo de Gasto</label>
             <div class="input-group">
             
                 <div class="input-group-prepend">
@@ -191,7 +191,7 @@ MODAL ASIGNAR ADICIONAL
 
         <button type="button" class="btn btn-default pull-left" data-dismiss="modal" onclick="LimpiarModalAsignar()">Cancelar</button>
 
-        <button type="submit" class="btn btn-primary">Guardar Asignación</button>
+        <button type="submit" class="btn btn-primary">Asignar</button>
 
       </div>
 

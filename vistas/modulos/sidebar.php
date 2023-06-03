@@ -125,7 +125,7 @@ if($value["modoDark"] == 1){
                 echo "<li class='nav-item'>
                   <a href='gastoadmin' class='nav-link "; if($url=='gastoadmin'){ echo "active"; } echo"'>
                   <i class='nav-icon fas fa-angle-double-right'></i>
-                    <p>Gastos y Costos</p>
+                    <p>Gastos</p>
                   </a>
                 </li>";}
 

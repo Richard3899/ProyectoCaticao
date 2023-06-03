@@ -6,13 +6,13 @@
     <div class="container-fluid">
       <div class="row mb-2">
         <div class="col-sm-6">
-          <h1>Gasto Admin por Mes</h1>
+          <h1>Gastos</h1>
         </div>
         <div class="col-sm-6">
           <ol class="breadcrumb float-sm-right">
             <li class="breadcrumb-item"><a href="inicio">Inicio</a></li>
-            <li class="breadcrumb-item active">Costos</li>
-            <li class="breadcrumb-item active">Costo de Recetas y Gasto Administrativo</li>
+            <li class="breadcrumb-item active">Costeo</li>
+            <li class="breadcrumb-item active">Gastos</li>
           </ol>
         </div>
       </div>
@@ -44,12 +44,12 @@
           if($permisoInsertar==1){
 
           echo  "<button class='btn btn-primary my-1 col-12 col-sm-5 col-md-4 mr-2 col-lg-8 col-xl-7' id='btnGastoAdminPorMes' data-toggle='modal' data-target='#modalGastoAdminPorMes'>
-                Agregar Gasto Admin
+                Agregar Gastos
                 </button>";
           }else{
 
           echo  "<button class='btn btn-primary my-1 col-12 col-sm-5 col-md-4 mr-2 col-lg-8 col-xl-7' id='btnGastoAdminPorMes'>
-                Agregar Gasto Admin
+                Agregar Gastos
                 </button>";
 
           }
@@ -111,7 +111,7 @@ MODAL GASTO ADMINISTRATIVO POR MES
 
       <div class="modal-header" style="background:gray; color:white">
 
-      <h4 class="modal-title">Gasto por Mes</h4>
+      <h4 class="modal-title">Registrar Gasto</h4>
 
       <button type="button" class="close" data-dismiss="modal">&times;</button>
 
@@ -133,7 +133,7 @@ MODAL GASTO ADMINISTRATIVO POR MES
 
             <!-- ENTRADA PARA SELECCIONAR TIPO GASTO o Costo-->
             <div class="form-group col-sm">
-            <label for="tipoGasto">Tipo Gasto</label>
+            <label for="tipoGasto">Tipo de Gasto</label>
             <div class="input-group">
 
                 <select class="form-control select2 input-lg nuevoidTipoGasto" id="nuevoidTipoGasto" name="nuevoidTipoGasto" style="width: 100%;" required>
@@ -232,7 +232,7 @@ MODAL GASTO ADMINISTRATIVO POR MES
 
         <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Salir</button>
 
-        <button type="submit" class="btn btn-primary">Guardar Gasto Admin</button>
+        <button type="submit" class="btn btn-primary">Guardar Gasto</button>
 
       </div>
 
@@ -269,7 +269,7 @@ MODAL EDITAR GASTO ADMINISTRATIVO POR MES
 
       <div class="modal-header" style="background:gray; color:white">
 
-      <h4 class="modal-title">Editar Gasto Admin por Mes</h4>
+      <h4 class="modal-title">Editar Gasto</h4>
 
       <button type="button" class="close" data-dismiss="modal">&times;</button>
 
@@ -361,7 +361,7 @@ MODAL EDITAR GASTO ADMINISTRATIVO POR MES
 
         <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Salir</button>
 
-        <button type="submit" class="btn btn-primary">Editar Gasto Admin</button>
+        <button type="submit" class="btn btn-primary">Editar Gasto</button>
 
       </div>
 

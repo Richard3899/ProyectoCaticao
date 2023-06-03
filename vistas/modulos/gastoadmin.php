@@ -6,14 +6,13 @@
     <div class="container-fluid">
       <div class="row mb-2">
         <div class="col-sm-6">
-          <h1>Administrador de Gastos y Costos</h1>
+          <h1>Administrador de Gastos</h1>
         </div>
         <div class="col-sm-6">
           <ol class="breadcrumb float-sm-right">
             <li class="breadcrumb-item"><a href="inicio">Inicio</a></li>
             <li class="breadcrumb-item active">Registros</li>
-            <li class="breadcrumb-item active">Gastos y Costos</li>
-            <li class="breadcrumb-item active">Gastos Administrativos</li>
+            <li class="breadcrumb-item active">Gastos</li>
           </ol>
         </div>
       </div>
@@ -30,12 +29,12 @@
        if($permisoInsertar==1){
 
        echo "<button class='btn btn-primary' data-toggle='modal' data-target='#modalAgregarGastoAdmin'>
-            Agregar Gasto o Costo
+            Agregar Gasto
             </button>";
 
        }else{
 
-       echo "<button class='btn btn-primary'>Agregar Gasto o Costo</button>";
+       echo "<button class='btn btn-primary'>Agregar Gasto</button>";
 
        }
       ?>       
@@ -54,7 +53,7 @@
          <th>Descripción</th>
          <th>Unidad de Medida</th>
          <th>Tipo de Costo</th>
-         <th>Gastos y Costos</th>
+         <th>Tipo de Gasto</th>
          <th>Acciones</th>
 
        </tr> 
@@ -92,7 +91,7 @@ MODAL AGREGAR GASTOS ADMINISTRATIVOS
 
       <div class="modal-header" style="background:gray; color:white">
 
-      <h4 class="modal-title">Agregar Gasto o Costo</h4>
+      <h4 class="modal-title">Agregar Gasto</h4>
 
       <button type="button" class="close" data-dismiss="modal">&times;</button>
 
@@ -109,7 +108,7 @@ MODAL AGREGAR GASTOS ADMINISTRATIVOS
           <div class="row">
           <!-- ENTRADA PARA SELECCIONAR EL TIPO DE GASTO-->
           <div class="form-group col-sm">
-          <label for="unidadMedida">Gastos y Costos</label>
+          <label for="unidadMedida">Tipo de Gasto</label>
             <div class="input-group">
             
                 <div class="input-group-prepend">
@@ -303,7 +302,7 @@ MODAL EDITAR GASTOS ADMINISTRATIVOS
           <div class="row">
           <!-- ENTRADA PARA SELECCIONAR EL TIPO DE GASTO-->
           <div class="form-group col-sm">
-          <label for="unidadMedida">Gastos y Costos</label>
+          <label for="unidadMedida">Tipo de Gasto</label>
             <div class="input-group">
             
                 <div class="input-group-prepend">
