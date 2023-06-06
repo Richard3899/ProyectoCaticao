@@ -2777,9 +2777,36 @@ BEGIN
 	 
 	 SELECT COUNT(idReceta) AS cantidad  FROM receta WHERE idEstado=1 INTO totalrecetasestado1; 
 	 SELECT COUNT(idReceta) AS cantidad  FROM receta WHERE idEstado=2 INTO totalrecetasestado2; 
-	 SELECT COUNT(idReceta) AS cantidad  FROM receta WHERE idEstado=3 INTO totalrecetasestado3; 
+	 SELECT COUNT(idReceta) AS cantidad  FROM receta WHERE idEstado=3 AND ocultoAdicional=1 AND cerrado=1 INTO totalrecetasestado3; 
 	 
 	 SELECT totalrecetasestado1,totalrecetasestado2,totalrecetasestado3;
+	 
+END$$
+DELIMITER ;
+
+
+DROP procedure IF EXISTS `mostrar_RecetasTerminadasPorMes`;
+DELIMITER $$
+USE `caticao`$$
+CREATE PROCEDURE `mostrar_RecetasTerminadasPorMes` (IN añoC INT)
+BEGIN
+
+	CREATE TEMPORARY TABLE  temp_recetasterminadas(
+	mes TEXT,
+	cantidadRecetas INT 
+	);
+	
+	INSERT INTO temp_recetasterminadas
+	SELECT month(r.fechaFin) AS mes,
+	COUNT(r.idReceta) AS cantidadRecetas FROM receta r
+	WHERE r.ocultoAdicional=1 AND r.cerrado=1 AND r.idEstado=3 AND year(r.fechaFin)=añoC
+	GROUP BY MONTH(r.fechaFin);
+	
+	SELECT ELT(mes, "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio",
+						 "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre") AS mes, cantidadRecetas
+   FROM temp_recetasterminadas;
+
+	DROP TABLE temp_recetasterminadas;
 	 
 END$$
 DELIMITER ;

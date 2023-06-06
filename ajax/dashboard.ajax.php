@@ -8,18 +8,18 @@ class AjaxDashboard{
 	/*=============================================
 	TRAER TOP PRODUCTOS
 	=============================================*/	
-	public $valorItem;
+	public $itemInventario;
 
 	public function ajaxTopProductos(){
 
-		$valorItem = $this->valorItem;
+		$valor = $this->itemInventario;
 		
-		$respuesta = ControladorDashboard::ctrMostrarProductosTop($valorItem);
+		$respuesta = ControladorDashboard::ctrMostrarProductosTop($valor);
 
 		echo json_encode($respuesta);
 
 	}
-
+ 
 	/*=============================================
 	MOSTRAR CANTIDAD DE RECETAS CON CADA ESTADO
 	=============================================*/	
@@ -27,6 +27,21 @@ class AjaxDashboard{
 	public function ajaxCantidadRecetasEstados(){
 
 		$respuesta = ControladorDashboard::ctrMostrarCantidadRecetasEstados();
+
+		echo json_encode($respuesta);
+
+	}
+
+	/*=============================================
+	MOSTRAR CANTIDAD DE RECETAS TERMINADAS POR MES
+	=============================================*/	
+	public $Año;
+
+	public function ajaxRecetasTerminadasPorMes(){
+
+		$valor = $this->Año;
+		
+		$respuesta = ControladorDashboard::ctrMostrarRecetasTerminadasPorMes($valor);
 
 		echo json_encode($respuesta);
 
@@ -40,7 +55,7 @@ TRAER TOP PRODUCTOS CON STOCK
 if(isset($_POST["topProductos"])){
 
 	$editar = new AjaxDashboard();
-	$editar -> valorItem = $_POST["topProductos"];
+	$editar -> itemInventario = $_POST["topProductos"];
 	$editar -> ajaxTopProductos();
 
 }
@@ -52,5 +67,16 @@ if(isset($_POST["cantidadRecetasEstados"])){
 
 	$editar = new AjaxDashboard();
 	$editar -> ajaxCantidadRecetasEstados();
+
+}
+
+/*=============================================
+MOSTRAR CANTIDAD DE RECETAS TERMINADAS POR MES
+=============================================*/
+if(isset($_POST["año"])){
+
+	$editar = new AjaxDashboard();
+	$editar -> Año = $_POST["año"];
+	$editar -> ajaxRecetasTerminadasPorMes();
 
 }

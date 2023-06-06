@@ -2,6 +2,18 @@
 
 class ControladorDashboard{
 
+
+	/*=============================================
+	MOSTRAR CANTIDAD DE RECETAS CON CADA ESTADO
+	=============================================*/
+
+	static public function ctrMostrarCantidadRecetasEstados(){
+
+		$respuesta = ModeloDashboard::mdlMostrarCantidadRecetasEstados();
+
+		return $respuesta;
+	}
+
 	/*=============================================
 	MOSTRAR TOP PRODUCTOS CON STOCK
 	=============================================*/
@@ -13,13 +25,15 @@ class ControladorDashboard{
 		return $respuesta;
 	}
 
+
+
 	/*=============================================
-	MOSTRAR CANTIDAD DE RECETAS CON CADA ESTADO
+	MOSTRAR CANTIDAD DE RECETAS TERMINADOS POR MES
 	=============================================*/
 
-	static public function ctrMostrarCantidadRecetasEstados(){
+	static public function ctrMostrarRecetasTerminadasPorMes($valor){
 
-		$respuesta = ModeloDashboard::mdlMostrarCantidadRecetasEstados();
+		$respuesta = ModeloDashboard::mdlMostrarRecetasTerminadasPorMes($valor);
 
 		return $respuesta;
 	}
