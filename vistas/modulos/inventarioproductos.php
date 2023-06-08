@@ -132,50 +132,49 @@ MODAL INGRESO DE PRODUCTO
         <div class="box-body">
 
           <div class="row">
-          <!-- ENTRADA PARA SELECCIONAR PRODUCTO -->
-          <div class="form-group col-sm">
-            <label for="producto">Producto</label>
-            <div class="input-group">
+            <input type="hidden" id="idLote" name="idLote">
+            <!-- ENTRADA PARA SELECCIONAR PRODUCTO -->
+            <div class="form-group col-sm">
+              <label for="producto">Producto</label>
+              <div class="input-group">
 
-                <select class="form-control select2 input-lg" id="nuevoProductoI" name="nuevoProductoI" style="width: 100%;" required>
-                <option value="">Seleccionar Producto</option>
+                  <select class="form-control select2 input-lg" id="nuevoProductoI" name="nuevoProductoI" style="width: 100%;" required>
+                  <option value="">Seleccionar Producto</option>
 
-                <?php 
-                  $item = null;
-                  $valor = null;
+                  <?php 
+                    $item = null;
+                    $valor = null;
 
-                  $productos = ControladorProductos::ctrMostrarProductos($item,$valor);
+                    $productos = ControladorProductos::ctrMostrarProductos($item,$valor);
 
-                  foreach($productos as $key=> $value){ 
+                    foreach($productos as $key=> $value){ 
 
 
-                    echo '<option value="'.$value["idProducto"].'">'.$value["nombre"].'</option>';
-                  }
+                      echo '<option value="'.$value["idProducto"].'">'.$value["nombre"].'</option>';
+                    }
 
-                  ?>
+                    ?>
 
-              </select>
+                </select>
+
+              </div>
 
             </div>
 
-          </div>
+            <!-- ENTRADA PARA EL LOTE -->
+            <div class="form-group col-sm">
+            <label for="lote">Lote</label>
+            <div class="input-group ">
+                  <div class="input-group-prepend">
+                  <span class="input-group-text"><i class="fas fa-vote-yea"></i></span>
+                  </div>
+                  <input type="text" class="form-control input-lg" name="nuevoCodigoLoteI" id="nuevoCodigoLoteI" placeholder="Ingresar lote" 
+                  maxlength="20" pattern="[A-Za-z0-9-]+" title="Solo se aceptan letras,números y guiones sin espacios" required>
+            </div>
+            </div>
           </div>
 
           <div class="row">
-
-          <input type="hidden" id="idLote" name="idLote">
-
-          <!-- ENTRADA PARA EL LOTE -->
-          <div class="form-group col-sm">
-          <label for="lote">Lote</label>
-           <div class="input-group ">
-                <div class="input-group-prepend">
-                <span class="input-group-text"><i class="fas fa-vote-yea"></i></span>
-                </div>
-                <input type="text" class="form-control input-lg" name="nuevoCodigoLoteI" id="nuevoCodigoLoteI" placeholder="Ingresar lote" 
-                maxlength="20" pattern="[A-Za-z0-9-]+" title="Solo se aceptan letras,números y guiones sin espacios" required>
-          </div>
-          </div>
 
             <!-- ENTRADA PARA EL CANTIDAD -->
             <div class="form-group col-sm">
@@ -189,7 +188,18 @@ MODAL INGRESO DE PRODUCTO
 
                 <input type="text" class="form-control input-lg"  id="unidadMedidaI" name="unidadMedidaI" readonly>
             </div>
+            </div>
 
+            <!-- ENTRADA PARA EL PRECIO -->
+            <div class="form-group col-sm">
+            <label for="precio">Precio Unitario</label>
+            <div class="input-group">
+                <div class="input-group-prepend">
+                <span class="input-group-text"><strong>S/.</strong></span>
+                </div>
+                <input type="number" class="form-control input-lg" name="nuevoPrecioUnitario" id="nuevoPrecioUnitario"
+                placeholder="Ingresar precio unitario" min="0.01" max="9999999" step="0.01" required>
+            </div>
             </div>
 
           </div>

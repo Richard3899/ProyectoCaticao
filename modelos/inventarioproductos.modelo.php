@@ -44,16 +44,17 @@ class ModeloInventarioProductos{
 
 	static public function mdlIngresoProducto($datos){
 
-		$stmt = Conexion::conectar()->prepare("call insertar_ingresoproducto(?,?,?,?,?,?,?,?)");
+		$stmt = Conexion::conectar()->prepare("call insertar_ingresoproducto(?,?,?,?,?,?,?,?,?)");
 
 		$stmt->bindParam(1, $datos["idProducto"], PDO::PARAM_INT);
 		$stmt->bindParam(2, $datos["cantidad"], PDO::PARAM_STR);
-		$stmt->bindParam(3, $datos["idLote"], PDO::PARAM_INT);
-		$stmt->bindParam(4, $datos["codigoLote"], PDO::PARAM_STR);
-		$stmt->bindParam(5, $datos["fechaProduccion"], PDO::PARAM_STR);
-		$stmt->bindParam(6, $datos["fechaVencimiento"], PDO::PARAM_STR);
-		$stmt->bindParam(7, $datos["fecha"], PDO::PARAM_STR);
-		$stmt->bindParam(8, $datos["observacion"], PDO::PARAM_STR);
+		$stmt->bindParam(3, $datos["precioUnitario"], PDO::PARAM_STR);
+		$stmt->bindParam(4, $datos["idLote"], PDO::PARAM_INT);
+		$stmt->bindParam(5, $datos["codigoLote"], PDO::PARAM_STR);
+		$stmt->bindParam(6, $datos["fechaProduccion"], PDO::PARAM_STR);
+		$stmt->bindParam(7, $datos["fechaVencimiento"], PDO::PARAM_STR);
+		$stmt->bindParam(8, $datos["fecha"], PDO::PARAM_STR);
+		$stmt->bindParam(9, $datos["observacion"], PDO::PARAM_STR);
 
 		if($stmt->execute()){
 

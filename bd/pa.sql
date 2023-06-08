@@ -899,7 +899,8 @@ DROP procedure IF EXISTS `insertar_ingresoproducto`;
 DELIMITER $$
 USE `caticao`$$
 CREATE PROCEDURE `insertar_ingresoproducto` (   in idProductoI INT,
-                                                in ingresoI double(10,2),
+                                                in ingresoI DECIMAL(10,2),
+                                                IN precioUnitarioI DECIMAL(10,2),
                                                 in idLoteI INT,
                                                 in codigoLoteI varchar(50),
                                                 in fechaProduccionI DATE,
@@ -916,8 +917,8 @@ BEGIN
     
     if validacionLote=0 then
    
-    INSERT INTO lote(idLote,codigoLote,cantidad,idProducto)
-             VALUES (idLoteI,codigoLoteI,0,idProductoI);
+    INSERT INTO lote(idLote,codigoLote,cantidad,precioUnitario,idProducto)
+             VALUES (idLoteI,codigoLoteI,0,0,idProductoI);
     
     else
     
@@ -926,9 +927,10 @@ BEGIN
     end if; 
     		   
     UPDATE lote SET cantidad = cantidad+ingresoI,
+                    precioUnitario = precioUnitarioI,
                     fechaProduccion=fechaProduccionI,
                     fechaVencimiento=fechaVencimientoI
-					WHERE codigoLote=codigoLoteI;   
+					WHERE codigoLote=codigoLoteI;
 					
 	 UPDATE inventarioproducto SET stock = stock + ingresoI,
 	 										 ultimoMovimiento=NOW()
@@ -1080,9 +1082,9 @@ DELIMITER $$
 USE `caticao`$$
 CREATE PROCEDURE `mostrar_lotes2` (in idProductoM INT)
 BEGIN
-	SELECT idLote,codigoLote,fechaVencimiento,cantidad,idProducto,fechaProduccion from lote
+	SELECT idLote,codigoLote,fechaVencimiento,cantidad,precioUnitario,idProducto,fechaProduccion from lote
 	
-	WHERE idProducto=idProductoM and cantidad > 0;
+	WHERE idProducto=idProductoM AND cantidad > 0;
 END$$
 DELIMITER ;
 
@@ -1992,8 +1994,8 @@ BEGIN
 	SET rc=ROUND(((RAND() * (99999 - 11111)) + 11111));
 	
 	-- INSERTA EL LOTE DE LA RECETA DUPLICADA --
-	INSERT INTO lote (codigoLote,fechaVencimiento,cantidad,idProducto)
-				  				SELECT rc,fechaVencimiento,0,idProducto FROM lote
+	INSERT INTO lote (codigoLote,fechaVencimiento,cantidad,precioUnitario,idProducto)
+				  				SELECT rc,fechaVencimiento,0,0,idProducto FROM lote
 				  				WHERE  codigoLote = codigoLoteD;
 				  
 	-- INSERTA LA RECETA DUPLICADA --
@@ -2284,6 +2286,11 @@ BEGIN
 	                                          
    UPDATE receta SET ocultoAdicional=1
 	WHERE idReceta IN ( SELECT idReceta FROM temp_recetasocultar);
+	
+	UPDATE lote lt
+	INNER JOIN receta r ON r.codigoLote= lt.codigoLote
+	SET lt.precioUnitario = r.costoPorTableta
+	WHERE r.idReceta IN ( SELECT idReceta FROM temp_recetasocultar);
 	
 	DROP TABLE temp_recetasocultar;
    
@@ -2758,8 +2765,9 @@ DELIMITER $$
 USE `caticao`$$
 CREATE PROCEDURE `mostrar_productostop` ()
 BEGIN
-	 SELECT p.nombre,ip.stock 
+	 SELECT p.nombre,ip.stock
 	          FROM producto p LEFT JOIN inventarioproducto ip ON p.idProducto=ip.idInventarioProducto
+	                         WHERE ip.stock > 0
 									 ORDER BY ip.stock  DESC LIMIT 5; 
 	 
 END$$
@@ -2777,7 +2785,7 @@ BEGIN
 	 
 	 SELECT COUNT(idReceta) AS cantidad  FROM receta WHERE idEstado=1 INTO totalrecetasestado1; 
 	 SELECT COUNT(idReceta) AS cantidad  FROM receta WHERE idEstado=2 INTO totalrecetasestado2; 
-	 SELECT COUNT(idReceta) AS cantidad  FROM receta WHERE idEstado=3 AND ocultoAdicional=1 AND cerrado=1 INTO totalrecetasestado3; 
+	 SELECT COUNT(idReceta) AS cantidad  FROM receta WHERE idEstado=3 AND cerrado=1 INTO totalrecetasestado3; 
 	 
 	 SELECT totalrecetasestado1,totalrecetasestado2,totalrecetasestado3;
 	 
@@ -2799,14 +2807,207 @@ BEGIN
 	INSERT INTO temp_recetasterminadas
 	SELECT month(r.fechaFin) AS mes,
 	COUNT(r.idReceta) AS cantidadRecetas FROM receta r
-	WHERE r.ocultoAdicional=1 AND r.cerrado=1 AND r.idEstado=3 AND year(r.fechaFin)=añoC
-	GROUP BY MONTH(r.fechaFin);
+	WHERE r.cerrado=1 AND r.idEstado=3 AND year(r.fechaFin)=añoC
+	GROUP BY MONTH(r.fechaFin)
+	ORDER BY MONTH(r.fechaFin) ASC;
 	
 	SELECT ELT(mes, "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio",
 						 "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre") AS mes, cantidadRecetas
    FROM temp_recetasterminadas;
 
 	DROP TABLE temp_recetasterminadas;
+	 
+END$$
+DELIMITER ;
+
+
+DROP procedure IF EXISTS `mostrar_topitemsvalorizado`;
+DELIMITER $$
+USE `caticao`$$
+CREATE PROCEDURE `mostrar_topitemsvalorizado` (IN idItem INT)
+BEGIN
+
+   IF idItem=1 THEN
+   
+   	 SELECT p.nombre,SUM(lt.cantidad * lt.precioUnitario) AS precio
+	          FROM producto p INNER  JOIN inventarioproducto ip ON p.idProducto=ip.idInventarioProducto
+	                          INNER JOIN lote lt ON lt.idProducto=p.idProducto
+	                          GROUP BY p.idProducto
+									  ORDER BY precio DESC 
+									  LIMIT 5;
+	   
+	ELSEIF idItem=2 THEN
+	
+		 SELECT m.nombre, (im.stock * m.precioUnitario) AS precio
+	          FROM materia m left JOIN inventariomateria im ON m.idMateria=im.idInventarioMateria
+	                         WHERE m.idTipoMateria = 1
+									 ORDER BY precio  DESC 
+									 LIMIT 5;
+	 
+	ELSE
+	  	 SELECT m.nombre,(im.stock * m.precioUnitario) AS precio
+	          FROM materia m left JOIN inventariomateria im ON m.idMateria=im.idInventarioMateria
+	                         WHERE m.idTipoMateria = 2
+									 ORDER BY precio  DESC 
+									 LIMIT 5; 
+	END IF;
+	 
+END$$
+DELIMITER ;
+
+
+DROP procedure IF EXISTS `mostrar_ProductosProducidosPorMes`;
+DELIMITER $$
+USE `caticao`$$
+CREATE PROCEDURE `mostrar_ProductosProducidosPorMes` (IN añoC INT)
+BEGIN
+
+	CREATE TEMPORARY TABLE  temp_productosproducidos(
+	mes TEXT,
+	cantidadProductos INT
+	);
+	
+	INSERT INTO temp_productosproducidos
+	SELECT month(lt.fechaProduccion) AS mes, sum(lt.cantidad) AS cantidadProductos FROM lote lt
+	INNER JOIN producto p ON p.idProducto=lt.idProducto
+	WHERE lt.cantidad > 0 AND year(lt.fechaProduccion)=añoC
+	GROUP BY MONTH(lt.fechaProduccion)
+	ORDER BY MONTH(lt.fechaProduccion) ASC;
+	
+	SELECT ELT(mes, "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio",
+						 "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre") AS mes, cantidadProductos
+   FROM temp_productosproducidos;
+
+	DROP TABLE temp_productosproducidos;
+	 
+END$$
+DELIMITER ;
+
+
+DROP procedure IF EXISTS `mostrar_ProductosValorizadosPorMes`;
+DELIMITER $$
+USE `caticao`$$
+CREATE PROCEDURE `mostrar_ProductosValorizadosPorMes` (IN añoC INT)
+BEGIN
+
+	CREATE TEMPORARY TABLE  temp_productosvalorizados(
+	mes TEXT,
+	valorProductos DECIMAL(10,2)
+	);
+	
+	INSERT INTO temp_productosvalorizados
+	SELECT month(lt.fechaProduccion) AS mes, sum(lt.cantidad*lt.precioUnitario) AS valorProductos FROM lote lt
+	INNER JOIN producto p ON p.idProducto=lt.idProducto
+	WHERE lt.cantidad > 0 AND year(lt.fechaProduccion)=añoC
+	GROUP BY MONTH(lt.fechaProduccion)
+	ORDER BY MONTH(lt.fechaProduccion) ASC;
+	
+	SELECT ELT(mes, "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio",
+						 "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre") AS mes, valorProductos
+   FROM temp_productosvalorizados;
+
+	DROP TABLE temp_productosvalorizados;
+	 
+END$$
+DELIMITER ;
+
+
+DROP procedure IF EXISTS `mostrar_RecetasPorFechaYCosto`;
+DELIMITER $$
+USE `caticao`$$
+CREATE PROCEDURE `mostrar_RecetasPorFechaYCosto` (IN fechaC DATE)
+BEGIN
+	
+	SELECT concat(r.fechaFin," : ",p.nombre) AS fecha,r.costoPorTableta AS costo  FROM  receta r
+	       INNER JOIN lote lt ON lt.codigoLote=r.codigoLote
+	       INNER JOIN producto p ON p.idProducto=lt.idProducto
+			 WHERE MONTH(r.fechaFin) = MONTH(fechaC) AND YEAR(r.fechaFin)=YEAR(fechaC)
+			 ORDER BY r.fechaFin ASC ;
+	 
+END$$
+DELIMITER ;
+
+DROP procedure IF EXISTS `mostrar_GastosPorMes`;
+DELIMITER $$
+USE `caticao`$$
+CREATE PROCEDURE `mostrar_GastosPorMes` (IN añoC INT)
+BEGIN
+	
+	CREATE TEMPORARY TABLE  temp_gastoadmin(
+	mes TEXT,
+	valorGastoAdmin DECIMAL(10,2)
+	);
+	
+	CREATE TEMPORARY TABLE  temp_costoventa(
+	mes TEXT,
+	valorCostoVenta DECIMAL(10,2)
+	);
+	
+	CREATE TEMPORARY TABLE  temp_costomarketing(
+	mes TEXT,
+	valorCostoMarketing DECIMAL(10,2)
+	);
+	
+	CREATE TEMPORARY TABLE  temp_costooperativo(
+	mes TEXT,
+	valorCostoOperativo DECIMAL(10,2)
+	);
+	
+	INSERT INTO temp_gastoadmin
+	SELECT MONTH(mg.mes) mes, SUM(gap.total) AS valorGastoAdmin FROM gastoadminpormes gap INNER JOIN mesgasto mg ON mg.idMesGasto=gap.idMesGasto
+	                                   INNER JOIN gastoadmin ga ON ga.idGastoAdmin=gap.idGastoAdmin
+	                                   INNER JOIN tipogasto tg ON tg.idTipoGasto=ga.idTipoGasto
+	WHERE YEAR(mg.mes)=añoC AND tg.idTipoGasto=1
+	GROUP BY tg.idTipoGasto,mg.idMesGasto;
+	
+	INSERT INTO temp_costoventa
+	SELECT MONTH(mg.mes) mes, SUM(gap.total) AS valorCostoVenta FROM gastoadminpormes gap INNER JOIN mesgasto mg ON mg.idMesGasto=gap.idMesGasto
+	                                   INNER JOIN gastoadmin ga ON ga.idGastoAdmin=gap.idGastoAdmin
+	                                   INNER JOIN tipogasto tg ON tg.idTipoGasto=ga.idTipoGasto
+	WHERE YEAR(mg.mes)=añoC AND tg.idTipoGasto=2
+	GROUP BY tg.idTipoGasto,mg.idMesGasto;
+	
+	INSERT INTO temp_costomarketing
+	SELECT MONTH(mg.mes) mes, SUM(gap.total) AS valorCostoMarketing FROM gastoadminpormes gap INNER JOIN mesgasto mg ON mg.idMesGasto=gap.idMesGasto
+	                                   INNER JOIN gastoadmin ga ON ga.idGastoAdmin=gap.idGastoAdmin
+	                                   INNER JOIN tipogasto tg ON tg.idTipoGasto=ga.idTipoGasto
+	WHERE YEAR(mg.mes)=añoC AND tg.idTipoGasto=3
+	GROUP BY tg.idTipoGasto,mg.idMesGasto;
+	
+	INSERT INTO temp_costooperativo
+	SELECT MONTH(mg.mes) mes, SUM(gap.total) AS valorCostoOperativo FROM gastoadminpormes gap INNER JOIN mesgasto mg ON mg.idMesGasto=gap.idMesGasto
+	                                   INNER JOIN gastoadmin ga ON ga.idGastoAdmin=gap.idGastoAdmin
+	                                   INNER JOIN tipogasto tg ON tg.idTipoGasto=ga.idTipoGasto
+	WHERE YEAR(mg.mes)=añoC AND tg.idTipoGasto=4
+	GROUP BY tg.idTipoGasto,mg.idMesGasto;
+	
+	CREATE TEMPORARY TABLE  temp_gastospormes(
+	mes TEXT,
+	valorGastoAdmin DECIMAL(10,2),
+	valorCostoVenta DECIMAL(10,2),
+	valorCostoMarketing DECIMAL(10,2),
+	valorCostoOperativo DECIMAL(10,2)
+	);
+	
+	INSERT INTO temp_gastospormes
+	SELECT tga.mes,IFNULL(tga.valorGastoAdmin,0) AS valorGastoAdmin, IFNULL(tcv.valorCostoVenta,0) AS valorCostoVenta,
+						IFNULL(tcm.valorCostoMarketing,0) AS valorCostoMarketing, IFNULL(tco.valorCostoOperativo,0) AS valorCostoOperativo
+											    FROM temp_gastoadmin tga LEFT JOIN temp_costoventa tcv ON tga.mes=tcv.mes
+	                                  LEFT  JOIN temp_costomarketing tcm ON tga.mes=tcm.mes
+	                                  LEFT JOIN temp_costooperativo tco ON tga.mes=tco.mes
+												 ORDER BY tga.mes ASC;
+	
+	SELECT CONCAT( ELT(mes, "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio",
+						 "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"), " : S/.", (valorGastoAdmin+valorCostoVenta+valorCostoMarketing+valorCostoOperativo) )AS mes, 
+						 valorGastoAdmin,valorCostoVenta,valorCostoMarketing,valorCostoOperativo, 
+						 (valorGastoAdmin+valorCostoVenta+valorCostoMarketing+valorCostoOperativo) AS gastototaldelmes
+   FROM temp_gastospormes;
+
+	DROP TABLE temp_gastospormes;
+	DROP TABLE temp_gastoadmin;
+	DROP TABLE temp_costoventa;
+	DROP TABLE temp_costomarketing;
+	DROP TABLE temp_costooperativo;
 	 
 END$$
 DELIMITER ;

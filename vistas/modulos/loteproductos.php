@@ -122,7 +122,7 @@
           <th>Fecha de Producción</th>
           <th>Fecha de Vencimiento</th>
           <th>Cantidad</th>
-
+          <th>Precio Unitario</th>
         </tr> 
  
        </thead>

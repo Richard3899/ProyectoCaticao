@@ -15,19 +15,6 @@ class ControladorDashboard{
 	}
 
 	/*=============================================
-	MOSTRAR TOP PRODUCTOS CON STOCK
-	=============================================*/
-
-	static public function ctrMostrarProductosTop($valor){
-
-		$respuesta = ModeloDashboard::mdlMostrarItemsTop($valor);
-
-		return $respuesta;
-	}
-
-
-
-	/*=============================================
 	MOSTRAR CANTIDAD DE RECETAS TERMINADOS POR MES
 	=============================================*/
 
@@ -37,6 +24,74 @@ class ControladorDashboard{
 
 		return $respuesta;
 	}
+
+	/*=============================================
+	MOSTRAR TOP PRODUCTOS CON STOCK
+	=============================================*/
+
+	static public function ctrMostrarItemsStock($valor){
+
+		$respuesta = ModeloDashboard::mdlMostrarItemsStock($valor);
+
+		return $respuesta;
+	}
+
+
+	/*=============================================
+	MOSTRAR TOP PRODUCTOS CON STOCK
+	=============================================*/
+
+	static public function ctrMostrarItemsValorizado($valor){
+
+		$respuesta = ModeloDashboard::mdlMostrarItemsValorizado($valor);
+
+		return $respuesta;
+	}
+
+	/*============================================
+	MOSTRAR PRODUCTOS PRODUCIDOS POR MES
+	=============================================*/
+
+	static public function ctrMostrarProductosProducidosPorMes($valor){
+
+		$respuesta = ModeloDashboard::mdlMostrarProductosProducidosPorMes($valor);
+
+		return $respuesta;
+	}
+
+	/*============================================
+	MOSTRAR PRODUCTOS VALORIZADOS POR MES
+	=============================================*/
+
+	static public function ctrMostrarProductosValorizadosPorMes($valor){
+
+		$respuesta = ModeloDashboard::mdlMostrarProductosValorizadosPorMes($valor);
+
+		return $respuesta;
+	}
+
+	/*============================================
+	MOSTRAR RECETAS POR FECHA Y COSTO
+	=============================================*/
+
+	static public function ctrMostrarRecetasPorFechaYCosto($valor){
+
+		$respuesta = ModeloDashboard::mdlMostrarRecetasPorFechaYCosto($valor);
+
+		return $respuesta;
+	}
+
+	/*============================================
+	MOSTRAR GASTOS POR MES
+	=============================================*/
+
+	static public function ctrMostrarGastosPorMes($valor){
+
+		$respuesta = ModeloDashboard::mdlMostrarGastosPorMes($valor);
+
+		return $respuesta;
+	}
+
 
 }
 

@@ -91,10 +91,11 @@ class TablaInsumos{
 			      "'.$insumos[$i]["codigo"].'",
 				  "'.$insumos[$i]["nombre"].'",
 			      "'.$insumos[$i]["descripcion"].'",
+				  "'.$marcas["descripcion"].'",
 				  "'.$unidadmedida["descripcion"].'",
-			      "'.$marcas["descripcion"].'",
 			      "'.$insumos[$i]["cantidad"].'",
 			      "'.$insumos[$i]["precio"].'",
+				  "'.$insumos[$i]["precioUnitario"].'",
 			      "'.$botones.'"
 			    ],';
 

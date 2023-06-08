@@ -42,7 +42,8 @@ class TablaLoteProductos{
 				  "'.$loteproductos[$i]["codigoLote"].'",
 				  "'.$loteproductos[$i]["fechaProduccion"].'",
 				  "'.$loteproductos[$i]["fechaVencimiento"].'",
-			      "'.$loteproductos[$i]["cantidad"].'"
+			      "'.$loteproductos[$i]["cantidad"].'",
+				  "'.$loteproductos[$i]["precioUnitario"].'"
 			    ],';
 
 		  }

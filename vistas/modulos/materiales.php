@@ -61,6 +61,7 @@
          <th>Unidad de Medida</th>
          <th>Cantidad</th>
          <th>Precio</th>
+         <th>Precio Unitario</th>
          <th>Acciones</th>
 
        </tr> 

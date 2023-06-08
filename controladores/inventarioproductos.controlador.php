@@ -25,6 +25,7 @@ class ControladorInventarioProductos{
 
 				$datos = array("idProducto" => $_POST["nuevoProductoI"],
 							   "cantidad" => $_POST["nuevaCantidadI"],
+							   "precioUnitario" => $_POST["nuevoPrecioUnitario"],
 							   "idLote" => $_POST["idLote"],
 							   "codigoLote" => $_POST["nuevoCodigoLoteI"],
 							   "fechaProduccion" => $_POST["nuevaFechaProduccionI"],

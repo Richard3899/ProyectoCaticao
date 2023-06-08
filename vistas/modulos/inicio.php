@@ -14,6 +14,7 @@
 
     <?php $años = range(2000, strftime("%Y", time())); 
           $añoActual= date("Y");
+          $mesActual= date("Y-m")
     ?>
 
     <!-- Main content -->
@@ -30,6 +31,33 @@
                 <br><br>
                 <canvas id="GraficoBarraRecetaEstados"></canvas>
                 
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-6">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">Recetas Terminadas</h5>
+                    <br><br>
+                    <select class="form-control input-lg select2" id="años" style="width: 100%;">
+                      <?php foreach($años as $año) : 
+                        
+                        if($año!=$añoActual){
+                          
+                          echo '<option value="'.$año.'">'.$año.'</option>';
+                        }else{
+
+                          echo '<option value="'.$año.'" selected>'.$año.'</option>';
+
+                        }
+
+                      endforeach; 
+                      ?>
+                    </select>
+
+                <canvas id="GraficoBarraRecetasTerminadas"></canvas>
+
               </div>
             </div>
           </div>
@@ -59,14 +87,37 @@
           <div class="col-lg-6">
             <div class="card">
               <div class="card-body">
-                <h5 class="card-title">Recetas Terminadas</h5>
+                <h5 class="card-title">Top Inventario - Valorizado</h5>
                     <br><br>
-                    <select class="form-control input-lg select2" id="años">
+
+                    <select class="form-control input-lg" id="itemInventarioValorizado">
+    
+                    <option value="1">Productos</option>
+    
+                    <option value="2">Insumos</option>
+    
+                    <option value="3">Materiales</option>
+    
+                    </select>
+                    
+                <canvas id="GraficoBarraInventarioValorizado"></canvas>
+
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-6">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">Productos Producidos - Cantidades</h5>
+                    <br><br>
+                    <select class="form-control input-lg select2" id="años3" style="width: 100%;">
                       <?php foreach($años as $año) : 
                         
                         if($año!=$añoActual){
                           
                           echo '<option value="'.$año.'">'.$año.'</option>';
+
                         }else{
 
                           echo '<option value="'.$año.'" selected>'.$año.'</option>';
@@ -76,48 +127,8 @@
                       endforeach; 
                       ?>
                     </select>
-
-                <canvas id="GraficoBarraRecetasTerminadas"></canvas>
-
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-6">
-            <div class="card">
-              <div class="card-body">
-                <h5 class="card-title">Line Chart</h5>
-
-                <!-- Line Chart -->
-                <canvas id="lineChart" style="max-height: 400px;"></canvas>
-
-                <script>
-                  document.addEventListener("DOMContentLoaded", () => {
-                    new Chart(document.querySelector('#lineChart'), {
-                      type: 'line',
-                      data: {
-                        labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
-                        datasets: [{
-                          label: 'Line Chart',
-                          data: [65, 59, 80, 81, 56, 55, 40],
-                          fill: false,
-                          borderColor: 'rgb(75, 192, 192)',
-                          tension: 0.1
-                        }]
-                      },
-                      options: {
-                        scales: {
-                            yAxes: [{
-                                ticks: {
-                                    beginAtZero: true
-                                }
-                            }],
-                        },
-                    }
-                    });
-                  });
-                </script>
-                <!-- End Line CHart -->
+                    
+                <canvas id="GraficoProductosProducidos"></canvas>
 
               </div>
             </div>
@@ -126,46 +137,80 @@
           <div class="col-lg-6">
             <div class="card">
               <div class="card-body">
-                <h5 class="card-title">Pie Chart</h5>
+                <h5 class="card-title">Productos Producidos - Valorizado</h5>
+                    <br><br>
+                    <select class="form-control input-lg select2" id="años4" style="width: 100%;">
+                      <?php foreach($años as $año) : 
+                        
+                        if($año!=$añoActual){
+                          
+                          echo '<option value="'.$año.'">'.$año.'</option>';
 
-                <!-- Pie Chart -->
-                <canvas id="pieChart" style="max-height: 400px;"></canvas>
-                <script>
-                  document.addEventListener("DOMContentLoaded", () => {
-                    new Chart(document.querySelector('#pieChart'), {
-                      type: 'pie',
-                      data: {
-                        labels: [
-                          'Red',
-                          'Blue',
-                          'Yellow'
-                        ],
-                        datasets: [{
-                          label: 'My First Dataset',
-                          data: [300, 50, 100],
-                          backgroundColor: [
-                            'rgb(255, 99, 132)',
-                            'rgb(54, 162, 235)',
-                            'rgb(255, 205, 86)'
-                          ],
-                          hoverOffset: 4
-                        }]
-                      }
-                    });
-                  });
-                </script>
-                <!-- End Pie CHart -->
+                        }else{
+
+                          echo '<option value="'.$año.'" selected>'.$año.'</option>';
+
+                        }
+
+                      endforeach; 
+                      ?>
+                    </select>
+                    
+                <canvas id="GraficoProductosProducidosValorizado"></canvas>
 
               </div>
             </div>
           </div>
 
+          <div class="col-lg-12">
+            <div class="card" >
+              <div class="card-body">
+                <h5 class="card-title">Costo Unitario de Recetas</h5>
+                    <br><br>
+                    <input type="month" class="form-control" id="meses" value="<?php echo $mesActual; ?>"  style="width: 100%;">
+                    <div style="height:22rem;">
+                    <canvas id="GraficoRecetasPorFechaYCosto"></canvas>
+                    </div>
+                    
+          
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-12">
+            <div class="card" >
+              <div class="card-body">
+                <h5 class="card-title">Gastos</h5>
+                    <br><br>
+                    <select class="form-control input-lg select2" id="años6" style="width: 100%;">
+                      <?php foreach($años as $año) : 
+                        
+                        if($año!=$añoActual){
+                          
+                          echo '<option value="'.$año.'">'.$año.'</option>';
+
+                        }else{
+
+                          echo '<option value="'.$año.'" selected>'.$año.'</option>';
+
+                        }
+
+                      endforeach; 
+                      ?>
+                    </select>
+                    <div style="height:22rem;">
+                      <canvas id="GraficoGastosPorMes"></canvas>
+                    </div>
+             
+              </div>
+            </div>
+          </div>
+          
         </div>
 
       </div>
 
     </section>
-    <!-- /.content -->
+ 
     </div>
   </div>
-  <!-- /.content-wrapper -->

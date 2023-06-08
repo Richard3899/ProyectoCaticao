@@ -96,6 +96,7 @@ class TablaMateriales{
 				  "'.$unidadmedida["descripcion"].'",
 			      "'.$materiales[$i]["cantidad"].'",
 			      "'.$materiales[$i]["precio"].'",
+				  "'.$materiales[$i]["precioUnitario"].'",
 			      "'.$botones.'"
 			    ],';
 

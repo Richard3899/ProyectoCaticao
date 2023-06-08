@@ -5,7 +5,7 @@ $('.tablaInsumos').DataTable( {
 		{"className": "dt-center", "targets": "_all"},
 		//Tipo de dato (Número)
 		{targets:[7], render: DataTable.render.number( '.', ',', 2)},
-		{targets:[8], render: DataTable.render.number( '.', ',', 2, 'S/ ')}
+		{targets:[8,9], render: DataTable.render.number( '.', ',', 2, 'S/ ')}
 	  ],
 	"retrieve": true,
 	"processing": true,
