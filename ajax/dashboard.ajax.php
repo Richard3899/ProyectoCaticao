@@ -67,12 +67,14 @@ class AjaxDashboard{
 	MOSTRAR PRODUCTOS PRODUCIDOS POR MES
 	=============================================*/	
 	public $Año3;
+	public $idTipoProducto1;
 
 	public function ajaxProductosProducidosPorMes(){
 
-		$valor = $this->Año3;
-		
-		$respuesta = ControladorDashboard::ctrMostrarProductosProducidosPorMes($valor);
+		$valor1 = $this->Año3;
+		$valor2 = $this->idTipoProducto1;
+
+		$respuesta = ControladorDashboard::ctrMostrarProductosProducidosPorMes($valor1,$valor2);
 
 		echo json_encode($respuesta);
 
@@ -82,12 +84,14 @@ class AjaxDashboard{
 	MOSTRAR PRODUCTOS VALORIZADOS POR MES
 	=============================================*/	
 	public $Año4;
+	public $idTipoProducto2;
 
 	public function ajaxProductosValorizadosPorMes(){
 
-		$valor = $this->Año4;
-		
-		$respuesta = ControladorDashboard::ctrMostrarProductosValorizadosPorMes($valor);
+		$valor1 = $this->Año4;
+		$valor2 = $this->idTipoProducto2;
+
+		$respuesta = ControladorDashboard::ctrMostrarProductosValorizadosPorMes($valor1,$valor2);
 
 		echo json_encode($respuesta);
 
@@ -175,6 +179,7 @@ if(isset($_POST["años3"])){
 
 	$editar = new AjaxDashboard();
 	$editar -> Año3 = $_POST["años3"];
+	$editar -> idTipoProducto1 = $_POST["idTipoProducto1"];
 	$editar -> ajaxProductosProducidosPorMes();
 
 }
@@ -186,6 +191,7 @@ if(isset($_POST["años4"])){
 
 	$editar = new AjaxDashboard();
 	$editar -> Año4 = $_POST["años4"];
+	$editar -> idTipoProducto2 = $_POST["idTipoProducto2"];
 	$editar -> ajaxProductosValorizadosPorMes();
 
 }

@@ -44,8 +44,8 @@ INSERT INTO `marca` (`idMarca`, `descripcion`) VALUES
 	(1, 'GLORIA'),(2, 'DULFINA'),(3, 'SAFE');
 
 INSERT INTO `tipoproducto` (`idTipoProducto`, `descripcion`) VALUES
-	(1, 'Intermedio'),
-	(2, 'Terminado');
+	(1, 'Terminado'),
+	(2, 'Intermedio');
 
 INSERT INTO `unidadmedida` (`idUnidadMedida`, `descripcion`) VALUES
 	(1, 'Kg'),
@@ -201,7 +201,7 @@ INSERT INTO `movimientomateria` (`idMovimientoMateria`, `ingreso`, `salida`, `ob
     (6, 2000.000, 0.000, 'Produccion','S-C', '2023-01-10',  '2023-01-08 02:08:52', 6, 1);
 
 INSERT INTO `producto` (`idProducto`, `codigo`, `nombre`, `descripcion`, `imagen`, `idUnidadMedida`, `idTipoProducto`) VALUES
-	(1, '123456', 'Chocolate con pasa', '50% cacao', NULL, 3, 2);
+	(1, '123456', 'Chocolate con pasa', '50% cacao', NULL, 3, 1);
 
 INSERT INTO `inventarioproducto` (`idInventarioProducto`,`idProducto`,`stock`) VALUES
 	(1,1,0);

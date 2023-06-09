@@ -33,6 +33,7 @@ class TablaReporteProductos{
 			      "'.$productos[$i]["codigo"].'",
 				  "'.$productos[$i]["nombre"].'",
 			      "'.$productos[$i]["descripcion"].'",
+				  "'.$productos[$i]["tipoProducto"].'",
 				  "'.$productos[$i]["unidadMedida"].'",
 				  "'.$productos[$i]["stock"].'"
 			    ],';

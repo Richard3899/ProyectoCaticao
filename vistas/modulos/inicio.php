@@ -20,6 +20,8 @@
     <!-- Main content -->
     <section class="section">
 
+      <input type="hidden" id="url" value='<?php $url='inicio'; echo $url ?>'>
+
       <div class="contenier p-2">
 
         <div class="row">
@@ -70,11 +72,13 @@
 
                     <select class="form-control input-lg" id="itemInventario">
     
-                    <option value="1">Productos</option>
+                    <option value="1">Productos Terminados</option>
     
-                    <option value="2">Insumos</option>
+                    <option value="2">Productos Intermedios</option>
+
+                    <option value="3">Insumos</option>
     
-                    <option value="3">Materiales</option>
+                    <option value="4">Materiales</option>
     
                     </select>
                     
@@ -92,11 +96,13 @@
 
                     <select class="form-control input-lg" id="itemInventarioValorizado">
     
-                    <option value="1">Productos</option>
+                    <option value="1">Productos Terminados</option>
     
-                    <option value="2">Insumos</option>
+                    <option value="2">Productos Intermedios</option>
+
+                    <option value="3">Insumos</option>
     
-                    <option value="3">Materiales</option>
+                    <option value="4">Materiales</option>
     
                     </select>
                     
@@ -111,22 +117,42 @@
               <div class="card-body">
                 <h5 class="card-title">Productos Producidos - Cantidades</h5>
                     <br><br>
-                    <select class="form-control input-lg select2" id="años3" style="width: 100%;">
-                      <?php foreach($años as $año) : 
-                        
-                        if($año!=$añoActual){
-                          
-                          echo '<option value="'.$año.'">'.$año.'</option>';
+                    <div class="row">
 
-                        }else{
+                      <div class="form-group col-sm">
+        
+                        <select class="form-control input-lg select2" id="años3" style="width: 100%;">
+                          <?php foreach($años as $año) : 
+                            
+                            if($año!=$añoActual){
+                              
+                              echo '<option value="'.$año.'">'.$año.'</option>';
 
-                          echo '<option value="'.$año.'" selected>'.$año.'</option>';
+                            }else{
 
-                        }
+                              echo '<option value="'.$año.'" selected>'.$año.'</option>';
 
-                      endforeach; 
-                      ?>
-                    </select>
+                            }
+
+                          endforeach; 
+                          ?>
+                        </select>
+
+                      </div>
+
+                      <div class="form-group col-sm">
+
+                        <select class="form-control input-lg" id="idTipoProducto1">
+        
+                          <option value="1">Productos Terminados</option>
+
+                          <option value="2">Productos Intermedios</option>
+
+                        </select>
+
+                      </div>
+
+                    </div>
                     
                 <canvas id="GraficoProductosProducidos"></canvas>
 
@@ -139,23 +165,43 @@
               <div class="card-body">
                 <h5 class="card-title">Productos Producidos - Valorizado</h5>
                     <br><br>
-                    <select class="form-control input-lg select2" id="años4" style="width: 100%;">
-                      <?php foreach($años as $año) : 
-                        
-                        if($año!=$añoActual){
-                          
-                          echo '<option value="'.$año.'">'.$año.'</option>';
+                    <div class="row">
 
-                        }else{
+                      <div class="form-group col-sm">
 
-                          echo '<option value="'.$año.'" selected>'.$año.'</option>';
+                        <select class="form-control input-lg select2" id="años4" style="width: 100%;">
+                          <?php foreach($años as $año) : 
+                            
+                            if($año!=$añoActual){
+                              
+                              echo '<option value="'.$año.'">'.$año.'</option>';
 
-                        }
+                            }else{
 
-                      endforeach; 
-                      ?>
-                    </select>
-                    
+                              echo '<option value="'.$año.'" selected>'.$año.'</option>';
+
+                            }
+
+                          endforeach; 
+                          ?>
+                        </select>
+
+                      </div>
+
+                      <div class="form-group col-sm">
+
+                        <select class="form-control input-lg" id="idTipoProducto2">
+
+                          <option value="1">Productos Terminados</option>
+
+                          <option value="2">Productos Intermedios</option>
+
+                        </select>
+
+                      </div>
+
+                    </div>
+
                 <canvas id="GraficoProductosProducidosValorizado"></canvas>
 
               </div>

@@ -50,7 +50,7 @@ class ModeloDashboard{
 
 		if($valor == 1){ 
 
-			$stmt = Conexion::conectar()->prepare("call mostrar_productostop");
+			$stmt = Conexion::conectar()->prepare("call mostrar_productosterminadostop");
 	
 			$stmt -> execute();
 		
@@ -58,11 +58,20 @@ class ModeloDashboard{
 
 		} elseif($valor == 2){
 
+			$stmt = Conexion::conectar()->prepare("call mostrar_productosintermediostop");
+	
+			$stmt -> execute();
+		
+			return $stmt -> fetchAll();
+
+		} elseif($valor == 3){
+
 			$stmt = Conexion::conectar()->prepare("call mostrar_insumostop");
 	
 			$stmt -> execute();
 		
 			return $stmt -> fetchAll();
+
 		}else{
 
 			$stmt = Conexion::conectar()->prepare("call mostrar_materialestop");
@@ -103,11 +112,12 @@ class ModeloDashboard{
 	MOSTRAR PRODUCTOS PRODUCIDOS POR MES
 	=============================================*/
 
-	static public function mdlMostrarProductosProducidosPorMes($valor){
+	static public function mdlMostrarProductosProducidosPorMes($valor1,$valor2){
 
-		$stmt = Conexion::conectar()->prepare("call mostrar_ProductosProducidosPorMes(?)");
+		$stmt = Conexion::conectar()->prepare("call mostrar_ProductosProducidosPorMes(?,?)");
 
-		$stmt->bindParam(1, $valor, PDO::PARAM_INT);
+		$stmt->bindParam(1, $valor1, PDO::PARAM_INT);
+		$stmt->bindParam(2, $valor2, PDO::PARAM_INT);
 
 		$stmt -> execute();
 
@@ -123,11 +133,12 @@ class ModeloDashboard{
 	MOSTRAR PRODUCTOS VALORIZADOS POR MES
 	=============================================*/
 
-	static public function mdlMostrarProductosValorizadosPorMes($valor){
+	static public function mdlMostrarProductosValorizadosPorMes($valor1,$valor2){
 
-		$stmt = Conexion::conectar()->prepare("call mostrar_ProductosValorizadosPorMes(?)");
+		$stmt = Conexion::conectar()->prepare("call mostrar_ProductosValorizadosPorMes(?,?)");
 
-		$stmt->bindParam(1, $valor, PDO::PARAM_INT);
+		$stmt->bindParam(1, $valor1, PDO::PARAM_INT);
+		$stmt->bindParam(2, $valor2, PDO::PARAM_INT);
 
 		$stmt -> execute();
 

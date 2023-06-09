@@ -98,10 +98,12 @@
       <thead>
        
        <tr>
+        
          <th style="width:10px">#</th>
          <th>Código</th>
          <th>Nombre</th>
          <th>Descripción</th>
+         <th>Tipo de Producto</th>
          <th>Unidad de Medida</th>
          <th>Stock</th>
 

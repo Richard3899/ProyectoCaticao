@@ -2710,9 +2710,11 @@ DELIMITER $$
 USE `caticao`$$
 CREATE PROCEDURE `mostrar_reporteproductos` ()
 BEGIN
-	 SELECT p.codigo,p.nombre,p.descripcion,um.descripcion AS unidadMedida,ip.stock 
+
+	 SELECT p.codigo,p.nombre,p.descripcion,tp.descripcion AS tipoProducto,um.descripcion AS unidadMedida,ip.stock 
 	          FROM producto p left JOIN inventarioproducto ip ON p.idProducto=ip.idProducto
 	                         INNER JOIN unidadmedida um ON p.idUnidadMedida=um.idUnidadMedida
+	                         INNER JOIN tipoproducto tp ON tp.idTipoProducto=p.idTipoProducto
 									 ORDER BY p.nombre ASC;
 	 
 END$$
@@ -2733,46 +2735,6 @@ END$$
 DELIMITER ;
 
 -- Procedimientos almacenados del Dashboard --
-DROP procedure IF EXISTS `mostrar_insumostop`;
-DELIMITER $$
-USE `caticao`$$
-CREATE PROCEDURE `mostrar_insumostop` ()
-BEGIN
-	 SELECT m.nombre,im.stock 
-	          FROM materia m left JOIN inventariomateria im ON m.idMateria=im.idInventarioMateria
-	                         WHERE m.idTipoMateria = 1
-									 ORDER BY im.stock  DESC LIMIT 5; 
-	 
-END$$
-DELIMITER ;
-
-DROP procedure IF EXISTS `mostrar_materialestop`;
-DELIMITER $$
-USE `caticao`$$
-CREATE PROCEDURE `mostrar_materialestop` ()
-BEGIN
-	 SELECT m.nombre,im.stock 
-	          FROM materia m left JOIN inventariomateria im ON m.idMateria=im.idInventarioMateria
-	                         WHERE m.idTipoMateria = 2
-									 ORDER BY im.stock  DESC LIMIT 5; 
-	 
-END$$
-DELIMITER ;
-
-
-DROP procedure IF EXISTS `mostrar_productostop`;
-DELIMITER $$
-USE `caticao`$$
-CREATE PROCEDURE `mostrar_productostop` ()
-BEGIN
-	 SELECT p.nombre,ip.stock
-	          FROM producto p LEFT JOIN inventarioproducto ip ON p.idProducto=ip.idInventarioProducto
-	                         WHERE ip.stock > 0
-									 ORDER BY ip.stock  DESC LIMIT 5; 
-	 
-END$$
-DELIMITER ;
-
 
 DROP procedure IF EXISTS `mostrar_cantidadrecetasestados`;
 DELIMITER $$
@@ -2821,6 +2783,67 @@ END$$
 DELIMITER ;
 
 
+DROP procedure IF EXISTS `mostrar_insumostop`;
+DELIMITER $$
+USE `caticao`$$
+CREATE PROCEDURE `mostrar_insumostop` ()
+BEGIN
+	 SELECT m.nombre,im.stock 
+	          FROM materia m left JOIN inventariomateria im ON m.idMateria=im.idInventarioMateria
+	                         WHERE m.idTipoMateria = 1
+									 ORDER BY im.stock  DESC 
+									 LIMIT 5; 
+	 
+END$$
+DELIMITER ;
+
+DROP procedure IF EXISTS `mostrar_materialestop`;
+DELIMITER $$
+USE `caticao`$$
+CREATE PROCEDURE `mostrar_materialestop` ()
+BEGIN
+	 SELECT m.nombre,im.stock 
+	          FROM materia m left JOIN inventariomateria im ON m.idMateria=im.idInventarioMateria
+	                         WHERE m.idTipoMateria = 2
+									 ORDER BY im.stock  DESC 
+									 LIMIT 5; 
+	 
+END$$
+DELIMITER ;
+
+
+DROP procedure IF EXISTS `mostrar_productosterminadostop`;
+DELIMITER $$
+USE `caticao`$$
+CREATE PROCEDURE `mostrar_productosterminadostop` ()
+BEGIN
+
+	 SELECT p.nombre,ip.stock
+	          FROM producto p LEFT JOIN inventarioproducto ip ON p.idProducto=ip.idInventarioProducto
+	                         WHERE ip.stock > 0 AND p.idTipoProducto=1
+									 ORDER BY ip.stock  DESC 
+									 LIMIT 5; 
+	 
+END$$
+DELIMITER ;
+
+
+DROP procedure IF EXISTS `mostrar_productosintermediostop`;
+DELIMITER $$
+USE `caticao`$$
+CREATE PROCEDURE `mostrar_productosintermediostop` ()
+BEGIN
+
+	 SELECT p.nombre,ip.stock
+	          FROM producto p LEFT JOIN inventarioproducto ip ON p.idProducto=ip.idInventarioProducto
+	                         WHERE ip.stock > 0 AND p.idTipoProducto=2
+									 ORDER BY ip.stock  DESC 
+									 LIMIT 5; 
+	 
+END$$
+DELIMITER ;
+
+
 DROP procedure IF EXISTS `mostrar_topitemsvalorizado`;
 DELIMITER $$
 USE `caticao`$$
@@ -2832,19 +2855,30 @@ BEGIN
    	 SELECT p.nombre,SUM(lt.cantidad * lt.precioUnitario) AS precio
 	          FROM producto p INNER  JOIN inventarioproducto ip ON p.idProducto=ip.idInventarioProducto
 	                          INNER JOIN lote lt ON lt.idProducto=p.idProducto
+	                          WHERE p.idTipoProducto=1
 	                          GROUP BY p.idProducto
 									  ORDER BY precio DESC 
 									  LIMIT 5;
 	   
 	ELSEIF idItem=2 THEN
 	
+		 SELECT p.nombre,SUM(lt.cantidad * lt.precioUnitario) AS precio
+	          FROM producto p INNER  JOIN inventarioproducto ip ON p.idProducto=ip.idInventarioProducto
+	                          INNER JOIN lote lt ON lt.idProducto=p.idProducto
+	                          WHERE p.idTipoProducto=2
+	                          GROUP BY p.idProducto
+									  ORDER BY precio DESC 
+									  LIMIT 5;
+	 
+	ELSEIF idItem=3 THEN
+	
 		 SELECT m.nombre, (im.stock * m.precioUnitario) AS precio
 	          FROM materia m left JOIN inventariomateria im ON m.idMateria=im.idInventarioMateria
 	                         WHERE m.idTipoMateria = 1
 									 ORDER BY precio  DESC 
-									 LIMIT 5;
-	 
+									 LIMIT 5; 
 	ELSE
+	
 	  	 SELECT m.nombre,(im.stock * m.precioUnitario) AS precio
 	          FROM materia m left JOIN inventariomateria im ON m.idMateria=im.idInventarioMateria
 	                         WHERE m.idTipoMateria = 2
@@ -2859,7 +2893,7 @@ DELIMITER ;
 DROP procedure IF EXISTS `mostrar_ProductosProducidosPorMes`;
 DELIMITER $$
 USE `caticao`$$
-CREATE PROCEDURE `mostrar_ProductosProducidosPorMes` (IN añoC INT)
+CREATE PROCEDURE `mostrar_ProductosProducidosPorMes` (IN añoC INT, IN idTipoProductoC INT )
 BEGIN
 
 	CREATE TEMPORARY TABLE  temp_productosproducidos(
@@ -2870,7 +2904,7 @@ BEGIN
 	INSERT INTO temp_productosproducidos
 	SELECT month(lt.fechaProduccion) AS mes, sum(lt.cantidad) AS cantidadProductos FROM lote lt
 	INNER JOIN producto p ON p.idProducto=lt.idProducto
-	WHERE lt.cantidad > 0 AND year(lt.fechaProduccion)=añoC
+	WHERE lt.cantidad > 0 AND year(lt.fechaProduccion)=añoC AND p.idTipoProducto=idTipoProductoC
 	GROUP BY MONTH(lt.fechaProduccion)
 	ORDER BY MONTH(lt.fechaProduccion) ASC;
 	
@@ -2887,7 +2921,7 @@ DELIMITER ;
 DROP procedure IF EXISTS `mostrar_ProductosValorizadosPorMes`;
 DELIMITER $$
 USE `caticao`$$
-CREATE PROCEDURE `mostrar_ProductosValorizadosPorMes` (IN añoC INT)
+CREATE PROCEDURE `mostrar_ProductosValorizadosPorMes` (IN añoC INT,IN idTipoProductoC INT)
 BEGIN
 
 	CREATE TEMPORARY TABLE  temp_productosvalorizados(
@@ -2898,7 +2932,7 @@ BEGIN
 	INSERT INTO temp_productosvalorizados
 	SELECT month(lt.fechaProduccion) AS mes, sum(lt.cantidad*lt.precioUnitario) AS valorProductos FROM lote lt
 	INNER JOIN producto p ON p.idProducto=lt.idProducto
-	WHERE lt.cantidad > 0 AND year(lt.fechaProduccion)=añoC
+	WHERE lt.cantidad > 0 AND year(lt.fechaProduccion)=añoC AND p.idTipoProducto=idTipoProductoC
 	GROUP BY MONTH(lt.fechaProduccion)
 	ORDER BY MONTH(lt.fechaProduccion) ASC;
 	

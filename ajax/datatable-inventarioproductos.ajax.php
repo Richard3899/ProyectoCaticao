@@ -66,11 +66,14 @@ class TablaInventarioProductos{
 		  	$tipoproducto = ControladorTipoProducto::ctrMostrarTipoProducto($item, $valor);
 
 			if($productos["idTipoProducto"]==1){
-				
-				$tp =  "<button class='btn btn-info'>".$tipoproducto["descripcion"]."</button>";	
+
+				$tp =  "<button class='btn btn-success'>".$tipoproducto["descripcion"]."</button>";
+					
 							
 			}else{
-				$tp =  "<button class='btn btn-success'>".$tipoproducto["descripcion"]."</button>";
+
+				$tp =  "<button class='btn btn-info'>".$tipoproducto["descripcion"]."</button>";
+				
 			}
 
 		  	$datosJson .='[

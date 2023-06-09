@@ -75,7 +75,8 @@
   <script src="vistas/plugins/daterangepicker/dateTime.js"></script>
   <!-- Chats -->
   <script src="vistas/plugins/chart.js/Chart.js"></script>
-  <script src="vistas/plugins/chart.js/Chart.bundle.js"></script>
+  <script src="vistas/plugins/chart.js/chartjs-plugin-datalabels.min.js"></script>
+
   <script src="vistas/plugins/apexcharts/apexcharts.min.js"></script>
   <script src="vistas/plugins/echarts/echarts.min.js"></script>
   <!-- SweetAlert2 -->

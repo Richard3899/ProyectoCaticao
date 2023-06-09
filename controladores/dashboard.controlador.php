@@ -52,9 +52,9 @@ class ControladorDashboard{
 	MOSTRAR PRODUCTOS PRODUCIDOS POR MES
 	=============================================*/
 
-	static public function ctrMostrarProductosProducidosPorMes($valor){
+	static public function ctrMostrarProductosProducidosPorMes($valor1,$valor2){
 
-		$respuesta = ModeloDashboard::mdlMostrarProductosProducidosPorMes($valor);
+		$respuesta = ModeloDashboard::mdlMostrarProductosProducidosPorMes($valor1,$valor2);
 
 		return $respuesta;
 	}
@@ -63,9 +63,9 @@ class ControladorDashboard{
 	MOSTRAR PRODUCTOS VALORIZADOS POR MES
 	=============================================*/
 
-	static public function ctrMostrarProductosValorizadosPorMes($valor){
+	static public function ctrMostrarProductosValorizadosPorMes($valor1,$valor2){
 
-		$respuesta = ModeloDashboard::mdlMostrarProductosValorizadosPorMes($valor);
+		$respuesta = ModeloDashboard::mdlMostrarProductosValorizadosPorMes($valor1,$valor2);
 
 		return $respuesta;
 	}
