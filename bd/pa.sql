@@ -2725,7 +2725,7 @@ DELIMITER $$
 USE `caticao`$$
 CREATE PROCEDURE `mostrar_reporterecetas` ()
 BEGIN
-	 SELECT r.codigo,r.nombre,p.nombre AS nombreProducto,r.cantidadTabletas,l.codigoLote,l.fechaVencimiento,r.costoTotal,r.costoPorTableta 
+	 SELECT r.codigo,r.nombre,p.nombre AS nombreProducto,r.cantidadTabletas,l.codigoLote,r.fechaFin,l.fechaVencimiento,r.costoTotal,r.costoPorTableta 
 	                                   FROM receta r INNER JOIN lote l on l.codigoLote=r.codigoLote
 	                                         			 INNER JOIN producto p ON p.idProducto=l.idProducto
 	                                         			 WHERE r.cerrado=1 AND r.ocultoAdicional=1
