@@ -218,7 +218,7 @@ MODAL RECETA MANO DE OBRA
                 <span class="input-group-text"><i class="fas fa-layer-group"></i></span>
                 </div>
                 <input type="number" placeholder="0" class="form-control input-lg nuevoTiempoHorasManodeObra" id="nuevoTiempoHoras" name="nuevoTiempoHoras" 
-                 min="0.1" step="0.1" required>
+                 min="0.01" step="0.01" required>
             </div>
 
             </div>
@@ -348,7 +348,7 @@ MODAL EDITAR RECETA MANO DE OBRA
                 <span class="input-group-text"><i class="fas fa-layer-group"></i></span>
                 </div>
                 <input type="number" placeholder="0" class="form-control input-lg editarTiempoHorasManodeObra" id="editarTiempoHoras" name="editarTiempoHoras" 
-                 min="0.1" step="0.1" required>
+                 min="0.01" step="0.01" required>
             </div>
 
             </div>

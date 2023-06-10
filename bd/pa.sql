@@ -242,18 +242,6 @@ BEGIN
 END$$
 DELIMITER ;
 
-
--- Procedimientos almacenados de Marcas --
-
-DROP procedure IF EXISTS `mostrar_marcas`;
-DELIMITER $$
-USE `caticao`$$
-CREATE PROCEDURE `mostrar_marcas` ()
-BEGIN
-	select * from marca;
-END$$
-DELIMITER ;
-
 -- Procedimientos almacenados de Insumos --
 
 DROP procedure IF EXISTS `mostrar_insumos`;
@@ -311,6 +299,7 @@ BEGIN
                         idMarca=idMarcaE,
                         cantidad=cantidadE,
                         precio=precioE,
+                        precioUnitario=precioE/cantidadE,
                         imagen=imagenE
 				where idMateria=idMateriaE;
 END$$
@@ -471,7 +460,8 @@ DELIMITER $$
 USE `caticao`$$
 CREATE PROCEDURE `mostrar_marcas` ()
 BEGIN
-	select * from marca;
+	select * from marca m
+	ORDER BY m.descripcion ASC;
 END$$
 DELIMITER ;
 

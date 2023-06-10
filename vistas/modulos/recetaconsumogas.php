@@ -182,7 +182,7 @@ MODAL RECETA CONSUMO DE GAS
                   <span class="input-group-text"><i class="fas fa-clock"></i></span>
                   </div>
                   <input type="number" class="form-control input-lg nuevoTrabajoPorBatch" id="nuevoTrabajoPorBatch" name="nuevoTrabajoPorBatch" 
-                   placeholder="Ingrese el trabajo por batch (Horas)" min="0.1" step="0.1" required>
+                   placeholder="Ingrese el trabajo por batch (Horas)" min="0.01" step="0.01" required>
               </div>
 
               </div>
@@ -199,7 +199,7 @@ MODAL RECETA CONSUMO DE GAS
                 <span class="input-group-text"><i class="fas fa-layer-group"></i></span>
                 </div>
                 <input type="number" class="form-control input-lg nuevoPesoBalonGas" id="nuevoPesoBalonGas" name="nuevoPesoBalonGas" 
-                 placeholder="Ingresar peso del balón de gas (Kg)" min="0.1" step="0.1" required>
+                 placeholder="Ingresar peso del balón de gas (Kg)" min="0.01" step="0.01" required>
             </div>
 
             </div>
@@ -212,7 +212,7 @@ MODAL RECETA CONSUMO DE GAS
                 <span class="input-group-text"><strong>S/.</strong></span>
                 </div>
                 <input type="number" class="form-control input-lg nuevaTarifaGas" name="nuevaTarifaGas" id="nuevaTarifaGas"
-                 placeholder="Ingresar tarifa de gas por Kg" min="0.1" step="0.1" required>
+                 placeholder="Ingresar tarifa de gas por Kg" min="0.01" step="0.01" required>
             </div>
             </div>
           </div>
@@ -325,7 +325,7 @@ MODAL EDITAR RECETA CONSUMO DE GAS
                   <span class="input-group-text"><i class="fas fa-clock"></i></span>
                   </div>
                   <input type="number" class="form-control input-lg editarTrabajoPorBatch" id="editarTrabajoPorBatch" name="editarTrabajoPorBatch" 
-                   placeholder="Ingrese el trabajo por batch (Horas)" min="0.1" step="0.1" required>
+                   placeholder="Ingrese el trabajo por batch (Horas)" min="0.01" step="0.01" required>
               </div>
 
               </div>
@@ -342,7 +342,7 @@ MODAL EDITAR RECETA CONSUMO DE GAS
                 <span class="input-group-text"><i class="fas fa-layer-group"></i></span>
                 </div>
                 <input type="number" class="form-control input-lg editarPesoBalonGas" id="editarPesoBalonGas" name="editarPesoBalonGas" 
-                 placeholder="Ingresar peso del balón de gas (Kg)" min="0.1" step="0.1" required>
+                 placeholder="Ingresar peso del balón de gas (Kg)" min="0.01" step="0.01" required>
             </div>
 
             </div>
@@ -355,7 +355,7 @@ MODAL EDITAR RECETA CONSUMO DE GAS
                 <span class="input-group-text"><strong>S/.</strong></span>
                 </div>
                 <input type="number" class="form-control input-lg editarTarifaGas" name="editarTarifaGas" id="editarTarifaGas"
-                placeholder="Ingresar tarifa de gas por Kg" min="0.1" step="0.1" required>
+                placeholder="Ingresar tarifa de gas por Kg" min="0.01" step="0.01" required>
             </div>
 
             </div>

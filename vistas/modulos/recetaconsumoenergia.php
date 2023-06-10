@@ -298,7 +298,7 @@ MODAL RECETA CONSUMO DE ENERGÍA
                 <span class="input-group-text"><i class="fas fa-layer-group"></i></span>
                 </div>
                 <input type="number" placeholder="0" class="form-control input-lg nuevoTiempoHorasConsumoEnergia" id="nuevoTiempoHoras" name="nuevoTiempoHoras" 
-                 min="0.1" step="0.1" required>
+                 min="0.01" step="0.01" required>
             </div>
 
             </div>
@@ -419,7 +419,7 @@ MODAL EDITAR RECETA CONSUMO DE ENERGÍA
                 <span class="input-group-text"><i class="fas fa-layer-group"></i></span>
                 </div>
                 <input type="number" placeholder="0" placeholder="0" class="form-control input-lg editarTiempoHorasConsumoEnergia" id="editarTiempoHoras" name="editarTiempoHoras" 
-                 min="0.1" step="0.1" required>
+                 min="0.01" step="0.01" required>
             </div>
 
             </div>
