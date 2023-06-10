@@ -47,7 +47,7 @@ class ControladorRecetaConsumoGas{
 				Swal.fire({
 				
 					icon: "success",
-					title: "¡El consumo gas fue agregada correctamente!",
+					title: "¡El consumo de gas fue agregado correctamente!",
 					showConfirmButton: false,
 					timer: 1500
 				
@@ -92,7 +92,7 @@ class ControladorRecetaConsumoGas{
 					Swal.fire({
 					
 						icon: "success",
-						title: "¡El consumo gas fue editada correctamente!",
+						title: "¡El consumo de gas fue editado correctamente!",
 						showConfirmButton: false,
 						timer: 1500
 					
@@ -135,7 +135,7 @@ class ControladorRecetaConsumoGas{
 				Swal.fire({
 				
 					icon: "success",
-					title: "¡El consumo gas ha sido eliminada correctamente!",
+					title: "¡El consumo de gas ha sido eliminado correctamente!",
 					showConfirmButton: false,
 					timer: 1500
 				

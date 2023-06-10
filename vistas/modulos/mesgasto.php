@@ -246,7 +246,7 @@ MODAL EDITAR MES GASTO
 
 
 <!--=====================================
-MODAL GASTO ADMINISTRATIVO POR MES
+MODAL GASTOS POR MES
 ======================================-->
 
 <div id="modalDetalleMesGasto" class="modal fade" role="dialog">

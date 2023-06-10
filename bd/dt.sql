@@ -85,8 +85,9 @@ INSERT INTO `estado` (`idEstado`, `descripcion`) VALUES
 
 INSERT INTO `perfil` (`idPerfil`, `descripcion`) VALUES
 	(1, 'Administrador'),
-	(2, 'Vendedor'),
-	(3, 'Otro');
+	(2, 'Operario'),
+	(3, 'Vendedor'),
+	(4, 'Otro');
 
 INSERT INTO `usuario` (`idUsuario`,`idPerfil`, `nombre`, `usuario`, `password`, `foto`, `estado`, `ultimo_login`, `fecha`) VALUES
 	(1, 1, 'Administrador', 'admin', '$2a$07$asxx54ahjppf45sd87a5aunxs9bkpyGmGE/.vekdjFg83yRec789S', 'vistas/img/usuarios/admin/211.png', 1, NULL, '2022-10-18 16:42:18');

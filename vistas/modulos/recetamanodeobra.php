@@ -120,7 +120,7 @@ MODAL RECETA MANO DE OBRA
 
       <div class="modal-header" style="background:gray; color:white">
 
-      <h4 class="modal-title">Receta Mano de Obra</h4>
+      <h4 class="modal-title">Agregar Mano de Obra</h4>
 
       <button type="button" class="close" data-dismiss="modal">&times;</button>
 
@@ -217,7 +217,7 @@ MODAL RECETA MANO DE OBRA
                 <div class="input-group-prepend">
                 <span class="input-group-text"><i class="fas fa-layer-group"></i></span>
                 </div>
-                <input type="number" class="form-control input-lg nuevoTiempoHorasManodeObra" id="nuevoTiempoHoras" name="nuevoTiempoHoras" 
+                <input type="number" placeholder="0" class="form-control input-lg nuevoTiempoHorasManodeObra" id="nuevoTiempoHoras" name="nuevoTiempoHoras" 
                  min="0.1" step="0.1" required>
             </div>
 
@@ -232,7 +232,7 @@ MODAL RECETA MANO DE OBRA
                 </div>
                 <input type="hidden" id="precioUnitario" name="precioUnitario">
                 <input type="hidden" id="precioTotal" name="precioTotal">
-                <input type="number" class="form-control input-lg precioManodeObra" precioReal name="nuevoPrecioUnitario" id="nuevoPrecioUnitario"
+                <input type="number" placeholder="0,00" class="form-control input-lg precioManodeObra" precioReal name="nuevoPrecioUnitario" id="nuevoPrecioUnitario"
                  required readonly>
             </div>
 
@@ -289,7 +289,7 @@ MODAL EDITAR RECETA MANO DE OBRA
 
       <div class="modal-header" style="background:gray; color:white">
 
-      <h4 class="modal-title">Editar Receta Mano de Obra</h4>
+      <h4 class="modal-title">Editar Mano de Obra</h4>
 
       <button type="button" class="close" data-dismiss="modal">&times;</button>
 
@@ -347,7 +347,7 @@ MODAL EDITAR RECETA MANO DE OBRA
                 <div class="input-group-prepend">
                 <span class="input-group-text"><i class="fas fa-layer-group"></i></span>
                 </div>
-                <input type="number" class="form-control input-lg editarTiempoHorasManodeObra" id="editarTiempoHoras" name="editarTiempoHoras" 
+                <input type="number" placeholder="0" class="form-control input-lg editarTiempoHorasManodeObra" id="editarTiempoHoras" name="editarTiempoHoras" 
                  min="0.1" step="0.1" required>
             </div>
 
@@ -361,7 +361,7 @@ MODAL EDITAR RECETA MANO DE OBRA
                 <span class="input-group-text"><strong>S/.</strong></span>
                 </div>
                 <input type="hidden" id="editarprecioTotal" name="editarprecioTotal">
-                <input type="number" class="form-control input-lg editarPrecioManodeObra" name="editarPrecioManodeObra" id="editarPrecioManodeObra"
+                <input type="number" placeholder="0,00" class="form-control input-lg editarPrecioManodeObra" name="editarPrecioManodeObra" id="editarPrecioManodeObra"
                  required readonly>
             </div>
 

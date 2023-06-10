@@ -5,7 +5,7 @@ require_once "conexion.php";
 class ModeloRecetaGastoAdminPorMes{
 
 	/*=============================================
-	MOSTRAR RECETAS Y GASTO ADMIN POR MES
+	MOSTRAR RECETAS Y GASTO POR MES
 	=============================================*/
 
 	static public function mdlMostrarRecetaGastoAdminPorMes($valor1,$valor2){
@@ -42,7 +42,7 @@ class ModeloRecetaGastoAdminPorMes{
 	}
 
 	/*=============================================
-	REGISTRO DE RECETAS Y GASTO ADMIN POR MES
+	REGISTRO DE RECETAS Y GASTO POR MES
 	=============================================*/
 
 	static public function mdlIngresarRecetaGastoAdminPorMes($datos){
@@ -96,7 +96,7 @@ class ModeloRecetaGastoAdminPorMes{
 	}
 
 	/*=============================================
-	ELIMINAR RECETAS Y GASTO ADMIN POR MES
+	ELIMINAR RECETAS Y GASTO POR MES
 	=============================================*/
 
 	static public function mdlEliminarRecetaGastoAdminPorMes($valor1,$valor2){

@@ -262,14 +262,14 @@ $(".tablaRecetaConsumoGas tbody").on("click", "button.btnEliminarConsumoGasRecet
 	
 	Swal.fire({
 
-		title: '¿Está seguro de borrar la mano de obra?',
+		title: '¿Está seguro de borrar el consumo de gas?',
 		text: "¡Si no lo está puede cancelar la acción!",
 		icon: 'warning',
         showCancelButton: true,
         confirmButtonColor: '#3085d6',
         cancelButtonColor: '#d33',
         cancelButtonText: 'Cancelar',
-        confirmButtonText: 'Si, borrar mano de obra!'
+        confirmButtonText: 'Si, borrar consumo de gas!'
         }).then(function(result){
         if (result.value) {
 

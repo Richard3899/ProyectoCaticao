@@ -6,7 +6,7 @@ class ModeloGastoAdminPorMes{
 
 
 	/*=============================================
-	MOSTRAR GASTO ADMIN POR MES
+	MOSTRAR GASTO POR MES
 	=============================================*/
 
 	static public function mdlMostrarGastoAdminPorMes($item,$valor){
@@ -61,7 +61,7 @@ class ModeloGastoAdminPorMes{
 
 
 	/*=============================================
-	REGISTRO DE GASTO ADMIN POR MES
+	REGISTRO DE GASTO POR MES
 	=============================================*/
 
 	static public function mdlIngresarGastoAdminPorMes($datos){
@@ -91,7 +91,7 @@ class ModeloGastoAdminPorMes{
 	}
 
 	/*=============================================
-	EDITAR GASTO ADMIN POR MES
+	EDITAR GASTO POR MES
 	=============================================*/
 
 	static public function mdlEditarGastoAdminPorMes($datos){
@@ -119,7 +119,7 @@ class ModeloGastoAdminPorMes{
 	}
 
 	/*=============================================
-	ELIMINAR GASTO ADMIN POR MES
+	ELIMINAR GASTO POR MES
 	=============================================*/
 
 	static public function mdlEliminarGastoAdminPorMes($datos){
@@ -145,7 +145,7 @@ class ModeloGastoAdminPorMes{
 
 
 	/*=============================================
-	SUMAR EL TOTAL DE GASTO ADMIN POR MES
+	SUMAR EL TOTAL DE GASTO POR MES
 	=============================================*/
 
 	static public function mdlSumaTotalGastoAdminPorMes($valor1,$valor2){

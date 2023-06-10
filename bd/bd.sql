@@ -411,7 +411,7 @@ CREATE TABLE MesGasto (
 );
 
 -- -----------------------------------------------------
--- Table Gasto Admin Por Mes
+-- Table Gasto Por Mes
 -- -----------------------------------------------------
 
 CREATE TABLE GastoAdminPorMes (

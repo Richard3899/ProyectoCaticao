@@ -49,7 +49,7 @@ class ControladorMesGasto{
 					Swal.fire({
 					
 						icon: "success",
-						title: "¡El costo de recetas y gasto admin ha sido guardado correctamente!",
+						title: "¡El mes ha sido guardado correctamente!",
 						showConfirmButton: false,
 						timer: 1500
 					
@@ -89,7 +89,7 @@ class ControladorMesGasto{
 					Swal.fire({
 					
 						icon: "success",
-						title: "¡El costo de recetas y gasto admin ha sido editado correctamente!",
+						title: "¡El mes ha sido editado correctamente!",
 						showConfirmButton: false,
 						timer: 1500
 					

@@ -13,7 +13,7 @@
           <ol class="breadcrumb float-sm-right">
             <li class="breadcrumb-item"><a href="inicio">Inicio</a></li>
             <li class="breadcrumb-item active">Registros</li>
-            <li class="breadcrumb-item active">Administrador de Maquinas</li>
+            <li class="breadcrumb-item active">Maquinas</li>
             
           </ol>
         </div>

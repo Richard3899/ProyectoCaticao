@@ -119,7 +119,7 @@ MODAL RECETA DEPRECIACIÓN
 
       <div class="modal-header" style="background:gray; color:white">
 
-      <h4 class="modal-title">Receta Depreciación</h4>
+      <h4 class="modal-title">Agregar Depreciación</h4>
 
       <button type="button" class="close" data-dismiss="modal">&times;</button>
 
@@ -182,7 +182,7 @@ MODAL RECETA DEPRECIACIÓN
                 <div class="input-group-prepend">
                 <span class="input-group-text"><i class="fas fa-layer-group"></i></span>
                 </div>
-                <input type="number" class="form-control input-lg nuevoTiempoHorasDepreciacion" id="nuevoTiempoHoras" name="nuevoTiempoHoras" 
+                <input type="number" placeholder="0" class="form-control input-lg nuevoTiempoHorasDepreciacion" id="nuevoTiempoHoras" name="nuevoTiempoHoras" 
                  min="0.1" step="0.1" required>
             </div>
 
@@ -197,7 +197,7 @@ MODAL RECETA DEPRECIACIÓN
                 </div>
                 <input type="hidden" id="precioUnitario" name="precioUnitario">
                 <input type="hidden" id="precioTotal" name="precioTotal">
-                <input type="number" class="form-control input-lg precioDepreciacion" precioReal name="nuevoPrecioUnitario" id="nuevoPrecioUnitario"
+                <input type="number" placeholder="0,00" class="form-control input-lg precioDepreciacion" precioReal name="nuevoPrecioUnitario" id="nuevoPrecioUnitario"
                  required readonly>
             </div>
 
@@ -254,7 +254,7 @@ MODAL EDITAR RECETA DEPRECIACIÓN
 
       <div class="modal-header" style="background:gray; color:white">
 
-      <h4 class="modal-title">Editar Receta Depreciación</h4>
+      <h4 class="modal-title">Editar Depreciación</h4>
 
       <button type="button" class="close" data-dismiss="modal">&times;</button>
 
@@ -301,7 +301,7 @@ MODAL EDITAR RECETA DEPRECIACIÓN
                 <div class="input-group-prepend">
                 <span class="input-group-text"><i class="fas fa-layer-group"></i></span>
                 </div>
-                <input type="number" class="form-control input-lg editarTiempoHorasDepreciacion" id="editarTiempoHoras" name="editarTiempoHoras" 
+                <input type="number" placeholder="0" class="form-control input-lg editarTiempoHorasDepreciacion" id="editarTiempoHoras" name="editarTiempoHoras" 
                  min="0.1" step="0.1" required>
             </div>
 
@@ -315,7 +315,7 @@ MODAL EDITAR RECETA DEPRECIACIÓN
                 <span class="input-group-text"><strong>S/.</strong></span>
                 </div>
                 <input type="hidden" id="editarprecioTotal" name="editarprecioTotal">
-                <input type="number" class="form-control input-lg editarPrecioDepreciacion" name="editarPrecioDepreciacion" id="editarPrecioDepreciacion"
+                <input type="number" placeholder="0,00" class="form-control input-lg editarPrecioDepreciacion" name="editarPrecioDepreciacion" id="editarPrecioDepreciacion"
                  required readonly>
             </div>
 

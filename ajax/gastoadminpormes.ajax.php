@@ -6,7 +6,7 @@ require_once "../modelos/gastoadminpormes.modelo.php";
 class AjaxGastoAdminPorMes{
 
 	/*=============================================
-	EDITAR GASTO ADMIN POR MES
+	EDITAR GASTO POR MES
 	=============================================*/	
 
 	public $idGastoAdminPorMes;
@@ -24,7 +24,7 @@ class AjaxGastoAdminPorMes{
 
 	}
 	/*=============================================
-	MOSTRAR GASTO ADMIN POR MESS
+	MOSTRAR GASTO POR MES
 	=============================================*/
 	public function ajaxMesGasto(){
 
@@ -80,7 +80,7 @@ class AjaxGastoAdminPorMes{
 
 
 /*=============================================
-EDITAR GASTO ADMIN POR MES
+EDITAR GASTO POR MES
 =============================================*/
 if(isset($_POST["idGastoAdminPorMes"])){
 
@@ -91,7 +91,7 @@ if(isset($_POST["idGastoAdminPorMes"])){
 }
 
 /*=============================================
-MOSTRAR GASTO ADMIN POR MES
+MOSTRAR GASTO POR MES
 =============================================*/
 if(isset($_POST["idMesGasto"])){
 
@@ -114,7 +114,7 @@ if(isset($_POST["idTipoGasto"])){
 }
 
 /*=============================================
-CONSULTA GASTO ADMIN POR MES
+CONSULTA GASTO POR MES
 =============================================*/
 if(isset($_POST["idGastoAdminPorMes3"])){
 

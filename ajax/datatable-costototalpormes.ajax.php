@@ -64,7 +64,7 @@ class TablaCostoTotal{
 							["Costos de Marketing","'.$totalcostomarketing.'"],
 							["Costos Operativos","'.$totalcostooperativo.'"],
 							["",""],
-							["Costo total: ","'.$totalgastosdelmes.'"]]}';
+							["Costo total : ","'.$totalgastosdelmes.'"]]}';
 
 		    echo $datosJson;
 

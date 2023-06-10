@@ -52,7 +52,7 @@
          <th>Código</th>
          <th>Nombre</th>
          <th>Batch</th>
-         <th>Fecha de Fin</th>
+         <th>Fecha de Producción</th>
          <th>Adicionales</th>
          <th>Acciones</th>
 

@@ -2045,7 +2045,7 @@ BEGIN
 END$$
 DELIMITER ;
 
--- Procedimientos almacenados de Recetas y Gasto Admin Por Mes --
+-- Procedimientos almacenados de Recetas y Gasto Por Mes --
 
 DROP procedure IF EXISTS `mostrar_recetagastoadminpormes`;
 DELIMITER $$
@@ -2349,7 +2349,7 @@ BEGIN
 END$$
 DELIMITER ;
 
--- Procedimientos almacenados de Gasto Administrativo por Mes-
+-- Procedimientos almacenados de Gasto por Mes-
 
 DROP procedure IF EXISTS `mostrar_gastoadminpormes1`;
 DELIMITER $$

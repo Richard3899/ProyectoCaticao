@@ -3,7 +3,7 @@
 class ControladorGastoAdminPorMes{
 
 	/*=============================================
-	MOSTRAR LISTA GASTO ADMIN POR MES
+	MOSTRAR LISTA GASTO POR MES
 	=============================================*/
 
 	static public function ctrMostrarGastoAdminPorMes($item,$valor){
@@ -32,7 +32,7 @@ class ControladorGastoAdminPorMes{
 	} 
 
 	/*=============================================
-	SUMAR TOTAL DE GASTO ADMIN POR MES
+	SUMAR TOTAL DE GASTO POR MES
 	=============================================*/
 	static public function ctrSumaTotalGastoAdminPorMes($valor1,$valor2){
 
@@ -42,7 +42,7 @@ class ControladorGastoAdminPorMes{
 	}
 
 	/*=============================================
-	AGREGAR LOS GASTO ADMIN POR MES
+	AGREGAR LOS GASTO POR MES
 	=============================================*/
 
 	static public function ctrCrearGastoAdminPorMes(){
@@ -65,7 +65,7 @@ class ControladorGastoAdminPorMes{
 				Swal.fire({
 				
 					icon: "success",
-					title: "¡El gasto administrativo fue agregado correctamente!",
+					title: "¡El gasto fue agregado correctamente!",
 					showConfirmButton: false,
 					timer: 1500
 				
@@ -88,7 +88,7 @@ class ControladorGastoAdminPorMes{
 
 
 	/*=============================================
-	EDITAR GASTO ADMIN POR MES
+	EDITAR GASTO POR MES
 	=============================================*/
 
 	static public function ctrEditarGastoAdminPorMes(){
@@ -109,7 +109,7 @@ class ControladorGastoAdminPorMes{
 					Swal.fire({
 					
 						icon: "success",
-						title: "¡El gasto administrativo fue editado correctamente!",
+						title: "¡El gasto fue editado correctamente!",
 						showConfirmButton: false,
 						timer: 1500
 					
@@ -130,7 +130,7 @@ class ControladorGastoAdminPorMes{
 
 
 	/*=============================================
-	BORRAR GASTO ADMIN POR MES
+	BORRAR GASTO POR MES
 	=============================================*/
 	static public function ctrEliminarGastoAdminPorMes(){
 
@@ -149,7 +149,7 @@ class ControladorGastoAdminPorMes{
 				Swal.fire({
 				
 					icon: "success",
-					title: "¡El gasto administrativo ha sido eliminado correctamente!",
+					title: "¡El gasto ha sido eliminado correctamente!",
 					showConfirmButton: false,
 					timer: 1500
 				

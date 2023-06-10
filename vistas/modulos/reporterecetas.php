@@ -12,7 +12,7 @@
           <ol class="breadcrumb float-sm-right">
             <li class="breadcrumb-item"><a href="inicio">Inicio</a></li>
             <li class="breadcrumb-item active">Reportes</li>
-            <li class="breadcrumb-item active">Reporte de Recetas</li>
+            <li class="breadcrumb-item active">Reporte Recetas</li>
           </ol>
         </div>
       </div>
@@ -89,9 +89,10 @@
          <th>Código</th>
          <th>Nombre</th>
          <th>Producto</th>
-         <th>Tabletas</th>
          <th>Lote</th>
+         <th>Fecha de Producción</th>
          <th>Fecha de Vencimiento</th>
+         <th>Tabletas</th>
          <th>Costo Total</th>
          <th>Costo por Tableta</th>
        </tr> 

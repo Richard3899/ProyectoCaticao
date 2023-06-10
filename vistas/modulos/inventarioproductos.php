@@ -12,7 +12,7 @@
           <ol class="breadcrumb float-sm-right">
             <li class="breadcrumb-item"><a href="inicio">Inicio</a></li>
             <li class="breadcrumb-item active">Inventario</li>
-            <li class="breadcrumb-item active">Productos</li>
+            <li class="breadcrumb-item active">Inventario Productos</li>
           </ol>
         </div>
       </div>

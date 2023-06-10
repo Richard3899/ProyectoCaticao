@@ -9,7 +9,7 @@ require_once "../modelos/recetas.modelo.php";
 class TablaRecetaGastoAdminPorMes{
 
  	/*=============================================
- 	 MOSTRAR LA TABLA DE GASTO ADMIN
+ 	 MOSTRAR LA TABLA DE GASTO
   	=============================================*/ 
 
 	public function mostrarTablaRecetaGastoAdminPorMes(){
@@ -77,7 +77,7 @@ class TablaRecetaGastoAdminPorMes{
 }
 
 /*=============================================
-ACTIVAR TABLA DE GASTO ADMIN
+ACTIVAR TABLA DE GASTO
 =============================================*/ 
 $activarGastoAdmin = new TablaRecetaGastoAdminPorMes();
 $activarGastoAdmin -> mostrarTablaRecetaGastoAdminPorMes();

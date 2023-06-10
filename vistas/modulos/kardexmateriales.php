@@ -113,14 +113,14 @@
                           <!-- ENTRADA PARA LA FECHA DE EMISIÓN -->
                           <div class="form-group col-sm-6 col-md-4 col-lg">
                           <div class="input-group">
-                              <input type="text" id="min"  class="form-control" placeholder="Fecha de Emisión"  data-index="5">   
+                              <input type="text" id="min"  class="form-control" placeholder="Fecha de Emisión >"  data-index="5">   
                           </div>
                           </div>
 
                           <!-- ENTRADA PARA LA FECHA DE EMISIÓN -->
                           <div class="form-group col-sm-6 col-md-4 col-lg">
                           <div class="input-group">
-                              <input type="text" id="max"  class="form-control" placeholder="Fecha de Emisión"  data-index="5">   
+                              <input type="text" id="max"  class="form-control" placeholder="< Fecha de Emisión"  data-index="5">   
                           </div>
                           </div>
    

@@ -5,7 +5,7 @@ require_once "conexion.php";
 class ModeloGastoAdmin{
 
 	/*=============================================
-	MOSTRAR GASTO ADMIN
+	MOSTRAR GASTO
 	=============================================*/
 
 	static public function mdlMostrarGastoAdmin($tabla, $item, $valor){
@@ -39,7 +39,7 @@ class ModeloGastoAdmin{
 
 
 	/*=============================================
-	REGISTRO DE GASTO ADMIN
+	REGISTRO DE GASTO
 	=============================================*/
 
 	static public function mdlIngresarGastoAdmin($datos){
@@ -69,7 +69,7 @@ class ModeloGastoAdmin{
 	}
 
 	/*=============================================
-	EDITAR GASTO ADMIN
+	EDITAR GASTO
 	=============================================*/
 
 	static public function mdlEditarGastoAdmin($datos){
@@ -99,7 +99,7 @@ class ModeloGastoAdmin{
 
 
 	/*=============================================
-	BORRAR GASTO ADMIN
+	BORRAR GASTO
 	=============================================*/
 
 	static public function mdlEliminarGastoAdmin($datos){

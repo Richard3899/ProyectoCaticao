@@ -11,7 +11,7 @@
         <div class="col-sm-6">
           <ol class="breadcrumb float-sm-right">
             <li class="breadcrumb-item"><a href="inicio">Inicio</a></li>
-            <li class="breadcrumb-item active">Administrador de Usuarios</li>
+            <li class="breadcrumb-item active">Usuarios</li>
           </ol>
         </div>
       </div>
@@ -76,7 +76,7 @@
 MODAL AGREGAR USUARIO
 ======================================-->
 
-<div id="modalAgregarUsuario" class="modal fade" role="dialog">
+<div id="modalAgregarUsuario" data-backdrop="static" class="modal fade" role="dialog">
 
 <div class="modal-dialog modal-lg">
 
@@ -340,19 +340,19 @@ MODAL AGREGAR USUARIO
                 <div class="card-body">
                   <div class="icheck-primary">
                       <input class="checkModulos" type="checkbox" id="cbReporteInsumos" value="20" name="checkListModulos[]">
-                      <label for="cbReporteInsumos">Reporte de Insumos</label>
+                      <label for="cbReporteInsumos">Reporte Insumos</label>
                   </div>    
                   <div class="icheck-primary">
                       <input class="checkModulos" type="checkbox" id="cbReportemateriales" value="21" name="checkListModulos[]">
-                      <label for="cbReportemateriales">Reporte de Materiales</label>
+                      <label for="cbReportemateriales">Reporte Materiales</label>
                   </div> 
                   <div class="icheck-primary">
                       <input class="checkModulos" type="checkbox" id="cbReporteProductos" value="22" name="checkListModulos[]">
-                      <label for="cbReporteProductos">Reporte de Productos</label>
+                      <label for="cbReporteProductos">Reporte Productos</label>
                   </div>  
                   <div class="icheck-primary">
                       <input class="checkModulos" type="checkbox" id="cbReporteRecetas" value="25" name="checkListModulos[]">
-                      <label for="cbReporteRecetas">Reporte de Recetas</label>
+                      <label for="cbReporteRecetas">Reporte Recetas</label>
                   </div>             
                 </div>
             </div> 
@@ -437,7 +437,7 @@ MODAL AGREGAR USUARIO
 MODAL EDITAR USUARIO
 ======================================-->
 
-<div id="modalEditarUsuario" class="modal fade" role="dialog">
+<div id="modalEditarUsuario" data-backdrop="static" class="modal fade" role="dialog">
   
   <div class="modal-dialog modal-lg">
 
@@ -698,19 +698,19 @@ MODAL EDITAR USUARIO
                 <div class="card-body">
                   <div class="icheck-primary">
                       <input class="editarCheckModulos" type="checkbox" id="reporteinsumos" value="20" name="editarCheckListModulos[]">
-                      <label for="reporteinsumos">Reporte de Insumos</label>
+                      <label for="reporteinsumos">Reporte Insumos</label>
                   </div>    
                   <div class="icheck-primary">
                       <input class="editarCheckModulos" type="checkbox" id="reportemateriales" value="21" name="editarCheckListModulos[]">
-                      <label for="reportemateriales">Reporte de Materiales</label>
+                      <label for="reportemateriales">Reporte Materiales</label>
                   </div> 
                   <div class="icheck-primary">
                       <input class="editarCheckModulos" type="checkbox" id="reporteproductos" value="22" name="editarCheckListModulos[]">
-                      <label for="reporteproductos">Reporte de Productos</label>
+                      <label for="reporteproductos">Reporte Productos</label>
                   </div>    
                   <div class="icheck-primary">
                       <input class="editarCheckModulos" type="checkbox" id="reporterecetas" value="25" name="editarCheckListModulos[]">
-                      <label for="reporterecetas">Reporte de Recetas</label>
+                      <label for="reporterecetas">Reporte Recetas</label>
                   </div>        
                 </div>
             </div> 

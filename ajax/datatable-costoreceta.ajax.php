@@ -48,7 +48,7 @@ class TablaCostoReceta{
 			
 			}else{
 
-			$botones =  "<div class='btn-group'><a class='btn btn-success' href='index.php?ruta=costototal&idReceta=".$recetas[$i]["idReceta"]."&codigo=".$recetas[$i]["codigo"]."'>Costo Total</a><button title='Receta visible en adicionales' class='btn btn-secondary btnOcultarAdicional' idReceta='".$recetas[$i]["idReceta"]."'><i class='fa fa-lock'></i></button></div>"; 
+			$botones =  "<div class='btn-group'><a class='btn btn-success' href='index.php?ruta=costototal&idReceta=".$recetas[$i]["idReceta"]."&codigo=".$recetas[$i]["codigo"]."'>Costo Total</a><button title='Receta visible en adicionales' class='btn btn-secondary btnOcultarAdicional' idReceta='".$recetas[$i]["idReceta"]."'><i class='fa fa-lock-open'></i></button></div>"; 
 			
 			}
 			}

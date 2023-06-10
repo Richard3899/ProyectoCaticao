@@ -3,7 +3,7 @@
 class ControladorRecetaGastoAdminPorMes{
 
 	/*=============================================
-	MOSTRAR RECETAS Y GASTO ADMIN POR MES
+	MOSTRAR RECETAS Y GASTO POR MES
 	=============================================*/
 
 	static public function ctrMostrarRecetaGastoAdminPorMes($valor1,$valor2){
@@ -22,7 +22,7 @@ class ControladorRecetaGastoAdminPorMes{
 
 
 	/*=============================================
-	MOSTRAR RECETAS Y GASTO ADMIN POR MES
+	CREAR RECETAS Y GASTO POR MES
 	=============================================*/
 
 	static public function ctrCrearRecetaGastoAdminPorMes(){

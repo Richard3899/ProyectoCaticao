@@ -15,7 +15,7 @@ require_once "../modelos/tipogasto.modelo.php";
 class TablaGastoAdmin{
 
  	/*=============================================
- 	 MOSTRAR LA TABLA DE GASTO ADMIN
+ 	 MOSTRAR LA TABLA DE GASTO
   	=============================================*/ 
 
 	public function mostrarTablaGastoAdmin(){
@@ -112,7 +112,7 @@ class TablaGastoAdmin{
 }
 
 /*=============================================
-ACTIVAR TABLA DE GASTO ADMIN
+ACTIVAR TABLA DE GASTO
 =============================================*/ 
 $activarGastoAdmin = new TablaGastoAdmin();
 $activarGastoAdmin -> mostrarTablaGastoAdmin();

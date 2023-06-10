@@ -120,7 +120,7 @@ MODAL RECETA CONSUMO DE GAS
 
       <div class="modal-header" style="background:gray; color:white">
 
-      <h4 class="modal-title">Receta Consumo de Gas</h4>
+      <h4 class="modal-title">Agregar Consumo de Gas</h4>
 
       <button type="button" class="close" data-dismiss="modal">&times;</button>
 
@@ -281,7 +281,7 @@ MODAL EDITAR RECETA CONSUMO DE GAS
 
       <div class="modal-header" style="background:gray; color:white">
 
-      <h4 class="modal-title">Editar Receta Consumo de Gas</h4>
+      <h4 class="modal-title">Editar Consumo de Gas</h4>
 
       <button type="button" class="close" data-dismiss="modal">&times;</button>
 

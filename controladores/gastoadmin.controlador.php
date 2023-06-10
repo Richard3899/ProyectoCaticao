@@ -49,7 +49,7 @@ class ControladorGastoAdmin{
 					Swal.fire({
 					
 						icon: "success",
-						title: "¡El gasto administrativo ha sido guardado correctamente!",
+						title: "¡El gasto ha sido guardado correctamente!",
 						showConfirmButton: false,
 						timer: 1500
 					
@@ -90,7 +90,7 @@ class ControladorGastoAdmin{
 					Swal.fire({
 					
 						icon: "success",
-						title: "¡El gasto administrativo ha sido editado correctamente!",
+						title: "¡El gasto ha sido editado correctamente!",
 						showConfirmButton: false,
 						timer: 1500
 					
@@ -127,7 +127,7 @@ class ControladorGastoAdmin{
 				Swal.fire({
 				
 					icon: "success",
-					title: "¡El gasto administrativo ha sido eliminado correctamente!",
+					title: "¡El gasto ha sido eliminado correctamente!",
 					showConfirmButton: false,
 					timer: 1500
 				
@@ -146,7 +146,7 @@ class ControladorGastoAdmin{
 				Swal.fire({
 				
 					icon: "error",
-					title: "¡El gasto administrativo está en uso!",
+					title: "¡El gasto está en uso!",
 					showConfirmButton: false,
 					timer: 1500
 				

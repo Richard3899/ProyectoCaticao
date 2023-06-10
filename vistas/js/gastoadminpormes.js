@@ -1,5 +1,5 @@
 /*=============================================
-TABLA GASTO ADMIN POR MES
+TABLA GASTO POR MES
 =============================================*/
 var idMesGastoC = $("#idMesGasto").val();
 
@@ -48,7 +48,7 @@ $('.tablaGastoAdminPorMes').DataTable( {
 } );
 
 /*=============================================
-CONSULTA DE GASTO ADMIN POR MES
+CONSULTA DE GASTO POR MES
 =============================================*/
 const idArrayGastoAdminPorMes=[0];
 
@@ -162,7 +162,7 @@ $("#nuevoTotal").val(total);
 
 
 /*=============================================
-SELECCIONAR GASTO ADMIN
+SELECCIONAR GASTO
 =============================================*/
 
 $(".formularioGastoAdminPorMes").on("change", "select.seleccionarNombreGastoAdmin", function(){
@@ -219,7 +219,7 @@ $(".formularioGastoAdminPorMes").on("change", "select.seleccionarNombreGastoAdmi
 
 
 /*=============================================
-EDITAR GASTO ADMIN POR MES
+EDITAR GASTO POR MES
 =============================================*/
 
 $(".tablaGastoAdminPorMes tbody").on("click", "button.btnEditarGastoAdminPorMes", function(){
@@ -280,7 +280,7 @@ $("#editarTotal").val(total);
 	
 
 /*=============================================
-ELIMINAR GASTO ADMIN POR MES
+ELIMINAR GASTO POR MES
 =============================================*/
 
 $(".tablaGastoAdminPorMes tbody").on("click", "button.btnEliminarGastoAdminPorMes", function(){
@@ -291,14 +291,14 @@ $(".tablaGastoAdminPorMes tbody").on("click", "button.btnEliminarGastoAdminPorMe
 	
 	Swal.fire({
 
-		title: '¿Está seguro de borrar el gasto admin?',
+		title: '¿Está seguro de borrar el gasto?',
 		text: "¡Si no lo está puede cancelar la acción!",
 		icon: 'warning',
         showCancelButton: true,
         confirmButtonColor: '#3085d6',
         cancelButtonColor: '#d33',
         cancelButtonText: 'Cancelar',
-        confirmButtonText: 'Si, borrar gasto admin!'
+        confirmButtonText: 'Si, borrar gasto!'
         }).then(function(result){
         if (result.value) {
 

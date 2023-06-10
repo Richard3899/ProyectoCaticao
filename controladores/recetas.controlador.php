@@ -191,7 +191,7 @@ class ControladorRecetas{
 				Swal.fire({
 				
 					icon: "error",
-					title: "¡El estado de la receta debe estar Terminado!",
+					title: "¡El estado de la receta debe estar en Terminado!",
 					showConfirmButton: false,
 					timer: 2500
 				

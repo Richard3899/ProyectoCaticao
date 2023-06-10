@@ -39,7 +39,7 @@ $('.tablaMesGasto').DataTable( {
 
 
 /*=============================================
-EDITAR GASTO ADMIN
+EDITAR MES
 =============================================*/
 
 $(".tablaMesGasto tbody").on("click", "button.btnEditarMesGasto", function(){
@@ -82,14 +82,14 @@ $(".tablaMesGasto tbody").on("click", "button.btnEliminarMesGasto", function(){
 
 	Swal.fire({
 
-		title: '¿Está seguro de borrar el costo de recetas y gasto admin?',
+		title: '¿Está seguro de borrar el mes?',
 		text: "¡Si no lo está puede cancelar la acción!",
 		icon: 'warning',
         showCancelButton: true,
         confirmButtonColor: '#3085d6',
         cancelButtonColor: '#d33',
         cancelButtonText: 'Cancelar',
-        confirmButtonText: 'Si, borrar costo de recetas y gasto admin!'
+        confirmButtonText: 'Si, borrar mes!'
         }).then(function(result){
         if (result.value) {
 
@@ -372,7 +372,7 @@ $(".tablaMesGasto tbody").on("click", "button.btnOcultarMes", function(){
 
 
 /*=============================================
-TABLA GASTO ADMIN POR MES
+TABLA GASTO POR MES
 =============================================*/
 
 $(".tablaMesGasto tbody").on("click", "button.btnDetalleMesGasto", function(){

@@ -11,8 +11,8 @@
         <div class="col-sm-6">
           <ol class="breadcrumb float-sm-right">
             <li class="breadcrumb-item"><a href="inicio">Inicio</a></li>
-            <li class="breadcrumb-item active">Costos</li>
-            <li class="breadcrumb-item active">Costo total por Mes</li>
+            <li class="breadcrumb-item active">Costeo</li>
+            <li class="breadcrumb-item active">Mes y Gastos</li>
           </ol>
         </div>
       </div>

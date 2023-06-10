@@ -12,7 +12,7 @@
           <ol class="breadcrumb float-sm-right">
             <li class="breadcrumb-item"><a href="inicio">Inicio</a></li>
             <li class="breadcrumb-item active">Reportes</li>
-            <li class="breadcrumb-item active">Reporte de Productos</li>
+            <li class="breadcrumb-item active">Reporte Productos</li>
           </ol>
         </div>
       </div>
@@ -71,14 +71,14 @@
                           <!-- ENTRADA PARA EL STOCK DESDE -->
                           <div class="form-group col-sm-6 col-md-4 col-lg">
                           <div class="input-group ">
-                              <input type="text" id="stockDesde" class="form-control" placeholder="Stock Desde"  data-index="5">   
+                              <input type="text" id="stockDesde" class="form-control" placeholder="Stock Desde >"  data-index="5">   
                           </div>
                           </div>
 
                           <!-- ENTRADA PARA EL STOCK HASTA -->
                           <div class="form-group col-sm-6 col-md-4 col-lg">
                           <div class="input-group ">
-                              <input type="text" id="stockHasta" class="form-control" placeholder="Stock Hasta" data-index="5">   
+                              <input type="text" id="stockHasta" class="form-control" placeholder="< Stock Hasta" data-index="5">   
                           </div>
                           </div>
 

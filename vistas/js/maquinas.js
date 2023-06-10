@@ -155,7 +155,7 @@ $(".tablaMaquinas tbody").on("click", "button.btnEliminarMaquina", function(){
 	
 	Swal.fire({
 
-		title: '¿Está seguro de borrar el maquina?',
+		title: '¿Está seguro de borrar la maquina?',
 		text: "¡Si no lo está puede cancelar la acción!",
 		icon: 'warning',
         showCancelButton: true,

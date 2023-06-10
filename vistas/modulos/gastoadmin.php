@@ -74,7 +74,7 @@
 
 
 <!--=====================================
-MODAL AGREGAR GASTOS ADMINISTRATIVOS
+MODAL AGREGAR GASTOS
 ======================================-->
 
 <div id="modalAgregarGastoAdmin" class="modal fade" role="dialog">

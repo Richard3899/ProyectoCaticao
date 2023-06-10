@@ -30,9 +30,10 @@ class TablaReporteRecetas{
 			      "'.$recetas[$i]["codigo"].'",
 				  "'.$recetas[$i]["nombre"].'",
 			      "'.$recetas[$i]["nombreProducto"].'",
-				  "'.$recetas[$i]["cantidadTabletas"].'",
 				  "'.$recetas[$i]["codigoLote"].'",
+				  "'.$recetas[$i]["fechaFin"].'",
 				  "'.$recetas[$i]["fechaVencimiento"].'",
+				  "'.$recetas[$i]["cantidadTabletas"].'",
 				  "'.$recetas[$i]["costoTotal"].'",
 				  "'.$recetas[$i]["costoPorTableta"].'"
 			    ],';

@@ -229,7 +229,7 @@ MODAL RECETA CONSUMO DE ENERGÍA
 
       <div class="modal-header" style="background:gray; color:white">
 
-      <h4 class="modal-title">Receta Consumo de Energía</h4>
+      <h4 class="modal-title">Agregar Consumo de Energía</h4>
 
       <button type="button" class="close" data-dismiss="modal">&times;</button>
 
@@ -297,7 +297,7 @@ MODAL RECETA CONSUMO DE ENERGÍA
                 <div class="input-group-prepend">
                 <span class="input-group-text"><i class="fas fa-layer-group"></i></span>
                 </div>
-                <input type="number" class="form-control input-lg nuevoTiempoHorasConsumoEnergia" id="nuevoTiempoHoras" name="nuevoTiempoHoras" 
+                <input type="number" placeholder="0" class="form-control input-lg nuevoTiempoHorasConsumoEnergia" id="nuevoTiempoHoras" name="nuevoTiempoHoras" 
                  min="0.1" step="0.1" required>
             </div>
 
@@ -312,7 +312,7 @@ MODAL RECETA CONSUMO DE ENERGÍA
                 </div>
                 <input type="hidden" id="tarifaKwh" name="tarifaKwh">
                 <input type="hidden" id="precioTotal" name="precioTotal">
-                <input type="number" class="form-control input-lg precioConsumoEnergia" name="nuevoPrecioUnitario" id="nuevoPrecioUnitario"
+                <input type="number" placeholder="0,00" class="form-control input-lg precioConsumoEnergia" name="nuevoPrecioUnitario" id="nuevoPrecioUnitario"
                  required readonly>
             </div>
 
@@ -369,7 +369,7 @@ MODAL EDITAR RECETA CONSUMO DE ENERGÍA
 
       <div class="modal-header" style="background:gray; color:white">
 
-      <h4 class="modal-title">Editar Receta Consumo de Energía</h4>
+      <h4 class="modal-title">Editar Consumo de Energía</h4>
 
       <button type="button" class="close" data-dismiss="modal">&times;</button>
 
@@ -418,7 +418,7 @@ MODAL EDITAR RECETA CONSUMO DE ENERGÍA
                 <div class="input-group-prepend">
                 <span class="input-group-text"><i class="fas fa-layer-group"></i></span>
                 </div>
-                <input type="number" class="form-control input-lg editarTiempoHorasConsumoEnergia" id="editarTiempoHoras" name="editarTiempoHoras" 
+                <input type="number" placeholder="0" placeholder="0" class="form-control input-lg editarTiempoHorasConsumoEnergia" id="editarTiempoHoras" name="editarTiempoHoras" 
                  min="0.1" step="0.1" required>
             </div>
 
@@ -433,7 +433,7 @@ MODAL EDITAR RECETA CONSUMO DE ENERGÍA
                 </div>
                 <input type="hidden" id="editarTarifaKwhCE" name="editarTarifaKwhCE">
                 <input type="hidden" id="editarprecioTotal" name="editarprecioTotal">
-                <input type="number" class="form-control input-lg editarPrecioConsumoEnergia" name="editarPrecioConsumoEnergia" id="editarPrecioConsumoEnergia"
+                <input type="number" placeholder="0,00" class="form-control input-lg editarPrecioConsumoEnergia" name="editarPrecioConsumoEnergia" id="editarPrecioConsumoEnergia"
                  required readonly>
             </div>
 

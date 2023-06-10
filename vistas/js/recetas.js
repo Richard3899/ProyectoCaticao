@@ -351,7 +351,7 @@ $(".tablaRecetas tbody").on("click", "button.btnEliminarReceta", function(){
 
 	Swal.fire({
 
-		title: '¿Está seguro de borrar el receta?',
+		title: '¿Está seguro de borrar la receta?',
 		text: "¡Si no lo está puede cancelar la acción!",
 		icon: 'warning',
         showCancelButton: true,
@@ -385,7 +385,7 @@ $(".tablaRecetas tbody").on("click", "button.btnCerrarReceta", function(){
 
 	Swal.fire({
 
-		title: '¿Está seguro de cerrar el receta?',
+		title: '¿Está seguro de cerrar la receta?',
 		text: "¡Si no lo está puede cancelar la acción!",
 		icon: 'warning',
         showCancelButton: true,

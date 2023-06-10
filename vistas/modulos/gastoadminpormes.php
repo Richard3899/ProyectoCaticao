@@ -12,7 +12,7 @@
           <ol class="breadcrumb float-sm-right">
             <li class="breadcrumb-item"><a href="inicio">Inicio</a></li>
             <li class="breadcrumb-item active">Costeo</li>
-            <li class="breadcrumb-item active">Gastos</li>
+            <li class="breadcrumb-item active">Mes y Gastos</li>
           </ol>
         </div>
       </div>
@@ -44,12 +44,12 @@
           if($permisoInsertar==1){
 
           echo  "<button class='btn btn-primary my-1 col-12 col-sm-5 col-md-4 mr-2 col-lg-8 col-xl-7' id='btnGastoAdminPorMes' data-toggle='modal' data-target='#modalGastoAdminPorMes'>
-                Agregar Gastos
+                Agregar Gasto
                 </button>";
           }else{
 
           echo  "<button class='btn btn-primary my-1 col-12 col-sm-5 col-md-4 mr-2 col-lg-8 col-xl-7' id='btnGastoAdminPorMes'>
-                Agregar Gastos
+                Agregar Gasto
                 </button>";
 
           }
@@ -94,7 +94,7 @@
 <!-- /.content-wrapper -->
 
 <!--=====================================
-MODAL GASTO ADMINISTRATIVO POR MES
+MODAL GASTO POR MES
 ======================================-->
 
 <div id="modalGastoAdminPorMes" class="modal fade" role="dialog">
@@ -158,7 +158,7 @@ MODAL GASTO ADMINISTRATIVO POR MES
             </div>
             </div>
 
-            <!-- ENTRADA PARA SELECCIONAR GASTO ADMINISTRATIVO -->
+            <!-- ENTRADA PARA SELECCIONAR GASTO -->
             <div class="form-group col-sm">
             <label for="gastoAdministrativo">Gasto</label>
             <div class="input-group">
@@ -252,7 +252,7 @@ MODAL GASTO ADMINISTRATIVO POR MES
 </div>
 
 <!--=====================================
-MODAL EDITAR GASTO ADMINISTRATIVO POR MES
+MODAL EDITAR GASTO POR MES
 ======================================-->
 
 <div id="modalEditarGastoAdminPorMes" class="modal fade" role="dialog">
@@ -289,10 +289,10 @@ MODAL EDITAR GASTO ADMINISTRATIVO POR MES
 
           <div class="row">
 
-            <!-- ENTRADA PARA SELECCIONAR EL GASTO ADMINISTRATIVO -->
+            <!-- ENTRADA PARA SELECCIONAR EL TIPO DE GASTO -->
 
             <div class="form-group col-sm">
-            <label for="gastoAdministrativo">Gasto Administrativo</label>
+            <label for="tipodegasto">Tipo de Gasto</label>
                 <input type="hidden" name="editaridGastoAdminPorMes" id="editaridGastoAdminPorMes">
             
             <div class="input-group">

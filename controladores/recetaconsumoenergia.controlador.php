@@ -97,7 +97,7 @@ class ControladorRecetaConsumoEnergia{
 				Swal.fire({
 				
 					icon: "success",
-					title: "¡El consumo de energía fue agregada correctamente!",
+					title: "¡El consumo de energía fue agregado correctamente!",
 					showConfirmButton: false,
 					timer: 1500
 				
@@ -142,7 +142,7 @@ class ControladorRecetaConsumoEnergia{
 					Swal.fire({
 					
 						icon: "success",
-						title: "¡El consumo de energía fue editada correctamente!",
+						title: "¡El consumo de energía fue editado correctamente!",
 						showConfirmButton: false,
 						timer: 1500
 					
@@ -185,7 +185,7 @@ class ControladorRecetaConsumoEnergia{
 				Swal.fire({
 				
 					icon: "success",
-					title: "¡La consumo de energía ha sido eliminada correctamente!",
+					title: "¡La consumo de energía ha sido eliminado correctamente!",
 					showConfirmButton: false,
 					timer: 1500
 				

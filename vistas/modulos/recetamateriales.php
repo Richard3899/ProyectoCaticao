@@ -119,7 +119,7 @@ MODAL RECETA MATERIAL
 
       <div class="modal-header" style="background:gray; color:white">
 
-      <h4 class="modal-title">Receta Material</h4>
+      <h4 class="modal-title">Agregar Material</h4>
 
       <button type="button" class="close" data-dismiss="modal">&times;</button>
 
@@ -185,8 +185,8 @@ MODAL RECETA MATERIAL
                 <div class="input-group-prepend">
                 <span class="input-group-text"><i class="fas fa-box"></i></span>
                 </div>
-                <input type="number" class="form-control input-lg" id="nuevoStock" name="nuevoStock" readonly required>
-                <input type="text" class="form-control input-lg"  id="unidadMedidaStockI" name="unidadMedidaStockI" readonly>
+                <input type="number" placeholder="0,00" class="form-control input-lg" id="nuevoStock" name="nuevoStock" readonly required>
+                <input type="text" placeholder="Unid" class="form-control input-lg"  id="unidadMedidaStockI" name="unidadMedidaStockI" readonly>
             </div>
             </div>
 
@@ -201,9 +201,9 @@ MODAL RECETA MATERIAL
                 <div class="input-group-prepend">
                 <span class="input-group-text"><i class="fas fa-layer-group"></i></span>
                 </div>
-                <input type="number" class="form-control input-lg nuevaCantidadMaterial" stock id="nuevaCantidad" name="nuevaCantidad" 
+                <input type="number" placeholder="0,00" class="form-control input-lg nuevaCantidadMaterial" stock id="nuevaCantidad" name="nuevaCantidad" 
                  min="0.01" step="0.01" required>
-                <input type="text" class="form-control input-lg"  id="unidadMedidaI" name="unidadMedidaI" readonly>
+                <input type="text" placeholder="Unid" class="form-control input-lg"  id="unidadMedidaI" name="unidadMedidaI" readonly>
             </div>
 
             </div>
@@ -217,7 +217,7 @@ MODAL RECETA MATERIAL
                 </div>
                 <input type="hidden" id="precioUnitario" name="precioUnitario">
                 <input type="hidden" id="precioTotal" name="precioTotal">
-                <input type="number" class="form-control input-lg precioMaterial" precioReal name="nuevoPrecioUnitario" id="nuevoPrecioUnitario"
+                <input type="number" placeholder="0,00" class="form-control input-lg precioMaterial" precioReal name="nuevoPrecioUnitario" id="nuevoPrecioUnitario"
                  required readonly>
             </div>
 
@@ -275,7 +275,7 @@ MODAL EDITAR RECETA MATERIAL
 
       <div class="modal-header" style="background:gray; color:white">
 
-      <h4 class="modal-title">Editar Receta Material</h4>
+      <h4 class="modal-title">Editar Material</h4>
 
       <button type="button" class="close" data-dismiss="modal">&times;</button>
 
@@ -307,11 +307,11 @@ MODAL EDITAR RECETA MATERIAL
 
                 <input type="hidden" name="editarNombreMaterial" id="editarNombreMaterial">
 
-            <div class="input-group">
+              <div class="input-group">
 
                 <input type="text" class="form-control input-lg" name="editarNombreM" id="editarNombreM">
 
-            </div>
+              </div>
 
           </div>
 
@@ -322,8 +322,8 @@ MODAL EDITAR RECETA MATERIAL
                 <div class="input-group-prepend">
                 <span class="input-group-text"><i class="fas fa-box"></i></span>
                 </div>
-                <input type="number" class="form-control input-lg" id="editarStock" name="editarStock" readonly required>
-                <input type="text" class="form-control input-lg"  id="unidadMedidaStockA" name="unidadMedidaStockA" readonly>
+                <input type="number" placeholder="0,00" class="form-control input-lg" id="editarStock" name="editarStock" readonly required>
+                <input type="text" placeholder="Unid" class="form-control input-lg"  id="unidadMedidaStockA" name="unidadMedidaStockA" readonly>
             </div>
             </div>
 
@@ -338,9 +338,9 @@ MODAL EDITAR RECETA MATERIAL
                 <div class="input-group-prepend">
                 <span class="input-group-text"><i class="fas fa-layer-group"></i></span>
                 </div>
-                <input type="number" class="form-control input-lg editarCantidadMaterial" edStock id="editarCantidad" name="editarCantidad" 
+                <input type="number" placeholder="0,00" class="form-control input-lg editarCantidadMaterial" edStock id="editarCantidad" name="editarCantidad" 
                 min="0.01" step="0.01" required>
-                <input type="text" class="form-control input-lg"  id="unidadMedidaA" name="unidadMedidaA" readonly>
+                <input type="text" placeholder="Unid" class="form-control input-lg"  id="unidadMedidaA" name="unidadMedidaA" readonly>
             </div>
 
             </div>
@@ -354,7 +354,7 @@ MODAL EDITAR RECETA MATERIAL
                 </div>
                 <input type="hidden" id="editarprecioUnitario" name="editarprecioUnitario">
                 <input type="hidden" id="editarprecioTotal" name="editarprecioTotal">
-                <input type="number" class="form-control input-lg editarPrecioMaterial" name="editarPrecioMaterial" id="editarPrecioMaterial"
+                <input type="number" placeholder="0,00" class="form-control input-lg editarPrecioMaterial" name="editarPrecioMaterial" id="editarPrecioMaterial"
                  required readonly>
             </div>
 

@@ -41,7 +41,7 @@ $('.tablaGastoAdmin').DataTable( {
 
 
 /*=============================================
-EDITAR GASTO ADMIN
+EDITAR GASTO
 =============================================*/
 
 $(".tablaGastoAdmin tbody").on("click", "button.btnEditarGastoAdmin", function(){
@@ -80,7 +80,7 @@ $(".tablaGastoAdmin tbody").on("click", "button.btnEditarGastoAdmin", function()
 })
 
 /*=============================================
-ELIMINAR GASTO ADMIN
+ELIMINAR GASTO
 =============================================*/
 
 $(".tablaGastoAdmin tbody").on("click", "button.btnEliminarGastoAdmin", function(){
@@ -89,14 +89,14 @@ $(".tablaGastoAdmin tbody").on("click", "button.btnEliminarGastoAdmin", function
 
 	Swal.fire({
 
-		title: '¿Está seguro de borrar el gasto admin?',
+		title: '¿Está seguro de borrar el gasto?',
 		text: "¡Si no lo está puede cancelar la acción!",
 		icon: 'warning',
         showCancelButton: true,
         confirmButtonColor: '#3085d6',
         cancelButtonColor: '#d33',
         cancelButtonText: 'Cancelar',
-        confirmButtonText: 'Si, borrar gasto admin!'
+        confirmButtonText: 'Si, borrar gasto!'
         }).then(function(result){
         if (result.value) {
 

@@ -58,7 +58,7 @@ class AjaxGastoAdmin{
 }
 
 /*=============================================
-EDITAR GASTO ADMIN
+EDITAR GASTO
 =============================================*/
 if(isset($_POST["idGastoAdmin"])){
 
@@ -67,7 +67,6 @@ if(isset($_POST["idGastoAdmin"])){
 	$editar -> ajaxEditarGastoAdmin();
 
 }
-
 
 /*=============================================
 VALIDAR NO REPETIR INSUMO
